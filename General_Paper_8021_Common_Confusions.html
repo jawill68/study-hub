@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cambridge AICE General Paper 8021 — Complete Course Guide</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --teal: #1D9E75; --teal-light: #E1F5EE; --teal-dark: #085041;
+    --blue: #185FA5; --blue-light: #E6F1FB;
+    --purple: #534AB7; --purple-light: #EEEDFE;
+    --amber: #854F0B; --amber-light: #FAEEDA;
+    --green-light: #EAF3DE; --green: #27500A;
+    --red-light: #FCEBEB; --red: #501313;
+    --gray-light: #F5F5F3; --gray-mid: #888780;
+    --text: #1A1A1A; --muted: #555555; --border: #DDDDDD;
+    --bg: #FFFFFF; --surface: #F8F8F6;
+    --radius: 8px; --radius-lg: 12px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  body { font-family: Georgia, 'Times New Roman', serif; background: var(--surface); color: var(--text); line-height: 1.6; font-size: 15px; }
+  a { color: var(--blue); }
+  /* Layout */
+  .page-wrap { max-width: 860px; margin: 0 auto; padding: 0 1rem 3rem; }
+  /* Header */
+  .site-header { background: var(--bg); border-bottom: 3px solid var(--teal); padding: 1rem 2rem; position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; gap: 1rem; box-shadow: var(--shadow); }
+  .site-header h1 { font-size: 1rem; font-weight: 700; color: var(--text); font-family: Arial, sans-serif; }
+  .site-header span { font-size: 0.8rem; color: var(--muted); font-family: Arial, sans-serif; }
+  /* Hero */
+  .hero { background: linear-gradient(135deg, #E1F5EE 0%, #b6ebd8 100%); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid #9FE1CB; }
+  .hero-badge { display: inline-block; background: var(--teal); color: #fff; font-size: 0.7rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; margin-bottom: 0.75rem; font-family: Arial, sans-serif; letter-spacing: 0.5px; text-transform: uppercase; }
+  .hero h2 { font-size: 1.8rem; color: var(--teal-dark); margin-bottom: 0.5rem; font-family: Arial, sans-serif; }
+  .hero p { font-size: 0.95rem; color: #2a6b52; font-family: Arial, sans-serif; }
+  /* Nav */
+  .tab-nav { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.5rem 0 1rem; }
+  .tab-nav button { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.5rem 1rem; font-size: 0.85rem; font-family: Arial, sans-serif; cursor: pointer; color: var(--muted); transition: all 0.15s; }
+  .tab-nav button:hover { background: var(--teal-light); border-color: var(--teal); color: var(--teal-dark); }
+  .tab-nav button.active { background: var(--teal); color: #fff; border-color: var(--teal); font-weight: 600; }
+  /* Sections */
+  .section { display: none; }
+  .section.active { display: block; animation: fadeIn 0.2s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+  /* Cards */
+  .card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow); }
+  .card h2 { font-size: 1.2rem; font-family: Arial, sans-serif; color: var(--teal-dark); margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--teal-light); }
+  .card h3 { font-size: 1rem; font-family: Arial, sans-serif; color: var(--blue); margin: 1rem 0 0.5rem; }
+  .card p { color: var(--muted); margin-bottom: 0.6rem; font-size: 0.9rem; }
+  .card p:last-child { margin-bottom: 0; }
+  /* Stat grid */
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 0.75rem; margin: 1rem 0; }
+  .stat { background: var(--surface); border-radius: var(--radius); padding: 0.75rem; text-align: center; border: 1px solid var(--border); }
+  .stat .num { font-size: 1.5rem; font-weight: 700; color: var(--teal); font-family: Arial, sans-serif; }
+  .stat .lbl { font-size: 0.75rem; color: var(--muted); font-family: Arial, sans-serif; margin-top: 2px; }
+  /* Callout boxes */
+  .box { border-radius: var(--radius); padding: 0.8rem 1rem; margin: 0.75rem 0; font-size: 0.88rem; line-height: 1.6; font-family: Arial, sans-serif; }
+  .box strong { font-weight: 700; display: block; margin-bottom: 3px; }
+  .box-teal { background: var(--teal-light); border-left: 4px solid var(--teal); color: #0b5c42; }
+  .box-amber { background: var(--amber-light); border-left: 4px solid #EF9F27; color: var(--amber); }
+  .box-green { background: var(--green-light); border-left: 4px solid #639922; color: var(--green); }
+  .box-red { background: var(--red-light); border-left: 4px solid #E24B4A; color: var(--red); }
+  .box-blue { background: var(--blue-light); border-left: 4px solid var(--blue); color: #0c3d6e; }
+  .box-purple { background: var(--purple-light); border-left: 4px solid var(--purple); color: #2e2779; }
+  .box-gray { background: var(--gray-light); border-left: 4px solid #888; color: #444; }
+  /* Steps */
+  .steps { list-style: none; margin: 0.75rem 0; }
+  .step { display: flex; gap: 0.75rem; margin-bottom: 0.75rem; align-items: flex-start; }
+  .step-num { min-width: 28px; height: 28px; border-radius: 50%; background: var(--teal); color: #fff; font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; font-family: Arial, sans-serif; }
+  .step-body { font-size: 0.88rem; color: var(--muted); line-height: 1.6; font-family: Arial, sans-serif; }
+  .step-body strong { color: var(--text); font-weight: 600; }
+  /* Two col */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0.75rem 0; }
+  @media (max-width: 560px) { .two-col { grid-template-columns: 1fr; } }
+  .col-card { border-radius: var(--radius); padding: 1rem; font-size: 0.88rem; font-family: Arial, sans-serif; }
+  /* Essay structure table */
+  .struct-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-family: Arial, sans-serif; font-size: 0.85rem; }
+  .struct-table td { padding: 0.6rem 0.8rem; border: 1px solid var(--border); vertical-align: top; }
+  .struct-table .label { background: var(--teal); color: #fff; font-weight: 700; width: 30%; }
+  .struct-table .label.alt { background: var(--blue); }
+  .struct-table .label.alt2 { background: #BA7517; }
+  .struct-table tr:nth-child(odd) .content { background: var(--teal-light); }
+  .struct-table tr:nth-child(even) .content { background: var(--blue-light); }
+  .struct-table tr:last-child .content { background: var(--teal-light); }
+  /* Command word table */
+  .cmd-table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-family: Arial, sans-serif; font-size: 0.85rem; }
+  .cmd-table th { background: var(--teal); color: #fff; padding: 0.5rem 0.75rem; text-align: left; }
+  .cmd-table td { padding: 0.5rem 0.75rem; border: 1px solid var(--border); vertical-align: top; }
+  .cmd-table tr:nth-child(even) td { background: var(--teal-light); }
+  .cmd-table .word { font-weight: 700; color: var(--teal-dark); }
+  /* WEP model */
+  .wep { display: flex; flex-direction: column; gap: 0; margin: 0.75rem 0; }
+  .wep-row { display: flex; gap: 0; }
+  .wep-label { min-width: 44px; display: flex; align-items: stretch; }
+  .wep-label span { background: var(--teal); color: #fff; font-weight: 700; font-size: 1rem; display: flex; align-items: center; justify-content: center; width: 44px; font-family: Arial, sans-serif; }
+  .wep-row:nth-child(2) .wep-label span { background: var(--blue); }
+  .wep-row:nth-child(3) .wep-label span { background: #3B6D11; }
+  .wep-content { flex: 1; padding: 0.6rem 0.8rem; border: 1px solid var(--border); font-size: 0.85rem; font-family: Arial, sans-serif; color: var(--muted); }
+  .wep-row:nth-child(1) .wep-content { background: var(--teal-light); border-top-right-radius: var(--radius); }
+  .wep-row:nth-child(2) .wep-content { background: var(--blue-light); }
+  .wep-row:nth-child(3) .wep-content { background: var(--green-light); border-bottom-right-radius: var(--radius); }
+  .wep-content strong { color: var(--text); }
+  /* Practice area */
+  .practice-zone { background: var(--surface); border: 1px dashed #BBBBBB; border-radius: var(--radius); padding: 1rem; margin-top: 0.75rem; }
+  .practice-zone label { font-size: 0.8rem; font-weight: 600; color: var(--muted); display: block; margin-bottom: 0.4rem; font-family: Arial, sans-serif; text-transform: uppercase; letter-spacing: 0.4px; }
+  .practice-zone textarea { width: 100%; border: 1px solid var(--border); border-radius: var(--radius); padding: 0.6rem 0.75rem; font-family: Georgia, serif; font-size: 0.88rem; color: var(--text); background: var(--bg); resize: vertical; min-height: 90px; line-height: 1.6; }
+  .practice-zone textarea:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(29,158,117,0.1); }
+  .btn { display: inline-block; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.4rem 1rem; font-size: 0.85rem; font-family: Arial, sans-serif; cursor: pointer; color: var(--text); transition: all 0.15s; margin-top: 0.5rem; }
+  .btn:hover { background: var(--teal-light); border-color: var(--teal); color: var(--teal-dark); }
+  .feedback-msg { font-size: 0.85rem; padding: 0.6rem 0.8rem; border-radius: var(--radius); margin-top: 0.5rem; display: none; font-family: Arial, sans-serif; line-height: 1.6; }
+  /* Bullet list */
+  .gp-list { margin: 0.5rem 0 0.5rem 1.5rem; font-family: Arial, sans-serif; font-size: 0.88rem; color: var(--muted); }
+  .gp-list li { margin-bottom: 0.35rem; }
+  /* Gamify */
+  .level-box { background: linear-gradient(135deg, var(--teal-light), #9FE1CB); border-radius: var(--radius-lg); padding: 1.25rem; text-align: center; margin-bottom: 1rem; border: 1px solid #9FE1CB; }
+  .level-num { font-size: 3rem; font-weight: 700; color: var(--teal-dark); font-family: Arial, sans-serif; line-height: 1; }
+  .level-label { font-size: 0.9rem; color: #2a6b52; font-family: Arial, sans-serif; margin-top: 4px; }
+  .xp-row { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--muted); font-family: Arial, sans-serif; margin-bottom: 4px; }
+  .xp-track { background: var(--surface); border-radius: 999px; height: 10px; overflow: hidden; border: 1px solid var(--border); }
+  .xp-fill { height: 100%; background: var(--teal); border-radius: 999px; transition: width 0.5s ease; }
+  .badge-area { display: flex; flex-wrap: wrap; gap: 0.4rem; min-height: 36px; margin-top: 0.5rem; }
+  .badge { display: inline-flex; align-items: center; gap: 5px; background: var(--teal-light); border: 1px solid var(--teal); border-radius: 999px; padding: 4px 12px; font-size: 0.78rem; font-family: Arial, sans-serif; color: var(--teal-dark); font-weight: 600; }
+  .quest { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.8rem 1rem; margin-bottom: 0.6rem; box-shadow: var(--shadow); }
+  .quest-info strong { display: block; font-size: 0.88rem; font-family: Arial, sans-serif; color: var(--text); margin-bottom: 2px; }
+  .quest-info p { font-size: 0.8rem; color: var(--muted); font-family: Arial, sans-serif; margin: 0; }
+  .quest-right { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
+  .xp-tag { background: var(--teal-light); color: var(--teal-dark); font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; font-family: Arial, sans-serif; white-space: nowrap; }
+  .done-btn { background: transparent; border: 1px solid var(--border); border-radius: var(--radius); padding: 4px 10px; font-size: 0.78rem; cursor: pointer; font-family: Arial, sans-serif; color: var(--muted); }
+  .done-btn:hover { background: var(--teal-light); border-color: var(--teal); color: var(--teal-dark); }
+  .done-btn.done { background: var(--teal-light); border-color: var(--teal); color: var(--teal-dark); font-weight: 600; }
+  /* Tab inner */
+  .inner-tabs { display: flex; gap: 0.4rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+  .inner-tab { background: transparent; border: 1px solid var(--border); border-radius: var(--radius); padding: 4px 12px; font-size: 0.8rem; cursor: pointer; font-family: Arial, sans-serif; color: var(--muted); }
+  .inner-tab:hover { background: var(--teal-light); }
+  .inner-tab.active { background: var(--teal); color: #fff; border-color: var(--teal); }
+  .inner-content { display: none; }
+  .inner-content.active { display: block; }
+  /* Quick ref */
+  .qr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+  @media (max-width: 560px) { .qr-grid { grid-template-columns: 1fr; } }
+  .qr-card { border-radius: var(--radius); padding: 1rem; }
+  .qr-card h3 { font-size: 0.9rem; font-family: Arial, sans-serif; margin-bottom: 0.5rem; }
+  .qr-card ul { margin-left: 1.2rem; font-size: 0.82rem; font-family: Arial, sans-serif; color: var(--muted); }
+  .qr-card ul li { margin-bottom: 3px; }
+  /* Highlight spans */
+  .hl-amber { background: #FAEEDA; color: #633806; padding: 1px 4px; border-radius: 3px; }
+  .hl-green { background: #EAF3DE; color: #27500A; padding: 1px 4px; border-radius: 3px; }
+  .hl-blue { background: #E6F1FB; color: #0C447C; padding: 1px 4px; border-radius: 3px; }
+  /* Print */
+  @media print {
+    .site-header, .tab-nav { display: none; }
+    .section { display: block !important; page-break-before: always; }
+    .section:first-of-type { page-break-before: auto; }
+    body { background: #fff; }
+    .card { box-shadow: none; border: 1px solid #ddd; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1>📘 Cambridge AICE General Paper 8021</h1>
+  <span>Complete Course Guide · Syllabus 2025–2027</span>
+</header>
+
+<div class="page-wrap">
+
+  <div class="hero">
+    <div class="hero-badge">Cambridge AICE · Syllabus 8021</div>
+    <h2>Your General Paper Playbook</h2>
+    <p>You have never done this before. That is fine. This guide is built for exactly where you are right now. Work through each section, practice in the zones provided, and build the habits that earn marks on exam day.</p>
+  </div>
+
+  <nav class="tab-nav" aria-label="Course sections">
+    <button class="active" onclick="show('overview',this)">🗺 The Big Picture</button>
+    <button onclick="show('paper1',this)">✏️ Paper 1: Essay</button>
+    <button onclick="show('paper2',this)">📄 Paper 2: Comprehension</button>
+    <button onclick="show('commands',this)">⌨️ Command Words</button>
+    <button onclick="show('toolkit',this)">🔧 Toolkit</button>
+    <button onclick="show('gamify',this)">🏆 Level Up</button>
+  </nav>
+
+  <!-- ══ OVERVIEW ════════════════════════════════════════════════════════ -->
+  <div id="s-overview" class="section active">
+
+    <div class="card">
+      <h2>What is General Paper?</h2>
+      <p>General Paper is a Cambridge AS Level course where you write about the world. Not one subject — everything. Science, society, politics, the arts, technology, ethics. It rewards students who read widely, think critically, and write clearly.</p>
+      <p>The good news: you are not tested on facts. You are tested on what you do with ideas. Two exams. One essay. One reading response. That is the whole course.</p>
+      <div class="stat-grid">
+        <div class="stat"><div class="num">2</div><div class="lbl">Papers total</div></div>
+        <div class="stat"><div class="num">180</div><div class="lbl">Guided learning hours</div></div>
+        <div class="stat"><div class="num">600–700</div><div class="lbl">Words per essay</div></div>
+        <div class="stat"><div class="num">3</div><div class="lbl">Assessment objectives</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>The Three Assessment Objectives (AOs)</h2>
+      <p>Every mark on every paper connects to one of three AOs. Understanding them is your first real advantage.</p>
+      <div class="box box-teal" style="margin-top:0.75rem"><strong>AO1 — Selection and Application (28%)</strong>Showing you know relevant information and can pick examples that actually support your point. Not everything you know — only what fits.</div>
+      <div class="box box-blue"><strong>AO2 — Analysis and Evaluation (37%) — the highest-value skill</strong>Going beyond the surface. Asking: so what? Why does this matter? What is the other side? This is where most marks are won or lost.</div>
+      <div class="box box-purple"><strong>AO3 — Written Communication (35%)</strong>Clear sentences. Organised paragraphs. Appropriate register. No need for fancy words — need for precise ones.</div>
+    </div>
+
+    <div class="card">
+      <h2>Three Topic Areas</h2>
+      <p>Paper 1 questions come from these three broad topic buckets. Build knowledge in each one.</p>
+      <div class="steps" style="margin-top:0.75rem">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body"><strong>Economic, Historical, Moral, Political and Social</strong> — government, justice, human rights, globalisation, education, work, migration, inequality, religion, family.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body"><strong>Science, Environment and Technology</strong> — medical ethics, space, privacy, climate, food security, AI, transport, public health, mathematics.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body"><strong>Literature, Language, Arts and Media</strong> — books, journalism, advertising, censorship, digital media, visual arts, performing arts, heritage.</div>
+        </div>
+      </div>
+      <div class="box box-amber"><strong>Reality check:</strong> You do not need to be an expert in all of these. You need to have an opinion about them and know a few real examples. Start by picking one topic per area that genuinely interests you and read about it for 10 minutes a week.</div>
+    </div>
+
+  </div>
+
+  <!-- ══ PAPER 1 ══════════════════════════════════════════════════════════ -->
+  <div id="s-paper1" class="section">
+
+    <div class="card">
+      <h2>Paper 1 at a Glance</h2>
+      <p>1 hour 15 minutes. 10 questions. You pick one. You write a 600–700 word essay. That one essay is worth 50% of your entire grade.</p>
+      <div class="stat-grid">
+        <div class="stat"><div class="num">10</div><div class="lbl">Questions to choose</div></div>
+        <div class="stat"><div class="num">1</div><div class="lbl">You answer</div></div>
+        <div class="stat"><div class="num">30</div><div class="lbl">Marks available</div></div>
+        <div class="stat"><div class="num">75 min</div><div class="lbl">Total time</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>How to Choose Your Question (4 Minutes Well Spent)</h2>
+      <p>Students lose marks before they write a single word by choosing the wrong question. Use this process every time.</p>
+      <div class="steps" style="margin-top:0.75rem">
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Read all 10 questions once.</strong> Do not skip this. It takes 2 minutes and you might find a better option than your first instinct.</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Ask: can I name at least 3 real examples?</strong> Not vague ideas — actual events, places, people, data, or research. If you cannot, move on.</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Ask: can I argue both sides?</strong> Cambridge rewards balance. If you can only think of one perspective, pick a different question.</div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Commit and plan before writing.</strong> Two minutes of planning produces a better essay than two minutes of extra writing.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>The Essay Structure That Earns Marks</h2>
+      <p>General Paper essays are structured arguments. Every paragraph has a job.</p>
+      <table class="struct-table">
+        <tr><td class="label">Introduction<br><small style="font-weight:400">(60–80 words)</small></td><td class="content">Define the key term or issue. <span class="hl-green">State your position clearly.</span> Signal what your essay will cover. Do not waste space summarising what everyone already knows.</td></tr>
+        <tr><td class="label alt">Body 1<br><small style="font-weight:400">(100–120 words)</small></td><td class="content"><span class="hl-green">Point:</span> State the argument in one sentence. <span class="hl-amber">Evidence:</span> Give a real-world example with specifics. <span class="hl-blue">Analysis:</span> Explain why the example proves your point. Connect — do not just describe.</td></tr>
+        <tr><td class="label alt">Body 2<br><small style="font-weight:400">(100–120 words)</small></td><td class="content">Same structure. Different point. Move your argument forward — do not repeat Body 1 in different words.</td></tr>
+        <tr><td class="label alt2" style="color:#fff">Counter-argument<br><small style="font-weight:400">(100–120 words)</small></td><td class="content" style="background:#FAEEDA"><span class="hl-amber">Acknowledge the other side</span> — "Critics argue..." or "It is true that..." Then <span class="hl-green">refute or qualify it</span> — explain why your position still holds.</td></tr>
+        <tr><td class="label">Conclusion<br><small style="font-weight:400">(60–80 words)</small></td><td class="content">Return to your position. <span class="hl-blue">Do not introduce new ideas.</span> Synthesise — show how your arguments together prove your point.</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Before and After: See the Difference</h2>
+      <p style="font-size:0.85rem;font-family:Arial,sans-serif;color:var(--muted)">Question: "Social media has done more harm than good. Discuss."</p>
+      <div class="box box-red" style="margin-top:0.75rem"><strong>Weak version:</strong> Social media is harmful. Lots of people use it and it causes many problems. Depression is one example. Young people are affected the most and this is a big issue in today's society.</div>
+      <div class="box box-green"><strong>Strong version:</strong> Research conducted by the Royal Society for Public Health in the UK found that Instagram ranked as the most harmful social media platform for young people's mental health, contributing to anxiety, depression, and poor body image. This is significant because it demonstrates that the harm is not incidental — it is structural. Platforms designed around likes and comparisons produce measurable psychological damage, regardless of individual user intentions.</div>
+      <div class="box box-amber"><strong>What changed?</strong> The strong version names a real source, gives a specific finding, and — most importantly — analyses what the finding means. That last sentence is AO2. That is where marks live.</div>
+    </div>
+
+    <div class="card">
+      <h2>Practice: Build Your Argument</h2>
+      <p style="font-size:0.85rem">Choose a prompt and write one strong body paragraph using Point–Evidence–Analysis.</p>
+      <div class="inner-tabs">
+        <button class="inner-tab active" onclick="innerTab(this,'prompts','prompt-a')">Option A</button>
+        <button class="inner-tab" onclick="innerTab(this,'prompts','prompt-b')">Option B</button>
+        <button class="inner-tab" onclick="innerTab(this,'prompts','prompt-c')">Option C</button>
+      </div>
+      <div id="prompts">
+        <div id="prompt-a" class="inner-content active"><div class="box box-gray">"Technology is making us less human." Discuss.</div></div>
+        <div id="prompt-b" class="inner-content"><div class="box box-gray">"Governments should control what we eat." To what extent do you agree?</div></div>
+        <div id="prompt-c" class="inner-content"><div class="box box-gray">"Education systems are failing the students who need them most." Discuss.</div></div>
+      </div>
+      <div class="practice-zone">
+        <label>Your paragraph (aim for 100–120 words):</label>
+        <textarea id="essay-in" placeholder="Start with your Point. Then add Evidence — name something real. Then Analyse — explain what it means."></textarea>
+        <button class="btn" onclick="checkEssay()">Get feedback →</button>
+        <div id="essay-fb" class="feedback-msg"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ PAPER 2 ══════════════════════════════════════════════════════════ -->
+  <div id="s-paper2" class="section">
+
+    <div class="card">
+      <h2>Paper 2 at a Glance</h2>
+      <p>1 hour 45 minutes. Two sections, 25 marks each, 50 marks total. You answer every question. The passage is unseen — up to 900 words.</p>
+      <div class="stat-grid">
+        <div class="stat"><div class="num">2</div><div class="lbl">Sections (A + B)</div></div>
+        <div class="stat"><div class="num">50</div><div class="lbl">Marks total</div></div>
+        <div class="stat"><div class="num">105 min</div><div class="lbl">Total time</div></div>
+        <div class="stat"><div class="num">900</div><div class="lbl">Max words (passage)</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Section A vs. Section B</h2>
+      <div class="two-col">
+        <div class="col-card" style="background:var(--blue-light);border:1px solid #B5D4F4">
+          <h3 style="color:var(--blue);font-family:Arial,sans-serif;margin-bottom:0.5rem">Section A</h3>
+          <p style="font-size:0.85rem;font-family:Arial,sans-serif;color:#0c3d6e">Explain, interpret, and respond to the material. Short answers plus one extended response (up to 120 words) where you write persuasively — expressing and justifying a view.</p>
+        </div>
+        <div class="col-card" style="background:var(--purple-light);border:1px solid #AFA9EC">
+          <h3 style="color:var(--purple);font-family:Arial,sans-serif;margin-bottom:0.5rem">Section B</h3>
+          <p style="font-size:0.85rem;font-family:Arial,sans-serif;color:#2e2779">Detailed language analysis. How does word choice, tone, and sentence structure work? You identify inference, analyse style, and evaluate strengths and weaknesses of the writing.</p>
+        </div>
+      </div>
+      <div class="box box-amber"><strong>Section B warning:</strong> This is where most students underperform. They summarise instead of analyse. "The writer uses the word 'devastating'" is not analysis. "The word 'devastating' is emotionally charged — it positions the reader to feel grief rather than neutral concern" is analysis.</div>
+    </div>
+
+    <div class="card">
+      <h2>Reading Strategy: The 3-Pass Method</h2>
+      <div class="steps" style="margin-top:0.75rem">
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>First pass — 2 minutes.</strong> Read the whole passage for general understanding. Do not stop at words you do not know. Get the big picture: what is this about? What position does the writer take?</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Second pass — read the questions.</strong> Before you dive back in, read every question. Now you know exactly what you are looking for.</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Third pass — targeted.</strong> Go back and annotate. Circle key words. Mark shifts in argument. Note tone. Now answer with evidence in hand, not from memory.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Language Analysis: Word → Effect → Purpose</h2>
+      <p>When asked how language works, use this structure every time.</p>
+      <div class="box box-gray" style="margin-top:0.75rem"><strong>Example extract:</strong> "The relentless destruction of the Amazon is nothing short of a crime against humanity."</div>
+      <div class="wep" style="margin-top:0.75rem">
+        <div class="wep-row"><div class="wep-label"><span>W</span></div><div class="wep-content"><strong>Word/Phrase:</strong> "relentless" and "crime against humanity"</div></div>
+        <div class="wep-row"><div class="wep-label"><span>E</span></div><div class="wep-content"><strong>Effect:</strong> "Relentless" implies the destruction never pauses, removing any sense of hope or human agency. "Crime against humanity" borrows legal language associated with war crimes — it escalates the severity far beyond environmental concern.</div></div>
+        <div class="wep-row"><div class="wep-label"><span>P</span></div><div class="wep-content"><strong>Purpose:</strong> The writer is not simply informing — they are engineering outrage. By framing deforestation as criminal, they demand a moral response from the reader rather than an intellectual one.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Practice: Analyse This Extract</h2>
+      <div class="box box-gray">"Year after year, city after city, the same tired promises emerge from politicians who have mastered the art of appearing concerned while doing absolutely nothing."</div>
+      <div class="practice-zone">
+        <label>Identify one language feature and explain its effect and purpose (3–4 sentences):</label>
+        <textarea id="comp-in" placeholder="Try: 'The repetition of ... creates an effect of ... The purpose is to ...'"></textarea>
+        <button class="btn" onclick="checkComp()">Get feedback →</button>
+        <div id="comp-fb" class="feedback-msg"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ COMMAND WORDS ════════════════════════════════════════════════════ -->
+  <div id="s-commands" class="section">
+
+    <div class="card">
+      <h2>Command Words: The Decoder Ring</h2>
+      <p>Cambridge uses specific words to tell you exactly what kind of response they want. Misreading a command word costs marks before you write anything.</p>
+      <table class="cmd-table" style="margin-top:0.75rem">
+        <thead><tr><th style="width:22%">Command Word</th><th>What it means</th></tr></thead>
+        <tbody>
+          <tr><td class="word">Analyse</td><td>Break it down. Show how the parts relate. Go below the surface.</td></tr>
+          <tr><td class="word">Assess</td><td>Make a judgement. Weigh the evidence. Reach a supported conclusion.</td></tr>
+          <tr><td class="word">Compare</td><td>Identify similarities and/or differences. Always link the two items — do not describe one, then the other.</td></tr>
+          <tr><td class="word">Consider</td><td>Review and respond to given information thoughtfully.</td></tr>
+          <tr><td class="word">Contrast</td><td>Identify and comment on differences only.</td></tr>
+          <tr><td class="word">Demonstrate</td><td>Show how, or give an example.</td></tr>
+          <tr><td class="word">Describe</td><td>State the points. Give characteristics and main features. Do not analyse unless separately asked.</td></tr>
+          <tr><td class="word">Develop</td><td>Take forward to a more advanced stage. Build upon given information.</td></tr>
+          <tr><td class="word">Discuss</td><td>Write about issues in depth in a structured way. Multiple sides. Do not just list.</td></tr>
+          <tr><td class="word">Evaluate</td><td>Judge the quality, importance, amount, or value of something. Do not just describe.</td></tr>
+          <tr><td class="word">Examine</td><td>Investigate closely, in detail. Go deeper than a summary.</td></tr>
+          <tr><td class="word">Explain</td><td>Set out purposes or reasons. Make relationships clear. Say why and/or how with evidence.</td></tr>
+          <tr><td class="word">Identify</td><td>Name, select, or recognise. No extended explanation needed unless separately asked.</td></tr>
+          <tr><td class="word">Justify</td><td>Support a case with evidence and argument. Not just opinion.</td></tr>
+          <tr><td class="word">Suggest</td><td>Apply knowledge to propose ideas. Multiple valid responses exist. Show your reasoning.</td></tr>
+          <tr><td class="word">Summarise</td><td>Select and present the main points only. No detail. No analysis. Be selective.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>The "To What Extent" Trap</h2>
+      <p>This phrase appears often and trips students up. It is not asking for yes or no. It asks for a nuanced position on a spectrum.</p>
+      <div class="box box-red" style="margin-top:0.75rem"><strong>Weak response:</strong> I completely agree that social media is harmful. There are many reasons for this...</div>
+      <div class="box box-green"><strong>Strong response:</strong> While social media creates measurable harm in specific contexts — particularly for adolescent mental health — a blanket claim of harm overstates the case. Its impact depends on the platform, the user's age, and access to digital literacy education. A more accurate position is that social media's harms are real but preventable, and the degree of harm is largely a policy failure rather than an inherent feature of the technology.</div>
+      <div class="box box-amber"><strong>Key move:</strong> Take a position — but qualify it. Cambridge rewards students who show they understand complexity, not students who shout loudest.</div>
+    </div>
+
+    <div class="card">
+      <h2>Practice: Rewrite the Opening</h2>
+      <div class="box box-gray"><strong>Prompt:</strong> "Discuss the role of the internet in modern education."<br><strong>Weak opening:</strong> "The internet is very important in education. Students use it every day."</div>
+      <div class="practice-zone">
+        <label>Your improved opening — remember: "Discuss" means multiple sides, in depth:</label>
+        <textarea id="cmd-in" placeholder="Try to open with the tension or complexity in the question, not a general statement..."></textarea>
+        <button class="btn" onclick="checkCmd()">Get feedback →</button>
+        <div id="cmd-fb" class="feedback-msg"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ TOOLKIT ══════════════════════════════════════════════════════════ -->
+  <div id="s-toolkit" class="section">
+
+    <div class="card">
+      <h2>Sentence Starters That Actually Work</h2>
+      <p>These phrases are scaffolding. Use them until you do not need them.</p>
+      <h3>Introducing your argument</h3>
+      <ul class="gp-list">
+        <li>It is worth noting that...</li>
+        <li>A key consideration here is...</li>
+        <li>The evidence strongly suggests that...</li>
+        <li>One of the most significant factors is...</li>
+      </ul>
+      <h3>Adding evidence</h3>
+      <ul class="gp-list">
+        <li>This is illustrated by the case of...</li>
+        <li>Research conducted by [source] found that...</li>
+        <li>A notable example is...</li>
+        <li>Statistics from [context] show that...</li>
+      </ul>
+      <h3>Analysing your evidence (AO2 — most valuable)</h3>
+      <ul class="gp-list">
+        <li>This is significant because it demonstrates that...</li>
+        <li>What this reveals is...</li>
+        <li>The implications of this are considerable — it suggests that...</li>
+        <li>This goes beyond [surface claim] — at its core, it reflects...</li>
+      </ul>
+      <h3>Introducing counter-arguments</h3>
+      <ul class="gp-list">
+        <li>Critics of this view would argue that...</li>
+        <li>It is true that [concede], however...</li>
+        <li>While this argument has merit, it overlooks...</li>
+        <li>The counter-position — that [...] — fails to account for...</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Weekly Study Rhythm</h2>
+      <p>180 guided hours spread over a school year is about 5 hours per week.</p>
+      <div class="steps" style="margin-top:0.75rem">
+        <div class="step"><div class="step-num" style="font-size:0.7rem">MON</div><div class="step-body"><strong>Monday (10 min):</strong> Read one news article. Identify one issue and two perspectives.</div></div>
+        <div class="step"><div class="step-num" style="font-size:0.7rem">WED</div><div class="step-body"><strong>Wednesday (15 min):</strong> Write one body paragraph on any topic. Use Point–Evidence–Analysis structure.</div></div>
+        <div class="step"><div class="step-num" style="font-size:0.7rem">FRI</div><div class="step-body"><strong>Friday (20 min):</strong> Practice a comprehension question. Find a short editorial online and apply the 3-pass method.</div></div>
+        <div class="step"><div class="step-num" style="font-size:0.7rem">SUN</div><div class="step-body"><strong>Weekend — every other week (75 min):</strong> Full timed practice. One essay question, start to finish. Self-mark against the structure in Section 2.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>What Strong General Paper Students Do Differently</h2>
+      <ul class="gp-list" style="margin-top:0.5rem">
+        <li>They read news regularly — BBC, The Guardian, The Economist, Reuters — because every article is a potential example bank.</li>
+        <li>They do not memorise facts. They build arguments. There is a big difference.</li>
+        <li>They always know the other side. For every position they hold, they can articulate the strongest counter-argument.</li>
+        <li>They practise timed writing. The exam is not open-note. Speed and clarity under pressure are trainable skills.</li>
+        <li>They ask "so what?" about everything. Describing a fact is not an argument. The analysis that follows the fact is where marks live.</li>
+      </ul>
+    </div>
+
+    <div class="card" style="border-color:var(--teal)">
+      <h2>Quick Reference Card</h2>
+      <div class="qr-grid">
+        <div class="qr-card" style="background:var(--teal-light);border:1px solid #9FE1CB">
+          <h3 style="color:var(--teal-dark);font-family:Arial,sans-serif">Paper 1 — Essay</h3>
+          <ul>
+            <li>1 hr 15 min | 30 marks | 50%</li>
+            <li>Choose 1 of 10 questions</li>
+            <li>600–700 words</li>
+            <li>Intro → Body → Counter → Conclusion</li>
+          </ul>
+        </div>
+        <div class="qr-card" style="background:var(--blue-light);border:1px solid #B5D4F4">
+          <h3 style="color:var(--blue);font-family:Arial,sans-serif">Paper 2 — Comprehension</h3>
+          <ul>
+            <li>1 hr 45 min | 50 marks | 50%</li>
+            <li>Answer all questions</li>
+            <li>Unseen passage, up to 900 words</li>
+            <li>Section B: analyse, do not summarise</li>
+          </ul>
+        </div>
+      </div>
+      <div class="box box-teal" style="margin-top:0.5rem"><strong>Three questions to ask before every answer:</strong> 1. What does this command word actually want?&nbsp;&nbsp; 2. Can I name a real example?&nbsp;&nbsp; 3. So what?</div>
+    </div>
+
+  </div>
+
+  <!-- ══ GAMIFY ═══════════════════════════════════════════════════════════ -->
+  <div id="s-gamify" class="section">
+
+    <div class="level-box">
+      <div class="level-num" id="lv-num">1</div>
+      <div class="level-label" id="lv-label">GP Beginner — keep going</div>
+    </div>
+
+    <div class="card">
+      <h2>Your XP Progress</h2>
+      <div class="xp-row"><span id="xp-cur">0 XP earned</span><span id="xp-nxt">50 XP to next level</span></div>
+      <div class="xp-track"><div class="xp-fill" id="xp-fill" style="width:0%"></div></div>
+      <p style="font-size:0.82rem;margin-top:0.5rem;font-family:Arial,sans-serif">Complete quests to earn XP. Every habit you build is a mark you protect on exam day.</p>
+      <h3 style="margin-top:0.75rem">Badges earned</h3>
+      <div class="badge-area" id="badge-area"><span style="font-size:0.82rem;color:var(--muted);font-family:Arial,sans-serif">Complete quests to unlock badges.</span></div>
+    </div>
+
+    <div class="card">
+      <h2>Daily Quests</h2>
+      <div id="quest-list">
+        <div class="quest" data-xp="20" data-badge="First Strike">
+          <div class="quest-info"><strong>Write one PEA paragraph</strong><p>Use Point–Evidence–Analysis on any topic. Just one paragraph.</p></div>
+          <div class="quest-right"><span class="xp-tag">+20 XP</span><button class="done-btn" onclick="completeQuest(this)">Mark done</button></div>
+        </div>
+        <div class="quest" data-xp="15" data-badge="Word Watcher">
+          <div class="quest-info"><strong>Language feature hunt</strong><p>Find a news article. Pick one phrase. Apply Word–Effect–Purpose.</p></div>
+          <div class="quest-right"><span class="xp-tag">+15 XP</span><button class="done-btn" onclick="completeQuest(this)">Mark done</button></div>
+        </div>
+        <div class="quest" data-xp="25" data-badge="Both Sides">
+          <div class="quest-info"><strong>Argue both sides</strong><p>Pick any topic. Write 2 sentences for and 2 against without switching mid-sentence.</p></div>
+          <div class="quest-right"><span class="xp-tag">+25 XP</span><button class="done-btn" onclick="completeQuest(this)">Mark done</button></div>
+        </div>
+        <div class="quest" data-xp="10" data-badge="Command Breaker">
+          <div class="quest-info"><strong>Learn 3 command words cold</strong><p>No notes. Define Analyse, Discuss, and Evaluate from memory.</p></div>
+          <div class="quest-right"><span class="xp-tag">+10 XP</span><button class="done-btn" onclick="completeQuest(this)">Mark done</button></div>
+        </div>
+        <div class="quest" data-xp="30" data-badge="World Watcher">
+          <div class="quest-info"><strong>Read outside your comfort zone</strong><p>New topic, one article, two perspectives identified.</p></div>
+          <div class="quest-right"><span class="xp-tag">+30 XP</span><button class="done-btn" onclick="completeQuest(this)">Mark done</button></div>
+        </div>
+        <div class="quest" data-xp="40" data-badge="Timed Warrior">
+          <div class="quest-info"><strong>Full timed essay</strong><p>75 minutes. One question. Complete essay, start to finish.</p></div>
+          <div class="quest-right"><span class="xp-tag">+40 XP</span><button class="done-btn" onclick="completeQuest(this)">Mark done</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Mode-Shifting Challenges</h2>
+      <p style="margin-bottom:0.75rem;font-size:0.88rem">These exercises train a different mode of thinking — the kind General Paper rewards.</p>
+      <div class="box box-purple"><strong>Devil's Advocate drill:</strong> Take a position you personally agree with. Now argue the opposite — as convincingly as you can. Write 5 sentences. This trains you to find counter-arguments before examiners do.</div>
+      <div class="box box-blue"><strong>The 5-minute expert:</strong> Pick a topic you know nothing about. Read one article. Write a 3-sentence summary of the issue and one argument for and against.</div>
+      <div class="box box-teal"><strong>The So What? chain:</strong> Take any fact — e.g., global temperatures rose 1.1°C since pre-industrial times. Ask "So what?" four times, going deeper each time. This is how AO2 thinking works.</div>
+      <div class="box box-amber"><strong>2-minute argument sprint:</strong> A friend gives you a random topic. You have 2 minutes to write the opening paragraph. No research. Build the habit of forming an argument under pressure.</div>
+    </div>
+
+  </div>
+
+</div><!-- end page-wrap -->
+
+<script>
+var xp=0,lv=1,badges=[];
+var levels=[[0,'GP Beginner \u2014 keep going'],[50,'Forming Arguments'],[100,'Evidence Builder'],[150,'Critical Thinker'],[200,'Analysis Ace'],[300,'GP Expert']];
+
+function show(id,btn){
+  document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active')});
+  document.querySelectorAll('.tab-nav button').forEach(function(b){b.classList.remove('active')});
+  var el=document.getElementById('s-'+id);
+  if(el)el.classList.add('active');
+  if(btn)btn.classList.add('active');
+}
+
+function innerTab(btn,groupId,targetId){
+  var grp=document.getElementById(groupId);
+  grp.querySelectorAll('.inner-content').forEach(function(t){t.classList.remove('active')});
+  btn.parentElement.querySelectorAll('.inner-tab').forEach(function(t){t.classList.remove('active')});
+  btn.classList.add('active');
+  var t=document.getElementById(targetId);
+  if(t)t.classList.add('active');
+}
+
+function addXP(n){
+  xp+=n;
+  var cur=levels[0],nxt=levels[1],li=0;
+  for(var i=0;i<levels.length;i++){if(xp>=levels[i][0]){cur=levels[i];li=i;nxt=levels[i+1]||null;}}
+  lv=li+1;
+  document.getElementById('lv-num').textContent=lv;
+  document.getElementById('lv-label').textContent=cur[1];
+  var pct=nxt?Math.min(Math.round(((xp-cur[0])/(nxt[0]-cur[0]))*100),100):100;
+  document.getElementById('xp-fill').style.width=pct+'%';
+  document.getElementById('xp-cur').textContent=xp+' XP earned';
+  document.getElementById('xp-nxt').textContent=nxt?(nxt[0]-xp)+' XP to next level':'Max level reached!';
+}
+
+function awardBadge(name){
+  if(badges.indexOf(name)>=0)return;
+  badges.push(name);
+  var area=document.getElementById('badge-area');
+  if(area.querySelector('span'))area.innerHTML='';
+  var b=document.createElement('span');
+  b.className='badge';
+  b.innerHTML='&#9733; '+name;
+  area.appendChild(b);
+}
+
+function completeQuest(btn){
+  if(btn.classList.contains('done'))return;
+  btn.classList.add('done');btn.textContent='Done \u2713';
+  var q=btn.closest('.quest');
+  addXP(parseInt(q.dataset.xp||10));
+  if(q.dataset.badge)awardBadge(q.dataset.badge);
+}
+
+function showFB(id,msg,type){
+  var el=document.getElementById(id);
+  el.style.display='block';
+  var colors={good:{bg:'#EAF3DE',color:'#27500A',border:'#639922'},warn:{bg:'#FAEEDA',color:'#633806',border:'#EF9F27'},info:{bg:'#E6F1FB',color:'#0C447C',border:'#378ADD'}};
+  var c=colors[type]||colors.info;
+  el.style.background=c.bg;el.style.color=c.color;el.style.border='1px solid '+c.border;
+  el.style.padding='0.6rem 0.8rem';el.style.borderRadius='6px';
+  el.innerHTML=msg;
+}
+
+function checkEssay(){
+  var v=(document.getElementById('essay-in').value||'');
+  var w=v.trim().split(/\s+/).filter(function(x){return x.length>0}).length;
+  if(w<20){showFB('essay-fb','Write at least a few sentences before requesting feedback. Aim for your Point, Evidence, and Analysis.','warn');return;}
+  var hasE=/research|study|found|according|example|case|data|report|showed|survey|statistic|percent|university|organisation|organization/i.test(v);
+  var hasA=/significant|because|demonstrates|reveals|implies|suggest|therefore|this means|as a result|consequently|shows that|indicates/i.test(v);
+  if(!hasE&&!hasA)showFB('essay-fb','<strong>Good start — now push further.</strong> Your paragraph makes a point, but try adding a specific example (a real case, country, study, or statistic) and then explain why it matters. That analysis step is where Cambridge marks live.','warn');
+  else if(hasE&&!hasA)showFB('essay-fb','<strong>Strong evidence — now analyse it.</strong> You have included a real example, which is exactly right. The next step is to tell the reader what that example means. Try adding: "This is significant because..." to close the paragraph.','warn');
+  else{showFB('essay-fb','<strong>Solid work.</strong> Your paragraph shows evidence and some analysis. To push toward a top-band response, check that your analysis goes beyond the obvious — ask yourself "so what?" one more time. Does your last sentence connect back to the essay question?','good');addXP(10);}
+}
+
+function checkComp(){
+  var v=(document.getElementById('comp-in').value||'');
+  var w=v.trim().split(/\s+/).filter(function(x){return x.length>0}).length;
+  if(w<15){showFB('comp-fb','Write at least 3\u20134 sentences to get meaningful feedback.','warn');return;}
+  var hasE=/effect|creates|suggests|implies|conveys|emphasises|positions|makes the reader|evokes|reinforces/i.test(v);
+  var hasP=/purpose|writer|intend|aims to|in order to|designed to|persuade|engage|argue/i.test(v);
+  if(hasE&&hasP){showFB('comp-fb','<strong>Excellent.</strong> You have identified a feature, explained its effect on the reader, and considered the writer\'s purpose. That is a complete AO2 language analysis response. To push higher, consider whether the feature connects to the writer\'s overall argument.','good');addXP(15);}
+  else if(hasE)showFB('comp-fb','<strong>Good — now add purpose.</strong> You have described the effect. Now go one level deeper: why does the writer make this choice? What are they trying to achieve with this reader? That purpose layer completes the analysis.','warn');
+  else showFB('comp-fb','<strong>Start with effect.</strong> Identify the specific word or phrase first, then ask: what does this make the reader feel or think? Try: "The word [x] creates an effect of..."','warn');
+}
+
+function checkCmd(){
+  var v=(document.getElementById('cmd-in').value||'');
+  var w=v.trim().split(/\s+/).filter(function(x){return x.length>0}).length;
+  if(w<10){showFB('cmd-fb','Add a few more sentences. Try to open with the tension in the question rather than a general statement.','warn');return;}
+  var hasSides=/while|although|however|on one hand|on the other|debate|contested|complex|tension|argue that|others argue|critics/i.test(v);
+  var tooSimple=/^the internet is|^technology is|^education is|^this is important/i.test(v.trim().toLowerCase());
+  if(tooSimple)showFB('cmd-fb','<strong>Try again.</strong> Opening with "X is [adjective]" is a generic start. Try opening by identifying what makes the question complex — where does the debate lie? Lead with that tension.','warn');
+  else if(hasSides){showFB('cmd-fb','<strong>Strong opening.</strong> You have signalled that the question involves competing perspectives, which is exactly what "Discuss" demands. Make sure your essay plan from here actually develops both sides rather than defaulting to one.','good');addXP(10);}
+  else showFB('cmd-fb','<strong>Getting there.</strong> Your opening moves away from generic statements. To make it stronger for a "Discuss" question, try to signal early that you will consider multiple viewpoints. Cambridge examiners should know from the first sentence that you understand the complexity.','warn');
+}
+</script>
+</body>
+</html>

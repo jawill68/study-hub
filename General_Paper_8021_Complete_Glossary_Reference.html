@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cambridge AICE General Paper 8021 — Common Mistakes Autopsy</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --navy:#0F2A47;--navy-light:#DEE7F2;
+    --wine:#6B1F2E;--wine-light:#F8E4E8;--wine-dark:#401019;--wine-mid:#8B2A3F;
+    --teal:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+    --blue:#185FA5;--blue-light:#E6F1FB;--blue-dark:#0C447C;
+    --purple:#534AB7;--purple-light:#EEEDFE;--purple-dark:#2E2779;
+    --gold:#C4922E;--gold-light:#FAEEDA;--gold-dark:#6B4F11;
+    --green:#639922;--green-light:#EAF3DE;--green-dark:#27500A;
+    --red-light:#FCEBEB;--red-dark:#501313;--red-mid:#E24B4A;
+    --gray-light:#F5F5F3;--gray-dark:#444441;
+    --text:#1A1A1A;--muted:#555;--border:#DDD;
+    --bg:#FFF;--surface:#F8F8F6;
+    --radius:8px;--radius-lg:12px;
+    --shadow:0 1px 3px rgba(0,0,0,0.08);
+    --shadow-lg:0 4px 12px rgba(0,0,0,0.06)
+  }
+  body{font-family:Georgia,'Times New Roman',serif;background:var(--surface);color:var(--text);line-height:1.55;font-size:15px}
+  .site-header{background:var(--navy);color:#fff;padding:1rem 2rem;position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:1rem;box-shadow:var(--shadow-lg);border-bottom:3px solid var(--wine)}
+  .site-header .brand{font-size:1rem;font-weight:700;font-family:Arial,sans-serif}
+  .site-header .meta{font-size:0.78rem;color:#c8d4e3;font-family:Arial,sans-serif}
+  .module-tag{display:inline-block;background:var(--wine);color:#fff;font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:999px;font-family:Arial,sans-serif;letter-spacing:0.5px}
+  .page-wrap{max-width:1100px;margin:0 auto;padding:0 1rem 3rem}
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,#1d4068 100%);color:#fff;border-radius:var(--radius-lg);padding:1.75rem;margin:1.25rem 0;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;top:-50%;right:-10%;width:300px;height:300px;background:var(--red-mid);opacity:0.1;border-radius:50%}
+  .hero-badge{display:inline-block;background:var(--wine);color:#fff;font-size:0.7rem;font-weight:700;padding:4px 12px;border-radius:999px;margin-bottom:0.65rem;font-family:Arial,sans-serif;letter-spacing:0.5px;text-transform:uppercase}
+  .hero h2{font-size:1.7rem;margin-bottom:0.4rem;font-family:Arial,sans-serif}
+  .hero p{font-size:0.92rem;color:#c8d4e3;font-family:Arial,sans-serif;max-width:760px;position:relative}
+  .controls{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:0.95rem 1.15rem;margin:1rem 0;font-family:Arial,sans-serif;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:0.75rem}
+  .filter-row{display:flex;flex-wrap:wrap;gap:0.4rem;align-items:center}
+  .filter-row .label{font-size:0.72rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-right:0.3rem}
+  .filter-btn{background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:0.35rem 0.8rem;font-family:Arial,sans-serif;font-size:0.78rem;cursor:pointer;color:var(--text);transition:all 0.15s;font-weight:600}
+  .filter-btn:hover{background:var(--navy-light)}
+  .filter-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .filter-btn.active.command{background:var(--blue)}
+  .filter-btn.active.structure{background:var(--purple)}
+  .filter-btn.active.evidence{background:var(--gold-dark)}
+  .filter-btn.active.analysis{background:var(--teal-dark)}
+  .filter-btn.active.evaluation{background:var(--wine)}
+  .filter-btn.active.style{background:var(--green-dark)}
+  .stats{font-size:0.72rem;color:var(--muted);font-family:Arial,sans-serif}
+  .stats strong{color:var(--navy)}
+  .card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem 1.4rem;margin-bottom:1rem;box-shadow:var(--shadow)}
+  .card h2{font-size:1.15rem;font-family:Arial,sans-serif;color:var(--navy);margin-bottom:0.6rem;padding-bottom:0.4rem;border-bottom:2px solid var(--wine)}
+  .card h3{font-size:1rem;font-family:Arial,sans-serif;color:var(--blue);margin:0.85rem 0 0.4rem}
+  .card p{color:var(--muted);margin-bottom:0.5rem;font-size:0.88rem}
+  .mistake{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:1.5rem;box-shadow:var(--shadow);overflow:hidden}
+  .m-head{padding:0.9rem 1.2rem;background:linear-gradient(135deg,#FCEBEB 0%,#F8E4E8 100%);border-bottom:2px solid var(--wine-mid);display:flex;justify-content:space-between;align-items:center;gap:0.5rem;flex-wrap:wrap}
+  .m-num{display:inline-block;background:var(--navy);color:#fff;font-size:0.7rem;font-weight:700;padding:3px 9px;border-radius:4px;font-family:Arial,sans-serif;letter-spacing:0.5px;flex-shrink:0}
+  .m-title{font-size:1.05rem;font-family:Arial,sans-serif;color:var(--wine-dark);font-weight:700;flex-grow:1}
+  .cat-tag{font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:999px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap}
+  .cat-tag.command{background:var(--blue-light);color:var(--blue-dark)}
+  .cat-tag.structure{background:var(--purple-light);color:var(--purple-dark)}
+  .cat-tag.evidence{background:var(--gold-light);color:var(--gold-dark)}
+  .cat-tag.analysis{background:var(--teal-light);color:var(--teal-dark)}
+  .cat-tag.evaluation{background:var(--wine-light);color:var(--wine-dark)}
+  .cat-tag.style{background:var(--green-light);color:var(--green-dark)}
+  .m-body{padding:1.1rem 1.3rem}
+  .prompt-block{background:#fff;border-left:4px solid var(--navy);padding:0.7rem 0.95rem;margin-bottom:0.85rem;font-family:Arial,sans-serif;font-size:0.88rem;line-height:1.6}
+  .prompt-block::before{content:"Question Prompt";display:block;font-weight:700;font-size:0.68rem;color:var(--navy);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.3rem}
+  .prompt-block .text{color:var(--text);font-weight:600}
+  .weak-block{background:var(--red-light);border-left:5px solid var(--red-mid);border-radius:0 var(--radius) var(--radius) 0;padding:0.85rem 1.1rem;margin-bottom:0.85rem;font-family:Georgia,serif;font-size:0.86rem;line-height:1.65;font-style:italic;color:var(--text)}
+  .weak-block::before{content:"\u2715  Weak Student Attempt";display:block;font-style:normal;font-weight:700;font-size:0.7rem;color:var(--red-dark);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem;font-family:Arial,sans-serif}
+  .diagnosis-block{background:var(--navy-light);border-left:5px solid var(--navy);border-radius:0 var(--radius) var(--radius) 0;padding:0.85rem 1.1rem;margin-bottom:0.85rem;font-family:Arial,sans-serif;font-size:0.85rem;line-height:1.65;color:var(--text)}
+  .diagnosis-block::before{content:"\u26A0  Diagnosis";display:block;font-weight:700;font-size:0.7rem;color:var(--navy);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem}
+  .strong-block{background:var(--teal-light);border-left:5px solid var(--teal);border-radius:0 var(--radius) var(--radius) 0;padding:0.85rem 1.1rem;margin-bottom:0.85rem;font-family:Georgia,serif;font-size:0.86rem;line-height:1.65;color:var(--text)}
+  .strong-block::before{content:"\u2713  Stronger Version";display:block;font-weight:700;font-size:0.7rem;color:var(--teal-dark);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem;font-family:Arial,sans-serif;font-style:normal}
+  .takeaway-block{background:var(--purple-light);border-left:5px solid var(--purple);border-radius:0 var(--radius) var(--radius) 0;padding:0.7rem 1.1rem;font-family:Arial,sans-serif;font-size:0.85rem;line-height:1.65;color:var(--purple-dark);font-weight:600}
+  .takeaway-block::before{content:"\uD83D\uDCA1  Key Takeaway";display:block;font-weight:700;font-size:0.7rem;color:var(--purple-dark);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.35rem}
+  @media print{.site-header,.controls{display:none}.mistake{break-inside:avoid;page-break-inside:avoid;box-shadow:none}body{background:#fff}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div>
+    <div class="brand">🔬 Cambridge AICE General Paper 8021</div>
+    <div class="meta">Common Mistakes Autopsy — 18 Worked Error Examples</div>
+  </div>
+  <span class="module-tag">Mistakes Autopsy</span>
+</header>
+
+<div class="page-wrap">
+
+  <div class="hero">
+    <div class="hero-badge">Diagnose, Correct, Improve</div>
+    <h2>What Goes Wrong, Why It Goes Wrong, and How to Fix It</h2>
+    <p>The Question Bank shows what good answers look like. This resource shows what weak answers look like \u2014 and exactly why they fail. Eighteen examples diagnose the most common General Paper errors across six categories, with the specific weak attempt, the specific diagnosis, and the specific fix for each. Students often learn more from seeing mistakes named than from seeing model answers.</p>
+  </div>
+
+  <div class="card">
+    <h2>How This Resource Works</h2>
+    <p><strong>Diagnostic, not exhaustive.</strong> The 18 examples in this Autopsy cover the most common General Paper mistakes \u2014 the ones Cambridge examiners see in script after script. Mastering these patterns will lift student writing across most question types.</p>
+    <p><strong>Each example contains four parts:</strong></p>
+    <p><strong>1. The question prompt</strong> \u2014 the actual task being attempted.<br>
+    <strong>2. The weak student attempt</strong> \u2014 an excerpt showing the specific error in action.<br>
+    <strong>3. The diagnosis</strong> \u2014 what specifically went wrong and why it costs marks.<br>
+    <strong>4. The stronger version</strong> \u2014 the same content rewritten without the error.<br>
+    <strong>5. The key takeaway</strong> \u2014 a one-line lesson to remember.</p>
+    <h3>The six categories</h3>
+    <p><strong>Command Word Errors</strong> \u2014 misreading what the question actually asks. <strong>Argument Structure Errors</strong> \u2014 weak thesis, no counterargument, opinion in place of argument. <strong>Evidence Errors</strong> \u2014 anecdotal, fabricated, or misused evidence. <strong>Analysis Depth Errors</strong> \u2014 description instead of analysis, surface engagement. <strong>Evaluation Errors</strong> \u2014 one-sided, false dichotomies, vague nuance. <strong>Style and Register Errors</strong> \u2014 wrong tone, vague language, sloppy execution.</p>
+  </div>
+
+  <div class="controls">
+    <div class="filter-row">
+      <span class="label">Category:</span>
+      <button class="filter-btn active" data-cat="all" onclick="setFilter('all',this)">All 18</button>
+      <button class="filter-btn" data-cat="command" onclick="setFilter('command',this)">Command Words (3)</button>
+      <button class="filter-btn" data-cat="structure" onclick="setFilter('structure',this)">Argument Structure (3)</button>
+      <button class="filter-btn" data-cat="evidence" onclick="setFilter('evidence',this)">Evidence (3)</button>
+      <button class="filter-btn" data-cat="analysis" onclick="setFilter('analysis',this)">Analysis Depth (3)</button>
+      <button class="filter-btn" data-cat="evaluation" onclick="setFilter('evaluation',this)">Evaluation (3)</button>
+      <button class="filter-btn" data-cat="style" onclick="setFilter('style',this)">Style & Register (3)</button>
+    </div>
+    <div class="stats" id="stats">Showing <strong>18</strong> of <strong>18</strong> mistakes</div>
+  </div>
+
+  <div id="container"></div>
+
+</div>
+
+<script>
+const CAT_LABELS = {
+  command:"Command Words", structure:"Argument Structure", evidence:"Evidence",
+  analysis:"Analysis Depth", evaluation:"Evaluation", style:"Style & Register"
+};
+
+const MISTAKES = [
+  // ============ COMMAND WORDS (3) ============
+  {
+    cat:"command",
+    title:"\u201CDiscuss\u201D Misread as \u201CDescribe\u201D",
+    prompt:"Discuss whether democracy is the best form of government available today.",
+    weak:"Democracy is a system of government in which citizens elect representatives to make decisions on their behalf. There are different types of democracy, including parliamentary democracy in the UK and presidential democracy in the US. In a democracy, citizens have the right to vote, to free speech, and to assemble. Democratic countries usually have constitutional protections for individual rights. The principle of democracy traces back to ancient Greece, particularly Athens.",
+    diagnosis:"The student has described what democracy is rather than discussed whether it is the best form of government. \u201CDiscuss\u201D requires taking a position and engaging with competing views \u2014 it asks for an argument, not a definition. The attempt reads like a textbook entry: informative but answerless. There is no claim, no engagement with the comparative question (best compared to what?), no acknowledgement that the question is contested. This kind of opening typically caps marks at Level 2 or low Level 3 regardless of how the essay develops.",
+    strong:"Whether democracy is the best form of government depends on what we ask of government. Democracies excel at peaceful transitions of power, protection of individual rights, and corrective response to public discontent \u2014 features that have produced remarkable stability across the post-war West. They struggle, however, with long-term planning, decisions requiring technical expertise, and questions where majorities resolve in ways that harm minorities. Authoritarian systems often outperform democracies on infrastructure delivery and short-term mobilisation, as recent Chinese growth illustrates. The serious question is therefore not whether democracy is best in all respects, but which form of governance is best for which purposes \u2014 a question on which I will defend democracy's edge in the most important ones.",
+    takeaway:"\u201CDiscuss\u201D demands a position with reasons and engagement with counter-positions. Describing the topic is not yet engaging with the question. Before writing, identify the claim the question invites you to argue for or against."
+  },
+  {
+    cat:"command",
+    title:"\u201CTo What Extent\u201D Misread as Yes/No",
+    prompt:"To what extent has globalisation benefited developing countries?",
+    weak:"Globalisation has benefited developing countries. Trade has increased their access to global markets, lifting many out of poverty. Foreign investment has built infrastructure and created jobs. Cultural exchange has broadened horizons. Therefore, globalisation has been a force for good in developing countries.",
+    diagnosis:"The student has answered as if the question were \u201Chas globalisation benefited developing countries?\u201D rather than \u201Cto what extent has globalisation benefited developing countries?\u201D The phrase \u201Cto what extent\u201D requires students to specify the degree of benefit, identify where benefits have been substantial and where modest or absent, and engage with the costs as well as the gains. A yes/no answer ignores the entire grammatical purpose of the question, and Cambridge mark schemes explicitly reward calibration. This kind of answer rarely escapes Level 3 even with otherwise strong support.",
+    strong:"Globalisation has benefited developing countries substantially in aggregate but very unevenly. East Asian economies \u2014 particularly China, Vietnam, and South Korea \u2014 have used participation in global trade to engineer rapid industrialisation; roughly one billion people have left extreme poverty since 1990, primarily in trade-engaged Asia. Sub-Saharan Africa, by contrast, has seen much more modest benefits, with primary commodity dependence and capital flight limiting development gains. Within developing countries, benefits have concentrated in urban and coastal regions. The extent of benefit depends enormously on national policy, location, and which globalisation we mean \u2014 trade integration has produced more development gains than financial integration, whose volatility has often hurt the same countries.",
+    takeaway:"\u201CTo what extent\u201D requires specifying degree and identifying variation. Yes/no answers are incomplete by definition. Show where the answer is \u201Cmuch,\u201D \u201Csomewhat,\u201D \u201Clittle,\u201D or \u201Cnot at all\u201D \u2014 and explain why each judgement holds."
+  },
+  {
+    cat:"command",
+    title:"\u201CHow Far\u201D Misread as Pure Agreement",
+    prompt:"How far do you agree that social media has weakened democracy?",
+    weak:"I completely agree that social media has weakened democracy. Social media creates echo chambers, spreads misinformation, and divides people. Algorithms amplify extreme content. Foreign actors use social media to interfere in elections. Democratic discourse has clearly suffered. Therefore, social media has weakened democracy significantly.",
+    diagnosis:"The student has read \u201Chow far\u201D as \u201Cdo you agree\u201D and answered with maximum agreement. \u201CHow far\u201D invites calibrated agreement \u2014 identifying which parts of the claim are strongly supported, which are weak, and where the answer differs across dimensions. Pure agreement (or pure disagreement) is rarely the right answer to \u201Chow far\u201D questions. The attempt also bundles separate claims (echo chambers, misinformation, polarisation, foreign interference) together, treating them as if they all proved the same single point.",
+    strong:"I agree substantially that social media has weakened deliberative democracy, while being more reluctant about whether it has weakened democracy overall. The case for harm to deliberation is strong: algorithmic amplification of emotional content, the speed of disinformation, and echo chamber effects have measurably degraded discourse quality. But democracy is more than deliberation \u2014 it depends also on participation, accountability, and mobilisation, on which social media's record is more mixed. The same platforms have enabled mass civic mobilisation (BLM, climate strikes, Hong Kong 2019), citizen journalism, and direct accountability of officials. Whether deliberation losses outweigh participation gains is genuinely contested. So I agree substantially with the deliberation claim, partially with the broader democracy claim, and not at all with strong versions that treat social media as having weakened democracy on every dimension.",
+    takeaway:"\u201CHow far\u201D invites calibration, not endorsement. Identify which parts of the claim are strong, which are weak, and where the answer differs across dimensions of the question. Strong essays distinguish; weak essays bundle."
+  },
+
+  // ============ ARGUMENT STRUCTURE (3) ============
+  {
+    cat:"structure",
+    title:"Opinion Presented as Argument",
+    prompt:"Is censorship ever justified?",
+    weak:"I think censorship is wrong. I believe in free speech and I think governments should not be allowed to tell people what they can and cannot say. Free speech is one of the most important rights. Without free speech, we cannot have a free society. So I think censorship is never justified.",
+    diagnosis:"The student has presented an opinion repeatedly without ever constructing an argument. \u201CI think,\u201D \u201CI believe,\u201D and repeated assertion of the same claim are not arguments \u2014 arguments require premises that support a conclusion. The piece tells us the writer's position but provides no reason to share it that goes beyond \u201Cbecause I think so.\u201D There is no engagement with the strongest case against the position, no acknowledgement that censorship of child exploitation or direct incitement to violence is widely accepted, no distinction between types of censorship. The attempt also commits the logical jump from \u201Cfree speech is important\u201D (true) to \u201Ccensorship is never justified\u201D (much stronger and not implied).",
+    strong:"Censorship is sometimes justified, but the conditions matter enormously. The case against most censorship is strong: governments throughout history have used censorship powers to protect themselves from legitimate criticism, suppress dissent, and shield official misconduct from public scrutiny. The Snowden disclosures, Watergate, and the Pentagon Papers all required journalists to publish material governments wanted suppressed. The damage of state censorship to democratic accountability is well documented.\n\nYet some censorship is widely accepted: direct incitement to violence, child exploitation material, and defamation are restricted in virtually every democratic legal system. The serious question is not whether censorship is ever justified but where the threshold lies, who decides it, and through what procedures. The most defensible framework restricts speech only where (1) the harm is concrete and imminent, (2) the decision is made through accountable institutions (typically courts, not executive discretion), and (3) the restriction is the narrowest available means.",
+    takeaway:"Arguments have premises that support conclusions. \u201CI think X because I believe X\u201D is not an argument \u2014 it is an opinion repeated. Use \u201Cbecause\u201D to introduce reasons, and ensure the reasons actually support the conclusion."
+  },
+  {
+    cat:"structure",
+    title:"Missing Counterargument",
+    prompt:"Should wealthy nations have a moral obligation to accept refugees?",
+    weak:"Wealthy nations clearly have a moral obligation to accept refugees. Refugees are fleeing persecution and violence. They need protection. Wealthy nations have the resources to help. They have benefited from the global economic system that created many of the conditions producing refugees. Helping refugees is the right thing to do. Therefore, wealthy nations should accept refugees as a moral duty.",
+    diagnosis:"The attempt has only one side of an argument. It builds the case for the writer's position without ever acknowledging \u2014 let alone responding to \u2014 the strongest case against it. This is a serious problem because (1) Cambridge mark schemes explicitly reward engagement with counterargument; (2) any reader can see what the writer has avoided, which weakens the writer's credibility; (3) the position is not actually defended if the opposing case is never engaged. The attempt also relies on emotional appeal (\u201Cthe right thing to do\u201D) rather than substantive reasoning.",
+    strong:"Wealthy nations have a substantial moral obligation to accept refugees, though the obligation has practical limits that the strongest version of the opposing case helps illuminate.\n\nThe case for obligation is grounded in shared humanity and international commitments. Refugees \u2014 defined narrowly as those fleeing persecution \u2014 face threats to fundamental freedoms that triggered the 1951 Refugee Convention. Wealthy nations bear disproportionate capacity to provide refuge relative to the developing countries currently hosting most refugees.\n\nHowever, the strongest version of the counterargument deserves serious engagement. Receiving societies have legitimate interests in social cohesion and democratic consent; rapid demographic change has produced political backlash in many democracies that may itself undermine future willingness to help. Critics argue that aid to refugees in their region of origin, where most remain, may be morally equivalent to resettlement and often more efficient. These are not racist or xenophobic concerns by themselves \u2014 they are real practical considerations that any policy must address.\n\nThe sophisticated position acknowledges the obligation but addresses how it is discharged. International coordination, attention to integration capacity, and respect for democratic consent are all necessary. The serious debate is not whether obligation exists but how it should be discharged \u2014 a debate the one-sided approach forecloses prematurely.",
+    takeaway:"Every position has a strongest opposing case. Strong essays present it accurately, then respond to it. Weak essays pretend it does not exist \u2014 a tell that the writer does not understand the question well enough to know the case against."
+  },
+  {
+    cat:"structure",
+    title:"Topic Without Thesis",
+    prompt:"Discuss the role of social media in modern life.",
+    weak:"Social media has become a major part of modern life. Platforms like Instagram, TikTok, and Twitter have billions of users. People use social media to keep in touch with friends, share photos, get news, and learn about events. Businesses use social media for marketing. Social media has changed how we communicate. It has both advantages and disadvantages. In conclusion, social media plays an important role in modern life.",
+    diagnosis:"The student has identified a topic (social media's role in modern life) and described it without ever making a claim about it. A topic is what you write about; a thesis is what you claim about it. This attempt has no thesis \u2014 no answer to \u201Cwhat about it?\u201D or \u201Cso what?\u201D The vague \u201Cboth advantages and disadvantages\u201D and \u201Cimportant role\u201D are not claims, they are placeholders. Without a thesis, there is nothing for evidence to support, nothing for evaluation to weigh, and nothing for a conclusion to substantiate. Cambridge mark schemes consistently associate top bands with clearly articulated, defended theses.",
+    strong:"Social media has reshaped modern life in ways that have outrun our institutional capacity to manage them. While platforms have democratised access to political speech, mass communication, and economic opportunity, they have also concentrated unprecedented influence in a small number of private companies operating with little democratic accountability \u2014 a transformation that affects not just how we communicate but who controls the conditions under which public discourse takes place.\n\nThree dimensions of this transformation are particularly consequential. First, social media has changed the speed and reach of political mobilisation, enabling rapid coordination of both democratic movements (Arab Spring, civil rights protests, climate strikes) and authoritarian propaganda. Second, the platforms have altered news consumption, shifting editorial authority from journalists to algorithms optimised for engagement rather than information quality. Third, the business model of attention monetisation has produced documented effects on adolescent mental health that we are only beginning to understand or address.\n\nThe role social media plays is therefore not merely additive \u2014 it is structural. The serious question is not whether social media is \u201Cgood\u201D or \u201Cbad\u201D but how democratic institutions should govern technologies whose effects on public life were unanticipated by either their creators or their regulators.",
+    takeaway:"A topic is what you write about. A thesis is what you claim about it. \u201CSocial media has both advantages and disadvantages\u201D is not a thesis \u2014 it is a placeholder. State what you actually argue, then defend it."
+  },
+
+  // ============ EVIDENCE (3) ============
+  {
+    cat:"evidence",
+    title:"Anecdotal Treated as Empirical",
+    prompt:"Has technology made our lives better?",
+    weak:"Technology has not made our lives better. My grandmother says people used to actually talk to each other before phones, but now everyone just stares at their screens. My cousin lost his job last year because his company started using AI. My friend's little sister got addicted to social media and is now anxious all the time. From these examples, it is clear that technology has done more harm than good to society.",
+    diagnosis:"The student has built a general conclusion (\u201Ctechnology has done more harm than good to society\u201D) entirely on anecdotal evidence \u2014 personal stories about specific individuals known to the writer. Anecdotes can illustrate but cannot establish general patterns. Three cases, however vivid, do not support claims about \u201Csociety.\u201D The attempt also commits selection bias: it reaches for examples that fit a predetermined conclusion rather than examining systematic evidence. A reader could easily produce three opposing anecdotes (someone whose telemedicine saved their life, someone whose remote work enabled caring for an elderly parent, someone whose online learning replaced a closed school), which would have equally little evidential weight.",
+    strong:"Technology has produced mixed effects, with substantial measurable benefits coexisting with documented costs. On the benefits side, life expectancy has risen across most countries (driven partly by medical technology), global poverty has fallen substantially since 1990 (assisted by communication and transport technology), and access to information has expanded enormously. On the cost side, the documented rise in adolescent mental health concerns since the spread of smartphones (2012 onward) suggests at least a correlation worth investigating; some categories of work have been displaced by automation more rapidly than new categories have been created; concentration of digital infrastructure in a small number of companies has reduced competition. Personal experience can illustrate these patterns but cannot establish them \u2014 systematic data is what we need to assess whether technology has made \u201Cour lives\u201D (a population claim) better in net.",
+    takeaway:"Anecdotes illustrate; empirical evidence establishes. Three personal stories do not prove a claim about \u201Csociety.\u201D When making population-scale claims, use population-scale evidence \u2014 and acknowledge anecdotes for what they are when you use them."
+  },
+  {
+    cat:"evidence",
+    title:"Correlation Treated as Causation",
+    prompt:"Does social media use cause depression in teenagers?",
+    weak:"Studies have shown that teenagers who use social media more report higher rates of depression. Teen depression has also risen sharply since smartphones became widespread around 2012. The correlation is clear: social media use is linked to depression. Therefore, social media is causing the teen mental health crisis, and we should restrict young people's access to it.",
+    diagnosis:"The student has identified a real correlation (social media use correlates with depression) and a real temporal pattern (depression has risen since 2012) and concluded causation. This conflation of correlation and causation is one of the most common reasoning errors in General Paper essays. Real causation requires more: plausible mechanism, ruling out alternative explanations, ideally controlled comparison. The same correlations could be explained by reverse causation (depressed teens spend more time on social media because they are already isolated), by a third factor causing both (parental disengagement, economic stress affecting families, declining outdoor activity), or by interaction effects (social media may worsen depression in already-vulnerable users without causing it in others). Strong evaluations distinguish carefully.",
+    strong:"The relationship between social media use and adolescent depression is one of the most studied and most contested in contemporary social science. The correlations are clear: heavier social media users report higher rates of depression, and the rise in adolescent depression since 2012 has tracked closely with smartphone adoption. But correlation alone does not establish causation. Reverse causation is plausible \u2014 depressed teenagers may turn to social media for connection they cannot find in person. Common causes are also plausible: a generation that has experienced increasing academic pressure, less unsupervised outdoor time, and rising parental anxiety has multiple changes happening at once. Some recent randomised studies (Allcott et al., 2020; Twenge et al., responses by others) have found genuine causal effects but typically smaller than the correlational data implies. The most defensible current position is that social media is plausibly part of the picture, particularly for some users, but the strong causal claim (\u201Csocial media causes the teen mental health crisis\u201D) goes beyond what the evidence supports. Policy implications follow accordingly: restrictions justified by suspected causal contribution should be calibrated to the strength of that evidence, not to the strength of the correlation.",
+    takeaway:"Correlation shows that X and Y move together; causation shows that X actually produces Y. Establishing causation requires plausible mechanism, control for confounders, and ideally controlled comparison. The leap from correlation to causation, without that work, is the single most common reasoning error in General Paper essays."
+  },
+  {
+    cat:"evidence",
+    title:"Unsupported Generalisation",
+    prompt:"Are young people today less hardworking than previous generations?",
+    weak:"Everyone knows that young people today are less hardworking than previous generations. They expect everything to be handed to them. They cannot stay focused for more than five minutes. They quit jobs at the slightest discomfort. They demand work-life balance from the first day. This is the inevitable result of growing up with everything they could want. The generations before them sacrificed and built; this one consumes and complains.",
+    diagnosis:"The attempt is a catalogue of unsupported generalisations. \u201CEveryone knows\u201D is an appeal to popularity, not evidence. \u201CExpect everything to be handed to them,\u201D \u201Ccannot stay focused,\u201D \u201Cquit at the slightest discomfort,\u201D \u201Cdemand work-life balance from day one\u201D \u2014 each of these is asserted with no specific evidence, no data, no comparison to previous generations' actual behaviour. The piece also commits ad hominem against an entire generation, and treats the conclusion (that young people are lazy) as established before any evidence is offered. There is no engagement with alternative explanations for the same observed behaviour (tight labour markets, broken pension promises, witnessed employer disloyalty), and no acknowledgement that older generations have made similar complaints about every younger generation on record.",
+    strong:"Whether young workers today are less hardworking than previous generations is harder to assess than confident claims suggest. The observation that young workers more readily leave jobs, demand work-life balance, and express less commitment to specific employers is empirically supported in survey data. But interpretation of these behaviours is contested. They could reflect declining work ethic \u2014 the conventional reading. Alternatively, they could reflect rational response to changed circumstances: tight labour markets give workers more leverage; younger workers have witnessed older workers' loyalty rewarded with downsizing and broken pension promises; many essential industries pay wages that have not kept pace with cost of living. Demanding work-life balance can reflect higher expectations rather than lower commitment.\n\nHistorical perspective is also useful. Every generation since at least the early twentieth century has been accused by its elders of being less hardworking than predecessors \u2014 Generation X received the same criticism from Baby Boomers; Boomers received it from the Greatest Generation. The persistence of this complaint across generations suggests it may reflect something about ageing observers' perspectives more than about systematic intergenerational decline. The serious question is not whether young workers behave differently (they do) but whether their behaviour reflects genuine deterioration or rational adaptation to changed labour-market conditions.",
+    takeaway:"Generalisations require evidence proportional to their scope. \u201CEveryone knows\u201D is not evidence. Specific qualifications, real data, and engagement with alternative explanations turn assertions into arguments. Without these, you are stating opinions, not making the case for them."
+  },
+
+  // ============ ANALYSIS DEPTH (3) ============
+  {
+    cat:"analysis",
+    title:"Description Instead of Analysis",
+    prompt:"Analyse the effects of globalisation on culture.",
+    weak:"Globalisation has affected culture in many ways. McDonald's restaurants are now found in nearly every country. Hollywood films are watched around the world. English has become the global language of business. People in different countries wear similar clothes and listen to similar music. Many local traditions are being lost as global brands spread. These are some of the effects of globalisation on culture.",
+    diagnosis:"The student has listed observations rather than analysed them. \u201CAnalyse\u201D requires examining mechanisms, evaluating significance, identifying contested interpretations, and engaging with what the observations actually mean. The attempt has all surface and no depth: it identifies things that are true (McDonald's is widespread, English is dominant in business) but does no analytical work with them. What does McDonald's' global spread actually mean for cultural identity? Is English dominance neutral fact or cultural imperialism? Are local traditions being \u201Clost\u201D or are they being adapted, hybridised, sustained alongside global culture? Analysis would address these questions; description only inventories observations.",
+    strong:"Globalisation's cultural effects are more complex than the standard \u201Chomogenisation\u201D narrative suggests. The conventional picture \u2014 global brands flattening local cultures into uniform consumer experiences \u2014 captures real phenomena but misses important counter-currents.\n\nThe homogenisation thesis is partially supported by observable trends: global brands occupy similar spaces in cities worldwide, English serves as international lingua franca in business and academia, and Hollywood film and Anglo-American popular music reach audiences across continents. These outcomes reflect a real concentration of cultural production and distribution capacity in Western, particularly American, institutions.\n\nBut the cultural exchange has run in more than one direction. The past two decades have seen unprecedented spread of cultural exports from outside the West: Korean popular music has become a global phenomenon; Mexican and Vietnamese cuisines have entered the everyday food cultures of dozens of countries; Nigerian cinema (Nollywood) produces more films than Hollywood; Indian software and television have global reach. Local cultures, where they have been threatened, have often responded with adaptation and selective hybridisation rather than passive replacement.\n\nThe most accurate description is therefore neither homogenisation nor preservation but creolisation: the emergence of complex cultural patterns that combine global elements with locally adapted variations. Whether this counts as \u201Closs\u201D depends on the standard \u2014 cultures change with or without globalisation, and the question is which kinds of change communities accept or resist, and which they have power to shape.",
+    takeaway:"Description identifies what is observable; analysis examines what it means. To analyse, ask: what mechanisms produce this? What does it imply? What competing interpretations are possible? Listing examples is not analysis until you do work with them."
+  },
+  {
+    cat:"analysis",
+    title:"Surface Reading of a Source",
+    prompt:"Analyse the writer's stance in the extract below.\u201CMeritocracy is the founding myth of modern democracy. Each of us, we are told, can rise as high as our talents and efforts permit. Yet anyone examining the data with open eyes must conclude that this story has become harder to defend...\u201D",
+    weak:"The writer's stance is that meritocracy is a myth. They say it is the founding myth of modern democracy. They say the data shows it cannot be defended. The writer is criticising meritocracy. They believe meritocracy does not really exist in the way people think it does. This is their main point.",
+    diagnosis:"The student has summarised the surface content of the passage \u2014 what the writer says \u2014 without analysing what the writer does. Analysis of stance requires examining rhetorical strategy, framing choices, implied audience, and the work the language is doing. The attempt does none of this. The writer calls meritocracy a \u201Cfounding myth\u201D \u2014 a phrase that does serious framing work, positioning meritocracy not as a flawed practice but as a kind of national mythology. The writer uses \u201Copen eyes\u201D to imply that disagreement reflects closed eyes. The writer attributes the story (\u201Cwe are told\u201D) to an unspecified telling, which depersonalises responsibility for the myth. These rhetorical choices are the writer's stance in action; reporting their content without analysing how it works captures only the surface.",
+    strong:"The writer adopts a critical stance toward meritocracy through both content and rhetorical framing, with the latter doing significant persuasive work that surface summary misses.\n\nAt the content level, the writer argues that meritocracy is a misleading account: social mobility has declined while merit-based rhetoric has intensified. The critical position is clear in what is said.\n\nThe rhetorical framing reinforces the position in less obvious ways. The phrase \u201Cfounding myth\u201D does significant work \u2014 it positions meritocracy not as a flawed practice that could be improved but as a kind of national mythology, comparable to a society's origin stories. This framing shifts the debate from \u201Cwhat is meritocracy's track record?\u201D to \u201Cwhat function does this story serve?\u201D \u2014 a more fundamental challenge.\n\nThe writer uses \u201Canyone examining the data with open eyes must conclude\u201D to imply that disagreement reflects closed eyes \u2014 a move that pre-positions readers to accept the conclusion as obvious. \u201CWe are told\u201D in the second sentence attributes the meritocratic story to an unspecified telling, which depersonalises responsibility for the myth and casts readers as recipients of a doctrine rather than holders of independent beliefs.\n\nThe writer's stance, then, is not just critical of meritocracy as practice but critical of the framing that obscures its real workings. The rhetorical choices do as much argumentative work as the substantive claims.",
+    takeaway:"Surface reading reports what a source says. Analysis examines how it says it \u2014 framing, word choice, implied audience, rhetorical strategy. The stance lives as much in the second layer as in the first."
+  },
+  {
+    cat:"analysis",
+    title:"No Synthesis Across Examples",
+    prompt:"Discuss whether free trade agreements have benefited member countries.",
+    weak:"NAFTA was a free trade agreement between the US, Canada, and Mexico signed in 1994. It increased trade between the three countries. The EU is another free trade arrangement among European countries. It has allowed free movement of goods and people. China joined the WTO in 2001 and saw its trade grow significantly. The ASEAN free trade area has also increased trade among Southeast Asian nations. Free trade agreements have generally increased trade among their members.",
+    diagnosis:"The student has listed four examples (NAFTA, EU, China/WTO, ASEAN) as separate cases without identifying any pattern, tension, or analytical relationship among them. This is summary, not synthesis. Synthesis would ask: what common features explain why these agreements increased trade? Where did the agreements produce different effects, and what explains the variation? Which kinds of countries gained most, and which least? Are there countervailing patterns (distributional consequences, sovereignty concerns)? Listing examples side by side without doing this work caps the essay at Level 2 or low Level 3 regardless of how comprehensive the list is.",
+    strong:"Free trade agreements have generally increased aggregate trade among member countries, but a closer comparison across major agreements reveals important variations that complicate simple endorsement or rejection.\n\nNAFTA, the EU, China's WTO accession, and ASEAN's free trade area all delivered substantial growth in cross-border trade flows. The size and pattern of distributional effects, however, varied significantly. NAFTA produced concentrated job losses in US manufacturing regions while delivering broader consumer-price benefits across the US population \u2014 a pattern that has had lasting political consequences. The EU's deeper integration (with movement of people as well as goods) has produced both faster catch-up growth in poorer member states and significant political backlash where the pace of change has been most disruptive (Brexit). China's accession to the WTO produced rapid Chinese growth but also accelerated manufacturing job losses in trade partners \u2014 the \u201CChina shock\u201D documented in subsequent economics literature. ASEAN's looser framework has produced more modest integration but also less political controversy.\n\nWhat these cases reveal in synthesis is that the question of \u201Cbenefit\u201D depends on three variables that are visible only when the cases are compared, not when they are listed: how deep the integration is, how rapidly it happens, and how well affected populations are compensated. The agreements that produced strongest backlash (NAFTA, EU) were not necessarily the worst-designed, but their distributional consequences exceeded the political institutions' capacity to manage them. Free trade agreements benefit member countries, but the question of who in member countries benefits, by how much, and at what cost is the substantive policy question \u2014 one that the case-by-case listing leaves entirely unaddressed.",
+    takeaway:"Listing examples side by side is summary. Synthesis identifies what happens across the examples \u2014 patterns, tensions, common explanations. Cambridge mark schemes consistently reward synthesis over inventory."
+  },
+
+  // ============ EVALUATION (3) ============
+  {
+    cat:"evaluation",
+    title:"One-Sided Argument Disguised as Evaluation",
+    prompt:"To what extent should governments regulate artificial intelligence?",
+    weak:"Governments should regulate artificial intelligence extensively. AI is a powerful and rapidly developing technology that could cause significant harm without proper oversight. It can be used for surveillance, manipulation, and weaponisation. It threatens jobs and could displace millions of workers. It can produce biased outcomes in hiring, lending, and criminal justice. It can generate deepfakes that undermine truth itself. For all these reasons, comprehensive regulation is urgently needed. Without strong government action, the consequences will be severe.",
+    diagnosis:"The student has produced a one-sided argument and called it an evaluation. Evaluation requires weighing competing considerations \u2014 examining the strongest case on the other side and either accepting some of its force or explaining why it fails. The attempt lists only reasons for regulation, ignoring the substantive counter-considerations: innovation incentives, regulatory arbitrage (regulation in one jurisdiction may push development to less constrained ones), the difficulty of regulating fast-moving technologies, the documented benefits AI is delivering (medical diagnosis, scientific research, accessibility), the risk of locking in current approaches before better ones can be developed. A reader who knows the topic can immediately see what the writer has avoided, which weakens the writer's credibility. Cambridge mark schemes consistently reserve top bands for essays that engage opposing positions seriously, not for one-sided cases however well argued.",
+    strong:"Governments should regulate artificial intelligence substantially but in calibrated rather than comprehensive form, and the strongest case against extensive regulation deserves serious engagement before the case for it is concluded.\n\nThe case for regulation is real: AI systems already make consequential decisions in hiring, lending, parole, and content moderation, often with documented bias. The technology's pace of capability growth exceeds democratic deliberation. Recent EU and US regulatory action (the EU AI Act, executive orders on AI safety) reflects growing consensus that some regulation is necessary.\n\nThe case against extensive regulation also has substantive weight. Overly restrictive frameworks risk pushing AI development to less constrained jurisdictions \u2014 not eliminating risks but only relocating their creation. AI is delivering measurable benefits in medical diagnosis (detection of certain cancers exceeding human accuracy), scientific research (protein folding via AlphaFold, drug discovery acceleration), and accessibility (real-time captioning, language translation). Regulators struggle to understand technologies that evolve faster than legislation. And the history of premature regulation in other technological areas (early internet regulation, biotech moratoria) suggests caution about locking in approaches before the field stabilises.\n\nThe sophisticated position takes both seriously. Regulation should be calibrated to risk: high-risk applications (criminal justice, medical decisions, autonomous weapons) warrant strict oversight; low-risk applications warrant lighter touch. Outcomes-based regulation (banning discriminatory effects, requiring transparency) may prove more durable than technology-specific rules. International coordination is needed to address the regulatory arbitrage problem.\n\nThe extent of appropriate regulation is therefore substantial but not comprehensive \u2014 a calibration that the pro-regulation framing alone cannot deliver because it does not engage the legitimate concerns on the other side.",
+    takeaway:"Evaluation weighs competing considerations. Listing reasons for your position only \u2014 however many \u2014 is one-sided argument, not evaluation. Top-band evaluation engages the strongest case on the other side and either incorporates some of its insights or explains why it fails."
+  },
+  {
+    cat:"evaluation",
+    title:"False Dichotomy",
+    prompt:"Is capitalism or socialism the better economic system?",
+    weak:"Capitalism is the better economic system. Capitalism has produced more wealth, more innovation, and more prosperity than socialism ever has. Countries that adopted capitalism (the US, UK, Japan, South Korea) have become prosperous. Countries that adopted socialism (the Soviet Union, Cuba, Venezuela) have failed or stagnated. The choice is clear: capitalism works and socialism does not.",
+    diagnosis:"The student has treated the question as a binary choice between two pure systems that do not actually exist in the real world. No modern economy is purely capitalist or purely socialist; all major economies combine market mechanisms with substantial government intervention, public provision of services, regulation, redistribution, and welfare arrangements. The Nordic countries combine market economies with extensive welfare states; the US has substantial public infrastructure, social security, and Medicare; China has rapid market reforms within a state-led framework. The binary framing also misses that the contested question is the appropriate mix of market and state, not the choice between pure systems. The attempt also cherry-picks favourable examples for capitalism and unfavourable ones for socialism, while ignoring countries (Nordic states, Germany) where high government involvement coexists with prosperity.",
+    strong:"The choice between capitalism and socialism, framed as a binary, is a false dichotomy that obscures the actual policy questions. No modern economy is purely capitalist or purely socialist; the genuine debate is about the appropriate mix of market mechanisms with public provision, regulation, and redistribution.\n\nMarket economies have produced the bulk of modern prosperity, and the failure of fully planned economies (the Soviet system, Maoist China before reform, Venezuela's recent experience) is well documented. The case for market mechanisms in allocating most goods and services is strong.\n\nBut comparing across genuinely existing mixed economies tells a more complex story. Nordic countries (Denmark, Sweden, Norway, Finland) combine market economies with extensive welfare states, high taxes, strong unions, and substantial public provision \u2014 and consistently rank among the world's most prosperous, equal, and free societies. Germany has higher labour-market protections and more state economic involvement than the US, with comparable per capita prosperity. The US has lower public provision but greater income inequality and worse social mobility than many peer economies. These comparisons suggest that the relationship between state involvement and prosperity is not monotonic \u2014 substantial public provision is compatible with high prosperity if the institutions are well designed.\n\nThe serious questions are therefore about specific institutional choices: how should healthcare be funded? How should labour markets be regulated? How should education be provided? What should the role of public infrastructure investment be? These questions cannot be answered by choosing \u201Ccapitalism\u201D or \u201Csocialism\u201D; they require examining specific arrangements and their consequences. The binary frame, by foreclosing this examination, prevents the actual policy debate from happening.",
+    takeaway:"False dichotomies present binary choices when the real space of options is continuous. Most policy debates are about which mix, not which extreme. Strong evaluation refuses the binary framing when it is unwarranted."
+  },
+  {
+    cat:"evaluation",
+    title:"Vague Nuance Without Commitment",
+    prompt:"Should wealthy nations accept more refugees?",
+    weak:"This is a complicated issue with many sides. On the one hand, refugees need help and wealthy nations have resources. On the other hand, accepting refugees can be difficult for receiving countries. There are arguments on both sides. The truth probably lies somewhere in the middle. It depends on many factors and circumstances. Reasonable people can disagree about this question. In conclusion, the answer is complicated.",
+    diagnosis:"The student has confused fence-sitting with nuance. Genuine nuance acknowledges complexity but still arrives at a calibrated position \u2014 it tells the reader which way the balance falls and why. The attempt does the opposite: it identifies that the question is complicated and then refuses to engage with that complexity to reach a defended conclusion. Phrases like \u201Cthe truth probably lies somewhere in the middle,\u201D \u201Cit depends,\u201D and \u201Creasonable people can disagree\u201D are placeholders that look like sophistication but do no analytical work. Cambridge mark schemes do not reward refusal to commit; they reward defended judgement informed by nuance. This kind of answer typically caps marks at Level 2 even when it gestures at all the right considerations.",
+    strong:"Wealthy nations should accept more refugees than they currently do, but the obligation is qualified by the practical limits the strongest version of the opposing position helps identify.\n\nThe case for accepting more refugees rests on three pillars. First, refugees by definition face threats to fundamental freedoms; the duty to assist those in imminent danger is recognised across most moral and religious traditions. Second, wealthy nations have disproportionate capacity to absorb refugees relative to the developing countries that currently host most of them \u2014 a distribution of burden that is morally and politically unsustainable. Third, the international system of refugee protection depends on shared commitment; nations that retreat from their obligations undermine the framework that protects everyone.\n\nThe opposing position has substantive points worth incorporating rather than dismissing. Receiving societies have legitimate interests in social cohesion and democratic consent. Rapid demographic change has produced political backlash in many democracies that may itself undermine future generosity. Aid to refugees in their region of origin can be morally equivalent to resettlement and is often more efficient. These are not bad-faith arguments; they reflect real practical constraints.\n\nThe calibrated position incorporates both. Wealthy nations should accept more refugees, but the increase should be coordinated internationally, paced to integration capacity, and accompanied by serious investment in receiving communities. Pure expansion that ignores integration challenges is irresponsible; pure refusal that ignores moral obligation is also irresponsible. The middle is not the absence of position but the defended position that takes both seriously.",
+    takeaway:"Nuance is not fence-sitting. Strong evaluation acknowledges complexity AND arrives at a defended position. \u201CIt depends\u201D and \u201Cit's complicated\u201D are not conclusions \u2014 they are setups for the actual analytical work the answer is supposed to do."
+  },
+
+  // ============ STYLE AND REGISTER (3) ============
+  {
+    cat:"style",
+    title:"Wrong Register",
+    prompt:"Discuss the ethical implications of genetic engineering.",
+    weak:"Genetic engineering is honestly super complicated. Like, on one hand it could cure tons of diseases which would be amazing. But on the other hand, what if it goes wrong? We could end up with stuff like designer babies and that's just creepy honestly. Plus, who's going to be in charge of deciding what we should and shouldn't change? It's basically like playing God. I personally think we need to be way more careful before we go all in on this.",
+    diagnosis:"The student has written in casual register inappropriate to a formal academic essay. \u201CHonestly,\u201D \u201Csuper,\u201D \u201Clike,\u201D \u201Ctons of,\u201D \u201Cthat's just creepy,\u201D \u201Cbasically,\u201D \u201Cway more,\u201D \u201Cgo all in\u201D \u2014 these belong to spoken conversation, not academic prose. Cambridge expects formal register throughout: no contractions, no colloquialisms, no slang, no excessive informality. The content of the attempt may have some merit, but the register prevents it from being taken seriously. Mark schemes typically downgrade essays with significant register problems regardless of substantive content. The attempt also lacks structure (the points are dropped in casual sequence rather than developed), and uses \u201CI personally think\u201D where evidence and reasoning should be doing the persuasive work.",
+    strong:"Genetic engineering raises ethical questions whose seriousness derives from the unprecedented nature of the technology rather than the familiarity of the dilemmas it produces.\n\nThe potential benefits are substantial. CRISPR and related techniques have opened plausible therapeutic pathways for monogenic diseases (sickle cell, certain forms of muscular dystrophy, hereditary blindness) and offer earlier or more effective intervention for some cancers. The argument that we should pursue these applications is strong: they address real human suffering with concrete mechanisms.\n\nThe ethical concerns are also substantial. Germline editing (changes inherited by future generations) raises distinct issues from somatic editing (changes only in the treated individual). Once germline changes are introduced into the human gene pool, they cannot be recalled or controlled by future generations who did not consent. The technology also creates pressure toward enhancement rather than therapy \u2014 the line between treating a disease and altering human capacity is genuinely difficult to draw. Distributional concerns are serious: if genetic enhancement becomes available, it is likely to be accessible only to wealthy populations initially, potentially creating biological dimensions to social inequality.\n\nThe institutional response to these dilemmas matters as much as individual moral reasoning. The 2018 announcement of the first CRISPR-edited human babies in China, undertaken without international ethical oversight, illustrated what happens when emerging technologies outrun their governance frameworks. International scientific consensus has since strengthened against germline editing for non-therapeutic purposes, but enforcement remains weak. The serious question is therefore not only what we should do with genetic engineering but how international scientific and ethical institutions should govern an increasingly democratised technology.",
+    takeaway:"Register matters as much as content. Formal essays require formal register: no contractions, no colloquialisms, no slang, no \u201Cbasically\u201D or \u201Ckind of.\u201D Read your essay aloud \u2014 if it sounds like conversation rather than academic prose, the register is wrong."
+  },
+  {
+    cat:"style",
+    title:"Fabricated Specifics",
+    prompt:"Has economic inequality increased in recent decades?",
+    weak:"Economic inequality has dramatically increased over the past forty years. Studies show that 87% of all global wealth is now owned by the top 1% of the population. According to a recent report, CEO pay has risen by 4,300% since 1980 while ordinary worker wages have remained completely stagnant. A 2023 Harvard study found that inequality in the United States has reached levels not seen since 1837. The numbers are clear and undeniable.",
+    diagnosis:"The student has invented specific-sounding statistics to make the case more persuasive. The figures (\u201C87%\u201D, \u201C4,300%\u201D, \u201Csince 1837\u201D) and the \u201C2023 Harvard study\u201D are fabricated \u2014 invented to sound authoritative. This is a serious academic integrity problem and a self-defeating strategy: any examiner familiar with the topic can see immediately that the numbers don't match reality (the actual figure is that the top 1% own roughly 45-50% of global wealth, depending on methodology). Fabrication damages every claim in the essay, because once a reader sees one invention they cannot trust any other claim. The underlying point (that inequality has risen) is true and can be made with real evidence \u2014 the fabrication adds nothing and discredits the writer.",
+    strong:"Economic inequality has increased substantially in many developed economies over the past four decades, though the magnitude and pattern vary by country and measurement. The top 1% of US earners captured roughly 8% of total income in the late 1970s and around 19% in recent years \u2014 a more than doubling of their income share within a generation. CEO-to-worker pay ratios, by various standard measures, have risen from approximately 20:1 in the early 1970s to roughly 350:1 today in major US corporations. Wealth concentration has risen even more sharply than income concentration; the top 1% of US households now hold roughly 30% of household wealth.\n\nThe pattern is not uniform internationally. Nordic countries have seen more modest increases in inequality and have maintained relatively compressed income distributions through tax and welfare policy. Within developing economies, the picture varies further; rapid growth has lifted billions from extreme poverty while also concentrating wealth in particular cities and sectors.\n\nThe precise figures are contested in scholarly debate (Piketty's well-known estimates have been refined by subsequent work), but the broad direction \u2014 substantially rising inequality in many wealthy democracies over the past forty years \u2014 is supported by multiple independent data sources.",
+    takeaway:"Fabricated specifics fail twice: they are dishonest, and they discredit every other claim in the essay. If you do not know exact figures, use approximate figures with qualifiers (\u201Croughly,\u201D \u201Capproximately,\u201D \u201Cmost estimates suggest\u201D) or describe the direction without specifying the magnitude. Real evidence is better than convincing-sounding fabrication."
+  },
+  {
+    cat:"style",
+    title:"Weak Vocabulary Use",
+    prompt:"Discuss whether young people today face unique challenges.",
+    weak:"There are lots of things that young people today have to deal with. The world has lots of problems and young people are affected by them. They have to think about things like the environment, the economy, and other stuff. It's hard for young people because of all these challenges. Young people today face many issues that previous generations didn't really face in the same way. Things are different now, and young people have to deal with these things.",
+    diagnosis:"The attempt uses vague, imprecise language throughout: \u201Clots of things,\u201D \u201Cother stuff,\u201D \u201Cthings like,\u201D \u201Cit's hard,\u201D \u201Cdeal with these things.\u201D General Paper rewards precise vocabulary \u2014 specific words used accurately. The attempt could be rewritten to use exact terms (climate crisis, economic precarity, mental health concerns, geopolitical instability) and the precise vocabulary from the Essential 50 Glossary (anthropogenic, sustainability, generation, intersectionality). Cambridge mark schemes consistently associate top bands with precise terminology used accurately, and bottom bands with vague generic language. The attempt also lacks specific examples or claims \u2014 it gestures at problems without naming them.",
+    strong:"Young people today face several challenges that, while not unprecedented in human history, are distinctive in their combination and scale. Climate change presents an existential threat over the timescale of their adult lives; anthropogenic warming has already produced measurable effects on weather patterns, food systems, and the habitability of equatorial regions, with more substantial effects forecast for the coming decades. Economic precarity has accompanied stagnant real wages, rising housing costs, and structural shifts toward gig and contract work in many developed economies; home ownership rates among under-35s in the UK, US, and Australia have fallen sharply across the past two decades. Documented adolescent mental health concerns \u2014 rising rates of anxiety, depression, and self-harm \u2014 have coincided with the rise of always-connected social media; whether the technology has caused or merely accelerated the trend remains contested.\n\nThese challenges differ in kind from the existential threats earlier generations faced (industrial-scale war, mass infectious disease, nuclear annihilation). They are slower, more diffuse, and harder to mobilise against. But the combination \u2014 long-horizon planetary threat plus shrinking economic security plus disrupted social-developmental conditions \u2014 produces a generational situation that has reasonable claim to distinctiveness even if no single element is fully unprecedented.",
+    takeaway:"Precision is the difference between a Level 2 and a Level 5 essay. Replace \u201Cthings,\u201D \u201Cstuff,\u201D \u201Clots of,\u201D and \u201Cdeal with\u201D with specific terms. Use the vocabulary from the Essential 50 and Complete Reference when it fits \u2014 sophisticated terminology is one of the most reliable markers of strong writing."
+  }
+];
+
+let currentCat = 'all';
+
+function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+function renderList(){
+  const container = document.getElementById('container');
+  const stats = document.getElementById('stats');
+  const filtered = MISTAKES.filter(m => currentCat === 'all' || m.cat === currentCat);
+
+  container.innerHTML = filtered.map(m => {
+    const idx = MISTAKES.indexOf(m) + 1;
+    return `
+      <div class="mistake">
+        <div class="m-head">
+          <span class="m-num">#${String(idx).padStart(2,'0')}</span>
+          <span class="m-title">${escapeHtml(m.title)}</span>
+          <span class="cat-tag ${m.cat}">${CAT_LABELS[m.cat]}</span>
+        </div>
+        <div class="m-body">
+          <div class="prompt-block"><span class="text">${escapeHtml(m.prompt)}</span></div>
+          <div class="weak-block">${escapeHtml(m.weak)}</div>
+          <div class="diagnosis-block">${escapeHtml(m.diagnosis)}</div>
+          <div class="strong-block">${escapeHtml(m.strong).replace(/\n\n/g,'<br><br>')}</div>
+          <div class="takeaway-block">${escapeHtml(m.takeaway)}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+  stats.innerHTML = `Showing <strong>${filtered.length}</strong> of <strong>${MISTAKES.length}</strong> mistakes`;
+}
+
+function setFilter(cat, btn){
+  currentCat = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active','command','structure','evidence','analysis','evaluation','style'));
+  btn.classList.add('active', cat);
+  renderList();
+}
+
+renderList();
+</script>
+</body>
+</html>

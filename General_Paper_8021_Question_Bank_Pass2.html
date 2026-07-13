@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cambridge AICE General Paper 8021 — Question Bank Pass 1 (Q1-20)</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --navy:#0F2A47;--navy-light:#DEE7F2;
+    --wine:#6B1F2E;--wine-light:#F8E4E8;--wine-dark:#401019;--wine-mid:#8B2A3F;
+    --teal:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+    --blue:#185FA5;--blue-light:#E6F1FB;--blue-dark:#0C447C;
+    --purple:#534AB7;--purple-light:#EEEDFE;--purple-dark:#2E2779;
+    --gold:#C4922E;--gold-light:#FAEEDA;--gold-dark:#6B4F11;
+    --green:#639922;--green-light:#EAF3DE;--green-dark:#27500A;
+    --red-light:#FCEBEB;--red-dark:#501313;--red-mid:#E24B4A;
+    --gray-light:#F5F5F3;--gray-dark:#444441;
+    --text:#1A1A1A;--muted:#555;--border:#DDD;
+    --bg:#FFF;--surface:#F8F8F6;
+    --radius:8px;--radius-lg:12px;
+    --shadow:0 1px 3px rgba(0,0,0,0.08);
+    --shadow-lg:0 4px 12px rgba(0,0,0,0.06)
+  }
+  body{font-family:Georgia,'Times New Roman',serif;background:var(--surface);color:var(--text);line-height:1.55;font-size:15px}
+  .site-header{background:var(--navy);color:#fff;padding:1rem 2rem;position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:1rem;box-shadow:var(--shadow-lg);border-bottom:3px solid var(--wine)}
+  .site-header .brand{font-size:1rem;font-weight:700;font-family:Arial,sans-serif}
+  .site-header .meta{font-size:0.78rem;color:#c8d4e3;font-family:Arial,sans-serif}
+  .module-tag{display:inline-block;background:var(--wine);color:#fff;font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:999px;font-family:Arial,sans-serif;letter-spacing:0.5px}
+  .page-wrap{max-width:1100px;margin:0 auto;padding:0 1rem 3rem}
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,#1d4068 100%);color:#fff;border-radius:var(--radius-lg);padding:1.75rem;margin:1.25rem 0;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;top:-50%;right:-10%;width:300px;height:300px;background:var(--wine);opacity:0.15;border-radius:50%}
+  .hero-badge{display:inline-block;background:var(--wine);color:#fff;font-size:0.7rem;font-weight:700;padding:4px 12px;border-radius:999px;margin-bottom:0.65rem;font-family:Arial,sans-serif;letter-spacing:0.5px;text-transform:uppercase}
+  .hero h2{font-size:1.7rem;margin-bottom:0.4rem;font-family:Arial,sans-serif}
+  .hero p{font-size:0.92rem;color:#c8d4e3;font-family:Arial,sans-serif;max-width:760px;position:relative}
+  .controls{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:0.95rem 1.15rem;margin:1rem 0;font-family:Arial,sans-serif;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:0.75rem}
+  .filter-row{display:flex;flex-wrap:wrap;gap:0.4rem;align-items:center}
+  .filter-row .label{font-size:0.72rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-right:0.3rem}
+  .filter-btn{background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:0.35rem 0.8rem;font-family:Arial,sans-serif;font-size:0.78rem;cursor:pointer;color:var(--text);transition:all 0.15s;font-weight:600}
+  .filter-btn:hover{background:var(--navy-light)}
+  .filter-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .filter-btn.active.p1{background:var(--wine)}
+  .filter-btn.active.p2{background:var(--teal-dark)}
+  .stats{font-size:0.72rem;color:var(--muted);font-family:Arial,sans-serif}
+  .stats strong{color:var(--navy)}
+  .card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem 1.4rem;margin-bottom:1rem;box-shadow:var(--shadow)}
+  .card h2{font-size:1.15rem;font-family:Arial,sans-serif;color:var(--navy);margin-bottom:0.6rem;padding-bottom:0.4rem;border-bottom:2px solid var(--wine)}
+  .card h3{font-size:1rem;font-family:Arial,sans-serif;color:var(--blue);margin:0.85rem 0 0.4rem}
+  .card p{color:var(--muted);margin-bottom:0.5rem;font-size:0.88rem}
+
+  .question{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:1.5rem;box-shadow:var(--shadow);overflow:hidden}
+  .q-head{padding:0.85rem 1.2rem;background:var(--navy);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:0.5rem;flex-wrap:wrap}
+  .q-num{display:inline-block;background:rgba(255,255,255,0.15);font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:4px;font-family:Arial,sans-serif;letter-spacing:0.5px}
+  .q-paper{font-family:Arial,sans-serif;font-size:0.78rem;color:#c8d4e3;font-weight:600;flex-grow:1}
+  .marks-badge{background:var(--wine);color:#fff;font-family:Arial,sans-serif;font-size:0.75rem;font-weight:700;padding:3px 10px;border-radius:4px;letter-spacing:0.3px}
+  .q-body{padding:1.1rem 1.3rem}
+  .q-title{font-size:1rem;font-family:Arial,sans-serif;color:var(--navy);font-weight:700;margin-bottom:0.6rem}
+  .extract-block{background:var(--gray-light);border:1px dashed var(--gray-dark);border-radius:var(--radius);padding:0.85rem 1.1rem;margin:0.85rem 0;font-family:Georgia,serif;font-size:0.88rem;line-height:1.65;color:var(--text);font-style:italic}
+  .extract-block::before{content:"Extract";display:block;font-style:normal;font-weight:700;font-size:0.7rem;color:var(--gray-dark);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.4rem;font-family:Arial,sans-serif}
+  .question-block{background:#fff;border-left:5px solid var(--navy);padding:0.85rem 1.1rem;margin:0.85rem 0;font-family:Arial,sans-serif;font-size:0.95rem;line-height:1.6;color:var(--text);font-weight:600}
+  .question-block::before{content:"Question";display:block;font-weight:700;font-size:0.7rem;color:var(--navy);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.4rem}
+  .scheme-block{margin:1rem 0}
+  .scheme-block h4{font-family:Arial,sans-serif;font-size:0.78rem;color:var(--gold-dark);text-transform:uppercase;letter-spacing:0.5px;font-weight:700;margin-bottom:0.5rem}
+  .scheme-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--gold);font-family:Arial,sans-serif;font-size:0.82rem}
+  .scheme-table th{background:var(--gold-light);color:var(--gold-dark);padding:0.5rem 0.7rem;text-align:left;border:1px solid var(--gold);font-weight:700;font-size:0.78rem}
+  .scheme-table td{padding:0.5rem 0.7rem;border:1px solid var(--gold);vertical-align:top}
+  .scheme-table td:first-child{font-weight:700;color:var(--gold-dark);white-space:nowrap;width:90px}
+  .answer-block{background:var(--teal-light);border-left:5px solid var(--teal);border-radius:0 var(--radius) var(--radius) 0;padding:0.85rem 1.1rem;margin:0.95rem 0;font-family:Arial,sans-serif;font-size:0.85rem;line-height:1.65;color:var(--text)}
+  .answer-block::before{content:"Model Answer / Indicative Response";display:block;font-weight:700;font-size:0.7rem;color:var(--teal-dark);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem}
+  .answer-block p{margin-bottom:0.5rem}
+  .answer-block p:last-child{margin-bottom:0}
+  .errors-block{background:var(--red-light);border-left:5px solid var(--red-mid);border-radius:0 var(--radius) var(--radius) 0;padding:0.85rem 1.1rem;margin:0.85rem 0;font-family:Arial,sans-serif;font-size:0.83rem;line-height:1.6}
+  .errors-block::before{content:"\u26A0  Common Errors to Avoid";display:block;font-weight:700;font-size:0.7rem;color:var(--red-dark);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.45rem}
+  .errors-block ul{padding-left:1.1rem;margin:0;list-style:none}
+  .errors-block li{margin-bottom:0.35rem;color:var(--text);position:relative;padding-left:0.7rem}
+  .errors-block li::before{content:"\u2715";color:var(--red-mid);position:absolute;left:-0.3rem;font-weight:700}
+  .type-tag{font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:999px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap}
+  .type-tag.essay{background:var(--purple-light);color:var(--purple-dark)}
+  .type-tag.comprehension{background:var(--blue-light);color:var(--blue-dark)}
+  .type-tag.evaluation{background:var(--gold-light);color:var(--gold-dark)}
+  .type-tag.writing{background:var(--green-light);color:var(--green-dark)}
+  @media print{.site-header,.controls{display:none}.question{break-inside:avoid;page-break-inside:avoid;box-shadow:none}body{background:#fff}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div>
+    <div class="brand">📝 Cambridge AICE General Paper 8021</div>
+    <div class="meta">Diagnostic Question Bank — Pass 1 (Q1-20)</div>
+  </div>
+  <span class="module-tag">Question Bank</span>
+</header>
+
+<div class="page-wrap">
+
+  <div class="hero">
+    <div class="hero-badge">Pass 1 of 2 · Questions 1-20</div>
+    <h2>Diagnostic Practice Across Both Papers</h2>
+    <p>Twenty questions covering the full range of General Paper assessment: Paper 1 essay prompts spanning the syllabus, and Paper 2 source-based questions across comprehension, evaluation, and directed writing. Each question includes a mark scheme, model answer or indicative response, and the most common errors to avoid.</p>
+  </div>
+
+  <div class="card">
+    <h2>How to Use This Question Bank</h2>
+    <p><strong>Diagnostic, not exhaustive.</strong> The 20 questions in this Pass cover the most common question types and topic areas. Pass 2 (Q21-40) will extend into additional topics and more sophisticated question types.</p>
+    <p><strong>Self-directed practice cycle:</strong> Attempt the question under timed conditions (75 minutes per Paper 1 essay; proportional time for Paper 2 sub-questions). Compare your answer to the model response. Use the mark scheme to estimate your band. Read the common errors section to diagnose weaknesses.</p>
+    <h3>What's in this Pass</h3>
+    <p><strong>Paper 1 — Essay (Q1-8):</strong> 8 essay prompts across education, globalisation, technology, environment, media, ethics, censorship, and science/religion.<br>
+    <strong>Paper 2 — Comprehension (Q9-14):</strong> 6 questions testing inference, summary, identification of argument, and explanation of meaning.<br>
+    <strong>Paper 2 — Evaluation (Q15-18):</strong> 4 questions on identifying fallacies, evaluating argument strength, and analysing language.<br>
+    <strong>Paper 2 — Directed Writing (Q19-20):</strong> 2 questions on writing for a specified audience and purpose based on source material.</p>
+  </div>
+
+  <div class="controls">
+    <div class="filter-row">
+      <span class="label">Paper:</span>
+      <button class="filter-btn active" data-filter="all" onclick="setFilter('all',this)">All 20</button>
+      <button class="filter-btn" data-filter="p1" onclick="setFilter('p1',this)">Paper 1 Essays (8)</button>
+      <button class="filter-btn" data-filter="p2" onclick="setFilter('p2',this)">Paper 2 (12)</button>
+      <button class="filter-btn" data-filter="comprehension" onclick="setFilter('comprehension',this)">— Comprehension (6)</button>
+      <button class="filter-btn" data-filter="evaluation" onclick="setFilter('evaluation',this)">— Evaluation (4)</button>
+      <button class="filter-btn" data-filter="writing" onclick="setFilter('writing',this)">— Directed Writing (2)</button>
+    </div>
+    <div class="stats" id="stats">Showing <strong>20</strong> of <strong>20</strong> questions</div>
+  </div>
+
+  <div id="container"></div>
+
+</div>
+
+<script>
+const QUESTIONS = [
+  // ============ PAPER 1 ESSAYS (Q1-8) ============
+  {
+    num:1, paper:"p1", type:"essay", marks:30, time:"75 minutes",
+    title:"Education: Workforce or Life?",
+    question:"\u201CEducation should prepare students for the workforce, not for life.\u201D Discuss.",
+    scheme:[
+      {level:"Level 5 (25-30)",desc:"Sophisticated argument that rejects the false dichotomy with nuance; wide-ranging support from education systems, labour markets, and competing philosophies of education; sustained evaluation; fluent expression."},
+      {level:"Level 4 (19-24)",desc:"Clear argument with developed support; engages both positions; evaluates competing visions; generally fluent."},
+      {level:"Level 3 (13-18)",desc:"Adequate argument; some support and evaluation; mostly clear but may be one-sided or under-developed."},
+      {level:"Level 2 (7-12)",desc:"Basic argument; limited support; largely descriptive rather than evaluative."},
+      {level:"Level 1 (1-6)",desc:"Minimal argument; little support or evaluation; significant expression weaknesses."}
+    ],
+    answer:`Reject the false dichotomy as the central move. Define both \"workforce preparation\" (employability, technical skills, economic productivity) and \"life preparation\" (citizenship, critical thinking, personal flourishing). Thesis: the dichotomy itself is misleading; education must do both, but the balance is contested and consequential.\n\nDevelop the workforce-prep case: economic competitiveness demands relevant skills; AI and automation are displacing routine work, raising the stakes of preparation; rising tuition costs make employability a moral concern for students and families.\n\nThen the life-prep counterargument: education is also about citizenship in a democracy, critical engagement with culture, ethical reasoning, and personal flourishing \u2014 things measured neither by GDP nor by starting salaries. The humanities, civic education, and arts serve these ends.\n\nThe sophisticated move is recognising that the same capacities serve both: communication, problem-solving, collaboration, ethical reasoning are workforce skills AND life skills. The dichotomy itself is the error.\n\nContext matters: different societies, different students, different stages of life. A 7-year-old needs different preparation than a 21-year-old; a developing economy faces different tradeoffs than a knowledge economy.\n\nConclude with substantive nuance: the right question is not workforce vs life, but which combination of preparations, for which students, at which stages, with what democratic and economic consequences.`,
+    errors:[
+      "Treating 'workforce' and 'life' as fully separate domains rather than examining their overlap",
+      "Listing skills and subjects without analysing competing visions of education's purpose",
+      "Pure description of what schools do, with no evaluation or argument",
+      "One-sided argument without acknowledging the strongest version of the counter-position",
+      "Vague support like 'studies show' without specifics from real education systems or research"
+    ]
+  },
+  {
+    num:2, paper:"p1", type:"essay", marks:30, time:"75 minutes",
+    title:"Globalisation: Harm or Good?",
+    question:"\u201CGlobalisation has done more harm than good.\u201D How far do you agree?",
+    scheme:[
+      {level:"Level 5 (25-30)",desc:"Sophisticated argument that distinguishes types of globalisation (economic, cultural, political, technological) and types of harm/benefit; specific evidence across regions; sustained evaluation; clear thesis."},
+      {level:"Level 4 (19-24)",desc:"Clear argument engaging both sides with developed support; some distinction between dimensions; mostly substantiated claims."},
+      {level:"Level 3 (13-18)",desc:"Adequate argument; some support; treats globalisation as a single phenomenon rather than multi-dimensional."},
+      {level:"Level 2 (7-12)",desc:"Basic argument; limited support; descriptive."},
+      {level:"Level 1 (1-6)",desc:"Minimal argument; little development."}
+    ],
+    answer:`Open by distinguishing dimensions of globalisation \u2014 economic (trade, capital flows, supply chains), cultural (media, language, consumption), political (international institutions, governance), technological (internet, communication). Different dimensions produce different effects, making blanket claims weak.\n\nThe \"more good\" case: globalisation has lifted approximately one billion people out of extreme poverty since 1990, primarily through trade-led growth in China, India, and Southeast Asia. Global communication has spread medical knowledge, democratic ideas, and cultural exchange. Specialisation through trade has lowered consumer prices substantially in developed economies.\n\nThe \"more harm\" counterargument: global inequality between owners of capital and labour has widened in developed economies; deindustrialisation of manufacturing regions in the US and UK has produced lasting political and social damage; cultural homogenisation has eroded distinct traditions; financial integration spreads crises rapidly (2008 contagion).\n\nThe nuanced position: aggregate benefits coexist with concentrated losses. Net global welfare has likely risen; net welfare in specific communities has fallen. The political question is whether benefits have been distributed in ways that maintain social cohesion in democracies \u2014 increasingly the answer appears to be no, fuelling populism and protectionism.\n\nConclude that the framing \"more harm than good\" obscures the real question: how globalisation's gains and losses are distributed, and what political institutions can address concentrated losses while preserving aggregate gains. Sophisticated agreement or disagreement requires this distinction.`,
+    errors:[
+      "Treating globalisation as a single phenomenon rather than distinguishing dimensions",
+      "Vague claims about 'developing countries' or 'the West' without specific examples",
+      "Ignoring the distributional question \u2014 who benefits, who loses",
+      "Citing 'lifted out of poverty' figures without examining which forms of globalisation drove this",
+      "Failing to acknowledge the strongest version of the opposing case"
+    ]
+  },
+  {
+    num:3, paper:"p1", type:"essay", marks:30, time:"75 minutes",
+    title:"AI Regulation",
+    question:"To what extent should governments regulate artificial intelligence?",
+    scheme:[
+      {level:"Level 5 (25-30)",desc:"Sophisticated argument distinguishing types of AI and types of regulation; engages tradeoffs between innovation and safety; specific examples (current legislation, AI incidents); sustained evaluation."},
+      {level:"Level 4 (19-24)",desc:"Clear argument with developed support; acknowledges competing considerations; mostly substantiated."},
+      {level:"Level 3 (13-18)",desc:"Adequate argument; some support; treats AI as a single thing requiring uniform regulation."},
+      {level:"Level 2 (7-12)",desc:"Basic argument; limited examples; descriptive."},
+      {level:"Level 1 (1-6)",desc:"Minimal argument; little development."}
+    ],
+    answer:`Open by recognising that \"AI\" is not a single thing: narrow AI for specific tasks (image recognition, language models) raises different regulatory questions than hypothetical general AI; consumer applications differ from military, medical, and judicial uses. Effective regulation must distinguish.\n\nThe pro-regulation case: AI systems already make consequential decisions in hiring, lending, parole, and content moderation, often with documented bias. Generative AI enables deepfakes, fraud, and copyright violation at scale. The pace of capability growth exceeds democratic deliberation. The EU AI Act and emerging US executive orders reflect growing consensus that some regulation is necessary.\n\nThe anti-regulation counterargument: overly restrictive regulation will push development to less constrained jurisdictions (regulatory arbitrage), losing economic and security advantages. AI is also delivering genuine benefits in medical diagnosis, scientific research, accessibility tools, and productivity. Regulators struggle to understand technologies that evolve faster than legislation.\n\nThe sophisticated position: regulation should be calibrated to risk and use case. High-risk applications (medical decisions, criminal justice, autonomous weapons) warrant strict oversight; low-risk applications warrant lighter touch. Outcomes-based regulation (banning discriminatory effects, requiring transparency) may be more durable than technology-specific rules.\n\nAddress the international coordination problem: AI is borderless; unilateral national regulation creates competitive disadvantage without solving the underlying risks. International frameworks (like nuclear non-proliferation) may be needed but face political obstacles.\n\nConclude with a calibrated position: government regulation is necessary, but the question is which AI, with what scope, and with what international coordination.`,
+    errors:[
+      "Treating AI as one technology requiring one regulatory approach",
+      "Vague calls for 'more regulation' without specifying what would be regulated",
+      "Ignoring tradeoffs between innovation incentives and safety",
+      "Missing the international/jurisdictional dimension",
+      "Citing science fiction examples rather than real current AI systems and incidents"
+    ]
+  },
+  {
+    num:4, paper:"p1", type:"essay", marks:30, time:"75 minutes",
+    title:"Climate Change: Collective Sacrifice or Individual Choice?",
+    question:"\u201CThe fight against climate change requires collective sacrifice, not individual choice.\u201D Discuss.",
+    scheme:[
+      {level:"Level 5 (25-30)",desc:"Sophisticated argument engaging the false dichotomy; distinguishes scales of action (individual, corporate, national, international); engages collective action problems; specific policy examples."},
+      {level:"Level 4 (19-24)",desc:"Clear argument with developed support; acknowledges both sides; specific examples."},
+      {level:"Level 3 (13-18)",desc:"Adequate argument; some support; one-sided or under-developed."},
+      {level:"Level 2 (7-12)",desc:"Basic argument; limited examples; mostly descriptive."},
+      {level:"Level 1 (1-6)",desc:"Minimal engagement."}
+    ],
+    answer:`Open by acknowledging the dichotomy as worth interrogating. Climate change is a textbook collective action problem: individual actions matter morally but are insufficient at scale; collective action is necessary but politically difficult.\n\nThe \"collective sacrifice\" case: climate emissions are dominated by industrial systems, agriculture, energy production, and transportation networks. No individual choice can replace systemic decarbonisation. Carbon pricing, energy infrastructure investment, and international agreements are the actual levers. Focusing on individual choice (\"recycle, drive less\") may even be counterproductive if it displaces political demand for systemic change \u2014 a thesis some climate researchers (e.g., Maniates) have advanced.\n\nThe \"individual choice matters\" counterargument: collective action begins with individuals; consumer demand shapes corporate incentives; lifestyles in wealthy nations (per capita emissions) are part of the problem. Treating climate as purely systemic risks moral disengagement \u2014 a \"someone else's problem\" effect.\n\nThe nuanced position: the dichotomy is false because individual and collective action reinforce each other. Voting, organising, and political demand are themselves individual actions with collective consequences. Lifestyle changes can build social norms that enable policy change. But the dichotomy is also genuine in scale: individual choices alone cannot solve the problem; collective sacrifice (through policy) is necessary.\n\nAddress equity: the \"sacrifice\" framing matters \u2014 wealthy nations and individuals bear different responsibility than developing economies. Climate justice requires differentiated burdens, not equal sacrifice.\n\nConclude with a calibrated thesis: both individual and collective action are necessary; the most impactful individual choice is often political participation that enables collective sacrifice through policy.`,
+    errors:[
+      "Treating individual and collective action as alternatives rather than complementary",
+      "Listing personal lifestyle changes without examining their aggregate impact",
+      "Ignoring international and intergenerational equity",
+      "Failing to engage the collective action problem (free riding, coordination)",
+      "Vague references to 'governments should...' without specific policy examples"
+    ]
+  },
+  {
+    num:5, paper:"p1", type:"essay", marks:30, time:"75 minutes",
+    title:"Social Media and Democracy",
+    question:"Has social media weakened or strengthened democracy?",
+    scheme:[
+      {level:"Level 5 (25-30)",desc:"Sophisticated argument distinguishing dimensions of democracy (participation, deliberation, accountability); specific evidence; engages competing scholarly positions; sustained evaluation."},
+      {level:"Level 4 (19-24)",desc:"Clear argument engaging both sides; specific examples; mostly substantiated."},
+      {level:"Level 3 (13-18)",desc:"Adequate argument; treats democracy as singular; some examples but limited evaluation."},
+      {level:"Level 2 (7-12)",desc:"Basic argument; limited support; descriptive."},
+      {level:"Level 1 (1-6)",desc:"Minimal argument."}
+    ],
+    answer:`Open by distinguishing dimensions of democracy: political participation, deliberation quality, accountability of power, civic engagement, and electoral integrity. Social media's effects differ across these dimensions, making blanket judgements weak.\n\nThe \"strengthened\" case: social media has lowered barriers to political participation, enabled mobilisation (Arab Spring, BLM, climate strikes), provided platforms for marginalised voices, allowed direct citizen-to-leader communication, and accelerated accountability journalism through citizen reporting. It has democratised access to political speech.\n\nThe \"weakened\" counterargument: social media platforms optimise for engagement, which favours emotional and extreme content over deliberative discourse. Algorithmic curation creates echo chambers and filter bubbles. Disinformation spreads faster than correction; foreign election interference uses these channels. Mental-health and attention costs may corrode civic capacity. The Cambridge Analytica scandal and documented election interference in multiple democracies illustrate concrete harms.\n\nThe sophisticated position: social media has likely STRENGTHENED participation (mobilisation, voice) while WEAKENING deliberation (echo chambers, polarisation, disinformation). Whether net effect is positive or negative depends on what one values about democracy \u2014 wider participation or higher-quality deliberation.\n\nContext matters: effects vary by country, platform, and demographic. Social media has been more consequential in some democracies (US, India, Brazil) than others. The platforms themselves are changing rapidly.\n\nConclude with a calibrated thesis: social media has not simply weakened or strengthened democracy \u2014 it has changed which dimensions of democracy are easier and which harder. Strong democracies require both participation and deliberation; social media has tilted the balance toward the former at the expense of the latter, and the consequences for accountability and electoral integrity remain contested.`,
+    errors:[
+      "Treating 'democracy' as a single thing rather than multi-dimensional",
+      "Citing dramatic examples (Arab Spring, election interference) without analysis",
+      "Vague claims about 'echo chambers' without engaging the empirical evidence",
+      "Ignoring variation across countries, platforms, and demographics",
+      "Failing to distinguish social media (a category) from specific platforms (which differ)"
+    ]
+  },
+  {
+    num:6, paper:"p1", type:"essay", marks:30, time:"75 minutes",
+    title:"Wealthy Nations and Refugees",
+    question:"\u201CWealthy nations have a moral obligation to accept refugees.\u201D Discuss.",
+    scheme:[
+      {level:"Level 5 (25-30)",desc:"Sophisticated engagement with the moral framework (rights, utilitarianism, social contract); distinguishes refugees from other migrants; engages practical limits; specific examples."},
+      {level:"Level 4 (19-24)",desc:"Clear argument with developed support; engages moral and practical considerations; specific examples."},
+      {level:"Level 3 (13-18)",desc:"Adequate argument; some support; emotive rather than analytical."},
+      {level:"Level 2 (7-12)",desc:"Basic argument; limited engagement with counter-position."},
+      {level:"Level 1 (1-6)",desc:"Minimal argument; assertion without development."}
+    ],
+    answer:`Open by clarifying terms. Refugees \u2014 people fleeing persecution or violence \u2014 are distinguished in international law from economic migrants. The 1951 Refugee Convention establishes specific obligations. The moral question therefore involves a category narrower than 'immigration generally.'\n\nThe \"yes, moral obligation\" case: refugees by definition face persecution that endangers life or fundamental freedoms; the duty to assist those in imminent danger is recognised across most moral traditions. Wealthy nations have disproportionate capacity to absorb refugees relative to neighbouring developing countries (which currently host most refugees). International institutions are built on the principle that protection is a shared obligation. Failure to honour these commitments undermines the system that protects everyone.\n\nThe \"qualified obligation\" counterargument: even moral duties have practical limits. Receiving societies have legitimate interests in social cohesion, public services, and democratic consent. The obligation exists but is shared across the international community; specific nations cannot bear unlimited burden. Some argue that aid to refugees in their region (where most remain) is morally equivalent to resettlement and often more efficient. Realpolitik considerations \u2014 including domestic political backlash that may undermine future generosity \u2014 matter morally because they affect what's sustainable.\n\nDistinguish the question of obligation from the question of how much. Most positions accept some obligation; the contested question is its extent and form.\n\nAddress the political reality: rising anti-refugee politics in many democracies (Brexit, European right-wing movements, US politics) reflects both legitimate concerns about pace of change and exploitation of those concerns by anti-democratic forces.\n\nConclude with a calibrated thesis: there is a real moral obligation, grounded in shared humanity and international commitments, but its discharge requires international coordination, attention to integration, and respect for democratic consent. The serious debate is not whether obligation exists but how it should be discharged.`,
+    errors:[
+      "Treating all immigration as refugee issue (or refugees as just one form of immigration)",
+      "Pure appeal to emotion without engaging the practical and political dimensions",
+      "Ignoring the international dimension \u2014 most refugees are hosted by developing nations",
+      "Treating opponents as simply xenophobic without engaging the strongest version of their concerns",
+      "Vague references to 'the West' or 'rich countries' without specific examples"
+    ]
+  },
+  {
+    num:7, paper:"p1", type:"essay", marks:30, time:"75 minutes",
+    title:"Censorship in a Digital Age",
+    question:"\u201CCensorship is necessary in a digital age.\u201D How far do you agree?",
+    scheme:[
+      {level:"Level 5 (25-30)",desc:"Sophisticated argument distinguishing types of censorship (state, platform, social), types of speech (harmful, false, offensive), and competing values (liberty, safety, democratic discourse)."},
+      {level:"Level 4 (19-24)",desc:"Clear argument engaging both sides; some distinction between types of censorship and speech."},
+      {level:"Level 3 (13-18)",desc:"Adequate argument; treats censorship as one thing; some examples."},
+      {level:"Level 2 (7-12)",desc:"Basic argument; limited engagement with counter-position."},
+      {level:"Level 1 (1-6)",desc:"Minimal argument."}
+    ],
+    answer:`Open by distinguishing forms of censorship: state censorship (laws restricting speech), platform moderation (private decisions by tech companies about user content), social censorship (consequences imposed by communities for expression). Each raises different questions.\n\nDistinguish also types of speech: incitement to violence, defamation, child abuse material, disinformation, hate speech, merely offensive opinion, and legitimate dissent. Most legal systems censor the first categories without controversy; the harder questions involve disinformation and hate speech.\n\nThe \"necessary\" case: digital platforms enable harms at unprecedented scale \u2014 viral disinformation has measurable effects on elections and public health; coordinated harassment silences voices; child exploitation material proliferates; foreign state actors weaponise platforms for political interference. Pure free-speech absolutism is incompatible with functional democratic discourse. Even classical liberal thinkers (Mill, Popper) recognised limits.\n\nThe \"dangerous\" counterargument: censorship powers, once established, are difficult to constrain. Who decides what is disinformation? Hate speech laws have been used against legitimate political dissent in many countries. Platform moderation lacks democratic accountability \u2014 a handful of executives shape global discourse. Historical examples show governments censoring opposition under cover of \"protecting the public.\" The cure can be worse than the disease.\n\nThe sophisticated position: some censorship is unavoidable and even necessary (child exploitation, direct incitement); the contested question is how far it extends into political and social discourse. The key principles: who censors (state, platform, court), with what process (due process, appeal), and at what threshold (clear and imminent harm, not mere offence). Both libertarian extremes and authoritarian extremes are problematic.\n\nAddress the digital age specifically: scale and speed of online speech genuinely raise new challenges; older free-speech frameworks built around publishers (with editorial responsibility) struggle with platforms (which disclaim it). The digital age may require new institutional arrangements, not just more or less censorship.\n\nConclude with a calibrated thesis: some censorship is necessary, but its forms, processes, and limits matter enormously. Both naive absolutism (free speech regardless of consequences) and uncritical acceptance (censor whatever is called harmful) miss the substantive questions.`,
+    errors:[
+      "Treating all 'censorship' as the same regardless of who does it and for what",
+      "Either pure free-speech absolutism or uncritical pro-censorship without engaging tradeoffs",
+      "Vague claims about 'the digital age' without specifying what's actually new",
+      "Failing to distinguish state action from platform moderation \u2014 they raise different issues",
+      "Ignoring the question of who makes censorship decisions and with what accountability"
+    ]
+  },
+  {
+    num:8, paper:"p1", type:"essay", marks:30, time:"75 minutes",
+    title:"Science and Religion as Meaning",
+    question:"To what extent has science replaced religion as a source of meaning?",
+    scheme:[
+      {level:"Level 5 (25-30)",desc:"Sophisticated engagement with what \"meaning\" includes (purpose, ethics, identity, ultimate questions); distinguishes science (method/findings) from scientism (worldview); engages variation across cultures."},
+      {level:"Level 4 (19-24)",desc:"Clear argument with developed support; acknowledges both sides; some distinction in terms."},
+      {level:"Level 3 (13-18)",desc:"Adequate argument; treats science and religion as competing wholes; limited engagement."},
+      {level:"Level 2 (7-12)",desc:"Basic argument; limited support; descriptive."},
+      {level:"Level 1 (1-6)",desc:"Minimal engagement."}
+    ],
+    answer:`Open by defining terms carefully. \"Meaning\" is multi-dimensional: purpose in life, moral framework, identity, community, answers to ultimate questions (death, existence). \"Religion\" varies enormously across traditions; \"science\" can mean a method, a body of findings, or a worldview (sometimes called scientism). The claim depends on which versions we mean.\n\nThe \"science has replaced religion\" case: in many developed societies, religious affiliation and practice have declined sharply; scientific worldviews shape education, policy, and public discourse; questions once addressed by religion (origins of life, human nature, mental experience) increasingly have scientific answers; secular ethical frameworks claim to address moral questions without supernatural assumptions.\n\nThe \"science cannot replace religion\" counterargument: science describes what is, not what should be; the is/ought gap (Hume's guillotine) means science cannot derive moral obligations from facts alone. Questions about meaning, purpose, and ultimate value lie outside scientific methodology. Religious communities provide social functions (belonging, ritual, comfort in mortality) that science does not address. The continuing vitality of religion in much of the world challenges any simple replacement narrative.\n\nGlobal variation matters: secularisation hypothesis has held in Western Europe but not in much of Asia, Africa, or the Americas. Religion has grown globally in absolute terms over the past century; specific Western trends should not be generalised.\n\nThe sophisticated position: science has displaced religion in some domains (cosmology, biology, mental illness) while remaining inadequate to address others (moral obligations, life purpose, mortality). Many secular individuals construct meaning from non-scientific sources \u2014 art, relationships, political commitment \u2014 not from science itself. Where religion has declined, the result is often pluralism of meaning-sources, not science-as-replacement.\n\nAddress the scientism distinction: making science a comprehensive worldview claims more for science than its methodology supports. This may itself be a form of faith.\n\nConclude with a calibrated thesis: in narrow domains, science has replaced religion's explanatory function; in broader meaning-making, it has not so much replaced as displaced \u2014 leaving a gap that secular societies fill with multiple sources, sometimes including secular versions of religious functions. The full \"replacement\" claim oversimplifies both science and religion.`,
+    errors:[
+      "Treating science and religion as opposing wholes rather than examining different functions",
+      "Generalising Western European secularisation patterns to the world",
+      "Confusing science (method) with scientism (worldview claiming more than the method supports)",
+      "Ignoring the is/ought distinction and what science actually can and cannot answer",
+      "Pure assertion of position without engaging the strongest version of opposing view"
+    ]
+  },
+
+  // ============ PAPER 2 COMPREHENSION (Q9-14) ============
+  {
+    num:9, paper:"p2", type:"comprehension", marks:5, time:"10 minutes",
+    title:"Identifying the Main Argument",
+    extract:"Meritocracy is the founding myth of modern democracy. Each of us, we are told, can rise as high as our talents and efforts permit \u2014 unencumbered by birth, class, or connection. Yet anyone examining the data with open eyes must conclude that this story has become harder to defend. The most reliable predictor of where a child will end up on the income distribution is where their parents are now. Social mobility has not risen in step with rising rhetoric about merit; in many wealthy democracies, it has actually fallen. We have created a society that congratulates its winners for their virtue while quietly inheriting the conditions of victory.",
+    question:"In your own words, identify the writer's main argument in this passage. [5 marks]",
+    scheme:[
+      {level:"4-5",desc:"Captures the main argument fully and in own words: meritocracy is a misleading narrative because mobility has declined while inherited advantage has grown, even as we attribute success to individual virtue."},
+      {level:"2-3",desc:"Identifies part of the argument but may miss the irony or fully paraphrase \u2014 e.g., only notes that meritocracy isn't working."},
+      {level:"0-1",desc:"Misidentifies the argument or merely quotes/paraphrases superficially."}
+    ],
+    answer:`The writer argues that meritocracy is a self-flattering myth in contemporary democracies. While societies celebrate individual achievement and hard work as the basis for success, the actual evidence shows that birth circumstances \u2014 specifically parental income \u2014 remain the strongest predictor of where individuals end up. Social mobility has declined while merit-based rhetoric has intensified, producing a situation where inherited advantage is increasingly disguised as personal virtue.`,
+    errors:[
+      "Quoting directly from the passage instead of paraphrasing in your own words",
+      "Missing the irony \u2014 that virtue is celebrated while conditions are inherited",
+      "Only reporting one half of the argument (e.g., 'mobility has fallen') without the misattribution to virtue",
+      "Extending beyond what the passage actually says (e.g., proposing solutions the writer doesn't mention)",
+      "Vague summary that could apply to any social-issue passage"
+    ]
+  },
+  {
+    num:10, paper:"p2", type:"comprehension", marks:4, time:"8 minutes",
+    title:"Explaining Meaning in Context",
+    extract:"Public anxiety about artificial intelligence often takes a curious form. People worry less about what AI will do than about what it will be \u2014 as if some threshold of capability will convert a useful tool into an autonomous threat. This anthropomorphic framing tells us more about ourselves than about the technology. We have always projected agency onto powerful things we don't understand: the weather, the stock market, viruses. AI follows the same pattern. The risks are real, but they are mostly risks of how humans deploy these systems, not risks that the systems themselves are quietly developing intentions.",
+    question:"Explain what the writer means by 'anthropomorphic framing' in this passage. [4 marks]",
+    scheme:[
+      {level:"3-4",desc:"Explains the term in own words AND in the specific context: attributing human-like agency and intentions to AI, paralleling other phenomena (weather, markets); identifies that this framing misdescribes the actual risks (which come from human deployment, not AI intent)."},
+      {level:"1-2",desc:"Partial explanation \u2014 either the general meaning of anthropomorphism or the contextual application, but not both."},
+      {level:"0",desc:"Misunderstands or merely quotes."}
+    ],
+    answer:`The writer uses 'anthropomorphic framing' to describe the human tendency to attribute agency, intentions, and consciousness to artificial intelligence \u2014 treating it as if it could decide, want, or threaten. The passage emphasises that this framing parallels how humans have historically projected agency onto powerful phenomena they don't understand, such as weather or financial markets. The writer's point is that this framing misidentifies the source of AI risk: the actual dangers come from how humans deploy these systems, not from AI developing autonomous purposes of its own.`,
+    errors:[
+      "Defining 'anthropomorphism' in general terms without showing how it applies to AI in this passage",
+      "Missing the writer's evaluation \u2014 that this framing is misleading",
+      "Quoting the passage instead of explaining in own words",
+      "Reading the writer as endorsing the framing rather than critiquing it",
+      "Ignoring the writer's point about where real AI risks actually come from"
+    ]
+  },
+  {
+    num:11, paper:"p2", type:"comprehension", marks:5, time:"10 minutes",
+    title:"Summarising a Position",
+    extract:"Critics of globalisation often picture it as a force that flattens cultures into uniform consumer experiences \u2014 the same coffee chains, the same blockbusters, the same influencers, from Buenos Aires to Bangkok. There is some truth to this. But the picture is incomplete. Cultural exchange has always run in multiple directions; what looks like Americanisation in one mirror looks, from another angle, like the global spread of Korean pop, Mexican cuisine, Nigerian cinema, and Indian software. The most powerful cultural fact of the past two decades is not homogenisation but the unprecedented breadth of cultural exports from outside the West.",
+    question:"In your own words, summarise the writer's view of globalisation's effect on culture. [5 marks]",
+    scheme:[
+      {level:"4-5",desc:"Captures the writer's nuanced position: acknowledges partial truth of homogenisation/Americanisation critique, but argues the dominant trend is actually multi-directional cultural exchange and especially the global rise of non-Western cultural exports."},
+      {level:"2-3",desc:"Captures part of the position \u2014 e.g., only the homogenisation acknowledgement or only the non-Western export point."},
+      {level:"0-1",desc:"Misrepresents the writer's view or fails to paraphrase."}
+    ],
+    answer:`The writer takes a nuanced position on globalisation and culture. They acknowledge that the critique of cultural homogenisation \u2014 the worldwide spread of uniform consumer experiences such as international chains and Western entertainment \u2014 has some validity. However, they argue this view is incomplete because it ignores the multi-directional nature of cultural exchange. The writer contends that the more significant recent trend is actually the global rise of non-Western cultural exports: Korean popular music, Mexican food, Nigerian film, and Indian technology. Their overall position is that globalisation has produced cultural complexity rather than simple homogenisation.`,
+    errors:[
+      "Reporting only the homogenisation critique without the writer's qualification of it",
+      "Treating the writer as defending Americanisation, when they're actually decentering it",
+      "Quoting examples without identifying the broader pattern (multi-directional exchange)",
+      "Missing the comparative claim that non-Western exports are now the more significant phenomenon",
+      "Adding personal opinion about globalisation rather than summarising the writer's view"
+    ]
+  },
+  {
+    num:12, paper:"p2", type:"comprehension", marks:6, time:"12 minutes",
+    title:"Identifying Reasons",
+    extract:"Carbon taxes have an unusual political profile: economists across the ideological spectrum generally support them, while voters across that same spectrum generally oppose them. The reasons for the expert consensus are clear enough. Carbon taxes attach a price to emissions, allowing markets to find the cheapest reductions wherever they exist; they generate revenue that can offset other taxes or rebate to households; and they avoid the regulatory micromanagement that economists distrust. The voter scepticism is also explicable: carbon taxes are visible in fuel and energy bills, while their benefits are diffuse and distant; they raise prices on goods voters use daily; and they are easily caricatured as elite policy at the expense of ordinary people.",
+    question:"Identify two reasons the writer gives for expert support of carbon taxes, and two reasons for voter opposition. [6 marks]",
+    scheme:[
+      {level:"5-6",desc:"Identifies two clear expert-support reasons (e.g., market efficiency in finding cheapest reductions; revenue can offset other taxes or rebate; avoid regulatory micromanagement) AND two clear voter-opposition reasons (visible in bills while benefits are diffuse; raise daily costs; easily caricatured as elite policy). All four in own words."},
+      {level:"3-4",desc:"Identifies three of the four, with most paraphrased."},
+      {level:"1-2",desc:"Identifies fewer than three, or quotes directly without paraphrasing."},
+      {level:"0",desc:"Fails to identify reasons or misidentifies them."}
+    ],
+    answer:`The writer presents the following reasons.\n\nFor expert support of carbon taxes (any two): (1) They attach a price to emissions, allowing markets to identify the cheapest available reductions wherever they exist in the economy; (2) The revenue they generate can be used to offset other taxes or returned directly to households; (3) They avoid the kind of detailed regulatory intervention that economists tend to distrust.\n\nFor voter opposition (any two): (1) Their costs are visible in everyday fuel and energy bills, while the environmental benefits are diffuse and accrue in the distant future; (2) They raise prices on goods that voters use daily; (3) They are easily portrayed politically as a policy that imposes costs on ordinary people for the benefit of an elite agenda.`,
+    errors:[
+      "Listing only the expert reasons OR only the voter reasons rather than both",
+      "Quoting the passage directly instead of paraphrasing",
+      "Confusing the categories \u2014 putting voter concerns under expert reasons or vice versa",
+      "Inventing reasons not in the passage",
+      "Providing fewer than four total reasons when the question asks for two of each"
+    ]
+  },
+  {
+    num:13, paper:"p2", type:"comprehension", marks:4, time:"8 minutes",
+    title:"Drawing an Inference",
+    extract:"The voting age in democracies has gradually fallen over the past century. In 1900, most countries with elections restricted suffrage to men over twenty-five with property qualifications. By 1970, most democracies had reached universal adult suffrage at age twenty-one. Today the standard age is eighteen, with several countries (Austria, Brazil, Argentina) lowering it to sixteen. Each reduction was accompanied by the same set of predictions: that young people would vote impulsively, follow populist demagogues, and undermine deliberative democracy. None of these predictions, when tested, has come true.",
+    question:"What inference can be drawn from the writer's statement that 'none of these predictions, when tested, has come true'? [4 marks]",
+    scheme:[
+      {level:"3-4",desc:"Draws the valid inference: lowering the voting age does not produce the predicted harms to democratic deliberation, which suggests the case against further extension (e.g., to sixteen) is weaker than commonly assumed. Recognises that this is an implication beyond the explicit statement."},
+      {level:"1-2",desc:"Partial inference \u2014 e.g., notes that the predictions were wrong without drawing implications for current debates."},
+      {level:"0",desc:"Merely restates the passage."}
+    ],
+    answer:`The writer's statement supports an inference that the standard objections to lowering the voting age \u2014 that young voters will vote impulsively, follow populists, or undermine democratic deliberation \u2014 have not been borne out by experience across multiple historical reductions. The implication, though not explicitly stated, is that similar predictions made today against further reductions (such as voting at sixteen, already in place in some countries) may be similarly unfounded. The writer is using the historical pattern to undermine the credibility of contemporary objections to extending voting rights to younger citizens.`,
+    errors:[
+      "Restating that predictions failed without identifying the inference about current debates",
+      "Inferring beyond the evidence \u2014 e.g., claiming the writer proves voting should be at fourteen",
+      "Confusing inference (supported by evidence) with assumption (unstated foundation)",
+      "Missing the writer's strategic use of historical pattern to address current questions",
+      "Treating the inference as obvious from the surface meaning rather than as a deeper implication"
+    ]
+  },
+  {
+    num:14, paper:"p2", type:"comprehension", marks:4, time:"8 minutes",
+    title:"Explaining Implications",
+    extract:"The cruise ship that docks for six hours brings, briefly, three thousand visitors to a town of twelve thousand residents. The visitors disembark, photograph the harbour, eat in restaurants that serve them and only them, buy souvenirs from shops that exist only for them, and reboard. The cruise line collects the fare; the visitors collect the photos; the town collects very little. What it loses \u2014 quiet streets, accessible coastline, character that made the visit attractive in the first place \u2014 does not show up on any balance sheet.",
+    question:"Explain the implications of the writer's claim that what the town loses 'does not show up on any balance sheet'. [4 marks]",
+    scheme:[
+      {level:"3-4",desc:"Captures the implication: standard economic measures of tourism's benefits are incomplete; they count revenue but miss the qualitative and externalities costs; this means tourism policy based on financial accounting will systematically underweight resident welfare; the writer is critiquing a particular way of evaluating cruise tourism."},
+      {level:"1-2",desc:"Notes that there are uncounted costs but doesn't develop the critique of measurement."},
+      {level:"0",desc:"Merely restates or misunderstands."}
+    ],
+    answer:`The writer's claim that the town's losses 'do not show up on any balance sheet' implies that standard financial and economic measurements of tourism's effects are systematically incomplete. While revenue can be tallied, the qualitative costs \u2014 loss of quiet, restricted resident access to public spaces, erosion of the very character that drew tourists \u2014 are real but unquantifiable in conventional accounting terms. The implication is that policymakers and economic analyses that rely on visible financial indicators will inevitably underweight what residents actually lose. The writer is critiquing not just cruise tourism but the way it is conventionally evaluated, suggesting that the measurement framework itself produces misleading conclusions about whether the trade is worthwhile.`,
+    errors:[
+      "Reporting only that the town has uncounted costs without identifying the critique of measurement",
+      "Treating the passage as simply anti-tourism rather than critical of how tourism is evaluated",
+      "Missing the policy implication \u2014 that decisions based on the visible balance sheet will be systematically biased",
+      "Drawing inferences beyond what the passage supports (e.g., calling for specific policies)",
+      "Confusing the writer's stylistic choice (\"balance sheet\" metaphor) with literal accounting commentary"
+    ]
+  },
+
+  // ============ PAPER 2 EVALUATION (Q15-18) ============
+  {
+    num:15, paper:"p2", type:"evaluation", marks:5, time:"10 minutes",
+    title:"Identifying a Reasoning Flaw",
+    extract:"Allowing students to use smartphones in school is the first step on a dangerous path. Today it's calculator apps; tomorrow it's looking up answers during tests. Soon they'll be filming teachers, sharing exam questions, and conducting their entire social lives during class. Within a generation, the school as a place of learning will have ceased to exist. We must ban smartphones now, before the damage is irreversible.",
+    question:"Identify the reasoning flaw in this argument and explain why it weakens the writer's case. [5 marks]",
+    scheme:[
+      {level:"4-5",desc:"Correctly identifies slippery slope fallacy; explains the structure (one mild action presented as leading inevitably to extreme consequences); explains why this weakens the argument (no evidence for the inevitability of the chain; reasonable intermediate positions not engaged)."},
+      {level:"2-3",desc:"Identifies the fallacy by name OR explains the flaw without naming it, but not both."},
+      {level:"0-1",desc:"Misidentifies the flaw or fails to engage with the reasoning structure."}
+    ],
+    answer:`The argument commits the slippery slope fallacy. It claims that a mild initial step (allowing calculator apps) will inevitably lead through a series of escalating consequences to an extreme outcome (the school ceasing to exist as a place of learning). The writer provides no evidence that any link in this chain actually leads to the next \u2014 the assertion of inevitability does the persuasive work that evidence should.\n\nThis weakens the argument in several ways. First, it ignores the existence of stable intermediate positions: schools can permit some smartphone uses while restricting others, and the policy options are not binary. Second, it substitutes prediction for argument: by sketching a vivid worst-case future, it pressures readers toward the writer's preferred policy without engaging the actual case for limited smartphone use. Third, it makes the argument unfalsifiable in the short term \u2014 any current evidence of successful smartphone integration can be dismissed as merely the early stages of the predicted decline.\n\nA reader who notices the slippery slope can ask: which specific harm does the writer claim, what evidence supports the chain of consequences, and what are the alternatives to a total ban?`,
+    errors:[
+      "Identifying the fallacy by name but not explaining its structure or why it's a flaw",
+      "Describing the writer's tone as 'exaggerated' without identifying the specific reasoning fallacy",
+      "Confusing slippery slope with other fallacies (e.g., straw man, ad hominem)",
+      "Agreeing with the writer's conclusion as if that resolved the question of whether the reasoning is valid",
+      "Missing that valid policy debate requires evidence for each claimed link, not just for the conclusion"
+    ]
+  },
+  {
+    num:16, paper:"p2", type:"evaluation", marks:6, time:"12 minutes",
+    title:"Evaluating Argument Strength",
+    extract:"Young people today have lost the work ethic of previous generations. They quit jobs without notice, demand work-life balance from the first day, and refuse to commit to careers they would have considered fortunate to have a decade ago. Employers across industries report the same problem. It is the inevitable result of growing up cushioned by parents who never said no and schools that gave participation trophies for everything.",
+    question:"Evaluate the strength of this argument, identifying at least two weaknesses. [6 marks]",
+    scheme:[
+      {level:"5-6",desc:"Identifies multiple weaknesses with explanation: unsupported generalisation (no data, vague \"employers across industries\"); attribution without evidence (assumes causation between parenting/schooling and workplace behaviour); selective framing (job-quitting can reflect tight labour markets or improved expectations, not declining work ethic); ad hominem against younger workers; missing alternative explanations."},
+      {level:"3-4",desc:"Identifies one weakness clearly with some explanation; identifies others vaguely."},
+      {level:"1-2",desc:"Recognises the argument as flawed but doesn't identify specific weaknesses."},
+      {level:"0",desc:"Treats the argument as sound, or misidentifies the type of flaw."}
+    ],
+    answer:`The argument has multiple substantive weaknesses.\n\nFirst, it generalises without evidence. The claim that \"young people today have lost the work ethic\" is presented as established fact, but no data, studies, or specific cases are provided. The phrase \"employers across industries report the same problem\" is unsubstantiated \u2014 we are told there is consensus among employers without being shown that consensus or its basis.\n\nSecond, the argument attributes causation without justification. Workplace behaviour is asserted to result from \"parents who never said no\" and \"participation trophies\" \u2014 but these are claims about correlation at best, and the writer offers no mechanism or evidence linking these childhood conditions to adult workplace conduct. Critical readers should also ask: are these conditions actually descriptive of the generation in question, or stereotypes?\n\nThird, the argument ignores alternative explanations for the same observed behaviour. Tight labour markets give workers more leverage to leave bad jobs. Younger generations have witnessed the consequences of older workers' sacrifices for employers (downsizing, broken pension promises) and may rationally calibrate their loyalty. Demand for work-life balance may reflect improved expectations rather than diminished commitment.\n\nFinally, the framing carries an ad hominem quality: it characterises an entire generation rather than addressing the underlying questions of labour market change, employer behaviour, and shifting social expectations. A stronger version of the argument would engage with the data and consider whether the observed phenomena have multiple causes.`,
+    errors:[
+      "Agreeing or disagreeing with the conclusion without evaluating the reasoning",
+      "Identifying only one weakness when the question requires at least two",
+      "Vague critique (\"it's biased\") without specifying how the argument fails",
+      "Missing the missing-evidence problem \u2014 treating unsupported claims as if they were established",
+      "Failing to consider what the strongest counter-explanations would be"
+    ]
+  },
+  {
+    num:17, paper:"p2", type:"evaluation", marks:6, time:"12 minutes",
+    title:"Analysing Language Use",
+    extract:"The new housing development will be a cancer on this community. Developers, hungry for profit, are circling like vultures over the last green space we have. They speak the slick language of \"growth\" and \"opportunity\" \u2014 the same vocabulary used by every wave of speculators who have hollowed out neighbourhoods elsewhere. We must rise up before they pave paradise and put up another anonymous box.",
+    question:"Analyse the writer's use of language in this passage. Consider at least three specific techniques and their effects. [6 marks]",
+    scheme:[
+      {level:"5-6",desc:"Identifies and analyses at least three specific language techniques with their effects: metaphor (\"cancer\" \u2014 framing development as disease); simile (\"like vultures\" \u2014 dehumanising developers); loaded vocabulary/connotation (\"hungry,\" \"slick,\" \"speculators\" \u2014 negative associations); allusion (\"pave paradise\" \u2014 invoking known song to summon nostalgia); rhetorical contrast (\"green space\"/\"anonymous box\"). Explains how each technique works persuasively."},
+      {level:"3-4",desc:"Identifies two techniques with reasonable analysis."},
+      {level:"1-2",desc:"Identifies techniques without much analysis, or misidentifies them."},
+      {level:"0",desc:"Fails to identify specific techniques."}
+    ],
+    answer:`The passage uses several techniques to position readers against the development before engaging the substantive case.\n\nFirst, the writer employs aggressive metaphor: the development is described as a \"cancer on this community,\" framing it as a disease that grows malignantly. This metaphor short-circuits rational evaluation \u2014 cancer is something one fights, not something one weighs costs and benefits about.\n\nSecond, simile dehumanises the developers: they are \"circling like vultures.\" Vultures are scavengers of dead things, which both casts the community as already dying and the developers as predatory. The simile makes opposition to developers feel like defending the dignity of the wounded.\n\nThird, loaded vocabulary carries negative connotations throughout. \"Hungry for profit\" reduces business motivation to base appetite. \"Slick\" implies untrustworthy smoothness. \"Speculators\" rather than \"investors\" or \"developers\" places the actors in the category of opportunists who damage communities. None of these word choices is neutral.\n\nFourth, the allusion to \"pave paradise and put up another anonymous box\" echoes Joni Mitchell's well-known song \"Big Yellow Taxi,\" recruiting cultural memory to make readers feel they have heard this story before \u2014 always badly ended.\n\nFinally, the rhetorical contrast between \"green space\" (evoking nature, peace, life) and \"anonymous box\" (suggesting bland, mass-produced, characterless) frames the choice in maximally emotional terms.\n\nThe cumulative effect is to make agreement feel like simple decency and disagreement feel like complicity with predators. A careful reader notices that no substantive case for or against this specific development has been made.`,
+    errors:[
+      "Naming techniques (\"metaphor,\" \"simile\") without explaining their effects",
+      "Identifying only two techniques when the question requires three",
+      "Treating the passage as neutral description rather than persuasive writing",
+      "Missing the cumulative effect \u2014 how the techniques work together",
+      "Agreeing with the writer's stance instead of analysing how the language tries to produce agreement"
+    ]
+  },
+  {
+    num:18, paper:"p2", type:"evaluation", marks:5, time:"10 minutes",
+    title:"Evaluating Stance and Framing",
+    extract:"Critics of the new immigration policy claim it is harsh. But what they actually mean is that it works \u2014 that it actually controls who enters the country. For decades, governments paid lip service to immigration enforcement while doing little. The new policy is unusual only in that it is enforced. The discomfort of those who profited from the old chaos is not an argument against order; it is the predictable reaction of an interest group whose privileges are ending.",
+    question:"Evaluate the writer's stance in this passage. How does the framing shape the argument? [5 marks]",
+    scheme:[
+      {level:"4-5",desc:"Identifies the stance clearly (pro-enforcement policy) and analyses the framing techniques: redefining critics' position to suit the writer (\"what they actually mean\"); characterising opposition as self-interested rather than principled; treating enforcement as inherently good (\"order\") without engaging cost or fairness questions; circular reasoning (works because enforced; criticism dismissed because it's enforced)."},
+      {level:"2-3",desc:"Identifies stance and one framing technique, but misses the broader analysis."},
+      {level:"0-1",desc:"Just summarises the passage or accepts the framing uncritically."}
+    ],
+    answer:`The writer adopts a strongly pro-enforcement stance and uses framing rather than evidence to support it.\n\nFirst, the writer redefines opponents' position: \"what they actually mean is that it works.\" This is a rhetorical move that substitutes the writer's interpretation for what critics have said, allowing the writer to argue against a position the critics may not hold. Critics calling a policy \"harsh\" may be objecting to specific provisions, due process violations, or proportionality \u2014 not to enforcement as such. The framing forecloses this distinction.\n\nSecond, the writer characterises opposition as self-interested rather than principled. Critics are \"those who profited from the old chaos\" \u2014 an \"interest group\" defending privileges. This is a form of ad hominem against opponents: their views can be dismissed as motivated by personal benefit rather than engaged on the merits. The same logic could be applied to any policy debate to discredit any critic.\n\nThird, the writer treats enforcement as inherently good (\"order\"), without engaging the substantive questions critics actually raise: at what cost, with what procedural safeguards, with what humanitarian provisions, against what alternative approaches. The framing pre-loads the debate by treating one value (control) as unquestionable while making any concern about other values appear unprincipled.\n\nFinally, there is a circular quality: the policy is praised for being enforced, and criticism is dismissed because it shows the policy is being enforced. Within this framing, no observation can count as a legitimate critique \u2014 either the policy is working (vindicating it) or it's being resisted (also vindicating it).\n\nThe stance itself is a legitimate position to hold; the framing is what makes it impossible to debate fairly within the passage's terms.`,
+    errors:[
+      "Treating the passage as factual description rather than rhetorical positioning",
+      "Agreeing or disagreeing with immigration policy rather than analysing the framing",
+      "Missing the redefinition move \u2014 how critics' position is reformulated to suit the writer",
+      "Failing to notice the ad hominem against opponents",
+      "Identifying the stance but not the techniques used to defend it"
+    ]
+  },
+
+  // ============ PAPER 2 DIRECTED WRITING (Q19-20) ============
+  {
+    num:19, paper:"p2", type:"writing", marks:15, time:"30 minutes",
+    title:"Letter to a Head Teacher",
+    extract:"A recent national survey of secondary school students found that 64% report regular feelings of significant stress related to schoolwork, and 28% describe their stress as severe. Sleep deprivation, anxiety, and disengagement have all increased in the past decade. Teachers report seeing students who are exhausted before the school day begins. Mental health services in schools have been chronically underfunded; in many districts, a single counsellor serves over a thousand students. While some stress is inherent to learning, the current levels appear to exceed what can be justified by pedagogical benefit.",
+    question:"Using the information in the extract, write a letter to your school's head teacher arguing for specific changes to address student stress and mental health. (200-250 words; formal register expected.) [15 marks]",
+    scheme:[
+      {level:"13-15",desc:"Sophisticated use of source material; appropriate formal register and letter conventions; substantive specific proposals (not vague calls for \"awareness\"); engages potential institutional concerns; persuasive without being demanding or sentimental; clear structure."},
+      {level:"9-12",desc:"Clear use of source; mostly appropriate register; specific proposals; reasonable persuasion."},
+      {level:"5-8",desc:"Uses some source material; register imperfect; proposals vague."},
+      {level:"1-4",desc:"Minimal use of source; inappropriate register; no real proposals."}
+    ],
+    answer:`Dear Head Teacher,\n\nI am writing to ask the school to address the worsening pattern of student stress and mental health \u2014 a pattern documented in a recent national survey showing that 64% of secondary students report regular significant stress from schoolwork, with 28% describing their stress as severe. These figures match what students at our school report informally, and they suggest the problem requires institutional rather than individual response.\n\nI would respectfully propose three specific changes. First, a review of the homework load policy with input from students and teachers across departments, to assess whether current expectations are pedagogically justified or have simply accumulated over time without coordination. Second, expansion of in-school counselling capacity. The national pattern of a single counsellor for over a thousand students is reflected here, and even modest additional investment would meaningfully change the access ratio. Third, introduction of regular, anonymous student-wellbeing surveys to identify problems early rather than after they reach crisis.\n\nI recognise these proposals have resource implications and that the school faces many competing demands. However, the survey data and what we observe day-to-day suggest that the current trajectory is unsustainable. Tired and anxious students learn less, and the academic excellence the school rightly values is itself at risk if student wellbeing continues to decline.\n\nI would welcome the opportunity to discuss these proposals further.\n\nYours sincerely,\n[Student name and form]`,
+    errors:[
+      "Wrong register \u2014 either too casual (\"Hi sir, we're really stressed!\") or excessively formal",
+      "Vague proposals like \"do something about stress\" without specifying what",
+      "Pure complaint without constructive proposals",
+      "Ignoring the source material rather than drawing on its specific data",
+      "Demanding rather than persuading \u2014 ineffective for a real letter to an administrator"
+    ]
+  },
+  {
+    num:20, paper:"p2", type:"writing", marks:15, time:"30 minutes",
+    title:"Speech to Community",
+    extract:"The proposed shopping complex would replace the disused railway land that has, over thirty years, become an informal park \u2014 not landscaped, but used: by dog walkers, children playing, joggers, lunchtime workers, teenagers gathering. The developer's plan offers a modern retail centre with restaurants, services, and approximately two hundred local jobs. Local opinion is divided. Some neighbours see needed amenity and employment; others see the loss of one of the few accessible open spaces in a dense neighbourhood.",
+    question:"Using the information in the extract, write a speech to be delivered at a community meeting that argues for OR against the proposed development. Take a clear position and make a persuasive case to neighbours who are undecided. (200-250 words; spoken register appropriate for a community meeting.) [15 marks]",
+    scheme:[
+      {level:"13-15",desc:"Clear position; appropriate spoken register (direct address, varied sentence length, rhetorical features suited to oral delivery); engages BOTH sides honestly; specific proposals or considerations; persuasive without dismissing opponents; uses source details meaningfully."},
+      {level:"9-12",desc:"Clear position with persuasive case; mostly appropriate register; uses source."},
+      {level:"5-8",desc:"Position taken but register uneven; weaker engagement with opposing view."},
+      {level:"1-4",desc:"Minimal engagement with source or position; inappropriate register."}
+    ],
+    answer:`Good evening, everyone. Thank you for coming out tonight.\n\nI'm here to speak in favour of the shopping complex proposal \u2014 but I want to start by acknowledging the strongest version of what those opposed are saying, because their concern is real, and it deserves a real answer.\n\nFor thirty years, that disused railway land has been an informal park \u2014 nobody planned it, nobody landscaped it, but our community made it one. Dog walkers, children, joggers, lunchtime workers, teenagers. It's one of the few open spaces in a dense neighbourhood, and what residents would lose is genuine. I respect that loss.\n\nBut here is what we would gain: a modern retail centre with restaurants and services this neighbourhood currently has to travel to access. Two hundred local jobs in a community where employment options are limited. Tax revenue that funds the services we all depend on.\n\nAnd here is what I would ask of the developer, and of the council that will approve or reject this: that part of the site \u2014 a meaningful part \u2014 be set aside as actual designated green space, properly landscaped, properly maintained. The developer keeps most of the project; the community keeps something of what we had. The choice does not have to be all or nothing.\n\nProgress that ignores what we are losing is not progress. But blocking change because we fear loss leaves us with no progress at all. There is a better path \u2014 and tonight is when we tell our representatives we want it.\n\nThank you.`,
+    errors:[
+      "Written-only register \u2014 dense paragraphs, no direct address, no spoken rhythm",
+      "One-sided dismissal of opposing view rather than honest engagement",
+      "Vague position (\"this is complicated\") rather than a clear stance the audience can respond to",
+      "Ignoring the source material's specific details (the thirty-year informal use, the two hundred jobs)",
+      "Sentimental appeal without substantive proposal"
+    ]
+  }
+];
+
+let currentFilter = 'all';
+
+function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+function renderList(){
+  const container = document.getElementById('container');
+  const stats = document.getElementById('stats');
+  const filtered = QUESTIONS.filter(q => {
+    if(currentFilter === 'all') return true;
+    if(currentFilter === 'p1') return q.paper === 'p1';
+    if(currentFilter === 'p2') return q.paper === 'p2';
+    return q.type === currentFilter;
+  });
+
+  container.innerHTML = filtered.map(q => {
+    const paperLabel = q.paper === 'p1' ? 'Paper 1 \u00b7 Essay' : `Paper 2 \u00b7 ${q.type.charAt(0).toUpperCase() + q.type.slice(1)}`;
+    const typeLabel = q.type === 'essay' ? 'Essay' : q.type === 'comprehension' ? 'Comprehension' : q.type === 'evaluation' ? 'Evaluation' : 'Directed Writing';
+    const schemeRows = q.scheme.map(s => `<tr><td>${escapeHtml(s.level)}</td><td>${escapeHtml(s.desc)}</td></tr>`).join('');
+    const answerParas = q.answer.split('\n\n').map(p => `<p>${escapeHtml(p)}</p>`).join('');
+    const errorList = q.errors.map(e => `<li>${escapeHtml(e)}</li>`).join('');
+    return `
+      <div class="question">
+        <div class="q-head">
+          <span class="q-num">Q${String(q.num).padStart(2,'0')}</span>
+          <span class="q-paper">${paperLabel} \u00b7 ${q.time}</span>
+          <span class="type-tag ${q.type}">${typeLabel}</span>
+          <span class="marks-badge">${q.marks} marks</span>
+        </div>
+        <div class="q-body">
+          <div class="q-title">${escapeHtml(q.title)}</div>
+          ${q.extract ? `<div class="extract-block">${escapeHtml(q.extract)}</div>` : ''}
+          <div class="question-block">${escapeHtml(q.question)}</div>
+          <div class="scheme-block">
+            <h4>Mark Scheme \u2014 Indicative Bands</h4>
+            <table class="scheme-table">
+              <thead><tr><th>Band</th><th>Descriptor</th></tr></thead>
+              <tbody>${schemeRows}</tbody>
+            </table>
+          </div>
+          <div class="answer-block">${answerParas}</div>
+          <div class="errors-block"><ul>${errorList}</ul></div>
+        </div>
+      </div>
+    `;
+  }).join('');
+  stats.innerHTML = `Showing <strong>${filtered.length}</strong> of <strong>${QUESTIONS.length}</strong> questions`;
+}
+
+function setFilter(filter, btn){
+  currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active','p1','p2'));
+  if(filter === 'p1') btn.classList.add('active','p1');
+  else if(filter === 'p2') btn.classList.add('active','p2');
+  else btn.classList.add('active');
+  renderList();
+}
+
+renderList();
+</script>
+</body>
+</html>

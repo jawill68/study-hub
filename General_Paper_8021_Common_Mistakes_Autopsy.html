@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cambridge AICE General Paper 8021 — Common Confusions</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --navy:#0F2A47;--navy-light:#DEE7F2;
+    --wine:#6B1F2E;--wine-light:#F8E4E8;--wine-dark:#401019;--wine-mid:#8B2A3F;
+    --teal:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+    --blue:#185FA5;--blue-light:#E6F1FB;--blue-dark:#0C447C;
+    --purple:#534AB7;--purple-light:#EEEDFE;--purple-dark:#2E2779;
+    --coral:#D85A30;--coral-light:#FAECE7;--coral-dark:#712B13;
+    --gold:#C4922E;--gold-light:#FAEEDA;--gold-dark:#6B4F11;
+    --green:#639922;--green-light:#EAF3DE;--green-dark:#27500A;
+    --red-light:#FCEBEB;--red-dark:#501313;--red-mid:#E24B4A;
+    --gray-light:#F5F5F3;--gray-dark:#444441;
+    --text:#1A1A1A;--muted:#555;--border:#DDD;
+    --bg:#FFF;--surface:#F8F8F6;
+    --radius:8px;--radius-lg:12px;
+    --shadow:0 1px 3px rgba(0,0,0,0.08);
+    --shadow-lg:0 4px 12px rgba(0,0,0,0.06)
+  }
+  body{font-family:Georgia,'Times New Roman',serif;background:var(--surface);color:var(--text);line-height:1.55;font-size:15px}
+  .site-header{background:var(--navy);color:#fff;padding:1rem 2rem;position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:1rem;box-shadow:var(--shadow-lg);border-bottom:3px solid var(--wine)}
+  .site-header .brand{font-size:1rem;font-weight:700;font-family:Arial,sans-serif}
+  .site-header .meta{font-size:0.78rem;color:#c8d4e3;font-family:Arial,sans-serif}
+  .module-tag{display:inline-block;background:var(--wine);color:#fff;font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:999px;font-family:Arial,sans-serif;letter-spacing:0.5px}
+  .page-wrap{max-width:1100px;margin:0 auto;padding:0 1rem 3rem}
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,#1d4068 100%);color:#fff;border-radius:var(--radius-lg);padding:1.75rem;margin:1.25rem 0;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;top:-50%;right:-10%;width:300px;height:300px;background:var(--red-mid);opacity:0.1;border-radius:50%}
+  .hero-badge{display:inline-block;background:var(--wine);color:#fff;font-size:0.7rem;font-weight:700;padding:4px 12px;border-radius:999px;margin-bottom:0.65rem;font-family:Arial,sans-serif;letter-spacing:0.5px;text-transform:uppercase}
+  .hero h2{font-size:1.7rem;margin-bottom:0.4rem;font-family:Arial,sans-serif}
+  .hero p{font-size:0.92rem;color:#c8d4e3;font-family:Arial,sans-serif;max-width:760px;position:relative}
+  .controls{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:0.95rem 1.15rem;margin:1rem 0;font-family:Arial,sans-serif;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:0.75rem}
+  .search-box{position:relative}
+  .search-box input{width:100%;padding:0.7rem 1rem 0.7rem 2.4rem;border:1px solid var(--border);border-radius:var(--radius);font-family:Arial,sans-serif;font-size:0.9rem;background:var(--surface)}
+  .search-box input:focus{outline:none;border-color:var(--navy)}
+  .search-box::before{content:"🔍";position:absolute;left:0.8rem;top:50%;transform:translateY(-50%);font-size:1rem;opacity:0.5}
+  .filter-row{display:flex;flex-wrap:wrap;gap:0.4rem;align-items:center}
+  .filter-row .label{font-size:0.72rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-right:0.3rem}
+  .filter-btn{background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:0.35rem 0.8rem;font-family:Arial,sans-serif;font-size:0.78rem;cursor:pointer;color:var(--text);transition:all 0.15s;font-weight:600}
+  .filter-btn:hover{background:var(--navy-light)}
+  .filter-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .filter-btn.active.argument{background:var(--blue)}
+  .filter-btn.active.rhetoric{background:var(--purple)}
+  .filter-btn.active.academic{background:var(--teal)}
+  .filter-btn.active.evidence{background:var(--gold-dark)}
+  .filter-btn.active.issues{background:var(--wine)}
+  .stats{font-size:0.72rem;color:var(--muted);font-family:Arial,sans-serif}
+  .stats strong{color:var(--navy)}
+  .card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem 1.4rem;margin-bottom:1rem;box-shadow:var(--shadow)}
+  .card h2{font-size:1.15rem;font-family:Arial,sans-serif;color:var(--navy);margin-bottom:0.6rem;padding-bottom:0.4rem;border-bottom:2px solid var(--wine)}
+  .card h3{font-size:1rem;font-family:Arial,sans-serif;color:var(--blue);margin:0.85rem 0 0.4rem}
+  .card p{color:var(--muted);margin-bottom:0.5rem;font-size:0.88rem}
+
+  .confusion{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:1.25rem;box-shadow:var(--shadow);overflow:hidden}
+  .confusion-head{padding:0.85rem 1.2rem;background:linear-gradient(135deg,#FCEBEB 0%,#F8E4E8 100%);border-bottom:2px solid var(--wine-mid);display:flex;justify-content:space-between;align-items:center;gap:0.5rem;flex-wrap:wrap}
+  .confusion-num{display:inline-block;background:var(--navy);color:#fff;font-size:0.7rem;font-weight:700;padding:3px 9px;border-radius:4px;font-family:Arial,sans-serif;letter-spacing:0.5px;flex-shrink:0}
+  .confusion-title{font-size:1.1rem;font-family:Arial,sans-serif;color:var(--wine-dark);font-weight:700;flex-grow:1}
+  .topic-tag{font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:999px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap;flex-shrink:0}
+  .topic-tag.argument{background:var(--blue-light);color:var(--blue-dark)}
+  .topic-tag.rhetoric{background:var(--purple-light);color:var(--purple-dark)}
+  .topic-tag.academic{background:var(--teal-light);color:var(--teal-dark)}
+  .topic-tag.evidence{background:var(--gold-light);color:var(--gold-dark)}
+  .topic-tag.issues{background:var(--wine-light);color:var(--wine-dark)}
+  .comparison-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--border)}
+  .term-col{padding:0.9rem 1.1rem;border-right:1px solid var(--border);background:var(--bg)}
+  .term-col:last-child{border-right:none}
+  .term-col-head{display:flex;align-items:center;gap:0.4rem;margin-bottom:0.5rem}
+  .term-letter{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--navy);color:#fff;font-family:Arial,sans-serif;font-weight:700;font-size:0.78rem;flex-shrink:0}
+  .term-col:nth-child(2) .term-letter{background:var(--wine)}
+  .term-name{font-size:0.98rem;font-family:Arial,sans-serif;color:var(--navy);font-weight:700;line-height:1.3}
+  .term-def{font-size:0.85rem;color:var(--text);line-height:1.55;margin-bottom:0.5rem}
+  .term-example{font-size:0.8rem;color:var(--muted);font-style:italic;line-height:1.5;padding:0.45rem 0.6rem;background:var(--gray-light);border-radius:var(--radius);border-left:3px solid var(--wine)}
+  .term-example::before{content:"Example: ";font-style:normal;font-weight:700;font-size:0.7rem;color:var(--wine-dark);text-transform:uppercase;letter-spacing:0.4px}
+  .insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--border)}
+  .insight-box{padding:0.85rem 1.1rem;border-right:1px solid var(--border)}
+  .insight-box:last-child{border-right:none}
+  .insight-box.separator{background:var(--navy-light)}
+  .insight-box.memory{background:var(--green-light)}
+  .insight-label{font-family:Arial,sans-serif;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.35rem;display:block}
+  .insight-box.separator .insight-label{color:var(--navy)}
+  .insight-box.memory .insight-label{color:var(--green-dark)}
+  .insight-content{font-size:0.83rem;line-height:1.6;color:var(--text)}
+  .teaching-note{padding:0.85rem 1.1rem;background:var(--purple-light);border-left:4px solid var(--purple);font-family:Arial,sans-serif;font-size:0.83rem;line-height:1.6;color:var(--purple-dark)}
+  .teaching-note strong{display:block;font-weight:700;font-size:0.7rem;color:var(--purple-dark);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.3rem}
+  @media (max-width:680px){.comparison-grid,.insight-grid{grid-template-columns:1fr}.term-col,.insight-box{border-right:none;border-bottom:1px solid var(--border)}.term-col:last-child,.insight-box:last-child{border-bottom:none}}
+  .empty-state{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-family:Arial,sans-serif}
+  .empty-state h3{font-size:1.05rem;color:var(--navy);margin-bottom:0.4rem}
+  @media print{.site-header,.controls{display:none}.confusion{break-inside:avoid;page-break-inside:avoid;box-shadow:none}body{background:#fff}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div>
+    <div class="brand">⚠️ Cambridge AICE General Paper 8021</div>
+    <div class="meta">Common Confusions — 21 Term Pairs Where Precision Matters</div>
+  </div>
+  <span class="module-tag">Confusions</span>
+</header>
+
+<div class="page-wrap">
+
+  <div class="hero">
+    <div class="hero-badge">Where Precision is Lost</div>
+    <h2>21 Term Pairs Students Most Often Confuse</h2>
+    <p>The Essential 50 and Complete Reference define terms in isolation; this resource shows them in contrast. Reading confused terms separately rarely fixes the confusion — students need to see them together. These 21 pairs cover the distinctions where General Paper precision is most often lost, with side-by-side comparisons, memory devices, and teaching notes.</p>
+  </div>
+
+  <div class="card">
+    <h2>How to Use This Resource</h2>
+    <p>This is a teaching and revision tool, not a glossary. The Essential 50 defines each term individually; this document shows them <strong>in contrast</strong>. The pairs gathered here are not random — they're the distinctions Cambridge examiners most often see students miss.</p>
+    <h3>Recommended approach</h3>
+    <p><strong>For revision:</strong> Read both sides of each confusion. Then close the document and explain the difference out loud in one sentence. If you can't, re-read the "What separates them" and "Memory device" boxes.<br>
+    <strong>For teaching:</strong> Project one confusion per lesson opener. Ask students to write the difference before showing the answer. The contrast makes the distinction stick in ways isolated definitions don't.</p>
+  </div>
+
+  <div class="controls">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search any term or topic...">
+    </div>
+    <div class="filter-row">
+      <span class="label">Category:</span>
+      <button class="filter-btn active" data-topic="all" onclick="setTopicFilter('all',this)">All (21)</button>
+      <button class="filter-btn" data-topic="argument" onclick="setTopicFilter('argument',this)">Argument (5)</button>
+      <button class="filter-btn" data-topic="rhetoric" onclick="setTopicFilter('rhetoric',this)">Rhetoric (4)</button>
+      <button class="filter-btn" data-topic="academic" onclick="setTopicFilter('academic',this)">Academic (3)</button>
+      <button class="filter-btn" data-topic="evidence" onclick="setTopicFilter('evidence',this)">Evidence (5)</button>
+      <button class="filter-btn" data-topic="issues" onclick="setTopicFilter('issues',this)">Issues (4)</button>
+    </div>
+    <div class="stats" id="stats">Showing <strong>21</strong> of <strong>21</strong> confusions</div>
+  </div>
+
+  <div id="container"></div>
+  <div class="empty-state" id="emptyState" style="display:none">
+    <h3>No confusions found</h3>
+    <p>Try a different search term or clear the filter.</p>
+  </div>
+
+</div>
+
+<script>
+const TOPIC_LABELS = {
+  argument: "Argument & Reasoning",
+  rhetoric: "Rhetoric & Style",
+  academic: "Academic Writing",
+  evidence: "Evidence & Evaluation",
+  issues: "Contemporary Issues"
+};
+
+const CONFUSIONS = [
+  // ARGUMENT (5)
+  {topic:"argument",title:"Argument vs Opinion",
+   terms:[
+     {name:"Argument",def:"A claim supported by reasons (premises) intended to establish a conclusion.",example:"\"Smartphones harm teenagers, because (a) studies show increased depression rates since smartphone adoption, and (b) screen time displaces sleep and exercise\" \u2014 a claim with supporting reasons."},
+     {name:"Opinion",def:"A personal view, belief, or judgement that may or may not be supported by reasons.",example:"\"I think smartphones are bad for teenagers\" \u2014 a personal view. It might be true, but as stated it offers no reasons that others could evaluate."}
+   ],
+   separator:"An argument provides REASONS that others can evaluate. An opinion is a personal claim that doesn't necessarily come with justification. Key question: can someone agree or disagree with this on the basis of reasons given?",
+   memory:"Arguments have ARROWS (premises \u2192 conclusion). Opinions just STAND ALONE. If there's no 'because' or 'since' supporting it, it's an opinion, not an argument.",
+   teaching:"Cambridge essays must contain arguments, not just opinions. Commands like 'evaluate' or 'discuss' call for arguments \u2014 claims with reasons. Strong student answers transform opinions into arguments by adding supporting premises and acknowledging counterarguments. Stating 'I think X' is not an argument; explaining why X follows from evidence is."},
+
+  {topic:"argument",title:"Validity vs Truth",
+   terms:[
+     {name:"Validity",def:"The logical soundness of an argument \u2014 whether the conclusion follows from the premises, regardless of whether the premises are actually true.",example:"\"All cats are dogs. Felix is a cat. Therefore Felix is a dog.\" This is VALID (the logic holds) but the premise is false. Validity is about structure, not content."},
+     {name:"Truth (Soundness)",def:"Factual accuracy of claims, or in arguments, the combination of valid structure WITH true premises.",example:"\"All humans are mortal. Socrates is human. Therefore Socrates is mortal.\" This is valid AND sound \u2014 the logic holds and the premises are true."}
+   ],
+   separator:"Validity is about LOGIC; truth is about FACTS. An argument can be valid but untrue (false premises), or true but invalid (correct conclusion reached by faulty reasoning). A SOUND argument requires BOTH validity and true premises.",
+   memory:"VALIDITY checks the structure (does the conclusion follow?). TRUTH checks the claims (are the premises actually true?). Soundness = Validity + Truth.",
+   teaching:"This is one of the most important distinctions in General Paper. Students often dismiss arguments because they disagree with the conclusion, missing that the argument might be valid \u2014 they should attack the premises. Conversely, students sometimes accept arguments because the conclusion seems right, missing that the reasoning is invalid. Both moves lose marks at higher levels."},
+
+  {topic:"argument",title:"Inference vs Assumption",
+   terms:[
+     {name:"Inference",def:"A conclusion drawn from evidence or text that goes beyond what is explicitly stated but is supported by what is given.",example:"A passage says \"attendance fell by 40% after fees were introduced.\" You can INFER that fees deterred attendees \u2014 a conclusion supported by, though not stated in, the text."},
+     {name:"Assumption",def:"An unstated belief or claim that an argument depends on without making explicit.",example:"The argument above ASSUMES that no other factor changed at the same time (e.g., competitor opened, weather changed). The argument depends on these unstated assumptions to work."}
+   ],
+   separator:"An inference is something the EVIDENCE supports you in CONCLUDING. An assumption is something the EVIDENCE DEPENDS ON being true (without being stated). Inferences move FROM evidence outward; assumptions sit BENEATH evidence supporting it.",
+   memory:"INFERENCE = drawing OUT from what's given. ASSUMPTION = building UNDER without saying so.",
+   teaching:"Paper 2 routinely asks students to identify both. The distinction matters: drawing a valid inference is sophisticated reading; identifying hidden assumptions is sophisticated critique. Students who conflate these often miss the analytical move the question requires."},
+
+  {topic:"argument",title:"Counterargument vs Rebuttal",
+   terms:[
+     {name:"Counterargument",def:"An argument against your position; an opposing view to one you're defending.",example:"If you argue \"globalisation is net positive,\" a counterargument might be: \"however, globalisation has increased inequality within developed nations as manufacturing jobs moved overseas.\""},
+     {name:"Rebuttal",def:"Your RESPONSE to a counterargument that addresses it and defends your original position.",example:"To the counterargument above, you rebut: \"while inequality has increased in some sectors, absolute living standards have risen for those affected, and global inequality has fallen.\""}
+   ],
+   separator:"Counterargument is the OPPONENT'S move (or the move you imagine they'd make). Rebuttal is YOUR response. A strong essay presents both \u2014 acknowledging the strongest counterarguments, then rebutting them.",
+   memory:"COUNTERargument COUNTERS your position. REBUTtal REBUTS the counterargument back. The full sequence: position \u2192 counterargument \u2192 rebuttal \u2192 strengthened position.",
+   teaching:"Students often present only their own position, missing the counterargument-rebuttal pattern that Cambridge mark schemes reward. Stronger students sometimes acknowledge counterarguments without actually rebutting them \u2014 leaving the counterargument standing, which weakens the overall position rather than strengthening it."},
+
+  {topic:"argument",title:"Premise vs Conclusion",
+   terms:[
+     {name:"Premise",def:"A statement assumed or asserted as the basis for an argument's conclusion.",example:"\"All democracies have elections. China is not a democracy. Therefore China does not have elections.\" The first two statements are premises."},
+     {name:"Conclusion",def:"The claim an argument seeks to establish, supported by premises.",example:"In the argument above, \"China does not have elections\" is the conclusion. The premises lead to it (though the argument is invalid \u2014 China does have elections, just not competitive ones)."}
+   ],
+   separator:"Premises SUPPORT; conclusions are SUPPORTED. To find the conclusion, ask: \"what is this argument trying to convince me of?\" Everything else is premise.",
+   memory:"PREMISES come FIRST (the foundation). CONCLUSION follows (built on the premises). Look for 'therefore,' 'thus,' 'so,' 'hence' \u2014 these typically introduce conclusions.",
+   teaching:"When analysing arguments in Paper 2, students sometimes mistake supporting examples for the main conclusion, or attack premises as if they were conclusions. The first step in critiquing any argument is correctly identifying the conclusion and the premises that support it."},
+
+  // RHETORIC (4)
+  {topic:"rhetoric",title:"Tone vs Register",
+   terms:[
+     {name:"Tone",def:"The writer's or speaker's ATTITUDE toward the subject, conveyed through word choice and emphasis.",example:"\"This catastrophe demands urgent action\" has an alarmed, urgent tone. \"This situation warrants consideration\" is measured. Both are formal, but the attitudes differ."},
+     {name:"Register",def:"The LEVEL OF FORMALITY in language, ranging from casual to highly formal.",example:"\"Kids today are obsessed with phones\" is informal register. \"Contemporary youth exhibit pronounced engagement with mobile devices\" is formal register. Both can convey similar concern, but the formality differs."}
+   ],
+   separator:"Tone is about EMOTIONAL or ATTITUDINAL position. Register is about FORMALITY level. A formal piece can have an angry tone; an informal piece can have a measured tone. They're independent dimensions.",
+   memory:"TONE is the MOOD music (how the writer FEELS about the topic). REGISTER is the DRESS CODE (how FORMAL the language is). A piece has both, and they vary independently.",
+   teaching:"In Paper 2 comprehension and analysis, students often conflate these. \"The author's tone is formal\" is a common mistake \u2014 formality is register, not tone. Tone descriptors: urgent, sardonic, sympathetic, dismissive, indignant, ironic. Register descriptors: casual, conversational, neutral, formal, academic."},
+
+  {topic:"rhetoric",title:"Denotation vs Connotation",
+   terms:[
+     {name:"Denotation",def:"The LITERAL, dictionary meaning of a word, without emotional or associated meaning.",example:"The denotation of \"home\" is \"the place where one lives.\" That's what the dictionary says \u2014 the surface meaning."},
+     {name:"Connotation",def:"The IMPLIED or ASSOCIATED meaning of a word \u2014 what it suggests beyond its dictionary definition.",example:"The connotations of \"home\" include warmth, family, security, belonging, identity. These aren't in the dictionary definition but are evoked by the word."}
+   ],
+   separator:"Denotation is what the dictionary SAYS; connotation is what the word makes you FEEL or ASSOCIATE. Two words with the same denotation can have very different connotations (e.g., \"inexpensive\" vs \"cheap\"; \"slim\" vs \"skinny\"; \"statesman\" vs \"politician\").",
+   memory:"DEnotation = DEfinition (dictionary level). COnnotation = COmpany the word keeps (associations and feelings).",
+   teaching:"Paper 2 stylistic analysis routinely asks students to consider why an author chose one word over a near-synonym. The answer is usually connotation, not denotation. \"Statesman\" and \"politician\" denote the same thing; their connotations differ vastly. Strong analysis names this distinction explicitly."},
+
+  {topic:"rhetoric",title:"Simile vs Metaphor",
+   terms:[
+     {name:"Simile",def:"A comparison between two things using \"like\" or \"as.\"",example:"\"She is as brave as a lion.\" \"His mind works like a calculator.\" The comparison is explicit \u2014 the reader is told this is a comparison."},
+     {name:"Metaphor",def:"A figure of speech in which one thing is described as if it WERE another, without \"like\" or \"as.\"",example:"\"She is a lion in court.\" \"His mind is a calculator.\" The comparison is direct identification \u2014 X is asserted to BE Y."}
+   ],
+   separator:"Simile says \"X is LIKE Y.\" Metaphor says \"X IS Y.\" Metaphors tend to be more forceful because they assert identity, not just similarity. They also embed more deeply into language and thinking (think \"the brain is a computer\" \u2014 a metaphor that shapes how we understand cognition).",
+   memory:"SIMILEs use SIMILAR words (\"like,\" \"as\"). METAPHORs MERGE the two things directly (no comparison word \u2014 just identification).",
+   teaching:"Students often call any comparison a metaphor. The distinction matters in Paper 2 analysis because metaphors generally do more rhetorical work \u2014 they reshape thinking, not just illustrate. When naming devices in source texts, accuracy is the first move; analysing the effect is the substantive work."},
+
+  {topic:"rhetoric",title:"Irony vs Sarcasm",
+   terms:[
+     {name:"Irony",def:"A statement or situation where the surface meaning differs from the intended meaning, often the opposite.",example:"\"A book about minimalism that's 600 pages long\" \u2014 situational irony. \"Brilliant idea to launch the website during the security audit\" \u2014 verbal irony. The surface and substance diverge."},
+     {name:"Sarcasm",def:"A sharp, often hostile or mocking form of irony directed at someone or something.",example:"\"Oh, wonderful, another email from the IT department.\" The hostile or dismissive edge distinguishes it from gentler irony."}
+   ],
+   separator:"All sarcasm is ironic, but not all irony is sarcastic. Irony can be gentle, sad, playful, or critical. Sarcasm has a sharper, attacking quality. Tone is the difference \u2014 sarcasm typically has bite.",
+   memory:"SARCASM has a STING. IRONY can be soft or sharp; sarcasm is always sharp. If you can't tell whether it's hostile, it's irony; if it clearly is, it's sarcasm.",
+   teaching:"Students often use \"sarcastic\" when they mean \"ironic\" more generally. The distinction matters in Paper 2 analysis: calling an author \"sarcastic\" implies a hostile or mocking stance, which may not be accurate. \"Ironic\" is broader and safer; reserve \"sarcastic\" for genuinely hostile cases."},
+
+  // ACADEMIC (3)
+  {topic:"academic",title:"Thesis vs Topic",
+   terms:[
+     {name:"Topic",def:"The SUBJECT or area you're writing about.",example:"\"Social media\" is a topic. \"Globalisation\" is a topic. \"The role of AI in education\" is a topic."},
+     {name:"Thesis",def:"The CLAIM you are making ABOUT that topic \u2014 what you assert and argue for.",example:"\"Social media has weakened deliberative discourse by privileging emotional engagement over reasoned exchange\" is a thesis. \"Globalisation has produced net economic gains but unevenly distributed losses requiring policy intervention\" is a thesis."}
+   ],
+   separator:"A topic is what you're writing ABOUT. A thesis is what you're SAYING about it. The topic answers \"what?\"; the thesis answers \"what about it?\" or \"so what?\"",
+   memory:"TOPIC is the SUBJECT (what you're discussing). THESIS is the STANCE (what you claim about it).",
+   teaching:"Weak essays often have a clear topic but no thesis \u2014 they describe rather than argue. Strong essays make their thesis explicit early and defend it throughout. A test: read your introduction. Could a reader predict what your essay will argue? If they only know that \"social media will be discussed,\" you have a topic, not a thesis."},
+
+  {topic:"academic",title:"Summary vs Synthesis",
+   terms:[
+     {name:"Summary",def:"Condensing or describing what each source SAYS, one at a time.",example:"\"Smith argues that AI will create new jobs. Jones argues that AI will eliminate jobs. Brown argues that the effect depends on policy choices.\" \u2014 three summaries laid side by side."},
+     {name:"Synthesis",def:"COMBINING ideas from multiple sources by identifying relationships, patterns, tensions, or new insights across them.",example:"\"While Smith focuses on job creation and Jones on elimination, Brown's policy-dependent framing suggests both may be partially right \u2014 making AI's labour impact a political choice as much as a technological inevitability.\""}
+   ],
+   separator:"Summary reports SEPARATELY. Synthesis identifies what's HAPPENING ACROSS sources \u2014 common ground, tensions, gaps, unexpected resonances. Strong essays synthesise; weaker essays only summarise.",
+   memory:"Summary = SOURCES side by side. Synthesis = SOURCES sewn together. Both start with S, but synthesis weaves; summary lists.",
+   teaching:"This distinction is central to Paper 1 essays. Cambridge mark schemes reward synthesis (identifying relationships across sources or examples) over summary (listing what each says). When students cite multiple examples without showing how they relate, they're summarising, not synthesising \u2014 and missing the analytical work that earns top marks."},
+
+  {topic:"academic",title:"Refute vs Disagree",
+   terms:[
+     {name:"Disagree",def:"To express a different view; to hold the opposite position.",example:"\"I disagree with Smith's claim that censorship protects society.\" The statement expresses opposition but doesn't yet show why."},
+     {name:"Refute",def:"To DISPROVE a claim through evidence or reasoning that shows it to be wrong.",example:"\"Smith's claim that censorship protects society can be refuted by historical evidence showing that pre-2003 Iraq's strict censorship correlated with social instability, not stability.\""}
+   ],
+   separator:"To disagree is to STATE opposition; to refute is to DEMONSTRATE through reasoning or evidence WHY the position fails. Disagreement is a stance; refutation is a demonstrated argument.",
+   memory:"DISagreement = DIFFERENT view (just a stance). REFUTATION = REASONS that defeat the view (an argument).",
+   teaching:"Students often write \"I disagree because I think...\" \u2014 which is just stating opposition twice. To refute properly: state the claim, then provide reasoning or evidence that shows it fails. Refutation is what Paper 2 evaluation expects when asked to \"respond to\" or \"evaluate\" an argument."},
+
+  // EVIDENCE (5)
+  {topic:"evidence",title:"Correlation vs Causation",
+   terms:[
+     {name:"Correlation",def:"A statistical relationship between two variables; when one changes, so does the other.",example:"Ice cream sales correlate with drowning deaths. Both rise in summer. The data shows them moving together."},
+     {name:"Causation",def:"A relationship where one event or factor actually PRODUCES the other.",example:"Ice cream sales do NOT cause drowning. Both correlate with a third factor (warm weather) that causes both. Establishing causation requires plausible mechanism, controlled comparison, and ruling out alternative explanations."}
+   ],
+   separator:"Correlation shows things HAPPEN together. Causation shows one THING CAUSES the other. The classic warning: \"correlation does not imply causation.\" Establishing causation requires substantially more evidence than establishing correlation \u2014 mechanism, control, and elimination of alternatives.",
+   memory:"CORRELATION means they CO-OCCUR. CAUSATION means one CAUSES the other. They look similar but say very different things.",
+   teaching:"This is the single most important reasoning distinction in General Paper. Students consistently treat correlations as if they were causations \u2014 concluding \"social media causes depression\" from studies showing only that the two correlate. Spotting this error is a high-value Paper 2 evaluation skill; making it is a frequent Paper 1 essay weakness. The phrase to watch for: any time someone says \"X causes Y\" based on data showing only that X and Y move together."},
+
+  {topic:"evidence",title:"Empirical vs Anecdotal",
+   terms:[
+     {name:"Empirical",def:"Based on systematic observation, experience, or experiment \u2014 typically with controlled methodology.",example:"A randomised controlled trial showing that a drug works better than placebo is empirical evidence. A national survey of 10,000 respondents is empirical."},
+     {name:"Anecdotal",def:"Based on personal accounts or isolated examples \u2014 often vivid but unrepresentative and unsystematic.",example:"\"I know someone who was vaccinated and still got sick\" is anecdotal. One case, however persuasive, doesn't establish a pattern."}
+   ],
+   separator:"Empirical evidence is SYSTEMATIC and reproducible; anecdotal evidence is ISOLATED and personal. Empirical evidence supports general claims; anecdotal evidence only illustrates \u2014 it doesn't establish pattern.",
+   memory:"EMPIRICAL = EXPERIMENT (systematic data). ANECDOTAL = ANECDOTE (one story, however persuasive).",
+   teaching:"A common student error in Paper 1 essays: citing one personal example or news story as if it establishes a general claim. \"My cousin lost her job to AI, so AI is destroying employment\" \u2014 this is anecdotal, not empirical. Strong arguments distinguish carefully, often acknowledging anecdotes as illustration before turning to empirical evidence for the underlying claim."},
+
+  {topic:"evidence",title:"Disinterested vs Uninterested",
+   terms:[
+     {name:"Disinterested",def:"IMPARTIAL; having no personal stake or vested interest in the outcome.",example:"A \"disinterested judge\" has no personal interest in the case \u2014 making them ideal for fair adjudication. \"We need a disinterested third party to mediate.\""},
+     {name:"Uninterested",def:"NOT INTERESTED; lacking interest or engagement.",example:"\"She was uninterested in the lecture\" \u2014 she didn't care about it. Quite different from having no stake."}
+   ],
+   separator:"Disinterested = NO STAKE (impartial). Uninterested = NO INTEREST (bored, unengaged). A disinterested observer is engaged in observing fairly; an uninterested observer isn't paying attention at all.",
+   memory:"DISinterested = DISconnected from stake (impartial). UNinterested = UNcaring about the topic (bored). The judge should be disinterested (no stake), but very interested in the case.",
+   teaching:"This is one of the most common vocabulary errors in student writing. \"I'm disinterested in politics\" almost certainly means \"I'm uninterested in politics.\" Using the wrong word doesn't just signal weak vocabulary \u2014 it can change the meaning of an argument entirely. A \"disinterested press\" (impartial) is good; an \"uninterested press\" (not paying attention) is bad."},
+
+  {topic:"evidence",title:"Fact vs Opinion",
+   terms:[
+     {name:"Fact",def:"A statement that can be VERIFIED as true or false through evidence; an objective claim about reality.",example:"\"The population of Tokyo is approximately 37 million.\" \"Water boils at 100\u00b0C at standard pressure.\" These can be checked."},
+     {name:"Opinion",def:"A personal judgement, belief, or interpretation; a claim that depends on personal perspective and isn't simply true or false.",example:"\"Tokyo is the most exciting city in Asia.\" \"This policy is unjust.\" These can be supported with reasons but cannot be simply verified or falsified."}
+   ],
+   separator:"A fact can be CHECKED. An opinion can be ARGUED. The distinction isn't always clean (interpretations can be more or less defensible based on evidence), but the core difference is verifiability vs perspective-dependence.",
+   memory:"FACT = FACT-checkable. OPINION = OPEN to debate.",
+   teaching:"Strong arguments distinguish between the two clearly. Weaker writing presents opinions as if they were facts (\"It is a fact that AI is dangerous\") or treats facts as if they were opinions (\"Some say climate change is happening, others disagree\"). Cambridge mark schemes reward students who handle this distinction with precision \u2014 using facts as evidence and opinions as positions to be defended with reasons."},
+
+  {topic:"evidence",title:"Quantitative vs Qualitative",
+   terms:[
+     {name:"Quantitative",def:"Relating to NUMERICAL measurement, counting, statistics, or magnitudes.",example:"\"Unemployment rose by 2.3% last quarter.\" \"Average household income is \u00a335,000.\" \"Survey of 1,200 respondents found 67% support the policy.\""},
+     {name:"Qualitative",def:"Relating to QUALITIES, descriptions, characteristics, or meanings \u2014 non-numerical features.",example:"\"Interviewees described the policy change as 'disruptive' and 'badly communicated.'\" \"Workers reported feeling alienated from management decisions.\""}
+   ],
+   separator:"Quantitative answers \"HOW MUCH/MANY?\" Qualitative answers \"WHAT IS IT LIKE?\" Different research questions call for different approaches; sophisticated analysis often uses both.",
+   memory:"QUANTitative = QUANTity (numbers and counts). QUALitative = QUALity (character and description).",
+   teaching:"Students sometimes treat quantitative evidence as automatically stronger than qualitative evidence. This is often wrong \u2014 qualitative evidence answers different questions and can be essential where numbers miss the point. Strong analytical writing weighs both types appropriately rather than privileging one. A statistical finding may need qualitative explanation; a qualitative pattern may need quantitative confirmation."},
+
+  // ISSUES (4)
+  {topic:"issues",title:"Equality vs Equity",
+   terms:[
+     {name:"Equality",def:"Treating everyone the SAME, regardless of difference or circumstance.",example:"Every student receives the same textbook, the same class time, the same grading standard. Same input for everyone."},
+     {name:"Equity",def:"Treating people FAIRLY by accounting for different needs, circumstances, or starting points.",example:"Students with learning disabilities receive accommodations to give them a fair chance at success; resources are distributed based on need rather than uniformly."}
+   ],
+   separator:"Equality = SAME for everyone. Equity = FAIR for everyone, given different needs. Treating two unequal situations equally often produces unequal outcomes; equity addresses that by adjusting input to produce fairer outcomes.",
+   memory:"EQUALITY is EQUAL portions (same input). EQUITY adjusts for circumstances (fair outcome). They can pull in opposite directions: equal treatment can produce inequitable outcomes; equitable treatment requires unequal inputs.",
+   teaching:"This distinction is increasingly important in contemporary discourse on race, education, healthcare, and social policy. Students often use the words interchangeably; doing so flattens important debates. When writing about social policy, choose deliberately \u2014 and acknowledge that the choice has consequences. Often the debate isn't about whether to be fair, but about which conception of fairness to apply."},
+
+  {topic:"issues",title:"Atheism vs Agnosticism",
+   terms:[
+     {name:"Atheism",def:"The BELIEF that no deity exists; the position that there is no God.",example:"Richard Dawkins identifies as an atheist \u2014 he holds the positive belief that there is no God."},
+     {name:"Agnosticism",def:"The position that the existence of God is UNKNOWN or UNKNOWABLE.",example:"An agnostic doesn't claim to know whether God exists or not \u2014 the position concerns the limits of knowledge, not belief content."}
+   ],
+   separator:"Atheism is a POSITIVE CLAIM about reality (there is no God). Agnosticism is a CLAIM ABOUT KNOWLEDGE (we cannot know). One can be an agnostic atheist (don't know, but assume not) or an agnostic theist (don't know, but believe). They answer different questions.",
+   memory:"ATHEism = AnTI-theism (against the existence of God). AGNOSTICism = A-GNOSTIC (without knowledge \u2014 we can't know).",
+   teaching:"Students often describe agnostics as \"in between\" theism and atheism. The more accurate framing: atheism/theism is about belief in God's existence; agnosticism is about the possibility of knowing. They are distinct questions, and people can hold combinations \u2014 atheist agnostics, theist agnostics, certain atheists, certain theists."},
+
+  {topic:"issues",title:"Ethics vs Morals",
+   terms:[
+     {name:"Ethics",def:"A systematic study of right and wrong; formal principles guiding behaviour, often derived from philosophy, profession, or institution.",example:"\"Medical ethics\" governs what doctors should do in dilemmas \u2014 formal principles like informed consent, autonomy, non-maleficence, and justice."},
+     {name:"Morals",def:"Personal beliefs about right and wrong, typically shaped by culture, religion, family, and individual conviction.",example:"\"My morals tell me lying is wrong, even when it might help someone.\" Personal sense of what's right."}
+   ],
+   separator:"Ethics tends to be SYSTEMATIC (professional, philosophical, formal). Morals tend to be PERSONAL (individual, cultural, religious). Many writers use them interchangeably, but the distinction is real \u2014 ethics is reasoning systematically about right and wrong; morals is the personal sense of right and wrong.",
+   memory:"ETHics = systEMatic and formal. MORals = perSONAL and felt.",
+   teaching:"The distinction isn't always strictly observed in everyday language, but it matters in formal writing. \"Ethical implications of AI\" suggests systematic analysis; \"moral implications\" suggests personal values at stake. Strong writers use the appropriate term for the analysis they're doing \u2014 and recognise that ethics and morals can come apart (something can be ethical but feel immoral; something can be moral but ethically problematic in formal terms)."},
+
+  {topic:"issues",title:"Liberalism vs Libertarianism",
+   terms:[
+     {name:"Liberalism",def:"A political ideology emphasising individual rights, democratic governance, civil liberties, and equality before the law, often with substantial role for government in protecting rights and providing services.",example:"Modern liberal democracies (UK, France, Canada) combine individual rights with welfare states, public healthcare, and regulatory institutions."},
+     {name:"Libertarianism",def:"A political philosophy prioritising individual liberty above all, with very limited state role \u2014 typically opposing taxation, regulation, and government provision of services.",example:"A libertarian would oppose mandatory healthcare insurance, even for the uninsured, on grounds that it violates individual choice."}
+   ],
+   separator:"Liberalism endorses an active state PROTECTING rights and providing services. Libertarianism wants a MINIMAL state staying out of individual life. Liberals see government as a partner in human flourishing; libertarians see government as a threat to freedom.",
+   memory:"LIBERalism = LIBERate through institutions (active state). LIBERTARianism = LIBERTARians want LIBERTY from institutions (minimal state).",
+   teaching:"In American English particularly, these terms are easily confused \u2014 and \"liberal\" is used in different ways across countries. UK \"liberal\" tends to mean centrist-progressive; US \"liberal\" means left-progressive; \"libertarian\" is more specific and means small-government. When writing about politics, define your terms clearly to avoid confusion that crosses national usage. The two ideologies actually disagree on most policy questions despite sharing a similar word root."}
+];
+
+let currentTopic = 'all';
+let currentSearch = '';
+
+function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+function renderList(){
+  const container = document.getElementById('container');
+  const empty = document.getElementById('emptyState');
+  const stats = document.getElementById('stats');
+  const q = currentSearch.toLowerCase().trim();
+  const filtered = CONFUSIONS.filter(c => {
+    if(currentTopic !== 'all' && c.topic !== currentTopic) return false;
+    if(!q) return true;
+    if(c.title.toLowerCase().includes(q)) return true;
+    if(c.separator.toLowerCase().includes(q)) return true;
+    return c.terms.some(t => t.name.toLowerCase().includes(q) || t.def.toLowerCase().includes(q));
+  });
+
+  if(filtered.length === 0){
+    container.innerHTML = '';
+    empty.style.display = 'block';
+  } else {
+    empty.style.display = 'none';
+    container.innerHTML = filtered.map(c => {
+      const idx = CONFUSIONS.indexOf(c) + 1;
+      const termsHtml = c.terms.map((t,ti) => `
+        <div class="term-col">
+          <div class="term-col-head">
+            <span class="term-letter">${String.fromCharCode(65+ti)}</span>
+            <span class="term-name">${escapeHtml(t.name)}</span>
+          </div>
+          <div class="term-def">${escapeHtml(t.def)}</div>
+          <div class="term-example">${escapeHtml(t.example)}</div>
+        </div>
+      `).join('');
+      return `
+        <div class="confusion">
+          <div class="confusion-head">
+            <span class="confusion-num">#${String(idx).padStart(2,'0')}</span>
+            <span class="confusion-title">${escapeHtml(c.title)}</span>
+            <span class="topic-tag ${c.topic}">${TOPIC_LABELS[c.topic]}</span>
+          </div>
+          <div class="comparison-grid">${termsHtml}</div>
+          <div class="insight-grid">
+            <div class="insight-box separator">
+              <span class="insight-label">What separates them</span>
+              <div class="insight-content">${escapeHtml(c.separator)}</div>
+            </div>
+            <div class="insight-box memory">
+              <span class="insight-label">Memory device</span>
+              <div class="insight-content">${escapeHtml(c.memory)}</div>
+            </div>
+          </div>
+          <div class="teaching-note">
+            <strong>Teaching note</strong>
+            ${escapeHtml(c.teaching)}
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+  stats.innerHTML = `Showing <strong>${filtered.length}</strong> of <strong>${CONFUSIONS.length}</strong> confusions`;
+}
+
+function setTopicFilter(topic, btn){
+  currentTopic = topic;
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.classList.remove('active','argument','rhetoric','academic','evidence','issues');
+  });
+  btn.classList.add('active', topic);
+  renderList();
+}
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  currentSearch = e.target.value;
+  renderList();
+});
+
+renderList();
+</script>
+</body>
+</html>

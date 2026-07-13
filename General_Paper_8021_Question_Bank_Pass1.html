@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cambridge AICE General Paper 8021 — Essential 50 Glossary</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --navy:#0F2A47;--navy-light:#DEE7F2;
+    --wine:#6B1F2E;--wine-light:#F8E4E8;--wine-dark:#401019;--wine-mid:#8B2A3F;
+    --teal:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+    --blue:#185FA5;--blue-light:#E6F1FB;--blue-dark:#0C447C;
+    --purple:#534AB7;--purple-light:#EEEDFE;--purple-dark:#2E2779;
+    --coral:#D85A30;--coral-light:#FAECE7;--coral-dark:#712B13;
+    --gold:#C4922E;--gold-light:#FAEEDA;--gold-dark:#6B4F11;
+    --green:#639922;--green-light:#EAF3DE;--green-dark:#27500A;
+    --red-light:#FCEBEB;--red-dark:#501313;--red-mid:#E24B4A;
+    --gray-light:#F5F5F3;--gray-dark:#444441;
+    --text:#1A1A1A;--muted:#555;--border:#DDD;
+    --bg:#FFF;--surface:#F8F8F6;
+    --radius:8px;--radius-lg:12px;
+    --shadow:0 1px 3px rgba(0,0,0,0.08);
+    --shadow-lg:0 4px 12px rgba(0,0,0,0.06)
+  }
+  body{font-family:Georgia,'Times New Roman',serif;background:var(--surface);color:var(--text);line-height:1.55;font-size:15px}
+  .site-header{background:var(--navy);color:#fff;padding:1rem 2rem;position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:1rem;box-shadow:var(--shadow-lg);border-bottom:3px solid var(--wine)}
+  .site-header .brand{font-size:1rem;font-weight:700;font-family:Arial,sans-serif}
+  .site-header .meta{font-size:0.78rem;color:#c8d4e3;font-family:Arial,sans-serif}
+  .module-tag{display:inline-block;background:var(--wine);color:#fff;font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:999px;font-family:Arial,sans-serif;letter-spacing:0.5px}
+  .page-wrap{max-width:1100px;margin:0 auto;padding:0 1rem 3rem}
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,#1d4068 100%);color:#fff;border-radius:var(--radius-lg);padding:1.75rem;margin:1.25rem 0;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;top:-50%;right:-10%;width:300px;height:300px;background:var(--red-mid);opacity:0.1;border-radius:50%}
+  .hero-badge{display:inline-block;background:var(--wine);color:#fff;font-size:0.7rem;font-weight:700;padding:4px 12px;border-radius:999px;margin-bottom:0.65rem;font-family:Arial,sans-serif;letter-spacing:0.5px;text-transform:uppercase}
+  .hero h2{font-size:1.7rem;margin-bottom:0.4rem;font-family:Arial,sans-serif}
+  .hero p{font-size:0.92rem;color:#c8d4e3;font-family:Arial,sans-serif;max-width:760px;position:relative}
+  .controls{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:0.95rem 1.15rem;margin:1rem 0;font-family:Arial,sans-serif;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:0.75rem}
+  .search-box{position:relative}
+  .search-box input{width:100%;padding:0.7rem 1rem 0.7rem 2.4rem;border:1px solid var(--border);border-radius:var(--radius);font-family:Arial,sans-serif;font-size:0.9rem;background:var(--surface)}
+  .search-box input:focus{outline:none;border-color:var(--navy)}
+  .search-box::before{content:"🔍";position:absolute;left:0.8rem;top:50%;transform:translateY(-50%);font-size:1rem;opacity:0.5}
+  .filter-row{display:flex;flex-wrap:wrap;gap:0.4rem;align-items:center}
+  .filter-row .label{font-size:0.72rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-right:0.3rem}
+  .filter-btn{background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:0.35rem 0.8rem;font-family:Arial,sans-serif;font-size:0.78rem;cursor:pointer;color:var(--text);transition:all 0.15s;font-weight:600}
+  .filter-btn:hover{background:var(--navy-light)}
+  .filter-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .filter-btn.active.argument{background:var(--blue)}
+  .filter-btn.active.rhetoric{background:var(--purple)}
+  .filter-btn.active.academic{background:var(--teal-dark)}
+  .filter-btn.active.evidence{background:var(--gold-dark)}
+  .filter-btn.active.issues{background:var(--wine)}
+  .stats{font-size:0.72rem;color:var(--muted);font-family:Arial,sans-serif}
+  .stats strong{color:var(--navy)}
+  .toggle-row{display:flex;gap:0.5rem;font-family:Arial,sans-serif}
+  .view-btn{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:0.35rem 0.9rem;font-size:0.78rem;cursor:pointer;font-weight:600;color:var(--muted)}
+  .view-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .term-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:0.9rem;box-shadow:var(--shadow);overflow:hidden;scroll-margin-top:80px}
+  .term-head{padding:0.85rem 1.2rem;display:flex;justify-content:space-between;align-items:center;gap:0.6rem;cursor:pointer;border-bottom:2px solid transparent}
+  .term-head:hover{background:var(--surface)}
+  .term-name{font-size:1.15rem;font-weight:700;font-family:Arial,sans-serif;color:var(--navy)}
+  .term-tag{font-size:0.68rem;font-weight:700;padding:2px 10px;border-radius:999px;font-family:Arial,sans-serif;letter-spacing:0.4px;text-transform:uppercase;white-space:nowrap}
+  .tag-argument{background:var(--blue-light);color:var(--blue-dark)}
+  .tag-rhetoric{background:var(--purple-light);color:var(--purple-dark)}
+  .tag-academic{background:var(--teal-light);color:var(--teal-dark)}
+  .tag-evidence{background:var(--gold-light);color:var(--gold-dark)}
+  .tag-issues{background:var(--wine-light);color:var(--wine-dark)}
+  .term-num{font-family:Arial,sans-serif;font-size:0.72rem;color:var(--muted);font-weight:700}
+  .term-body{padding:0 1.2rem 1.1rem;display:none}
+  .term-body.open{display:block}
+  .term-def{font-size:0.95rem;margin-bottom:0.65rem}
+  .term-block{font-family:Arial,sans-serif;font-size:0.82rem;padding:0.6rem 0.85rem;border-radius:var(--radius);margin-bottom:0.55rem;border-left:3px solid}
+  .block-context{background:var(--surface);border-color:var(--navy)}
+  .block-example{background:var(--gold-light);border-color:var(--gold-dark);font-style:italic}
+  .block-confuse{background:var(--red-light);border-color:var(--red-mid)}
+  .block-label{font-weight:700;text-transform:uppercase;letter-spacing:0.4px;font-size:0.68rem;margin-bottom:0.25rem;display:block;color:var(--muted)}
+  .star-btn{background:none;border:none;cursor:pointer;font-size:1.1rem;opacity:0.35;line-height:1}
+  .star-btn.starred{opacity:1}
+  .compact .term-card{margin-bottom:0.4rem}
+  .compact .term-head{padding:0.6rem 1rem}
+  .no-results{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-family:Arial,sans-serif}
+  .footer-note{text-align:center;font-family:Arial,sans-serif;font-size:0.75rem;color:var(--muted);margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border)}
+  @media(max-width:640px){.hero h2{font-size:1.35rem}.term-name{font-size:1rem}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div>
+    <div class="brand">📘 Cambridge AICE General Paper 8021</div>
+    <div class="meta">Essential 50 Glossary — Core Exam Vocabulary</div>
+  </div>
+  <span class="module-tag">Vocabulary · Build 1</span>
+</header>
+
+<div class="page-wrap">
+
+  <div class="hero">
+    <div class="hero-badge">Vocabulary Workbook · Part 1 of 2</div>
+    <h2>The 50 Terms That Separate Band Scores</h2>
+    <p>These are the highest-leverage vocabulary terms in General Paper — the words examiners expect to see used with precision in both Paper 1 essays and Paper 2 responses. Master these 50 before moving to the Complete Reference. Each entry includes a plain-language definition, an exam-context note, a worked example, and a flag for any term easily confused with another (see the Common Confusions resource for the full side-by-side breakdown).</p>
+  </div>
+
+  <div class="controls">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search by term or definition..." oninput="renderList()">
+    </div>
+    <div class="filter-row">
+      <span class="label">Category:</span>
+      <button class="filter-btn active" data-cat="all" onclick="setFilter('all',this)">All 50</button>
+      <button class="filter-btn argument" data-cat="argument" onclick="setFilter('argument',this)">Argumentation</button>
+      <button class="filter-btn rhetoric" data-cat="rhetoric" onclick="setFilter('rhetoric',this)">Rhetoric &amp; Style</button>
+      <button class="filter-btn academic" data-cat="academic" onclick="setFilter('academic',this)">Academic Writing</button>
+      <button class="filter-btn evidence" data-cat="evidence" onclick="setFilter('evidence',this)">Evidence &amp; Evaluation</button>
+      <button class="filter-btn issues" data-cat="issues" onclick="setFilter('issues',this)">Contemporary Issues</button>
+    </div>
+    <div class="filter-row" style="justify-content:space-between">
+      <div class="filter-row">
+        <span class="label">View:</span>
+        <button class="filter-btn" id="starOnlyBtn" onclick="toggleStarOnly()">⭐ Starred Only</button>
+      </div>
+      <div class="toggle-row">
+        <button class="view-btn active" id="listViewBtn" onclick="setView('list')">List</button>
+        <button class="view-btn" id="compactViewBtn" onclick="setView('compact')">Compact</button>
+      </div>
+    </div>
+    <div class="stats" id="statsBar"></div>
+  </div>
+
+  <div id="termContainer"></div>
+  <div class="footer-note">Cambridge AICE General Paper 8021 · Essential 50 Glossary · Part of the General Paper Study Series · Companion to the Complete Glossary Reference and Common Confusions resources</div>
+</div>
+
+<script>
+const TERMS = [
+  // ARGUMENTATION & REASONING (1-10)
+  {n:1,term:"Assertion",cat:"argument",def:"A confident statement presented as fact, offered without yet supplying supporting evidence.",context:"Examiners distinguish assertion from argument. A string of assertions with no reasoning attached reads as opinion, not analysis — Cambridge mark schemes penalise essays that assert rather than argue.",example:"\u201cSocial media is destroying democracy\u201d is an assertion until it is backed by reasoning and evidence.",confuse:"Often confused with Claim — see Common Confusions for the distinction."},
+  {n:2,term:"Claim",cat:"argument",def:"A statement that anticipates the need for justification — the starting point an argument is built to support.",context:"A strong Paper 1 essay opens each paragraph with a claim, then spends the rest of the paragraph substantiating it.",example:"\u201cGovernments have a moral obligation to regulate social media\u201d functions as a claim once the essay goes on to justify it.",confuse:"See Common Confusions: Assertion vs Claim."},
+  {n:3,term:"Premise",cat:"argument",def:"A proposition offered as a reason supporting a conclusion.",context:"Identifying an argument's premises is central to Section A logical reasoning questions — you are often asked to state the reasoning that leads to a given conclusion.",example:"Premise: \u201cAutomation reduces the need for manual labour.\u201d Conclusion: \u201cGovernments must fund retraining programmes.\u201d"},
+  {n:4,term:"Conclusion",cat:"argument",def:"The position an argument is constructed to establish — what follows once its premises are accepted.",context:"Do not confuse an essay's concluding paragraph with an argument's logical conclusion; the latter can appear anywhere in a text.",example:"In a syllogism, the conclusion is the final statement drawn from the two premises above it.",confuse:"See Common Confusions: Premise vs Conclusion."},
+  {n:5,term:"Counterargument",cat:"argument",def:"An argument that opposes the writer's own position, deliberately raised so that it can be addressed.",context:"Cambridge examiners reward essays that engage with counterarguments rather than ignore them — doing so demonstrates AO2 evaluative maturity.",example:"Having argued that social media harms democracy, a strong essay raises the counterargument that it also enables unprecedented civic organisation."},
+  {n:6,term:"Rebuttal",cat:"argument",def:"A direct response showing why a counterargument fails, is weaker than it first appears, or is outweighed by the original position.",context:"A rebuttal is not simply restating your original claim louder — it must engage specifically with the counterargument's logic or evidence.",example:"\u201cWhile social media does enable organisation, this benefit is undermined when the same platforms amplify misinformation faster than fact.\u201d",confuse:"See Common Confusions: Counterargument vs Rebuttal."},
+  {n:7,term:"Concession",cat:"argument",def:"An acknowledgment that part of an opposing view has genuine merit, typically made before a rebuttal.",context:"Conceding a point first, then rebutting it, reads as more credible and even-handed than dismissing an opposing view outright — examiners notice the difference.",example:"\u201cIt is true that regulation risks stifling innovation; however, the cost of inaction has proven far greater.\u201d"},
+  {n:8,term:"Fallacy",cat:"argument",def:"A flaw in the structure of an argument's reasoning that undermines its logic, regardless of whether the conclusion happens to be true.",context:"Spotting fallacies (false cause, slippery slope, straw man, ad hominem) is directly tested in Section A logical reasoning questions.",example:"Arguing that a policy must be wrong because the person proposing it is unlikeable is an ad hominem fallacy."},
+  {n:9,term:"Syllogism",cat:"argument",def:"A three-part logical structure — major premise, minor premise, conclusion — used to test whether reasoning is valid.",context:"Useful for stress-testing your own essay logic before writing: state your premises plainly and check the conclusion actually follows.",example:"All renewable projects reduce emissions (major premise). This project is a renewable project (minor premise). Therefore, this project reduces emissions (conclusion)."},
+  {n:10,term:"Cogent",cat:"argument",def:"Describes an argument so well-reasoned and well-supported that it is difficult to reject.",context:"A useful word for self-assessment: after drafting a paragraph, ask whether it would strike an examiner as cogent or merely assertive.",example:"The report presented a cogent case for reform, anticipating objections and answering each with evidence."},
+
+  // RHETORIC & STYLE (11-20)
+  {n:11,term:"Tone",cat:"rhetoric",def:"The writer's attitude toward their subject, conveyed through word choice, sentence length, and structure.",context:"Paper 2 Section B frequently asks candidates to identify and analyse tone (e.g., mocking, urgent, resigned) as evidence of the writer's purpose.",example:"A tone of quiet resignation can be built through short, flat sentences and an absence of emotive language."},
+  {n:12,term:"Register",cat:"rhetoric",def:"The level of formality in language, adjusted to suit audience and purpose.",context:"Paper 2's persuasive writing task explicitly assesses whether your register matches the specified audience — writing to a school assembly demands a different register than writing to a government minister.",example:"\u201cKids these days just don't get it\u201d is a casual register; \u201cyounger generations face barriers their predecessors did not\u201d is a formal register expressing the same idea.",confuse:"See Common Confusions: Tone vs Register."},
+  {n:13,term:"Connotation",cat:"rhetoric",def:"The emotional or cultural association a word carries beyond its literal dictionary meaning.",context:"Analysing connotation, not just denotation, is what separates a Band 1 comprehension answer from a mid-band one — examiners want to see why a word was chosen, not just what it means.",example:"\u201cRegime\u201d and \u201cgovernment\u201d denote the same thing, but \u201cregime\u201d connotes illegitimacy and control."},
+  {n:14,term:"Denotation",cat:"rhetoric",def:"The literal, dictionary definition of a word, stripped of emotional or cultural association.",context:"Always identify denotation first, then build outward to connotation — examiners want the analytical step shown, not skipped.",example:"The denotation of \u201chome\u201d is simply a dwelling; its connotation carries warmth, safety, and belonging.",confuse:"See Common Confusions: Denotation vs Connotation."},
+  {n:15,term:"Rhetorical question",cat:"rhetoric",def:"A question posed to make a persuasive point rather than to genuinely request an answer.",context:"When analysing a rhetorical question, name its persuasive effect specifically — e.g., it forces the reader to supply the (obvious) answer themselves, implicating them in the argument.",example:"\u201cHow much longer can we ignore the evidence?\u201d does not seek information; it pressures the reader toward agreement."},
+  {n:16,term:"Hyperbole",cat:"rhetoric",def:"Deliberate exaggeration used for emphasis or persuasive effect, not meant to be taken literally.",context:"Identify hyperbole by testing whether the literal claim is plausible — if not, the writer is prioritising impact over accuracy for a specific effect.",example:"\u201cThis policy will destroy an entire generation\u201d is hyperbole designed to convey severity, not a literal prediction."},
+  {n:17,term:"Irony",cat:"rhetoric",def:"A deliberate gap between what is stated or expected and what is actually meant or true.",context:"Distinguish irony from sarcasm: irony is the broader technique (situational or verbal); sarcasm is irony deployed specifically to mock or wound.",example:"Describing a catastrophic policy failure as \u201ca resounding success\u201d is verbal irony.",confuse:"See Common Confusions: Irony vs Sarcasm."},
+  {n:18,term:"Euphemism",cat:"rhetoric",def:"A mild or indirect expression substituted for one considered too harsh, blunt, or uncomfortable.",context:"Comprehension questions often ask you to identify why a euphemism was chosen — usually to soften bias or obscure an uncomfortable reality.",example:"\u201cCollateral damage\u201d is a euphemism that softens the reality of civilian casualties."},
+  {n:19,term:"Emotive language",cat:"rhetoric",def:"Word choice specifically selected to provoke an emotional response in the reader, rather than a neutral or purely informational one.",context:"Flagging emotive language is only half the analytical task — the stronger answer explains which specific emotion is targeted and why that serves the writer's purpose.",example:"Calling a housing project a \u201cdystopian slum\u201d rather than \u201cdensely populated low-income housing\u201d is emotive language designed to provoke alarm."},
+  {n:20,term:"Loaded language",cat:"rhetoric",def:"Words carrying strong implicit judgment, used to steer the reader toward a particular opinion without stating it directly.",context:"Loaded language is a common Section B target — identify the judgment embedded in the word choice, not just the topic it describes.",example:"Calling protesters \u201cagitators\u201d rather than \u201cdemonstrators\u201d is loaded language that pre-judges their legitimacy."},
+
+  // ACADEMIC & EVALUATIVE WRITING (21-30)
+  {n:21,term:"Thesis",cat:"academic",def:"The central argument or position that a piece of writing is constructed to prove.",context:"Your Paper 1 essay needs a clear, arguable thesis in the introduction — not a restated question or a neutral topic sentence.",example:"\u201cWhile globalisation has widened economic inequality, it has simultaneously reduced absolute poverty on a scale no prior system achieved\u201d is a thesis, because it takes a position that could be contested.",confuse:"See Common Confusions: Thesis vs Topic."},
+  {n:22,term:"Synthesis",cat:"academic",def:"The act of combining ideas or evidence from multiple sources into a new, unified understanding, rather than simply listing them side by side.",context:"Synthesis is what separates a high-band Section A/B answer from a mid-band one when multiple sources are provided — the strongest responses draw connections examiners have not explicitly pointed to.",example:"Rather than summarising each source in turn, a synthesising answer shows how Source A's data explains the trend Source B only describes.",confuse:"See Common Confusions: Summary vs Synthesis."},
+  {n:23,term:"Refute",cat:"academic",def:"To prove an argument or claim false through direct counter-evidence or superior reasoning.",context:"To refute is a stronger, evidence-based act than to merely disagree — examiners distinguish the two in mark schemes.",example:"The report refuted the claim by producing data that directly contradicted it, rather than simply asserting the opposite.",confuse:"See Common Confusions: Refute vs Disagree."},
+  {n:24,term:"Corroborate",cat:"academic",def:"To strengthen a claim by supplying independent evidence that supports it.",context:"Useful in Section A when asked whether one source's claim is supported elsewhere in the material provided.",example:"The witness's account was corroborated by independent CCTV footage."},
+  {n:25,term:"Substantiate",cat:"academic",def:"To provide sufficient evidence or reasoning to support a claim that would otherwise remain an unproven assertion.",context:"Every claim in a Paper 1 essay needs to be substantiated within the same paragraph — unsubstantiated claims are marked down under AO1.",example:"The claim that automation increases inequality must be substantiated with data, not left to stand alone."},
+  {n:26,term:"Qualify",cat:"academic",def:"To limit or adjust the scope of a claim so that it is not overstated — often by adding a condition or exception.",context:"Qualifying claims (e.g., \u201cin most developed economies\u201d rather than \u201ceverywhere\u201d) demonstrates the nuance examiners reward under AO2.",example:"\u201cSocial media harms democracy\u201d becomes a more defensible claim once qualified: \u201cSocial media, in the absence of regulation, harms democratic discourse.\u201d"},
+  {n:27,term:"Nuance",cat:"academic",def:"A subtle distinction or shade of meaning that resists oversimplification of an issue.",context:"Cambridge examiners repeatedly cite nuance as a marker of top-band evaluation — showing that an issue has more than two sides.",example:"A nuanced answer acknowledges that a policy can succeed economically while failing socially, rather than judging it simply good or bad."},
+  {n:28,term:"Discourse",cat:"academic",def:"A formal, extended discussion or debate conducted around a particular topic, often across multiple sources or speakers over time.",context:"Useful when discussing how an issue is treated in the media or public debate more broadly, rather than in a single text.",example:"Public discourse around artificial intelligence has shifted from excitement to concern over job displacement."},
+  {n:29,term:"Coherence",cat:"academic",def:"The quality of a piece of writing in which ideas connect logically from sentence to sentence and paragraph to paragraph.",context:"AO3 rewards coherence directly — a well-argued essay that jumps between ideas without logical connectors will still lose marks for organisation.",example:"Linking words such as \u201cconsequently\u201d and \u201cby contrast\u201d help maintain coherence across an argument."},
+  {n:30,term:"Register shift",cat:"academic",def:"A deliberate change in the level of formality within a text, often signalling a change in audience, purpose, or emotional intensity.",context:"Noticing a register shift (e.g., from formal reporting to a sudden colloquial aside) is a strong Section B observation — explain why the writer breaks register at that specific point.",example:"A formal news report that suddenly quotes a resident saying \u201cit's just not fair\u201d creates a register shift that humanises the story."},
+
+  // EVIDENCE & EVALUATION (31-40)
+  {n:31,term:"Empirical",cat:"evidence",def:"Based on observation, experiment, or measurable data, rather than on theory or opinion alone.",context:"Empirical evidence is the strongest support you can cite in a Paper 1 essay — examiners consistently reward candidates who move beyond generalisation to cite studies or data.",example:"Rather than asserting that remote work improves wellbeing, an empirical claim cites a specific study measuring the effect.",confuse:"See Common Confusions: Empirical vs Anecdotal."},
+  {n:32,term:"Anecdotal",cat:"evidence",def:"Based on individual personal accounts or isolated examples rather than systematic, verifiable evidence.",context:"Anecdotal evidence can illustrate a point vividly but rarely substantiates one on its own — examiners expect you to recognise this limitation.",example:"\u201cMy neighbour got a job through social media\u201d is anecdotal evidence and cannot alone establish a general trend."},
+  {n:33,term:"Correlation",cat:"evidence",def:"A relationship in which two variables change together, without one necessarily causing the other.",context:"Confusing correlation with causation is arguably the single most common Section A reasoning error Cambridge examiners flag.",example:"Ice cream sales and drowning rates rise together in summer — correlated, but neither causes the other; heat is the confounding factor.",confuse:"See Common Confusions: Correlation vs Causation — the single most important pair in this glossary."},
+  {n:34,term:"Causation",cat:"evidence",def:"A relationship in which one factor directly produces a change in another.",context:"To claim causation, you must rule out alternative explanations (confounding variables) — a skill directly tested in logical reasoning questions.",example:"A controlled study showing the drug's effect after ruling out other variables demonstrates causation, not mere correlation."},
+  {n:35,term:"Bias",cat:"evidence",def:"A systematic tendency to favour one perspective over another, which can distort how evidence is selected, presented, or evaluated.",context:"Identifying bias in a source is a standard comprehension task — but the strongest answers explain how the bias manifests in specific word choices or omissions, not just that it exists.",example:"A report funded by an industry group may exhibit bias by omitting studies that contradict the industry's interests."},
+  {n:36,term:"Credibility",cat:"evidence",def:"The trustworthiness of a source, judged by factors such as expertise, evidence quality, and track record.",context:"Evaluating credibility is central to Section A — consider the source's expertise, potential motive, and whether claims are independently verifiable.",example:"A peer-reviewed study generally carries more credibility than an anonymous online post on the same topic."},
+  {n:37,term:"Methodology",cat:"evidence",def:"The systematic approach or set of procedures used to gather or analyse evidence.",context:"Questioning a study's methodology (sample size, selection method, timeframe) is a sophisticated way to evaluate evidence quality.",example:"A survey of 50 self-selected respondents has a far weaker methodology than a randomised sample of 5,000."},
+  {n:38,term:"Statistically significant",cat:"evidence",def:"Describes a result unlikely to have occurred by chance alone, based on formal data analysis.",context:"Useful vocabulary when evaluating whether a cited statistic actually supports the conclusion drawn from it.",example:"A small difference between two groups may not be statistically significant if the sample size is too small to rule out chance."},
+  {n:39,term:"Objectivity",cat:"evidence",def:"The practice of representing facts and evidence without personal bias or emotional distortion.",context:"Cambridge General Paper values objectivity in your own evaluative writing — even when arguing a position, you are expected to represent opposing evidence fairly.",example:"An objective account of a protest reports numbers and events without adopting the emotive language of either side."},
+  {n:40,term:"Subjectivity",cat:"evidence",def:"A perspective shaped by personal feeling, experience, or opinion rather than by verifiable fact.",context:"Recognising subjectivity in a source does not automatically discredit it — personal testimony can be valuable evidence of lived experience, but it must be labelled as such.",example:"A memoir's account of poverty is valuably subjective; it should not be cited as if it were a national statistic."},
+
+  // CONTEMPORARY & GLOBAL ISSUES (41-50)
+  {n:41,term:"Anthropogenic",cat:"issues",def:"Caused or produced by human activity, especially as it affects the natural environment.",context:"Standard vocabulary for Science/Environment topic essays — using \u201canthropogenic climate change\u201d rather than just \u201cclimate change\u201d signals precision examiners reward.",example:"The report distinguished anthropogenic warming from natural climate variability."},
+  {n:42,term:"Sustainability",cat:"issues",def:"The capacity to meet present needs without compromising the ability of future generations to meet their own.",context:"A frequently tested concept across Science/Environment and Economic topic areas — strong essays define it precisely rather than using it as a vague buzzword.",example:"Sustainable development balances economic growth against long-term environmental and social cost."},
+  {n:43,term:"Generation",cat:"issues",def:"A cohort of people born and living around the same time, often analysed for shared attitudes, experiences, or social conditions.",context:"Used carefully in Social Issues essays to discuss change over time — e.g., \u201cgenerational divide\u201d or \u201cintergenerational inequality\u201d — rather than as a vague catch-all for \u201cyoung people.\u201d",example:"Housing affordability has become a defining source of intergenerational tension in many economies."},
+  {n:44,term:"Intersectionality",cat:"issues",def:"The idea that overlapping social identities — such as race, gender, and class — combine to produce distinct, compounded experiences of advantage or disadvantage.",context:"A precise term for Social Issues essays discussing inequality; using it correctly (to describe compounding, not just \u201cmultiple factors\u201d) signals sophistication.",example:"An intersectional analysis of poverty considers how gender and race compound economic disadvantage differently than either factor alone."},
+  {n:45,term:"Globalisation",cat:"issues",def:"The increasing interconnection of economies, cultures, and societies across national borders.",context:"A core Economic/Social topic term — strong essays specify which dimension of globalisation (trade, culture, labour, information) they are discussing rather than treating it as one undifferentiated force.",example:"Globalisation has simultaneously lifted millions from poverty and disrupted manufacturing employment in developed economies."},
+  {n:46,term:"Geopolitical",cat:"issues",def:"Relating to politics as shaped by geography, particularly the relations and rivalries between nations and regions.",context:"Useful precision term for Political/International topics — signals awareness that a conflict or policy is shaped by strategic geographic interest, not just ideology.",example:"Control of shipping lanes remains a central geopolitical concern in regional disputes."},
+  {n:47,term:"Socioeconomic",cat:"issues",def:"Relating to the combined influence of social and economic factors on a person's or group's circumstances.",context:"Preferred over vaguer terms like \u201cpoor\u201d or \u201cprivileged\u201d when discussing structural inequality — signals that you are considering both social and economic dimensions together.",example:"Socioeconomic background remains one of the strongest predictors of educational attainment."},
+  {n:48,term:"Marginalised",cat:"issues",def:"Pushed to the edges of society, with limited access to power, resources, representation, or decision-making.",context:"Preferred over emotive alternatives when discussing disadvantaged groups in an evaluative, academic register.",example:"Rural communities are often marginalised in national policy debates dominated by urban concerns."},
+  {n:49,term:"Polarisation",cat:"issues",def:"The process by which opinions, groups, or public debate become increasingly divided into opposing extremes, with less common ground remaining.",context:"A key term for Political/Media essays discussing the effect of social media or partisan news on public discourse.",example:"Algorithmic content recommendation has been linked to increasing political polarisation."},
+  {n:50,term:"Autonomy",cat:"issues",def:"The capacity of an individual, group, or nation to make independent decisions, free from external control.",context:"Applies across Political (national autonomy), Ethical (personal autonomy in medical decisions), and Social (individual autonomy vs. collective welfare) topic areas.",example:"Debates over vaccine mandates often centre on the tension between personal autonomy and collective public health."}
+];
+
+const CAT_NAMES = {argument:"Argumentation",rhetoric:"Rhetoric & Style",academic:"Academic Writing",evidence:"Evidence & Evaluation",issues:"Contemporary Issues"};
+
+let currentFilter = 'all';
+let starOnly = false;
+let currentView = 'list';
+let starred = new Set(JSON.parse(localStorage.getItem('gp_e50_starred')||'[]'));
+let openTerms = new Set();
+
+function toggleStar(n,ev){
+  ev.stopPropagation();
+  if(starred.has(n)) starred.delete(n); else starred.add(n);
+  localStorage.setItem('gp_e50_starred', JSON.stringify([...starred]));
+  renderList();
+}
+function toggleOpen(n){
+  if(openTerms.has(n)) openTerms.delete(n); else openTerms.add(n);
+  renderList();
+}
+function setFilter(cat, btn){
+  currentFilter = cat;
+  document.querySelectorAll('.filter-row .filter-btn[data-cat]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderList();
+}
+function toggleStarOnly(){
+  starOnly = !starOnly;
+  document.getElementById('starOnlyBtn').classList.toggle('active', starOnly);
+  renderList();
+}
+function setView(v){
+  currentView = v;
+  document.getElementById('listViewBtn').classList.toggle('active', v==='list');
+  document.getElementById('compactViewBtn').classList.toggle('active', v==='compact');
+  document.getElementById('termContainer').classList.toggle('compact', v==='compact');
+  renderList();
+}
+
+function renderList(){
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  let filtered = TERMS.filter(t=>{
+    if(currentFilter!=='all' && t.cat!==currentFilter) return false;
+    if(starOnly && !starred.has(t.n)) return false;
+    if(q && !(t.term.toLowerCase().includes(q) || t.def.toLowerCase().includes(q))) return false;
+    return true;
+  });
+  const container = document.getElementById('termContainer');
+  document.getElementById('statsBar').innerHTML = `Showing <strong>${filtered.length}</strong> of <strong>50</strong> terms`;
+  if(filtered.length===0){
+    container.innerHTML = '<div class="no-results">No terms match your search or filter.</div>';
+    return;
+  }
+  container.innerHTML = filtered.map(t=>{
+    const isOpen = openTerms.has(t.n);
+    return `
+    <div class="term-card" id="term-${t.n}">
+      <div class="term-head" onclick="toggleOpen(${t.n})">
+        <div style="display:flex;align-items:center;gap:0.6rem">
+          <span class="term-num">#${t.n}</span>
+          <span class="term-name">${t.term}</span>
+          <span class="term-tag tag-${t.cat}">${CAT_NAMES[t.cat]}</span>
+        </div>
+        <button class="star-btn ${starred.has(t.n)?'starred':''}" onclick="toggleStar(${t.n},event)">${starred.has(t.n)?'⭐':'☆'}</button>
+      </div>
+      <div class="term-body ${isOpen?'open':''}">
+        <div class="term-def">${t.def}</div>
+        <div class="term-block block-context"><span class="block-label">Exam Context</span>${t.context}</div>
+        <div class="term-block block-example"><span class="block-label">Example</span>${t.example}</div>
+        ${t.confuse?`<div class="term-block block-confuse"><span class="block-label">⚠ Don't Confuse</span>${t.confuse}</div>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+document.addEventListener('DOMContentLoaded', renderList);
+</script>
+</body>
+</html>

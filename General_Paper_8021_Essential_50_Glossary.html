@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cambridge AICE General Paper 8021 — Complete Glossary Reference</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --navy:#0F2A47;--navy-light:#DEE7F2;
+    --wine:#6B1F2E;--wine-light:#F8E4E8;--wine-dark:#401019;--wine-mid:#8B2A3F;
+    --teal:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+    --blue:#185FA5;--blue-light:#E6F1FB;--blue-dark:#0C447C;
+    --purple:#534AB7;--purple-light:#EEEDFE;--purple-dark:#2E2779;
+    --coral:#D85A30;--coral-light:#FAECE7;--coral-dark:#712B13;
+    --gold:#C4922E;--gold-light:#FAEEDA;--gold-dark:#6B4F11;
+    --green:#639922;--green-light:#EAF3DE;--green-dark:#27500A;
+    --red-light:#FCEBEB;--red-dark:#501313;--red-mid:#E24B4A;
+    --gray-light:#F5F5F3;--gray-dark:#444441;
+    --text:#1A1A1A;--muted:#555;--border:#DDD;
+    --bg:#FFF;--surface:#F8F8F6;
+    --radius:8px;--radius-lg:12px;
+    --shadow:0 1px 3px rgba(0,0,0,0.08);
+    --shadow-lg:0 4px 12px rgba(0,0,0,0.06)
+  }
+  body{font-family:Georgia,'Times New Roman',serif;background:var(--surface);color:var(--text);line-height:1.55;font-size:15px}
+  .site-header{background:var(--navy);color:#fff;padding:1rem 2rem;position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:1rem;box-shadow:var(--shadow-lg);border-bottom:3px solid var(--wine)}
+  .site-header .brand{font-size:1rem;font-weight:700;font-family:Arial,sans-serif}
+  .site-header .meta{font-size:0.78rem;color:#c8d4e3;font-family:Arial,sans-serif}
+  .module-tag{display:inline-block;background:var(--wine);color:#fff;font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:999px;font-family:Arial,sans-serif;letter-spacing:0.5px}
+  .page-wrap{max-width:1100px;margin:0 auto;padding:0 1rem 3rem}
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,#1d4068 100%);color:#fff;border-radius:var(--radius-lg);padding:1.75rem;margin:1.25rem 0;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;top:-50%;right:-10%;width:300px;height:300px;background:var(--red-mid);opacity:0.1;border-radius:50%}
+  .hero-badge{display:inline-block;background:var(--wine);color:#fff;font-size:0.7rem;font-weight:700;padding:4px 12px;border-radius:999px;margin-bottom:0.65rem;font-family:Arial,sans-serif;letter-spacing:0.5px;text-transform:uppercase}
+  .hero h2{font-size:1.7rem;margin-bottom:0.4rem;font-family:Arial,sans-serif}
+  .hero p{font-size:0.92rem;color:#c8d4e3;font-family:Arial,sans-serif;max-width:760px;position:relative}
+  .controls{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:0.95rem 1.15rem;margin:1rem 0;font-family:Arial,sans-serif;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:0.75rem}
+  .search-box{position:relative}
+  .search-box input{width:100%;padding:0.7rem 1rem 0.7rem 2.4rem;border:1px solid var(--border);border-radius:var(--radius);font-family:Arial,sans-serif;font-size:0.9rem;background:var(--surface)}
+  .search-box input:focus{outline:none;border-color:var(--navy)}
+  .search-box::before{content:"🔍";position:absolute;left:0.8rem;top:50%;transform:translateY(-50%);font-size:1rem;opacity:0.5}
+  .filter-row{display:flex;flex-wrap:wrap;gap:0.4rem;align-items:center}
+  .filter-row .label{font-size:0.72rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-right:0.3rem}
+  .filter-btn{background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:0.35rem 0.8rem;font-family:Arial,sans-serif;font-size:0.78rem;cursor:pointer;color:var(--text);transition:all 0.15s;font-weight:600}
+  .filter-btn:hover{background:var(--navy-light)}
+  .filter-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .filter-btn.active.topic1{background:var(--blue)}
+  .filter-btn.active.topic2{background:var(--teal-dark)}
+  .filter-btn.active.topic3{background:var(--purple)}
+  .filter-btn.active.general{background:var(--gold-dark)}
+  .stats{font-size:0.72rem;color:var(--muted);font-family:Arial,sans-serif}
+  .stats strong{color:var(--navy)}
+  .az-row{display:flex;flex-wrap:wrap;gap:0.25rem;font-family:Arial,sans-serif}
+  .az-btn{background:var(--surface);border:1px solid var(--border);border-radius:5px;width:26px;height:26px;font-size:0.75rem;cursor:pointer;font-weight:700;color:var(--muted)}
+  .az-btn.active{background:var(--wine);color:#fff;border-color:var(--wine)}
+  .term-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0.75rem}
+  .mini-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:0.85rem 1rem;box-shadow:var(--shadow)}
+  .mini-head{display:flex;justify-content:space-between;align-items:baseline;gap:0.5rem;margin-bottom:0.35rem}
+  .mini-term{font-weight:700;font-family:Arial,sans-serif;color:var(--navy);font-size:0.98rem}
+  .mini-tag{font-size:0.62rem;font-weight:700;padding:2px 7px;border-radius:999px;font-family:Arial,sans-serif;letter-spacing:0.3px;text-transform:uppercase;white-space:nowrap}
+  .tag-topic1{background:var(--blue-light);color:var(--blue-dark)}
+  .tag-topic2{background:var(--teal-light);color:var(--teal-dark)}
+  .tag-topic3{background:var(--purple-light);color:var(--purple-dark)}
+  .tag-general{background:var(--gold-light);color:var(--gold-dark)}
+  .mini-def{font-size:0.85rem;color:var(--muted)}
+  .no-results{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-family:Arial,sans-serif;grid-column:1/-1}
+  .footer-note{text-align:center;font-family:Arial,sans-serif;font-size:0.75rem;color:var(--muted);margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border)}
+  @media(max-width:640px){.hero h2{font-size:1.35rem}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div>
+    <div class="brand">📘 Cambridge AICE General Paper 8021</div>
+    <div class="meta">Complete Glossary Reference — Topic Vocabulary</div>
+  </div>
+  <span class="module-tag">Vocabulary · Build 1</span>
+</header>
+
+<div class="page-wrap">
+
+  <div class="hero">
+    <div class="hero-badge">Vocabulary Workbook · Part 2 of 2</div>
+    <h2>100 Supplementary Terms Across the Three Topic Areas</h2>
+    <p>Where the Essential 50 covers argumentation, rhetoric, and evaluation vocabulary used in every essay, this reference builds topic-specific vocabulary across Cambridge's three broad areas: Economic/Historical/Moral/Political/Social, Science/Technology/Environment, and Literature/Language/Arts/Media — plus a general supplementary set. Use this as a lookup, not a memorisation list: precise topic vocabulary, dropped into an essay at the right moment, signals command of the subject matter that AO1 rewards.</p>
+  </div>
+
+  <div class="controls">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search by term or definition..." oninput="renderList()">
+    </div>
+    <div class="filter-row">
+      <span class="label">Topic Area:</span>
+      <button class="filter-btn active" data-cat="all" onclick="setFilter('all',this)">All 100</button>
+      <button class="filter-btn topic1" data-cat="topic1" onclick="setFilter('topic1',this)">Economic / Political / Social</button>
+      <button class="filter-btn topic2" data-cat="topic2" onclick="setFilter('topic2',this)">Science / Technology / Environment</button>
+      <button class="filter-btn topic3" data-cat="topic3" onclick="setFilter('topic3',this)">Literature / Arts / Media</button>
+      <button class="filter-btn general" data-cat="general" onclick="setFilter('general',this)">General Academic</button>
+    </div>
+    <div class="az-row" id="azRow"></div>
+    <div class="stats" id="statsBar"></div>
+  </div>
+
+  <div class="term-grid" id="termContainer"></div>
+  <div class="footer-note">Cambridge AICE General Paper 8021 · Complete Glossary Reference · Part of the General Paper Study Series · Companion to the Essential 50 Glossary and Common Confusions resources</div>
+</div>
+
+<script>
+const TERMS = [
+  // ECONOMIC, HISTORICAL, MORAL, POLITICAL & SOCIAL (topic1)
+  {term:"Austerity",cat:"topic1",def:"Reduced government spending, typically implemented to address a budget deficit."},
+  {term:"Deficit",cat:"topic1",def:"The amount by which spending exceeds revenue in a given period."},
+  {term:"Recession",cat:"topic1",def:"A sustained period of economic decline, typically measured by falling GDP over two consecutive quarters."},
+  {term:"Inflation",cat:"topic1",def:"A general rise in prices and a corresponding fall in the purchasing power of money."},
+  {term:"Meritocracy",cat:"topic1",def:"A system in which advancement is based on ability and achievement rather than wealth or birth."},
+  {term:"Oligarchy",cat:"topic1",def:"A system of government in which power rests with a small, often wealthy, elite."},
+  {term:"Authoritarianism",cat:"topic1",def:"A system of government that concentrates power and demands strict obedience from citizens."},
+  {term:"Totalitarianism",cat:"topic1",def:"A system in which the state seeks to control nearly all aspects of public and private life."},
+  {term:"Nationalism",cat:"topic1",def:"Devotion to the interests and culture of one's own nation, often prioritised above international cooperation."},
+  {term:"Isolationism",cat:"topic1",def:"A policy of avoiding political or economic involvement in the affairs of other countries."},
+  {term:"Diplomacy",cat:"topic1",def:"The management of relationships between nations through negotiation rather than conflict."},
+  {term:"Sovereignty",cat:"topic1",def:"The authority of a state to govern itself without external interference."},
+  {term:"Colonialism",cat:"topic1",def:"The policy of acquiring political control over another territory and its people, often exploiting its resources."},
+  {term:"Reparations",cat:"topic1",def:"Compensation given for historical wrongdoing, such as colonialism or slavery."},
+  {term:"Discrimination",cat:"topic1",def:"Unjust or prejudicial treatment of different categories of people, especially on grounds of race, age, or sex."},
+  {term:"Prejudice",cat:"topic1",def:"A preconceived opinion about a person or group not based on reason or direct experience."},
+  {term:"Stereotype",cat:"topic1",def:"A widely held but oversimplified image or idea of a particular type of person or thing."},
+  {term:"Assimilation",cat:"topic1",def:"The process by which a minority group gradually adopts the customs and attitudes of a dominant culture."},
+  {term:"Multiculturalism",cat:"topic1",def:"The coexistence and mutual respect of diverse cultures within a single society."},
+  {term:"Xenophobia",cat:"topic1",def:"Fear, dislike, or hatred of that which is perceived as foreign or strange."},
+  {term:"Utilitarianism",cat:"topic1",def:"The ethical theory that the most moral action is the one that maximises overall wellbeing."},
+  {term:"Egalitarianism",cat:"topic1",def:"The belief that all people are fundamentally equal and deserve equal rights and opportunities."},
+  {term:"Paternalism",cat:"topic1",def:"The policy of limiting a group's freedom or responsibility for what is believed to be their own good."},
+  {term:"Civil disobedience",cat:"topic1",def:"The refusal to obey certain laws or demands as a form of peaceful, principled protest."},
+  {term:"Rehabilitation",cat:"topic1",def:"Restoring a person, such as an offender, to a useful life through treatment, training, or education."},
+  {term:"Recidivism",cat:"topic1",def:"The tendency of a convicted criminal to reoffend after release."},
+  {term:"Retribution",cat:"topic1",def:"Punishment inflicted on someone as vengeance for a wrong they have committed."},
+  {term:"Welfare state",cat:"topic1",def:"A system in which the government plays a central role in providing for citizens' economic and social wellbeing."},
+  {term:"Universal basic income",cat:"topic1",def:"A proposed policy providing all citizens with a regular, unconditional sum of money regardless of employment status."},
+  {term:"Gentrification",cat:"topic1",def:"The process by which a poorer urban area is renovated and improved, often displacing existing lower-income residents."},
+
+  // SCIENCE, TECHNOLOGY, ENVIRONMENT & MATHEMATICS (topic2)
+  {term:"Biodiversity",cat:"topic2",def:"The variety of plant and animal life in a particular habitat or across the world."},
+  {term:"Ecosystem",cat:"topic2",def:"A biological community of interacting organisms together with their physical environment."},
+  {term:"Carbon footprint",cat:"topic2",def:"The total amount of greenhouse gases produced by an individual's or organisation's activities."},
+  {term:"Renewable energy",cat:"topic2",def:"Energy generated from a source that is naturally replenished, such as wind, solar, or hydro power."},
+  {term:"Fossil fuel",cat:"topic2",def:"A natural fuel such as coal or oil, formed over millions of years from the remains of living organisms."},
+  {term:"Deforestation",cat:"topic2",def:"The large-scale clearing of forests, typically for agricultural, industrial, or urban use."},
+  {term:"Conservation",cat:"topic2",def:"The protection and careful management of the environment and natural resources."},
+  {term:"Genetic engineering",cat:"topic2",def:"The deliberate modification of an organism's genetic material to achieve a desired trait."},
+  {term:"Bioethics",cat:"topic2",def:"The study of ethical issues arising from advances in biology and medicine."},
+  {term:"Artificial intelligence",cat:"topic2",def:"Computer systems designed to perform tasks that normally require human intelligence."},
+  {term:"Automation",cat:"topic2",def:"The use of technology to perform tasks with minimal human intervention."},
+  {term:"Algorithm",cat:"topic2",def:"A defined set of rules or instructions followed by a computer to perform a task or solve a problem."},
+  {term:"Surveillance",cat:"topic2",def:"Close, often continuous observation of a person, group, or population."},
+  {term:"Encryption",cat:"topic2",def:"The process of converting information into a code to prevent unauthorised access."},
+  {term:"Cybersecurity",cat:"topic2",def:"Measures taken to protect computer systems and networks from digital attack or unauthorised access."},
+  {term:"Epidemiology",cat:"topic2",def:"The study of how diseases spread, and can be controlled, within populations."},
+  {term:"Pandemic",cat:"topic2",def:"An outbreak of a disease that spreads across a wide geographic area, affecting a large proportion of the population."},
+  {term:"Vaccination",cat:"topic2",def:"The administration of a vaccine to stimulate the immune system's protection against a disease."},
+  {term:"Herd immunity",cat:"topic2",def:"Resistance to the spread of a disease within a population once a sufficient proportion has become immune."},
+  {term:"Antibiotic resistance",cat:"topic2",def:"The evolved ability of bacteria to survive exposure to drugs designed to kill them."},
+  {term:"Space exploration",cat:"topic2",def:"The investigation of outer space through both crewed and uncrewed spacecraft."},
+  {term:"Astrophysics",cat:"topic2",def:"The branch of astronomy concerned with the physical properties and behaviour of celestial objects."},
+  {term:"Renewable resource",cat:"topic2",def:"A natural resource that replenishes over time, such as timber, sunlight, or fresh water."},
+  {term:"Non-renewable resource",cat:"topic2",def:"A natural resource that does not replenish on a human timescale, such as oil, coal, or natural gas."},
+  {term:"Circular economy",cat:"topic2",def:"An economic model aimed at eliminating waste through the continual reuse and recycling of resources."},
+  {term:"Greenhouse effect",cat:"topic2",def:"The trapping of the sun's warmth in a planet's atmosphere caused by certain gases, notably carbon dioxide."},
+  {term:"Extrapolation",cat:"topic2",def:"Estimating unknown values or future outcomes by extending a known trend or data sequence."},
+  {term:"Probability",cat:"topic2",def:"A measure of the likelihood that a particular outcome will occur."},
+  {term:"Correlation coefficient",cat:"topic2",def:"A statistical measure indicating the strength and direction of a relationship between two variables."},
+  {term:"Margin of error",cat:"topic2",def:"The range within which the true value of a survey or study result is likely to fall."},
+
+  // LITERATURE, LANGUAGE, ARTS & MEDIA (topic3)
+  {term:"Allegory",cat:"topic3",def:"A narrative in which characters and events symbolically represent a deeper moral, political, or spiritual meaning."},
+  {term:"Motif",cat:"topic3",def:"A recurring element, image, or idea that carries symbolic significance throughout a work."},
+  {term:"Narrative voice",cat:"topic3",def:"The particular perspective and personality through which a story is told."},
+  {term:"Juxtaposition",cat:"topic3",def:"The placement of two contrasting elements side by side to highlight their difference."},
+  {term:"Symbolism",cat:"topic3",def:"The use of symbols — objects, figures, or colours — to represent ideas or qualities beyond their literal meaning."},
+  {term:"Allusion",cat:"topic3",def:"An indirect reference to another work, person, or event, relying on the audience's prior knowledge."},
+  {term:"Satire",cat:"topic3",def:"The use of humour, irony, or exaggeration to criticise vice, folly, or a specific target."},
+  {term:"Parody",cat:"topic3",def:"An imitation of a particular style or work, created for comic or critical effect."},
+  {term:"Genre",cat:"topic3",def:"A category of artistic work characterised by a particular style, form, or subject matter."},
+  {term:"Adaptation",cat:"topic3",def:"A version of a work reworked into a new form or medium, such as a novel adapted into a film."},
+  {term:"Censorship",cat:"topic3",def:"The suppression or restriction of speech, writing, or other media deemed objectionable or harmful."},
+  {term:"Propaganda",cat:"topic3",def:"Information, especially of a biased or misleading nature, used to promote a political cause or point of view."},
+  {term:"Sensationalism",cat:"topic3",def:"The presentation of stories in a way designed to provoke shock, excitement, or strong emotional reaction."},
+  {term:"Tabloid",cat:"topic3",def:"A newspaper style characterised by short, often sensational stories and a smaller page format."},
+  {term:"Broadsheet",cat:"topic3",def:"A newspaper style characterised by serious, in-depth reporting and a larger page format."},
+  {term:"Mass media",cat:"topic3",def:"Communication channels — television, print, radio, internet — through which information reaches large audiences."},
+  {term:"Echo chamber",cat:"topic3",def:"An environment, often online, in which a person only encounters opinions that reinforce their own."},
+  {term:"Disinformation",cat:"topic3",def:"False information deliberately created and spread with the intent to deceive."},
+  {term:"Misinformation",cat:"topic3",def:"False or inaccurate information spread regardless of intent to deceive."},
+  {term:"Op-ed",cat:"topic3",def:"An article expressing the personal opinion of the writer, distinct from factual news reporting."},
+
+  // GENERAL ACADEMIC / WRITING SUPPLEMENTARY (general)
+  {term:"Anecdote",cat:"general",def:"A short, personal account of an incident, used to illustrate a broader point."},
+  {term:"Rhetoric",cat:"general",def:"The art of effective or persuasive speaking and writing."},
+  {term:"Ethos",cat:"general",def:"A persuasive appeal based on the credibility, authority, or character of the speaker."},
+  {term:"Pathos",cat:"general",def:"A persuasive appeal based on evoking the audience's emotions."},
+  {term:"Logos",cat:"general",def:"A persuasive appeal based on logic, reason, and evidence."},
+  {term:"Anaphora",cat:"general",def:"The repetition of a word or phrase at the beginning of successive clauses or sentences, used for emphasis."},
+  {term:"Antithesis",cat:"general",def:"A contrast or opposition between two ideas, often expressed through parallel grammatical structure."},
+  {term:"Analogy",cat:"general",def:"A comparison between two otherwise dissimilar things, made for the purpose of explanation or clarification."},
+  {term:"Paradox",cat:"general",def:"A statement that appears self-contradictory but may reveal an underlying truth on closer examination."},
+  {term:"Ambiguity",cat:"general",def:"The quality of a word, phrase, or statement being open to more than one interpretation."},
+  {term:"Implication",cat:"general",def:"A suggestion or conclusion that can reasonably be drawn from a statement without being explicitly stated."},
+  {term:"Inference",cat:"general",def:"A conclusion reached on the basis of evidence and reasoning, rather than direct statement."},
+  {term:"Context",cat:"general",def:"The circumstances surrounding a text, statement, or event that shape and clarify its meaning."},
+  {term:"Perspective",cat:"general",def:"A particular attitude toward, or way of viewing, an issue or event."},
+  {term:"Evaluation",cat:"general",def:"A reasoned judgment about the value, quality, validity, or significance of something."},
+  {term:"Justification",cat:"general",def:"Reasoning or evidence provided to support a decision, position, or claim."},
+  {term:"Framing",cat:"general",def:"The way an issue or event is presented, which shapes how an audience is likely to interpret it."},
+  {term:"Precedent",cat:"general",def:"An earlier event, ruling, or decision used as a guide or justification for later ones."},
+  {term:"Dilemma",cat:"general",def:"A situation requiring a difficult choice between two or more equally undesirable options."},
+  {term:"Consensus",cat:"general",def:"General agreement reached among a group of people, often after discussion of differing views."}
+];
+
+const CAT_NAMES = {topic1:"Economic/Political/Social",topic2:"Science/Technology/Environment",topic3:"Literature/Arts/Media",general:"General Academic"};
+let currentFilter = 'all';
+let currentLetter = null;
+
+function buildAZ(){
+  const letters = [...new Set(TERMS.map(t=>t.term[0].toUpperCase()))].sort();
+  document.getElementById('azRow').innerHTML =
+    `<span class="label" style="margin-right:0.4rem">Jump to:</span>` +
+    letters.map(l=>`<button class="az-btn" data-l="${l}" onclick="setLetter('${l}',this)">${l}</button>`).join('');
+}
+function setLetter(l, btn){
+  currentLetter = (currentLetter === l) ? null : l;
+  document.querySelectorAll('.az-btn').forEach(b=>b.classList.remove('active'));
+  if(currentLetter) btn.classList.add('active');
+  renderList();
+}
+function setFilter(cat, btn){
+  currentFilter = cat;
+  document.querySelectorAll('.filter-row .filter-btn[data-cat]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderList();
+}
+
+function renderList(){
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  let filtered = TERMS.filter(t=>{
+    if(currentFilter!=='all' && t.cat!==currentFilter) return false;
+    if(currentLetter && t.term[0].toUpperCase()!==currentLetter) return false;
+    if(q && !(t.term.toLowerCase().includes(q) || t.def.toLowerCase().includes(q))) return false;
+    return true;
+  }).sort((a,b)=>a.term.localeCompare(b.term));
+
+  const container = document.getElementById('termContainer');
+  document.getElementById('statsBar').innerHTML = `Showing <strong>${filtered.length}</strong> of <strong>100</strong> terms`;
+  if(filtered.length===0){
+    container.innerHTML = '<div class="no-results">No terms match your search or filter.</div>';
+    return;
+  }
+  container.innerHTML = filtered.map(t=>`
+    <div class="mini-card">
+      <div class="mini-head">
+        <span class="mini-term">${t.term}</span>
+        <span class="mini-tag tag-${t.cat}">${CAT_NAMES[t.cat]}</span>
+      </div>
+      <div class="mini-def">${t.def}</div>
+    </div>
+  `).join('');
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{ buildAZ(); renderList(); });
+</script>
+</body>
+</html>
