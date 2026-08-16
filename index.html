@@ -31,14 +31,26 @@ h1{text-align:center;font-size:2.2rem;color:var(--white);margin-bottom:12px}
 .cc-wine{border-color:rgba(107,31,46,.4)}
 .cc-wine::before{background:linear-gradient(135deg,rgba(196,75,90,.10),transparent)}
 .cc-wine:hover{border-color:rgba(196,75,90,.55);box-shadow:0 16px 44px rgba(196,75,90,.18)}
+.cc-teal{border-color:rgba(29,158,117,.35)}
+.cc-teal::before{background:linear-gradient(135deg,rgba(29,158,117,.10),transparent)}
+.cc-teal:hover{border-color:rgba(29,158,117,.55);box-shadow:0 16px 44px rgba(29,158,117,.18)}
+.cc-purple{border-color:rgba(139,92,246,.35)}
+.cc-purple::before{background:linear-gradient(135deg,rgba(139,92,246,.10),transparent)}
+.cc-purple:hover{border-color:rgba(139,92,246,.55);box-shadow:0 16px 44px rgba(139,92,246,.18)}
+.cc-amber{border-color:rgba(229,148,0,.35)}
+.cc-amber::before{background:linear-gradient(135deg,rgba(229,148,0,.10),transparent)}
+.cc-amber:hover{border-color:rgba(229,148,0,.55);box-shadow:0 16px 44px rgba(229,148,0,.18)}
 .course-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;position:relative;z-index:1}
 .ic-sky{background:rgba(46,139,192,.14);border:1px solid rgba(46,139,192,.3)}
 .ic-wine{background:rgba(196,75,90,.14);border:1px solid rgba(196,75,90,.3)}
+.ic-teal{background:rgba(29,158,117,.14);border:1px solid rgba(29,158,117,.3)}
+.ic-purple{background:rgba(139,92,246,.14);border:1px solid rgba(139,92,246,.3)}
+.ic-amber{background:rgba(229,148,0,.14);border:1px solid rgba(229,148,0,.3)}
 .course-name{font-size:1.3rem;font-weight:800;color:var(--white);position:relative;z-index:1}
 .course-desc{font-size:0.87rem;color:var(--muted);line-height:1.6;position:relative;z-index:1}
 .course-meta{display:flex;gap:14px;font-size:0.72rem;color:var(--muted);font-family:'DM Mono',monospace;position:relative;z-index:1}
 .course-cta{font-size:0.78rem;font-weight:700;margin-top:4px;display:flex;align-items:center;gap:6px;position:relative;z-index:1}
-.cta-sky{color:var(--sky)} .cta-wine{color:#D8656F}
+.cta-sky{color:var(--sky)} .cta-wine{color:#D8656F} .cta-teal{color:#4fd1a5} .cta-purple{color:#b39bf5} .cta-amber{color:#efb44e}
 .course-card:hover .arrow{transform:translateX(5px)}
 .arrow{transition:transform .25s}
 .footer{text-align:center;margin-top:56px;font-size:0.75rem;color:var(--muted);font-family:'DM Mono',monospace}
@@ -67,9 +79,33 @@ h1{text-align:center;font-size:2.2rem;color:var(--white);margin-bottom:12px}
       <div class="course-meta"><span>8 resources</span><span>150 terms</span><span>40 questions</span></div>
       <div class="course-cta cta-wine">Open General Paper Hub <span class="arrow">→</span></div>
     </a>
+
+    <a class="course-card cc-teal" href="PhysicalScience_StudyHub.html">
+      <div class="course-icon ic-teal">⚛️</div>
+      <div class="course-name">Physical Science Honors</div>
+      <div class="course-desc">Master Glossary, Drill Trainer, and Mistakes Autopsy covering Nature of Science, Atomic Structure, Bonding, Energy, Nuclear Science, and Motion &amp; Forces — Florida NGSSS aligned.</div>
+      <div class="course-meta"><span>4 resources</span><span>194 terms</span><span>117 questions</span></div>
+      <div class="course-cta cta-teal">Open Physical Science Hub <span class="arrow">→</span></div>
+    </a>
+
+    <a class="course-card cc-purple" href="GameDesign_StudyHub.html">
+      <div class="course-icon ic-purple">🎮</div>
+      <div class="course-name">Game &amp; Simulation Foundations</div>
+      <div class="course-desc">Master Glossary, Drill Trainer, and Mistakes Autopsy built on Unity Certified User: Programmer objectives, with a reserved Artist certification track.</div>
+      <div class="course-meta"><span>4 resources</span><span>79 terms</span><span>42 questions</span></div>
+      <div class="course-cta cta-purple">Open Game Design Hub <span class="arrow">→</span></div>
+    </a>
+
+    <a class="course-card cc-amber" href="WorldHistory_StudyHub.html">
+      <div class="course-icon ic-amber">🗺️</div>
+      <div class="course-name">Pre-AP World History &amp; Geography</div>
+      <div class="course-desc">Master Glossary, Drill Trainer, and Mistakes Autopsy spanning Geography, Early Modern, Modern, and Contemporary periods — College Board Pre-AP Pathway 2.</div>
+      <div class="course-meta"><span>4 resources</span><span>106 terms</span><span>58 questions</span></div>
+      <div class="course-cta cta-amber">Open World History Hub <span class="arrow">→</span></div>
+    </a>
   </div>
 
-  <div class="footer">Hosted study series · Add new courses here as they're built</div>
+  <div class="footer">5 courses live · Engineering and JROTC in development</div>
 </div>
 </body>
 </html>

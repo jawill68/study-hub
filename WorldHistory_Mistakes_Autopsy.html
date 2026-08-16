@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pre-AP World History &amp; Geography — Common Mistakes Autopsy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
+  --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(231,76,60,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(231,76,60,0.035) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:920px;margin:0 auto;padding:26px 20px 70px}
+
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--red)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+.fmm-btn{background:linear-gradient(135deg,var(--red),#c0392b);border:none;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:11px 20px;border-radius:11px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.fmm-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(231,76,60,.32)}
+
+.path-banner{background:linear-gradient(135deg,rgba(229,148,0,.1),rgba(46,139,192,.06));border:1px solid var(--border);border-radius:12px;padding:11px 16px;margin-bottom:18px;font-size:12.5px;color:var(--text)}
+.path-banner b{color:#efb44e}
+
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px;flex:1}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+
+.controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;flex-direction:column;gap:11px}
+.ctrl-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--muted);min-width:56px}
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--red);color:var(--text)}
+.pill.active{background:var(--red);border-color:var(--red);color:#fff}
+.pill-mastered.active{background:var(--teal);border-color:var(--teal)}
+.search-wrap{position:relative;flex:1;min-width:200px}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.55}
+.search-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px 10px 34px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13.5px}
+.search-input:focus{outline:none;border-color:var(--red)}
+
+.count-line{font-size:12px;color:var(--muted);margin-bottom:12px}
+.count-line b{color:var(--white);font-family:'DM Mono',monospace}
+
+.mk{background:var(--card);border:1px solid var(--border);border-radius:15px;margin-bottom:12px;overflow:hidden;transition:all .18s}
+.mk:hover{border-color:rgba(231,76,60,.4)}
+.mk.mastered{border-color:rgba(29,158,117,.4)}
+.mk-head{padding:15px 18px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;cursor:pointer}
+.mk-head:hover{background:var(--card2)}
+.mk-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);font-weight:500}
+.mk-title{font-size:15.5px;font-weight:700;color:var(--white);margin-top:3px;line-height:1.35}
+.mk-tags{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:7px}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:6px;white-space:nowrap}
+.t-unit{background:rgba(46,139,192,.16);color:#7cc0e6;border:1px solid rgba(46,139,192,.3)}
+.t-freq-high{background:rgba(231,76,60,.15);color:#f08579;border:1px solid rgba(231,76,60,.3)}
+.t-freq-med{background:rgba(229,148,0,.14);color:#efb44e;border:1px solid rgba(229,148,0,.3)}
+.mk-right{display:flex;align-items:center;gap:9px;flex-shrink:0}
+.chev{color:var(--muted);font-size:13px;transition:transform .2s}
+.mk.open .chev{transform:rotate(180deg)}
+.master-btn{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:5px 11px;font-size:10.5px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap}
+.master-btn:hover{border-color:var(--teal);color:var(--teal)}
+.master-btn.on{background:var(--teal);border-color:var(--teal);color:#fff}
+
+.mk-body{display:none;padding:0 18px 18px}
+.mk.open .mk-body{display:block}
+.setup-box{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 15px;font-size:13.5px;margin-bottom:13px}
+.setup-lbl{font-size:9px;font-weight:700;letter-spacing:.11em;color:var(--muted);display:block;margin-bottom:5px}
+
+.vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:13px}
+@media(max-width:680px){.vs-grid{grid-template-columns:1fr}}
+.vs-box{border-radius:11px;padding:13px 15px;border:1px solid}
+.vs-wrong{background:rgba(231,76,60,.07);border-color:rgba(231,76,60,.3)}
+.vs-right{background:rgba(29,158,117,.07);border-color:rgba(29,158,117,.3)}
+.vs-head{font-size:11px;font-weight:800;letter-spacing:.06em;margin-bottom:8px}
+.vs-wrong .vs-head{color:#f08579}
+.vs-right .vs-head{color:#4fd1a5}
+.vs-text{font-size:13px;line-height:1.55}
+
+.why-box{background:rgba(139,92,246,.06);border-left:2px solid var(--purple);border-radius:9px;padding:11px 14px;font-size:13px;margin-bottom:11px}
+.why-lbl{font-size:9px;font-weight:700;letter-spacing:.11em;color:#b39bf5;display:block;margin-bottom:5px}
+.take-box{background:rgba(229,148,0,.07);border-left:2px solid var(--amber);border-radius:9px;padding:11px 14px;font-size:13px;font-weight:600}
+.take-lbl{font-size:9px;font-weight:700;letter-spacing:.11em;color:#efb44e;display:block;margin-bottom:5px}
+
+.empty{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px}
+
+.modal-bg{position:fixed;inset:0;background:rgba(3,8,16,.87);backdrop-filter:blur(4px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px;overflow-y:auto}
+.modal-bg.open{display:flex}
+.fmm-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:26px;max-width:620px;width:100%;position:relative;margin:auto}
+.fmm-close{position:absolute;top:14px;right:16px;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;z-index:2}
+.fmm-prog{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--muted);margin-bottom:13px}
+.fmm-lbl{font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--red);margin-bottom:8px}
+.fmm-scenario{background:var(--bg);border:1px solid rgba(231,76,60,.3);border-radius:12px;padding:14px 16px;font-size:14px;margin-bottom:16px;line-height:1.55}
+.fmm-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.fmm-opt{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:12px 15px;cursor:pointer;text-align:left;font-family:'DM Sans',sans-serif;font-size:13.5px;color:var(--text);display:flex;gap:11px;align-items:flex-start;width:100%;transition:all .16s}
+.fmm-opt:hover:not(:disabled){border-color:var(--red);background:var(--card2)}
+.fmm-opt:disabled{cursor:default}
+.fmm-key{width:22px;height:22px;border-radius:6px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0;color:var(--muted)}
+.fmm-opt.correct{border-color:var(--teal);background:rgba(29,158,117,.11)}
+.fmm-opt.correct .fmm-key{background:var(--teal);border-color:var(--teal);color:#fff}
+.fmm-opt.wrong{border-color:var(--red);background:rgba(231,76,60,.10)}
+.fmm-opt.wrong .fmm-key{background:var(--red);border-color:var(--red);color:#fff}
+.fmm-fb{border-radius:11px;padding:13px 15px;font-size:13px;margin-bottom:14px;display:none}
+.fmm-fb.show{display:block}
+.fmm-fb.ok{background:rgba(29,158,117,.09);border:1px solid rgba(29,158,117,.3)}
+.fmm-fb.no{background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.3)}
+.btn{border:none;border-radius:11px;padding:12px 22px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;width:100%}
+.btn-next{background:var(--sky);color:#fff}
+.btn-ghost{background:var(--bg);border:1px solid var(--border);color:var(--text)}
+.fmm-done{text-align:center}
+.fmm-score{font-size:2.6rem;font-weight:800;font-family:'DM Mono',monospace;color:var(--teal)}
+.fmm-btns{display:flex;gap:8px;margin-top:16px}
+
+@media(max-width:640px){.page-title{font-size:1.5rem}.ctrl-label{min-width:auto}}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <a href="WorldHistory_StudyHub.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--amber);text-decoration:none;margin-bottom:14px;opacity:.85">← World History Study Hub</a>
+
+  <div class="header">
+    <div>
+      <div class="series-label">Pre-AP World History &amp; Geography · Study Resource Series · Build 3</div>
+      <div class="page-title">Common Mistakes <span>Autopsy</span></div>
+      <div class="page-sub" id="page-sub">Loading…</div>
+    </div>
+    <button class="fmm-btn" onclick="startFMM()">🔍 Find My Mistake</button>
+  </div>
+
+  <div class="path-banner">🗺️ <b>Pathway 2</b> — Geography, Early Modern, Modern, and Contemporary periods, per the College Board Pre-AP framework.</div>
+
+  <div class="stats-row">
+    <div class="stat-chip"><div class="stat-num" id="s-total">—</div><div class="stat-lbl">TOTAL ERRORS</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--teal)" id="s-mastered">0</div><div class="stat-lbl">MASTERED</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--amber)" id="s-remaining">—</div><div class="stat-lbl">REMAINING</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--red)" id="s-fmm">—</div><div class="stat-lbl">FIND MY MISTAKE</div></div>
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-row">
+      <span class="ctrl-label">SEARCH</span>
+      <div class="search-wrap">
+        <span class="search-icon">🔎</span>
+        <input class="search-input" id="search-input" type="text" placeholder="Search mistakes, topics, keywords…" oninput="render()">
+      </div>
+    </div>
+    <div class="ctrl-row">
+      <span class="ctrl-label">UNIT</span>
+      <button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button>
+      <button class="pill" data-unit="U1" onclick="setUnit('U1',this)">U1</button>
+      <button class="pill" data-unit="U2" onclick="setUnit('U2',this)">U2</button>
+      <button class="pill" data-unit="U3" onclick="setUnit('U3',this)">U3</button>
+      <button class="pill" data-unit="U4" onclick="setUnit('U4',this)">U4</button>
+    </div>
+    <div class="ctrl-row">
+      <span class="ctrl-label">FILTER</span>
+      <button class="pill" id="btn-high" onclick="toggleHigh()">🔥 High Frequency</button>
+      <button class="pill pill-mastered" id="btn-unmastered" onclick="toggleUnmastered()">Not Yet Mastered</button>
+      <button class="pill" onclick="expandAll(true)">Expand All</button>
+      <button class="pill" onclick="expandAll(false)">Collapse All</button>
+    </div>
+  </div>
+
+  <div class="count-line" id="count-line"></div>
+  <div id="mk-list"></div>
+
+  <div style="margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center">
+    Pre-AP World History &amp; Geography (21094150) · College Board Pre-AP Framework · Pathway 2 · Common Mistakes Autopsy
+  </div>
+</div>
+
+<div class="modal-bg" id="fmm-modal"><div class="fmm-box" id="fmm-box"></div></div>
+
+<script>
+// ═══════════════════════════════════════════
+// PRE-AP WORLD HISTORY & GEOGRAPHY — COMMON MISTAKES AUTOPSY
+// Pathway 2. freq: "high"|"med"  u: U1-U4
+// diag = Find My Mistake options; dA = correct index
+// ═══════════════════════════════════════════
+const MISTAKES = [
+{u:"U1",freq:"med",title:"Confusing absolute and relative location",
+setup:"A student describes New Zealand's location by writing '41°S, 174°E' and labels this 'relative location.'",
+wrong:"Labeling fixed coordinates as relative location. Coordinates are a precise, unchanging system — the opposite of relative description.",
+right:"Coordinates like latitude and longitude are absolute location. Relative location instead describes a place in terms of its surroundings, like 'southeast of Australia, across the Tasman Sea.'",
+why:"The two terms sound like they could be interchangeable general 'location' descriptions, but the distinction is precise: one is fixed and numerical, the other is comparative and descriptive.",
+take:"Coordinates = absolute location. Description relative to other places = relative location.",
+diag:["Both descriptions are relative location","Absolute location only applies to countries, not cities","Coordinates are absolute location; describing a place relative to its surroundings is relative location","Relative location requires a compass"],dA:2},
+
+{u:"U1",freq:"med",title:"Mixing up push and pull factors",
+setup:"A student writing about migration describes 'the promise of available farmland in a new territory' as a push factor.",
+wrong:"Labeling an attractive condition in the destination as a push factor. Push factors are what drive people away from where they currently are.",
+right:"Available farmland attracting migrants is a pull factor — something drawing people toward a new place. War, famine, or persecution at home would be push factors.",
+why:"Both terms describe forces behind migration, so it's easy to mix up which direction each one points. The names themselves are the clue: push moves you away, pull draws you toward.",
+take:"Push factors drive people away from home. Pull factors draw people toward a new place.",
+diag:["Farmland availability is a pull factor, since it draws migrants toward the new place rather than driving them from the old one","Farmland availability is correctly labeled a push factor","Push and pull factors mean the same thing","Only economic conditions count as push factors"],dA:0},
+
+{u:"U2",freq:"high",title:"Confusing the Ottoman, Safavid, and Mughal Empires",
+setup:"A student writes that the Taj Mahal was built by the Ottoman Empire.",
+wrong:"Mixing up which of the three major Islamic 'gunpowder empires' controlled which region. All three rose around the same era and shared some cultural and military features, which makes them easy to conflate.",
+right:"The Taj Mahal was built under the Mughal Empire, which ruled the Indian subcontinent. The Ottomans were centered in Anatolia and Southeast Europe; the Safavids in Persia.",
+why:"These three empires are often taught together because they share the label 'gunpowder empire' and rose in overlapping centuries, but they controlled entirely different regions with distinct histories.",
+take:"Ottoman = Anatolia/Southeast Europe. Safavid = Persia. Mughal = Indian subcontinent.",
+diag:["The Taj Mahal was correctly attributed to the Ottomans","The Taj Mahal predates all three gunpowder empires","The Ottomans and Mughals were the same empire","The Taj Mahal was built under the Mughal Empire, which ruled the Indian subcontinent, not the Ottomans"],dA:3},
+
+{u:"U2",freq:"high",title:"Treating mercantilism and capitalism as the same system",
+setup:"A student writes that mercantilism and capitalism are simply two names for the same economic system.",
+wrong:"Conflating an early modern state-directed trade policy with the market-driven system that developed later. Both involve trade and profit, but they operate on very different logic.",
+right:"Mercantilism holds that a nation's wealth depends on accumulating gold and silver through tightly state-controlled trade — exports maximized, imports minimized, often via colonies. Capitalism centers on private ownership and market competition, with a much smaller role for state direction of trade.",
+why:"Both systems involve profit-seeking and international trade, so the terms can blur together. But mercantilism is fundamentally about state control serving national wealth, while capitalism developed around private markets operating with comparatively less state direction.",
+take:"Mercantilism: state-controlled trade for national gold/silver wealth. Capitalism: private ownership competing in markets.",
+diag:["Mercantilism and capitalism are identical systems","Capitalism existed before mercantilism","Mercantilism centers on state-controlled trade to accumulate gold and silver; capitalism centers on private ownership and market competition","Neither system involves trade"],dA:2},
+
+{u:"U2",freq:"high",title:"Assuming the Columbian Exchange only moved goods from the Americas to Europe",
+setup:"A student describes the Columbian Exchange as 'Europe taking crops like potatoes and maize from the Americas.'",
+wrong:"Describing the exchange as one-directional. This misses that the transfer moved in both directions — and included far more than crops.",
+right:"The Columbian Exchange moved items both ways: American crops like maize and potatoes went to Europe and beyond, while European animals like horses and diseases like smallpox came to the Americas, with devastating effects on Indigenous populations.",
+why:"The term 'exchange' should signal a two-way process, but classroom shorthand often emphasizes the crops moving to Europe, since that part had an obviously positive impact on global food supply — leaving the reverse direction, especially disease, underemphasized.",
+take:"The Columbian Exchange moved in both directions — crops, animals, disease, and people — not just from the Americas outward.",
+diag:["The exchange only moved goods from the Americas to Europe","The exchange involved no diseases at all","The exchange moved in both directions, including devastating diseases carried from Europe to the Americas","Only Spain participated in the exchange"],dA:2},
+
+{u:"U2",freq:"med",title:"Confusing the Reformation with the Counter-Reformation",
+setup:"A student writes that Martin Luther led the Counter-Reformation.",
+wrong:"Reversing which movement belongs to which side. Luther's challenge to the Catholic Church was the Reformation itself, not the Church's response to it.",
+right:"Martin Luther led the Protestant Reformation. The Counter-Reformation was the Catholic Church's own response — its internal reforms and doctrinal clarifications, notably through the Council of Trent.",
+why:"Both terms contain 'Reformation,' making them easy to swap. The prefix 'Counter' is the key — it signals the Church's reaction against the movement Luther started, not the movement itself.",
+take:"Reformation = Luther's challenge to the Church. Counter-Reformation = the Church's response.",
+diag:["Luther correctly led the Counter-Reformation","Luther led the Protestant Reformation; the Counter-Reformation was the Catholic Church's response to it","The Reformation and Counter-Reformation happened simultaneously with no relationship","The Counter-Reformation preceded the Reformation"],dA:1},
+
+{u:"U3",freq:"high",title:"Assuming the American Revolution came after the French Revolution",
+setup:"A student writes that the American Revolution was inspired by the French Revolution.",
+wrong:"Reversing the chronological order. The American Revolution (1775–1783) predates the French Revolution (1789–1799) by over a decade.",
+right:"The American Revolution came first and was itself partly an inspiration for French revolutionaries, alongside homegrown Enlightenment ideas already circulating in France.",
+why:"Both revolutions drew on similar Enlightenment ideals and are often studied together, which can blur their sequence. Getting the order backward reverses the direction of influence.",
+take:"American Revolution: 1775–1783. French Revolution: 1789–1799. America came first.",
+diag:["The American Revolution came first, in 1775–1783, over a decade before the French Revolution began in 1789","The American Revolution was inspired by the French Revolution","Both revolutions occurred in the same year","Neither revolution influenced the other"],dA:0},
+
+{u:"U3",freq:"high",title:"Treating 'imperialism' and 'colonization' as identical terms",
+setup:"A student uses 'imperialism' and 'colonization' interchangeably throughout an essay, as if they mean exactly the same thing.",
+wrong:"Collapsing a broader policy concept into one specific method of carrying it out. This loses an important distinction the exam expects students to know.",
+right:"Imperialism is the broader policy of extending a nation's power and influence through territorial, military, economic, or political control. Colonization is one specific method of doing so — establishing settlements and direct rule over a territory.",
+why:"Colonization is such a visible, dramatic form of imperialism that the two terms often get used as synonyms in casual writing. But imperialism can also happen through economic domination or political pressure without establishing formal colonies.",
+take:"Imperialism is the broader policy; colonization is one specific method of pursuing it.",
+diag:["The two terms mean exactly the same thing","Imperialism is the broader policy of extending power; colonization is one specific method of establishing settlements and direct rule","Colonization is broader than imperialism","Imperialism only refers to economic control"],dA:1},
+
+{u:"U3",freq:"med",title:"Assuming the Industrial Revolution began everywhere at the same time",
+setup:"A student writes that the Industrial Revolution 'happened worldwide starting in 1750' as a single simultaneous event.",
+wrong:"Treating industrialization as a single global event with one start date everywhere. In reality it began in one place and spread unevenly over more than a century.",
+right:"The Industrial Revolution began in Britain in the mid-1700s and spread gradually to other regions — parts of Europe and the United States over the following decades, and to Japan only after the Meiji Restoration in 1868.",
+why:"Textbooks often introduce industrialization as one big global shift, which can obscure how gradually and unevenly the process actually unfolded across different regions and decades.",
+take:"Industrialization started in Britain and spread unevenly over more than a century — it was not a single simultaneous global event.",
+diag:["Industrialization began simultaneously worldwide in 1750","Industrialization never reached Asia","Industrialization began in Japan before Britain","Industrialization began in Britain and spread unevenly to other regions over the following century or more"],dA:3},
+
+{u:"U3",freq:"med",title:"Judging past empires only by today's moral standards without historical context",
+setup:"A student's entire analysis of nineteenth-century imperialism consists of a single moral judgment, with no examination of the specific causes, methods, or consequences involved.",
+wrong:"Substituting a blanket moral verdict for historical analysis. This is a form of 'presentism' — evaluating the past solely through today's values without examining what actually happened, why, and with what specific effects.",
+right:"Strong historical analysis can absolutely include ethical evaluation, but it also examines specific causes, mechanisms, and consequences — for example, how the Berlin Conference divided Africa, or how unequal treaties reshaped China's economy — rather than stopping at a single broad judgment.",
+why:"It's natural to react to historical injustice with moral clarity, but an exam or essay asking for analysis wants evidence of how and why events unfolded, not just whether they were right or wrong.",
+take:"Good historical writing analyzes causes and consequences with specific evidence — it doesn't stop at a moral verdict alone.",
+diag:["A single moral judgment is a complete historical analysis","Historians should never make ethical judgments","Strong analysis examines specific causes, methods, and consequences with evidence, not just a moral verdict","Presentism means judging the past accurately"],dA:2},
+
+{u:"U3",freq:"med",title:"Confusing socialism and communism as identical",
+setup:"A student defines socialism and communism as exactly the same economic system with no distinction.",
+wrong:"Treating two related but distinct ideas as interchangeable. While related, they are not identical in classical usage.",
+right:"Socialism broadly advocates collective or state ownership of production to reduce inequality. Communism, in Marxist theory, specifically describes a theorized final, classless stage of society reached after a socialist transition — and in practice, the term became associated with the one-party states that pursued that goal, like the Soviet Union.",
+why:"The two terms are closely related and often used loosely in casual speech, but a Pre-AP or AP exam expects a more precise distinction between the broader ideology and the specific theorized end-stage or governing system.",
+take:"Socialism is the broader ideology; communism specifically refers to the classless end-stage Marxist theory describes, and the one-party states built to pursue it.",
+diag:["Socialism is a broader ideology of collective ownership, while communism specifically refers to Marxist theory's classless end-stage and the states built to pursue it","Socialism and communism are exactly the same with no distinction","Communism came before socialism historically","Neither system involves collective ownership"],dA:0},
+
+{u:"U4",freq:"high",title:"Confusing the causes of World War I and World War II",
+setup:"A student writes that the Treaty of Versailles caused World War I.",
+wrong:"Reversing cause and effect. The Treaty of Versailles was a consequence of World War I, not a cause of it — though it is often cited as a contributing cause of World War II.",
+right:"World War I was triggered by the assassination of Archduke Franz Ferdinand amid a web of alliances. The Treaty of Versailles ended World War I in 1919, and its harsh terms on Germany are frequently cited as a contributing factor to the instability that helped lead to World War II two decades later.",
+why:"Because the treaty is so central to both wars — ending one and arguably contributing to the next — it's easy to place it on the wrong side of the causal chain.",
+take:"Treaty of Versailles: effect of WWI, contributing cause of WWII. Keep the sequence straight.",
+diag:["The Treaty of Versailles was a result of World War I and a contributing cause of World War II two decades later","The Treaty of Versailles caused World War I","World War I and World War II had no connection","The Treaty of Versailles ended World War II"],dA:0},
+
+{u:"U4",freq:"high",title:"Treating the League of Nations and the United Nations as the same organization",
+setup:"A student writes that the United Nations was founded after World War I to prevent future conflict.",
+wrong:"Merging two distinct international organizations from two different eras. This mixes up which body was founded when, and why the first one failed.",
+right:"The League of Nations was founded after World War I but lacked enforcement power and failed to prevent World War II. The United Nations was founded in 1945, after World War II, partly to address the League's weaknesses.",
+why:"Both organizations share a similar founding purpose — preventing international conflict — which makes them easy to conflate, especially since the UN is often described as the League's successor.",
+take:"League of Nations: after WWI, failed to prevent WWII. United Nations: founded 1945, after WWII.",
+diag:["The League of Nations was founded after World War I and failed to prevent World War II; the United Nations was founded afterward, in 1945","The United Nations was founded after World War I","The League of Nations and United Nations operated at the same time as equal partners","The United Nations preceded the League of Nations"],dA:0},
+
+{u:"U4",freq:"high",title:"Assuming the Cold War involved direct large-scale combat between the US and USSR",
+setup:"A student describes the Cold War as 'a series of direct battles fought between American and Soviet troops.'",
+wrong:"Describing the defining feature of the Cold War inaccurately. The United States and Soviet Union never engaged each other directly in large-scale combat during the Cold War.",
+right:"The Cold War was defined by tension expressed through proxy conflicts (like Korea and Vietnam), an arms race, and ideological rivalry — while the two superpowers avoided fighting each other directly, largely out of fear of nuclear escalation.",
+why:"The scale and intensity of Cold War tension can make it feel like an active shooting war, but the term 'cold' specifically signals the absence of direct combat between the two main powers.",
+take:"The Cold War was fought through proxies, an arms race, and ideology — not direct US-USSR combat.",
+diag:["The US and USSR fought each other directly throughout the Cold War","Direct combat only occurred in Europe","The Cold War had no military dimension at all","The Cold War involved proxy conflicts, an arms race, and ideological rivalry, without direct large-scale combat between the two superpowers"],dA:3},
+
+{u:"U4",freq:"med",title:"Assuming decolonization happened immediately after World War I",
+setup:"A student writes that most former colonies became independent immediately after World War I ended in 1918.",
+wrong:"Placing large-scale decolonization roughly three decades too early. Most major decolonization occurred after World War II, not World War I.",
+right:"While a few territories gained independence or autonomy earlier, the large wave of decolonization across Asia and Africa occurred especially after World War II, accelerating through the 1940s, 1950s, and 1960s.",
+why:"Both World Wars reshaped empires significantly, and it's easy to attach the large decolonization wave to the wrong one, especially since World War I also redrew many borders and mandates.",
+take:"The major wave of decolonization followed World War II, not World War I.",
+diag:["Most decolonization occurred immediately after World War I in 1918","The major wave of decolonization occurred after World War II, accelerating through the 1940s-1960s","Decolonization happened entirely before either World War","No decolonization occurred until the twenty-first century"],dA:1},
+
+{u:"U4",freq:"med",title:"Treating the Holocaust as the only genocide of the twentieth century",
+setup:"A student's essay implies the Holocaust was the sole instance of genocide in modern history.",
+wrong:"Presenting the Holocaust as historically unique in kind rather than as one instance, however uniquely documented and studied, within a broader twentieth-century pattern.",
+right:"The Holocaust is the central, most extensively studied case, and the term 'genocide' itself was coined largely in response to it — but other twentieth-century genocides occurred as well, underscoring that state-sponsored mass atrocity was not confined to a single instance.",
+why:"Because the Holocaust receives extensive, and appropriately thorough, study, students can come away assuming it stood entirely alone, when the pattern of genocide recurred elsewhere in the twentieth century.",
+take:"The Holocaust is central to the study of genocide, but understanding the term fully means recognizing it was not the twentieth century's only instance.",
+diag:["The Holocaust was the only genocide to ever occur","The Holocaust is the central, most-studied case, but genocide occurred elsewhere in the twentieth century as well","Genocide only became possible after 1945","The term 'genocide' predates the twentieth century by centuries"],dA:1},
+
+{u:"U4",freq:"med",title:"Confusing globalization with Americanization",
+setup:"A student defines globalization as 'American culture spreading to every other country.'",
+wrong:"Narrowing a broad, multidirectional process to a single direction of cultural flow from one country.",
+right:"Globalization is the broader interconnection of the world's economies, cultures, and populations through trade, communication, and technology — a multidirectional process involving many countries and regions, not a one-way spread from any single nation.",
+why:"Because American media and brands are highly visible globally, it's tempting to equate globalization entirely with their spread — but that overlooks the equally real flows of goods, culture, and influence moving in every direction between many nations.",
+take:"Globalization is multidirectional interconnection among many economies and cultures, not the one-way spread of any single nation's culture.",
+diag:["Globalization means only American culture spreading worldwide","Globalization involves no cultural exchange","Globalization began only in the twenty-first century","Globalization is the broader, multidirectional interconnection of economies, cultures, and populations across many countries"],dA:3}
+];
+
+const UNIT_NAMES = {
+  U1:"Geography & World Regions", U2:"Early Modern Period", U3:"Modern Period", U4:"Contemporary Period"
+};
+const LS_M='worldhistory_autopsy_mastered', LS_F='worldhistory_autopsy_fmm';
+
+let curUnit='all', highOnly=false, unmasteredOnly=false;
+let mastered=new Set(JSON.parse(localStorage.getItem(LS_M)||'[]'));
+let fmmScore=localStorage.getItem(LS_F);
+let openSet=new Set();
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function saveM(){ localStorage.setItem(LS_M, JSON.stringify([...mastered])); }
+
+function setUnit(u,btn){ curUnit=u; document.querySelectorAll('.pill[data-unit]').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); render(); }
+function toggleHigh(){ highOnly=!highOnly; document.getElementById('btn-high').classList.toggle('active',highOnly); render(); }
+function toggleUnmastered(){ unmasteredOnly=!unmasteredOnly; document.getElementById('btn-unmastered').classList.toggle('active',unmasteredOnly); render(); }
+function toggleOpen(i){ if(openSet.has(i)) openSet.delete(i); else openSet.add(i); render(); }
+function expandAll(on){ if(on) filtered().forEach(m=>openSet.add(MISTAKES.indexOf(m))); else openSet.clear(); render(); }
+function toggleMastered(i,ev){ ev.stopPropagation(); if(mastered.has(i)) mastered.delete(i); else mastered.add(i); saveM(); render(); }
+
+function filtered(){
+  const q=document.getElementById('search-input').value.trim().toLowerCase();
+  return MISTAKES.filter((m,i)=>{
+    if(curUnit!=='all' && m.u!==curUnit) return false;
+    if(highOnly && m.freq!=='high') return false;
+    if(unmasteredOnly && mastered.has(MISTAKES.indexOf(m))) return false;
+    if(q){
+      const hay=(m.title+' '+m.setup+' '+m.wrong+' '+m.right+' '+m.why+' '+m.take).toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+}
+function render(){
+  const list=filtered();
+  document.getElementById('s-mastered').textContent=mastered.size;
+  document.getElementById('s-remaining').textContent=MISTAKES.length-mastered.size;
+  document.getElementById('count-line').innerHTML=`<b>${list.length}</b> of <b>${MISTAKES.length}</b> shown`;
+  const box=document.getElementById('mk-list');
+  if(!list.length){ box.innerHTML='<div class="empty">No mistakes match your search or filters.</div>'; return; }
+  box.innerHTML=list.map(m=>{
+    const i=MISTAKES.indexOf(m), isOpen=openSet.has(i), isM=mastered.has(i);
+    return `<div class="mk ${isOpen?'open':''} ${isM?'mastered':''}">
+      <div class="mk-head" onclick="toggleOpen(${i})">
+        <div>
+          <div class="mk-num">MISTAKE #${i+1}</div>
+          <div class="mk-title">${esc(m.title)}</div>
+          <div class="mk-tags"><span class="tag t-unit">${m.u} ${UNIT_NAMES[m.u]}</span><span class="tag ${m.freq==='high'?'t-freq-high':'t-freq-med'}">${m.freq==='high'?'🔥 High Frequency':'Common'}</span></div>
+        </div>
+        <div class="mk-right"><button class="master-btn ${isM?'on':''}" onclick="toggleMastered(${i},event)">${isM?'✓ Mastered':'Mark Mastered'}</button><span class="chev">▼</span></div>
+      </div>
+      <div class="mk-body">
+        <div class="setup-box"><span class="setup-lbl">THE SCENARIO</span>${esc(m.setup)}</div>
+        <div class="vs-grid">
+          <div class="vs-box vs-wrong"><div class="vs-head">✗ WHAT GOES WRONG</div><div class="vs-text">${esc(m.wrong)}</div></div>
+          <div class="vs-box vs-right"><div class="vs-head">✓ WHAT'S CORRECT</div><div class="vs-text">${esc(m.right)}</div></div>
+        </div>
+        <div class="why-box"><span class="why-lbl">WHY STUDENTS FALL FOR IT</span>${esc(m.why)}</div>
+        <div class="take-box"><span class="take-lbl">TAKEAWAY</span>${esc(m.take)}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+let fdeck=[], fidx=0, fright=0, fanswered=false;
+function startFMM(){
+  const pool=filtered();
+  if(pool.length<3){ alert('Need at least 3 mistakes in the current filter to run a diagnostic.'); return; }
+  fdeck=pool.slice().sort(()=>Math.random()-0.5).slice(0,Math.min(12,pool.length));
+  fidx=0; fright=0; fanswered=false;
+  document.getElementById('fmm-modal').classList.add('open');
+  renderFMM();
+}
+function closeFMM(){ document.getElementById('fmm-modal').classList.remove('open'); }
+function renderFMM(){
+  const m=fdeck[fidx];
+  document.getElementById('fmm-box').innerHTML=`
+    <button class="fmm-close" onclick="closeFMM()">✕</button>
+    <div class="fmm-prog">DIAGNOSTIC ${fidx+1} OF ${fdeck.length} · ${m.u} ${UNIT_NAMES[m.u]}</div>
+    <div class="fmm-lbl">WHAT IS WRONG WITH THIS REASONING?</div>
+    <div class="fmm-scenario">${esc(m.setup)}</div>
+    <div class="fmm-opts" id="fmm-opts">${m.diag.map((d,i)=>`<button class="fmm-opt" id="fo-${i}" onclick="answerFMM(${i})"><span class="fmm-key">${'ABCD'[i]}</span><span>${esc(d)}</span></button>`).join('')}</div>
+    <div class="fmm-fb" id="fmm-fb"></div>
+    <button class="btn btn-next" id="fmm-next" style="display:none" onclick="nextFMM()">Next →</button>`;
+}
+function answerFMM(choice){
+  if(fanswered) return; fanswered=true;
+  const m=fdeck[fidx], ok=choice===m.dA;
+  if(ok) fright++;
+  document.querySelectorAll('.fmm-opt').forEach((b,i)=>{ b.disabled=true; if(i===m.dA) b.classList.add('correct'); else if(i===choice) b.classList.add('wrong'); });
+  const fb=document.getElementById('fmm-fb');
+  fb.className='fmm-fb show '+(ok?'ok':'no');
+  fb.innerHTML=`<b style="color:${ok?'#4fd1a5':'#f08579'}">${ok?'✓ Correct diagnosis':'✗ Not the error'}</b><br><span style="opacity:.92">${esc(m.take)}</span>`;
+  const nb=document.getElementById('fmm-next');
+  nb.style.display='block';
+  nb.textContent=fidx>=fdeck.length-1?'See Results →':'Next →';
+}
+function nextFMM(){
+  fidx++; fanswered=false;
+  if(fidx>=fdeck.length){
+    const pct=Math.round(fright/fdeck.length*100);
+    fmmScore=pct+'%';
+    localStorage.setItem(LS_F,fmmScore);
+    document.getElementById('s-fmm').textContent=fmmScore;
+    document.getElementById('fmm-box').innerHTML=`
+      <button class="fmm-close" onclick="closeFMM()">✕</button>
+      <div class="fmm-done">
+        <div style="font-size:11px;letter-spacing:.12em;color:var(--muted);margin-bottom:10px">DIAGNOSTIC COMPLETE</div>
+        <div class="fmm-score">${fright}/${fdeck.length}</div>
+        <div style="font-size:14px;color:var(--muted);margin-top:6px">${pct}% correctly diagnosed</div>
+        <div class="fmm-btns"><button class="btn btn-ghost" onclick="closeFMM()">Done</button><button class="btn btn-next" onclick="startFMM()">Run Again</button></div>
+      </div>`;
+    return;
+  }
+  renderFMM();
+}
+document.getElementById('fmm-modal').addEventListener('click',e=>{ if(e.target.id==='fmm-modal') closeFMM(); });
+
+(function init(){
+  const total=MISTAKES.length, high=MISTAKES.filter(m=>m.freq==='high').length;
+  document.getElementById('s-total').textContent=total;
+  document.getElementById('page-sub').textContent=`${total} common errors · ${high} flagged high-frequency · Wrong vs. Right analysis · Pathway 2`;
+  if(fmmScore) document.getElementById('s-fmm').textContent=fmmScore;
+  render();
+})();
+</script>
+</body>
+</html>

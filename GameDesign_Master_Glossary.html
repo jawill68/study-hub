@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game &amp; Simulation Foundations — Master Glossary</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#0a0612;--card:#150e24;--card2:#1d1533;--border:#2f2248;
+  --text:#ece8f4;--muted:#9585b0;--white:#ffffff;
+  --accent:#8B5CF6;--accent2:#2E8BC0;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(139,92,246,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(139,92,246,0.04) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:26px 20px 70px}
+
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--accent)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+.quiz-launch-btn{background:linear-gradient(135deg,var(--accent),#6d3fd4);border:none;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:11px 20px;border-radius:11px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.quiz-launch-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(139,92,246,.35)}
+
+/* CERT BANNER */
+.cert-banner{background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(46,139,192,.06));border:1px solid var(--border);border-radius:12px;padding:11px 16px;margin-bottom:18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.cert-icon{font-size:18px}
+.cert-text{font-size:12.5px;color:var(--text)}
+.cert-text b{color:#b39bf5}
+.cert-switch{margin-left:auto;display:flex;gap:6px;align-items:center}
+.cert-pill{background:var(--card2);border:1px solid var(--border);border-radius:999px;padding:5px 13px;font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
+.cert-pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.cert-pill.locked{opacity:.5;cursor:default}
+.cert-pill.locked:hover{border-color:var(--border)}
+
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+
+.controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:14px;display:flex;flex-direction:column;gap:11px}
+.ctrl-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--muted);min-width:52px}
+.search-wrap{position:relative;flex:1;min-width:220px}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.55}
+.search-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px 10px 34px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13.5px}
+.search-input:focus{outline:none;border-color:var(--accent)}
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--accent);color:var(--text)}
+.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.pill-star.active{background:var(--amber);border-color:var(--amber)}
+.pill-code.active{background:var(--accent2);border-color:var(--accent2)}
+.view-toggle{margin-left:auto;display:flex;gap:6px}
+
+.az-row{display:flex;flex-wrap:wrap;gap:4px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px 14px;margin-bottom:14px}
+.az-btn{background:transparent;border:none;color:var(--muted);font-family:'DM Mono',monospace;font-size:12.5px;font-weight:500;width:26px;height:26px;border-radius:6px;cursor:pointer;transition:all .15s}
+.az-btn:hover{background:var(--card2);color:var(--text)}
+.az-btn.has{color:var(--accent)}
+.az-btn.active{background:var(--accent);color:#fff}
+
+.count-line{font-size:12px;color:var(--muted);margin-bottom:12px}
+.count-line b{color:var(--white);font-family:'DM Mono',monospace}
+
+.letter-head{display:flex;align-items:center;gap:12px;margin:22px 0 10px}
+.letter-badge{width:36px;height:36px;border-radius:10px;background:rgba(139,92,246,.14);border:1px solid rgba(139,92,246,.32);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px}
+.letter-count{font-size:11.5px;color:var(--muted)}
+
+.term-card{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:15px 17px;margin-bottom:9px;transition:all .18s}
+.term-card:hover{border-color:rgba(139,92,246,.42);box-shadow:0 6px 22px rgba(139,92,246,.09)}
+.term-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.term-name{font-size:16px;font-weight:700;color:var(--white)}
+.term-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 8px;border-radius:6px;font-family:'DM Sans',sans-serif;white-space:nowrap}
+.tag-cat{background:rgba(139,92,246,.16);color:#b39bf5;border:1px solid rgba(139,92,246,.3)}
+.tag-code{background:rgba(46,139,192,.16);color:#7cc0e6;border:1px solid rgba(46,139,192,.3)}
+.tag-example{background:rgba(229,148,0,.14);color:#efb44e;border:1px solid rgba(229,148,0,.3)}
+.star-btn{background:none;border:none;cursor:pointer;font-size:15px;opacity:.3;line-height:1;padding:0 2px;transition:opacity .15s}
+.star-btn:hover{opacity:.75}
+.star-btn.on{opacity:1}
+.term-def{font-size:13.5px;color:var(--text);opacity:.9;margin-top:7px}
+.term-extra{margin-top:9px;display:flex;flex-direction:column;gap:6px}
+.extra-line{font-size:12.5px;padding:7px 11px;border-radius:8px;border-left:2px solid}
+.ex-code{background:rgba(46,139,192,.07);border-color:var(--accent2);font-family:'DM Mono',monospace;color:#8ecbec;white-space:pre-wrap}
+.ex-example{background:rgba(229,148,0,.06);border-color:var(--amber);color:#e3c88f}
+.extra-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;opacity:.75;display:block;margin-bottom:3px;font-family:'DM Sans',sans-serif}
+
+.compact .term-card{padding:9px 14px;margin-bottom:5px}
+.compact .term-def{margin-top:4px;font-size:12.5px}
+.compact .term-extra{display:none}
+
+.empty{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px}
+
+/* QUIZ MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(5,3,10,.88);backdrop-filter:blur(4px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-bg.open{display:flex}
+.quiz-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;max-width:560px;width:100%;position:relative}
+.quiz-close{position:absolute;top:14px;right:16px;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer}
+.quiz-progress{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--muted);margin-bottom:14px}
+.quiz-prompt-lbl{font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--accent);margin-bottom:8px}
+.quiz-term{font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:16px;line-height:1.2}
+.quiz-answer{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:15px;font-size:13.5px;color:var(--text);margin-bottom:16px;display:none}
+.quiz-answer.show{display:block}
+.quiz-answer .qa-code{font-family:'DM Mono',monospace;color:#8ecbec;margin-top:8px;font-size:12.5px;white-space:pre-wrap}
+.quiz-btns{display:flex;gap:8px;flex-wrap:wrap}
+.qbtn{flex:1;min-width:110px;border:none;border-radius:11px;padding:12px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .18s}
+.qbtn-show{background:var(--accent2);color:#fff}
+.qbtn-got{background:var(--teal);color:#fff}
+.qbtn-miss{background:var(--red);color:#fff}
+.qbtn:hover{transform:translateY(-2px)}
+.quiz-done{text-align:center}
+.quiz-score{font-size:2.6rem;font-weight:800;color:var(--accent);font-family:'DM Mono',monospace}
+
+@media(max-width:640px){
+  .page-title{font-size:1.5rem}
+  .view-toggle{margin-left:0}
+  .ctrl-label{min-width:auto}
+  .cert-switch{margin-left:0;width:100%}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <a href="GameDesign_StudyHub.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;margin-bottom:14px;opacity:.85">← Game Design Study Hub</a>
+
+  <div class="header">
+    <div>
+      <div class="series-label">Game &amp; Simulation Foundations · Study Resource Series · Build 1</div>
+      <div class="page-title">Master <span>Glossary</span></div>
+      <div class="page-sub" id="page-sub">Loading…</div>
+    </div>
+    <button class="quiz-launch-btn" onclick="launchQuiz()">🧠 Flashcard Quiz</button>
+  </div>
+
+  <div class="cert-banner">
+    <span class="cert-icon">🎮</span>
+    <span class="cert-text">Certification track: <b id="cert-name">Unity Certified User: Programmer</b> — glossary filtered to this track's objectives</span>
+    <div class="cert-switch">
+      <button class="cert-pill active" data-cert="programmer" onclick="setCert('programmer',this)">Programmer</button>
+      <button class="cert-pill locked" data-cert="artist" title="Reserved — activate when confirmed with instructor">Artist 🔒</button>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-chip"><div class="stat-num" id="s-total">—</div><div class="stat-lbl">TOTAL TERMS</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--amber)" id="s-starred">0</div><div class="stat-lbl">STARRED</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--accent)" id="s-quiz">—</div><div class="stat-lbl">QUIZ SCORE</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--accent2)" id="s-shown">—</div><div class="stat-lbl">SHOWING</div></div>
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-row">
+      <span class="ctrl-label">SEARCH</span>
+      <div class="search-wrap">
+        <span class="search-icon">🔎</span>
+        <input class="search-input" id="search-input" type="text" placeholder="Search terms, definitions, code, examples…" oninput="applyFilters()">
+      </div>
+    </div>
+    <div class="ctrl-row">
+      <span class="ctrl-label">CATEGORY</span>
+      <button class="pill active" data-cat="all" onclick="setCat('all',this)">All</button>
+      <button class="pill" data-cat="engine" onclick="setCat('engine',this)">Engine &amp; Editor</button>
+      <button class="pill" data-cat="csharp" onclick="setCat('csharp',this)">C# Scripting</button>
+      <button class="pill" data-cat="gameplay" onclick="setCat('gameplay',this)">Gameplay &amp; Physics</button>
+      <button class="pill" data-cat="ui" onclick="setCat('ui',this)">UI &amp; Audio</button>
+      <button class="pill" data-cat="design" onclick="setCat('design',this)">Design &amp; Production</button>
+    </div>
+    <div class="ctrl-row">
+      <span class="ctrl-label">FILTER</span>
+      <button class="pill pill-star" id="btn-star" onclick="toggleStarOnly()">★ Starred Only</button>
+      <button class="pill pill-code" id="btn-code" onclick="toggleCodeOnly()">⌨ Has Code</button>
+      <div class="view-toggle">
+        <button class="pill active" id="btn-card" onclick="setView('card')">Card</button>
+        <button class="pill" id="btn-compact" onclick="setView('compact')">Compact</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="az-row" id="az-row"></div>
+  <div class="count-line" id="count-line"></div>
+  <div id="term-list"></div>
+
+  <div style="margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center">
+    Game &amp; Simulation Foundations (82081100) · Unity Certified User: Programmer objectives · Master Glossary
+    <div style="margin-top:4px;opacity:.6">Engine &amp; Editor · C# Scripting · Gameplay &amp; Physics · UI &amp; Audio · Design &amp; Production</div>
+  </div>
+</div>
+
+<div class="modal-bg" id="quiz-modal"><div class="quiz-box" id="quiz-box"></div></div>
+
+<script>
+// ═══════════════════════════════════════════
+// GAME & SIMULATION FOUNDATIONS — MASTER GLOSSARY
+// Anchored to Unity Certified User (UCU): Programmer exam objectives
+// cert: "programmer" (active) | "artist" (reserved) | "both" (shared/engine-general)
+// cat: engine | csharp | gameplay | ui | design
+// Architecture is cert-tagged so a second track can be activated without a rebuild.
+// ═══════════════════════════════════════════
+const TERMS = [
+// ── ENGINE & EDITOR ──
+{t:"Game Engine",cat:"engine",cert:"both",d:"A software framework that provides the core systems for building games — rendering, physics, audio, input, and scripting — so developers don't build these from scratch.",e:"Unity, Unreal, and Godot are game engines; each bundles the tools needed to make interactive experiences."},
+{t:"Unity Editor",cat:"engine",cert:"both",d:"The main visual workspace where you assemble scenes, place objects, adjust properties, and test a game without writing every step in code.",e:"The Editor combines the Scene view, Game view, Hierarchy, Inspector, and Project window into one interface."},
+{t:"Scene",cat:"engine",cert:"both",d:"A container holding a portion of your game — a level, a menu, or a screen — with all the objects, lighting, and environment it needs.",e:"A game typically splits into multiple scenes: a main menu scene, several level scenes, and a game-over scene."},
+{t:"GameObject",cat:"engine",cert:"both",d:"The fundamental object in a Unity scene. On its own it does nothing; its behavior comes entirely from the components attached to it.",e:"A player, an enemy, a camera, and a light are all GameObjects distinguished by their components."},
+{t:"Component",cat:"engine",cert:"both",d:"A modular piece of functionality attached to a GameObject that gives it specific behavior or properties.",e:"A Rigidbody component adds physics; a Collider adds collision; a custom script adds game logic."},
+{t:"Inspector",cat:"engine",cert:"both",d:"The Editor panel that displays and lets you edit the components and properties of whatever object is currently selected.",e:"Select a GameObject and the Inspector shows its Transform, any attached components, and their editable values."},
+{t:"Hierarchy",cat:"engine",cert:"both",d:"The Editor panel listing every GameObject in the current scene, showing parent-child relationships between them.",e:"Nesting objects in the Hierarchy makes a child move, rotate, and scale along with its parent."},
+{t:"Project Window",cat:"engine",cert:"both",d:"The Editor panel that shows all the assets in your project — scripts, models, textures, audio, prefabs — as files and folders.",e:"Dragging an asset from the Project window into the Scene places an instance of it in the game."},
+{t:"Transform",cat:"engine",cert:"both",d:"The component, present on every GameObject, that stores its position, rotation, and scale in the scene.",e:"Moving an object in the Scene view updates the Position values in its Transform component.",code:"transform.position = new Vector3(0, 5, 0);"},
+{t:"Asset",cat:"engine",cert:"both",d:"Any file used to build a game — a 3D model, texture, audio clip, script, or animation — stored in the project.",e:"Imported art, sound files, and scripts all live in the Project window as assets."},
+{t:"Prefab",cat:"engine",cert:"both",d:"A reusable, pre-configured GameObject template saved as an asset. Editing the prefab updates every instance of it in the game.",e:"Make one enemy prefab, then spawn dozens of copies; changing the prefab changes them all at once."},
+{t:"Mesh",cat:"engine",cert:"artist",d:"The collection of vertices, edges, and faces that defines the 3D shape of an object.",e:"A character model's mesh determines its silhouette before any texture or color is applied."},
+{t:"Material",cat:"engine",cert:"both",d:"An asset defining how a surface looks — its color, texture, shininess, and how it responds to light.",e:"The same mesh can look like wood, metal, or glass depending on the material applied to it."},
+{t:"Texture",cat:"engine",cert:"artist",d:"A 2D image applied to the surface of a 3D model to give it detail and color.",e:"A brick texture wrapped onto a flat plane makes it read as a brick wall."},
+{t:"Build",cat:"engine",cert:"both",d:"The process of compiling a project into a standalone application that runs outside the Editor on a target platform.",e:"You build a Unity project into a Windows .exe, a WebGL page, or a mobile app."},
+{t:"Play Mode",cat:"engine",cert:"both",d:"The Editor state that runs your game live so you can test it. Changes made in Play Mode are not saved when it stops.",e:"Always exit Play Mode before making permanent edits — a common beginner mistake is tweaking values that vanish on stop."},
+
+// ── C# SCRIPTING ──
+{t:"C#",cat:"csharp",cert:"programmer",d:"The primary programming language used to write game logic in Unity. Pronounced 'C-sharp.'",e:"Every custom behavior — movement, scoring, AI — is written as a C# script attached to a GameObject."},
+{t:"Script",cat:"csharp",cert:"programmer",d:"A file of C# code that, when attached to a GameObject as a component, defines custom behavior.",e:"A PlayerMovement script attached to the player reads input and moves the character."},
+{t:"MonoBehaviour",cat:"csharp",cert:"programmer",d:"The base class that every Unity script inherits from. It provides access to Unity's event methods like Start and Update.",e:"Declaring 'public class Player : MonoBehaviour' lets the script hook into Unity's game loop.",code:"public class Player : MonoBehaviour { }"},
+{t:"Variable",cat:"csharp",cert:"programmer",d:"A named container that stores a value, such as a number, piece of text, or reference to an object.",e:"'int score = 0;' creates a variable named score holding the whole number zero.",code:"int score = 0;\nfloat speed = 5.5f;\nstring playerName = \"Alex\";"},
+{t:"Data Type",cat:"csharp",cert:"programmer",d:"The kind of value a variable holds, which determines what operations are valid on it.",e:"int (whole numbers), float (decimals), bool (true/false), and string (text) are the most common."},
+{t:"int",cat:"csharp",cert:"programmer",d:"A data type that stores whole numbers, positive or negative, with no decimal part.",e:"Player lives, score, and ammo count are naturally stored as ints.",code:"int lives = 3;"},
+{t:"float",cat:"csharp",cert:"programmer",d:"A data type that stores numbers with decimal points. In Unity, float literals are written with an 'f' suffix.",e:"Speed, time, and physics values are floats — note the required f: 'float speed = 5.5f;'",code:"float speed = 5.5f;"},
+{t:"bool",cat:"csharp",cert:"programmer",d:"A data type that stores one of only two values: true or false.",e:"'bool isJumping = false;' tracks whether the player is currently in a jump.",code:"bool isAlive = true;"},
+{t:"string",cat:"csharp",cert:"programmer",d:"A data type that stores text — a sequence of characters enclosed in double quotes.",e:"'string name = \"Player1\";' stores a piece of text.",code:"string message = \"Game Over\";"},
+{t:"Method (Function)",cat:"csharp",cert:"programmer",d:"A named block of code that performs a task and can be called (run) whenever needed, optionally taking inputs and returning a value.",e:"A Jump() method contains all the code to make the player jump, called whenever the jump key is pressed.",code:"void Jump() {\n  // jump logic here\n}"},
+{t:"Parameter",cat:"csharp",cert:"programmer",d:"A value passed into a method to customize what it does.",e:"In 'TakeDamage(int amount)', amount is a parameter letting the same method handle any damage value.",code:"void TakeDamage(int amount) {\n  health -= amount;\n}"},
+{t:"Return Value",cat:"csharp",cert:"programmer",d:"The result a method sends back to whatever called it. A method's return type declares what kind of value it gives back; 'void' means it returns nothing.",e:"A method 'int GetScore()' returns an int; a 'void' method just does work without returning anything.",code:"int GetScore() {\n  return score;\n}"},
+{t:"Awake",cat:"csharp",cert:"programmer",d:"A Unity lifecycle method that runs once when a script instance is first loaded, before Start. Used for early initialization.",e:"Awake runs even if the script component is disabled, making it good for setting up references.",code:"void Awake() {\n  // runs first, once\n}"},
+{t:"Start",cat:"csharp",cert:"programmer",d:"A Unity lifecycle method that runs once, on the first frame the script is active, after Awake. Used to initialize values.",e:"Set a player's starting health in Start; it runs a single time before the first Update.",code:"void Start() {\n  health = 100;\n}"},
+{t:"Update",cat:"csharp",cert:"programmer",d:"A Unity lifecycle method that runs once every frame. Used for logic that must be checked continuously, such as input.",e:"Reading the jump key belongs in Update because it must be checked every frame.",code:"void Update() {\n  // runs every frame\n}"},
+{t:"FixedUpdate",cat:"csharp",cert:"programmer",d:"A Unity lifecycle method that runs at a fixed time interval, independent of frame rate. Used for physics calculations.",e:"Apply forces to a Rigidbody in FixedUpdate, not Update, so physics behaves consistently across devices.",code:"void FixedUpdate() {\n  // physics logic here\n}"},
+{t:"Conditional (if statement)",cat:"csharp",cert:"programmer",d:"A control structure that runs a block of code only when a specified condition is true.",e:"'if (health <= 0) { GameOver(); }' ends the game only when health reaches zero.",code:"if (health <= 0) {\n  GameOver();\n}"},
+{t:"Loop",cat:"csharp",cert:"programmer",d:"A control structure that repeats a block of code multiple times, such as a for loop or while loop.",e:"A for loop can spawn ten enemies without writing the spawn code ten times.",code:"for (int i = 0; i < 10; i++) {\n  SpawnEnemy();\n}"},
+{t:"Array",cat:"csharp",cert:"programmer",d:"A data structure holding a fixed-size, ordered collection of values of the same type, accessed by index starting at 0.",e:"An array of spawn points lets you pick a random location: spawnPoints[0], spawnPoints[1], and so on.",code:"int[] scores = new int[5];"},
+{t:"Class",cat:"csharp",cert:"programmer",d:"A blueprint that defines the data (variables) and behavior (methods) for a type of object.",e:"A Player class defines what every player has (health, score) and can do (jump, attack)."},
+{t:"Public",cat:"csharp",cert:"programmer",d:"An access modifier making a variable or method visible to other scripts — and, for variables, editable in the Inspector.",e:"'public float speed;' appears as an editable field in the Inspector, so designers can tune it without touching code.",code:"public float speed = 5f;"},
+{t:"Private",cat:"csharp",cert:"programmer",d:"An access modifier restricting a variable or method to use only within its own class. This is the default when none is specified.",e:"'private int secretCode;' cannot be seen or changed by other scripts, protecting internal data.",code:"private int health = 100;"},
+{t:"Comment",cat:"csharp",cert:"programmer",d:"A note in code, ignored by the compiler, used to explain what the code does. Written after // for a single line.",e:"'// Reset the player position' documents intent without affecting how the program runs.",code:"// This is a comment\n/* multi-line\n   comment */"},
+{t:"Syntax Error",cat:"csharp",cert:"programmer",d:"A mistake that violates the grammar rules of the language, such as a missing semicolon or bracket, preventing the code from compiling.",e:"Forgetting the semicolon after a statement produces a syntax error the Console reports before the game will run."},
+{t:"Debugging",cat:"csharp",cert:"programmer",d:"The process of finding and fixing errors (bugs) in code.",e:"Reading Console error messages and adding Debug.Log statements are core debugging techniques."},
+{t:"Debug.Log",cat:"csharp",cert:"programmer",d:"A Unity method that prints a message to the Console, used to check values and trace what code is doing.",e:"'Debug.Log(health);' prints the current health value so you can confirm it changes as expected.",code:"Debug.Log(\"Health: \" + health);"},
+{t:"Console",cat:"csharp",cert:"programmer",d:"The Editor panel that displays messages, warnings, and errors from your code, including anything sent by Debug.Log.",e:"Red error messages in the Console are the first place to look when a script won't run."},
+{t:"API",cat:"csharp",cert:"programmer",d:"Application Programming Interface — the set of classes and methods Unity provides for your code to interact with the engine.",e:"Reading Unity's API documentation tells you what methods a Rigidbody offers and how to call them."},
+
+// ── GAMEPLAY & PHYSICS ──
+{t:"Rigidbody",cat:"gameplay",cert:"programmer",d:"A component that puts a GameObject under the control of Unity's physics engine, allowing it to respond to forces, gravity, and collisions.",e:"Add a Rigidbody to a ball and it falls, rolls, and bounces realistically instead of floating.",code:"GetComponent<Rigidbody>().AddForce(Vector3.up * 10f);"},
+{t:"Collider",cat:"gameplay",cert:"programmer",d:"A component defining the invisible shape used to detect physical contact between objects.",e:"A Box Collider around a wall stops the player from walking through it."},
+{t:"Collision",cat:"gameplay",cert:"programmer",d:"The physical event when two colliders make contact, which the physics engine detects and can report to your code.",e:"OnCollisionEnter runs the moment two solid objects touch, letting you react — for instance, dealing damage.",code:"void OnCollisionEnter(Collision col) { }"},
+{t:"Trigger",cat:"gameplay",cert:"programmer",d:"A collider set to detect overlap without producing a physical block, used to fire events when objects enter a zone.",e:"A trigger volume at a level's exit detects the player passing through to load the next scene.",code:"void OnTriggerEnter(Collider other) { }"},
+{t:"Vector3",cat:"gameplay",cert:"programmer",d:"A data structure holding three float values (x, y, z), used for positions, directions, and velocities in 3D space.",e:"'new Vector3(0, 1, 0)' represents one unit straight up along the y-axis.",code:"Vector3 pos = new Vector3(1f, 2f, 3f);"},
+{t:"Vector2",cat:"gameplay",cert:"programmer",d:"A data structure holding two float values (x, y), used for positions and directions in 2D space.",e:"2D games and UI coordinates use Vector2 for on-screen positions.",code:"Vector2 dir = new Vector2(1f, 0f);"},
+{t:"AddForce",cat:"gameplay",cert:"programmer",d:"A Rigidbody method that applies a push in a given direction, letting physics move an object naturally.",e:"Applying an upward force with AddForce makes a character jump within the physics system.",code:"rb.AddForce(Vector3.up * jumpPower);"},
+{t:"Velocity",cat:"gameplay",cert:"programmer",d:"A Rigidbody property describing the speed and direction of its motion as a Vector3.",e:"Reading rb.velocity tells you how fast and which way an object is currently moving."},
+{t:"Gravity",cat:"gameplay",cert:"programmer",d:"The constant downward force the physics engine applies to Rigidbodies, simulating real-world falling.",e:"Unity's default gravity pulls objects down at roughly -9.81 on the y-axis, adjustable in project settings."},
+{t:"Raycast",cat:"gameplay",cert:"programmer",d:"A method that projects an invisible line from a point in a direction and reports the first collider it hits.",e:"A raycast from a gun's muzzle detects what the player is aiming at.",code:"if (Physics.Raycast(origin, direction, out hit)) { }"},
+{t:"NavMesh",cat:"gameplay",cert:"programmer",d:"A pre-computed map of walkable surfaces that lets AI characters find paths around a level automatically.",e:"Baking a NavMesh lets enemies navigate around walls to chase the player without manual pathfinding code."},
+{t:"NavMeshAgent",cat:"gameplay",cert:"programmer",d:"A component that moves a GameObject along the NavMesh toward a destination, handling pathfinding and obstacle avoidance.",e:"Setting agent.destination to the player's position makes an enemy walk intelligently toward them.",code:"agent.destination = player.position;"},
+{t:"Instantiate",cat:"gameplay",cert:"programmer",d:"A method that creates a new copy of a prefab or GameObject at runtime.",e:"Instantiate spawns a bullet prefab each time the player fires.",code:"Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity);"},
+{t:"Destroy",cat:"gameplay",cert:"programmer",d:"A method that removes a GameObject from the scene, optionally after a delay.",e:"'Destroy(gameObject);' removes an enemy when its health reaches zero; 'Destroy(bullet, 3f)' removes a bullet after 3 seconds.",code:"Destroy(gameObject, 2f);"},
+{t:"Tag",cat:"gameplay",cert:"programmer",d:"A label assigned to GameObjects so code can identify them by category rather than by individual reference.",e:"Tagging all pickups 'Collectible' lets one script handle any of them via CompareTag.",code:"if (other.CompareTag(\"Player\")) { }"},
+{t:"Time.deltaTime",cat:"gameplay",cert:"programmer",d:"The time in seconds since the last frame. Multiplying movement by it makes motion frame-rate independent.",e:"'transform.Translate(Vector3.forward * speed * Time.deltaTime)' moves an object at a steady real-world speed regardless of frame rate.",code:"transform.Translate(dir * speed * Time.deltaTime);"},
+{t:"Input",cat:"gameplay",cert:"programmer",d:"Unity's system for reading player actions from keyboard, mouse, gamepad, or touch.",e:"'Input.GetKeyDown(KeyCode.Space)' returns true on the frame the space bar is first pressed.",code:"if (Input.GetKeyDown(KeyCode.Space)) Jump();"},
+{t:"Frame Rate (FPS)",cat:"gameplay",cert:"both",d:"How many frames per second the game renders. Higher frame rates produce smoother motion.",e:"Because frame rate varies by device, movement code multiplies by Time.deltaTime to stay consistent."},
+
+// ── UI & AUDIO ──
+{t:"Canvas",cat:"ui",cert:"programmer",d:"The root component that contains and renders all UI elements. Every button, text, and image lives under a Canvas.",e:"A health bar, score display, and pause menu are all child objects of a Canvas."},
+{t:"UI Element",cat:"ui",cert:"both",d:"An on-screen interface object such as a button, text label, slider, or image, used to display information or receive input.",e:"A start button and a score counter are UI elements placed on the Canvas."},
+{t:"Button",cat:"ui",cert:"programmer",d:"A UI component that detects clicks or taps and triggers an assigned method in response.",e:"A Play button's OnClick event is wired to a StartGame method.",code:"playButton.onClick.AddListener(StartGame);"},
+{t:"Slider",cat:"ui",cert:"programmer",d:"A UI component letting the player select a value from a range by dragging a handle.",e:"A volume slider lets the player set audio level between 0 and 1."},
+{t:"PlayerPrefs",cat:"ui",cert:"programmer",d:"A Unity system for saving small pieces of player data — like high scores or settings — that persist between play sessions.",e:"'PlayerPrefs.SetInt(\"HighScore\", 500)' saves a score that's still there after the game closes and reopens.",code:"PlayerPrefs.SetInt(\"HighScore\", score);\nint best = PlayerPrefs.GetInt(\"HighScore\", 0);"},
+{t:"AudioSource",cat:"ui",cert:"programmer",d:"A component that plays an audio clip from a GameObject, with controls for volume, pitch, and looping.",e:"An AudioSource on the player plays a jump sound each time they jump.",code:"audioSource.Play();"},
+{t:"AudioClip",cat:"ui",cert:"both",d:"An imported sound asset — music or a sound effect — that an AudioSource plays.",e:"A coin-pickup .wav file is an AudioClip assigned to an AudioSource."},
+{t:"Sprite",cat:"ui",cert:"both",d:"A 2D image used in games and UI, whether as a character, tile, or icon.",e:"In a 2D platformer, the player character is a sprite; so is each coin and platform."},
+
+// ── DESIGN & PRODUCTION ──
+{t:"Simulation",cat:"design",cert:"both",d:"An interactive model that imitates a real-world process or system, often for training, education, or analysis rather than pure entertainment.",e:"A flight simulator models aircraft behavior; a chemistry sim models molecular reactions. This course pairs game and simulation design."},
+{t:"Game Loop",cat:"design",cert:"both",d:"The core repeating cycle of a game: process input, update game state, render the result — repeated every frame.",e:"Unity's engine runs the game loop for you; your Update method hooks into each cycle."},
+{t:"Game Mechanic",cat:"design",cert:"both",d:"A rule or system that governs how players interact with a game — the verbs of play, like jumping, collecting, or building.",e:"Jumping, shooting, and matching tiles are all mechanics; combined thoughtfully they become gameplay."},
+{t:"Prototype",cat:"design",cert:"both",d:"An early, rough version of a game built quickly to test whether an idea is fun before investing in polish.",e:"A grey-box prototype uses plain shapes to test whether a jumping mechanic feels good before art is made."},
+{t:"Iteration",cat:"design",cert:"both",d:"The repeated cycle of building, testing, and refining a game based on feedback.",e:"Each round of playtesting and adjustment is an iteration that improves the design."},
+{t:"Playtesting",cat:"design",cert:"both",d:"Observing real players using a game to discover what's confusing, too hard, too easy, or not fun.",e:"Watching a tester struggle at a jump reveals a difficulty problem no amount of solo testing would catch."},
+{t:"Level Design",cat:"design",cert:"both",d:"The craft of designing the spaces, challenges, and pacing a player moves through within a game.",e:"Good level design introduces a mechanic safely, then gradually raises the challenge as the player masters it."},
+{t:"User Experience (UX)",cat:"design",cert:"both",d:"How a player feels while interacting with a game — how clear, responsive, and satisfying it is to use.",e:"Clear menus, readable text, and responsive controls are all UX concerns."},
+{t:"Frame",cat:"design",cert:"both",d:"A single rendered image. A game displays a rapid sequence of frames to create motion.",e:"At 60 FPS, the game draws 60 frames every second, each a snapshot of the current game state."},
+{t:"Version Control",cat:"design",cert:"both",d:"A system that tracks changes to project files over time, letting a team collaborate and revert mistakes.",e:"Git lets a team work on the same game without overwriting each other's work."},
+{t:"Sprite Sheet",cat:"design",cert:"artist",d:"A single image file containing multiple sprites or animation frames, sliced apart for use in-game.",e:"A character's walk cycle is often stored as one sprite sheet of sequential poses."},
+{t:"Asset Pipeline",cat:"design",cert:"both",d:"The workflow through which art, audio, and other assets are created, imported, and integrated into a game.",e:"A model moves through the asset pipeline from a 3D program, into Unity, onto a GameObject."}
+];
+
+const CAT_NAMES = {
+  engine:"Engine & Editor", csharp:"C# Scripting", gameplay:"Gameplay & Physics",
+  ui:"UI & Audio", design:"Design & Production"
+};
+const CERT_NAMES = {
+  programmer:"Unity Certified User: Programmer",
+  artist:"Unity Certified User: Artist"
+};
+
+// ── STATE ──
+let curCat='all', starOnly=false, codeOnly=false, curLetter=null, curView='card', curCert='programmer';
+let starred = new Set(JSON.parse(localStorage.getItem('gamedesign_glossary_starred')||'[]'));
+let quizScore = localStorage.getItem('gamedesign_glossary_quizscore');
+
+function saveStars(){ localStorage.setItem('gamedesign_glossary_starred', JSON.stringify([...starred])); }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function codeFmt(s){ return esc(s).replace(/\n/g,'<br>'); }
+
+// A term is visible for the active cert if it's tagged for that cert OR "both"
+function certMatch(t){ return t.cert===curCert || t.cert==='both'; }
+
+function setCert(c, btn){
+  if(btn.classList.contains('locked')) return;
+  curCert=c;
+  document.querySelectorAll('.cert-pill').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('cert-name').textContent = CERT_NAMES[c];
+  refreshTotals();
+  applyFilters();
+}
+function toggleStar(name, ev){
+  ev.stopPropagation();
+  if(starred.has(name)) starred.delete(name); else starred.add(name);
+  saveStars(); applyFilters();
+}
+function setCat(c, btn){
+  curCat=c;
+  document.querySelectorAll('.pill[data-cat]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+function toggleStarOnly(){ starOnly=!starOnly; document.getElementById('btn-star').classList.toggle('active',starOnly); applyFilters(); }
+function toggleCodeOnly(){ codeOnly=!codeOnly; document.getElementById('btn-code').classList.toggle('active',codeOnly); applyFilters(); }
+function setView(v){
+  curView=v;
+  document.getElementById('btn-card').classList.toggle('active',v==='card');
+  document.getElementById('btn-compact').classList.toggle('active',v==='compact');
+  document.getElementById('term-list').classList.toggle('compact',v==='compact');
+}
+function setLetter(L, btn){
+  curLetter = (curLetter===L)?null:L;
+  document.querySelectorAll('.az-btn').forEach(b=>b.classList.remove('active'));
+  if(curLetter) btn.classList.add('active');
+  applyFilters();
+}
+function buildAZ(){
+  const present = new Set(TERMS.filter(certMatch).map(t=>t.t[0].toUpperCase()));
+  const letters='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  document.getElementById('az-row').innerHTML = letters.map(L=>
+    `<button class="az-btn ${present.has(L)?'has':''}" onclick="setLetter('${L}',this)" ${present.has(L)?'':'disabled style="opacity:.25;cursor:default"'}>${L}</button>`
+  ).join('');
+}
+function getFiltered(){
+  const q=document.getElementById('search-input').value.trim().toLowerCase();
+  return TERMS.filter(t=>{
+    if(!certMatch(t)) return false;
+    if(curCat!=='all' && t.cat!==curCat) return false;
+    if(starOnly && !starred.has(t.t)) return false;
+    if(codeOnly && !t.code) return false;
+    if(curLetter && t.t[0].toUpperCase()!==curLetter) return false;
+    if(q){
+      const hay=(t.t+' '+t.d+' '+(t.code||'')+' '+(t.e||'')).toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+}
+function refreshTotals(){
+  const inCert = TERMS.filter(certMatch).length;
+  document.getElementById('s-total').textContent = inCert;
+  buildAZ();
+}
+function applyFilters(){
+  const list=getFiltered().slice().sort((a,b)=>a.t.localeCompare(b.t));
+  document.getElementById('s-shown').textContent=list.length;
+  document.getElementById('s-starred').textContent=starred.size;
+  document.getElementById('count-line').innerHTML=`<b>${list.length}</b> terms shown`;
+  const box=document.getElementById('term-list');
+  if(!list.length){ box.innerHTML='<div class="empty">No terms match your search or filters.</div>'; return; }
+  const groups={};
+  list.forEach(t=>{ const L=t.t[0].toUpperCase(); (groups[L]=groups[L]||[]).push(t); });
+  box.innerHTML=Object.keys(groups).sort().map(L=>{
+    const items=groups[L].map(t=>{
+      const on=starred.has(t.t);
+      let extra='';
+      if(t.code) extra+=`<div class="extra-line ex-code"><span class="extra-lbl">CODE</span>${codeFmt(t.code)}</div>`;
+      if(t.e) extra+=`<div class="extra-line ex-example"><span class="extra-lbl">IN PRACTICE</span>${esc(t.e)}</div>`;
+      return `<div class="term-card">
+        <div class="term-top">
+          <div class="term-name">${esc(t.t)}</div>
+          <div class="term-meta">
+            <span class="tag tag-cat">${CAT_NAMES[t.cat]}</span>
+            ${t.code?'<span class="tag tag-code">⌨ Code</span>':''}
+            ${t.e?'<span class="tag tag-example">💡 Example</span>':''}
+            <button class="star-btn ${on?'on':''}" onclick="toggleStar('${t.t.replace(/'/g,"\\'")}',event)">${on?'★':'☆'}</button>
+          </div>
+        </div>
+        <div class="term-def">${esc(t.d)}</div>
+        ${extra?`<div class="term-extra">${extra}</div>`:''}
+      </div>`;
+    }).join('');
+    return `<div class="letter-head"><div class="letter-badge">${L}</div><div class="letter-count">${groups[L].length} term${groups[L].length===1?'':'s'}</div></div>${items}`;
+  }).join('');
+}
+
+// ── FLASHCARD QUIZ ──
+let quizDeck=[], quizIdx=0, quizRight=0, quizRevealed=false;
+function launchQuiz(){
+  const pool=getFiltered();
+  if(pool.length<4){ alert('Need at least 4 terms in the current filter to start a quiz.'); return; }
+  quizDeck=pool.slice().sort(()=>Math.random()-0.5).slice(0,Math.min(20,pool.length));
+  quizIdx=0; quizRight=0; quizRevealed=false;
+  document.getElementById('quiz-modal').classList.add('open');
+  renderQuiz();
+}
+function closeQuiz(){ document.getElementById('quiz-modal').classList.remove('open'); }
+function revealAnswer(){ quizRevealed=true; renderQuiz(); }
+function markQuiz(correct){
+  if(correct) quizRight++;
+  quizIdx++; quizRevealed=false;
+  if(quizIdx>=quizDeck.length){
+    const pct=Math.round(quizRight/quizDeck.length*100);
+    quizScore=pct+'%';
+    localStorage.setItem('gamedesign_glossary_quizscore',quizScore);
+    document.getElementById('s-quiz').textContent=quizScore;
+    document.getElementById('quiz-box').innerHTML=`
+      <button class="quiz-close" onclick="closeQuiz()">✕</button>
+      <div class="quiz-done">
+        <div style="font-size:11px;letter-spacing:.12em;color:var(--muted);margin-bottom:10px">SESSION COMPLETE</div>
+        <div class="quiz-score">${quizRight}/${quizDeck.length}</div>
+        <div style="font-size:14px;color:var(--muted);margin:8px 0 20px">${pct}% correct</div>
+        <div class="quiz-btns">
+          <button class="qbtn qbtn-show" onclick="launchQuiz()">Run Again</button>
+          <button class="qbtn qbtn-got" onclick="closeQuiz()">Done</button>
+        </div>
+      </div>`;
+    return;
+  }
+  renderQuiz();
+}
+function renderQuiz(){
+  const t=quizDeck[quizIdx];
+  let ansHtml=`<div class="quiz-answer ${quizRevealed?'show':''}">${esc(t.d)}`;
+  if(t.code) ansHtml+=`<div class="qa-code">${codeFmt(t.code)}</div>`;
+  ansHtml+=`</div>`;
+  document.getElementById('quiz-box').innerHTML=`
+    <button class="quiz-close" onclick="closeQuiz()">✕</button>
+    <div class="quiz-progress">CARD ${quizIdx+1} OF ${quizDeck.length} · ${CAT_NAMES[t.cat]}</div>
+    <div class="quiz-prompt-lbl">DEFINE THIS TERM</div>
+    <div class="quiz-term">${esc(t.t)}</div>
+    ${ansHtml}
+    <div class="quiz-btns">
+      ${quizRevealed
+        ? `<button class="qbtn qbtn-miss" onclick="markQuiz(false)">✗ Missed It</button>
+           <button class="qbtn qbtn-got" onclick="markQuiz(true)">✓ Got It</button>`
+        : `<button class="qbtn qbtn-show" onclick="revealAnswer()">Show Answer</button>`}
+    </div>`;
+}
+document.getElementById('quiz-modal').addEventListener('click',e=>{ if(e.target.id==='quiz-modal') closeQuiz(); });
+
+// ── INIT (counts computed from data) ──
+(function init(){
+  const inCert = TERMS.filter(certMatch).length;
+  const withCode = TERMS.filter(t=>certMatch(t)&&t.code).length;
+  const cats = new Set(TERMS.filter(certMatch).map(t=>t.cat)).size;
+  document.getElementById('s-total').textContent = inCert;
+  document.getElementById('page-sub').textContent =
+    `${inCert} terms · ${cats} categories · ${withCode} with code examples · A–Z, anchored to UCU Programmer objectives`;
+  if(quizScore) document.getElementById('s-quiz').textContent = quizScore;
+  buildAZ();
+  applyFilters();
+})();
+</script>
+</body>
+</html>

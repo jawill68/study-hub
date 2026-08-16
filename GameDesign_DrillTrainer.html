@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game &amp; Simulation Foundations — Drill Trainer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#0a0612;--card:#150e24;--card2:#1d1533;--border:#2f2248;
+  --text:#ece8f4;--muted:#9585b0;--white:#ffffff;--accent:#8B5CF6;--accent2:#2E8BC0;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(139,92,246,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(139,92,246,0.04) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:26px 20px 70px}
+
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--accent)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+.hdr-btn{background:var(--card);border:1px solid var(--border);color:var(--text);font-family:'DM Sans',sans-serif;font-size:12.5px;font-weight:700;padding:9px 16px;border-radius:10px;cursor:pointer}
+.hdr-btn:hover{border-color:var(--accent)}
+
+.cert-banner{background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(46,139,192,.06));border:1px solid var(--border);border-radius:12px;padding:11px 16px;margin-bottom:18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.cert-text{font-size:12.5px;color:var(--text)}
+.cert-text b{color:#b39bf5}
+.cert-switch{margin-left:auto;display:flex;gap:6px}
+.cert-pill{background:var(--card2);border:1px solid var(--border);border-radius:999px;padding:5px 13px;font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
+.cert-pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.cert-pill.locked{opacity:.5;cursor:default}
+
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px;flex:1}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+
+.screen{display:none}
+.screen.active{display:block}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:14px}
+.sec-lbl{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.13em;color:var(--muted);margin-bottom:11px}
+
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:7px 15px;font-size:12.5px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--accent);color:var(--text)}
+.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.pill-row{display:flex;gap:7px;flex-wrap:wrap}
+
+.mode-tab{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:11px 17px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.mode-tab:hover{border-color:var(--accent);color:var(--text)}
+.mode-tab.active{background:rgba(139,92,246,.16);border-color:var(--accent);color:var(--white)}
+.mode-desc{margin-top:10px;font-size:12.5px;color:var(--muted);line-height:1.6}
+
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:9px}
+.cat-box{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:12px 14px;cursor:pointer;transition:all .18s;display:flex;align-items:center;gap:10px}
+.cat-box:hover{border-color:var(--accent)}
+.cat-box.on{background:rgba(139,92,246,.12);border-color:var(--accent)}
+.cat-check{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.cat-box.on .cat-check{background:var(--accent);border-color:var(--accent);color:#fff}
+.cat-name{font-size:12.5px;font-weight:700;color:var(--text)}
+.cat-qty{font-size:10.5px;color:var(--muted);font-family:'DM Mono',monospace}
+
+.btn{border:none;border-radius:12px;padding:14px 26px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-go{background:linear-gradient(135deg,var(--accent),#6d3fd4);color:#fff;width:100%}
+.btn-go:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(139,92,246,.32)}
+.btn-go:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-ghost{background:var(--bg);border:1px solid var(--border);color:var(--text)}
+.btn-teal{background:var(--teal);color:#fff}
+.btn-next{background:var(--accent);color:#fff}
+
+.q-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.q-counter{font-family:'DM Mono',monospace;font-size:11.5px;letter-spacing:.1em;color:var(--muted)}
+.q-badges{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.badge{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:6px;white-space:nowrap}
+.b-cat{background:rgba(139,92,246,.16);color:#b39bf5;border:1px solid rgba(139,92,246,.3)}
+.b-t1{background:rgba(29,158,117,.15);color:#4fd1a5;border:1px solid rgba(29,158,117,.3)}
+.b-t2{background:rgba(229,148,0,.14);color:#efb44e;border:1px solid rgba(229,148,0,.3)}
+.b-t3{background:rgba(231,76,60,.14);color:#f08579;border:1px solid rgba(231,76,60,.3)}
+.b-code{background:rgba(46,139,192,.15);color:#7cc0e6;border:1px solid rgba(46,139,192,.3)}
+.timer{font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:var(--amber)}
+.timer.warn{color:var(--red)}
+
+.prog-bar{height:5px;background:var(--bg);border-radius:99px;overflow:hidden;margin-bottom:18px}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s}
+
+.q-text{font-size:16px;font-weight:600;color:var(--white);line-height:1.5;margin-bottom:10px}
+.q-code{font-family:'DM Mono',monospace;font-size:12.5px;color:#8ecbec;background:rgba(46,139,192,.07);border-left:2px solid var(--accent2);padding:11px 14px;border-radius:8px;margin-bottom:16px;white-space:pre-wrap;line-height:1.6}
+
+.opts{display:flex;flex-direction:column;gap:9px;margin-bottom:16px}
+.opt{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:13px 16px;cursor:pointer;transition:all .16s;display:flex;align-items:flex-start;gap:12px;text-align:left;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);width:100%}
+.opt:hover:not(:disabled){border-color:var(--accent);background:var(--card2)}
+.opt:disabled{cursor:default}
+.opt-mono{font-family:'DM Mono',monospace;font-size:13px}
+.opt-key{width:24px;height:24px;border-radius:7px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0;color:var(--muted)}
+.opt.correct{border-color:var(--teal);background:rgba(29,158,117,.11)}
+.opt.correct .opt-key{background:var(--teal);border-color:var(--teal);color:#fff}
+.opt.wrong{border-color:var(--red);background:rgba(231,76,60,.10)}
+.opt.wrong .opt-key{background:var(--red);border-color:var(--red);color:#fff}
+
+.feedback{border-radius:12px;padding:14px 16px;margin-bottom:16px;display:none}
+.feedback.show{display:block}
+.fb-right{background:rgba(29,158,117,.09);border:1px solid rgba(29,158,117,.3)}
+.fb-wrong{background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.3)}
+.fb-head{font-size:13px;font-weight:800;margin-bottom:7px}
+.fb-right .fb-head{color:#4fd1a5}
+.fb-wrong .fb-head{color:#f08579}
+.fb-body{font-size:13.5px;color:var(--text);opacity:.92;line-height:1.55}
+.fb-code{font-family:'DM Mono',monospace;font-size:12px;color:#8ecbec;margin-top:9px;padding-top:9px;border-top:1px solid var(--border);white-space:pre-wrap}
+
+.res-score{font-size:3rem;font-weight:800;font-family:'DM Mono',monospace;color:var(--white);text-align:center;line-height:1}
+.res-score span{font-size:1.5rem;color:var(--muted)}
+.res-grade{text-align:center;font-size:1.2rem;font-weight:800;margin:8px 0}
+.res-sub{text-align:center;font-size:13px;color:var(--muted);margin-bottom:20px}
+.brk-row{display:flex;align-items:center;gap:11px;margin-bottom:9px}
+.brk-name{font-size:12.5px;font-weight:700;min-width:150px;color:var(--text)}
+.brk-bar{flex:1;height:8px;background:var(--bg);border-radius:99px;overflow:hidden}
+.brk-fill{height:100%;border-radius:99px}
+.brk-num{font-family:'DM Mono',monospace;font-size:11.5px;color:var(--muted);min-width:46px;text-align:right}
+.res-btns{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}
+.res-btns .btn{flex:1;min-width:130px}
+.miss-item{background:var(--bg);border:1px solid var(--border);border-left:2px solid var(--red);border-radius:9px;padding:11px 14px;margin-bottom:8px}
+.miss-q{font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px}
+.miss-a{font-size:12px;color:var(--muted)}
+.miss-a b{color:#4fd1a5}
+
+@media(max-width:640px){.page-title{font-size:1.5rem}.brk-name{min-width:98px;font-size:11.5px}.cert-switch{margin-left:0}}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <a href="GameDesign_StudyHub.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;margin-bottom:14px;opacity:.85">← Game Design Study Hub</a>
+
+  <div class="header">
+    <div>
+      <div class="series-label">Game &amp; Simulation Foundations · Study Resource Series · Build 2</div>
+      <div class="page-title">Drill <span>Trainer</span></div>
+      <div class="page-sub" id="page-sub">Loading…</div>
+    </div>
+    <button class="hdr-btn" id="btn-setup" onclick="goSetup()" style="display:none">← Setup</button>
+  </div>
+
+  <div class="cert-banner">
+    <span>🎮</span>
+    <span class="cert-text">Certification track: <b id="cert-name">Unity Certified User: Programmer</b></span>
+    <div class="cert-switch">
+      <button class="cert-pill active" data-cert="programmer" onclick="setCert('programmer',this)">Programmer</button>
+      <button class="cert-pill locked" data-cert="artist" title="Reserved — activate when confirmed with instructor">Artist 🔒</button>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-chip"><div class="stat-num" id="gs-total">0</div><div class="stat-lbl">TOTAL DRILLED</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--teal)" id="gs-acc">—</div><div class="stat-lbl">ACCURACY</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--amber)" id="gs-streak">0</div><div class="stat-lbl">BEST STREAK</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--accent2)" id="gs-sessions">0</div><div class="stat-lbl">SESSIONS</div></div>
+  </div>
+
+  <!-- SETUP -->
+  <div class="screen active" id="screen-setup">
+    <div class="card">
+      <div class="sec-lbl">SESSION MODE</div>
+      <div class="pill-row" id="mode-tabs">
+        <button class="mode-tab active" data-mode="practice" onclick="setMode('practice',this)">📚 Practice</button>
+        <button class="mode-tab" data-mode="exam" onclick="setMode('exam',this)">🎓 Exam Mode</button>
+        <button class="mode-tab" data-mode="stamina" onclick="setMode('stamina',this)">🔥 Stamina</button>
+      </div>
+      <div class="mode-desc" id="mode-desc"></div>
+    </div>
+    <div class="card">
+      <div class="sec-lbl">CATEGORIES &nbsp;·&nbsp; <span id="sel-count" style="color:var(--accent)"></span></div>
+      <div class="cat-grid" id="cat-grid"></div>
+      <div class="pill-row" style="margin-top:11px">
+        <button class="pill" onclick="selectAllCats(true)">Select All</button>
+        <button class="pill" onclick="selectAllCats(false)">Clear</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="sec-lbl">DIFFICULTY</div>
+      <div class="pill-row">
+        <button class="pill active" data-tier="all" onclick="setTier('all',this)">All Tiers</button>
+        <button class="pill" data-tier="1" onclick="setTier(1,this)">① Foundational</button>
+        <button class="pill" data-tier="2" onclick="setTier(2,this)">② Intermediate</button>
+        <button class="pill" data-tier="3" onclick="setTier(3,this)">③ Challenge</button>
+      </div>
+    </div>
+    <button class="btn btn-go" id="btn-start" onclick="startSession()">Start Session</button>
+  </div>
+
+  <!-- QUESTION -->
+  <div class="screen" id="screen-q">
+    <div class="card">
+      <div class="q-top">
+        <div class="q-counter" id="q-counter"></div>
+        <div class="q-badges" id="q-badges"></div>
+        <div class="timer" id="q-timer" style="display:none"></div>
+      </div>
+      <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+      <div class="q-text" id="q-text"></div>
+      <div class="q-code" id="q-code" style="display:none"></div>
+      <div class="opts" id="q-opts"></div>
+      <div class="feedback" id="q-feedback"></div>
+      <button class="btn btn-next" id="btn-nextq" style="display:none;width:100%" onclick="nextQuestion()">Next Question →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="screen" id="screen-res">
+    <div class="card">
+      <div class="sec-lbl" id="res-mode">SESSION COMPLETE</div>
+      <div class="res-score" id="res-score"></div>
+      <div class="res-grade" id="res-grade"></div>
+      <div class="res-sub" id="res-sub"></div>
+      <div class="sec-lbl" style="margin-top:20px">BREAKDOWN BY CATEGORY</div>
+      <div id="res-breakdown"></div>
+      <div class="res-btns">
+        <button class="btn btn-ghost" onclick="goSetup()">← Setup</button>
+        <button class="btn btn-teal" onclick="retrySession()">Retry Same</button>
+        <button class="btn btn-next" id="btn-retry-missed" onclick="retryMissed()">Drill Missed Only</button>
+      </div>
+    </div>
+    <div class="card" id="res-missed-card" style="display:none">
+      <div class="sec-lbl">QUESTIONS MISSED</div>
+      <div id="res-missed"></div>
+    </div>
+  </div>
+
+  <div style="margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center">
+    Game &amp; Simulation Foundations (82081100) · Unity Certified User: Programmer objectives · Drill Trainer
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+// GAME & SIMULATION FOUNDATIONS — DRILL TRAINER
+// Anchored to Unity Certified User (UCU): Programmer exam objectives
+// tier: 1=foundational 2=intermediate 3=challenge
+// cat: engine | csharp | gameplay | ui | design
+// cert: "programmer" | "artist" | "both"
+// ═══════════════════════════════════════════
+const QB = [
+{cat:"engine",cert:"both",tier:1,q:"In Unity, what is the fundamental object that populates a scene and gets its behavior entirely from attached components?",o:["Component","GameObject","Prefab","Asset"],a:1,exp:"A GameObject is the base object in a scene. On its own it does nothing — its behavior comes from the components attached to it, like a Rigidbody, a Collider, or a script."},
+{cat:"engine",cert:"both",tier:1,q:"Which Editor panel displays and lets you edit the components of the currently selected object?",o:["Hierarchy","Project window","Console","Inspector"],a:3,exp:"The Inspector shows the components and editable properties of whatever object is selected. The Hierarchy lists scene objects; the Project window shows assets; the Console shows messages."},
+{cat:"engine",cert:"both",tier:2,q:"A developer edits several object positions while in Play Mode, then stops. The changes vanish. Why?",o:["The Inspector was closed","The scene wasn't rendered","GameObjects can't move in Play Mode","Play Mode changes are temporary and reset when Play Mode ends"],a:3,exp:"Play Mode runs the game live for testing, and any changes made during it are discarded when you stop. Permanent edits must be made outside Play Mode — a very common beginner mistake."},
+{cat:"engine",cert:"both",tier:2,q:"What is the main advantage of using a Prefab?",o:["It makes the game run faster","It automatically writes code","It's a reusable template — editing the prefab updates every instance at once","It prevents collisions"],a:2,exp:"A Prefab is a saved, reusable GameObject template. Change the prefab and every instance in the game updates together — invaluable when you have dozens of identical enemies or pickups."},
+{cat:"engine",cert:"both",tier:1,q:"Which component, present on every GameObject, stores its position, rotation, and scale?",o:["Rigidbody","Transform","Collider","Renderer"],a:1,exp:"Every GameObject has a Transform component defining where it is (position), how it's oriented (rotation), and how big it is (scale) in the scene."},
+{cat:"engine",cert:"both",tier:2,q:"Nesting one GameObject under another in the Hierarchy has what effect?",o:["The child is deleted with the parent only","Nothing — nesting is only visual","The child moves, rotates, and scales along with the parent","The child becomes a prefab"],a:2,exp:"A child GameObject inherits its parent's Transform changes: move, rotate, or scale the parent and the child follows. This parent-child relationship is fundamental to building complex objects."},
+{cat:"csharp",cert:"programmer",tier:1,q:"Which data type should store a player's health value of 100 (a whole number)?",o:["float","string","int","bool"],a:2,exp:"int stores whole numbers. float is for decimals, string for text, and bool for true/false. Whole-number values like health, lives, or score use int."},
+{cat:"csharp",cert:"programmer",tier:1,q:"How must a float literal be written in C#?",o:["With an 'f' suffix, like 5.5f","With a '$' prefix","In quotation marks","With square brackets"],a:0,exp:"C# requires the f suffix on float literals: 'float speed = 5.5f;'. Leaving off the f is one of the most common beginner compile errors in Unity."},
+{cat:"csharp",cert:"programmer",tier:2,q:"Which Unity lifecycle method runs once, before Start, when a script instance first loads?",o:["Update","FixedUpdate","Awake","OnCollisionEnter"],a:2,exp:"Awake runs first, once, when the script loads — even before Start and even if the component is disabled. It's used for early setup like caching references."},
+{cat:"csharp",cert:"programmer",tier:2,q:"Where should you read continuous player input, since it must be checked every frame?",o:["Start","Awake","OnCollisionEnter","Update"],a:3,exp:"Update runs once per frame, making it the right place to check for input each frame. Start and Awake run only once; OnCollisionEnter runs only on collisions."},
+{cat:"csharp",cert:"programmer",tier:3,q:"Why should physics forces be applied in FixedUpdate rather than Update?",o:["FixedUpdate runs at a fixed time interval independent of frame rate, keeping physics consistent","FixedUpdate runs faster","Update cannot access Rigidbodies","FixedUpdate runs only once"],a:0,exp:"FixedUpdate runs on a fixed timestep decoupled from frame rate, so physics behaves the same whether the game runs at 30 or 144 FPS. Applying forces in Update would make physics frame-rate dependent and inconsistent."},
+{cat:"csharp",cert:"programmer",tier:1,q:"What does a method with a 'void' return type do?",o:["Returns nothing — it just performs a task","Returns text","Returns a whole number","Deletes the object"],a:0,exp:"A void method performs work but returns no value. A method that needs to send a result back declares a return type like int or bool instead."},
+{cat:"csharp",cert:"programmer",tier:2,q:"In the code below, what is 'amount' called?\n\nvoid TakeDamage(int amount) {\n  health -= amount;\n}",code:"void TakeDamage(int amount) {\n  health -= amount;\n}",o:["A parameter","A return value","A class","A comment"],a:0,exp:"'amount' is a parameter — a value passed into the method when it's called. Parameters let the same method handle different inputs, so TakeDamage(10) and TakeDamage(25) both work."},
+{cat:"csharp",cert:"programmer",tier:2,q:"What will this line print to the Console?\n\nint x = 5;\nDebug.Log(x + 3);",code:"int x = 5;\nDebug.Log(x + 3);",o:["\"x + 3\"","5 + 3","53","8"],a:3,exp:"Since x is the int 5, the expression x + 3 evaluates to 8 before printing. If x were a string, the result would differ — but as an int, arithmetic applies."},
+{cat:"csharp",cert:"programmer",tier:1,q:"Which access modifier makes a variable editable in the Inspector?",o:["private","public","void","static"],a:1,exp:"public variables are visible to other scripts and appear as editable fields in the Inspector, letting designers tune values without editing code. private variables are hidden from both."},
+{cat:"csharp",cert:"programmer",tier:2,q:"Which line correctly declares a variable holding the text 'Game Over'?",o:["int message = Game Over;","string message = \"Game Over\";","bool message = Game Over;","float message = 'Game Over';"],a:1,exp:"Text is stored in a string, and string literals must be wrapped in double quotes. int is for whole numbers, bool for true/false, and float for decimals."},
+{cat:"csharp",cert:"programmer",tier:3,q:"What is wrong with this code?\n\nif (health = 0) {\n  GameOver();\n}",code:"if (health = 0) {\n  GameOver();\n}",o:["Nothing is wrong","GameOver needs parameters","It uses a single = (assignment) instead of == (comparison)","health must be a float"],a:2,exp:"A single = assigns a value; a double == compares. 'if (health = 0)' tries to assign 0 to health rather than check if it equals 0. The correct form is 'if (health == 0)'. This is a classic bug."},
+{cat:"csharp",cert:"programmer",tier:2,q:"What does this loop do?\n\nfor (int i = 0; i < 5; i++) {\n  SpawnEnemy();\n}",code:"for (int i = 0; i < 5; i++) {\n  SpawnEnemy();\n}",o:["Calls SpawnEnemy() exactly 5 times","Spawns enemies forever","Calls SpawnEnemy() once","Causes a syntax error"],a:0,exp:"The loop starts i at 0 and runs while i < 5, incrementing each pass: i = 0, 1, 2, 3, 4. That's 5 iterations, so SpawnEnemy() is called 5 times."},
+{cat:"csharp",cert:"programmer",tier:1,q:"What is the first place to look when a script won't run and you need to find the error?",o:["The Hierarchy","The Console","The Project window","The Scene view"],a:1,exp:"The Console displays errors, warnings, and Debug.Log output. Red error messages there are the starting point for debugging any script that won't compile or run."},
+{cat:"csharp",cert:"programmer",tier:2,q:"At what index does the first element of a C# array sit?",o:["1","The array's length","-1","0"],a:3,exp:"Arrays are zero-indexed: the first element is at index 0, the second at 1, and so on. An array of length 5 has valid indices 0 through 4."},
+{cat:"csharp",cert:"programmer",tier:1,q:"What is the purpose of a comment in code?",o:["It speeds up the game","It explains the code and is ignored by the compiler","It creates a variable","It causes an error"],a:1,exp:"A comment (after // for a single line) is a note for humans reading the code. The compiler ignores it entirely, so it never affects how the program runs."},
+{cat:"csharp",cert:"programmer",tier:3,q:"A script reads 'public class Enemy : MonoBehaviour'. What does inheriting from MonoBehaviour provide?",o:["Faster rendering","Automatic collision detection","Access to Unity's lifecycle methods like Start and Update","A free Rigidbody"],a:2,exp:"Inheriting from MonoBehaviour is what lets a script hook into Unity's game loop, giving it access to lifecycle methods such as Awake, Start, Update, and FixedUpdate. Without it, those methods wouldn't be called."},
+{cat:"gameplay",cert:"programmer",tier:1,q:"Which component makes a GameObject respond to gravity, forces, and physics?",o:["Collider","Transform","Rigidbody","Canvas"],a:2,exp:"A Rigidbody places the object under the physics engine's control, letting it fall, be pushed by forces, and collide realistically. A Collider only defines shape for contact detection."},
+{cat:"gameplay",cert:"programmer",tier:2,q:"What is the difference between a regular Collider and one set as a Trigger?",o:["A Trigger is invisible; a Collider is visible","A Trigger detects overlap without blocking movement; a Collider physically blocks","There is no difference","A Trigger is only for 2D games"],a:1,exp:"A normal Collider physically stops objects. A Trigger detects when something enters its space but lets it pass through, firing OnTriggerEnter — perfect for pickup zones or level exits."},
+{cat:"gameplay",cert:"programmer",tier:2,q:"How many float values does a Vector3 hold, and what do they represent?",o:["Two: x and y","Four: r, g, b, a","Three: x, y, and z","One: magnitude"],a:2,exp:"A Vector3 holds three floats — x, y, z — used for positions, directions, and velocities in 3D space. Vector2 (x, y) is its 2D counterpart."},
+{cat:"gameplay",cert:"programmer",tier:3,q:"Why is movement code often multiplied by Time.deltaTime?\n\ntransform.Translate(dir * speed * Time.deltaTime);",code:"transform.Translate(dir * speed * Time.deltaTime);",o:["To make the object move faster","To detect collisions","To enable gravity","To make motion consistent regardless of frame rate"],a:3,exp:"Time.deltaTime is the time since the last frame. Multiplying by it makes movement frame-rate independent, so an object travels the same real-world distance per second on any device, fast or slow."},
+{cat:"gameplay",cert:"programmer",tier:2,q:"Which method creates a new copy of a prefab at runtime, for example to spawn a bullet?",o:["Instantiate","Destroy","GetComponent","AddForce"],a:0,exp:"Instantiate creates a new instance of a prefab or GameObject during gameplay. It's how you spawn bullets, enemies, particles, or any object that appears dynamically."},
+{cat:"gameplay",cert:"programmer",tier:2,q:"What does this line do?\n\nDestroy(gameObject, 3f);",code:"Destroy(gameObject, 3f);",o:["Destroys the object immediately","Creates 3 objects","Destroys the object after 3 seconds","Pauses the game for 3 seconds"],a:2,exp:"Destroy with a second argument delays removal — here, the GameObject is destroyed after 3 seconds. It's commonly used to clean up bullets or effects after a set lifetime."},
+{cat:"gameplay",cert:"programmer",tier:3,q:"Which method projects an invisible line to detect the first collider in a direction — useful for shooting or line-of-sight?",o:["Instantiate","Raycast","AddForce","Translate"],a:1,exp:"Physics.Raycast casts a ray from a point in a direction and reports the first collider it hits. It's used for aiming weapons, detecting what's underfoot, or checking line of sight."},
+{cat:"gameplay",cert:"programmer",tier:2,q:"What does a NavMesh provide for AI characters?",o:["A way to render graphics","A pre-computed map of walkable surfaces for automatic pathfinding","A physics material","A sound effect system"],a:1,exp:"A baked NavMesh maps which surfaces are walkable, letting a NavMeshAgent find paths around obstacles automatically — so enemies can chase the player without hand-written pathfinding."},
+{cat:"gameplay",cert:"programmer",tier:2,q:"Which event method runs the moment two solid colliders make contact?",o:["OnTriggerEnter","Update","OnCollisionEnter","Start"],a:2,exp:"OnCollisionEnter fires when two non-trigger colliders touch, letting you react to physical impacts — dealing damage, playing a sound, or bouncing. OnTriggerEnter is its trigger-based counterpart."},
+{cat:"gameplay",cert:"programmer",tier:1,q:"Which line checks whether the space bar was pressed down this frame?",o:["Input.GetKeyDown(KeyCode.Space)","Input.Space()","KeyCode.Space.Pressed","GetKey(Space)"],a:0,exp:"Input.GetKeyDown(KeyCode.Space) returns true on the single frame the space bar is first pressed. It's the standard way to detect a discrete key press for actions like jumping."},
+{cat:"ui",cert:"programmer",tier:1,q:"Every UI element (button, text, image) must be a child of which component?",o:["Canvas","Rigidbody","NavMesh","AudioSource"],a:0,exp:"The Canvas is the root that renders all UI. Buttons, text, sliders, and images all live as children of a Canvas — without one, UI elements won't display."},
+{cat:"ui",cert:"programmer",tier:2,q:"Which Unity system saves small pieces of data, like a high score, that persist after the game closes?",o:["PlayerPrefs","Debug.Log","Rigidbody","NavMesh"],a:0,exp:"PlayerPrefs stores small values (ints, floats, strings) that survive between sessions — ideal for high scores and settings. 'PlayerPrefs.SetInt(\"HighScore\", 500)' saves; GetInt retrieves."},
+{cat:"ui",cert:"programmer",tier:2,q:"Which component plays a sound effect from a GameObject?",o:["AudioSource","AudioClip","Canvas","Slider"],a:0,exp:"An AudioSource is the component that plays sound. It plays an AudioClip (the imported sound asset). You call audioSource.Play() to trigger it."},
+{cat:"ui",cert:"programmer",tier:2,q:"What is the relationship between an AudioSource and an AudioClip?",o:["They are the same thing","Neither relates to sound","The AudioClip plays the AudioSource","The AudioSource is the component that plays; the AudioClip is the sound asset it plays"],a:3,exp:"The AudioClip is the imported sound file (the data); the AudioSource is the component that plays it from a GameObject. One AudioSource can play many different clips."},
+{cat:"design",cert:"both",tier:1,q:"What is the core repeating cycle of a game called — process input, update state, render?",o:["The render pipeline","The build process","The asset pipeline","The game loop"],a:3,exp:"The game loop is the fundamental cycle running every frame: read input, update the game state, then render the result. Unity runs this loop for you, and your Update method hooks into it."},
+{cat:"design",cert:"both",tier:1,q:"What is a rough, quickly built early version of a game used to test whether an idea is fun?",o:["A build","A sprite","A prefab","A prototype"],a:3,exp:"A prototype is a fast, rough version made to test whether a mechanic is fun before investing in art and polish. Grey-boxing — using plain shapes — is a common prototyping approach."},
+{cat:"design",cert:"both",tier:2,q:"What is the practice of observing real players to find what's confusing or not fun called?",o:["Debugging","Playtesting","Rendering","Compiling"],a:1,exp:"Playtesting means watching real players use your game to reveal problems you'd never catch alone — a confusing jump, an unclear objective, an unfair difficulty spike."},
+{cat:"design",cert:"both",tier:1,q:"A rule or system governing how players interact with a game — like jumping or collecting — is called a:",o:["Render pass","Game mechanic","Data type","Collider"],a:1,exp:"A game mechanic is a rule or system defining how players interact — the 'verbs' of play. Jumping, shooting, matching, and building are all mechanics that combine into gameplay."},
+{cat:"design",cert:"both",tier:2,q:"What is the repeated cycle of building, testing, and refining based on feedback called?",o:["Compilation","Rendering","Instantiation","Iteration"],a:3,exp:"Iteration is the loop of build → test → refine → repeat. Each pass improves the design based on what playtesting revealed. Good games are iterated many times."},
+{cat:"design",cert:"both",tier:2,q:"What does a simulation model, distinguishing it from a pure entertainment game?",o:["A real-world process or system, often for training or analysis","Only fantasy worlds","Only 2D graphics","Nothing — they are identical"],a:0,exp:"A simulation imitates a real-world process or system — flight, chemistry, physics — often for training, education, or analysis rather than pure entertainment. This course covers both game and simulation design."}
+];
+
+const CAT_NAMES = {
+  engine:"Engine & Editor", csharp:"C# Scripting", gameplay:"Gameplay & Physics",
+  ui:"UI & Audio", design:"Design & Production"
+};
+const CERT_NAMES = {
+  programmer:"Unity Certified User: Programmer",
+  artist:"Unity Certified User: Artist"
+};
+const MODE_DESC = {
+  practice:"<b style='color:var(--accent)'>Practice</b> — one question at a time with instant feedback and a full explanation after every answer. No timer. Best for learning.",
+  exam:"<b style='color:var(--amber)'>Exam Mode</b> — a timed 20-question session under test conditions. Explanations are withheld until the session ends.",
+  stamina:"<b style='color:var(--red)'>Stamina</b> — answer correctly to continue. One wrong answer ends the run. How far can you get?"
+};
+const LS='gamedesign_drill_stats';
+
+let curCert='programmer', mode='practice', tier='all';
+let selCats = new Set(['engine','csharp','gameplay','ui','design']);
+let deck=[], idx=0, right=0, answered=false, missed=[], lastConfig=null;
+let streak=0, timerId=null, timeLeft=0;
+let stats = JSON.parse(localStorage.getItem(LS)||'{"total":0,"correct":0,"best":0,"sessions":0}');
+
+function saveStats(){ localStorage.setItem(LS, JSON.stringify(stats)); }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function codeFmt(s){ return esc(s).replace(/\n/g,'<br>'); }
+function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
+function certMatch(q){ return q.cert===curCert || q.cert==='both'; }
+
+function setCert(c, btn){
+  if(btn.classList.contains('locked')) return;
+  curCert=c;
+  document.querySelectorAll('.cert-pill').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('cert-name').textContent=CERT_NAMES[c];
+  renderCats(); updatePool();
+}
+function setMode(m, btn){
+  mode=m;
+  document.querySelectorAll('.mode-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('mode-desc').innerHTML=MODE_DESC[m];
+  updatePool();
+}
+function setTier(t, btn){
+  tier=t;
+  document.querySelectorAll('.pill[data-tier]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  updatePool();
+}
+function toggleCat(c){ if(selCats.has(c)) selCats.delete(c); else selCats.add(c); renderCats(); updatePool(); }
+function selectAllCats(on){ selCats = on?new Set(Object.keys(CAT_NAMES)):new Set(); renderCats(); updatePool(); }
+function renderCats(){
+  document.getElementById('cat-grid').innerHTML=Object.keys(CAT_NAMES).map(c=>{
+    const n=QB.filter(q=>q.cat===c && certMatch(q)).length;
+    const on=selCats.has(c);
+    if(n===0) return '';
+    return `<div class="cat-box ${on?'on':''}" onclick="toggleCat('${c}')">
+      <div class="cat-check">${on?'✓':''}</div>
+      <div><div class="cat-name">${CAT_NAMES[c]}</div><div class="cat-qty">${n} questions</div></div>
+    </div>`;
+  }).join('');
+}
+function pool(){ return QB.filter(q=> certMatch(q) && selCats.has(q.cat) && (tier==='all'||q.tier===tier)); }
+function updatePool(){
+  const n=pool().length;
+  document.getElementById('sel-count').textContent=`${n} question${n===1?'':'s'} available`;
+  const btn=document.getElementById('btn-start');
+  btn.disabled=n<1;
+  btn.textContent=n<1?'No questions match — adjust filters':`Start ${mode==='exam'?'Exam':mode==='stamina'?'Stamina Run':'Practice'} (${mode==='exam'?Math.min(20,n):n} questions)`;
+}
+function startSession(){
+  const p=pool(); if(p.length<1) return;
+  deck=p.slice().sort(()=>Math.random()-0.5);
+  if(mode==='exam') deck=deck.slice(0,Math.min(20,deck.length));
+  lastConfig={mode,tier,cats:[...selCats]};
+  idx=0; right=0; missed=[]; answered=false; streak=0;
+  document.getElementById('btn-setup').style.display='inline-block';
+  if(mode==='exam'){ timeLeft=deck.length*60; document.getElementById('q-timer').style.display='block'; startTimer(); }
+  else document.getElementById('q-timer').style.display='none';
+  show('screen-q'); renderQ();
+}
+function startTimer(){
+  clearInterval(timerId);
+  timerId=setInterval(()=>{
+    timeLeft--;
+    const m=Math.floor(timeLeft/60), s=timeLeft%60;
+    const el=document.getElementById('q-timer');
+    el.textContent=`⏱ ${m}:${String(s).padStart(2,'0')}`;
+    el.classList.toggle('warn',timeLeft<=60);
+    if(timeLeft<=0){ clearInterval(timerId); finishSession(true); }
+  },1000);
+}
+function renderQ(){
+  const q=deck[idx]; answered=false;
+  document.getElementById('q-counter').textContent=`QUESTION ${idx+1} OF ${deck.length}`;
+  document.getElementById('q-badges').innerHTML=
+    `<span class="badge b-cat">${CAT_NAMES[q.cat]}</span>
+     <span class="badge b-t${q.tier}">${q.tier===1?'① Foundational':q.tier===2?'② Intermediate':'③ Challenge'}</span>
+     ${q.code?'<span class="badge b-code">⌨ Code</span>':''}`;
+  document.getElementById('prog-fill').style.width=((idx)/deck.length*100)+'%';
+  document.getElementById('q-text').textContent=q.q;
+  const c=document.getElementById('q-code');
+  if(q.code){ c.innerHTML=codeFmt(q.code); c.style.display='block'; } else c.style.display='none';
+  // detect if options are code-like (short, contain code symbols) to use mono font
+  document.getElementById('q-opts').innerHTML=q.o.map((opt,i)=>{
+    const isCode=/[();{}=<>\[\]]|GetKey|Input\.|KeyCode|PlayerPrefs/.test(opt) && opt.length<48;
+    return `<button class="opt ${isCode?'opt-mono':''}" id="opt-${i}" onclick="answer(${i})"><span class="opt-key">${'ABCD'[i]}</span><span>${esc(opt)}</span></button>`;
+  }).join('');
+  document.getElementById('q-feedback').className='feedback';
+  document.getElementById('q-feedback').innerHTML='';
+  document.getElementById('btn-nextq').style.display='none';
+}
+function answer(choice){
+  if(answered) return; answered=true;
+  const q=deck[idx], correct=choice===q.a;
+  if(correct){ right++; streak++; if(streak>stats.best) stats.best=streak; }
+  else { missed.push({q,chose:choice}); streak=0; }
+  stats.total++; if(correct) stats.correct++;
+  saveStats(); renderGlobalStats();
+  document.querySelectorAll('.opt').forEach((b,i)=>{ b.disabled=true; if(i===q.a) b.classList.add('correct'); else if(i===choice) b.classList.add('wrong'); });
+  if(mode==='stamina' && !correct){ finishSession(); return; }
+  if(mode!=='exam'){
+    const fb=document.getElementById('q-feedback');
+    fb.className='feedback show '+(correct?'fb-right':'fb-wrong');
+    fb.innerHTML=`<div class="fb-head">${correct?'✓ Correct':'✗ Not quite'}</div><div class="fb-body">${esc(q.exp)}</div>`;
+  }
+  const nb=document.getElementById('btn-nextq');
+  nb.style.display='block';
+  nb.textContent=(idx>=deck.length-1)?'See Results →':'Next Question →';
+}
+function nextQuestion(){ idx++; if(idx>=deck.length){ finishSession(); return; } renderQ(); }
+function finishSession(timeUp){
+  clearInterval(timerId);
+  stats.sessions++; saveStats(); renderGlobalStats();
+  const attempted=(mode==='stamina')?idx+1:deck.length;
+  const pct=attempted?Math.round(right/attempted*100):0;
+  document.getElementById('res-mode').textContent=timeUp?'TIME EXPIRED':(mode==='stamina'?`STAMINA RUN — ${right} IN A ROW`:'SESSION COMPLETE');
+  document.getElementById('res-score').innerHTML=`${right}<span>/${attempted}</span>`;
+  const grade=pct>=90?'Excellent':pct>=80?'Strong':pct>=70?'Solid':pct>=60?'Developing':'Needs Review';
+  const gcol=pct>=80?'var(--teal)':pct>=60?'var(--amber)':'var(--red)';
+  document.getElementById('res-grade').innerHTML=`<span style="color:${gcol}">${grade}</span>`;
+  document.getElementById('res-sub').textContent=`${pct}% correct · ${mode==='exam'?'Exam Mode':mode==='stamina'?'Stamina':'Practice'}`;
+  const seen=deck.slice(0,attempted), byCat={};
+  seen.forEach(q=>{ byCat[q.cat]=byCat[q.cat]||{n:0,ok:0}; byCat[q.cat].n++; });
+  seen.forEach(q=>{ if(!missed.some(m=>m.q===q)) byCat[q.cat].ok++; });
+  document.getElementById('res-breakdown').innerHTML=Object.keys(byCat).sort().map(c=>{
+    const d=byCat[c], p=Math.round(d.ok/d.n*100);
+    const col=p>=80?'var(--teal)':p>=60?'var(--amber)':'var(--red)';
+    return `<div class="brk-row"><div class="brk-name">${CAT_NAMES[c]}</div><div class="brk-bar"><div class="brk-fill" style="width:${p}%;background:${col}"></div></div><div class="brk-num">${d.ok}/${d.n}</div></div>`;
+  }).join('')||'<div style="font-size:12.5px;color:var(--muted)">No questions attempted.</div>';
+  const mc=document.getElementById('res-missed-card');
+  document.getElementById('btn-retry-missed').style.display=missed.length?'block':'none';
+  if(missed.length){
+    mc.style.display='block';
+    document.getElementById('res-missed').innerHTML=missed.map(m=>`<div class="miss-item"><div class="miss-q">${esc(m.q.q)}</div><div class="miss-a">You chose: ${esc(m.q.o[m.chose])} · Correct: <b>${esc(m.q.o[m.q.a])}</b></div><div class="miss-a" style="margin-top:6px;opacity:.85">${esc(m.q.exp)}</div></div>`).join('');
+  } else mc.style.display='none';
+  show('screen-res');
+}
+function retrySession(){
+  if(!lastConfig) return goSetup();
+  idx=0; right=0; missed=[]; streak=0;
+  deck=deck.slice().sort(()=>Math.random()-0.5);
+  if(mode==='exam'){ timeLeft=deck.length*60; startTimer(); }
+  show('screen-q'); renderQ();
+}
+function retryMissed(){
+  if(!missed.length) return;
+  deck=missed.map(m=>m.q).sort(()=>Math.random()-0.5);
+  idx=0; right=0; missed=[]; streak=0;
+  clearInterval(timerId);
+  document.getElementById('q-timer').style.display='none';
+  if(mode==='exam') mode='practice';
+  show('screen-q'); renderQ();
+}
+function goSetup(){ clearInterval(timerId); document.getElementById('btn-setup').style.display='none'; show('screen-setup'); }
+function renderGlobalStats(){
+  document.getElementById('gs-total').textContent=stats.total;
+  document.getElementById('gs-acc').textContent=stats.total?Math.round(stats.correct/stats.total*100)+'%':'—';
+  document.getElementById('gs-streak').textContent=stats.best;
+  document.getElementById('gs-sessions').textContent=stats.sessions;
+}
+(function init(){
+  const total=QB.filter(certMatch).length;
+  const withCode=QB.filter(q=>certMatch(q)&&q.code).length;
+  const cats=new Set(QB.filter(certMatch).map(q=>q.cat)).size;
+  document.getElementById('page-sub').textContent=`${total} questions · ${cats} categories · ${withCode} with code · 3 difficulty tiers`;
+  document.getElementById('mode-desc').innerHTML=MODE_DESC.practice;
+  renderCats(); updatePool(); renderGlobalStats();
+})();
+</script>
+</body>
+</html>

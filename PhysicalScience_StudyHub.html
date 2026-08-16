@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physical Science Honors — Study Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
+  --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(46,139,192,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(46,139,192,0.04) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:26px 20px 70px}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0c2340 0%,#12335a 55%,#0a1e38 100%);border:1px solid var(--border);border-radius:20px;padding:32px 30px;margin-bottom:22px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40%;right:-8%;width:340px;height:340px;background:radial-gradient(circle,rgba(46,139,192,.18),transparent 70%);border-radius:50%}
+.hero::after{content:'⚛';position:absolute;bottom:-30px;right:24px;font-size:150px;opacity:.05;line-height:1}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--sky);margin-bottom:10px;position:relative}
+.hero-title{font-size:2.6rem;font-weight:800;color:var(--white);line-height:1.05;position:relative}
+.hero-title span{color:var(--sky)}
+.hero-sub{font-size:14px;color:#a9c2dc;margin-top:12px;max-width:560px;position:relative;line-height:1.6}
+.hero-chips{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px;position:relative}
+.hero-chip{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:7px 14px;font-size:12px;font-weight:600;color:#cfe0f0}
+.chip-teal{border-color:rgba(29,158,117,.4);color:#6fe0bb}
+.chip-sky{border-color:rgba(46,139,192,.4);color:#8ecbec}
+.chip-red{border-color:rgba(231,76,60,.4);color:#f3968c}
+
+/* PROGRESS */
+.prog-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 20px;margin-bottom:22px}
+.prog-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px}
+.prog-title{font-size:13px;font-weight:700;color:var(--white)}
+.prog-reset{background:none;border:1px solid var(--border);border-radius:8px;color:var(--muted);font-size:10.5px;font-weight:700;padding:5px 11px;cursor:pointer;font-family:'DM Sans',sans-serif}
+.prog-reset:hover{border-color:var(--red);color:#f08579}
+.prog-track{height:10px;background:var(--bg);border-radius:99px;overflow:hidden;margin-bottom:8px}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--sky),var(--teal));border-radius:99px;transition:width .5s;width:0%}
+.prog-label{font-size:11.5px;color:var(--muted);font-family:'DM Mono',monospace}
+.prog-label b{color:var(--teal)}
+
+.sec-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:26px 0 13px}
+
+/* BUILD CARDS */
+.builds{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:720px){.builds{grid-template-columns:1fr}}
+.bcard{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:12px;transition:all .2s;position:relative;overflow:hidden}
+.bcard::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s;pointer-events:none}
+.bcard:hover{transform:translateY(-3px)}
+.bcard-glossary:hover{border-color:rgba(29,158,117,.5);box-shadow:0 14px 40px rgba(29,158,117,.14)}
+.bcard-glossary::before{background:linear-gradient(135deg,rgba(29,158,117,.08),transparent)}
+.bcard-drill:hover{border-color:rgba(46,139,192,.5);box-shadow:0 14px 40px rgba(46,139,192,.14)}
+.bcard-drill::before{background:linear-gradient(135deg,rgba(46,139,192,.08),transparent)}
+.bcard-autopsy:hover{border-color:rgba(231,76,60,.5);box-shadow:0 14px 40px rgba(231,76,60,.14)}
+.bcard-autopsy::before{background:linear-gradient(135deg,rgba(231,76,60,.08),transparent)}
+.bcard:hover::before{opacity:1}
+.bcard-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;position:relative}
+.bcard-icon{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:23px;flex-shrink:0}
+.bi-glossary{background:rgba(29,158,117,.14);border:1px solid rgba(29,158,117,.3)}
+.bi-drill{background:rgba(46,139,192,.14);border:1px solid rgba(46,139,192,.3)}
+.bi-autopsy{background:rgba(231,76,60,.14);border:1px solid rgba(231,76,60,.3)}
+.bcard-eyebrow{font-family:'DM Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase}
+.eb-glossary{color:#4fd1a5} .eb-drill{color:#7cc0e6} .eb-autopsy{color:#f08579}
+.bcard-name{font-size:1.2rem;font-weight:800;color:var(--white);margin-top:3px}
+.bcard-desc{font-size:13px;color:var(--muted);line-height:1.55;position:relative}
+.bcard-tags{display:flex;gap:6px;flex-wrap:wrap;position:relative}
+.btag{font-size:10px;font-weight:700;padding:3px 9px;border-radius:6px;font-family:'DM Sans',sans-serif}
+.bt-teal{background:rgba(29,158,117,.13);color:#4fd1a5} .bt-sky{background:rgba(46,139,192,.13);color:#7cc0e6}
+.bt-red{background:rgba(231,76,60,.13);color:#f08579} .bt-muted{background:var(--card2);color:var(--muted)}
+.bcard-cta{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;position:relative;margin-top:2px}
+.cta-glossary{color:var(--teal)} .cta-drill{color:var(--sky)} .cta-autopsy{color:var(--red)}
+.bcard:hover .bcard-cta .arrow{transform:translateX(4px)}
+.arrow{transition:transform .2s}
+
+/* PATH */
+.path-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px 22px}
+.path-step{display:flex;gap:13px;padding:11px 0;border-bottom:1px solid var(--border)}
+.path-step:last-child{border-bottom:none;padding-bottom:0}
+.path-step:first-child{padding-top:0}
+.path-num{width:28px;height:28px;border-radius:50%;background:rgba(46,139,192,.15);border:1px solid rgba(46,139,192,.4);color:var(--sky);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;font-family:'DM Mono',monospace}
+.path-body{flex:1}
+.path-name{font-size:13.5px;font-weight:700;color:var(--white)}
+.path-name a{color:var(--sky);text-decoration:none}
+.path-name a:hover{text-decoration:underline}
+.path-note{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.5}
+
+/* UNIT MAP */
+.units-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px}
+.unit-card{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:14px 15px;transition:all .18s}
+.unit-card:hover{border-color:var(--sky)}
+.unit-badge{width:34px;height:34px;border-radius:9px;background:rgba(46,139,192,.13);border:1px solid rgba(46,139,192,.3);color:var(--sky);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;font-family:'DM Mono',monospace;margin-bottom:9px}
+.unit-name{font-size:12.5px;font-weight:700;color:var(--white);line-height:1.3}
+.unit-strand{font-size:10px;color:var(--muted);margin-top:4px;font-family:'DM Mono',monospace}
+
+.footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--sky);text-decoration:none;margin-bottom:14px;opacity:.85">← All Courses</a>
+
+  <div class="hero">
+    <div class="hero-eyebrow">Physical Science Honors · Study Resource Series</div>
+    <div class="hero-title">Study <span>Hub</span></div>
+    <div class="hero-sub">Your command center for every Physical Science resource — build core vocabulary, drill exam-style questions, and dissect the mistakes that cost points. Aligned to Florida's NGSSS science standards.</div>
+    <div class="hero-chips">
+      <span class="hero-chip chip-teal">📖 194 Glossary Terms</span>
+      <span class="hero-chip chip-sky">✏️ 117 Drill Questions</span>
+      <span class="hero-chip chip-red">🔬 33 Mistake Autopsies</span>
+      <span class="hero-chip">⚛ 6 Units</span>
+    </div>
+  </div>
+
+  <div class="prog-card">
+    <div class="prog-head">
+      <div class="prog-title">📊 Your Progress Across Resources</div>
+      <button class="prog-reset" onclick="resetProgress()">Reset Progress</button>
+    </div>
+    <div class="prog-track"><div class="prog-fill" id="prog-fill"></div></div>
+    <div class="prog-label" id="prog-label">Loading your activity…</div>
+  </div>
+
+  <div class="sec-label">The Three Builds</div>
+  <div class="builds">
+
+    <a class="bcard bcard-glossary" href="PhysicalScience_Master_Glossary.html">
+      <div class="bcard-head">
+        <div>
+          <div class="bcard-eyebrow eb-glossary">Build 1 · Vocabulary</div>
+          <div class="bcard-name">Master Glossary</div>
+        </div>
+        <div class="bcard-icon bi-glossary">📖</div>
+      </div>
+      <div class="bcard-desc">194 essential terms across all six units, each with a plain-language definition, worked example, and formula where relevant. Search, filter, star, and quiz yourself with flashcards.</div>
+      <div class="bcard-tags">
+        <span class="btag bt-teal">194 terms</span>
+        <span class="btag bt-muted">35 formulas</span>
+        <span class="btag bt-muted">Flashcard quiz</span>
+      </div>
+      <div class="bcard-cta cta-glossary">Open Glossary <span class="arrow">→</span></div>
+    </a>
+
+    <a class="bcard bcard-drill" href="PhysicalScience_DrillTrainer.html">
+      <div class="bcard-head">
+        <div>
+          <div class="bcard-eyebrow eb-drill">Build 2 · Practice</div>
+          <div class="bcard-name">Drill Trainer</div>
+        </div>
+        <div class="bcard-icon bi-drill">✏️</div>
+      </div>
+      <div class="bcard-desc">117 exam-style questions with instant feedback and full explanations. Choose Practice, timed Exam Mode, or Stamina — filter by unit and difficulty, then drill only what you missed.</div>
+      <div class="bcard-tags">
+        <span class="btag bt-sky">117 questions</span>
+        <span class="btag bt-muted">22 calculations</span>
+        <span class="btag bt-muted">3 modes</span>
+      </div>
+      <div class="bcard-cta cta-drill">Open Drill Trainer <span class="arrow">→</span></div>
+    </a>
+
+    <a class="bcard bcard-autopsy" href="PhysicalScience_Mistakes_Autopsy.html">
+      <div class="bcard-head">
+        <div>
+          <div class="bcard-eyebrow eb-autopsy">Build 3 · Error Review</div>
+          <div class="bcard-name">Mistakes Autopsy</div>
+        </div>
+        <div class="bcard-icon bi-autopsy">🔬</div>
+      </div>
+      <div class="bcard-desc">33 high-frequency errors dissected side-by-side — what goes wrong, what's correct, and why students fall for it. Includes a Find My Mistake diagnostic and mastery tracking.</div>
+      <div class="bcard-tags">
+        <span class="btag bt-red">33 errors</span>
+        <span class="btag bt-muted">17 high-frequency</span>
+        <span class="btag bt-muted">Diagnostic mode</span>
+      </div>
+      <div class="bcard-cta cta-autopsy">Open Autopsy <span class="arrow">→</span></div>
+    </a>
+
+    <div class="bcard" style="cursor:default;justify-content:center;align-items:center;text-align:center;border-style:dashed;opacity:.7">
+      <div style="font-size:26px;margin-bottom:4px">🎓</div>
+      <div class="bcard-name" style="font-size:1.05rem">Exam Mode is built in</div>
+      <div class="bcard-desc" style="text-align:center">No separate simulator needed — the Drill Trainer includes a timed, full-length Exam Mode with a per-unit score breakdown.</div>
+    </div>
+
+  </div>
+
+  <div class="sec-label">Recommended Study Path</div>
+  <div class="path-card">
+    <div class="path-step">
+      <div class="path-num">1</div>
+      <div class="path-body">
+        <div class="path-name"><a href="PhysicalScience_Master_Glossary.html">Build vocabulary first</a></div>
+        <div class="path-note">Start in the Master Glossary. Work one unit at a time and star the terms you find hardest. The vocabulary is the foundation everything else builds on.</div>
+      </div>
+    </div>
+    <div class="path-step">
+      <div class="path-num">2</div>
+      <div class="path-body">
+        <div class="path-name"><a href="PhysicalScience_DrillTrainer.html">Drill in Practice mode</a></div>
+        <div class="path-note">Move to the Drill Trainer in Practice mode, one unit at a time. Read every explanation — even on questions you get right — to lock in the reasoning.</div>
+      </div>
+    </div>
+    <div class="path-step">
+      <div class="path-num">3</div>
+      <div class="path-body">
+        <div class="path-name"><a href="PhysicalScience_Mistakes_Autopsy.html">Autopsy your errors</a></div>
+        <div class="path-note">When you start missing questions, open the Mistakes Autopsy. Find the misconception behind each error and mark it mastered once it clicks.</div>
+      </div>
+    </div>
+    <div class="path-step">
+      <div class="path-num">4</div>
+      <div class="path-body">
+        <div class="path-name"><a href="PhysicalScience_DrillTrainer.html">Test under exam conditions</a></div>
+        <div class="path-note">Return to the Drill Trainer and run a timed Exam Mode session across all units. Use the per-unit breakdown to see exactly where to circle back.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-label">The Six Units</div>
+  <div class="units-grid" id="units-grid"></div>
+
+  <div class="footer">
+    Physical Science Honors (2003320) · Florida NGSSS Science Standards<br>
+    <span style="opacity:.6">Nature of Science (SC.912.N) · Matter (SC.912.P.8) · Energy (SC.912.P.10) · Motion &amp; Forces (SC.912.P.12)</span>
+  </div>
+</div>
+
+<script>
+const UNITS = [
+  {id:"U1",name:"Nature of Science",strand:"SC.912.N"},
+  {id:"U2",name:"Atomic Structure & Periodic Table",strand:"SC.912.P.8"},
+  {id:"U3",name:"Bonding, Reactions & Solutions",strand:"SC.912.P.8"},
+  {id:"U4",name:"Energy, Heat & Waves",strand:"SC.912.P.10"},
+  {id:"U5",name:"Nuclear Science",strand:"SC.912.P.10"},
+  {id:"U6",name:"Motion & Forces",strand:"SC.912.P.12"}
+];
+
+document.getElementById('units-grid').innerHTML = UNITS.map(u=>`
+  <div class="unit-card">
+    <div class="unit-badge">${u.id}</div>
+    <div class="unit-name">${u.name}</div>
+    <div class="unit-strand">${u.strand}</div>
+  </div>`).join('');
+
+// ── Progress: reads the localStorage the other three tools write ──
+function readProgress(){
+  let signals=[], done=0, totalSignals=4;
+
+  // 1. Glossary: any starred terms OR a quiz score
+  const gStar = JSON.parse(localStorage.getItem('physci_glossary_starred')||'[]');
+  const gQuiz = localStorage.getItem('physci_glossary_quizscore');
+  if(gStar.length || gQuiz){ done++; signals.push(`Glossary: ${gStar.length} starred${gQuiz?', quiz '+gQuiz:''}`); }
+
+  // 2. Drill: sessions completed
+  const drill = JSON.parse(localStorage.getItem('physci_drill_stats')||'{"sessions":0,"total":0,"correct":0}');
+  if(drill.sessions>0){ done++; const acc = drill.total?Math.round(drill.correct/drill.total*100):0; signals.push(`Drill: ${drill.sessions} session${drill.sessions>1?'s':''}, ${acc}% accuracy`); }
+
+  // 3. Autopsy: mistakes mastered
+  const mastered = JSON.parse(localStorage.getItem('physci_autopsy_mastered')||'[]');
+  if(mastered.length){ done++; signals.push(`Autopsy: ${mastered.length}/33 mastered`); }
+
+  // 4. Autopsy diagnostic OR drill exam done (test-readiness signal)
+  const fmm = localStorage.getItem('physci_autopsy_fmm');
+  if(fmm){ done++; signals.push(`Find My Mistake: ${fmm}`); }
+
+  const pct = Math.round(done/totalSignals*100);
+  document.getElementById('prog-fill').style.width = pct+'%';
+  document.getElementById('prog-label').innerHTML = signals.length
+    ? `<b>${pct}%</b> of study milestones started · ${signals.join(' · ')}`
+    : 'No activity yet — open the Master Glossary to begin. Your progress across all three tools will appear here.';
+}
+function resetProgress(){
+  if(!confirm('Reset all Physical Science progress? This clears starred terms, quiz scores, drill stats, and mastered mistakes across every tool.')) return;
+  ['physci_glossary_starred','physci_glossary_quizscore','physci_drill_stats','physci_autopsy_mastered','physci_autopsy_fmm']
+    .forEach(k=>localStorage.removeItem(k));
+  readProgress();
+}
+readProgress();
+</script>
+</body>
+</html>

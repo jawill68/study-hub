@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game &amp; Simulation Foundations — Study Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#0a0612;--card:#150e24;--card2:#1d1533;--border:#2f2248;
+  --text:#ece8f4;--muted:#9585b0;--white:#ffffff;--accent:#8B5CF6;--accent2:#2E8BC0;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(139,92,246,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(139,92,246,0.04) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:26px 20px 70px}
+
+.hero{background:linear-gradient(135deg,#1a0f33 0%,#241640 55%,#150c28 100%);border:1px solid var(--border);border-radius:20px;padding:32px 30px;margin-bottom:22px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40%;right:-8%;width:340px;height:340px;background:radial-gradient(circle,rgba(139,92,246,.2),transparent 70%);border-radius:50%}
+.hero::after{content:'🎮';position:absolute;bottom:-24px;right:24px;font-size:135px;opacity:.06;line-height:1}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;position:relative}
+.hero-title{font-size:2.6rem;font-weight:800;color:var(--white);line-height:1.05;position:relative}
+.hero-title span{color:var(--accent)}
+.hero-sub{font-size:14px;color:#c3b3dc;margin-top:12px;max-width:580px;position:relative;line-height:1.6}
+.hero-chips{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px;position:relative}
+.hero-chip{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:7px 14px;font-size:12px;font-weight:600;color:#d6c8ec}
+.chip-purple{border-color:rgba(139,92,246,.4);color:#c3a5f7}
+.chip-sky{border-color:rgba(46,139,192,.4);color:#8ecbec}
+.chip-red{border-color:rgba(231,76,60,.4);color:#f3968c}
+
+/* CERT BANNER */
+.cert-banner{background:linear-gradient(135deg,rgba(139,92,246,.12),rgba(46,139,192,.06));border:1px solid var(--border);border-radius:14px;padding:15px 18px;margin-bottom:22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.cert-icon{font-size:22px}
+.cert-body{flex:1;min-width:200px}
+.cert-title{font-size:13px;font-weight:700;color:var(--white)}
+.cert-title b{color:#c3a5f7}
+.cert-note{font-size:11.5px;color:var(--muted);margin-top:3px}
+.cert-switch{display:flex;gap:6px}
+.cert-pill{background:var(--card2);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:11.5px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
+.cert-pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.cert-pill.locked{opacity:.5;cursor:default}
+
+.prog-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 20px;margin-bottom:22px}
+.prog-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px}
+.prog-title{font-size:13px;font-weight:700;color:var(--white)}
+.prog-reset{background:none;border:1px solid var(--border);border-radius:8px;color:var(--muted);font-size:10.5px;font-weight:700;padding:5px 11px;cursor:pointer;font-family:'DM Sans',sans-serif}
+.prog-reset:hover{border-color:var(--red);color:#f08579}
+.prog-track{height:10px;background:var(--bg);border-radius:99px;overflow:hidden;margin-bottom:8px}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px;transition:width .5s;width:0%}
+.prog-label{font-size:11.5px;color:var(--muted);font-family:'DM Mono',monospace}
+.prog-label b{color:var(--accent)}
+
+.sec-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:26px 0 13px}
+
+.builds{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:720px){.builds{grid-template-columns:1fr}}
+.bcard{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:12px;transition:all .2s;position:relative;overflow:hidden}
+.bcard::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s;pointer-events:none}
+.bcard:hover{transform:translateY(-3px)}
+.bcard-glossary:hover{border-color:rgba(139,92,246,.5);box-shadow:0 14px 40px rgba(139,92,246,.16)}
+.bcard-glossary::before{background:linear-gradient(135deg,rgba(139,92,246,.08),transparent)}
+.bcard-drill:hover{border-color:rgba(46,139,192,.5);box-shadow:0 14px 40px rgba(46,139,192,.14)}
+.bcard-drill::before{background:linear-gradient(135deg,rgba(46,139,192,.08),transparent)}
+.bcard-autopsy:hover{border-color:rgba(231,76,60,.5);box-shadow:0 14px 40px rgba(231,76,60,.14)}
+.bcard-autopsy::before{background:linear-gradient(135deg,rgba(231,76,60,.08),transparent)}
+.bcard:hover::before{opacity:1}
+.bcard-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;position:relative}
+.bcard-icon{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:23px;flex-shrink:0}
+.bi-glossary{background:rgba(139,92,246,.14);border:1px solid rgba(139,92,246,.3)}
+.bi-drill{background:rgba(46,139,192,.14);border:1px solid rgba(46,139,192,.3)}
+.bi-autopsy{background:rgba(231,76,60,.14);border:1px solid rgba(231,76,60,.3)}
+.bcard-eyebrow{font-family:'DM Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase}
+.eb-glossary{color:#c3a5f7} .eb-drill{color:#7cc0e6} .eb-autopsy{color:#f08579}
+.bcard-name{font-size:1.2rem;font-weight:800;color:var(--white);margin-top:3px}
+.bcard-desc{font-size:13px;color:var(--muted);line-height:1.55;position:relative}
+.bcard-tags{display:flex;gap:6px;flex-wrap:wrap;position:relative}
+.btag{font-size:10px;font-weight:700;padding:3px 9px;border-radius:6px;font-family:'DM Sans',sans-serif}
+.bt-purple{background:rgba(139,92,246,.13);color:#c3a5f7} .bt-sky{background:rgba(46,139,192,.13);color:#7cc0e6}
+.bt-red{background:rgba(231,76,60,.13);color:#f08579} .bt-muted{background:var(--card2);color:var(--muted)}
+.bcard-cta{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;position:relative;margin-top:2px}
+.cta-glossary{color:var(--accent)} .cta-drill{color:var(--sky)} .cta-autopsy{color:var(--red)}
+.bcard:hover .bcard-cta .arrow{transform:translateX(4px)}
+.arrow{transition:transform .2s}
+
+.path-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px 22px}
+.path-step{display:flex;gap:13px;padding:11px 0;border-bottom:1px solid var(--border)}
+.path-step:last-child{border-bottom:none;padding-bottom:0}
+.path-step:first-child{padding-top:0}
+.path-num{width:28px;height:28px;border-radius:50%;background:rgba(139,92,246,.15);border:1px solid rgba(139,92,246,.4);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;font-family:'DM Mono',monospace}
+.path-body{flex:1}
+.path-name{font-size:13.5px;font-weight:700;color:var(--white)}
+.path-name a{color:var(--accent);text-decoration:none}
+.path-name a:hover{text-decoration:underline}
+.path-note{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.5}
+
+.cats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:10px}
+.cat-card{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:14px 15px;transition:all .18s}
+.cat-card:hover{border-color:var(--accent)}
+.cat-badge{width:34px;height:34px;border-radius:9px;background:rgba(139,92,246,.13);border:1px solid rgba(139,92,246,.3);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:15px;margin-bottom:9px}
+.cat-name{font-size:12.5px;font-weight:700;color:var(--white);line-height:1.3}
+.cat-note{font-size:10.5px;color:var(--muted);margin-top:4px}
+
+.footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;margin-bottom:14px;opacity:.85">← All Courses</a>
+
+  <div class="hero">
+    <div class="hero-eyebrow">Game &amp; Simulation Foundations · Study Resource Series</div>
+    <div class="hero-title">Study <span>Hub</span></div>
+    <div class="hero-sub">Your command center for building toward the Unity Certified User certification — master the vocabulary, drill exam-style questions, and dissect the bugs that trip up every beginner. Built on real Unity C# objectives.</div>
+    <div class="hero-chips">
+      <span class="hero-chip chip-purple">📖 79 Glossary Terms</span>
+      <span class="hero-chip chip-sky">✏️ 42 Drill Questions</span>
+      <span class="hero-chip chip-red">🔬 16 Bug Autopsies</span>
+      <span class="hero-chip">⌨ 37 Code Examples</span>
+    </div>
+  </div>
+
+  <div class="cert-banner">
+    <span class="cert-icon">🎯</span>
+    <div class="cert-body">
+      <div class="cert-title">Certification track: <b id="cert-name">Unity Certified User: Programmer</b></div>
+      <div class="cert-note" id="cert-note">All resources are filtered to this track. A second track (Artist) is reserved and can be activated once confirmed with the instructor — no rebuild needed.</div>
+    </div>
+    <div class="cert-switch">
+      <button class="cert-pill active" data-cert="programmer" onclick="setCert('programmer',this)">Programmer</button>
+      <button class="cert-pill locked" data-cert="artist" title="Reserved — activate when confirmed with instructor">Artist 🔒</button>
+    </div>
+  </div>
+
+  <div class="prog-card">
+    <div class="prog-head">
+      <div class="prog-title">📊 Your Progress Across Resources</div>
+      <button class="prog-reset" onclick="resetProgress()">Reset Progress</button>
+    </div>
+    <div class="prog-track"><div class="prog-fill" id="prog-fill"></div></div>
+    <div class="prog-label" id="prog-label">Loading your activity…</div>
+  </div>
+
+  <div class="sec-label">The Three Builds</div>
+  <div class="builds">
+
+    <a class="bcard bcard-glossary" href="GameDesign_Master_Glossary.html">
+      <div class="bcard-head">
+        <div><div class="bcard-eyebrow eb-glossary">Build 1 · Vocabulary</div><div class="bcard-name">Master Glossary</div></div>
+        <div class="bcard-icon bi-glossary">📖</div>
+      </div>
+      <div class="bcard-desc">79 essential terms across engine, C# scripting, gameplay physics, UI, and design — 37 with real Unity code examples. Search, filter, star, and quiz yourself.</div>
+      <div class="bcard-tags"><span class="btag bt-purple">79 terms</span><span class="btag bt-muted">37 code snippets</span><span class="btag bt-muted">Flashcard quiz</span></div>
+      <div class="bcard-cta cta-glossary">Open Glossary <span class="arrow">→</span></div>
+    </a>
+
+    <a class="bcard bcard-drill" href="GameDesign_DrillTrainer.html">
+      <div class="bcard-head">
+        <div><div class="bcard-eyebrow eb-drill">Build 2 · Practice</div><div class="bcard-name">Drill Trainer</div></div>
+        <div class="bcard-icon bi-drill">✏️</div>
+      </div>
+      <div class="bcard-desc">42 exam-style questions — including code-reading challenges — with instant feedback. Practice, timed Exam Mode, or Stamina; filter by category and difficulty.</div>
+      <div class="bcard-tags"><span class="btag bt-sky">42 questions</span><span class="btag bt-muted">Code reading</span><span class="btag bt-muted">3 modes</span></div>
+      <div class="bcard-cta cta-drill">Open Drill Trainer <span class="arrow">→</span></div>
+    </a>
+
+    <a class="bcard bcard-autopsy" href="GameDesign_Mistakes_Autopsy.html">
+      <div class="bcard-head">
+        <div><div class="bcard-eyebrow eb-autopsy">Build 3 · Error Review</div><div class="bcard-name">Mistakes Autopsy</div></div>
+        <div class="bcard-icon bi-autopsy">🔬</div>
+      </div>
+      <div class="bcard-desc">16 beginner bugs dissected with real code — = vs ==, missing Time.deltaTime, physics in the wrong method. Includes a Find My Mistake diagnostic and mastery tracking.</div>
+      <div class="bcard-tags"><span class="btag bt-red">16 bugs</span><span class="btag bt-muted">Code analysis</span><span class="btag bt-muted">Diagnostic mode</span></div>
+      <div class="bcard-cta cta-autopsy">Open Autopsy <span class="arrow">→</span></div>
+    </a>
+
+    <div class="bcard" style="cursor:default;justify-content:center;align-items:center;text-align:center;border-style:dashed;opacity:.7">
+      <div style="font-size:26px;margin-bottom:4px">🎓</div>
+      <div class="bcard-name" style="font-size:1.05rem">Exam Mode is built in</div>
+      <div class="bcard-desc" style="text-align:center">The Drill Trainer includes a timed, full-length Exam Mode with a per-category score breakdown — no separate simulator needed.</div>
+    </div>
+
+  </div>
+
+  <div class="sec-label">Recommended Study Path</div>
+  <div class="path-card">
+    <div class="path-step"><div class="path-num">1</div><div class="path-body"><div class="path-name"><a href="GameDesign_Master_Glossary.html">Learn the vocabulary</a></div><div class="path-note">Start in the Master Glossary. Work one category at a time — Engine, then C#, then Gameplay — and study the code examples closely; they mirror what the certification tests.</div></div></div>
+    <div class="path-step"><div class="path-num">2</div><div class="path-body"><div class="path-name"><a href="GameDesign_DrillTrainer.html">Drill in Practice mode</a></div><div class="path-note">Move to the Drill Trainer in Practice mode. Read every explanation, especially on the code-reading questions — understanding why an answer is right matters more than the score.</div></div></div>
+    <div class="path-step"><div class="path-num">3</div><div class="path-body"><div class="path-name"><a href="GameDesign_Mistakes_Autopsy.html">Autopsy the classic bugs</a></div><div class="path-note">Open the Mistakes Autopsy and study the errors every beginner makes. Recognizing these on sight is a large part of passing a Unity certification exam.</div></div></div>
+    <div class="path-step"><div class="path-num">4</div><div class="path-body"><div class="path-name"><a href="GameDesign_DrillTrainer.html">Test under exam conditions</a></div><div class="path-note">Return to the Drill Trainer and run a timed Exam Mode session across all categories. Use the per-category breakdown to see exactly where to review.</div></div></div>
+  </div>
+
+  <div class="sec-label">The Five Content Areas</div>
+  <div class="cats-grid" id="cats-grid"></div>
+
+  <div class="footer">
+    Game &amp; Simulation Foundations (82081100) · Unity Certified User: Programmer objectives<br>
+    <span style="opacity:.6">Engine &amp; Editor · C# Scripting · Gameplay &amp; Physics · UI &amp; Audio · Design &amp; Production</span>
+  </div>
+</div>
+
+<script>
+const CATS = [
+  {icon:"🧩",name:"Engine & Editor",note:"GameObjects, components, scenes, prefabs"},
+  {icon:"⌨",name:"C# Scripting",note:"variables, methods, lifecycle, debugging"},
+  {icon:"⚙",name:"Gameplay & Physics",note:"Rigidbodies, colliders, raycasts, NavMesh"},
+  {icon:"🖼",name:"UI & Audio",note:"Canvas, buttons, PlayerPrefs, AudioSource"},
+  {icon:"🎨",name:"Design & Production",note:"prototyping, playtesting, iteration"}
+];
+document.getElementById('cats-grid').innerHTML = CATS.map(c=>`
+  <div class="cat-card"><div class="cat-badge">${c.icon}</div><div class="cat-name">${c.name}</div><div class="cat-note">${c.note}</div></div>`).join('');
+
+const CERT_NAMES = {programmer:"Unity Certified User: Programmer", artist:"Unity Certified User: Artist"};
+function setCert(c, btn){
+  if(btn.classList.contains('locked')) return;
+  document.querySelectorAll('.cert-pill').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('cert-name').textContent = CERT_NAMES[c];
+}
+
+// Progress reads the same localStorage keys the three tools write
+function readProgress(){
+  let signals=[], done=0, total=4;
+  const gStar=JSON.parse(localStorage.getItem('gamedesign_glossary_starred')||'[]');
+  const gQuiz=localStorage.getItem('gamedesign_glossary_quizscore');
+  if(gStar.length||gQuiz){ done++; signals.push(`Glossary: ${gStar.length} starred${gQuiz?', quiz '+gQuiz:''}`); }
+  const drill=JSON.parse(localStorage.getItem('gamedesign_drill_stats')||'{"sessions":0,"total":0,"correct":0}');
+  if(drill.sessions>0){ done++; const acc=drill.total?Math.round(drill.correct/drill.total*100):0; signals.push(`Drill: ${drill.sessions} session${drill.sessions>1?'s':''}, ${acc}% accuracy`); }
+  const mastered=JSON.parse(localStorage.getItem('gamedesign_autopsy_mastered')||'[]');
+  if(mastered.length){ done++; signals.push(`Autopsy: ${mastered.length}/16 mastered`); }
+  const fmm=localStorage.getItem('gamedesign_autopsy_fmm');
+  if(fmm){ done++; signals.push(`Find My Mistake: ${fmm}`); }
+  const pct=Math.round(done/total*100);
+  document.getElementById('prog-fill').style.width=pct+'%';
+  document.getElementById('prog-label').innerHTML = signals.length
+    ? `<b>${pct}%</b> of study milestones started · ${signals.join(' · ')}`
+    : 'No activity yet — open the Master Glossary to begin. Your progress across all three tools will appear here.';
+}
+function resetProgress(){
+  if(!confirm('Reset all Game Design progress? This clears starred terms, quiz scores, drill stats, and mastered bugs across every tool.')) return;
+  ['gamedesign_glossary_starred','gamedesign_glossary_quizscore','gamedesign_drill_stats','gamedesign_autopsy_mastered','gamedesign_autopsy_fmm']
+    .forEach(k=>localStorage.removeItem(k));
+  readProgress();
+}
+readProgress();
+</script>
+</body>
+</html>

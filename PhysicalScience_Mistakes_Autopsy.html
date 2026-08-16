@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physical Science Honors — Common Mistakes Autopsy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
+  --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(231,76,60,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(231,76,60,0.035) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:920px;margin:0 auto;padding:26px 20px 70px}
+
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--red)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+.fmm-btn{background:linear-gradient(135deg,var(--red),#c0392b);border:none;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:11px 20px;border-radius:11px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.fmm-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(231,76,60,.32)}
+
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px;flex:1}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+
+.controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;flex-direction:column;gap:11px}
+.ctrl-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--muted);min-width:56px}
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--red);color:var(--text)}
+.pill.active{background:var(--red);border-color:var(--red);color:#fff}
+.pill-mastered.active{background:var(--teal);border-color:var(--teal)}
+.search-wrap{position:relative;flex:1;min-width:200px}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.55}
+.search-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px 10px 34px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13.5px}
+.search-input:focus{outline:none;border-color:var(--red)}
+
+.count-line{font-size:12px;color:var(--muted);margin-bottom:12px}
+.count-line b{color:var(--white);font-family:'DM Mono',monospace}
+
+/* MISTAKE CARD */
+.mk{background:var(--card);border:1px solid var(--border);border-radius:15px;margin-bottom:12px;overflow:hidden;transition:all .18s}
+.mk:hover{border-color:rgba(231,76,60,.4)}
+.mk.mastered{border-color:rgba(29,158,117,.4)}
+.mk-head{padding:15px 18px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;cursor:pointer}
+.mk-head:hover{background:var(--card2)}
+.mk-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);font-weight:500}
+.mk-title{font-size:15.5px;font-weight:700;color:var(--white);margin-top:3px;line-height:1.35}
+.mk-tags{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:7px}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:6px;white-space:nowrap}
+.t-unit{background:rgba(46,139,192,.16);color:#7cc0e6;border:1px solid rgba(46,139,192,.3)}
+.t-freq-high{background:rgba(231,76,60,.15);color:#f08579;border:1px solid rgba(231,76,60,.3)}
+.t-freq-med{background:rgba(229,148,0,.14);color:#efb44e;border:1px solid rgba(229,148,0,.3)}
+.mk-right{display:flex;align-items:center;gap:9px;flex-shrink:0}
+.chev{color:var(--muted);font-size:13px;transition:transform .2s}
+.mk.open .chev{transform:rotate(180deg)}
+.master-btn{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:5px 11px;font-size:10.5px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap}
+.master-btn:hover{border-color:var(--teal);color:var(--teal)}
+.master-btn.on{background:var(--teal);border-color:var(--teal);color:#fff}
+
+.mk-body{display:none;padding:0 18px 18px}
+.mk.open .mk-body{display:block}
+.setup-box{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 15px;font-size:13.5px;margin-bottom:13px}
+.setup-lbl{font-size:9px;font-weight:700;letter-spacing:.11em;color:var(--muted);display:block;margin-bottom:5px}
+
+.vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:13px}
+@media(max-width:680px){.vs-grid{grid-template-columns:1fr}}
+.vs-box{border-radius:11px;padding:13px 15px;border:1px solid}
+.vs-wrong{background:rgba(231,76,60,.07);border-color:rgba(231,76,60,.3)}
+.vs-right{background:rgba(29,158,117,.07);border-color:rgba(29,158,117,.3)}
+.vs-head{font-size:11px;font-weight:800;letter-spacing:.06em;margin-bottom:8px}
+.vs-wrong .vs-head{color:#f08579}
+.vs-right .vs-head{color:#4fd1a5}
+.vs-text{font-size:13px;line-height:1.55}
+.vs-mono{font-family:'DM Mono',monospace;font-size:12.5px;margin-top:7px;padding-top:7px;border-top:1px solid var(--border);opacity:.9}
+
+.why-box{background:rgba(139,92,246,.06);border-left:2px solid var(--purple);border-radius:9px;padding:11px 14px;font-size:13px;margin-bottom:11px}
+.why-lbl{font-size:9px;font-weight:700;letter-spacing:.11em;color:#b39bf5;display:block;margin-bottom:5px}
+.take-box{background:rgba(229,148,0,.07);border-left:2px solid var(--amber);border-radius:9px;padding:11px 14px;font-size:13px;font-weight:600}
+.take-lbl{font-size:9px;font-weight:700;letter-spacing:.11em;color:#efb44e;display:block;margin-bottom:5px}
+
+.empty{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px}
+
+/* FMM MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(3,8,16,.87);backdrop-filter:blur(4px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px;overflow-y:auto}
+.modal-bg.open{display:flex}
+.fmm-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:26px;max-width:620px;width:100%;position:relative;margin:auto}
+.fmm-close{position:absolute;top:14px;right:16px;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;z-index:2}
+.fmm-prog{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--muted);margin-bottom:13px}
+.fmm-lbl{font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--red);margin-bottom:8px}
+.fmm-scenario{background:var(--bg);border:1px solid rgba(231,76,60,.3);border-radius:12px;padding:14px 16px;font-size:14px;margin-bottom:16px;line-height:1.55}
+.fmm-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.fmm-opt{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:12px 15px;cursor:pointer;text-align:left;font-family:'DM Sans',sans-serif;font-size:13.5px;color:var(--text);display:flex;gap:11px;align-items:flex-start;width:100%;transition:all .16s}
+.fmm-opt:hover:not(:disabled){border-color:var(--red);background:var(--card2)}
+.fmm-opt:disabled{cursor:default}
+.fmm-key{width:22px;height:22px;border-radius:6px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0;color:var(--muted)}
+.fmm-opt.correct{border-color:var(--teal);background:rgba(29,158,117,.11)}
+.fmm-opt.correct .fmm-key{background:var(--teal);border-color:var(--teal);color:#fff}
+.fmm-opt.wrong{border-color:var(--red);background:rgba(231,76,60,.10)}
+.fmm-opt.wrong .fmm-key{background:var(--red);border-color:var(--red);color:#fff}
+.fmm-fb{border-radius:11px;padding:13px 15px;font-size:13px;margin-bottom:14px;display:none}
+.fmm-fb.show{display:block}
+.fmm-fb.ok{background:rgba(29,158,117,.09);border:1px solid rgba(29,158,117,.3)}
+.fmm-fb.no{background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.3)}
+.btn{border:none;border-radius:11px;padding:12px 22px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;width:100%}
+.btn-next{background:var(--sky);color:#fff}
+.btn-ghost{background:var(--bg);border:1px solid var(--border);color:var(--text)}
+.fmm-done{text-align:center}
+.fmm-score{font-size:2.6rem;font-weight:800;font-family:'DM Mono',monospace;color:var(--teal)}
+.fmm-btns{display:flex;gap:8px;margin-top:16px}
+
+@media(max-width:640px){.page-title{font-size:1.5rem}.ctrl-label{min-width:auto}}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <a href="PhysicalScience_StudyHub.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--sky);text-decoration:none;margin-bottom:14px;opacity:.85">← Physical Science Study Hub</a>
+
+  <div class="header">
+    <div>
+      <div class="series-label">Physical Science Honors · Study Resource Series · Build 3</div>
+      <div class="page-title">Common Mistakes <span>Autopsy</span></div>
+      <div class="page-sub" id="page-sub">Loading…</div>
+    </div>
+    <button class="fmm-btn" onclick="startFMM()">🔍 Find My Mistake</button>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-chip"><div class="stat-num" id="s-total">—</div><div class="stat-lbl">TOTAL ERRORS</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--teal)" id="s-mastered">0</div><div class="stat-lbl">MASTERED</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--amber)" id="s-remaining">—</div><div class="stat-lbl">REMAINING</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--red)" id="s-fmm">—</div><div class="stat-lbl">FIND MY MISTAKE</div></div>
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-row">
+      <span class="ctrl-label">SEARCH</span>
+      <div class="search-wrap">
+        <span class="search-icon">🔎</span>
+        <input class="search-input" id="search-input" type="text" placeholder="Search mistakes, topics, keywords…" oninput="render()">
+      </div>
+    </div>
+    <div class="ctrl-row">
+      <span class="ctrl-label">UNIT</span>
+      <button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button>
+      <button class="pill" data-unit="U1" onclick="setUnit('U1',this)">U1</button>
+      <button class="pill" data-unit="U2" onclick="setUnit('U2',this)">U2</button>
+      <button class="pill" data-unit="U3" onclick="setUnit('U3',this)">U3</button>
+      <button class="pill" data-unit="U4" onclick="setUnit('U4',this)">U4</button>
+      <button class="pill" data-unit="U5" onclick="setUnit('U5',this)">U5</button>
+      <button class="pill" data-unit="U6" onclick="setUnit('U6',this)">U6</button>
+    </div>
+    <div class="ctrl-row">
+      <span class="ctrl-label">FILTER</span>
+      <button class="pill" id="btn-high" onclick="toggleHigh()">🔥 High Frequency</button>
+      <button class="pill pill-mastered" id="btn-unmastered" onclick="toggleUnmastered()">Not Yet Mastered</button>
+      <button class="pill" onclick="expandAll(true)">Expand All</button>
+      <button class="pill" onclick="expandAll(false)">Collapse All</button>
+    </div>
+  </div>
+
+  <div class="count-line" id="count-line"></div>
+  <div id="mk-list"></div>
+
+  <div style="margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center">
+    Physical Science Honors (2003320) · Florida NGSSS Science Standards · Common Mistakes Autopsy
+  </div>
+</div>
+
+<div class="modal-bg" id="fmm-modal"><div class="fmm-box" id="fmm-box"></div></div>
+
+<script>
+// ═══════════════════════════════════════════
+// PHYSICAL SCIENCE HONORS — COMMON MISTAKES AUTOPSY
+// freq: "high" = appears constantly on assessments | "med" = common
+// diag = "Find My Mistake" diagnostic options; dA = correct index
+// ═══════════════════════════════════════════
+const MISTAKES = [
+{u:"U1",freq:"high",title:"Calling a scientific theory \"just a theory\"",
+setup:"A student writes: \"Atomic theory is only a theory, so it hasn't been proven yet. Someday it might become a law.\"",
+wrong:"Treating \"theory\" in science the way it is used in everyday speech — as a hunch or an unproven guess — and assuming theories are promoted to laws once enough evidence accumulates.",
+wrongMono:"theory → (more evidence) → law   ✗",
+right:"A scientific theory is a well-substantiated explanation supported by an enormous body of evidence. Laws and theories are different kinds of statements, and neither turns into the other.",
+rightMono:"law = describes WHAT happens\ntheory = explains WHY   ✓",
+why:"Everyday English uses \"theory\" to mean a guess, but in science it is close to the opposite — it is among the strongest things science produces. A law tells you that gravity attracts masses; a theory explains the mechanism behind it.",
+take:"Laws describe. Theories explain. Neither one \"graduates\" into the other.",
+diag:["The student confused a theory with a hypothesis, and theories are actually just guesses","Theories are less certain than hypotheses","Atomic theory has in fact been disproven","The student assumed theories become laws — but laws describe what happens while theories explain why, and neither converts into the other"],dA:3},
+
+{u:"U1",freq:"high",title:"Swapping the independent and dependent variables",
+setup:"An experiment measures how plant height responds to different fertilizer amounts. A student labels plant height as the independent variable.",
+wrong:"Labeling whichever variable is measured as \"independent\" because it feels like the focus of the experiment.",
+wrongMono:"IV = plant height   ✗\nDV = fertilizer",
+right:"The independent variable is what the experimenter deliberately changes. The dependent variable is what is measured in response.",
+rightMono:"IV = fertilizer amount   ✓\nDV = plant height",
+why:"The dependent variable literally depends on the independent one. Ask: which did I choose and set, and which did I have to wait and measure?",
+take:"You change the independent variable. You measure the dependent variable.",
+diag:["The student reversed them — fertilizer is set by the experimenter (independent) and height is measured in response (dependent)","There is no independent variable in this experiment","Height and fertilizer are both independent variables","The independent variable must always be time"],dA:0},
+
+{u:"U1",freq:"med",title:"Treating precise measurements as accurate ones",
+setup:"Four measurements of a known 100.0 g mass give 82.1, 82.2, 82.1, and 82.2 g. A student concludes the balance is working well because the readings agree.",
+wrong:"Assuming that tightly clustered readings mean the measurements must be correct.",
+wrongMono:"readings agree → accurate   ✗",
+right:"Agreement among repeated readings is precision. Closeness to the true value is accuracy. These readings are precise but about 18 g off, so they are not accurate.",
+rightMono:"precise = repeatable\naccurate = correct   ✓",
+why:"A consistently miscalibrated instrument produces beautifully precise wrong answers. Precision alone says nothing about correctness.",
+take:"Precise means repeatable. Accurate means correct. An instrument can be one without the other.",
+diag:["The readings are both accurate and precise","The readings are accurate but not precise","The readings are precise (they agree) but not accurate (they miss the true value by ~18 g)","Precision and accuracy mean the same thing"],dA:2},
+
+{u:"U1",freq:"med",title:"Counting leading zeros as significant figures",
+setup:"A student states that 0.00405 g has five significant figures.",
+wrong:"Counting every digit that appears in the number, including the zeros that only position the decimal point.",
+wrongMono:"0.00405 → 5 sig figs   ✗",
+right:"Leading zeros are placeholders and never count. Only 4, 0, and 5 are significant — a zero between nonzero digits does count.",
+rightMono:"0.00405 → 3 sig figs   ✓",
+why:"Leading zeros carry no information about measurement precision; they only tell you where the decimal sits. Writing the value as 4.05 × 10⁻³ makes the three significant digits obvious.",
+take:"Leading zeros never count. Sandwiched zeros always count.",
+diag:["All five digits are significant","Leading zeros are placeholders and do not count — 4, 0, and 5 give three significant figures","Only the zeros are significant","Significant figures do not apply to decimals"],dA:1},
+
+{u:"U1",freq:"med",title:"Inverting the density formula",
+setup:"A sample has a mass of 45.0 g and a volume of 15.0 cm³. A student computes 15.0 ÷ 45.0 = 0.333 g/cm³.",
+wrong:"Dividing volume by mass, often because the numbers were substituted in the order they appeared in the problem.",
+wrongMono:"D = V / m = 0.333   ✗",
+right:"Density is mass per unit volume — mass on top.",
+rightMono:"D = m / V = 45.0/15.0 = 3.00 g/cm³   ✓",
+why:"The units themselves are the check. Density is reported in g/cm³, which means grams divided by cubic centimeters. If your setup does not produce those units, the formula is upside down.",
+take:"Let the units guide you: g/cm³ means grams ÷ cm³, so mass goes on top.",
+diag:["The student should have multiplied instead","Density requires temperature to calculate","0.333 g/cm³ is correct","The formula was inverted — density is mass ÷ volume, giving 3.00 g/cm³"],dA:3},
+
+{u:"U2",freq:"high",title:"Confusing mass number with atomic mass",
+setup:"A student sees chlorine's 35.45 on the periodic table and writes that a chlorine atom has 35.45 protons plus neutrons.",
+wrong:"Reading the decimal periodic-table value as if it described a single atom.",
+wrongMono:"one Cl atom = 35.45 amu   ✗",
+right:"Mass number is a whole-number count of protons plus neutrons in one specific atom. Atomic mass is the weighted average across all naturally occurring isotopes.",
+rightMono:"Cl-35: A = 35 | Cl-37: A = 37\naverage = 35.45 amu   ✓",
+why:"No individual atom has a fractional number of particles. The decimal exists because chlorine occurs naturally as a mix of isotopes, and the table reports their weighted average.",
+take:"Mass number is always a whole number for one atom. Atomic mass is an average and may be a decimal.",
+diag:["35.45 is a weighted average across isotopes — individual atoms have whole-number mass numbers like 35 or 37","The periodic table value is a rounding error","Chlorine atoms really do contain 35.45 particles","Atomic mass counts electrons too, producing the decimal"],dA:0},
+
+{u:"U2",freq:"high",title:"Thinking isotopes differ in protons",
+setup:"A student explains that carbon-12 and carbon-14 differ because carbon-14 has two extra protons.",
+wrong:"Attributing the mass difference between isotopes to protons.",
+wrongMono:"C-14 = 8 protons, 6 neutrons   ✗",
+right:"Isotopes of an element always have identical proton counts — that is what makes them the same element. They differ in neutrons.",
+rightMono:"C-12 = 6 p⁺, 6 n⁰\nC-14 = 6 p⁺, 8 n⁰   ✓",
+why:"Proton count defines elemental identity. Adding two protons to carbon would produce oxygen, not a heavier carbon.",
+take:"Change neutrons and you get an isotope. Change protons and you get a different element entirely.",
+diag:["Carbon-14 has two extra protons","Isotopes differ in energy levels","Carbon-14 has two extra electrons","Carbon-14 has two extra neutrons — proton count defines the element and must stay at 6"],dA:3},
+
+{u:"U2",freq:"high",title:"Getting the sign of an ion backwards",
+setup:"A student writes that a sodium atom losing one electron becomes Na⁻.",
+wrong:"Assuming that losing an electron makes the particle negative, because electrons themselves are negative.",
+wrongMono:"Na loses e⁻ → Na⁻   ✗",
+right:"Removing a negative charge leaves a surplus of positive protons, so the ion becomes positive.",
+rightMono:"Na loses e⁻ → Na⁺ (cation)   ✓",
+why:"Track the balance, not the particle. With 11 protons and only 10 electrons remaining, positive charge outnumbers negative by one.",
+take:"Lose electrons → positive cation. Gain electrons → negative anion.",
+diag:["Losing an electron gives a negative charge","Sodium cannot form ions","Losing a negative electron leaves excess positive protons, producing Na⁺","The charge depends on the number of neutrons"],dA:2},
+
+{u:"U2",freq:"med",title:"Reading periods and groups the wrong way round",
+setup:"A student claims that all elements in the same horizontal row share similar chemical properties.",
+wrong:"Attributing shared chemical behavior to rows rather than columns.",
+wrongMono:"row (period) → similar properties   ✗",
+right:"Columns are groups, and elements in a group share valence electron count — which is what drives chemical behavior. Rows share the number of occupied energy levels.",
+rightMono:"column (group) → similar properties   ✓",
+why:"Chemical behavior is governed almost entirely by valence electrons. Sodium and potassium sit in the same column and behave alike; sodium and chlorine sit in the same row and behave completely differently.",
+take:"Groups go down and behave alike. Periods go across and share energy levels.",
+diag:["Rows determine chemical similarity","Neither rows nor columns predict properties","Columns (groups) share valence electrons and therefore similar properties; rows (periods) share energy levels","Only metals follow group patterns"],dA:2},
+
+{u:"U2",freq:"med",title:"Including electrons in the mass number",
+setup:"An atom has 17 protons, 18 neutrons, and 17 electrons. A student calculates a mass number of 52.",
+wrong:"Adding electrons to the protons and neutrons when computing mass number.",
+wrongMono:"A = 17 + 18 + 17 = 52   ✗",
+right:"Mass number counts only the particles in the nucleus.",
+rightMono:"A = 17 + 18 = 35   ✓",
+why:"An electron has roughly 1/1836 the mass of a proton — far too little to affect the mass number meaningfully. Only nuclear particles are counted.",
+take:"Mass number = protons + neutrons. Electrons never enter the calculation.",
+diag:["Electrons must be included for accuracy","Mass number counts only nuclear particles: 17 + 18 = 35","The neutrons should be subtracted","Mass number equals the number of electrons"],dA:1},
+
+{u:"U3",freq:"high",title:"Changing subscripts to balance an equation",
+setup:"To balance H₂ + O₂ → H₂O, a student rewrites the product as H₂O₂ so the oxygens match.",
+wrong:"Adjusting subscripts inside a formula to make the atom counts work out.",
+wrongMono:"H₂ + O₂ → H₂O₂   ✗\n(that's hydrogen peroxide!)",
+right:"Only coefficients — the numbers in front of formulas — may be changed when balancing.",
+rightMono:"2H₂ + O₂ → 2H₂O   ✓",
+why:"A subscript is part of the substance's identity. H₂O is water; H₂O₂ is hydrogen peroxide, a completely different compound. Balancing must not change what the substances are.",
+take:"Balance with coefficients only. Touching a subscript changes the chemical itself.",
+diag:["Changing subscripts is fine as long as the equation balances","The equation cannot be balanced","The student changed the substance's identity — H₂O₂ is hydrogen peroxide. Only coefficients may be adjusted","Oxygen should be written as O instead of O₂"],dA:2},
+
+{u:"U3",freq:"high",title:"Confusing what a coefficient and a subscript each multiply",
+setup:"Asked how many oxygen atoms are on the left of 2KClO₃ → 2KCl + 3O₂, a student answers 3.",
+wrong:"Reading only the subscript and ignoring the coefficient in front of the formula.",
+wrongMono:"2KClO₃ → 3 oxygen atoms   ✗",
+right:"The coefficient multiplies every atom in the formula unit that follows it.",
+rightMono:"2 × (3 O) = 6 oxygen atoms   ✓",
+why:"A subscript applies only to the atom immediately before it. A coefficient applies to the whole formula. Both must be used together.",
+take:"Multiply the coefficient by each subscript to get the true atom count.",
+diag:["There are 3 oxygen atoms","The coefficient 2 multiplies the subscript 3, giving 6 oxygen atoms","There are 2 oxygen atoms","Coefficients do not affect atom counts"],dA:1},
+
+{u:"U3",freq:"high",title:"Thinking a catalyst is used up or increases the yield",
+setup:"A student writes that a catalyst is consumed during the reaction and produces more product than would form otherwise.",
+wrong:"Treating a catalyst as a reactant that gets converted and boosts total output.",
+wrongMono:"catalyst consumed → more product   ✗",
+right:"A catalyst lowers activation energy, is recovered unchanged, and does not alter how much product ultimately forms.",
+rightMono:"catalyst: ↓ Ea, not consumed\nyield unchanged, rate ↑   ✓",
+why:"Catalysts change how fast equilibrium is reached, not where it lies. The same amount of product forms — it just forms sooner.",
+take:"A catalyst speeds the reaction up and survives it. It does not create extra product.",
+diag:["Catalysts are consumed and increase yield","Catalysts only work in nuclear reactions","Catalysts slow reactions down","A catalyst lowers activation energy, is recovered unchanged, and speeds the reaction without changing the final amount of product"],dA:3},
+
+{u:"U3",freq:"high",title:"Reversing exothermic and endothermic",
+setup:"A beaker feels cold to the touch during a reaction. A student labels the reaction exothermic because \"energy is doing something.\"",
+wrong:"Guessing the label from the presence of a temperature change rather than its direction.",
+wrongMono:"beaker cold → exothermic   ✗",
+right:"A cold beaker means the reaction absorbed energy from its surroundings, which is endothermic.",
+rightMono:"cold surroundings → endothermic\nwarm surroundings → exothermic   ✓",
+why:"Read the prefix: exo means out (energy exits the reaction into the surroundings, warming them), endo means in (energy enters the reaction, cooling the surroundings).",
+take:"If the surroundings get colder, the reaction absorbed the heat — endothermic.",
+diag:["Cold means exothermic","All reactions are exothermic","Temperature change tells you nothing about energy flow","Cold surroundings mean the reaction absorbed energy — endothermic"],dA:3},
+
+{u:"U3",freq:"med",title:"Defining oxidation as gaining oxygen",
+setup:"Asked to define oxidation, a student answers that a substance must combine with oxygen.",
+wrong:"Using the historical, narrower definition that applies only to reactions involving oxygen.",
+wrongMono:"oxidation = adding oxygen   ✗",
+right:"Oxidation is the loss of electrons — a definition that covers every redox reaction, including those with no oxygen at all.",
+rightMono:"OIL RIG:\nOxidation Is Loss (of e⁻)\nReduction Is Gain   ✓",
+why:"The name is a historical accident from early studies of burning. Zinc reacting with hydrochloric acid is a redox reaction with no oxygen involved anywhere.",
+take:"Oxidation means losing electrons. Oxygen may or may not be present.",
+diag:["Oxidation always requires oxygen","Oxidation is the loss of electrons — oxygen need not be involved at all","Oxidation means gaining electrons","Oxidation only happens in acids"],dA:1},
+
+{u:"U3",freq:"med",title:"Calling dissolving a chemical change",
+setup:"A student classifies sugar dissolving in water as a chemical change because \"the sugar disappears.\"",
+wrong:"Equating a change in appearance with the formation of a new substance.",
+wrongMono:"sugar dissolves → chemical change   ✗",
+right:"Dissolving is a physical change. The sugar molecules disperse among the water molecules but remain chemically unchanged, and evaporating the water recovers them.",
+rightMono:"dissolving = physical   ✓",
+why:"The test is whether a new substance with new chemical properties was produced. Sugar water still tastes sweet because the sugar is still sugar.",
+take:"Ask whether a new substance formed — not whether something looks different.",
+diag:["Dissolving is chemical because the sugar disappears","Dissolving is neither physical nor chemical","Dissolving is physical — the sugar disperses but stays chemically the same and can be recovered","Only metals undergo physical changes"],dA:2},
+
+{u:"U3",freq:"med",title:"Assuming every mixture is a solution",
+setup:"A student labels sand stirred into water a solution because two substances are mixed together.",
+wrong:"Treating any combination of substances as a solution.",
+wrongMono:"sand + water = solution   ✗",
+right:"A solution is a homogeneous mixture, uniform at the particle level. Sand and water stay visibly distinct and separate on standing — a heterogeneous mixture.",
+rightMono:"sand + water = heterogeneous   ✓",
+why:"Solutions require the solute to disperse uniformly among solvent particles. Sand simply sits suspended, then settles.",
+take:"All solutions are mixtures, but only homogeneous mixtures are solutions.",
+diag:["Sand and water form a heterogeneous mixture — solutions must be uniform at the particle level","Any two mixed substances form a solution","Sand dissolves slowly in water","Solutions must contain a metal"],dA:0},
+
+{u:"U4",freq:"high",title:"Forgetting to square the velocity in kinetic energy",
+setup:"For a 4.0 kg object moving at 3.0 m/s, a student computes KE = ½ × 4.0 × 3.0 = 6.0 J.",
+wrong:"Multiplying by velocity once instead of squaring it first.",
+wrongMono:"KE = ½(4.0)(3.0) = 6.0 J   ✗",
+right:"Square the velocity before multiplying.",
+rightMono:"KE = ½(4.0)(3.0)² \n   = ½(4.0)(9.0) = 18 J   ✓",
+why:"Because velocity is squared, doubling speed quadruples kinetic energy. This is exactly why vehicle stopping distances grow so sharply with speed.",
+take:"In KE = ½mv², square v first — always.",
+diag:["The velocity must be squared first: ½(4.0)(9.0) = 18 J","6.0 J is correct","The mass should be squared instead","Kinetic energy requires height to calculate"],dA:0},
+
+{u:"U4",freq:"high",title:"Treating temperature and thermal energy as the same thing",
+setup:"A student argues that a cup of boiling water contains more thermal energy than an entire lukewarm swimming pool because it is hotter.",
+wrong:"Assuming higher temperature always means more total energy.",
+wrongMono:"hotter → more thermal energy   ✗",
+right:"Temperature is the average kinetic energy per particle. Thermal energy is the total across all particles, so the number of particles matters enormously.",
+rightMono:"pool: lower T, vastly more particles\n→ far more thermal energy   ✓",
+why:"The pool's particles each move more slowly, but there are so many more of them that the total energy dwarfs the cup's.",
+take:"Temperature is an average per particle. Thermal energy is the total — amount of matter matters.",
+diag:["The boiling cup has more thermal energy","Thermal energy depends only on temperature","They have identical thermal energy","The pool has lower temperature but far more total thermal energy, because thermal energy depends on the number of particles too"],dA:3},
+
+{u:"U4",freq:"high",title:"Expecting temperature to rise during a phase change",
+setup:"A student predicts that ice at 0 °C will steadily warm as heat is added, even while it is still melting.",
+wrong:"Assuming added energy always translates into a temperature increase.",
+wrongMono:"add heat → temperature always rises   ✗",
+right:"During a phase change the temperature holds constant. The absorbed energy goes into breaking the attractions holding particles in place.",
+rightMono:"melting at 0 °C:\nenergy in → T constant   ✓",
+why:"On a heating curve this appears as a flat plateau. Only after all the ice has melted does further energy begin raising the temperature again.",
+take:"During any phase change, energy changes the arrangement of particles — not their average speed.",
+diag:["Temperature stays constant during melting because the energy breaks intermolecular attractions instead of increasing particle speed","Temperature rises steadily throughout melting","Ice cannot absorb energy at 0 °C","The temperature drops during melting"],dA:0},
+
+{u:"U4",freq:"med",title:"Claiming work is done while holding an object still",
+setup:"A student holds a heavy box motionless for two minutes and concludes that a large amount of work was done on the box.",
+wrong:"Equating physical effort and muscle fatigue with the physics definition of work.",
+wrongMono:"big force, felt tiring → work done   ✗",
+right:"Work requires displacement in the direction of the force. With zero displacement, the work done on the box is zero.",
+rightMono:"W = Fd = F × 0 = 0 J   ✓",
+why:"Physics defines work narrowly. Your muscles do expend chemical energy holding the box, but no work is done on the box itself because it never moves.",
+take:"No displacement means no work — regardless of how hard it feels.",
+diag:["Work requires displacement; with d = 0, the work done on the box is zero","A large amount of work is done because the force is large","Work equals force divided by time","Holding an object does negative work"],dA:0},
+
+{u:"U4",freq:"med",title:"Getting the frequency–wavelength relationship backwards",
+setup:"A student states that as frequency increases, wavelength also increases, since both describe the wave getting stronger.",
+wrong:"Assuming frequency and wavelength move in the same direction.",
+wrongMono:"f ↑ → λ ↑   ✗",
+right:"At a fixed wave speed, frequency and wavelength are inversely related.",
+rightMono:"v = fλ, v constant\n→ f ↑ means λ ↓   ✓",
+why:"If the product must stay constant, raising one factor forces the other down. This is why gamma rays have the highest frequency and the shortest wavelength.",
+take:"At constant speed, frequency and wavelength always move in opposite directions.",
+diag:["Frequency and wavelength both increase together","Frequency and wavelength are unrelated","At constant speed they are inversely related — raising frequency lowers wavelength","Wavelength depends only on amplitude"],dA:2},
+
+{u:"U4",freq:"med",title:"Describing heat as something objects contain",
+setup:"A student writes that a hot mug \"holds a lot of heat inside it.\"",
+wrong:"Treating heat as a substance stored within an object.",
+wrongMono:"the mug contains heat   ✗",
+right:"An object contains thermal energy. Heat is specifically that energy in transit between objects at different temperatures.",
+rightMono:"contains → thermal energy\ntransfers → heat   ✓",
+why:"Heat only exists while energy is moving. Once the mug and the room reach the same temperature, heat transfer stops — but the mug still has thermal energy.",
+take:"Objects store thermal energy. Heat is energy on the move.",
+diag:["Objects contain thermal energy; heat is that energy while it is transferring between objects","Objects do contain heat","Heat and temperature are identical","Only hot objects have thermal energy"],dA:0},
+
+{u:"U5",freq:"high",title:"Mixing up fission and fusion",
+setup:"A student writes that the Sun generates energy by splitting uranium atoms.",
+wrong:"Applying the reactor process — fission — to stars.",
+wrongMono:"Sun = fission of uranium   ✗",
+right:"Stars run on fusion: light nuclei such as hydrogen combine into heavier ones like helium.",
+rightMono:"fission = splitting heavy nuclei\nfusion = joining light nuclei   ✓",
+why:"Use the everyday words. To fuse is to join; fission shares a root with fissure, meaning a split. Power plants split uranium; stars fuse hydrogen.",
+take:"Fusion joins light nuclei (stars). Fission splits heavy nuclei (reactors).",
+diag:["The Sun does split uranium","The Sun runs on fusion — joining hydrogen nuclei into helium. Fission splits heavy nuclei and is used in reactors","The Sun burns hydrogen chemically","Fission and fusion are the same process"],dA:1},
+
+{u:"U5",freq:"med",title:"Believing half-life can be changed by conditions",
+setup:"A student proposes speeding up the disposal of radioactive waste by heating it to accelerate decay.",
+wrong:"Assuming nuclear decay responds to temperature and pressure the way chemical reaction rates do.",
+wrongMono:"heat sample → shorter half-life   ✗",
+right:"Half-life is a fixed nuclear property, unaffected by temperature, pressure, or chemical state.",
+rightMono:"half-life = constant per isotope   ✓",
+why:"Decay originates in the nucleus, which is shielded from the electron-level effects that heat and pressure influence. This constancy is exactly what makes radiometric dating trustworthy.",
+take:"Nothing you do chemically or thermally will change an isotope's half-life.",
+diag:["Heating does speed up radioactive decay","Half-life is a fixed nuclear property unaffected by temperature, pressure, or chemistry","Half-life changes only under high pressure","Half-life depends on sample size"],dA:1},
+
+{u:"U5",freq:"med",title:"Thinking a chemical reaction can change one element into another",
+setup:"A student proposes a chemical procedure to convert lead into gold.",
+wrong:"Assuming that rearranging atoms chemically can alter what element they are.",
+wrongMono:"chemical reaction → new element   ✗",
+right:"Element identity is set by proton count. Chemical reactions rearrange only valence electrons, leaving the nucleus untouched.",
+rightMono:"chemical → electrons only\nnuclear → changes protons   ✓",
+why:"This is why centuries of alchemy failed. Transmutation is real, but it requires nuclear processes, not chemistry.",
+take:"Chemistry rearranges electrons. Only nuclear processes change elements.",
+diag:["Chemical reactions can transmute elements with the right catalyst","Lead and gold are the same element","Only nuclear processes change proton count; chemical reactions rearrange electrons and cannot change the element","Transmutation is impossible under any conditions"],dA:2},
+
+{u:"U6",freq:"high",title:"Using mass and weight interchangeably",
+setup:"A student writes that an astronaut's mass decreases to one sixth on the Moon.",
+wrong:"Treating mass and weight as the same quantity because both are commonly reported in everyday units.",
+wrongMono:"Moon: mass = 1/6 of Earth mass   ✗",
+right:"Mass is the amount of matter and does not change with location. Weight is the gravitational force acting on that mass.",
+rightMono:"mass: unchanged (kg)\nweight: 1/6 on Moon (N)   ✓",
+why:"Weaker lunar gravity reduces the force pulling on the astronaut, but the astronaut is made of exactly as much matter as before.",
+take:"Mass is constant everywhere and measured in kilograms. Weight is a force in newtons that varies with gravity.",
+diag:["Mass really does decrease on the Moon","Weight is measured in kilograms","Both mass and weight stay the same","Mass stays constant — only weight decreases, because weight is the gravitational force on that mass"],dA:3},
+
+{u:"U6",freq:"high",title:"Claiming Newton's third law force pairs cancel out",
+setup:"A student argues that a rocket cannot accelerate because the action and reaction forces are equal and opposite, so they cancel.",
+wrong:"Applying force cancellation to a third-law pair.",
+wrongMono:"action + reaction = 0 → no motion   ✗",
+right:"Third-law pairs act on two different objects, so they never cancel. Forces only cancel when they act on the same object.",
+rightMono:"rocket → pushes gas down\ngas → pushes rocket up\ndifferent objects → no cancellation   ✓",
+why:"To find the net force on the rocket, you count only the forces acting on the rocket. The force the rocket exerts on the gas is not one of them.",
+take:"Third-law pairs act on different objects. Only forces on the same object can cancel.",
+diag:["The forces do cancel, so rockets should not work","Newton's third law does not apply in space","The pair acts on two different objects (rocket and gas), so they never cancel — only forces on the same object cancel","The reaction force is always smaller"],dA:2},
+
+{u:"U6",freq:"high",title:"Assuming constant velocity requires a net force",
+setup:"A car travels a straight highway at a steady 65 km/h. A student concludes there must be a net forward force keeping it going.",
+wrong:"Assuming that sustained motion requires a sustained net force.",
+wrongMono:"still moving → net force forward   ✗",
+right:"Constant velocity means zero acceleration, which requires zero net force. The engine's thrust exactly balances friction and air resistance.",
+rightMono:"constant v → a = 0 → Fnet = 0\n(forces present but balanced)   ✓",
+why:"This is the everyday intuition Newton overturned. Forces are certainly acting, but they cancel — an object needs a net force to change its motion, not to continue it.",
+take:"Net force causes acceleration, not motion. Constant velocity means the forces balance.",
+diag:["Constant velocity means zero acceleration and therefore zero net force — thrust and resistance balance exactly","A net forward force is needed to maintain speed","No forces act on the car at all","The car is accelerating because it is moving"],dA:0},
+
+{u:"U6",freq:"med",title:"Reporting distance when displacement was asked for",
+setup:"A student walks 3 m east, then 3 m west, and reports a displacement of 6 m.",
+wrong:"Adding up path length regardless of direction when asked for displacement.",
+wrongMono:"displacement = 3 + 3 = 6 m   ✗",
+right:"Displacement is the straight-line change in position from start to finish, including direction.",
+rightMono:"distance = 6 m\ndisplacement = 0 m   ✓",
+why:"The student ended exactly where they began, so position did not change at all. Distance is a scalar that only accumulates; displacement is a vector that can cancel.",
+take:"Distance counts the whole path. Displacement counts only start-to-finish position change.",
+diag:["Displacement is 6 m","Displacement is 0 m — the student finished where they started, though distance traveled was 6 m","Distance and displacement are always equal","Displacement cannot be zero if the person moved"],dA:1},
+
+{u:"U6",freq:"high",title:"Believing heavier objects fall faster",
+setup:"A student predicts that a bowling ball will reach the ground well before a tennis ball when both are dropped from the same height.",
+wrong:"Assuming gravitational acceleration depends on mass.",
+wrongMono:"heavier → falls faster   ✗",
+right:"In free fall all objects accelerate at the same rate regardless of mass. Differences in everyday falling come from air resistance, not gravity.",
+rightMono:"g ≈ 9.8 m/s² for every mass\n(air resistance causes real differences)   ✓",
+why:"A heavier object does experience more gravitational force, but it also has proportionally more inertia to overcome. The two effects cancel exactly.",
+take:"Mass does not affect free-fall acceleration. Air resistance is what makes feathers drift.",
+diag:["All objects in free fall accelerate identically; air resistance, not mass, explains everyday differences","Heavier objects genuinely accelerate faster under gravity","Lighter objects fall faster","Gravity does not act on light objects"],dA:0},
+
+{u:"U6",freq:"med",title:"Pointing centripetal force outward",
+setup:"Whirling a ball on a string, a student draws the centripetal force pointing outward, away from the center.",
+wrong:"Drawing the force in the direction the outward pull is felt.",
+wrongMono:"centripetal force → outward   ✗",
+right:"Centripetal means center-seeking. The force points inward, toward the center of the circular path.",
+rightMono:"string tension → inward   ✓",
+why:"The sensation of being flung outward is inertia — your body's tendency to continue straight while the inward force curves your path. Release the string and the ball flies off tangentially, not radially outward.",
+take:"Centripetal force always points toward the center. The outward feeling is inertia, not a force.",
+diag:["Centripetal force points outward","Centripetal means center-seeking, so it points inward; the outward sensation is inertia","Centripetal force points along the direction of motion","No force acts on an object moving in a circle"],dA:1},
+
+{u:"U6",freq:"med",title:"Thinking acceleration only means speeding up",
+setup:"A student states that a car slowing to a stop and a car turning at constant speed are both experiencing zero acceleration.",
+wrong:"Restricting acceleration to increases in speed only.",
+wrongMono:"slowing or turning → a = 0   ✗",
+right:"Acceleration is any change in velocity — and velocity includes direction. Slowing down and changing direction both count.",
+rightMono:"a = Δv/t, v is a vector\nspeeding up, slowing, turning → all a ≠ 0   ✓",
+why:"Because velocity is a vector, changing its direction changes it even when the magnitude is constant. A car rounding a curve at a steady speed is accelerating continuously.",
+take:"Speeding up, slowing down, and turning are all acceleration.",
+diag:["Only speeding up counts as acceleration","Acceleration applies only to falling objects","Turning at constant speed involves no acceleration","Acceleration is any change in velocity — including slowing down and changing direction"],dA:3}
+];
+
+const UNIT_NAMES = {
+  U1:"Nature of Science", U2:"Atomic Structure", U3:"Bonding & Reactions",
+  U4:"Energy, Heat & Waves", U5:"Nuclear Science", U6:"Motion & Forces"
+};
+const LS_M='physci_autopsy_mastered', LS_F='physci_autopsy_fmm';
+
+let curUnit='all', highOnly=false, unmasteredOnly=false;
+let mastered = new Set(JSON.parse(localStorage.getItem(LS_M)||'[]'));
+let fmmScore = localStorage.getItem(LS_F);
+let openSet = new Set();
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function mono(s){ return esc(s).replace(/\n/g,'<br>'); }
+function saveM(){ localStorage.setItem(LS_M, JSON.stringify([...mastered])); }
+
+function setUnit(u,btn){
+  curUnit=u;
+  document.querySelectorAll('.pill[data-unit]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+function toggleHigh(){ highOnly=!highOnly; document.getElementById('btn-high').classList.toggle('active',highOnly); render(); }
+function toggleUnmastered(){ unmasteredOnly=!unmasteredOnly; document.getElementById('btn-unmastered').classList.toggle('active',unmasteredOnly); render(); }
+function toggleOpen(i){ if(openSet.has(i)) openSet.delete(i); else openSet.add(i); render(); }
+function expandAll(on){
+  if(on) filtered().forEach(m=>openSet.add(MISTAKES.indexOf(m)));
+  else openSet.clear();
+  render();
+}
+function toggleMastered(i,ev){
+  ev.stopPropagation();
+  if(mastered.has(i)) mastered.delete(i); else mastered.add(i);
+  saveM(); render();
+}
+function filtered(){
+  const q=document.getElementById('search-input').value.trim().toLowerCase();
+  return MISTAKES.filter((m,i)=>{
+    if(curUnit!=='all' && m.u!==curUnit) return false;
+    if(highOnly && m.freq!=='high') return false;
+    if(unmasteredOnly && mastered.has(MISTAKES.indexOf(m))) return false;
+    if(q){
+      const hay=(m.title+' '+m.setup+' '+m.wrong+' '+m.right+' '+m.why+' '+m.take).toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+}
+function render(){
+  const list=filtered();
+  document.getElementById('s-mastered').textContent = mastered.size;
+  document.getElementById('s-remaining').textContent = MISTAKES.length - mastered.size;
+  document.getElementById('count-line').innerHTML = `<b>${list.length}</b> of <b>${MISTAKES.length}</b> shown`;
+  const box=document.getElementById('mk-list');
+  if(!list.length){ box.innerHTML='<div class="empty">No mistakes match your search or filters.</div>'; return; }
+  box.innerHTML=list.map(m=>{
+    const i=MISTAKES.indexOf(m);
+    const isOpen=openSet.has(i), isM=mastered.has(i);
+    return `<div class="mk ${isOpen?'open':''} ${isM?'mastered':''}">
+      <div class="mk-head" onclick="toggleOpen(${i})">
+        <div>
+          <div class="mk-num">MISTAKE #${i+1}</div>
+          <div class="mk-title">${esc(m.title)}</div>
+          <div class="mk-tags">
+            <span class="tag t-unit">${m.u} ${UNIT_NAMES[m.u]}</span>
+            <span class="tag ${m.freq==='high'?'t-freq-high':'t-freq-med'}">${m.freq==='high'?'🔥 High Frequency':'Common'}</span>
+          </div>
+        </div>
+        <div class="mk-right">
+          <button class="master-btn ${isM?'on':''}" onclick="toggleMastered(${i},event)">${isM?'✓ Mastered':'Mark Mastered'}</button>
+          <span class="chev">▼</span>
+        </div>
+      </div>
+      <div class="mk-body">
+        <div class="setup-box"><span class="setup-lbl">THE SCENARIO</span>${esc(m.setup)}</div>
+        <div class="vs-grid">
+          <div class="vs-box vs-wrong">
+            <div class="vs-head">✗ WHAT GOES WRONG</div>
+            <div class="vs-text">${esc(m.wrong)}</div>
+            ${m.wrongMono?`<div class="vs-mono">${mono(m.wrongMono)}</div>`:''}
+          </div>
+          <div class="vs-box vs-right">
+            <div class="vs-head">✓ WHAT'S CORRECT</div>
+            <div class="vs-text">${esc(m.right)}</div>
+            ${m.rightMono?`<div class="vs-mono">${mono(m.rightMono)}</div>`:''}
+          </div>
+        </div>
+        <div class="why-box"><span class="why-lbl">WHY STUDENTS FALL FOR IT</span>${esc(m.why)}</div>
+        <div class="take-box"><span class="take-lbl">TAKEAWAY</span>${esc(m.take)}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── FIND MY MISTAKE ──
+let fdeck=[], fidx=0, fright=0, fanswered=false;
+function startFMM(){
+  const pool=filtered();
+  if(pool.length<3){ alert('Need at least 3 mistakes in the current filter to run a diagnostic.'); return; }
+  fdeck=pool.slice().sort(()=>Math.random()-0.5).slice(0,Math.min(12,pool.length));
+  fidx=0; fright=0; fanswered=false;
+  document.getElementById('fmm-modal').classList.add('open');
+  renderFMM();
+}
+function closeFMM(){ document.getElementById('fmm-modal').classList.remove('open'); }
+function renderFMM(){
+  const m=fdeck[fidx];
+  document.getElementById('fmm-box').innerHTML=`
+    <button class="fmm-close" onclick="closeFMM()">✕</button>
+    <div class="fmm-prog">DIAGNOSTIC ${fidx+1} OF ${fdeck.length} · ${m.u} ${UNIT_NAMES[m.u]}</div>
+    <div class="fmm-lbl">WHAT IS WRONG WITH THIS REASONING?</div>
+    <div class="fmm-scenario">${esc(m.setup)}</div>
+    <div class="fmm-opts" id="fmm-opts">
+      ${m.diag.map((d,i)=>`<button class="fmm-opt" id="fo-${i}" onclick="answerFMM(${i})"><span class="fmm-key">${'ABCD'[i]}</span><span>${esc(d)}</span></button>`).join('')}
+    </div>
+    <div class="fmm-fb" id="fmm-fb"></div>
+    <button class="btn btn-next" id="fmm-next" style="display:none" onclick="nextFMM()">Next →</button>`;
+}
+function answerFMM(choice){
+  if(fanswered) return;
+  fanswered=true;
+  const m=fdeck[fidx], ok=choice===m.dA;
+  if(ok) fright++;
+  document.querySelectorAll('.fmm-opt').forEach((b,i)=>{
+    b.disabled=true;
+    if(i===m.dA) b.classList.add('correct');
+    else if(i===choice) b.classList.add('wrong');
+  });
+  const fb=document.getElementById('fmm-fb');
+  fb.className='fmm-fb show '+(ok?'ok':'no');
+  fb.innerHTML=`<b style="color:${ok?'#4fd1a5':'#f08579'}">${ok?'✓ Correct diagnosis':'✗ Not the error'}</b><br><span style="opacity:.92">${esc(m.take)}</span>`;
+  const nb=document.getElementById('fmm-next');
+  nb.style.display='block';
+  nb.textContent = fidx>=fdeck.length-1 ? 'See Results →' : 'Next →';
+}
+function nextFMM(){
+  fidx++; fanswered=false;
+  if(fidx>=fdeck.length){
+    const pct=Math.round(fright/fdeck.length*100);
+    fmmScore=pct+'%';
+    localStorage.setItem(LS_F,fmmScore);
+    document.getElementById('s-fmm').textContent=fmmScore;
+    document.getElementById('fmm-box').innerHTML=`
+      <button class="fmm-close" onclick="closeFMM()">✕</button>
+      <div class="fmm-done">
+        <div style="font-size:11px;letter-spacing:.12em;color:var(--muted);margin-bottom:10px">DIAGNOSTIC COMPLETE</div>
+        <div class="fmm-score">${fright}/${fdeck.length}</div>
+        <div style="font-size:14px;color:var(--muted);margin-top:6px">${pct}% correctly diagnosed</div>
+        <div class="fmm-btns">
+          <button class="btn btn-ghost" onclick="closeFMM()">Done</button>
+          <button class="btn btn-next" onclick="startFMM()">Run Again</button>
+        </div>
+      </div>`;
+    return;
+  }
+  renderFMM();
+}
+document.getElementById('fmm-modal').addEventListener('click',e=>{ if(e.target.id==='fmm-modal') closeFMM(); });
+
+// ── INIT (counts computed from data) ──
+(function init(){
+  const total=MISTAKES.length;
+  const high=MISTAKES.filter(m=>m.freq==='high').length;
+  const units=new Set(MISTAKES.map(m=>m.u)).size;
+  document.getElementById('s-total').textContent=total;
+  document.getElementById('page-sub').textContent=
+    `${total} high-frequency errors · ${units} units · ${high} flagged high-frequency · Wrong vs. Right analysis`;
+  if(fmmScore) document.getElementById('s-fmm').textContent=fmmScore;
+  render();
+})();
+</script>
+</body>
+</html>

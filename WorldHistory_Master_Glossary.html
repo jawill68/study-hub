@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pre-AP World History &amp; Geography — Master Glossary</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
+  --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(229,148,0,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(229,148,0,0.035) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:26px 20px 70px}
+
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--amber)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+.quiz-launch-btn{background:linear-gradient(135deg,var(--amber),#c07800);border:none;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:11px 20px;border-radius:11px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.quiz-launch-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(229,148,0,.32)}
+
+.path-banner{background:linear-gradient(135deg,rgba(229,148,0,.1),rgba(46,139,192,.06));border:1px solid var(--border);border-radius:12px;padding:11px 16px;margin-bottom:18px;font-size:12.5px;color:var(--text)}
+.path-banner b{color:#efb44e}
+
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+
+.controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:14px;display:flex;flex-direction:column;gap:11px}
+.ctrl-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--muted);min-width:52px}
+.search-wrap{position:relative;flex:1;min-width:220px}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.55}
+.search-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px 10px 34px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13.5px}
+.search-input:focus{outline:none;border-color:var(--amber)}
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--amber);color:var(--text)}
+.pill.active{background:var(--amber);border-color:var(--amber);color:#1a1200}
+.pill-star.active{background:#efb44e;border-color:#efb44e}
+.view-toggle{margin-left:auto;display:flex;gap:6px}
+
+.az-row{display:flex;flex-wrap:wrap;gap:4px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px 14px;margin-bottom:14px}
+.az-btn{background:transparent;border:none;color:var(--muted);font-family:'DM Mono',monospace;font-size:12.5px;font-weight:500;width:26px;height:26px;border-radius:6px;cursor:pointer;transition:all .15s}
+.az-btn:hover{background:var(--card2);color:var(--text)}
+.az-btn.has{color:var(--amber)}
+.az-btn.active{background:var(--amber);color:#1a1200}
+
+.count-line{font-size:12px;color:var(--muted);margin-bottom:12px}
+.count-line b{color:var(--white);font-family:'DM Mono',monospace}
+
+.letter-head{display:flex;align-items:center;gap:12px;margin:22px 0 10px}
+.letter-badge{width:36px;height:36px;border-radius:10px;background:rgba(229,148,0,.14);border:1px solid rgba(229,148,0,.32);color:var(--amber);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px}
+.letter-count{font-size:11.5px;color:var(--muted)}
+
+.term-card{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:15px 17px;margin-bottom:9px;transition:all .18s}
+.term-card:hover{border-color:rgba(229,148,0,.42);box-shadow:0 6px 22px rgba(229,148,0,.09)}
+.term-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.term-name{font-size:16px;font-weight:700;color:var(--white)}
+.term-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 8px;border-radius:6px;font-family:'DM Sans',sans-serif;white-space:nowrap}
+.tag-unit{background:rgba(46,139,192,.16);color:#7cc0e6;border:1px solid rgba(46,139,192,.3)}
+.tag-example{background:rgba(29,158,117,.14);color:#4fd1a5;border:1px solid rgba(29,158,117,.3)}
+.star-btn{background:none;border:none;cursor:pointer;font-size:15px;opacity:.3;line-height:1;padding:0 2px;transition:opacity .15s}
+.star-btn:hover{opacity:.75}
+.star-btn.on{opacity:1}
+.term-def{font-size:13.5px;color:var(--text);opacity:.9;margin-top:7px}
+.term-extra{margin-top:9px;display:flex;flex-direction:column;gap:6px}
+.extra-line{font-size:12.5px;padding:7px 11px;border-radius:8px;border-left:2px solid}
+.ex-example{background:rgba(29,158,117,.06);border-color:var(--teal);color:#8fe0c2}
+.extra-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;opacity:.75;display:block;margin-bottom:3px;font-family:'DM Sans',sans-serif}
+
+.compact .term-card{padding:9px 14px;margin-bottom:5px}
+.compact .term-def{margin-top:4px;font-size:12.5px}
+.compact .term-extra{display:none}
+
+.empty{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px}
+
+.modal-bg{position:fixed;inset:0;background:rgba(3,8,16,.86);backdrop-filter:blur(4px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-bg.open{display:flex}
+.quiz-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;max-width:560px;width:100%;position:relative}
+.quiz-close{position:absolute;top:14px;right:16px;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer}
+.quiz-progress{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--muted);margin-bottom:14px}
+.quiz-prompt-lbl{font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--amber);margin-bottom:8px}
+.quiz-term{font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:16px;line-height:1.2}
+.quiz-answer{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:15px;font-size:13.5px;color:var(--text);margin-bottom:16px;display:none}
+.quiz-answer.show{display:block}
+.quiz-btns{display:flex;gap:8px;flex-wrap:wrap}
+.qbtn{flex:1;min-width:110px;border:none;border-radius:11px;padding:12px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .18s}
+.qbtn-show{background:var(--sky);color:#fff}
+.qbtn-got{background:var(--teal);color:#fff}
+.qbtn-miss{background:var(--red);color:#fff}
+.qbtn:hover{transform:translateY(-2px)}
+.quiz-done{text-align:center}
+.quiz-score{font-size:2.6rem;font-weight:800;color:var(--amber);font-family:'DM Mono',monospace}
+
+@media(max-width:640px){
+  .page-title{font-size:1.5rem}
+  .view-toggle{margin-left:0}
+  .ctrl-label{min-width:auto}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <a href="WorldHistory_StudyHub.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--amber);text-decoration:none;margin-bottom:14px;opacity:.85">← World History Study Hub</a>
+
+  <div class="header">
+    <div>
+      <div class="series-label">Pre-AP World History &amp; Geography · Study Resource Series · Build 1</div>
+      <div class="page-title">Master <span>Glossary</span></div>
+      <div class="page-sub" id="page-sub">Loading…</div>
+    </div>
+    <button class="quiz-launch-btn" onclick="launchQuiz()">🧠 Flashcard Quiz</button>
+  </div>
+
+  <div class="path-banner">🗺️ <b>Pathway 2</b> — Geography &amp; World Regions, then the Early Modern (c. 1450–1750), Modern (c. 1750–1914), and Contemporary (c. 1914–present) periods, per the College Board Pre-AP course framework.</div>
+
+  <div class="stats-row">
+    <div class="stat-chip"><div class="stat-num" id="s-total">—</div><div class="stat-lbl">TOTAL TERMS</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:#efb44e" id="s-starred">0</div><div class="stat-lbl">STARRED</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--teal)" id="s-quiz">—</div><div class="stat-lbl">QUIZ SCORE</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--sky)" id="s-shown">—</div><div class="stat-lbl">SHOWING</div></div>
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-row">
+      <span class="ctrl-label">SEARCH</span>
+      <div class="search-wrap">
+        <span class="search-icon">🔎</span>
+        <input class="search-input" id="search-input" type="text" placeholder="Search terms, definitions, examples…" oninput="applyFilters()">
+      </div>
+    </div>
+    <div class="ctrl-row">
+      <span class="ctrl-label">UNIT</span>
+      <button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button>
+      <button class="pill" data-unit="U1" onclick="setUnit('U1',this)">U1 Geography</button>
+      <button class="pill" data-unit="U2" onclick="setUnit('U2',this)">U2 Early Modern</button>
+      <button class="pill" data-unit="U3" onclick="setUnit('U3',this)">U3 Modern</button>
+      <button class="pill" data-unit="U4" onclick="setUnit('U4',this)">U4 Contemporary</button>
+    </div>
+    <div class="ctrl-row">
+      <span class="ctrl-label">FILTER</span>
+      <button class="pill pill-star" id="btn-star" onclick="toggleStarOnly()">★ Starred Only</button>
+      <div class="view-toggle">
+        <button class="pill active" id="btn-card" onclick="setView('card')">Card</button>
+        <button class="pill" id="btn-compact" onclick="setView('compact')">Compact</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="az-row" id="az-row"></div>
+  <div class="count-line" id="count-line"></div>
+  <div id="term-list"></div>
+
+  <div style="margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center">
+    Pre-AP World History &amp; Geography (21094150) · College Board Pre-AP Framework · Pathway 2 · Master Glossary
+    <div style="margin-top:4px;opacity:.6">Geography &amp; World Regions · Early Modern (c.1450–1750) · Modern (c.1750–1914) · Contemporary (c.1914–Present)</div>
+  </div>
+</div>
+
+<div class="modal-bg" id="quiz-modal"><div class="quiz-box" id="quiz-box"></div></div>
+
+<script>
+// ═══════════════════════════════════════════
+// PRE-AP WORLD HISTORY & GEOGRAPHY — MASTER GLOSSARY
+// College Board Pre-AP Course Framework, Pathway 2
+// U1 Geography & World Regions | U2 Early Modern (c.1450-1750)
+// U3 Modern (c.1750-1914) | U4 Contemporary (c.1914-present)
+// ═══════════════════════════════════════════
+const TERMS = [
+// ── U1: GEOGRAPHY & WORLD REGIONS ──
+{t:"Absolute Location",u:"U1",d:"The exact position of a place on Earth's surface, typically expressed using coordinates such as latitude and longitude.",e:"Cairo's absolute location is approximately 30°N, 31°E."},
+{t:"Relative Location",u:"U1",d:"The position of a place described in relation to other places, rather than by fixed coordinates.",e:"Describing Switzerland as 'landlocked, bordered by France, Germany, Italy, and Austria' is relative location."},
+{t:"Physical Geography",u:"U1",d:"The study of Earth's natural features and processes — landforms, climate, water systems, and ecosystems.",e:"Explaining why the Himalayas formed, or how the Nile floods seasonally, falls under physical geography."},
+{t:"Human Geography",u:"U1",d:"The study of how people organize themselves and interact with their environment — population, culture, economics, and political systems.",e:"Studying why cities cluster along rivers and coastlines is human geography."},
+{t:"Region",u:"U1",d:"An area of Earth's surface defined by one or more shared characteristics, whether physical, cultural, or political.",e:"The 'Sahel' is a region defined by its semi-arid climate belt just south of the Sahara."},
+{t:"Cultural Diffusion",u:"U1",d:"The spread of ideas, customs, technologies, or beliefs from one society or region to another through contact.",e:"The spread of Buddhism from South Asia into East Asia along trade routes is cultural diffusion."},
+{t:"Human-Environment Interaction",u:"U1",d:"The ways people affect their environment and the ways the environment affects human activity and settlement.",e:"Building terraced rice paddies on steep hillsides in Southeast Asia is a human-environment interaction."},
+{t:"Migration",u:"U1",d:"The movement of people from one place to settle in another, whether within a country or across borders.",e:"The Great Migration moved millions of African Americans from the rural South to Northern cities."},
+{t:"Push Factor",u:"U1",d:"A condition that drives people to leave a place, such as war, famine, or persecution.",e:"Religious persecution was a push factor for many groups migrating to new regions throughout history."},
+{t:"Pull Factor",u:"U1",d:"A condition that attracts people to a new place, such as economic opportunity, safety, or political freedom.",e:"The promise of land and jobs was a pull factor drawing settlers to expanding frontiers."},
+{t:"Cartography",u:"U1",d:"The science and practice of making maps.",e:"Advances in cartography during the Age of Exploration allowed sailors to navigate previously unmapped coastlines."},
+{t:"Map Projection",u:"U1",d:"A method of representing the curved surface of the Earth on a flat map, which necessarily distorts some feature — shape, area, distance, or direction.",e:"The Mercator projection preserves angles for navigation but greatly distorts the size of landmasses near the poles."},
+{t:"Topography",u:"U1",d:"The physical features of a place, especially its elevation and the shape and arrangement of its landforms.",e:"Mountainous topography historically slowed the movement of armies and trade caravans."},
+{t:"Climate",u:"U1",d:"The long-term pattern of weather conditions in a region, including temperature, precipitation, and seasonal variation.",e:"A monsoon climate in South Asia brings a predictable wet season that shaped agricultural cycles for millennia."},
+{t:"Natural Resource",u:"U1",d:"A material or substance occurring in nature that has economic or practical value to people.",e:"Access to iron ore and coal deposits shaped where industrial centers developed."},
+{t:"Trade Route",u:"U1",d:"A path, over land or sea, regularly used to transport goods between regions.",e:"The Silk Roads connected East Asia to the Mediterranean world for over a thousand years."},
+{t:"Diaspora",u:"U1",d:"The dispersal of a people from their original homeland to live in other parts of the world, while often retaining shared cultural or religious ties.",e:"The Atlantic slave trade created a large African diaspora across the Americas."},
+{t:"Urbanization",u:"U1",d:"The process by which an increasing proportion of a population comes to live in cities rather than rural areas.",e:"Industrialization drove rapid urbanization in nineteenth-century Britain, as factory jobs pulled workers into growing cities."},
+{t:"Demography",u:"U1",d:"The statistical study of populations, including their size, structure, and how they change over time.",e:"Demography helps historians estimate how the Black Death reduced Europe's population in the fourteenth century."},
+{t:"Sovereignty",u:"U1",d:"The authority of a state to govern itself without external interference, exercising supreme power within its own territory.",e:"A nation-state's sovereignty is challenged when another power occupies or controls part of its territory."},
+{t:"Colonization",u:"U1",d:"The process by which a state establishes control over a foreign territory and population, often settling its own people there and extracting resources.",e:"European powers colonized large portions of the Americas, Africa, and Asia between the sixteenth and twentieth centuries."},
+
+// ── U2: THE EARLY MODERN PERIOD, c. 1450–1750 ──
+{t:"Age of Exploration",u:"U2",d:"The period from the early 1400s through the 1600s during which European powers undertook long-distance sea voyages to establish trade routes and claim new territories.",e:"Portuguese and Spanish voyages around Africa and across the Atlantic opened this era."},
+{t:"Columbian Exchange",u:"U2",d:"The widespread transfer of plants, animals, diseases, technologies, and people between the Americas, Europe, and Africa following 1492.",e:"Potatoes and maize moved from the Americas to Europe, while horses and smallpox moved from Europe to the Americas."},
+{t:"Mercantilism",u:"U2",d:"An economic theory holding that a nation's wealth and power depend on accumulating gold and silver, typically achieved by maximizing exports and minimizing imports.",e:"European powers established colonies partly to secure raw materials and captive markets under mercantilist policy."},
+{t:"Triangular Trade",u:"U2",d:"The transatlantic trade network linking Europe, Africa, and the Americas — manufactured goods to Africa, enslaved people to the Americas, and raw materials back to Europe.",e:"A ship might carry cloth to West Africa, enslaved Africans to the Caribbean, and sugar back to European ports."},
+{t:"Transatlantic Slave Trade",u:"U2",d:"The forced transportation of millions of enslaved Africans across the Atlantic Ocean to the Americas, primarily between the sixteenth and nineteenth centuries.",e:"Enslaved Africans were transported under brutal conditions to labor on plantations in the Americas."},
+{t:"Middle Passage",u:"U2",d:"The transatlantic voyage that transported enslaved Africans to the Americas, notorious for extreme overcrowding and high mortality.",e:"Many enslaved people did not survive the Middle Passage due to disease, malnutrition, and abuse."},
+{t:"Encomienda System",u:"U2",d:"A Spanish colonial labor system granting colonists the right to demand labor and tribute from Indigenous peoples in exchange for supposed protection and religious instruction.",e:"The encomienda system subjected Indigenous communities in the Americas to forced labor, often in mines and on plantations."},
+{t:"Protestant Reformation",u:"U2",d:"The sixteenth-century religious movement, begun by figures such as Martin Luther, that challenged the authority and practices of the Catholic Church and led to new Christian denominations.",e:"Martin Luther's Ninety-Five Theses in 1517 is often marked as the start of the Reformation."},
+{t:"Counter-Reformation",u:"U2",d:"The Catholic Church's response to the Protestant Reformation, involving internal reform and efforts to reaffirm Catholic doctrine.",e:"The Council of Trent clarified Catholic teaching and addressed some of the abuses the Reformation had criticized."},
+{t:"Scientific Revolution",u:"U2",d:"The transformation in scientific thought during the sixteenth and seventeenth centuries, marked by observation, experimentation, and mathematical reasoning over received authority.",e:"Copernicus, Galileo, and Newton each challenged older understandings of the physical universe."},
+{t:"Absolutism",u:"U2",d:"A system of government in which a monarch holds total, unchecked authority over the state, often justified by claims of divine right.",e:"Louis XIV of France centralized power so thoroughly that he is credited with the phrase 'L'état, c'est moi' — I am the state."},
+{t:"Divine Right of Kings",u:"U2",d:"The doctrine that a monarch's authority to rule comes directly from God, and is therefore not subject to earthly challenge.",e:"Absolutist monarchs across Europe used divine right to justify their unchecked power."},
+{t:"Gunpowder Empire",u:"U2",d:"A term for large early modern empires — notably the Ottoman, Safavid, and Mughal — whose expansion and consolidation relied heavily on gunpowder weaponry.",e:"The Ottoman Empire's cannons famously breached the walls of Constantinople in 1453."},
+{t:"Ottoman Empire",u:"U2",d:"A vast Islamic empire centered in Anatolia that controlled territory across Southeast Europe, West Asia, and North Africa from the fourteenth into the twentieth century.",e:"The Ottomans captured Constantinople in 1453, ending the Byzantine Empire."},
+{t:"Mughal Empire",u:"U2",d:"A powerful Islamic empire that ruled most of the Indian subcontinent from the sixteenth to the mid-eighteenth century, known for its administrative sophistication and architecture.",e:"The Taj Mahal was built under Mughal emperor Shah Jahan."},
+{t:"Safavid Empire",u:"U2",d:"A Persian empire (1501–1736) that established Shia Islam as the official state religion and became a major regional power between the Ottoman and Mughal empires.",e:"Safavid Persia developed a distinct Shia identity that continues to shape the region's religious landscape."},
+{t:"Ming Dynasty",u:"U2",d:"The Chinese dynasty (1368–1644) known for restoring native Chinese rule after Mongol domination, rebuilding the Great Wall, and sponsoring major maritime expeditions.",e:"Admiral Zheng He led massive Ming treasure fleets on voyages across the Indian Ocean in the early 1400s."},
+{t:"Qing Dynasty",u:"U2",d:"The last imperial dynasty of China (1644–1912), established by the Manchu people, which expanded China's territory significantly.",e:"The Qing dynasty ruled China until it was overthrown by revolution in 1911–1912."},
+{t:"Tokugawa Shogunate",u:"U2",d:"The military government that ruled Japan from 1603 to 1868, enforcing long-term political stability and a policy of limited contact with the outside world.",e:"Under Tokugawa rule, Japan largely closed itself to foreign trade and influence for over two centuries."},
+{t:"Enlightenment",u:"U2",d:"An intellectual movement of the seventeenth and eighteenth centuries emphasizing reason, individual rights, and skepticism of traditional authority.",e:"Enlightenment thinkers like Locke and Voltaire influenced revolutionary movements across the Atlantic world."},
+{t:"Social Contract",u:"U2",d:"The Enlightenment-era idea that legitimate government arises from an implicit agreement among individuals to form a society and consent to be governed.",e:"Philosophers like Rousseau and Locke argued that a government's authority depends on the consent of the governed."},
+{t:"Natural Rights",u:"U2",d:"Rights believed to belong to all people inherently, simply by virtue of being human, rather than granted by government.",e:"John Locke argued that life, liberty, and property were natural rights no government could justly take away."},
+{t:"Joint-Stock Company",u:"U2",d:"A business owned by shareholders who invest capital and share in profits and losses, used extensively to fund early modern colonial and trading ventures.",e:"The British East India Company was a joint-stock company that came to control vast territory in South Asia."},
+{t:"Silver Trade",u:"U2",d:"The early modern global trade network built around silver mined largely in the Americas, which became a dominant medium of exchange, especially with China.",e:"Silver mined at Potosí in the Andes flowed through global trade networks to pay for goods from China."},
+{t:"Indigenous Peoples",u:"U2",d:"The original inhabitants of a region prior to colonization or significant outside settlement.",e:"Indigenous peoples across the Americas experienced devastating population loss from European-introduced diseases after 1492."},
+{t:"Syncretism",u:"U2",d:"The blending of different religious or cultural traditions into a new, combined form.",e:"Many religious practices in colonial Latin America blended Catholic and Indigenous or African traditions."},
+{t:"Treaty of Westphalia",u:"U2",d:"The 1648 set of agreements ending the Thirty Years' War in Europe, widely credited with establishing the modern concept of state sovereignty.",e:"The Peace of Westphalia is often cited as the origin point of the modern nation-state system."},
+{t:"Chattel Slavery",u:"U2",d:"A form of slavery in which enslaved people are treated as personal property that can be bought, sold, and inherited, typically for life and often hereditary.",e:"Chattel slavery in the Americas differed from many earlier forms of bondage in its permanence and racial basis."},
+
+// ── U3: THE MODERN PERIOD, c. 1750–1914 ──
+{t:"Industrial Revolution",u:"U3",d:"The transformation, beginning in Britain in the mid-1700s, from hand-production and agrarian economies to machine-based manufacturing and factory production.",e:"The steam engine's application to textile manufacturing helped launch the Industrial Revolution."},
+{t:"Factory System",u:"U3",d:"A method of manufacturing using centralized machinery and a large concentrated workforce, replacing small-scale home-based production.",e:"Textile mills gathered workers and power-driven machines under one roof, replacing the older domestic system."},
+{t:"Capitalism",u:"U3",d:"An economic system based on private ownership of the means of production and the pursuit of profit within a market.",e:"Industrial-era Britain developed an increasingly capitalist economy as factory owners competed for markets."},
+{t:"Socialism",u:"U3",d:"An economic and political theory advocating collective or state ownership of the means of production, aimed at reducing inequality.",e:"Socialist movements grew in nineteenth-century Europe partly in response to harsh industrial working conditions."},
+{t:"Karl Marx",u:"U3",d:"A nineteenth-century philosopher and economist whose critique of capitalism and theory of class struggle became foundational to modern socialist and communist thought.",e:"Marx's 'The Communist Manifesto,' co-written with Friedrich Engels, argued that capitalism would inevitably be overthrown by the working class."},
+{t:"Proletariat",u:"U3",d:"In Marxist theory, the industrial working class who own no property and sell their labor for wages.",e:"Marx argued the proletariat would eventually rise up against the capitalist owning class."},
+{t:"American Revolution",u:"U3",d:"The 1775–1783 conflict in which Britain's thirteen North American colonies won independence, establishing the United States.",e:"The Declaration of Independence in 1776 drew heavily on Enlightenment ideas of natural rights and consent of the governed."},
+{t:"French Revolution",u:"U3",d:"The 1789–1799 upheaval that overthrew the French monarchy, ended feudal privilege, and introduced radical ideas about citizenship and popular sovereignty.",e:"The storming of the Bastille in 1789 became a symbol of the revolution's beginning."},
+{t:"Haitian Revolution",u:"U3",d:"The 1791–1804 uprising of enslaved people in the French colony of Saint-Domingue that succeeded in abolishing slavery and establishing Haiti as an independent nation.",e:"Haiti became the first nation founded by a successful revolt of enslaved people, and the first free Black republic."},
+{t:"Nationalism",u:"U3",d:"A political ideology emphasizing loyalty and devotion to one's nation, often based on shared language, culture, or history, and frequently linked to demands for self-governance.",e:"Nationalist movements drove the unification of Italy and Germany in the nineteenth century."},
+{t:"Unification of Germany",u:"U3",d:"The 1871 process, led by Prussia under Otto von Bismarck, that consolidated numerous German states into a single German Empire.",e:"Bismarck used a combination of diplomacy and war to unify Germany under Prussian leadership."},
+{t:"Unification of Italy",u:"U3",d:"The nineteenth-century movement (largely completed by 1871) that consolidated numerous separate Italian states and kingdoms into a single nation.",e:"Figures like Giuseppe Garibaldi and Count Cavour led different strands of the Italian unification movement."},
+{t:"Congress of Vienna",u:"U3",d:"The 1814–1815 conference of European powers that redrew the political map after the Napoleonic Wars, aiming to restore balance and stability.",e:"The Congress of Vienna sought to prevent future revolutionary upheaval by restoring conservative monarchies."},
+{t:"Latin American Wars of Independence",u:"U3",d:"The series of early-nineteenth-century conflicts in which most of Spain's and Portugal's American colonies won independence.",e:"Simón Bolívar led independence movements across much of northern South America in the early 1800s."},
+{t:"Imperialism",u:"U3",d:"The policy of extending a nation's power and influence through territorial acquisition, military force, or economic and political control over other regions.",e:"European imperialism in the late nineteenth century brought most of Africa under colonial control within a few decades."},
+{t:"Scramble for Africa",u:"U3",d:"The rapid colonization and partition of nearly the entire African continent by European powers in the late nineteenth century.",e:"The Berlin Conference of 1884–1885 set rules among European powers for dividing Africa, with no African representatives present."},
+{t:"Berlin Conference",u:"U3",d:"An 1884–1885 meeting of European powers that established procedures for the colonization and partition of Africa.",e:"The borders drawn at the Berlin Conference often ignored existing ethnic and political boundaries, with lasting consequences."},
+{t:"Social Darwinism",u:"U3",d:"A theory applying the concept of natural selection to human societies, often used to justify imperialism, racial hierarchy, and inequality as natural and inevitable.",e:"Some imperial powers used social Darwinist arguments to justify colonial domination as the natural order."},
+{t:"Sepoy Rebellion",u:"U3",d:"An 1857–1858 uprising of Indian soldiers (sepoys) against the British East India Company, which led to direct British Crown rule over India.",e:"After the rebellion was suppressed, the British government took direct control of India from the East India Company."},
+{t:"Opium Wars",u:"U3",d:"Two nineteenth-century conflicts (1839–1842 and 1856–1860) between China and Western powers, primarily Britain, over trade and the opium trade, resulting in unequal treaties favoring the West.",e:"China's defeat in the First Opium War forced it to cede Hong Kong to Britain and open ports to foreign trade."},
+{t:"Unequal Treaty",u:"U3",d:"An agreement imposed on a weaker state by a stronger one, granting the stronger power disproportionate rights or advantages.",e:"The Treaty of Nanjing, ending the First Opium War, is a classic example of an unequal treaty imposed on China."},
+{t:"Meiji Restoration",u:"U3",d:"The 1868 political revolution in Japan that ended the Tokugawa shogunate, restored imperial rule, and launched rapid modernization and industrialization.",e:"Following the Meiji Restoration, Japan industrialized quickly enough to defeat Russia in war by 1905."},
+{t:"Suffrage Movement",u:"U3",d:"Organized efforts to extend the right to vote to groups previously excluded, particularly women, during the nineteenth and early twentieth centuries.",e:"Suffrage movements in Britain and the United States campaigned for decades before women won the vote."},
+{t:"Abolitionism",u:"U3",d:"The movement to end slavery and the slave trade, which gained significant momentum in the eighteenth and nineteenth centuries.",e:"Britain abolished slavery throughout most of its empire in 1833 after decades of abolitionist campaigning."},
+{t:"Zionism",u:"U3",d:"A nationalist movement, emerging in the late nineteenth century, advocating for the establishment of a Jewish homeland, primarily in the historic region of Palestine.",e:"Theodor Herzl's writings in the 1890s helped organize Zionism into a political movement."},
+{t:"Balance of Power",u:"U3",d:"A diplomatic principle in which states seek to prevent any single power from becoming dominant, often through alliances and military buildup.",e:"European alliance systems before World War I were built around maintaining a balance of power."},
+{t:"Laissez-Faire",u:"U3",d:"An economic philosophy holding that markets function best with minimal government intervention.",e:"Nineteenth-century industrialists often invoked laissez-faire principles to argue against factory regulation."},
+{t:"World War I",u:"U3",d:"The 1914–1918 global conflict, centered in Europe, that drew in colonial empires worldwide and resulted in unprecedented casualties from industrialized warfare.",e:"The assassination of Archduke Franz Ferdinand in 1914 triggered a chain of alliances that escalated into full-scale war."},
+
+// ── U4: THE CONTEMPORARY PERIOD, c. 1914–PRESENT ──
+{t:"Trench Warfare",u:"U4",d:"A style of combat, especially on the Western Front of World War I, in which opposing armies dug elaborate networks of trenches and fought over narrow strips of territory at enormous cost.",e:"Trench warfare on the Western Front often produced huge casualties for minimal territorial gain."},
+{t:"Total War",u:"U4",d:"A conflict in which a nation mobilizes all its economic, industrial, and civilian resources toward the war effort, blurring the line between combatants and civilians.",e:"Both World Wars required total war mobilization, with civilian factories converted to weapons production."},
+{t:"Treaty of Versailles",u:"U4",d:"The 1919 peace agreement ending World War I, which imposed harsh terms and reparations on Germany and redrew national borders in Europe.",e:"The treaty's war-guilt clause and heavy reparations on Germany are often cited as contributing to later instability."},
+{t:"Russian Revolution",u:"U4",d:"The 1917 upheaval in which the Russian monarchy was overthrown and, later that year, the Bolsheviks under Lenin seized power, eventually establishing the Soviet Union.",e:"The October Revolution of 1917 brought Vladimir Lenin and the Bolshevik Party to power."},
+{t:"Bolshevik",u:"U4",d:"A member of the radical socialist faction, led by Vladimir Lenin, that seized power in Russia in October 1917.",e:"The Bolsheviks pursued a communist revolution and eventually formed the government of the Soviet Union."},
+{t:"Communism",u:"U4",d:"A political and economic ideology advocating a classless society with collective ownership of the means of production, typically implemented through one-party state control.",e:"The Soviet Union under Lenin and later Stalin implemented a communist system with state-controlled industry and agriculture."},
+{t:"Fascism",u:"U4",d:"An authoritarian, ultranationalist political ideology characterized by dictatorial power, suppression of opposition, and often extreme nationalism or racial ideology.",e:"Benito Mussolini's regime in Italy and Adolf Hitler's regime in Germany were both fascist governments."},
+{t:"Great Depression",u:"U4",d:"The severe worldwide economic downturn of the 1930s, triggered in part by the 1929 U.S. stock market crash, that caused mass unemployment and hardship globally.",e:"The Great Depression's economic devastation contributed to political extremism in several countries, including Germany."},
+{t:"World War II",u:"U4",d:"The 1939–1945 global conflict fought between the Axis powers (led by Germany, Italy, and Japan) and the Allied powers, the deadliest conflict in human history.",e:"Germany's invasion of Poland in September 1939 marked the start of the war in Europe."},
+{t:"The Holocaust",u:"U4",d:"The systematic, state-sponsored persecution and murder of six million European Jews, along with millions of others, by Nazi Germany and its collaborators.",e:"The Holocaust remains a central example studied in the history of genocide and human rights."},
+{t:"Genocide",u:"U4",d:"The deliberate, systematic destruction of a national, ethnic, racial, or religious group, in whole or in part.",e:"The term genocide was coined in the 1940s partly in response to the Holocaust."},
+{t:"Cold War",u:"U4",d:"The prolonged geopolitical tension (roughly 1947–1991) between the United States and the Soviet Union and their respective allies, marked by proxy conflicts, an arms race, and ideological rivalry rather than direct war between the two superpowers.",e:"The Cold War divided much of the world into capitalist and communist spheres of influence for over four decades."},
+{t:"Containment",u:"U4",d:"The U.S. Cold War foreign policy strategy aimed at preventing the spread of communism to new countries, rather than attempting to roll it back where already established.",e:"Containment shaped U.S. involvement in conflicts such as the Korean War and the Vietnam War."},
+{t:"Iron Curtain",u:"U4",d:"A term describing the ideological and physical division separating Soviet-controlled Eastern Europe from the West during the Cold War.",e:"Winston Churchill popularized the phrase 'Iron Curtain' in a 1946 speech describing this Cold War divide."},
+{t:"Decolonization",u:"U4",d:"The process by which former colonies gained independence from imperial powers, occurring on a large scale especially after World War II.",e:"India gained independence from Britain in 1947, part of a wave of decolonization across Asia and Africa."},
+{t:"Non-Aligned Movement",u:"U4",d:"A group of states, formed during the Cold War, that declared themselves neutral and refused formal alignment with either the United States or the Soviet Union.",e:"Leaders like India's Jawaharlal Nehru helped found the Non-Aligned Movement in 1961."},
+{t:"United Nations",u:"U4",d:"An international organization founded in 1945 to promote peace, security, and cooperation among nations, succeeding the earlier League of Nations.",e:"The United Nations was established in the aftermath of World War II to prevent future large-scale conflicts."},
+{t:"League of Nations",u:"U4",d:"An international organization founded after World War I to promote peace and resolve disputes between nations, which ultimately failed to prevent World War II.",e:"The League of Nations lacked the authority and enforcement power to stop aggression by member states like Japan and Italy."},
+{t:"Proxy War",u:"U4",d:"A conflict in which two opposing powers support and arm opposite sides in another country's war, rather than fighting each other directly.",e:"The Vietnam War is often described as a Cold War proxy conflict between communist and anti-communist forces."},
+{t:"Arms Race",u:"U4",d:"A competition between rival states to build up military strength, especially weapons technology, in order to gain a strategic advantage.",e:"The U.S.-Soviet nuclear arms race led both nations to stockpile thousands of nuclear warheads during the Cold War."},
+{t:"Berlin Wall",u:"U4",d:"The barrier built in 1961 dividing East and West Berlin, symbolizing the broader division of Cold War Europe, until its fall in 1989.",e:"The fall of the Berlin Wall in 1989 is widely seen as marking the beginning of the Cold War's end."},
+{t:"Partition of India",u:"U4",d:"The 1947 division of British India into the independent nations of India and Pakistan, accompanied by mass migration and severe communal violence.",e:"Partition displaced an estimated ten to twenty million people and caused significant loss of life."},
+{t:"Apartheid",u:"U4",d:"The system of institutionalized racial segregation and discrimination enforced by the South African government from 1948 to the early 1990s.",e:"Nelson Mandela became a global symbol of resistance to apartheid and later South Africa's first Black president."},
+{t:"Globalization",u:"U4",d:"The increasing interconnection of the world's economies, cultures, and populations through trade, communication, and technology.",e:"The rapid growth of international trade and instant global communication in recent decades reflects accelerating globalization."},
+{t:"Multinational Corporation",u:"U4",d:"A company that operates in multiple countries, often coordinating production and sales across a global supply chain.",e:"Multinational corporations expanded rapidly in the late twentieth century as globalization accelerated."},
+{t:"European Union",u:"U4",d:"A political and economic union of European countries, established to promote cooperation, free trade, and, for many members, a shared currency.",e:"The European Union grew out of earlier post-war efforts to bind European economies together and prevent future conflict."},
+{t:"Human Rights",u:"U4",d:"Rights considered inherent to all people regardless of nationality, ethnicity, or other status, often codified in international agreements.",e:"The 1948 Universal Declaration of Human Rights was adopted by the United Nations in the aftermath of World War II."},
+{t:"Refugee",u:"U4",d:"A person who has fled their home country due to war, persecution, or disaster and seeks safety elsewhere.",e:"Major conflicts throughout the twentieth and twenty-first centuries have produced large refugee populations."},
+{t:"Superpower",u:"U4",d:"A state with the military, economic, and political strength to project dominant influence on a global scale.",e:"The United States and the Soviet Union were the two recognized superpowers of the Cold War era."}
+];
+
+const UNIT_NAMES = {
+  U1:"Geography & World Regions", U2:"Early Modern Period", U3:"Modern Period", U4:"Contemporary Period"
+};
+
+let curUnit='all', starOnly=false, curLetter=null, curView='card';
+let starred = new Set(JSON.parse(localStorage.getItem('worldhistory_glossary_starred')||'[]'));
+let quizScore = localStorage.getItem('worldhistory_glossary_quizscore');
+
+function saveStars(){ localStorage.setItem('worldhistory_glossary_starred', JSON.stringify([...starred])); }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function toggleStar(name, ev){
+  ev.stopPropagation();
+  if(starred.has(name)) starred.delete(name); else starred.add(name);
+  saveStars(); applyFilters();
+}
+function setUnit(u, btn){
+  curUnit=u;
+  document.querySelectorAll('.pill[data-unit]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+function toggleStarOnly(){ starOnly=!starOnly; document.getElementById('btn-star').classList.toggle('active',starOnly); applyFilters(); }
+function setView(v){
+  curView=v;
+  document.getElementById('btn-card').classList.toggle('active',v==='card');
+  document.getElementById('btn-compact').classList.toggle('active',v==='compact');
+  document.getElementById('term-list').classList.toggle('compact',v==='compact');
+}
+function setLetter(L, btn){
+  curLetter=(curLetter===L)?null:L;
+  document.querySelectorAll('.az-btn').forEach(b=>b.classList.remove('active'));
+  if(curLetter) btn.classList.add('active');
+  applyFilters();
+}
+function buildAZ(){
+  const present=new Set(TERMS.map(t=>t.t[0].toUpperCase()));
+  const letters='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  document.getElementById('az-row').innerHTML=letters.map(L=>
+    `<button class="az-btn ${present.has(L)?'has':''}" onclick="setLetter('${L}',this)" ${present.has(L)?'':'disabled style="opacity:.25;cursor:default"'}>${L}</button>`
+  ).join('');
+}
+function getFiltered(){
+  const q=document.getElementById('search-input').value.trim().toLowerCase();
+  return TERMS.filter(t=>{
+    if(curUnit!=='all' && t.u!==curUnit) return false;
+    if(starOnly && !starred.has(t.t)) return false;
+    if(curLetter && t.t[0].toUpperCase()!==curLetter) return false;
+    if(q){
+      const hay=(t.t+' '+t.d+' '+(t.e||'')).toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+}
+function applyFilters(){
+  const list=getFiltered().slice().sort((a,b)=>a.t.localeCompare(b.t));
+  document.getElementById('s-shown').textContent=list.length;
+  document.getElementById('s-starred').textContent=starred.size;
+  document.getElementById('count-line').innerHTML=`<b>${list.length}</b> terms shown`;
+  const box=document.getElementById('term-list');
+  if(!list.length){ box.innerHTML='<div class="empty">No terms match your search or filters.</div>'; return; }
+  const groups={};
+  list.forEach(t=>{ const L=t.t[0].toUpperCase(); (groups[L]=groups[L]||[]).push(t); });
+  box.innerHTML=Object.keys(groups).sort().map(L=>{
+    const items=groups[L].map(t=>{
+      const on=starred.has(t.t);
+      const extra=t.e?`<div class="extra-line ex-example"><span class="extra-lbl">EXAMPLE</span>${esc(t.e)}</div>`:'';
+      return `<div class="term-card">
+        <div class="term-top">
+          <div class="term-name">${esc(t.t)}</div>
+          <div class="term-meta">
+            <span class="tag tag-unit">${t.u} · ${UNIT_NAMES[t.u]}</span>
+            <button class="star-btn ${on?'on':''}" onclick="toggleStar('${t.t.replace(/'/g,"\\'")}',event)">${on?'★':'☆'}</button>
+          </div>
+        </div>
+        <div class="term-def">${esc(t.d)}</div>
+        ${extra?`<div class="term-extra">${extra}</div>`:''}
+      </div>`;
+    }).join('');
+    return `<div class="letter-head"><div class="letter-badge">${L}</div><div class="letter-count">${groups[L].length} term${groups[L].length===1?'':'s'}</div></div>${items}`;
+  }).join('');
+}
+
+let quizDeck=[], quizIdx=0, quizRight=0, quizRevealed=false;
+function launchQuiz(){
+  const pool=getFiltered();
+  if(pool.length<4){ alert('Need at least 4 terms in the current filter to start a quiz.'); return; }
+  quizDeck=pool.slice().sort(()=>Math.random()-0.5).slice(0,Math.min(20,pool.length));
+  quizIdx=0; quizRight=0; quizRevealed=false;
+  document.getElementById('quiz-modal').classList.add('open');
+  renderQuiz();
+}
+function closeQuiz(){ document.getElementById('quiz-modal').classList.remove('open'); }
+function revealAnswer(){ quizRevealed=true; renderQuiz(); }
+function markQuiz(correct){
+  if(correct) quizRight++;
+  quizIdx++; quizRevealed=false;
+  if(quizIdx>=quizDeck.length){
+    const pct=Math.round(quizRight/quizDeck.length*100);
+    quizScore=pct+'%';
+    localStorage.setItem('worldhistory_glossary_quizscore',quizScore);
+    document.getElementById('s-quiz').textContent=quizScore;
+    document.getElementById('quiz-box').innerHTML=`
+      <button class="quiz-close" onclick="closeQuiz()">✕</button>
+      <div class="quiz-done">
+        <div style="font-size:11px;letter-spacing:.12em;color:var(--muted);margin-bottom:10px">SESSION COMPLETE</div>
+        <div class="quiz-score">${quizRight}/${quizDeck.length}</div>
+        <div style="font-size:14px;color:var(--muted);margin:8px 0 20px">${pct}% correct</div>
+        <div class="quiz-btns">
+          <button class="qbtn qbtn-show" onclick="launchQuiz()">Run Again</button>
+          <button class="qbtn qbtn-got" onclick="closeQuiz()">Done</button>
+        </div>
+      </div>`;
+    return;
+  }
+  renderQuiz();
+}
+function renderQuiz(){
+  const t=quizDeck[quizIdx];
+  document.getElementById('quiz-box').innerHTML=`
+    <button class="quiz-close" onclick="closeQuiz()">✕</button>
+    <div class="quiz-progress">CARD ${quizIdx+1} OF ${quizDeck.length} · ${t.u} ${UNIT_NAMES[t.u]}</div>
+    <div class="quiz-prompt-lbl">DEFINE THIS TERM</div>
+    <div class="quiz-term">${esc(t.t)}</div>
+    <div class="quiz-answer ${quizRevealed?'show':''}">${esc(t.d)}</div>
+    <div class="quiz-btns">
+      ${quizRevealed
+        ? `<button class="qbtn qbtn-miss" onclick="markQuiz(false)">✗ Missed It</button><button class="qbtn qbtn-got" onclick="markQuiz(true)">✓ Got It</button>`
+        : `<button class="qbtn qbtn-show" onclick="revealAnswer()">Show Answer</button>`}
+    </div>`;
+}
+document.getElementById('quiz-modal').addEventListener('click',e=>{ if(e.target.id==='quiz-modal') closeQuiz(); });
+
+(function init(){
+  const total=TERMS.length;
+  const units=new Set(TERMS.map(t=>t.u)).size;
+  document.getElementById('s-total').textContent=total;
+  document.getElementById('page-sub').textContent=`${total} essential terms · ${units} units · A–Z with examples · Pathway 2`;
+  if(quizScore) document.getElementById('s-quiz').textContent=quizScore;
+  buildAZ();
+  applyFilters();
+})();
+</script>
+</body>
+</html>

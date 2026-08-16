@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physical Science Honors — Drill Trainer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
+  --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(46,139,192,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(46,139,192,0.04) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:26px 20px 70px}
+
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--sky)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+.hdr-btn{background:var(--card);border:1px solid var(--border);color:var(--text);font-family:'DM Sans',sans-serif;font-size:12.5px;font-weight:700;padding:9px 16px;border-radius:10px;cursor:pointer}
+.hdr-btn:hover{border-color:var(--sky)}
+
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px;flex:1}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+
+.screen{display:none}
+.screen.active{display:block}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:14px}
+.sec-lbl{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.13em;color:var(--muted);margin-bottom:11px}
+
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:7px 15px;font-size:12.5px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--sky);color:var(--text)}
+.pill.active{background:var(--sky);border-color:var(--sky);color:#fff}
+.pill-row{display:flex;gap:7px;flex-wrap:wrap}
+
+.mode-tab{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:11px 17px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.mode-tab:hover{border-color:var(--sky);color:var(--text)}
+.mode-tab.active{background:rgba(46,139,192,.16);border-color:var(--sky);color:var(--white)}
+.mode-desc{margin-top:10px;font-size:12.5px;color:var(--muted);line-height:1.6}
+
+.unit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:9px}
+.unit-box{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:12px 14px;cursor:pointer;transition:all .18s;display:flex;align-items:center;gap:10px}
+.unit-box:hover{border-color:var(--sky)}
+.unit-box.on{background:rgba(46,139,192,.12);border-color:var(--sky)}
+.unit-check{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.unit-box.on .unit-check{background:var(--sky);border-color:var(--sky);color:#fff}
+.unit-name{font-size:12.5px;font-weight:700;color:var(--text)}
+.unit-qty{font-size:10.5px;color:var(--muted);font-family:'DM Mono',monospace}
+
+.btn{border:none;border-radius:12px;padding:14px 26px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-go{background:linear-gradient(135deg,var(--sky),#1e6f9f);color:#fff;width:100%}
+.btn-go:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(46,139,192,.32)}
+.btn-go:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-ghost{background:var(--bg);border:1px solid var(--border);color:var(--text)}
+.btn-teal{background:var(--teal);color:#fff}
+.btn-next{background:var(--sky);color:#fff}
+
+/* QUESTION SCREEN */
+.q-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.q-counter{font-family:'DM Mono',monospace;font-size:11.5px;letter-spacing:.1em;color:var(--muted)}
+.q-badges{display:flex;gap:6px;align-items:center}
+.badge{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:6px;white-space:nowrap}
+.b-unit{background:rgba(46,139,192,.16);color:#7cc0e6;border:1px solid rgba(46,139,192,.3)}
+.b-t1{background:rgba(29,158,117,.15);color:#4fd1a5;border:1px solid rgba(29,158,117,.3)}
+.b-t2{background:rgba(229,148,0,.14);color:#efb44e;border:1px solid rgba(229,148,0,.3)}
+.b-t3{background:rgba(231,76,60,.14);color:#f08579;border:1px solid rgba(231,76,60,.3)}
+.b-calc{background:rgba(139,92,246,.15);color:#b39bf5;border:1px solid rgba(139,92,246,.3)}
+.timer{font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:var(--amber)}
+.timer.warn{color:var(--red)}
+
+.prog-bar{height:5px;background:var(--bg);border-radius:99px;overflow:hidden;margin-bottom:18px}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--sky),var(--teal));transition:width .3s}
+
+.q-text{font-size:17px;font-weight:600;color:var(--white);line-height:1.45;margin-bottom:8px}
+.q-given{font-family:'DM Mono',monospace;font-size:12.5px;color:#c4b2f7;background:rgba(139,92,246,.07);border-left:2px solid var(--purple);padding:8px 12px;border-radius:8px;margin-bottom:16px}
+
+.opts{display:flex;flex-direction:column;gap:9px;margin-bottom:16px}
+.opt{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:13px 16px;cursor:pointer;transition:all .16s;display:flex;align-items:flex-start;gap:12px;text-align:left;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);width:100%}
+.opt:hover:not(:disabled){border-color:var(--sky);background:var(--card2)}
+.opt:disabled{cursor:default}
+.opt-key{width:24px;height:24px;border-radius:7px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0;color:var(--muted)}
+.opt.correct{border-color:var(--teal);background:rgba(29,158,117,.11)}
+.opt.correct .opt-key{background:var(--teal);border-color:var(--teal);color:#fff}
+.opt.wrong{border-color:var(--red);background:rgba(231,76,60,.10)}
+.opt.wrong .opt-key{background:var(--red);border-color:var(--red);color:#fff}
+
+.feedback{border-radius:12px;padding:14px 16px;margin-bottom:16px;display:none}
+.feedback.show{display:block}
+.fb-right{background:rgba(29,158,117,.09);border:1px solid rgba(29,158,117,.3)}
+.fb-wrong{background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.3)}
+.fb-head{font-size:13px;font-weight:800;margin-bottom:7px}
+.fb-right .fb-head{color:#4fd1a5}
+.fb-wrong .fb-head{color:#f08579}
+.fb-body{font-size:13.5px;color:var(--text);opacity:.92}
+.fb-formula{font-family:'DM Mono',monospace;font-size:12.5px;color:#c4b2f7;margin-top:9px;padding-top:9px;border-top:1px solid var(--border)}
+
+/* RESULTS */
+.res-score{font-size:3rem;font-weight:800;font-family:'DM Mono',monospace;color:var(--white);text-align:center;line-height:1}
+.res-score span{font-size:1.5rem;color:var(--muted)}
+.res-grade{text-align:center;font-size:1.2rem;font-weight:800;margin:8px 0}
+.res-sub{text-align:center;font-size:13px;color:var(--muted);margin-bottom:20px}
+.brk-row{display:flex;align-items:center;gap:11px;margin-bottom:9px}
+.brk-name{font-size:12.5px;font-weight:700;min-width:150px;color:var(--text)}
+.brk-bar{flex:1;height:8px;background:var(--bg);border-radius:99px;overflow:hidden}
+.brk-fill{height:100%;border-radius:99px}
+.brk-num{font-family:'DM Mono',monospace;font-size:11.5px;color:var(--muted);min-width:46px;text-align:right}
+.res-btns{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}
+.res-btns .btn{flex:1;min-width:130px}
+
+.miss-item{background:var(--bg);border:1px solid var(--border);border-left:2px solid var(--red);border-radius:9px;padding:11px 14px;margin-bottom:8px}
+.miss-q{font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px}
+.miss-a{font-size:12px;color:var(--muted)}
+.miss-a b{color:#4fd1a5}
+
+@media(max-width:640px){
+  .page-title{font-size:1.5rem}
+  .brk-name{min-width:98px;font-size:11.5px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <a href="PhysicalScience_StudyHub.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--sky);text-decoration:none;margin-bottom:14px;opacity:.85">← Physical Science Study Hub</a>
+
+  <div class="header">
+    <div>
+      <div class="series-label">Physical Science Honors · Study Resource Series · Build 2</div>
+      <div class="page-title">Drill <span>Trainer</span></div>
+      <div class="page-sub" id="page-sub">Loading…</div>
+    </div>
+    <button class="hdr-btn" id="btn-setup" onclick="goSetup()" style="display:none">← Setup</button>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-chip"><div class="stat-num" id="gs-total">0</div><div class="stat-lbl">TOTAL DRILLED</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--teal)" id="gs-acc">—</div><div class="stat-lbl">ACCURACY</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--amber)" id="gs-streak">0</div><div class="stat-lbl">BEST STREAK</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--sky)" id="gs-sessions">0</div><div class="stat-lbl">SESSIONS</div></div>
+  </div>
+
+  <!-- ═══ SETUP ═══ -->
+  <div class="screen active" id="screen-setup">
+    <div class="card">
+      <div class="sec-lbl">SESSION MODE</div>
+      <div class="pill-row" id="mode-tabs">
+        <button class="mode-tab active" data-mode="practice" onclick="setMode('practice',this)">📚 Practice</button>
+        <button class="mode-tab" data-mode="exam" onclick="setMode('exam',this)">🎓 Exam Mode</button>
+        <button class="mode-tab" data-mode="stamina" onclick="setMode('stamina',this)">🔥 Stamina</button>
+      </div>
+      <div class="mode-desc" id="mode-desc"></div>
+    </div>
+
+    <div class="card">
+      <div class="sec-lbl">UNITS &nbsp;·&nbsp; <span id="sel-count" style="color:var(--sky)"></span></div>
+      <div class="unit-grid" id="unit-grid"></div>
+      <div class="pill-row" style="margin-top:11px">
+        <button class="pill" onclick="selectAllUnits(true)">Select All</button>
+        <button class="pill" onclick="selectAllUnits(false)">Clear</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="sec-lbl">DIFFICULTY</div>
+      <div class="pill-row">
+        <button class="pill active" data-tier="all" onclick="setTier('all',this)">All Tiers</button>
+        <button class="pill" data-tier="1" onclick="setTier(1,this)">① Foundational</button>
+        <button class="pill" data-tier="2" onclick="setTier(2,this)">② Intermediate</button>
+        <button class="pill" data-tier="3" onclick="setTier(3,this)">③ Challenge</button>
+      </div>
+    </div>
+
+    <button class="btn btn-go" id="btn-start" onclick="startSession()">Start Session</button>
+  </div>
+
+  <!-- ═══ QUESTION ═══ -->
+  <div class="screen" id="screen-q">
+    <div class="card">
+      <div class="q-top">
+        <div class="q-counter" id="q-counter"></div>
+        <div class="q-badges" id="q-badges"></div>
+        <div class="timer" id="q-timer" style="display:none"></div>
+      </div>
+      <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+      <div class="q-text" id="q-text"></div>
+      <div class="q-given" id="q-given" style="display:none"></div>
+      <div class="opts" id="q-opts"></div>
+      <div class="feedback" id="q-feedback"></div>
+      <button class="btn btn-next" id="btn-nextq" style="display:none;width:100%" onclick="nextQuestion()">Next Question →</button>
+    </div>
+  </div>
+
+  <!-- ═══ RESULTS ═══ -->
+  <div class="screen" id="screen-res">
+    <div class="card">
+      <div class="sec-lbl" id="res-mode">SESSION COMPLETE</div>
+      <div class="res-score" id="res-score"></div>
+      <div class="res-grade" id="res-grade"></div>
+      <div class="res-sub" id="res-sub"></div>
+      <div class="sec-lbl" style="margin-top:20px">BREAKDOWN BY UNIT</div>
+      <div id="res-breakdown"></div>
+      <div class="res-btns">
+        <button class="btn btn-ghost" onclick="goSetup()">← Setup</button>
+        <button class="btn btn-teal" onclick="retrySession()">Retry Same</button>
+        <button class="btn btn-next" id="btn-retry-missed" onclick="retryMissed()">Drill Missed Only</button>
+      </div>
+    </div>
+    <div class="card" id="res-missed-card" style="display:none">
+      <div class="sec-lbl">QUESTIONS MISSED</div>
+      <div id="res-missed"></div>
+    </div>
+  </div>
+
+  <div style="margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center">
+    Physical Science Honors (2003320) · Florida NGSSS Science Standards · Drill Trainer
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+// PHYSICAL SCIENCE HONORS — DRILL TRAINER
+// tier: 1=foundational  2=intermediate  3=challenge
+// type: "mc" conceptual  |  "calc" calculation
+// ═══════════════════════════════════════════
+const QB = [
+{u:"U1",tier:1,type:"mc",q:"A student gives four groups of plants different amounts of fertilizer and measures their height after 30 days. What is the independent variable?",o:["The height of the plants","The type of soil used","The amount of fertilizer applied","The number of days"],a:2,exp:"The independent variable is the one the experimenter deliberately changes. Fertilizer amount is being varied on purpose; plant height is what gets measured in response, making it the dependent variable."},
+{u:"U1",tier:1,type:"mc",q:"Which of the following is the best example of a testable hypothesis?",o:["Plants are interesting to study","Fertilizer is good for plants","Why do plants grow taller with fertilizer?","If nitrogen fertilizer is increased, then plant height will increase"],a:3,exp:"A hypothesis must be a testable, falsifiable statement — not a question, an opinion, or a vague claim. The if/then form states a specific relationship that an experiment could prove wrong."},
+{u:"U1",tier:2,type:"mc",q:"What is the key difference between a scientific theory and a scientific law?",o:["A law describes what happens; a theory explains why","A theory is a guess; a law is proven","A theory becomes a law once enough evidence accumulates","Laws apply only to physics; theories apply only to biology"],a:0,exp:"This is the single most misunderstood pair in science. A law describes a consistently observed relationship, often mathematically. A theory explains the underlying mechanism. Theories never 'graduate' into laws — they are different kinds of statements."},
+{u:"U1",tier:2,type:"mc",q:"A student measures a 100.0 g standard mass four times and gets 82.1 g, 82.2 g, 82.1 g, and 82.2 g. These measurements are best described as:",o:["Precise but not accurate","Accurate but not precise","Both accurate and precise","Neither accurate nor precise"],a:0,exp:"Precision is agreement among repeated measurements — these cluster tightly, so they are precise. Accuracy is closeness to the true value — they are about 18 g off, so they are not accurate. This pattern usually signals a miscalibrated instrument."},
+{u:"U1",tier:2,type:"calc",q:"A metal sample has a mass of 45.0 g and occupies a volume of 15.0 cm³. What is its density?",given:"m = 45.0 g,  V = 15.0 cm³",o:["0.333 g/cm³","675 g/cm³","30.0 g/cm³","3.00 g/cm³"],a:3,exp:"Density is mass divided by volume: 45.0 g ÷ 15.0 cm³ = 3.00 g/cm³.",f:"D = m / V"},
+{u:"U1",tier:2,type:"mc",q:"How many significant figures are in the measurement 0.00405 g?",o:["Two","Six","Five","Three"],a:3,exp:"Leading zeros are placeholders and never count. The significant digits are 4, 0, and 5 — the zero between two nonzero digits does count. That gives three significant figures."},
+{u:"U1",tier:1,type:"mc",q:"Which of these is written correctly in scientific notation?",o:["6.2 × 10⁻⁴","62 × 10⁻⁵","0.62 × 10⁻³","6.2 × 10⁴"],a:0,exp:"Scientific notation requires the coefficient to be at least 1 and less than 10. Only 6.2 × 10⁻⁴ satisfies that — and it equals 0.00062."},
+{u:"U1",tier:1,type:"mc",q:"Which observation is quantitative?",o:["The solution turned a pale blue color","The precipitate felt gritty","The reaction produced 3.42 g of solid","The gas had a sharp odor"],a:2,exp:"Quantitative data is numerical. Color, texture, and odor are all qualitative descriptions; only the mass measurement provides a number."},
+{u:"U1",tier:2,type:"mc",q:"In a drug trial, one group receives the medication and another receives a sugar pill. The group receiving the sugar pill is the:",o:["Experimental group","Control group","Independent variable","Constant"],a:1,exp:"The control group does not receive the treatment being tested. It provides the baseline that the experimental group is compared against, so any difference can be attributed to the drug."},
+{u:"U1",tier:3,type:"mc",q:"Which claim is best classified as pseudoscience?",o:["Objects fall at 9.8 m/s² near Earth's surface","Personality is determined by birth month, and any disagreement proves the skeptic's bias","Increasing CO₂ concentration raises atmospheric temperature","Bacteria can develop antibiotic resistance"],a:1,exp:"The defining flaw is unfalsifiability. A claim built so that disagreement itself counts as confirming evidence can never be tested or proven wrong — which places it outside science regardless of how scientific it sounds."},
+{u:"U1",tier:1,type:"calc",q:"Convert 2.5 kilometers to meters.",given:"1 km = 1000 m",o:["2500 m","25 m","250 m","0.0025 m"],a:0,exp:"Multiply by the conversion factor so the unwanted unit cancels: 2.5 km × (1000 m / 1 km) = 2500 m.",f:"given × (desired unit / given unit)"},
+{u:"U1",tier:1,type:"mc",q:"Which is the SI base unit of mass?",o:["Gram","Newton","Kilogram","Pound"],a:2,exp:"The kilogram is the SI base unit of mass. The gram is a derived convenience unit, the newton measures force, and the pound is not an SI unit at all."},
+{u:"U1",tier:2,type:"mc",q:"Why is replication considered essential to the scientific process?",o:["It makes the original researcher more famous","It allows scientists to skip peer review","It is required by law","It confirms results are reliable rather than due to chance or error"],a:3,exp:"A single result can arise from chance, bias, or undetected error. When independent researchers repeat the work and obtain the same outcome, confidence in the finding rises substantially."},
+{u:"U1",tier:2,type:"mc",q:"A scientist records: 'The pavement is wet.' She then states: 'It rained last night.' The second statement is a(n):",o:["Observation","Measurement","Hypothesis","Inference"],a:3,exp:"An observation is gathered directly through the senses. An inference is a conclusion drawn from an observation — she did not witness the rain, she concluded it from the wet pavement. A sprinkler could equally explain it."},
+{u:"U1",tier:3,type:"calc",q:"An irregular object has a mass of 27.0 g. When placed in a graduated cylinder containing 50.0 mL of water, the water level rises to 60.0 mL. What is the object's density?",given:"m = 27.0 g,  V displaced = 60.0 − 50.0 mL",o:["2.70 g/cm³","0.370 g/cm³","0.450 g/cm³","27.0 g/cm³"],a:0,exp:"The displaced volume is 60.0 − 50.0 = 10.0 mL, which equals 10.0 cm³. Density = 27.0 g ÷ 10.0 cm³ = 2.70 g/cm³ — consistent with aluminum.",f:"D = m / V,  1 mL = 1 cm³"},
+{u:"U1",tier:2,type:"mc",q:"An object with a density of 0.85 g/cm³ is placed in water (density 1.00 g/cm³). What happens?",o:["It sinks","It remains suspended in the middle","It dissolves","It floats"],a:3,exp:"An object less dense than the fluid it is placed in will float. Since 0.85 g/cm³ is less than water's 1.00 g/cm³, the object floats."},
+{u:"U2",tier:1,type:"mc",q:"What does the atomic number of an element tell you?",o:["The number of neutrons","The number of energy levels","The total mass of the atom","The number of protons"],a:3,exp:"The atomic number equals the number of protons, and the proton count defines the element's identity. Change it and you have a different element entirely."},
+{u:"U2",tier:1,type:"calc",q:"An atom has 17 protons and 18 neutrons. What is its mass number?",given:"protons = 17,  neutrons = 18",o:["17","18","35","1"],a:2,exp:"Mass number counts protons plus neutrons: 17 + 18 = 35. Electrons are far too light to contribute meaningfully.",f:"A = protons + neutrons"},
+{u:"U2",tier:2,type:"mc",q:"Carbon-12 and carbon-14 differ in their number of:",o:["Protons","Electrons","Energy levels","Neutrons"],a:3,exp:"Isotopes of an element always have the same number of protons — that is what makes them the same element. They differ in neutrons: carbon-12 has 6, carbon-14 has 8."},
+{u:"U2",tier:1,type:"mc",q:"Which subatomic particle carries a negative charge?",o:["Electron","Neutron","Proton","Nucleus"],a:0,exp:"Electrons carry a 1− charge and occupy the region around the nucleus. Protons are 1+, neutrons are neutral, and the nucleus overall is positive."},
+{u:"U2",tier:2,type:"mc",q:"A magnesium atom loses two electrons. What is the resulting particle called, and what is its charge?",o:["An anion with a 2− charge","A cation with a 2+ charge","An isotope with no charge","A cation with a 2− charge"],a:1,exp:"Losing negatively charged electrons leaves an excess of positive protons, producing a positive ion called a cation. Losing two electrons gives Mg²⁺."},
+{u:"U2",tier:1,type:"mc",q:"How many valence electrons does an element in Group 17 have?",o:["1","5","17","7"],a:3,exp:"Group 17 elements — the halogens — each have 7 valence electrons. That is why they readily gain one electron to complete an octet, forming 1− ions."},
+{u:"U2",tier:2,type:"mc",q:"Which group contains the most reactive metals?",o:["Group 18 (noble gases)","Group 2 (alkaline earth metals)","Groups 3–12 (transition metals)","Group 1 (alkali metals)"],a:3,exp:"Alkali metals have a single valence electron that is easily lost, making them extremely reactive. Group 18 sits at the opposite extreme — full valence shells make noble gases nearly inert."},
+{u:"U2",tier:2,type:"mc",q:"Why are noble gases chemically unreactive?",o:["They have very large atomic radii","They contain no electrons","Their outermost energy level is completely full","They exist only as liquids"],a:2,exp:"A full valence shell is an energetically stable arrangement. With no tendency to gain, lose, or share electrons, noble gases have little reason to form bonds."},
+{u:"U2",tier:2,type:"mc",q:"How does electronegativity generally change as you move left to right across a period?",o:["It increases","It decreases","It stays the same","It increases then decreases"],a:0,exp:"Moving right across a period, nuclear charge rises while the electrons stay in the same energy level, so the nucleus pulls shared electrons more strongly. Fluorine, at the far right of Period 2, is the most electronegative element."},
+{u:"U2",tier:3,type:"mc",q:"Which element would you expect to have the highest first ionization energy?",o:["Sodium (Group 1, Period 3)","Cesium (Group 1, Period 6)","Neon (Group 18, Period 2)","Aluminum (Group 13, Period 3)"],a:2,exp:"Ionization energy increases across a period and decreases down a group. Neon sits far right in an early period with a full valence shell, making its electrons the hardest to remove of these four."},
+{u:"U2",tier:2,type:"mc",q:"Why does atomic radius increase as you move down a group?",o:["Additional occupied energy levels are added","Nuclear charge decreases","Electrons are removed","Neutrons are lost"],a:0,exp:"Each step down a group adds another occupied energy level, placing the outermost electrons progressively farther from the nucleus. This outweighs the increasing nuclear charge."},
+{u:"U2",tier:2,type:"calc",q:"How many atoms are present in 2.00 moles of helium?",given:"1 mol = 6.022 × 10²³ particles",o:["1.20 × 10²⁴","6.02 × 10²³","3.01 × 10²³","1.20 × 10²³"],a:0,exp:"Multiply moles by Avogadro's number: 2.00 mol × 6.022 × 10²³ = 1.2044 × 10²⁴, which rounds to 1.20 × 10²⁴ atoms.",f:"particles = mol × 6.022 × 10²³"},
+{u:"U2",tier:3,type:"calc",q:"What is the approximate molar mass of water, H₂O?",given:"H ≈ 1.01 g/mol,  O ≈ 16.00 g/mol",o:["17.01 g/mol","34.02 g/mol","19.03 g/mol","18.02 g/mol"],a:3,exp:"Add the atomic masses in the formula: 2 hydrogen (2 × 1.01 = 2.02) plus 1 oxygen (16.00) = 18.02 g/mol.",f:"molar mass = Σ (atomic mass × subscript)"},
+{u:"U2",tier:1,type:"mc",q:"Elements in the same vertical column of the periodic table share:",o:["Similar chemical properties","The same number of energy levels","The same atomic mass","The same number of neutrons"],a:0,exp:"A column is a group. Elements in a group have the same number of valence electrons, which is what drives chemical behavior — so their properties are similar. Rows (periods) share the number of occupied energy levels."},
+{u:"U2",tier:2,type:"mc",q:"Silicon is classified as a metalloid because it:",o:["Is found only in liquid form","Has properties intermediate between metals and nonmetals","Contains exactly 14 neutrons","Is completely unreactive"],a:1,exp:"Metalloids straddle the stair-step line on the periodic table and show mixed behavior. Silicon conducts electricity better than a nonmetal but worse than a metal, which is exactly what makes semiconductors possible."},
+{u:"U2",tier:1,type:"mc",q:"In a neutral atom, the number of electrons equals the number of:",o:["Neutrons","Energy levels","Protons","Valence electrons"],a:2,exp:"Neutral means no net charge, so the negative electrons must exactly balance the positive protons. Once that balance breaks, you have an ion rather than a neutral atom."},
+{u:"U2",tier:2,type:"mc",q:"According to the octet rule, atoms tend to gain, lose, or share electrons in order to:",o:["Increase their mass number","Reduce their atomic number","Become radioactive","Achieve eight valence electrons"],a:3,exp:"Eight valence electrons matches the stable configuration of a noble gas. Reaching that arrangement is the driving force behind most chemical bonding."},
+{u:"U2",tier:3,type:"mc",q:"An element has an atomic mass of 35.45 amu, but no single atom of it has that mass. Why?",o:["Atomic mass is a weighted average across naturally occurring isotopes","The measurement is inaccurate","Electrons contribute the fractional portion","The element is radioactive"],a:0,exp:"Atomic mass on the periodic table is a weighted average reflecting each isotope's abundance. Chlorine is a mix of Cl-35 and Cl-37, so the average falls between them even though no individual atom has that mass."},
+{u:"U2",tier:2,type:"mc",q:"Which model describes electrons as existing in regions of probability rather than fixed circular paths?",o:["Bohr model","Plum pudding model","Electron cloud model","Solid sphere model"],a:2,exp:"The electron cloud (quantum mechanical) model is the modern description: electrons occupy orbitals, regions where they are most likely to be found. Bohr's fixed orbits are a useful simplification but not physically accurate."},
+{u:"U3",tier:1,type:"mc",q:"A bond formed by the complete transfer of electrons from a metal to a nonmetal is called:",o:["An ionic bond","A covalent bond","A metallic bond","A hydrogen bond"],a:0,exp:"Transfer creates oppositely charged ions that attract each other — that electrostatic attraction is an ionic bond. Sharing electrons instead would produce a covalent bond."},
+{u:"U3",tier:1,type:"mc",q:"Which pair of elements would most likely form a covalent bond?",o:["Sodium and chlorine","Oxygen and hydrogen","Magnesium and oxygen","Potassium and fluorine"],a:1,exp:"Covalent bonds form between two nonmetals, which share electrons because neither readily gives them up. The other three pairs each combine a metal with a nonmetal, favoring electron transfer and ionic bonding."},
+{u:"U3",tier:2,type:"mc",q:"In the equation 2H₂ + O₂ → 2H₂O, what does the coefficient 2 in front of H₂O indicate?",o:["Two atoms of hydrogen","Two water molecules","Two oxygen atoms per molecule","The reaction occurs twice"],a:1,exp:"A coefficient multiplies the entire formula unit that follows it, so 2H₂O means two complete water molecules. A subscript, by contrast, applies only to the atom it follows."},
+{u:"U3",tier:2,type:"mc",q:"Chemical equations must be balanced in order to satisfy the:",o:["Law of conservation of energy","Law of conservation of mass","Octet rule","Periodic law"],a:1,exp:"Atoms are neither created nor destroyed in a chemical reaction, so the same number of each type must appear on both sides. Balancing is how that conservation of mass is expressed."},
+{u:"U3",tier:1,type:"mc",q:"The reaction 2Na + Cl₂ → 2NaCl is best classified as:",o:["Combustion","Decomposition","Single replacement","Synthesis"],a:3,exp:"Two simpler substances combine to form one more complex product — the definition of a synthesis reaction, following the pattern A + B → AB."},
+{u:"U3",tier:1,type:"mc",q:"The reaction 2H₂O → 2H₂ + O₂ is best classified as:",o:["Synthesis","Decomposition","Double replacement","Neutralization"],a:1,exp:"One compound breaks apart into simpler substances, following the pattern AB → A + B. This is decomposition — here driven by electrolysis."},
+{u:"U3",tier:2,type:"mc",q:"The reaction Zn + 2HCl → ZnCl₂ + H₂ is best classified as:",o:["Single replacement","Decomposition","Synthesis","Double replacement"],a:0,exp:"One element (zinc) replaces another element (hydrogen) within a compound, matching the pattern A + BC → AC + B. In a double replacement, two compounds would swap partners."},
+{u:"U3",tier:2,type:"mc",q:"What are the products when a hydrocarbon undergoes complete combustion?",o:["Hydrogen gas and oxygen gas","Carbon monoxide and hydrogen","Carbon dioxide and water","A salt and water"],a:2,exp:"Complete combustion of a hydrocarbon in sufficient oxygen always yields carbon dioxide and water. Carbon monoxide appears only in incomplete combustion, when oxygen is limited."},
+{u:"U3",tier:2,type:"mc",q:"A reaction causes the beaker to feel noticeably cold. This reaction is:",o:["Exothermic, because it releases energy","Neither — temperature changes are physical only","Exothermic, because it absorbs energy","Endothermic, because it absorbs energy"],a:3,exp:"A cold beaker means the reaction pulled thermal energy out of the surroundings, which is the definition of endothermic. Exothermic reactions release energy and warm their surroundings."},
+{u:"U3",tier:2,type:"mc",q:"How does a catalyst speed up a chemical reaction?",o:["By raising the temperature of the reactants","By being consumed to release energy","By increasing the amount of product formed","By lowering the activation energy"],a:3,exp:"A catalyst provides an alternate pathway requiring less activation energy, so more collisions succeed. It is recovered unchanged and does not alter how much product ultimately forms."},
+{u:"U3",tier:1,type:"mc",q:"A solution with a pH of 3 is:",o:["Acidic","Weakly basic","Strongly basic","Neutral"],a:0,exp:"On the pH scale, values below 7 are acidic, 7 is neutral, and above 7 is basic. A pH of 3 is well into the acidic range."},
+{u:"U3",tier:2,type:"mc",q:"When hydrochloric acid reacts with sodium hydroxide, the products are:",o:["A precipitate and a gas","Two acids","Hydrogen gas and oxygen gas","A salt and water"],a:3,exp:"This is a neutralization reaction: acid + base → salt + water. Specifically, HCl + NaOH → NaCl + H₂O."},
+{u:"U3",tier:2,type:"mc",q:"In a redox reaction, oxidation is defined as the:",o:["Gain of electrons","Loss of neutrons","Gain of protons","Loss of electrons"],a:3,exp:"Use the mnemonic OIL RIG — Oxidation Is Loss, Reduction Is Gain (of electrons). Whatever is oxidized loses the electrons that the reduced substance gains."},
+{u:"U3",tier:2,type:"calc",q:"What is the molarity of a solution containing 0.50 moles of NaCl dissolved in 2.0 liters of solution?",given:"n = 0.50 mol,  V = 2.0 L",o:["0.10 M","4.0 M","1.0 M","0.25 M"],a:3,exp:"Molarity is moles of solute per liter of solution: 0.50 mol ÷ 2.0 L = 0.25 M.",f:"M = mol solute / L solution"},
+{u:"U3",tier:1,type:"mc",q:"In a cup of salt water, salt is the ___ and water is the ___.",o:["solute; solvent","solvent; solute","precipitate; solution","product; reactant"],a:0,exp:"The solute is the substance being dissolved (usually the lesser amount) and the solvent does the dissolving (usually the greater amount). Salt dissolves into water."},
+{u:"U3",tier:1,type:"mc",q:"Which is a heterogeneous mixture?",o:["Sand in water","Filtered air","Salt water","Brass"],a:0,exp:"In a heterogeneous mixture the components remain visibly distinct and unevenly distributed. Sand settles out and stays identifiable; the other three are uniform throughout."},
+{u:"U3",tier:2,type:"mc",q:"Which of these is a chemical change?",o:["Ice melting into water","Iron rusting","Sugar dissolving in tea","Paper being torn in half"],a:1,exp:"Rusting produces iron oxide — a new substance with different properties. Melting, dissolving, and tearing all change form or appearance without producing a new substance."},
+{u:"U3",tier:2,type:"mc",q:"Flammability is best classified as a:",o:["Chemical property","Physical property","Physical change","Chemical change"],a:0,exp:"A chemical property describes how a substance reacts to form something new, and it can only be observed by attempting the reaction. Physical properties, like color or density, can be measured without changing the substance's identity."},
+{u:"U3",tier:3,type:"mc",q:"A student changes H₂O to H₂O₂ while attempting to balance an equation. Why is this invalid?",o:["Coefficients cannot be changed","Peroxides cannot appear in equations","Changing a subscript changes the substance itself","It violates conservation of energy"],a:2,exp:"Balancing may only adjust coefficients, which change how many units are present. Altering a subscript changes the compound's identity — H₂O is water, H₂O₂ is hydrogen peroxide, an entirely different substance."},
+{u:"U3",tier:3,type:"mc",q:"Water is a polar molecule primarily because:",o:["It contains three atoms","It has an even number of electrons","Hydrogen bonds are ionic","Oxygen is far more electronegative than hydrogen, and the molecule is bent"],a:3,exp:"Oxygen pulls the shared electrons much more strongly than hydrogen, creating partial charges. Because the molecule is bent rather than linear, those charges do not cancel — producing a net polarity."},
+{u:"U3",tier:2,type:"mc",q:"Metals are excellent conductors of electricity because of:",o:["Their high electronegativity","Their full valence shells","A mobile 'sea' of delocalized valence electrons","Strong ionic bonds"],a:2,exp:"In metallic bonding, valence electrons are not bound to individual atoms but move freely throughout the structure. That mobility carries charge, and it also explains malleability and metallic luster."},
+{u:"U3",tier:2,type:"mc",q:"When AgNO₃ solution is mixed with NaCl solution, a white solid appears. This solid is called a:",o:["Solvent","Precipitate","Catalyst","Salt bridge"],a:1,exp:"A precipitate is an insoluble solid that forms and separates out during a reaction in solution. Here it is silver chloride, AgCl, produced in a double replacement reaction."},
+{u:"U3",tier:3,type:"calc",q:"How many total atoms of oxygen appear on the reactant side of: 2KClO₃ → 2KCl + 3O₂ ?",given:"2KClO₃ — note the subscript and the coefficient",o:["3","6","5","9"],a:1,exp:"Each KClO₃ unit contains 3 oxygen atoms, and the coefficient 2 means two such units: 2 × 3 = 6 oxygen atoms. The product side matches with 3O₂ = 6 oxygen atoms, confirming the equation is balanced."},
+{u:"U3",tier:1,type:"mc",q:"In the equation CH₄ + 2O₂ → CO₂ + 2H₂O, the substances on the left side are called:",o:["Products","Catalysts","Reactants","Precipitates"],a:2,exp:"Reactants are the starting substances, written on the left of the arrow. Products are what forms, written on the right."},
+{u:"U4",tier:2,type:"calc",q:"What is the kinetic energy of a 4.0 kg object moving at 3.0 m/s?",given:"m = 4.0 kg,  v = 3.0 m/s",o:["18 J","12 J","6.0 J","36 J"],a:0,exp:"Substitute into the formula: KE = ½ × 4.0 × (3.0)² = ½ × 4.0 × 9.0 = 18 J. Squaring the velocity before multiplying is the step most often missed.",f:"KE = ½mv²"},
+{u:"U4",tier:2,type:"calc",q:"A 2.0 kg book sits on a shelf 5.0 m above the floor. What is its gravitational potential energy? (g = 9.8 m/s²)",given:"m = 2.0 kg,  h = 5.0 m,  g = 9.8 m/s²",o:["10 J","49 J","196 J","98 J"],a:3,exp:"PE = mgh = 2.0 × 9.8 × 5.0 = 98 J.",f:"PE = mgh"},
+{u:"U4",tier:1,type:"calc",q:"How much work is done when a 20.0 N force pushes a box 5.0 m in the direction of the force?",given:"F = 20.0 N,  d = 5.0 m",o:["4.0 J","25 J","100 J","0 J"],a:2,exp:"W = Fd = 20.0 N × 5.0 m = 100 J. Work requires displacement in the direction of the applied force.",f:"W = Fd"},
+{u:"U4",tier:2,type:"calc",q:"A machine does 300 J of work in 6.0 seconds. What is its power output?",given:"W = 300 J,  t = 6.0 s",o:["306 W","1800 W","0.02 W","50 W"],a:3,exp:"Power is the rate of doing work: P = W/t = 300 J ÷ 6.0 s = 50 W.",f:"P = W / t"},
+{u:"U4",tier:1,type:"mc",q:"A metal spoon becomes hot when left in a pot of soup. This is heat transfer by:",o:["Sublimation","Convection","Radiation","Conduction"],a:3,exp:"Conduction transfers thermal energy through direct contact as fast-moving particles collide with slower neighbors along the spoon."},
+{u:"U4",tier:2,type:"mc",q:"The Sun's energy reaches Earth across the vacuum of space by:",o:["Conduction","Convection","Radiation","Insulation"],a:2,exp:"Radiation transfers energy by electromagnetic waves and requires no medium. Conduction and convection both need matter, which space lacks."},
+{u:"U4",tier:3,type:"calc",q:"How much energy is required to raise the temperature of 50.0 g of water by 10.0 °C? (c = 4.18 J/g·°C)",given:"m = 50.0 g,  c = 4.18 J/g·°C,  ΔT = 10.0 °C",o:["2090 J","418 J","209 J","20900 J"],a:0,exp:"Q = mcΔT = 50.0 × 4.18 × 10.0 = 2090 J.",f:"Q = mcΔT"},
+{u:"U4",tier:3,type:"mc",q:"A large lukewarm swimming pool compared to a small cup of boiling water has:",o:["Higher temperature and more thermal energy","Lower temperature but more thermal energy","Higher temperature but less thermal energy","Lower temperature and less thermal energy"],a:1,exp:"Temperature measures average particle kinetic energy, so the boiling cup wins there. Thermal energy is the total across all particles — the pool has vastly more particles, so it holds far more thermal energy despite being cooler."},
+{u:"U4",tier:1,type:"mc",q:"A swinging pendulum continually converts energy between kinetic and potential forms. This illustrates the:",o:["Second law of thermodynamics","Octet rule","Law of conservation of mass","Law of conservation of energy"],a:3,exp:"Energy is never created or destroyed, only converted between forms. The pendulum's total mechanical energy stays essentially constant as it trades potential for kinetic and back."},
+{u:"U4",tier:2,type:"mc",q:"Which statement best describes entropy?",o:["The total energy of a system","The temperature at which matter freezes","A measure of disorder or randomness in a system","The energy required to start a reaction"],a:2,exp:"Entropy quantifies disorder. The second law of thermodynamics states that the total entropy of an isolated system tends to increase over time."},
+{u:"U4",tier:2,type:"mc",q:"A hot cup of coffee cools to room temperature but never spontaneously reheats itself. This is a direct consequence of the:",o:["First law of thermodynamics","Second law of thermodynamics","Law of conservation of mass","Law of universal gravitation"],a:1,exp:"The second law establishes that heat flows spontaneously from hotter to colder, never the reverse. Spontaneous reheating would decrease entropy, which the law forbids."},
+{u:"U4",tier:3,type:"mc",q:"While ice is melting at 0 °C, energy is continuously added but the temperature does not rise. Why?",o:["The thermometer is malfunctioning","The added energy breaks intermolecular attractions rather than increasing particle speed","Ice cannot absorb energy","The energy is destroyed"],a:1,exp:"During any phase change, absorbed energy goes into overcoming the forces holding particles in their current arrangement. Only once the phase change completes does further energy raise the temperature."},
+{u:"U4",tier:1,type:"mc",q:"Dry ice turns directly from a solid into a gas without becoming liquid. This phase change is called:",o:["Condensation","Vaporization","Sublimation","Deposition"],a:2,exp:"Sublimation is the direct solid-to-gas transition. The reverse process, gas directly to solid, is called deposition."},
+{u:"U4",tier:2,type:"calc",q:"A wave has a frequency of 5.0 Hz and a wavelength of 4.0 m. What is its speed?",given:"f = 5.0 Hz,  λ = 4.0 m",o:["0.80 m/s","20 m/s","9.0 m/s","1.25 m/s"],a:1,exp:"Wave speed is the product of frequency and wavelength: v = fλ = 5.0 × 4.0 = 20 m/s.",f:"v = fλ"},
+{u:"U4",tier:2,type:"mc",q:"If wave speed is held constant and frequency increases, wavelength must:",o:["Increase","Decrease","Stay the same","Become zero"],a:1,exp:"Since v = fλ and v is fixed, frequency and wavelength are inversely proportional. Raising one necessarily lowers the other."},
+{u:"U4",tier:1,type:"mc",q:"Which wave property is most directly related to the amount of energy the wave carries?",o:["Wavelength","Frequency","Speed","Amplitude"],a:3,exp:"Amplitude measures maximum displacement from rest, and greater amplitude means more energy — a louder sound or brighter light."},
+{u:"U4",tier:2,type:"mc",q:"Sound traveling through air is an example of a:",o:["Transverse wave","Standing wave only","Electromagnetic wave","Longitudinal wave"],a:3,exp:"In a longitudinal wave, particles vibrate parallel to the direction of travel, producing compressions and rarefactions. Light, by contrast, is transverse."},
+{u:"U4",tier:3,type:"mc",q:"Which list places electromagnetic waves in order of increasing frequency?",o:["Gamma, X-ray, visible, radio","Visible, radio, microwave, gamma","Radio, infrared, visible, ultraviolet","Ultraviolet, visible, infrared, radio"],a:2,exp:"Frequency increases in the order: radio, microwave, infrared, visible, ultraviolet, X-ray, gamma. Wavelength decreases along that same progression."},
+{u:"U4",tier:2,type:"mc",q:"A straw appears bent where it enters a glass of water. This is caused by:",o:["Reflection","Diffraction","Refraction","Absorption"],a:2,exp:"Refraction is the bending of a wave as it passes between media in which it travels at different speeds. Light slows entering water, changing direction and shifting the straw's apparent position."},
+{u:"U4",tier:1,type:"mc",q:"A student holds a heavy box perfectly still for two minutes. How much work is done on the box?",o:["Zero, because there is no displacement","A large amount, because the force is large","It depends on the student's mass","Exactly 100 J"],a:0,exp:"Work requires displacement in the direction of the force: W = Fd. With d = 0, the work done on the box is zero — however tiring holding it may feel."},
+{u:"U4",tier:2,type:"mc",q:"Warm air rising while cooler air sinks, creating a circulation current in a room, is heat transfer by:",o:["Conduction","Radiation","Convection","Condensation"],a:2,exp:"Convection transfers energy through the bulk movement of a fluid. Heated air becomes less dense and rises; denser cool air sinks to replace it."},
+{u:"U4",tier:1,type:"mc",q:"Which of the following stores chemical potential energy?",o:["Gasoline in a tank","A stretched spring","A moving car","A spinning wheel"],a:0,exp:"Chemical energy is stored in the bonds between atoms and released when those bonds rearrange. A stretched spring stores elastic potential energy; moving objects have kinetic energy."},
+{u:"U5",tier:1,type:"mc",q:"An alpha particle is identical to which of the following?",o:["A high-energy electron","A photon of light","A helium nucleus","A free neutron"],a:2,exp:"An alpha particle consists of two protons and two neutrons — precisely a helium nucleus — and carries a 2+ charge."},
+{u:"U5",tier:2,type:"mc",q:"Which list ranks nuclear radiation from least to most penetrating?",o:["Gamma, beta, alpha","Beta, alpha, gamma","Alpha, beta, gamma","Alpha, gamma, beta"],a:2,exp:"Alpha particles are stopped by paper or skin, beta particles by a few millimeters of aluminum, and gamma rays require thick lead or concrete. Penetrating power increases as mass and charge decrease."},
+{u:"U5",tier:2,type:"calc",q:"A radioactive sample has a half-life of 10 years. What fraction of the original sample remains after 30 years?",given:"3 half-lives elapsed",o:["1/8","1/3","1/6","1/2"],a:0,exp:"Each half-life halves the remaining amount. Thirty years is three half-lives: 1 → 1/2 → 1/4 → 1/8.",f:"remaining = (1/2)^n,  n = number of half-lives"},
+{u:"U5",tier:2,type:"mc",q:"What is the key difference between nuclear fission and nuclear fusion?",o:["Fission releases no energy; fusion does","Fission joins nuclei; fusion splits them","Fission splits a large nucleus; fusion joins light nuclei","They are two names for the same process"],a:2,exp:"Fission splits a heavy, unstable nucleus into smaller pieces — the process used in nuclear power plants. Fusion combines light nuclei into a heavier one, which is what powers stars."},
+{u:"U5",tier:2,type:"mc",q:"The equation E = mc² expresses the principle that:",o:["Energy cannot be transferred","Mass always increases in nuclear reactions","Light has mass","Energy and mass are interchangeable"],a:3,exp:"Mass–energy equivalence means the small amount of mass lost in a nuclear reaction converts into energy. Because c² is enormous, even a minuscule mass loss releases tremendous energy."},
+{u:"U5",tier:2,type:"mc",q:"In a nuclear reactor, control rods are used to:",o:["Increase the rate of fission","Absorb excess neutrons and regulate the chain reaction","Add fuel to the reactor","Convert fusion into fission"],a:1,exp:"A chain reaction sustains itself when neutrons from one fission trigger further fissions. Control rods absorb surplus neutrons, keeping the reaction steady rather than runaway."},
+{u:"U5",tier:1,type:"mc",q:"The Sun produces its energy primarily through:",o:["Nuclear fission of uranium","Chemical combustion","Nuclear fusion of hydrogen into helium","Radioactive decay of carbon"],a:2,exp:"In the Sun's core, extreme temperature and pressure fuse hydrogen nuclei into helium, releasing enormous energy in the process."},
+{u:"U5",tier:2,type:"mc",q:"Carbon-14 dating is used to determine the age of:",o:["Igneous rocks billions of years old","Once-living organic material up to roughly 50,000 years old","Metals and alloys","The Sun"],a:1,exp:"Carbon-14's half-life of about 5,730 years suits organic remains on an archaeological timescale. Dating far older rock requires isotopes with much longer half-lives, such as uranium-lead."},
+{u:"U5",tier:3,type:"mc",q:"Why can a chemical reaction never transmute one element into another?",o:["Chemical reactions involve only electrons, not the nucleus","Chemical reactions destroy atoms","Elements are indestructible under all conditions","Transmutation requires a catalyst"],a:0,exp:"Element identity is set by proton count, which lives in the nucleus. Chemical reactions rearrange only valence electrons, leaving the nucleus untouched — so only nuclear processes can change one element into another."},
+{u:"U5",tier:3,type:"mc",q:"A student heats a radioactive sample to 500 °C. What happens to its half-life?",o:["It decreases significantly","It remains unchanged","It increases significantly","It becomes zero"],a:1,exp:"Half-life is a nuclear property and is unaffected by temperature, pressure, or chemical state. This independence is exactly what makes radiometric dating reliable."},
+{u:"U5",tier:2,type:"mc",q:"Gamma rays differ from alpha and beta radiation in that gamma rays:",o:["Have no mass and no charge","Have the greatest mass","Carry a positive charge","Cannot penetrate any material"],a:0,exp:"Gamma radiation is high-energy electromagnetic radiation, not a particle. Having neither mass nor charge, it interacts weakly with matter and penetrates most deeply."},
+{u:"U5",tier:3,type:"mc",q:"Why is ionizing radiation potentially harmful to living tissue?",o:["It raises body temperature dangerously","It causes cells to fuse together","It adds neutrons to cells","It has enough energy to remove electrons from atoms, damaging molecules including DNA"],a:3,exp:"Ionizing radiation strips electrons from atoms, breaking chemical bonds. When that damage occurs in DNA, it can cause mutations or cell death."},
+{u:"U6",tier:1,type:"calc",q:"A runner covers 150 m in 25 s. What is the runner's average speed?",given:"d = 150 m,  t = 25 s",o:["6.0 m/s","0.17 m/s","125 m/s","3750 m/s"],a:0,exp:"Speed is distance divided by time: 150 m ÷ 25 s = 6.0 m/s.",f:"v = d / t"},
+{u:"U6",tier:2,type:"calc",q:"A car accelerates from rest to 20 m/s in 4.0 s. What is its acceleration?",given:"Δv = 20 m/s,  t = 4.0 s",o:["0.20 m/s²","5.0 m/s²","24 m/s²","80 m/s²"],a:1,exp:"Acceleration is the change in velocity divided by time: 20 m/s ÷ 4.0 s = 5.0 m/s².",f:"a = Δv / t"},
+{u:"U6",tier:1,type:"calc",q:"What net force is required to accelerate a 5.0 kg object at 3.0 m/s²?",given:"m = 5.0 kg,  a = 3.0 m/s²",o:["1.7 N","15 N","8.0 N","45 N"],a:1,exp:"Newton's second law gives F = ma = 5.0 kg × 3.0 m/s² = 15 N.",f:"F = ma"},
+{u:"U6",tier:2,type:"calc",q:"A 40 N net force acts on an 8.0 kg object. What is the object's acceleration?",given:"F = 40 N,  m = 8.0 kg",o:["0.20 m/s²","320 m/s²","32 m/s²","5.0 m/s²"],a:3,exp:"Rearranging Newton's second law: a = F/m = 40 N ÷ 8.0 kg = 5.0 m/s².",f:"a = F / m"},
+{u:"U6",tier:2,type:"calc",q:"What is the weight of a 10.0 kg object on Earth? (g = 9.8 m/s²)",given:"m = 10.0 kg,  g = 9.8 m/s²",o:["1.02 N","10.0 N","98 N","980 N"],a:2,exp:"Weight is the gravitational force on a mass: W = mg = 10.0 × 9.8 = 98 N. Mass is measured in kilograms; weight is a force measured in newtons.",f:"W = mg"},
+{u:"U6",tier:2,type:"calc",q:"What is the momentum of a 1200 kg car traveling at 15 m/s?",given:"m = 1200 kg,  v = 15 m/s",o:["18,000 kg·m/s","1215 kg·m/s","80 kg·m/s","180,000 kg·m/s"],a:0,exp:"Momentum is mass times velocity: p = 1200 kg × 15 m/s = 18,000 kg·m/s.",f:"p = mv"},
+{u:"U6",tier:1,type:"mc",q:"A hockey puck slides across frictionless ice at constant velocity. Which law explains why it keeps moving?",o:["Newton's second law","Newton's first law","Newton's third law","Law of conservation of mass"],a:1,exp:"Newton's first law — the law of inertia — states that an object in motion stays in motion at constant velocity unless an unbalanced force acts on it. With no friction, nothing slows the puck."},
+{u:"U6",tier:2,type:"mc",q:"A rocket pushes exhaust gases downward, and the rocket moves upward. This demonstrates:",o:["Newton's first law","Newton's second law","Newton's third law","Conservation of mass"],a:2,exp:"Newton's third law states that for every action force there is an equal and opposite reaction force. Critically, the two forces act on different objects — the rocket on the gas, the gas on the rocket — so they never cancel."},
+{u:"U6",tier:2,type:"mc",q:"A student walks 3 m east, then 3 m west. What is the student's distance traveled and displacement?",o:["6 m and 6 m","0 m and 6 m","6 m and 0 m","3 m and 3 m"],a:2,exp:"Distance is the total path length: 3 + 3 = 6 m. Displacement is the straight-line change in position from start to finish — the student ended where they began, so displacement is 0 m."},
+{u:"U6",tier:1,type:"mc",q:"Which of the following is a vector quantity?",o:["Speed","Velocity","Distance","Mass"],a:1,exp:"A vector requires both magnitude and direction. Velocity specifies both ('25 m/s north'), while speed, distance, and mass are scalars described by magnitude alone."},
+{u:"U6",tier:2,type:"mc",q:"An object experiences balanced forces. What can you conclude about its motion?",o:["It must be at rest","Its velocity is not changing","It must be speeding up","It must be changing direction"],a:1,exp:"Balanced forces mean zero net force and therefore zero acceleration — but not necessarily zero velocity. The object is either at rest or moving at a constant velocity."},
+{u:"U6",tier:2,type:"calc",q:"A box is pushed right with 15 N while friction pushes left with 5 N. What is the net force?",given:"F right = 15 N,  F left = 5 N",o:["20 N right","10 N left","10 N right","5 N right"],a:2,exp:"Net force is the vector sum. Opposing forces subtract: 15 N − 5 N = 10 N, directed to the right where the larger force points.",f:"Fnet = ΣF"},
+{u:"U6",tier:1,type:"mc",q:"Which property of an object determines how much it resists a change in motion?",o:["Its weight","Its volume","Its mass","Its speed"],a:2,exp:"Mass is the measure of inertia — an object's resistance to changes in motion. Weight is a force that depends on the local gravitational field, not on inertia directly."},
+{u:"U6",tier:2,type:"mc",q:"Which requires more force: starting a stationary heavy desk sliding, or keeping it sliding once it moves?",o:["They require exactly equal force","Keeping it moving, because kinetic friction is greater","Starting it, because static friction generally exceeds kinetic friction","Neither requires any force"],a:2,exp:"Static friction must be overcome to break the surfaces free, and it is generally greater than kinetic friction. That is why a heavy object seems to 'give' suddenly once it starts moving."},
+{u:"U6",tier:3,type:"mc",q:"A skydiver reaches terminal velocity. What is true at that moment?",o:["Air resistance equals the force of gravity, giving zero net force","Gravity has stopped acting","The skydiver is accelerating rapidly","The skydiver's mass has decreased"],a:0,exp:"As speed rises, air resistance grows until it exactly balances gravity. With zero net force there is no further acceleration, so the skydiver falls at a constant maximum speed."},
+{u:"U6",tier:2,type:"mc",q:"In a vacuum, a hammer and a feather are dropped simultaneously from the same height. What happens?",o:["The hammer lands first","They land at the same time","The feather lands first","Neither falls"],a:1,exp:"In free fall, all objects accelerate at the same rate regardless of mass. Only air resistance normally causes the feather to lag — remove the air and they land together, as demonstrated on the Moon."},
+{u:"U6",tier:3,type:"mc",q:"A ball is dropped from a table at the same instant an identical ball is thrown horizontally from the same height. Which lands first?",o:["They land at the same time","The thrown ball","The dropped ball","It depends on the throwing speed"],a:0,exp:"Horizontal and vertical motion are independent. Both balls have the same initial vertical velocity (zero) and the same downward acceleration, so their vertical motion is identical — they land together."},
+{u:"U6",tier:2,type:"mc",q:"An astronaut travels from Earth to the Moon. Which is true?",o:["Both mass and weight stay the same","Mass stays the same; weight decreases","Mass decreases; weight stays the same","Both mass and weight decrease"],a:1,exp:"Mass is the amount of matter and does not change with location. Weight is the gravitational force acting on that mass, and the Moon's weaker gravity reduces it to about one sixth of its Earth value."},
+{u:"U6",tier:2,type:"mc",q:"A ball is whirled in a horizontal circle on a string. In which direction does the centripetal force point?",o:["Outward, away from the center","Inward, toward the center","Forward, along the direction of motion","Downward, toward the ground"],a:1,exp:"Centripetal means 'center-seeking.' The inward force — here the string's tension — continuously changes the ball's direction, keeping it on a circular path."},
+{u:"U6",tier:3,type:"mc",q:"Why do airbags reduce injury in a car collision?",o:["They reduce the total change in momentum","They extend the collision time, reducing the force required for the same impulse","They increase the acceleration of the passenger","They eliminate the passenger's inertia"],a:1,exp:"Impulse equals force times time and equals the change in momentum. The momentum change is fixed by the crash, so stretching the collision time necessarily lowers the peak force on the body."},
+{u:"U6",tier:2,type:"mc",q:"A car travels down a straight highway at a constant 65 km/h. Which best describes the forces on it?",o:["Unbalanced, with a net forward force","Unbalanced, with a net backward force","No forces are acting at all","Balanced, giving zero net force"],a:3,exp:"Constant velocity means zero acceleration, which requires zero net force. The engine's forward thrust exactly balances friction and air resistance — forces are present, but they cancel."},
+{u:"U6",tier:3,type:"mc",q:"According to the law of universal gravitation, if the distance between two objects is doubled, the gravitational force between them becomes:",o:["Half as strong","One quarter as strong","Twice as strong","Four times as strong"],a:1,exp:"Gravitational force follows an inverse square relationship with distance. Doubling r means dividing by r² = 4, so the force drops to one quarter of its original value.",f:"F = Gm₁m₂ / r²"},
+{u:"U6",tier:2,type:"mc",q:"A passenger sits still in a moving train. Relative to the train she is at rest, but relative to the platform she is moving. This illustrates:",o:["The importance of the frame of reference","Newton's third law","Conservation of momentum","Terminal velocity"],a:0,exp:"Whether an object appears to move depends entirely on the reference frame chosen. There is no single 'correct' frame — motion must always be described relative to something."},
+{u:"U6",tier:1,type:"mc",q:"Newton's second law states that the acceleration of an object is:",o:["Directly proportional to net force and inversely proportional to mass","Inversely proportional to net force","Always equal to 9.8 m/s²","Independent of the object's mass"],a:0,exp:"F = ma rearranges to a = F/m. Greater net force produces greater acceleration; greater mass produces less acceleration for the same force."}
+];
+
+const UNIT_NAMES = {
+  U1:"Nature of Science", U2:"Atomic Structure", U3:"Bonding & Reactions",
+  U4:"Energy, Heat & Waves", U5:"Nuclear Science", U6:"Motion & Forces"
+};
+const MODE_DESC = {
+  practice:"<b style='color:var(--sky)'>Practice</b> — one question at a time with instant feedback and a full explanation after every answer. No timer. Best for learning new material.",
+  exam:"<b style='color:var(--amber)'>Exam Mode</b> — a timed 20-question session under test conditions. Explanations are withheld until the session ends, then reviewed all at once.",
+  stamina:"<b style='color:var(--red)'>Stamina</b> — answer correctly to continue. One wrong answer ends the run. How far can you get?"
+};
+const LS = 'physci_drill_stats';
+
+// ── STATE ──
+let mode='practice', tier='all';
+let selUnits = new Set(['U1','U2','U3','U4','U5','U6']);
+let deck=[], idx=0, right=0, answered=false, missed=[], lastConfig=null;
+let streak=0, timerId=null, timeLeft=0;
+let stats = JSON.parse(localStorage.getItem(LS) || '{"total":0,"correct":0,"best":0,"sessions":0}');
+
+function saveStats(){ localStorage.setItem(LS, JSON.stringify(stats)); }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
+
+// ── SETUP ──
+function setMode(m, btn){
+  mode=m;
+  document.querySelectorAll('.mode-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('mode-desc').innerHTML = MODE_DESC[m];
+  updatePool();
+}
+function setTier(t, btn){
+  tier=t;
+  document.querySelectorAll('.pill[data-tier]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  updatePool();
+}
+function toggleUnit(u){
+  if(selUnits.has(u)) selUnits.delete(u); else selUnits.add(u);
+  renderUnits(); updatePool();
+}
+function selectAllUnits(on){
+  selUnits = on ? new Set(Object.keys(UNIT_NAMES)) : new Set();
+  renderUnits(); updatePool();
+}
+function renderUnits(){
+  document.getElementById('unit-grid').innerHTML = Object.keys(UNIT_NAMES).map(u=>{
+    const n = QB.filter(q=>q.u===u).length;
+    const on = selUnits.has(u);
+    return `<div class="unit-box ${on?'on':''}" onclick="toggleUnit('${u}')">
+      <div class="unit-check">${on?'✓':''}</div>
+      <div><div class="unit-name">${u} · ${UNIT_NAMES[u]}</div><div class="unit-qty">${n} questions</div></div>
+    </div>`;
+  }).join('');
+}
+function pool(){
+  return QB.filter(q=> selUnits.has(q.u) && (tier==='all' || q.tier===tier));
+}
+function updatePool(){
+  const n = pool().length;
+  document.getElementById('sel-count').textContent = `${n} question${n===1?'':'s'} available`;
+  const btn = document.getElementById('btn-start');
+  btn.disabled = n < 1;
+  btn.textContent = n < 1 ? 'No questions match — adjust filters' : `Start ${mode==='exam'?'Exam':mode==='stamina'?'Stamina Run':'Practice'} (${mode==='exam'?Math.min(20,n):n} questions)`;
+}
+
+// ── SESSION ──
+function startSession(){
+  const p = pool();
+  if(p.length<1) return;
+  deck = p.slice().sort(()=>Math.random()-0.5);
+  if(mode==='exam') deck = deck.slice(0, Math.min(20, deck.length));
+  lastConfig = {mode, tier, units:[...selUnits]};
+  idx=0; right=0; missed=[]; answered=false; streak=0;
+  document.getElementById('btn-setup').style.display='inline-block';
+  if(mode==='exam'){
+    timeLeft = deck.length * 60;
+    document.getElementById('q-timer').style.display='block';
+    startTimer();
+  } else {
+    document.getElementById('q-timer').style.display='none';
+  }
+  show('screen-q');
+  renderQ();
+}
+function startTimer(){
+  clearInterval(timerId);
+  timerId = setInterval(()=>{
+    timeLeft--;
+    const m = Math.floor(timeLeft/60), s = timeLeft%60;
+    const el = document.getElementById('q-timer');
+    el.textContent = `⏱ ${m}:${String(s).padStart(2,'0')}`;
+    el.classList.toggle('warn', timeLeft<=60);
+    if(timeLeft<=0){ clearInterval(timerId); finishSession(true); }
+  },1000);
+}
+function renderQ(){
+  const q = deck[idx];
+  answered=false;
+  document.getElementById('q-counter').textContent = `QUESTION ${idx+1} OF ${deck.length}`;
+  document.getElementById('q-badges').innerHTML =
+    `<span class="badge b-unit">${q.u} ${UNIT_NAMES[q.u]}</span>
+     <span class="badge b-t${q.tier}">${q.tier===1?'① Foundational':q.tier===2?'② Intermediate':'③ Challenge'}</span>
+     ${q.type==='calc'?'<span class="badge b-calc">🧮 Calculation</span>':''}`;
+  document.getElementById('prog-fill').style.width = ((idx)/deck.length*100)+'%';
+  document.getElementById('q-text').textContent = q.q;
+  const g = document.getElementById('q-given');
+  if(q.given){ g.textContent = 'GIVEN:  '+q.given; g.style.display='block'; } else { g.style.display='none'; }
+  document.getElementById('q-opts').innerHTML = q.o.map((opt,i)=>
+    `<button class="opt" id="opt-${i}" onclick="answer(${i})"><span class="opt-key">${'ABCD'[i]}</span><span>${esc(opt)}</span></button>`
+  ).join('');
+  document.getElementById('q-feedback').className='feedback';
+  document.getElementById('q-feedback').innerHTML='';
+  document.getElementById('btn-nextq').style.display='none';
+}
+function answer(choice){
+  if(answered) return;
+  answered=true;
+  const q = deck[idx];
+  const correct = choice===q.a;
+  if(correct){ right++; streak++; if(streak>stats.best){ stats.best=streak; } }
+  else { missed.push({q, chose:choice}); streak=0; }
+  stats.total++; if(correct) stats.correct++;
+  saveStats(); renderGlobalStats();
+
+  document.querySelectorAll('.opt').forEach((b,i)=>{
+    b.disabled=true;
+    if(i===q.a) b.classList.add('correct');
+    else if(i===choice) b.classList.add('wrong');
+  });
+
+  if(mode==='stamina' && !correct){ finishSession(); return; }
+
+  if(mode!=='exam'){
+    const fb = document.getElementById('q-feedback');
+    fb.className = 'feedback show ' + (correct?'fb-right':'fb-wrong');
+    fb.innerHTML = `<div class="fb-head">${correct?'✓ Correct':'✗ Not quite'}</div>
+      <div class="fb-body">${esc(q.exp)}</div>
+      ${q.f?`<div class="fb-formula">${esc(q.f)}</div>`:''}`;
+  }
+  const nb = document.getElementById('btn-nextq');
+  nb.style.display='block';
+  nb.textContent = (idx>=deck.length-1) ? 'See Results →' : 'Next Question →';
+}
+function nextQuestion(){
+  idx++;
+  if(idx>=deck.length){ finishSession(); return; }
+  renderQ();
+}
+function finishSession(timeUp){
+  clearInterval(timerId);
+  stats.sessions++; saveStats(); renderGlobalStats();
+  const attempted = (mode==='stamina') ? idx+1 : deck.length;
+  const pct = attempted ? Math.round(right/attempted*100) : 0;
+  document.getElementById('res-mode').textContent =
+    timeUp ? 'TIME EXPIRED' : (mode==='stamina' ? `STAMINA RUN — ${right} IN A ROW` : 'SESSION COMPLETE');
+  document.getElementById('res-score').innerHTML = `${right}<span>/${attempted}</span>`;
+  const grade = pct>=90?'Excellent':pct>=80?'Strong':pct>=70?'Solid':pct>=60?'Developing':'Needs Review';
+  const gcol = pct>=80?'var(--teal)':pct>=60?'var(--amber)':'var(--red)';
+  document.getElementById('res-grade').innerHTML = `<span style="color:${gcol}">${grade}</span>`;
+  document.getElementById('res-sub').textContent = `${pct}% correct · ${mode==='exam'?'Exam Mode':mode==='stamina'?'Stamina':'Practice'}`;
+
+  // per-unit breakdown
+  const seen = deck.slice(0, attempted);
+  const byUnit = {};
+  seen.forEach(q=>{ byUnit[q.u] = byUnit[q.u] || {n:0, ok:0}; byUnit[q.u].n++; });
+  missed.forEach(m=>{ /* counted below */ });
+  seen.forEach(q=>{
+    const wasMissed = missed.some(m=>m.q===q);
+    if(!wasMissed) byUnit[q.u].ok++;
+  });
+  document.getElementById('res-breakdown').innerHTML = Object.keys(byUnit).sort().map(u=>{
+    const d = byUnit[u];
+    const p = Math.round(d.ok/d.n*100);
+    const c = p>=80?'var(--teal)':p>=60?'var(--amber)':'var(--red)';
+    return `<div class="brk-row">
+      <div class="brk-name">${u} ${UNIT_NAMES[u]}</div>
+      <div class="brk-bar"><div class="brk-fill" style="width:${p}%;background:${c}"></div></div>
+      <div class="brk-num">${d.ok}/${d.n}</div>
+    </div>`;
+  }).join('') || '<div style="font-size:12.5px;color:var(--muted)">No questions attempted.</div>';
+
+  // missed review
+  const mc = document.getElementById('res-missed-card');
+  document.getElementById('btn-retry-missed').style.display = missed.length ? 'block' : 'none';
+  if(missed.length){
+    mc.style.display='block';
+    document.getElementById('res-missed').innerHTML = missed.map(m=>`
+      <div class="miss-item">
+        <div class="miss-q">${esc(m.q.q)}</div>
+        <div class="miss-a">You chose: ${esc(m.q.o[m.chose])} · Correct: <b>${esc(m.q.o[m.q.a])}</b></div>
+        <div class="miss-a" style="margin-top:6px;opacity:.85">${esc(m.q.exp)}</div>
+      </div>`).join('');
+  } else { mc.style.display='none'; }
+
+  show('screen-res');
+}
+function retrySession(){
+  if(!lastConfig) return goSetup();
+  idx=0; right=0; missed=[]; streak=0;
+  deck = deck.slice().sort(()=>Math.random()-0.5);
+  if(mode==='exam'){ timeLeft = deck.length*60; startTimer(); }
+  show('screen-q'); renderQ();
+}
+function retryMissed(){
+  if(!missed.length) return;
+  deck = missed.map(m=>m.q).sort(()=>Math.random()-0.5);
+  idx=0; right=0; missed=[]; streak=0;
+  clearInterval(timerId);
+  document.getElementById('q-timer').style.display='none';
+  const prev = mode; mode='practice';
+  show('screen-q'); renderQ();
+  mode = prev==='exam' ? 'practice' : prev;
+}
+function goSetup(){
+  clearInterval(timerId);
+  document.getElementById('btn-setup').style.display='none';
+  show('screen-setup');
+}
+function renderGlobalStats(){
+  document.getElementById('gs-total').textContent = stats.total;
+  document.getElementById('gs-acc').textContent = stats.total ? Math.round(stats.correct/stats.total*100)+'%' : '—';
+  document.getElementById('gs-streak').textContent = stats.best;
+  document.getElementById('gs-sessions').textContent = stats.sessions;
+}
+
+// ── INIT (counts computed from data) ──
+(function init(){
+  const total = QB.length;
+  const calcs = QB.filter(q=>q.type==='calc').length;
+  const units = new Set(QB.map(q=>q.u)).size;
+  document.getElementById('page-sub').textContent =
+    `${total} questions · ${units} units · ${calcs} calculation problems · 3 difficulty tiers`;
+  document.getElementById('mode-desc').innerHTML = MODE_DESC.practice;
+  renderUnits();
+  updatePool();
+  renderGlobalStats();
+})();
+</script>
+</body>
+</html>

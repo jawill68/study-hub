@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game &amp; Simulation Foundations — Common Mistakes Autopsy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#0a0612;--card:#150e24;--card2:#1d1533;--border:#2f2248;
+  --text:#ece8f4;--muted:#9585b0;--white:#ffffff;--accent:#8B5CF6;--accent2:#2E8BC0;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(231,76,60,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(231,76,60,0.035) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:920px;margin:0 auto;padding:26px 20px 70px}
+
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--red)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+.fmm-btn{background:linear-gradient(135deg,var(--red),#c0392b);border:none;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:11px 20px;border-radius:11px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.fmm-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(231,76,60,.32)}
+
+.cert-banner{background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(46,139,192,.06));border:1px solid var(--border);border-radius:12px;padding:11px 16px;margin-bottom:18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.cert-text{font-size:12.5px;color:var(--text)}
+.cert-text b{color:#b39bf5}
+.cert-switch{margin-left:auto;display:flex;gap:6px}
+.cert-pill{background:var(--card2);border:1px solid var(--border);border-radius:999px;padding:5px 13px;font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
+.cert-pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.cert-pill.locked{opacity:.5;cursor:default}
+
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px;flex:1}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+
+.controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;flex-direction:column;gap:11px}
+.ctrl-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--muted);min-width:56px}
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--red);color:var(--text)}
+.pill.active{background:var(--red);border-color:var(--red);color:#fff}
+.pill-mastered.active{background:var(--teal);border-color:var(--teal)}
+.search-wrap{position:relative;flex:1;min-width:200px}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.55}
+.search-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px 10px 34px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13.5px}
+.search-input:focus{outline:none;border-color:var(--red)}
+
+.count-line{font-size:12px;color:var(--muted);margin-bottom:12px}
+.count-line b{color:var(--white);font-family:'DM Mono',monospace}
+
+.mk{background:var(--card);border:1px solid var(--border);border-radius:15px;margin-bottom:12px;overflow:hidden;transition:all .18s}
+.mk:hover{border-color:rgba(231,76,60,.4)}
+.mk.mastered{border-color:rgba(29,158,117,.4)}
+.mk-head{padding:15px 18px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;cursor:pointer}
+.mk-head:hover{background:var(--card2)}
+.mk-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);font-weight:500}
+.mk-title{font-size:15.5px;font-weight:700;color:var(--white);margin-top:3px;line-height:1.35}
+.mk-tags{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:7px}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:6px;white-space:nowrap}
+.t-cat{background:rgba(139,92,246,.16);color:#b39bf5;border:1px solid rgba(139,92,246,.3)}
+.t-freq-high{background:rgba(231,76,60,.15);color:#f08579;border:1px solid rgba(231,76,60,.3)}
+.t-freq-med{background:rgba(229,148,0,.14);color:#efb44e;border:1px solid rgba(229,148,0,.3)}
+.mk-right{display:flex;align-items:center;gap:9px;flex-shrink:0}
+.chev{color:var(--muted);font-size:13px;transition:transform .2s}
+.mk.open .chev{transform:rotate(180deg)}
+.master-btn{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:5px 11px;font-size:10.5px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap}
+.master-btn:hover{border-color:var(--teal);color:var(--teal)}
+.master-btn.on{background:var(--teal);border-color:var(--teal);color:#fff}
+
+.mk-body{display:none;padding:0 18px 18px}
+.mk.open .mk-body{display:block}
+.setup-box{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 15px;font-size:13.5px;margin-bottom:13px}
+.setup-lbl{font-size:9px;font-weight:700;letter-spacing:.11em;color:var(--muted);display:block;margin-bottom:5px}
+.setup-code{font-family:'DM Mono',monospace;font-size:12.5px;color:#8ecbec;margin-top:8px;white-space:pre-wrap;line-height:1.6}
+
+.vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:13px}
+@media(max-width:680px){.vs-grid{grid-template-columns:1fr}}
+.vs-box{border-radius:11px;padding:13px 15px;border:1px solid}
+.vs-wrong{background:rgba(231,76,60,.07);border-color:rgba(231,76,60,.3)}
+.vs-right{background:rgba(29,158,117,.07);border-color:rgba(29,158,117,.3)}
+.vs-head{font-size:11px;font-weight:800;letter-spacing:.06em;margin-bottom:8px}
+.vs-wrong .vs-head{color:#f08579}
+.vs-right .vs-head{color:#4fd1a5}
+.vs-text{font-size:13px;line-height:1.55}
+.vs-mono{font-family:'DM Mono',monospace;font-size:12px;margin-top:7px;padding-top:7px;border-top:1px solid var(--border);white-space:pre-wrap;line-height:1.6}
+.vs-wrong .vs-mono{color:#f0a89e}
+.vs-right .vs-mono{color:#8ecbec}
+
+.why-box{background:rgba(139,92,246,.06);border-left:2px solid var(--accent);border-radius:9px;padding:11px 14px;font-size:13px;margin-bottom:11px}
+.why-lbl{font-size:9px;font-weight:700;letter-spacing:.11em;color:#b39bf5;display:block;margin-bottom:5px}
+.take-box{background:rgba(229,148,0,.07);border-left:2px solid var(--amber);border-radius:9px;padding:11px 14px;font-size:13px;font-weight:600}
+.take-lbl{font-size:9px;font-weight:700;letter-spacing:.11em;color:#efb44e;display:block;margin-bottom:5px}
+
+.empty{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px}
+
+.modal-bg{position:fixed;inset:0;background:rgba(5,3,10,.88);backdrop-filter:blur(4px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px;overflow-y:auto}
+.modal-bg.open{display:flex}
+.fmm-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:26px;max-width:620px;width:100%;position:relative;margin:auto}
+.fmm-close{position:absolute;top:14px;right:16px;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;z-index:2}
+.fmm-prog{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--muted);margin-bottom:13px}
+.fmm-lbl{font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--red);margin-bottom:8px}
+.fmm-scenario{background:var(--bg);border:1px solid rgba(231,76,60,.3);border-radius:12px;padding:14px 16px;font-size:14px;margin-bottom:16px;line-height:1.55}
+.fmm-scenario .fmm-code{font-family:'DM Mono',monospace;font-size:12.5px;color:#8ecbec;margin-top:9px;white-space:pre-wrap;line-height:1.6}
+.fmm-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.fmm-opt{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:12px 15px;cursor:pointer;text-align:left;font-family:'DM Sans',sans-serif;font-size:13.5px;color:var(--text);display:flex;gap:11px;align-items:flex-start;width:100%;transition:all .16s}
+.fmm-opt:hover:not(:disabled){border-color:var(--red);background:var(--card2)}
+.fmm-opt:disabled{cursor:default}
+.fmm-key{width:22px;height:22px;border-radius:6px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0;color:var(--muted)}
+.fmm-opt.correct{border-color:var(--teal);background:rgba(29,158,117,.11)}
+.fmm-opt.correct .fmm-key{background:var(--teal);border-color:var(--teal);color:#fff}
+.fmm-opt.wrong{border-color:var(--red);background:rgba(231,76,60,.10)}
+.fmm-opt.wrong .fmm-key{background:var(--red);border-color:var(--red);color:#fff}
+.fmm-fb{border-radius:11px;padding:13px 15px;font-size:13px;margin-bottom:14px;display:none}
+.fmm-fb.show{display:block}
+.fmm-fb.ok{background:rgba(29,158,117,.09);border:1px solid rgba(29,158,117,.3)}
+.fmm-fb.no{background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.3)}
+.btn{border:none;border-radius:11px;padding:12px 22px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;width:100%}
+.btn-next{background:var(--accent);color:#fff}
+.btn-ghost{background:var(--bg);border:1px solid var(--border);color:var(--text)}
+.fmm-done{text-align:center}
+.fmm-score{font-size:2.6rem;font-weight:800;font-family:'DM Mono',monospace;color:var(--teal)}
+.fmm-btns{display:flex;gap:8px;margin-top:16px}
+
+@media(max-width:640px){.page-title{font-size:1.5rem}.ctrl-label{min-width:auto}.cert-switch{margin-left:0}}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <a href="GameDesign_StudyHub.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;margin-bottom:14px;opacity:.85">← Game Design Study Hub</a>
+
+  <div class="header">
+    <div>
+      <div class="series-label">Game &amp; Simulation Foundations · Study Resource Series · Build 3</div>
+      <div class="page-title">Common Mistakes <span>Autopsy</span></div>
+      <div class="page-sub" id="page-sub">Loading…</div>
+    </div>
+    <button class="fmm-btn" onclick="startFMM()">🔍 Find My Mistake</button>
+  </div>
+
+  <div class="cert-banner">
+    <span>🎮</span>
+    <span class="cert-text">Certification track: <b id="cert-name">Unity Certified User: Programmer</b></span>
+    <div class="cert-switch">
+      <button class="cert-pill active" data-cert="programmer" onclick="setCert('programmer',this)">Programmer</button>
+      <button class="cert-pill locked" data-cert="artist" title="Reserved — activate when confirmed with instructor">Artist 🔒</button>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-chip"><div class="stat-num" id="s-total">—</div><div class="stat-lbl">TOTAL ERRORS</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--teal)" id="s-mastered">0</div><div class="stat-lbl">MASTERED</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--amber)" id="s-remaining">—</div><div class="stat-lbl">REMAINING</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--red)" id="s-fmm">—</div><div class="stat-lbl">FIND MY MISTAKE</div></div>
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-row">
+      <span class="ctrl-label">SEARCH</span>
+      <div class="search-wrap">
+        <span class="search-icon">🔎</span>
+        <input class="search-input" id="search-input" type="text" placeholder="Search mistakes, topics, code…" oninput="render()">
+      </div>
+    </div>
+    <div class="ctrl-row">
+      <span class="ctrl-label">CATEGORY</span>
+      <button class="pill active" data-cat="all" onclick="setCat('all',this)">All</button>
+      <button class="pill" data-cat="engine" onclick="setCat('engine',this)">Engine</button>
+      <button class="pill" data-cat="csharp" onclick="setCat('csharp',this)">C# Scripting</button>
+      <button class="pill" data-cat="gameplay" onclick="setCat('gameplay',this)">Gameplay</button>
+      <button class="pill" data-cat="ui" onclick="setCat('ui',this)">UI &amp; Audio</button>
+      <button class="pill" data-cat="design" onclick="setCat('design',this)">Design</button>
+    </div>
+    <div class="ctrl-row">
+      <span class="ctrl-label">FILTER</span>
+      <button class="pill" id="btn-high" onclick="toggleHigh()">🔥 High Frequency</button>
+      <button class="pill pill-mastered" id="btn-unmastered" onclick="toggleUnmastered()">Not Yet Mastered</button>
+      <button class="pill" onclick="expandAll(true)">Expand All</button>
+      <button class="pill" onclick="expandAll(false)">Collapse All</button>
+    </div>
+  </div>
+
+  <div class="count-line" id="count-line"></div>
+  <div id="mk-list"></div>
+
+  <div style="margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center">
+    Game &amp; Simulation Foundations (82081100) · Unity Certified User: Programmer objectives · Common Mistakes Autopsy
+  </div>
+</div>
+
+<div class="modal-bg" id="fmm-modal"><div class="fmm-box" id="fmm-box"></div></div>
+
+<script>
+// ═══════════════════════════════════════════
+// GAME & SIMULATION FOUNDATIONS — COMMON MISTAKES AUTOPSY
+// Unity/C# beginner errors anchored to UCU Programmer objectives
+// freq: "high"|"med"  cat: engine|csharp|gameplay|ui|design  cert: programmer|artist|both
+// setupCode/wrongMono/rightMono are optional monospace code blocks
+// diag = Find My Mistake options; dA = correct index
+// ═══════════════════════════════════════════
+const MISTAKES = [
+{cat:"csharp",cert:"programmer",freq:"high",title:"Using = instead of == in a condition",
+setup:"A student writes an if statement to check whether health has hit zero:",
+setupCode:"if (health = 0) {\n  GameOver();\n}",
+wrong:"Using a single = inside the condition. A single equals sign assigns a value; it doesn't compare. This line tries to set health to 0, and often won't even compile.",
+wrongMono:"if (health = 0)   // assignment ✗",
+right:"Use == to compare two values. A double equals asks 'are these equal?' without changing anything.",
+rightMono:"if (health == 0)   // comparison ✓",
+why:"Both symbols look almost identical, and in everyday math '=' means equality. In C#, = and == do completely different jobs, and mixing them is one of the most common beginner bugs.",
+take:"= assigns. == compares. Conditions always use ==.",
+diag:["A single = assigns instead of comparing — the condition needs ==","The GameOver method needs a parameter","health should be a float, not an int","The braces are in the wrong place"],dA:0},
+
+{cat:"csharp",cert:"programmer",freq:"high",title:"Forgetting the f suffix on a float",
+setup:"A student declares a movement speed and gets a compile error:",
+setupCode:"float speed = 5.5;",
+wrong:"Writing a decimal literal without the required f suffix. C# reads 5.5 as a double by default, which won't fit into a float without explicit conversion.",
+wrongMono:"float speed = 5.5;   // error ✗",
+right:"Add the f suffix to mark the number as a float literal.",
+rightMono:"float speed = 5.5f;   // ✓",
+why:"Whole numbers assign to floats fine, so many students never hit this until they use a decimal. The error message about 'double to float' confuses beginners who don't yet know the number was a double.",
+take:"Float decimals need an f: 5.5f, not 5.5.",
+diag:["The variable needs to be public","speed should be an int","The decimal literal needs an f suffix to be a float","The semicolon is missing"],dA:2},
+
+{cat:"csharp",cert:"programmer",freq:"high",title:"Putting physics input in Update instead of FixedUpdate",
+setup:"A student applies force to a Rigidbody inside Update, and the jump feels inconsistent across different computers.",
+setupCode:"void Update() {\n  rb.AddForce(Vector3.up * power);\n}",
+wrong:"Applying physics forces in Update, which runs at a variable frame rate. On a fast machine the force is applied more often than on a slow one, making physics inconsistent.",
+wrongMono:"void Update() { rb.AddForce(...); }  ✗",
+right:"Apply forces in FixedUpdate, which runs on a fixed timestep independent of frame rate.",
+rightMono:"void FixedUpdate() { rb.AddForce(...); }  ✓",
+why:"The game appears to work on the student's machine, so the bug hides until the game runs elsewhere. The frame-rate dependence is invisible until you compare devices.",
+take:"Physics forces go in FixedUpdate. Input detection goes in Update.",
+diag:["AddForce should be Vector3.down","power must be an int","The Rigidbody needs to be public","Physics forces belong in FixedUpdate, not Update, so they stay frame-rate independent"],dA:3},
+
+{cat:"csharp",cert:"programmer",freq:"med",title:"Expecting private variables in the Inspector",
+setup:"A student wants to tune a jump height from the Inspector but the field never appears there.",
+setupCode:"private float jumpHeight = 5f;",
+wrong:"Declaring the variable private and expecting it to show in the Inspector. Private variables are hidden from other scripts and from the Inspector.",
+wrongMono:"private float jumpHeight;  // hidden ✗",
+right:"Make it public so it appears as an editable Inspector field (or use [SerializeField] to expose a private one).",
+rightMono:"public float jumpHeight = 5f;  // ✓",
+why:"Beginners often don't yet connect access modifiers to Inspector visibility. The variable works fine in code, so the only symptom is a missing Inspector field with no error message.",
+take:"public variables appear in the Inspector. private ones don't.",
+diag:["Private variables don't appear in the Inspector — use public (or [SerializeField])","jumpHeight should be an int","The variable needs the f removed","Start() must set the value"],dA:0},
+
+{cat:"csharp",cert:"programmer",freq:"med",title:"Wrapping a Debug.Log expression in quotes",
+setup:"A student expects a calculation but sees the literal text instead:",
+setupCode:"Debug.Log(\"score + 5\");",
+wrong:"Putting the whole expression inside quotes, which makes it a string. Anything in double quotes is printed literally, not evaluated.",
+wrongMono:"Debug.Log(\"score + 5\");  // prints text ✗",
+right:"Keep the variable and math outside the quotes so it's evaluated, concatenating any label separately.",
+rightMono:"Debug.Log(\"Score: \" + (score + 5));  // ✓",
+why:"Quotes look harmless, but they turn code into text. The output 'score + 5' surprises students who expected a number.",
+take:"Anything inside double quotes is literal text, never evaluated as code.",
+diag:["Debug.Log cannot print numbers","Wrapping the expression in quotes makes it a literal string — the math must be outside the quotes","score must be public","The line needs a semicolon"],dA:1},
+
+{cat:"csharp",cert:"programmer",freq:"med",title:"Off-by-one array index",
+setup:"A student makes an array of 5 items and tries to access the fifth using index 5:",
+setupCode:"int[] scores = new int[5];\nint last = scores[5];",
+wrong:"Using index 5 to reach the fifth element. Arrays are zero-indexed, so a length-5 array has valid indices 0 through 4. Index 5 is out of range and throws an error at runtime.",
+wrongMono:"scores[5]   // out of range ✗",
+right:"The last element of a length-5 array is at index 4.",
+rightMono:"scores[4]   // last element ✓",
+why:"Counting from 1 is natural for humans, but arrays count from 0. The mismatch produces an IndexOutOfRangeException that crashes only when that line runs.",
+take:"Arrays start at index 0. A length-N array's last index is N − 1.",
+diag:["Arrays cannot hold integers","The array needs to be public","Arrays are zero-indexed, so index 5 is out of range for a length-5 array — the last valid index is 4","new int[5] should be new int(5)"],dA:2},
+
+{cat:"engine",cert:"both",freq:"high",title:"Editing values in Play Mode and losing them",
+setup:"A student carefully tunes several object positions and component values while the game is running in Play Mode, then presses Stop. Everything resets.",
+wrong:"Making permanent edits during Play Mode. Play Mode runs the game live for testing, and every change made during it is discarded the moment you stop.",
+wrongMono:"edit during ▶ Play → changes lost ✗",
+right:"Exit Play Mode first, then make permanent edits. Use Play Mode only to test.",
+rightMono:"stop ■ first, then edit → saved ✓",
+why:"Play Mode looks and feels like the normal editor, and the changes appear to work — until you stop and they vanish. Nearly every Unity beginner loses work to this at least once.",
+take:"Changes made in Play Mode are temporary. Always stop before editing for real.",
+diag:["The scene was never saved to disk","The Inspector was locked","The GameObjects were prefabs","Play Mode changes are temporary and reset when you stop — edit outside Play Mode"],dA:3},
+
+{cat:"engine",cert:"both",freq:"med",title:"Editing one instance instead of the Prefab",
+setup:"A student has 30 enemy instances in the scene, all copies of one prefab. They change the color on a single enemy in the scene, expecting all 30 to update.",
+wrong:"Editing a single scene instance and expecting every copy to change. Editing an instance only affects that one object and can even break its link to the prefab.",
+wrongMono:"edit 1 instance → only that 1 changes ✗",
+right:"Open and edit the Prefab asset itself; every instance inherits the change.",
+rightMono:"edit the Prefab → all 30 update ✓",
+why:"Instances and the prefab look identical in the scene, so it's easy to edit the wrong one. The change works on that single enemy, masking the misunderstanding.",
+take:"Edit the Prefab to change all instances. Edit an instance to change just one.",
+diag:["Editing one instance changes only that instance — edit the Prefab asset to update all of them","Prefabs cannot hold color","The enemies needed Rigidbodies","Color is set only in code"],dA:0},
+
+{cat:"gameplay",cert:"programmer",freq:"high",title:"Movement that ignores Time.deltaTime",
+setup:"A student moves an object by a fixed amount each frame. It runs smoothly on their PC but races uncontrollably on a faster machine.",
+setupCode:"transform.Translate(dir * speed);",
+wrong:"Moving by a fixed amount per frame. Since frame rate varies by device, more frames per second means more movement per second — so the object's real speed depends on the hardware.",
+wrongMono:"dir * speed   // frame-rate dependent ✗",
+right:"Multiply by Time.deltaTime so movement is measured per second, not per frame.",
+rightMono:"dir * speed * Time.deltaTime   // ✓",
+why:"On the developer's machine it looks correct, so the bug is invisible until the game runs at a different frame rate. It's one of the most common movement bugs in beginner Unity projects.",
+take:"Multiply per-frame movement by Time.deltaTime to make it frame-rate independent.",
+diag:["speed must be a public int","dir should be a Vector2","Translate only works in FixedUpdate","Movement must be multiplied by Time.deltaTime to stay consistent across frame rates"],dA:3},
+
+{cat:"gameplay",cert:"programmer",freq:"high",title:"Expecting a Rigidbody-less object to fall",
+setup:"A student places a crate in the air expecting it to drop when the game runs, but it just hovers.",
+wrong:"Assuming gravity acts on every object. Unity's physics — including gravity — only affects GameObjects that have a Rigidbody component.",
+wrongMono:"no Rigidbody → no gravity, no physics ✗",
+right:"Add a Rigidbody component so the physics engine controls the object.",
+rightMono:"add Rigidbody → falls, collides ✓",
+why:"In the real world everything falls, so beginners expect the same by default. Without a Rigidbody, an object is invisible to the physics engine and simply stays put.",
+take:"No Rigidbody means no gravity and no physics. Add one to make an object physical.",
+diag:["The crate needs a Collider only","The crate must be a prefab","Gravity is off in project settings","Physics and gravity require a Rigidbody component, which the crate lacks"],dA:3},
+
+{cat:"gameplay",cert:"programmer",freq:"med",title:"Using a Trigger but expecting a solid wall",
+setup:"A student sets a collider's Is Trigger checkbox, then wonders why the player walks straight through the wall.",
+wrong:"Enabling Is Trigger on a collider meant to block movement. A trigger detects overlap but does not physically stop anything.",
+wrongMono:"Is Trigger ✓ → player passes through ✗",
+right:"Leave Is Trigger unchecked for solid objects. Use triggers only for detection zones like pickups or checkpoints.",
+rightMono:"Is Trigger ✗ → solid wall ✓",
+why:"Both triggers and solid colliders use the same component, differing by one checkbox. It's easy to leave it in the wrong state, and the wall still looks solid.",
+take:"Triggers detect but don't block. Uncheck Is Trigger for anything solid.",
+diag:["The wall needs a Rigidbody","The player is missing a Collider","A Trigger detects overlap without blocking — uncheck Is Trigger to make the wall solid","OnCollisionEnter was not written"],dA:2},
+
+{cat:"gameplay",cert:"programmer",freq:"med",title:"Forgetting to bake the NavMesh",
+setup:"A student sets up a NavMeshAgent on an enemy and assigns a destination, but the enemy never moves toward the player.",
+wrong:"Expecting AI navigation to work without baking a NavMesh. The agent has no map of walkable surfaces to path across until the NavMesh is generated.",
+wrongMono:"NavMeshAgent, no baked NavMesh → no motion ✗",
+right:"Bake the NavMesh for the level first, so the agent has a walkable surface map.",
+rightMono:"bake NavMesh → agent paths correctly ✓",
+why:"The agent component is present and the code looks right, so nothing signals the missing step. The NavMesh is a separate bake action many beginners overlook.",
+take:"A NavMeshAgent needs a baked NavMesh to move. Bake it before expecting pathfinding.",
+diag:["The agent needs a Rigidbody","Without a baked NavMesh there is no walkable map for the agent to follow — bake it first","The destination must be a Vector2","Enemies cannot use NavMesh"],dA:1},
+
+{cat:"ui",cert:"programmer",freq:"med",title:"Placing UI elements outside a Canvas",
+setup:"A student creates a Button but drags it directly into the scene, not under a Canvas. It never appears on screen.",
+wrong:"Adding UI elements without a Canvas parent. Every UI element must live under a Canvas, which is what actually renders the interface.",
+wrongMono:"Button with no Canvas parent → invisible ✗",
+right:"Place all UI elements as children of a Canvas.",
+rightMono:"Button under Canvas → renders ✓",
+why:"The button exists in the Hierarchy and has all its components, so nothing looks broken — it simply never draws, because only a Canvas renders UI.",
+take:"All UI elements must be children of a Canvas to appear.",
+diag:["UI elements only render as children of a Canvas — the Button needs a Canvas parent","The Button needs a Rigidbody","The Button must be a prefab","The camera is missing"],dA:0},
+
+{cat:"ui",cert:"programmer",freq:"med",title:"Expecting a normal variable to persist between sessions",
+setup:"A student stores a high score in a regular int variable and is surprised it resets to zero every time the game restarts.",
+setupCode:"int highScore = 0;  // resets each launch",
+wrong:"Relying on an ordinary variable to remember data across sessions. Regular variables live only in memory and vanish when the game closes.",
+wrongMono:"int highScore;  // gone on restart ✗",
+right:"Use PlayerPrefs to save and load values that must persist between sessions.",
+rightMono:"PlayerPrefs.SetInt(\"HighScore\", score);  // ✓",
+why:"During a single play session the variable holds its value perfectly, so the problem only shows after closing and reopening — long after the code was written.",
+take:"Regular variables reset on restart. Use PlayerPrefs to persist data between sessions.",
+diag:["highScore should be a float","The variable must be public","Regular variables don't survive a restart — use PlayerPrefs to persist the value","Debug.Log will save it"],dA:2},
+
+{cat:"design",cert:"both",freq:"med",title:"Polishing art before testing whether the game is fun",
+setup:"A student spends weeks creating detailed art and animations, then discovers during the first playtest that the core jumping mechanic simply isn't fun.",
+wrong:"Investing heavily in polish before validating that the core mechanic works. If the fundamental gameplay isn't fun, beautiful art can't save it — and now it's expensive to change.",
+wrongMono:"polish first → costly rework ✗",
+right:"Prototype with rough shapes (grey-boxing) and playtest the core mechanic early, before committing to art.",
+rightMono:"prototype → playtest → then polish ✓",
+why:"Making art is satisfying and visible, so it's tempting to start there. But design problems are cheapest to fix early, when nothing is built around them yet.",
+take:"Prove the mechanic is fun with a rough prototype before investing in art.",
+diag:["The art files were too large","Polish came before validating the core mechanic — prototype and playtest first, then invest in art","The game needed more levels","Animation must come before mechanics"],dA:1},
+
+{cat:"design",cert:"both",freq:"med",title:"Skipping playtesting and relying on self-testing only",
+setup:"A student builds a level they find easy to navigate, but every new player gets lost immediately at the first junction.",
+wrong:"Assuming that because the designer understands the level, players will too. The designer already knows the layout and intended path, so they can't experience it as a newcomer.",
+wrongMono:"only self-test → blind to confusion ✗",
+right:"Playtest with real players who've never seen the level, and watch where they get stuck.",
+rightMono:"watch fresh players → find the problems ✓",
+why:"The designer's knowledge of their own game is exactly what hides its problems. Only someone seeing it fresh reveals what's actually confusing.",
+take:"You can't playtest your own game blind. Watch real, first-time players.",
+diag:["The level needed more enemies","The designer's own knowledge hides confusion — real first-time playtesters reveal it","The level file was corrupted","Levels should never have junctions"],dA:1}
+];
+
+const CAT_NAMES = {
+  engine:"Engine & Editor", csharp:"C# Scripting", gameplay:"Gameplay & Physics",
+  ui:"UI & Audio", design:"Design & Production"
+};
+const CERT_NAMES = {
+  programmer:"Unity Certified User: Programmer",
+  artist:"Unity Certified User: Artist"
+};
+const LS_M='gamedesign_autopsy_mastered', LS_F='gamedesign_autopsy_fmm';
+
+let curCert='programmer', curCat='all', highOnly=false, unmasteredOnly=false;
+let mastered = new Set(JSON.parse(localStorage.getItem(LS_M)||'[]'));
+let fmmScore = localStorage.getItem(LS_F);
+let openSet = new Set();
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function mono(s){ return esc(s).replace(/\n/g,'<br>'); }
+function saveM(){ localStorage.setItem(LS_M, JSON.stringify([...mastered])); }
+function certMatch(m){ return m.cert===curCert || m.cert==='both'; }
+
+function setCert(c, btn){
+  if(btn.classList.contains('locked')) return;
+  curCert=c;
+  document.querySelectorAll('.cert-pill').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('cert-name').textContent=CERT_NAMES[c];
+  refreshTotals(); render();
+}
+function setCat(c,btn){ curCat=c; document.querySelectorAll('.pill[data-cat]').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); render(); }
+function toggleHigh(){ highOnly=!highOnly; document.getElementById('btn-high').classList.toggle('active',highOnly); render(); }
+function toggleUnmastered(){ unmasteredOnly=!unmasteredOnly; document.getElementById('btn-unmastered').classList.toggle('active',unmasteredOnly); render(); }
+function toggleOpen(i){ if(openSet.has(i)) openSet.delete(i); else openSet.add(i); render(); }
+function expandAll(on){ if(on) filtered().forEach(m=>openSet.add(MISTAKES.indexOf(m))); else openSet.clear(); render(); }
+function toggleMastered(i,ev){ ev.stopPropagation(); if(mastered.has(i)) mastered.delete(i); else mastered.add(i); saveM(); render(); }
+
+function filtered(){
+  const q=document.getElementById('search-input').value.trim().toLowerCase();
+  return MISTAKES.filter(m=>{
+    if(!certMatch(m)) return false;
+    if(curCat!=='all' && m.cat!==curCat) return false;
+    if(highOnly && m.freq!=='high') return false;
+    if(unmasteredOnly && mastered.has(MISTAKES.indexOf(m))) return false;
+    if(q){
+      const hay=(m.title+' '+m.setup+' '+(m.setupCode||'')+' '+m.wrong+' '+m.right+' '+m.why+' '+m.take).toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+}
+function refreshTotals(){
+  const inCert=MISTAKES.filter(certMatch).length;
+  document.getElementById('s-total').textContent=inCert;
+  document.getElementById('s-remaining').textContent=inCert - [...mastered].filter(i=>certMatch(MISTAKES[i])).length;
+}
+function render(){
+  const list=filtered();
+  const inCert=MISTAKES.filter(certMatch).length;
+  document.getElementById('s-mastered').textContent=mastered.size;
+  document.getElementById('s-remaining').textContent=inCert - [...mastered].filter(i=>certMatch(MISTAKES[i])).length;
+  document.getElementById('count-line').innerHTML=`<b>${list.length}</b> of <b>${inCert}</b> shown`;
+  const box=document.getElementById('mk-list');
+  if(!list.length){ box.innerHTML='<div class="empty">No mistakes match your search or filters.</div>'; return; }
+  box.innerHTML=list.map(m=>{
+    const i=MISTAKES.indexOf(m);
+    const isOpen=openSet.has(i), isM=mastered.has(i);
+    return `<div class="mk ${isOpen?'open':''} ${isM?'mastered':''}">
+      <div class="mk-head" onclick="toggleOpen(${i})">
+        <div>
+          <div class="mk-num">MISTAKE #${i+1}</div>
+          <div class="mk-title">${esc(m.title)}</div>
+          <div class="mk-tags">
+            <span class="tag t-cat">${CAT_NAMES[m.cat]}</span>
+            <span class="tag ${m.freq==='high'?'t-freq-high':'t-freq-med'}">${m.freq==='high'?'🔥 High Frequency':'Common'}</span>
+          </div>
+        </div>
+        <div class="mk-right">
+          <button class="master-btn ${isM?'on':''}" onclick="toggleMastered(${i},event)">${isM?'✓ Mastered':'Mark Mastered'}</button>
+          <span class="chev">▼</span>
+        </div>
+      </div>
+      <div class="mk-body">
+        <div class="setup-box"><span class="setup-lbl">THE SCENARIO</span>${esc(m.setup)}${m.setupCode?`<div class="setup-code">${mono(m.setupCode)}</div>`:''}</div>
+        <div class="vs-grid">
+          <div class="vs-box vs-wrong">
+            <div class="vs-head">✗ WHAT GOES WRONG</div>
+            <div class="vs-text">${esc(m.wrong)}</div>
+            ${m.wrongMono?`<div class="vs-mono">${mono(m.wrongMono)}</div>`:''}
+          </div>
+          <div class="vs-box vs-right">
+            <div class="vs-head">✓ WHAT'S CORRECT</div>
+            <div class="vs-text">${esc(m.right)}</div>
+            ${m.rightMono?`<div class="vs-mono">${mono(m.rightMono)}</div>`:''}
+          </div>
+        </div>
+        <div class="why-box"><span class="why-lbl">WHY STUDENTS FALL FOR IT</span>${esc(m.why)}</div>
+        <div class="take-box"><span class="take-lbl">TAKEAWAY</span>${esc(m.take)}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── FIND MY MISTAKE ──
+let fdeck=[], fidx=0, fright=0, fanswered=false;
+function startFMM(){
+  const pool=filtered();
+  if(pool.length<3){ alert('Need at least 3 mistakes in the current filter to run a diagnostic.'); return; }
+  fdeck=pool.slice().sort(()=>Math.random()-0.5).slice(0,Math.min(12,pool.length));
+  fidx=0; fright=0; fanswered=false;
+  document.getElementById('fmm-modal').classList.add('open');
+  renderFMM();
+}
+function closeFMM(){ document.getElementById('fmm-modal').classList.remove('open'); }
+function renderFMM(){
+  const m=fdeck[fidx];
+  document.getElementById('fmm-box').innerHTML=`
+    <button class="fmm-close" onclick="closeFMM()">✕</button>
+    <div class="fmm-prog">DIAGNOSTIC ${fidx+1} OF ${fdeck.length} · ${CAT_NAMES[m.cat]}</div>
+    <div class="fmm-lbl">WHAT IS THE ERROR HERE?</div>
+    <div class="fmm-scenario">${esc(m.setup)}${m.setupCode?`<div class="fmm-code">${mono(m.setupCode)}</div>`:''}</div>
+    <div class="fmm-opts" id="fmm-opts">
+      ${m.diag.map((d,i)=>`<button class="fmm-opt" id="fo-${i}" onclick="answerFMM(${i})"><span class="fmm-key">${'ABCD'[i]}</span><span>${esc(d)}</span></button>`).join('')}
+    </div>
+    <div class="fmm-fb" id="fmm-fb"></div>
+    <button class="btn btn-next" id="fmm-next" style="display:none" onclick="nextFMM()">Next →</button>`;
+}
+function answerFMM(choice){
+  if(fanswered) return; fanswered=true;
+  const m=fdeck[fidx], ok=choice===m.dA;
+  if(ok) fright++;
+  document.querySelectorAll('.fmm-opt').forEach((b,i)=>{ b.disabled=true; if(i===m.dA) b.classList.add('correct'); else if(i===choice) b.classList.add('wrong'); });
+  const fb=document.getElementById('fmm-fb');
+  fb.className='fmm-fb show '+(ok?'ok':'no');
+  fb.innerHTML=`<b style="color:${ok?'#4fd1a5':'#f08579'}">${ok?'✓ Correct diagnosis':'✗ Not the error'}</b><br><span style="opacity:.92">${esc(m.take)}</span>`;
+  const nb=document.getElementById('fmm-next');
+  nb.style.display='block';
+  nb.textContent=fidx>=fdeck.length-1?'See Results →':'Next →';
+}
+function nextFMM(){
+  fidx++; fanswered=false;
+  if(fidx>=fdeck.length){
+    const pct=Math.round(fright/fdeck.length*100);
+    fmmScore=pct+'%';
+    localStorage.setItem(LS_F,fmmScore);
+    document.getElementById('s-fmm').textContent=fmmScore;
+    document.getElementById('fmm-box').innerHTML=`
+      <button class="fmm-close" onclick="closeFMM()">✕</button>
+      <div class="fmm-done">
+        <div style="font-size:11px;letter-spacing:.12em;color:var(--muted);margin-bottom:10px">DIAGNOSTIC COMPLETE</div>
+        <div class="fmm-score">${fright}/${fdeck.length}</div>
+        <div style="font-size:14px;color:var(--muted);margin-top:6px">${pct}% correctly diagnosed</div>
+        <div class="fmm-btns">
+          <button class="btn btn-ghost" onclick="closeFMM()">Done</button>
+          <button class="btn btn-next" onclick="startFMM()">Run Again</button>
+        </div>
+      </div>`;
+    return;
+  }
+  renderFMM();
+}
+document.getElementById('fmm-modal').addEventListener('click',e=>{ if(e.target.id==='fmm-modal') closeFMM(); });
+
+// ── INIT (counts computed from data) ──
+(function init(){
+  const inCert=MISTAKES.filter(certMatch).length;
+  const high=MISTAKES.filter(m=>certMatch(m)&&m.freq==='high').length;
+  document.getElementById('s-total').textContent=inCert;
+  document.getElementById('s-remaining').textContent=inCert;
+  document.getElementById('page-sub').textContent=`${inCert} beginner errors · ${high} flagged high-frequency · Wrong vs. Right code analysis`;
+  if(fmmScore) document.getElementById('s-fmm').textContent=fmmScore;
+  render();
+})();
+</script>
+</body>
+</html>

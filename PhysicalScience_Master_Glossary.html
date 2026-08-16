@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physical Science Honors — Master Glossary</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
+  --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(46,139,192,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(46,139,192,0.04) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:26px 20px 70px}
+
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--teal)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+.quiz-launch-btn{background:linear-gradient(135deg,var(--teal),#12b886);border:none;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:11px 20px;border-radius:11px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.quiz-launch-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(29,158,117,.35)}
+
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+
+.controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:14px;display:flex;flex-direction:column;gap:11px}
+.ctrl-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--muted);min-width:52px}
+.search-wrap{position:relative;flex:1;min-width:220px}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.55}
+.search-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px 10px 34px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13.5px}
+.search-input:focus{outline:none;border-color:var(--sky)}
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--sky);color:var(--text)}
+.pill.active{background:var(--sky);border-color:var(--sky);color:#fff}
+.pill-star.active{background:var(--amber);border-color:var(--amber)}
+.pill-formula.active{background:var(--purple);border-color:var(--purple)}
+.view-toggle{margin-left:auto;display:flex;gap:6px}
+
+.az-row{display:flex;flex-wrap:wrap;gap:4px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px 14px;margin-bottom:14px}
+.az-btn{background:transparent;border:none;color:var(--muted);font-family:'DM Mono',monospace;font-size:12.5px;font-weight:500;width:26px;height:26px;border-radius:6px;cursor:pointer;transition:all .15s}
+.az-btn:hover{background:var(--card2);color:var(--text)}
+.az-btn.has{color:var(--sky)}
+.az-btn.active{background:var(--sky);color:#fff}
+
+.count-line{font-size:12px;color:var(--muted);margin-bottom:12px}
+.count-line b{color:var(--white);font-family:'DM Mono',monospace}
+
+.letter-head{display:flex;align-items:center;gap:12px;margin:22px 0 10px}
+.letter-badge{width:36px;height:36px;border-radius:10px;background:rgba(29,158,117,.14);border:1px solid rgba(29,158,117,.32);color:var(--teal);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px}
+.letter-count{font-size:11.5px;color:var(--muted)}
+
+.term-card{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:15px 17px;margin-bottom:9px;transition:all .18s}
+.term-card:hover{border-color:rgba(46,139,192,.42);box-shadow:0 6px 22px rgba(46,139,192,.09)}
+.term-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.term-name{font-size:16px;font-weight:700;color:var(--white)}
+.term-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 8px;border-radius:6px;font-family:'DM Sans',sans-serif;white-space:nowrap}
+.tag-unit{background:rgba(46,139,192,.16);color:#7cc0e6;border:1px solid rgba(46,139,192,.3)}
+.tag-formula{background:rgba(139,92,246,.15);color:#b39bf5;border:1px solid rgba(139,92,246,.3)}
+.tag-example{background:rgba(229,148,0,.14);color:#efb44e;border:1px solid rgba(229,148,0,.3)}
+.star-btn{background:none;border:none;cursor:pointer;font-size:15px;opacity:.3;line-height:1;padding:0 2px;transition:opacity .15s}
+.star-btn:hover{opacity:.75}
+.star-btn.on{opacity:1}
+.term-def{font-size:13.5px;color:var(--text);opacity:.9;margin-top:7px}
+.term-extra{margin-top:9px;display:flex;flex-direction:column;gap:6px}
+.extra-line{font-size:12.5px;padding:7px 11px;border-radius:8px;border-left:2px solid}
+.ex-formula{background:rgba(139,92,246,.07);border-color:var(--purple);font-family:'DM Mono',monospace;color:#c4b2f7}
+.ex-example{background:rgba(229,148,0,.06);border-color:var(--amber);color:#e3c88f}
+.extra-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;opacity:.75;display:block;margin-bottom:3px;font-family:'DM Sans',sans-serif}
+
+.compact .term-card{padding:9px 14px;margin-bottom:5px}
+.compact .term-def{margin-top:4px;font-size:12.5px}
+.compact .term-extra{display:none}
+
+.empty{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px}
+
+/* QUIZ MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(3,8,16,.86);backdrop-filter:blur(4px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-bg.open{display:flex}
+.quiz-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;max-width:560px;width:100%;position:relative}
+.quiz-close{position:absolute;top:14px;right:16px;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer}
+.quiz-progress{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--muted);margin-bottom:14px}
+.quiz-prompt-lbl{font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--teal);margin-bottom:8px}
+.quiz-term{font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:16px;line-height:1.2}
+.quiz-answer{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:15px;font-size:13.5px;color:var(--text);margin-bottom:16px;display:none}
+.quiz-answer.show{display:block}
+.quiz-answer .qa-formula{font-family:'DM Mono',monospace;color:#c4b2f7;margin-top:8px;font-size:12.5px}
+.quiz-btns{display:flex;gap:8px;flex-wrap:wrap}
+.qbtn{flex:1;min-width:110px;border:none;border-radius:11px;padding:12px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .18s}
+.qbtn-show{background:var(--sky);color:#fff}
+.qbtn-got{background:var(--teal);color:#fff}
+.qbtn-miss{background:var(--red);color:#fff}
+.qbtn:hover{transform:translateY(-2px)}
+.quiz-done{text-align:center}
+.quiz-score{font-size:2.6rem;font-weight:800;color:var(--teal);font-family:'DM Mono',monospace}
+
+@media(max-width:640px){
+  .page-title{font-size:1.5rem}
+  .view-toggle{margin-left:0}
+  .ctrl-label{min-width:auto}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <a href="PhysicalScience_StudyHub.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--sky);text-decoration:none;margin-bottom:14px;opacity:.85">← Physical Science Study Hub</a>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <div class="series-label">Physical Science Honors · Study Resource Series · Build 1</div>
+      <div class="page-title">Master <span>Glossary</span></div>
+      <div class="page-sub" id="page-sub">Loading…</div>
+    </div>
+    <button class="quiz-launch-btn" onclick="launchQuiz()">🧠 Flashcard Quiz</button>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-chip"><div class="stat-num" id="s-total">—</div><div class="stat-lbl">TOTAL TERMS</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--amber)" id="s-starred">0</div><div class="stat-lbl">STARRED</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--teal)" id="s-quiz">—</div><div class="stat-lbl">QUIZ SCORE</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--sky)" id="s-shown">—</div><div class="stat-lbl">SHOWING</div></div>
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="controls">
+    <div class="ctrl-row">
+      <span class="ctrl-label">SEARCH</span>
+      <div class="search-wrap">
+        <span class="search-icon">🔎</span>
+        <input class="search-input" id="search-input" type="text" placeholder="Search terms, definitions, formulas, examples…" oninput="applyFilters()">
+      </div>
+    </div>
+    <div class="ctrl-row">
+      <span class="ctrl-label">UNIT</span>
+      <button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button>
+      <button class="pill" data-unit="U1" onclick="setUnit('U1',this)">U1</button>
+      <button class="pill" data-unit="U2" onclick="setUnit('U2',this)">U2</button>
+      <button class="pill" data-unit="U3" onclick="setUnit('U3',this)">U3</button>
+      <button class="pill" data-unit="U4" onclick="setUnit('U4',this)">U4</button>
+      <button class="pill" data-unit="U5" onclick="setUnit('U5',this)">U5</button>
+      <button class="pill" data-unit="U6" onclick="setUnit('U6',this)">U6</button>
+    </div>
+    <div class="ctrl-row">
+      <span class="ctrl-label">FILTER</span>
+      <button class="pill pill-star" id="btn-star" onclick="toggleStarOnly()">★ Starred Only</button>
+      <button class="pill pill-formula" id="btn-formula" onclick="toggleFormulaOnly()">📐 Has Formula</button>
+      <div class="view-toggle">
+        <button class="pill active" id="btn-card" onclick="setView('card')">Card</button>
+        <button class="pill" id="btn-compact" onclick="setView('compact')">Compact</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- A-Z -->
+  <div class="az-row" id="az-row"></div>
+
+  <div class="count-line" id="count-line"></div>
+  <div id="term-list"></div>
+
+  <div style="margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center">
+    Physical Science Honors (2003320) · Florida NGSSS Science Standards · Master Glossary
+    <div style="margin-top:4px;opacity:.6">U1 Nature of Science · U2 Atomic Structure · U3 Bonding &amp; Reactions · U4 Energy, Heat &amp; Waves · U5 Nuclear Science · U6 Motion &amp; Forces</div>
+  </div>
+</div>
+
+<!-- QUIZ MODAL -->
+<div class="modal-bg" id="quiz-modal">
+  <div class="quiz-box" id="quiz-box"></div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+// PHYSICAL SCIENCE HONORS — MASTER GLOSSARY
+// Aligned to Florida NGSSS: SC.912.N (Nature of Science),
+// SC.912.P.8 (Matter), SC.912.P.10 (Energy), SC.912.P.12 (Motion)
+// ═══════════════════════════════════════════
+const TERMS = [
+// ── U1: NATURE OF SCIENCE, MEASUREMENT & DATA ──
+{t:"Accuracy",u:"U1",d:"How close a measured value is to the true or accepted value.",e:"A scale reading 99.8 g for a known 100.0 g mass is accurate."},
+{t:"Constant (Control Variable)",u:"U1",d:"A factor deliberately kept the same throughout an experiment so it cannot affect the results.",e:"Keeping temperature, container size, and light level identical for every plant in a fertilizer study."},
+{t:"Control Group",u:"U1",d:"The group in an experiment that does not receive the treatment, used as a baseline for comparison.",e:"Plants given no fertilizer, compared against plants that received it."},
+{t:"Dependent Variable",u:"U1",d:"The variable that is measured in an experiment; it responds to changes in the independent variable.",e:"Plant height measured after four weeks of differing fertilizer amounts."},
+{t:"Density",u:"U1",d:"The amount of mass contained in a given volume of a substance — a characteristic property independent of sample size.",f:"D = m / V",e:"A 20.0 g sample occupying 10.0 cm³ has a density of 2.00 g/cm³."},
+{t:"Dimensional Analysis",u:"U1",d:"A method of converting between units by multiplying by conversion factors written as fractions so unwanted units cancel.",f:"given value × (desired unit / given unit)",e:"5.0 km × (1000 m / 1 km) = 5000 m."},
+{t:"Empirical Evidence",u:"U1",d:"Evidence gathered through direct observation, measurement, or experiment rather than through reasoning alone.",e:"Recorded thermometer readings, not a prediction of what the temperature should be."},
+{t:"Hypothesis",u:"U1",d:"A testable, falsifiable proposed explanation for an observation, stated so that an experiment could show it to be wrong.",e:"\"If nitrogen fertilizer increases, then plant height will increase\" — testable and falsifiable."},
+{t:"Independent Variable",u:"U1",d:"The single variable deliberately changed by the experimenter to test its effect.",e:"The amount of fertilizer applied to each group of plants."},
+{t:"Inference",u:"U1",d:"A conclusion or interpretation drawn from observations rather than something directly observed.",e:"Observing wet pavement and inferring that it rained."},
+{t:"Mass",u:"U1",d:"The quantity of matter in an object, independent of location or gravitational field. Measured in kilograms.",e:"An astronaut's mass is identical on Earth and on the Moon."},
+{t:"Observation",u:"U1",d:"Information gathered directly through the senses or through instruments.",e:"Recording that a solution turned blue and its temperature rose to 42 °C."},
+{t:"Peer Review",u:"U1",d:"The evaluation of scientific work by other qualified experts before it is accepted for publication.",e:"Reviewers checking a study's methods and statistics before a journal publishes it."},
+{t:"Precision",u:"U1",d:"How closely repeated measurements agree with each other, regardless of whether they are correct.",e:"Readings of 82.1, 82.2, and 82.1 g are precise — but not accurate if the true mass is 90.0 g."},
+{t:"Pseudoscience",u:"U1",d:"Claims presented as scientific that fail scientific criteria — typically unfalsifiable, untested, or unsupported by evidence.",e:"Astrology superficially resembles science but produces no testable, falsifiable predictions."},
+{t:"Qualitative Data",u:"U1",d:"Descriptive, non-numerical observations about qualities such as color, texture, odor, or state.",e:"\"The precipitate was a pale yellow solid.\""},
+{t:"Quantitative Data",u:"U1",d:"Numerical data obtained by measuring or counting.",e:"\"The precipitate had a mass of 3.42 g.\""},
+{t:"Replication",u:"U1",d:"Repeating an experiment — by the original researchers or others — to confirm that results are reliable and not due to chance or error.",e:"Three independent labs reproducing the same reaction yield."},
+{t:"Scientific Law",u:"U1",d:"A statement describing a relationship consistently observed in nature, often expressed mathematically. It describes what happens, but does not explain why.",e:"Newton's law of universal gravitation describes gravitational attraction without explaining its cause."},
+{t:"Scientific Method",u:"U1",d:"A systematic approach to investigation: ask a question, research, form a hypothesis, experiment, analyze data, and draw a conclusion.",e:"Not a rigid recipe — real investigations often loop back and repeat steps."},
+{t:"Scientific Notation",u:"U1",d:"A way of writing very large or very small numbers as a coefficient between 1 and 10 multiplied by a power of ten.",f:"M × 10ⁿ, where 1 ≤ M < 10",e:"0.00045 is written 4.5 × 10⁻⁴."},
+{t:"Scientific Theory",u:"U1",d:"A well-substantiated, repeatedly tested explanation of some aspect of the natural world, supported by a large body of evidence. Not a guess.",e:"Atomic theory explains the structure and behavior of matter and is supported by more than a century of evidence."},
+{t:"Significant Figures",u:"U1",d:"The digits in a measurement that carry meaningful information about its precision, including the last estimated digit.",e:"0.00420 has three significant figures — the leading zeros are placeholders."},
+{t:"SI Units",u:"U1",d:"The International System of Units — the standard metric system used in science. Base units include the meter, kilogram, second, kelvin, and mole.",e:"Length in meters (m), mass in kilograms (kg), time in seconds (s)."},
+{t:"Volume",u:"U1",d:"The amount of three-dimensional space an object or substance occupies.",f:"V = l × w × h (rectangular solid)",e:"Measured in liters (L), milliliters (mL), or cubic centimeters (cm³); 1 mL = 1 cm³."},
+
+// ── U2: ATOMIC STRUCTURE & THE PERIODIC TABLE ──
+{t:"Alkali Metals",u:"U2",d:"The Group 1 elements. Each has one valence electron, making them extremely reactive metals that readily form 1+ ions.",e:"Sodium (Na) and potassium (K) react vigorously with water."},
+{t:"Alkaline Earth Metals",u:"U2",d:"The Group 2 elements. Each has two valence electrons and forms 2+ ions; reactive, but less so than Group 1.",e:"Calcium (Ca) and magnesium (Mg)."},
+{t:"Anion",u:"U2",d:"A negatively charged ion, formed when an atom gains one or more electrons.",e:"A chlorine atom gaining one electron becomes Cl⁻."},
+{t:"Atom",u:"U2",d:"The smallest unit of an element that retains the chemical properties of that element, consisting of a nucleus surrounded by electrons.",e:"A single gold atom still behaves chemically as gold."},
+{t:"Atomic Mass",u:"U2",d:"The weighted average mass of all naturally occurring isotopes of an element, measured in atomic mass units (amu).",e:"Chlorine's atomic mass of 35.45 amu reflects a mixture of Cl-35 and Cl-37."},
+{t:"Atomic Number (Z)",u:"U2",d:"The number of protons in an atom's nucleus. It defines which element the atom is and never changes for that element.",e:"Every atom with 6 protons is carbon, by definition."},
+{t:"Atomic Radius",u:"U2",d:"A measure of atom size. It decreases left-to-right across a period (greater nuclear pull) and increases down a group (more energy levels).",e:"Sodium has a larger atomic radius than chlorine."},
+{t:"Avogadro's Number",u:"U2",d:"The number of particles in exactly one mole of a substance.",f:"6.022 × 10²³ particles/mol",e:"One mole of carbon atoms contains 6.022 × 10²³ atoms."},
+{t:"Bohr Model",u:"U2",d:"An early atomic model showing electrons orbiting the nucleus in fixed, discrete energy levels. Useful for visualizing energy levels, though superseded by the electron cloud model.",e:"Often drawn as concentric rings holding 2, 8, 8… electrons."},
+{t:"Cation",u:"U2",d:"A positively charged ion, formed when an atom loses one or more electrons.",e:"A sodium atom losing one electron becomes Na⁺."},
+{t:"Electron",u:"U2",d:"A negatively charged subatomic particle (charge 1−) found in the region surrounding the nucleus, with a mass roughly 1/1836 that of a proton.",e:"Electrons in the outermost level determine chemical bonding behavior."},
+{t:"Electron Cloud Model",u:"U2",d:"The modern atomic model describing electrons as existing in regions of probability (orbitals) rather than fixed paths.",e:"The cloud is denser where an electron is more likely to be found."},
+{t:"Electron Configuration",u:"U2",d:"The arrangement of electrons among an atom's energy levels and orbitals.",e:"Oxygen is 1s² 2s² 2p⁴."},
+{t:"Electronegativity",u:"U2",d:"A measure of how strongly an atom attracts shared electrons in a chemical bond. It generally increases across a period and decreases down a group.",e:"Fluorine is the most electronegative element."},
+{t:"Element",u:"U2",d:"A pure substance made of only one kind of atom, which cannot be broken into simpler substances by chemical means.",e:"Gold, oxygen, and helium are elements; water is not."},
+{t:"Energy Level (Shell)",u:"U2",d:"A region around the nucleus where electrons of similar energy are found. Levels farther from the nucleus hold electrons of higher energy.",e:"The first level holds up to 2 electrons; the second holds up to 8."},
+{t:"Group (Family)",u:"U2",d:"A vertical column on the periodic table. Elements in a group share the same number of valence electrons and therefore similar chemical properties.",e:"All Group 17 elements have 7 valence electrons."},
+{t:"Halogens",u:"U2",d:"The Group 17 elements. Each has seven valence electrons and is highly reactive, readily gaining one electron to form 1− ions.",e:"Fluorine, chlorine, bromine, and iodine."},
+{t:"Ion",u:"U2",d:"An atom or group of atoms carrying a net electric charge because the number of electrons no longer equals the number of protons.",e:"Mg²⁺ has lost two electrons; O²⁻ has gained two."},
+{t:"Ionization Energy",u:"U2",d:"The energy required to remove an electron from an atom. It increases across a period and decreases down a group.",e:"Noble gases have very high ionization energies because their valence shells are full."},
+{t:"Isotope",u:"U2",d:"Atoms of the same element that have different numbers of neutrons, and therefore different mass numbers, but identical chemical behavior.",e:"Carbon-12 and carbon-14 both have 6 protons but 6 and 8 neutrons respectively."},
+{t:"Mass Number (A)",u:"U2",d:"The total number of protons plus neutrons in an atom's nucleus.",f:"A = protons + neutrons",e:"Carbon-14 has a mass number of 14 (6 protons + 8 neutrons)."},
+{t:"Metal",u:"U2",d:"An element that is typically shiny, malleable, ductile, and a good conductor of heat and electricity, and that tends to lose electrons in reactions.",e:"Copper, iron, and aluminum."},
+{t:"Metalloid",u:"U2",d:"An element with properties intermediate between metals and nonmetals, found along the stair-step line of the periodic table.",e:"Silicon conducts electricity better than a nonmetal but worse than a metal — the basis of semiconductors."},
+{t:"Molar Mass",u:"U2",d:"The mass of one mole of a substance, numerically equal to its atomic or formula mass, expressed in grams per mole.",f:"molar mass = g / mol",e:"Water (H₂O) has a molar mass of about 18.02 g/mol."},
+{t:"Mole",u:"U2",d:"The SI unit for amount of substance: the quantity containing Avogadro's number of particles.",f:"1 mol = 6.022 × 10²³ particles",e:"One mole of any substance contains the same number of particles, though masses differ."},
+{t:"Neutron",u:"U2",d:"An electrically neutral subatomic particle located in the nucleus, with a mass approximately equal to that of a proton.",e:"Changing the neutron count produces a different isotope, not a different element."},
+{t:"Noble Gases",u:"U2",d:"The Group 18 elements. Their valence shells are full, making them extremely unreactive.",e:"Helium, neon, and argon rarely form compounds."},
+{t:"Nonmetal",u:"U2",d:"An element that is typically a poor conductor, brittle when solid, and tends to gain or share electrons in reactions.",e:"Oxygen, nitrogen, and sulfur."},
+{t:"Nucleus",u:"U2",d:"The dense, positively charged center of an atom, containing protons and neutrons and nearly all of the atom's mass.",e:"The nucleus occupies a tiny fraction of the atom's volume but almost all of its mass."},
+{t:"Octet Rule",u:"U2",d:"The tendency of atoms to gain, lose, or share electrons to achieve eight valence electrons — the stable configuration of a noble gas.",e:"Sodium loses one electron and chlorine gains one, so both reach an octet."},
+{t:"Orbital",u:"U2",d:"A region of space within an energy level where an electron is most likely to be found. Each orbital holds a maximum of two electrons.",e:"s orbitals are spherical; p orbitals are dumbbell-shaped."},
+{t:"Period",u:"U2",d:"A horizontal row on the periodic table. Elements in the same period have the same number of occupied energy levels.",e:"All Period 3 elements fill up to the third energy level."},
+{t:"Periodic Law",u:"U2",d:"The principle that the properties of the elements repeat in a regular, predictable pattern when arranged by increasing atomic number.",e:"Reactivity patterns recur systematically down each group."},
+{t:"Periodic Table",u:"U2",d:"The organized arrangement of all known elements by increasing atomic number, grouped so that elements with similar properties fall in the same column.",e:"Its structure lets you predict an unfamiliar element's behavior from its position."},
+{t:"Proton",u:"U2",d:"A positively charged subatomic particle (charge 1+) located in the nucleus. The number of protons defines the element.",e:"An atom with 79 protons is always gold."},
+{t:"Transition Metals",u:"U2",d:"The Groups 3–12 elements, characterized by filling d orbitals, multiple possible oxidation states, and often colorful compounds.",e:"Iron, copper, and nickel."},
+{t:"Valence Electron",u:"U2",d:"An electron in the outermost energy level of an atom. Valence electrons determine how an element bonds and reacts.",e:"Carbon's four valence electrons allow it to form four covalent bonds."},
+
+// ── U3: CHEMICAL BONDING, REACTIONS & SOLUTIONS ──
+{t:"Acid",u:"U3",d:"A substance that donates hydrogen ions (H⁺) in solution, producing a pH below 7.",e:"Hydrochloric acid (HCl) fully dissociates in water to give H⁺ and Cl⁻."},
+{t:"Activation Energy",u:"U3",d:"The minimum energy that colliding particles must have for a chemical reaction to occur.",e:"A spark supplies the activation energy needed to ignite a fuel–air mixture."},
+{t:"Balanced Equation",u:"U3",d:"A chemical equation in which the number of atoms of each element is equal on both sides, satisfying conservation of mass.",e:"2H₂ + O₂ → 2H₂O has 4 H and 2 O on each side."},
+{t:"Base",u:"U3",d:"A substance that accepts hydrogen ions or produces hydroxide ions (OH⁻) in solution, producing a pH above 7.",e:"Sodium hydroxide (NaOH) dissociates to give Na⁺ and OH⁻."},
+{t:"Catalyst",u:"U3",d:"A substance that speeds up a chemical reaction by lowering its activation energy, without being consumed by the reaction.",e:"Enzymes catalyze biological reactions and are recovered unchanged."},
+{t:"Chemical Bond",u:"U3",d:"An attractive force that holds atoms together in a compound, formed by the transfer or sharing of valence electrons.",e:"Ionic, covalent, and metallic bonds are the three principal types."},
+{t:"Chemical Change",u:"U3",d:"A change that produces one or more new substances with different chemical properties. Generally not easily reversible.",e:"Iron rusting, wood burning, or milk souring."},
+{t:"Chemical Equation",u:"U3",d:"A symbolic representation of a chemical reaction, showing reactants on the left and products on the right.",e:"CH₄ + 2O₂ → CO₂ + 2H₂O."},
+{t:"Chemical Formula",u:"U3",d:"A notation using element symbols and subscripts to show the type and number of atoms in a compound.",e:"H₂SO₄ contains 2 hydrogen, 1 sulfur, and 4 oxygen atoms."},
+{t:"Chemical Property",u:"U3",d:"A characteristic that describes how a substance reacts or changes into a new substance — observable only during a chemical change.",e:"Flammability, reactivity with acid, and ability to rust."},
+{t:"Coefficient",u:"U3",d:"The number placed in front of a formula in a chemical equation, indicating how many units of that substance participate.",e:"In 2H₂O, the coefficient 2 means two water molecules."},
+{t:"Combustion Reaction",u:"U3",d:"A reaction in which a substance — usually a hydrocarbon — reacts rapidly with oxygen, releasing energy as heat and light.",f:"CxHy + O₂ → CO₂ + H₂O",e:"CH₄ + 2O₂ → CO₂ + 2H₂O."},
+{t:"Compound",u:"U3",d:"A pure substance made of two or more different elements chemically bonded in a fixed ratio, with properties distinct from its elements.",e:"Water is a compound; its properties differ entirely from hydrogen and oxygen gas."},
+{t:"Concentration",u:"U3",d:"A measure of how much solute is dissolved in a given amount of solvent or solution.",e:"A concentrated solution has a high solute-to-solvent ratio; a dilute one has a low ratio."},
+{t:"Covalent Bond",u:"U3",d:"A bond formed when two atoms share one or more pairs of electrons — typically between two nonmetals.",e:"The two O–H bonds in a water molecule."},
+{t:"Decomposition Reaction",u:"U3",d:"A reaction in which a single compound breaks apart into two or more simpler substances.",f:"AB → A + B",e:"2H₂O → 2H₂ + O₂ during electrolysis."},
+{t:"Double Replacement Reaction",u:"U3",d:"A reaction in which the positive ions of two compounds exchange places, often forming a precipitate, gas, or water.",f:"AB + CD → AD + CB",e:"AgNO₃ + NaCl → AgCl↓ + NaNO₃."},
+{t:"Endothermic Reaction",u:"U3",d:"A reaction that absorbs energy from its surroundings, so the surroundings feel colder.",e:"An instant cold pack absorbs heat as its salt dissolves."},
+{t:"Exothermic Reaction",u:"U3",d:"A reaction that releases energy to its surroundings, so the surroundings feel warmer.",e:"Combustion and neutralization reactions release heat."},
+{t:"Heterogeneous Mixture",u:"U3",d:"A mixture in which the components are not evenly distributed and distinct regions remain visible.",e:"Sand in water, or a salad."},
+{t:"Homogeneous Mixture",u:"U3",d:"A mixture with uniform composition throughout, in which the components cannot be distinguished visually. Also called a solution.",e:"Salt water or filtered air."},
+{t:"Ionic Bond",u:"U3",d:"A bond formed by the transfer of electrons from one atom to another, creating oppositely charged ions that attract — typically between a metal and a nonmetal.",e:"Sodium transfers an electron to chlorine, forming Na⁺Cl⁻."},
+{t:"Law of Conservation of Mass",u:"U3",d:"Mass is neither created nor destroyed in a chemical reaction; the total mass of the reactants equals the total mass of the products.",e:"This is why chemical equations must be balanced."},
+{t:"Metallic Bond",u:"U3",d:"A bond in which metal atoms share a mobile \"sea\" of delocalized valence electrons, accounting for conductivity, malleability, and luster.",e:"The free-moving electrons in copper make it an excellent conductor."},
+{t:"Molarity",u:"U3",d:"A unit of concentration expressing moles of solute per liter of solution.",f:"M = mol solute / L solution",e:"0.50 mol of NaCl in 2.0 L gives a 0.25 M solution."},
+{t:"Molecule",u:"U3",d:"Two or more atoms held together by covalent bonds, acting as a single unit.",e:"O₂, CO₂, and H₂O are molecules."},
+{t:"Neutralization Reaction",u:"U3",d:"A reaction between an acid and a base that produces a salt and water, moving the pH toward 7.",f:"acid + base → salt + water",e:"HCl + NaOH → NaCl + H₂O."},
+{t:"Nonpolar Covalent Bond",u:"U3",d:"A covalent bond in which electrons are shared essentially equally because the atoms have identical or very similar electronegativity.",e:"The bond in O₂ or in a C–H bond."},
+{t:"Oxidation",u:"U3",d:"The loss of electrons by a substance during a chemical reaction. Its oxidation number increases.",e:"Remember OIL RIG: Oxidation Is Loss, Reduction Is Gain."},
+{t:"pH Scale",u:"U3",d:"A logarithmic scale from 0 to 14 measuring the hydrogen ion concentration of a solution: below 7 is acidic, 7 is neutral, above 7 is basic.",e:"Each whole-number step represents a tenfold change in acidity."},
+{t:"Physical Change",u:"U3",d:"A change in form, appearance, or state that does not produce a new substance. Often reversible.",e:"Ice melting, sugar dissolving, or paper being torn."},
+{t:"Physical Property",u:"U3",d:"A characteristic that can be observed or measured without changing the substance's chemical identity.",e:"Color, density, melting point, and conductivity."},
+{t:"Polar Covalent Bond",u:"U3",d:"A covalent bond in which electrons are shared unequally because one atom is significantly more electronegative, creating partial charges.",e:"In water, oxygen pulls electron density away from hydrogen, making the molecule polar."},
+{t:"Precipitate",u:"U3",d:"An insoluble solid that forms and separates out of a solution during a chemical reaction.",e:"The white AgCl solid that appears when silver nitrate meets sodium chloride."},
+{t:"Product",u:"U3",d:"A substance formed by a chemical reaction, written on the right side of a chemical equation.",e:"In 2H₂ + O₂ → 2H₂O, water is the product."},
+{t:"Pure Substance",u:"U3",d:"Matter with a fixed, uniform composition throughout — either a single element or a single compound.",e:"Distilled water and pure copper are pure substances; seawater is not."},
+{t:"Reactant",u:"U3",d:"A starting substance in a chemical reaction, written on the left side of a chemical equation.",e:"In 2H₂ + O₂ → 2H₂O, hydrogen and oxygen are the reactants."},
+{t:"Redox Reaction",u:"U3",d:"A reaction involving the transfer of electrons, in which one substance is oxidized and another is simultaneously reduced.",e:"Rusting, combustion, and battery chemistry are all redox processes."},
+{t:"Reduction",u:"U3",d:"The gain of electrons by a substance during a chemical reaction. Its oxidation number decreases.",e:"In a redox reaction, whatever is reduced gains the electrons the other substance lost."},
+{t:"Single Replacement Reaction",u:"U3",d:"A reaction in which one element replaces another within a compound.",f:"A + BC → AC + B",e:"Zn + 2HCl → ZnCl₂ + H₂."},
+{t:"Solubility",u:"U3",d:"The maximum amount of a solute that can dissolve in a specified amount of solvent at a given temperature.",e:"Sugar's solubility in water increases as temperature rises."},
+{t:"Solute",u:"U3",d:"The substance that is dissolved in a solution — usually present in the smaller amount.",e:"Salt is the solute in salt water."},
+{t:"Solution",u:"U3",d:"A homogeneous mixture in which a solute is uniformly dispersed in a solvent at the particle level.",e:"Salt water, brass, and air are all solutions."},
+{t:"Solvent",u:"U3",d:"The substance that dissolves the solute — usually present in the greater amount.",e:"Water is called the universal solvent because it dissolves so many substances."},
+{t:"Subscript",u:"U3",d:"The small number written after an element symbol in a chemical formula, showing how many atoms of that element are in one unit of the compound.",e:"In H₂O, the subscript 2 indicates two hydrogen atoms. Changing it changes the substance."},
+{t:"Synthesis Reaction",u:"U3",d:"A reaction in which two or more simpler substances combine to form a single, more complex product.",f:"A + B → AB",e:"2Na + Cl₂ → 2NaCl."},
+
+// ── U4: ENERGY, HEAT, THERMODYNAMICS & WAVES ──
+{t:"Amplitude",u:"U4",d:"The maximum displacement of a wave from its rest position — a measure of the wave's energy.",e:"A louder sound or a brighter light corresponds to greater amplitude."},
+{t:"Chemical Energy",u:"U4",d:"Potential energy stored in the bonds between atoms, released or absorbed when those bonds break and re-form.",e:"The energy stored in gasoline, food, and batteries."},
+{t:"Condensation",u:"U4",d:"The phase change from gas to liquid, which releases energy.",e:"Water droplets forming on a cold glass."},
+{t:"Conduction",u:"U4",d:"The transfer of thermal energy through direct contact, as faster-moving particles collide with slower ones.",e:"A metal spoon becoming hot in a pot of soup."},
+{t:"Convection",u:"U4",d:"The transfer of thermal energy by the bulk movement of a heated fluid (liquid or gas), driven by density differences.",e:"Warm air rising and cooler air sinking to create a room's circulation current."},
+{t:"Electromagnetic Spectrum",u:"U4",d:"The full range of electromagnetic radiation ordered by wavelength and frequency, from radio waves to gamma rays.",e:"In order of increasing frequency: radio, microwave, infrared, visible, ultraviolet, X-ray, gamma."},
+{t:"Energy",u:"U4",d:"The capacity to do work or produce change. Measured in joules (J).",e:"Energy exists in many interconvertible forms: kinetic, potential, thermal, chemical, nuclear."},
+{t:"Entropy",u:"U4",d:"A measure of the disorder or randomness of a system. Natural processes tend to increase the total entropy of the universe.",e:"An ice cube melting in a warm room increases entropy."},
+{t:"First Law of Thermodynamics",u:"U4",d:"Energy cannot be created or destroyed, only transferred or converted from one form to another. Also called the law of conservation of energy.",e:"A falling ball converts potential energy to kinetic energy — the total remains constant."},
+{t:"Freezing",u:"U4",d:"The phase change from liquid to solid, which releases energy.",e:"Water freezing to ice at 0 °C."},
+{t:"Frequency",u:"U4",d:"The number of complete wave cycles passing a point per second, measured in hertz (Hz).",f:"f = 1 / T",e:"A 500 Hz sound wave completes 500 cycles each second."},
+{t:"Gravitational Potential Energy",u:"U4",d:"Energy stored in an object because of its height above a reference point.",f:"PE = mgh",e:"A 2.0 kg book on a 1.5 m shelf stores about 29 J (using g = 9.8 m/s²)."},
+{t:"Heat",u:"U4",d:"Thermal energy transferred from a warmer object to a cooler one because of their temperature difference.",e:"Heat is energy in transit — an object contains thermal energy, not \"heat.\""},
+{t:"Kinetic Energy",u:"U4",d:"The energy an object possesses because of its motion.",f:"KE = ½mv²",e:"Doubling an object's speed quadruples its kinetic energy."},
+{t:"Law of Conservation of Energy",u:"U4",d:"In a closed system, the total energy remains constant — energy changes form but is never created or destroyed.",e:"A swinging pendulum trades potential and kinetic energy back and forth."},
+{t:"Longitudinal Wave",u:"U4",d:"A wave in which particles of the medium vibrate parallel to the direction the wave travels, creating compressions and rarefactions.",e:"Sound waves traveling through air."},
+{t:"Mechanical Energy",u:"U4",d:"The sum of an object's kinetic and potential energy.",f:"ME = KE + PE",e:"A roller coaster car's mechanical energy stays nearly constant, ignoring friction."},
+{t:"Melting",u:"U4",d:"The phase change from solid to liquid, which absorbs energy.",e:"Ice melting at 0 °C absorbs energy without changing temperature."},
+{t:"Phase Change",u:"U4",d:"A physical change in which matter converts from one state to another. Temperature stays constant during the change while energy is absorbed or released.",e:"During melting, added energy breaks intermolecular attractions rather than raising temperature."},
+{t:"Plasma",u:"U4",d:"A state of matter consisting of ionized gas containing free electrons and ions, formed at extremely high temperatures.",e:"Stars, lightning, and neon signs contain plasma."},
+{t:"Potential Energy",u:"U4",d:"Stored energy an object possesses because of its position, condition, or composition.",e:"A stretched spring, a raised weight, and a charged battery all store potential energy."},
+{t:"Power",u:"U4",d:"The rate at which work is done or energy is transferred, measured in watts (W).",f:"P = W / t",e:"Doing 500 J of work in 5 s produces 100 W of power."},
+{t:"Radiation (Thermal)",u:"U4",d:"The transfer of energy by electromagnetic waves, requiring no medium — the only form of heat transfer that works through a vacuum.",e:"The Sun's energy reaching Earth through empty space."},
+{t:"Reflection",u:"U4",d:"The bouncing back of a wave when it strikes a surface it cannot pass through.",e:"Your image in a mirror, or an echo off a canyon wall."},
+{t:"Refraction",u:"U4",d:"The bending of a wave as it passes from one medium into another, caused by a change in wave speed.",e:"A straw appearing bent where it enters a glass of water."},
+{t:"Second Law of Thermodynamics",u:"U4",d:"The total entropy of an isolated system always increases over time; heat flows spontaneously from hotter to colder objects, never the reverse.",e:"A hot drink cools to room temperature, but never spontaneously reheats."},
+{t:"Specific Heat",u:"U4",d:"The amount of energy required to raise the temperature of one gram of a substance by one degree Celsius.",f:"Q = mcΔT",e:"Water's high specific heat (4.18 J/g·°C) is why coastal climates are moderate."},
+{t:"Sublimation",u:"U4",d:"The phase change directly from solid to gas without passing through the liquid state.",e:"Dry ice (solid CO₂) turning straight into gas."},
+{t:"Temperature",u:"U4",d:"A measure of the average kinetic energy of the particles in a substance.",e:"A large lukewarm pool has more total thermal energy than a small cup of boiling water, but a lower temperature."},
+{t:"Thermal Energy",u:"U4",d:"The total kinetic energy of all the particles in a substance, depending on both temperature and the amount of matter present.",e:"An ocean has enormous thermal energy despite being cold."},
+{t:"Thermal Equilibrium",u:"U4",d:"The condition reached when two objects in contact arrive at the same temperature and no further net heat transfer occurs.",e:"A drink and its ice cubes eventually reach one common temperature."},
+{t:"Transverse Wave",u:"U4",d:"A wave in which particles of the medium vibrate perpendicular to the direction the wave travels, producing crests and troughs.",e:"Light waves and waves on a rope."},
+{t:"Vaporization",u:"U4",d:"The phase change from liquid to gas, which absorbs energy. Includes both boiling and evaporation.",e:"Water boiling at 100 °C at standard pressure."},
+{t:"Wave",u:"U4",d:"A disturbance that transfers energy from one place to another without transferring matter.",e:"Ocean water moves up and down while the wave energy travels forward."},
+{t:"Wave Speed",u:"U4",d:"How fast a wave travels through a medium, equal to the product of its frequency and wavelength.",f:"v = fλ",e:"A wave with f = 10 Hz and λ = 3 m travels at 30 m/s."},
+{t:"Wavelength",u:"U4",d:"The distance between two consecutive corresponding points on a wave, such as crest to crest. Symbol λ.",e:"Red light has a longer wavelength than blue light."},
+{t:"Work",u:"U4",d:"Energy transferred when a force moves an object through a distance in the direction of the force.",f:"W = Fd",e:"No work is done holding a heavy box still — there is no displacement."},
+
+// ── U5: NUCLEAR SCIENCE ──
+{t:"Alpha Particle",u:"U5",d:"A particle emitted in radioactive decay consisting of two protons and two neutrons — identical to a helium nucleus, with a 2+ charge. Least penetrating radiation.",e:"Stopped by a sheet of paper or the outer layer of skin."},
+{t:"Beta Particle",u:"U5",d:"A high-energy electron emitted from the nucleus when a neutron converts to a proton. More penetrating than alpha.",e:"Stopped by a few millimeters of aluminum."},
+{t:"Chain Reaction",u:"U5",d:"A self-sustaining series of fission reactions, in which neutrons released by one fission trigger further fissions.",e:"Controlled in a nuclear reactor by rods that absorb excess neutrons."},
+{t:"Critical Mass",u:"U5",d:"The minimum amount of fissionable material required to sustain a nuclear chain reaction.",e:"Below critical mass, too many neutrons escape and the reaction dies out."},
+{t:"Gamma Ray",u:"U5",d:"High-energy electromagnetic radiation emitted from a nucleus. It has no mass or charge and is the most penetrating form of nuclear radiation.",e:"Requires thick lead or concrete shielding."},
+{t:"Half-Life",u:"U5",d:"The time required for half of the atoms in a radioactive sample to decay. It is constant for a given isotope and unaffected by temperature or pressure.",e:"After two half-lives, one quarter of the original sample remains."},
+{t:"Ionizing Radiation",u:"U5",d:"Radiation energetic enough to remove electrons from atoms, forming ions and potentially damaging living tissue and DNA.",e:"Alpha, beta, gamma, and X-rays are all ionizing."},
+{t:"Mass–Energy Equivalence",u:"U5",d:"Einstein's principle that mass and energy are interchangeable; the small mass lost in nuclear reactions is converted to enormous energy.",f:"E = mc²",e:"Because c² is so large, a tiny mass loss releases immense energy."},
+{t:"Nuclear Binding Energy",u:"U5",d:"The energy that holds protons and neutrons together in a nucleus, equal to the energy released when the nucleus formed.",e:"Iron-56 has among the highest binding energy per nucleon, making it exceptionally stable."},
+{t:"Nuclear Fission",u:"U5",d:"The splitting of a large, unstable nucleus into two or more smaller nuclei, releasing energy and additional neutrons.",e:"Uranium-235 splitting is the process used in nuclear power plants."},
+{t:"Nuclear Fusion",u:"U5",d:"The joining of two light nuclei into a heavier nucleus, releasing enormous energy. Requires extremely high temperature and pressure.",e:"Hydrogen fusing into helium powers the Sun."},
+{t:"Radioactive Decay",u:"U5",d:"The spontaneous process by which an unstable nucleus emits particles or energy to become more stable.",e:"Carbon-14 decaying into nitrogen-14 by beta emission."},
+{t:"Radioactivity",u:"U5",d:"The property of certain unstable isotopes to spontaneously emit radiation from their nuclei.",e:"Uranium and radium are naturally radioactive."},
+{t:"Radioisotope",u:"U5",d:"An isotope with an unstable nucleus that undergoes radioactive decay.",e:"Iodine-131 is used to treat thyroid conditions."},
+{t:"Radiometric Dating",u:"U5",d:"A technique that determines the age of a material by measuring the ratio of a radioactive isotope to its decay products, using known half-lives.",e:"Carbon-14 dating for organic remains; uranium-lead dating for ancient rock."},
+{t:"Transmutation",u:"U5",d:"The change of one element into another, occurring when the number of protons in the nucleus changes through nuclear decay or reaction.",e:"Only nuclear processes can transmute elements — chemical reactions never can."},
+
+// ── U6: MOTION & FORCES ──
+{t:"Acceleration",u:"U6",d:"The rate at which velocity changes over time. A vector quantity — speeding up, slowing down, or changing direction all count.",f:"a = Δv / t",e:"Going from 0 to 20 m/s in 4 s gives an acceleration of 5 m/s²."},
+{t:"Air Resistance",u:"U6",d:"A form of friction exerted by air on an object moving through it, increasing with speed and surface area.",e:"Why a feather falls more slowly than a rock in air, but identically in a vacuum."},
+{t:"Balanced Forces",u:"U6",d:"Forces acting on an object that cancel completely, producing zero net force and no change in the object's motion.",e:"A book resting on a table: gravity down, normal force up, equal in size."},
+{t:"Centripetal Force",u:"U6",d:"The net inward force that keeps an object moving along a circular path, always directed toward the center.",f:"Fc = mv² / r",e:"Tension in a string keeps a whirled ball circling."},
+{t:"Displacement",u:"U6",d:"The straight-line change in position from start to finish, including direction. A vector quantity.",e:"Walking 3 m east then 3 m west gives 6 m of distance but 0 m of displacement."},
+{t:"Distance",u:"U6",d:"The total length of the path actually traveled, regardless of direction. A scalar quantity.",e:"One full lap of a track covers 400 m of distance."},
+{t:"Equilibrium",u:"U6",d:"The condition in which all forces on an object are balanced, so its acceleration is zero. The object is either at rest or moving at constant velocity.",e:"A skydiver at terminal velocity is in equilibrium despite moving quickly."},
+{t:"Force",u:"U6",d:"A push or pull that can change an object's motion or shape. A vector measured in newtons (N).",f:"1 N = 1 kg·m/s²",e:"Gravity, friction, tension, and applied forces."},
+{t:"Free Body Diagram",u:"U6",d:"A simplified drawing showing an object as a point with labeled arrows representing every force acting on it.",e:"Arrow length represents force magnitude; direction represents the force's direction."},
+{t:"Free Fall",u:"U6",d:"Motion under the influence of gravity alone, with no air resistance. All objects in free fall accelerate at the same rate regardless of mass.",f:"g ≈ 9.8 m/s² near Earth's surface",e:"A hammer and feather land together on the Moon, where there is no air."},
+{t:"Friction",u:"U6",d:"A force that opposes motion between two surfaces in contact, converting kinetic energy into thermal energy.",e:"Why a rolling ball eventually stops."},
+{t:"Gravity",u:"U6",d:"The attractive force that exists between any two objects with mass, increasing with mass and decreasing rapidly with distance.",e:"Gravity keeps planets in orbit and objects on Earth's surface."},
+{t:"Impulse",u:"U6",d:"The product of a force and the time interval over which it acts; it equals the change in an object's momentum.",f:"J = FΔt = Δp",e:"Airbags extend collision time, reducing the force needed for the same impulse."},
+{t:"Inertia",u:"U6",d:"The tendency of an object to resist any change in its state of motion. Mass is the measure of inertia.",e:"Passengers lurch forward when a car brakes suddenly."},
+{t:"Kinetic Friction",u:"U6",d:"The frictional force acting between surfaces that are already sliding past each other. Generally weaker than static friction.",e:"Once a heavy box starts sliding, it takes less force to keep it moving."},
+{t:"Mass (Motion)",u:"U6",d:"The quantity of matter in an object and the measure of its inertia. Constant regardless of location.",e:"A 10 kg object has 10 kg of mass on Earth, on the Moon, and in deep space."},
+{t:"Momentum",u:"U6",d:"The quantity of motion an object has, equal to its mass times its velocity. A vector quantity.",f:"p = mv",e:"A slow-moving truck can carry more momentum than a fast-moving bicycle."},
+{t:"Net Force",u:"U6",d:"The vector sum of all forces acting on an object. It determines whether and how the object accelerates.",f:"Fnet = ΣF",e:"A 10 N push right against a 4 N friction force left gives a 6 N net force right."},
+{t:"Newton's First Law",u:"U6",d:"An object at rest stays at rest, and an object in motion continues at constant velocity, unless acted upon by an unbalanced force. Also called the law of inertia.",e:"A hockey puck glides nearly forever on frictionless ice."},
+{t:"Newton's Second Law",u:"U6",d:"The acceleration of an object is directly proportional to the net force on it and inversely proportional to its mass.",f:"F = ma",e:"A 20 N net force on a 4 kg object produces 5 m/s² of acceleration."},
+{t:"Newton's Third Law",u:"U6",d:"For every action force there is an equal and opposite reaction force. The two forces act on different objects, so they never cancel.",e:"A rocket pushes exhaust down; the exhaust pushes the rocket up."},
+{t:"Projectile Motion",u:"U6",d:"The curved path of an object launched into the air, moving at constant horizontal velocity while accelerating downward under gravity.",e:"Horizontal and vertical motion are independent — a dropped ball and a horizontally thrown ball land together."},
+{t:"Reference Frame",u:"U6",d:"The background or viewpoint against which motion is measured. Whether an object appears to move depends on the frame chosen.",e:"A seated passenger is at rest relative to the train but moving relative to the platform."},
+{t:"Scalar",u:"U6",d:"A quantity described completely by magnitude alone, with no direction.",e:"Distance, speed, mass, time, and energy are scalars."},
+{t:"Speed",u:"U6",d:"How fast an object is moving — the rate at which it covers distance. A scalar quantity.",f:"v = d / t",e:"Traveling 120 m in 15 s gives a speed of 8 m/s."},
+{t:"Static Friction",u:"U6",d:"The frictional force that must be overcome to start a stationary object moving. Generally stronger than kinetic friction.",e:"The initial resistance felt when first pushing a heavy desk."},
+{t:"Terminal Velocity",u:"U6",d:"The constant maximum speed reached by a falling object when air resistance grows equal to the force of gravity, producing zero net force.",e:"A skydiver reaches roughly 55 m/s before opening the parachute."},
+{t:"Unbalanced Forces",u:"U6",d:"Forces that do not cancel, producing a nonzero net force and therefore acceleration.",e:"Only unbalanced forces can change an object's motion."},
+{t:"Universal Gravitation",u:"U6",d:"Newton's law stating that every mass attracts every other mass with a force proportional to the product of their masses and inversely proportional to the square of the distance between them.",f:"F = Gm₁m₂ / r²",e:"Doubling the distance reduces the gravitational force to one quarter."},
+{t:"Vector",u:"U6",d:"A quantity requiring both magnitude and direction to be fully described.",e:"Displacement, velocity, acceleration, force, and momentum are vectors."},
+{t:"Velocity",u:"U6",d:"The rate of change of position including direction — speed with a direction attached. A vector quantity.",e:"\"25 m/s north\" is a velocity; \"25 m/s\" alone is a speed."},
+{t:"Weight",u:"U6",d:"The force of gravity acting on an object's mass. It varies with gravitational field strength, unlike mass.",f:"W = mg",e:"A 10 kg mass weighs about 98 N on Earth but only about 16 N on the Moon."}
+];
+
+const UNIT_NAMES = {
+  U1:"Nature of Science", U2:"Atomic Structure", U3:"Bonding & Reactions",
+  U4:"Energy, Heat & Waves", U5:"Nuclear Science", U6:"Motion & Forces"
+};
+
+// ── STATE ──
+let curUnit='all', starOnly=false, formulaOnly=false, curLetter=null, curView='card';
+let starred = new Set(JSON.parse(localStorage.getItem('physci_glossary_starred')||'[]'));
+let quizScore = localStorage.getItem('physci_glossary_quizscore');
+
+// ── HELPERS ──
+function saveStars(){ localStorage.setItem('physci_glossary_starred', JSON.stringify([...starred])); }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function toggleStar(name, ev){
+  ev.stopPropagation();
+  if(starred.has(name)) starred.delete(name); else starred.add(name);
+  saveStars();
+  applyFilters();
+}
+function setUnit(u, btn){
+  curUnit=u;
+  document.querySelectorAll('.pill[data-unit]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+function toggleStarOnly(){
+  starOnly=!starOnly;
+  document.getElementById('btn-star').classList.toggle('active',starOnly);
+  applyFilters();
+}
+function toggleFormulaOnly(){
+  formulaOnly=!formulaOnly;
+  document.getElementById('btn-formula').classList.toggle('active',formulaOnly);
+  applyFilters();
+}
+function setView(v){
+  curView=v;
+  document.getElementById('btn-card').classList.toggle('active',v==='card');
+  document.getElementById('btn-compact').classList.toggle('active',v==='compact');
+  document.getElementById('term-list').classList.toggle('compact',v==='compact');
+}
+function setLetter(L, btn){
+  curLetter = (curLetter===L) ? null : L;
+  document.querySelectorAll('.az-btn').forEach(b=>b.classList.remove('active'));
+  if(curLetter) btn.classList.add('active');
+  applyFilters();
+}
+
+// ── BUILD A–Z BAR ──
+function buildAZ(){
+  const present = new Set(TERMS.map(t=>t.t[0].toUpperCase()));
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  document.getElementById('az-row').innerHTML = letters.map(L=>
+    `<button class="az-btn ${present.has(L)?'has':''}" onclick="setLetter('${L}',this)" ${present.has(L)?'':'disabled style="opacity:.25;cursor:default"'}>${L}</button>`
+  ).join('');
+}
+
+// ── FILTER + RENDER ──
+function getFiltered(){
+  const q = document.getElementById('search-input').value.trim().toLowerCase();
+  return TERMS.filter(t=>{
+    if(curUnit!=='all' && t.u!==curUnit) return false;
+    if(starOnly && !starred.has(t.t)) return false;
+    if(formulaOnly && !t.f) return false;
+    if(curLetter && t.t[0].toUpperCase()!==curLetter) return false;
+    if(q){
+      const hay = (t.t+' '+t.d+' '+(t.f||'')+' '+(t.e||'')).toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+}
+
+function applyFilters(){
+  const list = getFiltered().slice().sort((a,b)=>a.t.localeCompare(b.t));
+  document.getElementById('s-shown').textContent = list.length;
+  document.getElementById('s-starred').textContent = starred.size;
+  document.getElementById('count-line').innerHTML = `<b>${list.length}</b> terms shown`;
+
+  const box = document.getElementById('term-list');
+  if(list.length===0){
+    box.innerHTML = '<div class="empty">No terms match your search or filters.</div>';
+    return;
+  }
+  // group by first letter
+  const groups = {};
+  list.forEach(t=>{ const L=t.t[0].toUpperCase(); (groups[L]=groups[L]||[]).push(t); });
+
+  box.innerHTML = Object.keys(groups).sort().map(L=>{
+    const items = groups[L].map(t=>{
+      const on = starred.has(t.t);
+      let extra='';
+      if(t.f) extra += `<div class="extra-line ex-formula"><span class="extra-lbl">FORMULA</span>${esc(t.f)}</div>`;
+      if(t.e) extra += `<div class="extra-line ex-example"><span class="extra-lbl">EXAMPLE</span>${esc(t.e)}</div>`;
+      return `
+      <div class="term-card">
+        <div class="term-top">
+          <div class="term-name">${esc(t.t)}</div>
+          <div class="term-meta">
+            <span class="tag tag-unit">${t.u} · ${UNIT_NAMES[t.u]}</span>
+            ${t.f?'<span class="tag tag-formula">📐 Formula</span>':''}
+            ${t.e?'<span class="tag tag-example">💡 Example</span>':''}
+            <button class="star-btn ${on?'on':''}" onclick="toggleStar('${t.t.replace(/'/g,"\\'")}',event)">${on?'★':'☆'}</button>
+          </div>
+        </div>
+        <div class="term-def">${esc(t.d)}</div>
+        ${extra?`<div class="term-extra">${extra}</div>`:''}
+      </div>`;
+    }).join('');
+    return `<div class="letter-head"><div class="letter-badge">${L}</div><div class="letter-count">${groups[L].length} term${groups[L].length===1?'':'s'}</div></div>${items}`;
+  }).join('');
+}
+
+// ── FLASHCARD QUIZ ──
+let quizDeck=[], quizIdx=0, quizRight=0, quizRevealed=false;
+
+function launchQuiz(){
+  const pool = getFiltered();
+  if(pool.length < 4){ alert('Need at least 4 terms in the current filter to start a quiz.'); return; }
+  quizDeck = pool.slice().sort(()=>Math.random()-0.5).slice(0, Math.min(20, pool.length));
+  quizIdx=0; quizRight=0; quizRevealed=false;
+  document.getElementById('quiz-modal').classList.add('open');
+  renderQuiz();
+}
+function closeQuiz(){ document.getElementById('quiz-modal').classList.remove('open'); }
+function revealAnswer(){ quizRevealed=true; renderQuiz(); }
+function markQuiz(correct){
+  if(correct) quizRight++;
+  quizIdx++; quizRevealed=false;
+  if(quizIdx>=quizDeck.length){
+    const pct = Math.round((quizRight/quizDeck.length)*100);
+    quizScore = pct+'%';
+    localStorage.setItem('physci_glossary_quizscore', quizScore);
+    document.getElementById('s-quiz').textContent = quizScore;
+    document.getElementById('quiz-box').innerHTML = `
+      <button class="quiz-close" onclick="closeQuiz()">✕</button>
+      <div class="quiz-done">
+        <div style="font-size:11px;letter-spacing:.12em;color:var(--muted);margin-bottom:10px">SESSION COMPLETE</div>
+        <div class="quiz-score">${quizRight}/${quizDeck.length}</div>
+        <div style="font-size:14px;color:var(--muted);margin:8px 0 20px">${pct}% correct</div>
+        <div class="quiz-btns">
+          <button class="qbtn qbtn-show" onclick="launchQuiz()">Run Again</button>
+          <button class="qbtn qbtn-got" onclick="closeQuiz()">Done</button>
+        </div>
+      </div>`;
+    return;
+  }
+  renderQuiz();
+}
+function renderQuiz(){
+  const t = quizDeck[quizIdx];
+  let ansHtml = `<div class="quiz-answer ${quizRevealed?'show':''}">${esc(t.d)}`;
+  if(t.f) ansHtml += `<div class="qa-formula">${esc(t.f)}</div>`;
+  ansHtml += `</div>`;
+  document.getElementById('quiz-box').innerHTML = `
+    <button class="quiz-close" onclick="closeQuiz()">✕</button>
+    <div class="quiz-progress">CARD ${quizIdx+1} OF ${quizDeck.length} · ${t.u} ${UNIT_NAMES[t.u]}</div>
+    <div class="quiz-prompt-lbl">DEFINE THIS TERM</div>
+    <div class="quiz-term">${esc(t.t)}</div>
+    ${ansHtml}
+    <div class="quiz-btns">
+      ${quizRevealed
+        ? `<button class="qbtn qbtn-miss" onclick="markQuiz(false)">✗ Missed It</button>
+           <button class="qbtn qbtn-got" onclick="markQuiz(true)">✓ Got It</button>`
+        : `<button class="qbtn qbtn-show" onclick="revealAnswer()">Show Answer</button>`}
+    </div>`;
+}
+document.getElementById('quiz-modal').addEventListener('click', e=>{
+  if(e.target.id==='quiz-modal') closeQuiz();
+});
+
+// ── INIT (all counts computed from data, never hardcoded) ──
+(function init(){
+  const total = TERMS.length;
+  const units = new Set(TERMS.map(t=>t.u)).size;
+  const withFormula = TERMS.filter(t=>t.f).length;
+  document.getElementById('s-total').textContent = total;
+  document.getElementById('page-sub').textContent =
+    `${total} essential terms · ${units} units · ${withFormula} with formulas · A–Z with examples`;
+  if(quizScore) document.getElementById('s-quiz').textContent = quizScore;
+  buildAZ();
+  applyFilters();
+})();
+</script>
+</body>
+</html>

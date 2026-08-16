@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pre-AP World History &amp; Geography — Drill Trainer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
+  --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(229,148,0,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(229,148,0,0.035) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:26px 20px 70px}
+
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--amber)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+.hdr-btn{background:var(--card);border:1px solid var(--border);color:var(--text);font-family:'DM Sans',sans-serif;font-size:12.5px;font-weight:700;padding:9px 16px;border-radius:10px;cursor:pointer}
+.hdr-btn:hover{border-color:var(--amber)}
+
+.path-banner{background:linear-gradient(135deg,rgba(229,148,0,.1),rgba(46,139,192,.06));border:1px solid var(--border);border-radius:12px;padding:11px 16px;margin-bottom:18px;font-size:12.5px;color:var(--text)}
+.path-banner b{color:#efb44e}
+
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px;flex:1}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+
+.screen{display:none}
+.screen.active{display:block}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:14px}
+.sec-lbl{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.13em;color:var(--muted);margin-bottom:11px}
+
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:7px 15px;font-size:12.5px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--amber);color:var(--text)}
+.pill.active{background:var(--amber);border-color:var(--amber);color:#1a1200}
+.pill-row{display:flex;gap:7px;flex-wrap:wrap}
+
+.mode-tab{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:11px 17px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.mode-tab:hover{border-color:var(--amber);color:var(--text)}
+.mode-tab.active{background:rgba(229,148,0,.16);border-color:var(--amber);color:var(--white)}
+.mode-desc{margin-top:10px;font-size:12.5px;color:var(--muted);line-height:1.6}
+
+.unit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:9px}
+.unit-box{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:12px 14px;cursor:pointer;transition:all .18s;display:flex;align-items:center;gap:10px}
+.unit-box:hover{border-color:var(--amber)}
+.unit-box.on{background:rgba(229,148,0,.12);border-color:var(--amber)}
+.unit-check{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.unit-box.on .unit-check{background:var(--amber);border-color:var(--amber);color:#1a1200}
+.unit-name{font-size:12.5px;font-weight:700;color:var(--text)}
+.unit-qty{font-size:10.5px;color:var(--muted);font-family:'DM Mono',monospace}
+
+.btn{border:none;border-radius:12px;padding:14px 26px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-go{background:linear-gradient(135deg,var(--amber),#c07800);color:#fff;width:100%}
+.btn-go:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(229,148,0,.32)}
+.btn-go:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-ghost{background:var(--bg);border:1px solid var(--border);color:var(--text)}
+.btn-teal{background:var(--teal);color:#fff}
+.btn-next{background:var(--amber);color:#1a1200}
+
+.q-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.q-counter{font-family:'DM Mono',monospace;font-size:11.5px;letter-spacing:.1em;color:var(--muted)}
+.q-badges{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.badge{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:6px;white-space:nowrap}
+.b-unit{background:rgba(46,139,192,.16);color:#7cc0e6;border:1px solid rgba(46,139,192,.3)}
+.b-t1{background:rgba(29,158,117,.15);color:#4fd1a5;border:1px solid rgba(29,158,117,.3)}
+.b-t2{background:rgba(229,148,0,.14);color:#efb44e;border:1px solid rgba(229,148,0,.3)}
+.b-t3{background:rgba(231,76,60,.14);color:#f08579;border:1px solid rgba(231,76,60,.3)}
+.timer{font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:var(--amber)}
+.timer.warn{color:var(--red)}
+
+.prog-bar{height:5px;background:var(--bg);border-radius:99px;overflow:hidden;margin-bottom:18px}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--amber),var(--sky));transition:width .3s}
+
+.q-text{font-size:16px;font-weight:600;color:var(--white);line-height:1.5;margin-bottom:16px}
+
+.opts{display:flex;flex-direction:column;gap:9px;margin-bottom:16px}
+.opt{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:13px 16px;cursor:pointer;transition:all .16s;display:flex;align-items:flex-start;gap:12px;text-align:left;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);width:100%}
+.opt:hover:not(:disabled){border-color:var(--amber);background:var(--card2)}
+.opt:disabled{cursor:default}
+.opt-key{width:24px;height:24px;border-radius:7px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0;color:var(--muted)}
+.opt.correct{border-color:var(--teal);background:rgba(29,158,117,.11)}
+.opt.correct .opt-key{background:var(--teal);border-color:var(--teal);color:#fff}
+.opt.wrong{border-color:var(--red);background:rgba(231,76,60,.10)}
+.opt.wrong .opt-key{background:var(--red);border-color:var(--red);color:#fff}
+
+.feedback{border-radius:12px;padding:14px 16px;margin-bottom:16px;display:none}
+.feedback.show{display:block}
+.fb-right{background:rgba(29,158,117,.09);border:1px solid rgba(29,158,117,.3)}
+.fb-wrong{background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.3)}
+.fb-head{font-size:13px;font-weight:800;margin-bottom:7px}
+.fb-right .fb-head{color:#4fd1a5}
+.fb-wrong .fb-head{color:#f08579}
+.fb-body{font-size:13.5px;color:var(--text);opacity:.92;line-height:1.55}
+
+.res-score{font-size:3rem;font-weight:800;font-family:'DM Mono',monospace;color:var(--white);text-align:center;line-height:1}
+.res-score span{font-size:1.5rem;color:var(--muted)}
+.res-grade{text-align:center;font-size:1.2rem;font-weight:800;margin:8px 0}
+.res-sub{text-align:center;font-size:13px;color:var(--muted);margin-bottom:20px}
+.brk-row{display:flex;align-items:center;gap:11px;margin-bottom:9px}
+.brk-name{font-size:12.5px;font-weight:700;min-width:150px;color:var(--text)}
+.brk-bar{flex:1;height:8px;background:var(--bg);border-radius:99px;overflow:hidden}
+.brk-fill{height:100%;border-radius:99px}
+.brk-num{font-family:'DM Mono',monospace;font-size:11.5px;color:var(--muted);min-width:46px;text-align:right}
+.res-btns{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}
+.res-btns .btn{flex:1;min-width:130px}
+.miss-item{background:var(--bg);border:1px solid var(--border);border-left:2px solid var(--red);border-radius:9px;padding:11px 14px;margin-bottom:8px}
+.miss-q{font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px}
+.miss-a{font-size:12px;color:var(--muted)}
+.miss-a b{color:#4fd1a5}
+
+@media(max-width:640px){.page-title{font-size:1.5rem}.brk-name{min-width:98px;font-size:11.5px}}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <a href="WorldHistory_StudyHub.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--amber);text-decoration:none;margin-bottom:14px;opacity:.85">← World History Study Hub</a>
+
+  <div class="header">
+    <div>
+      <div class="series-label">Pre-AP World History &amp; Geography · Study Resource Series · Build 2</div>
+      <div class="page-title">Drill <span>Trainer</span></div>
+      <div class="page-sub" id="page-sub">Loading…</div>
+    </div>
+    <button class="hdr-btn" id="btn-setup" onclick="goSetup()" style="display:none">← Setup</button>
+  </div>
+
+  <div class="path-banner">🗺️ <b>Pathway 2</b> — Geography, Early Modern, Modern, and Contemporary periods, per the College Board Pre-AP framework.</div>
+
+  <div class="stats-row">
+    <div class="stat-chip"><div class="stat-num" id="gs-total">0</div><div class="stat-lbl">TOTAL DRILLED</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--teal)" id="gs-acc">—</div><div class="stat-lbl">ACCURACY</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--amber)" id="gs-streak">0</div><div class="stat-lbl">BEST STREAK</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--sky)" id="gs-sessions">0</div><div class="stat-lbl">SESSIONS</div></div>
+  </div>
+
+  <div class="screen active" id="screen-setup">
+    <div class="card">
+      <div class="sec-lbl">SESSION MODE</div>
+      <div class="pill-row" id="mode-tabs">
+        <button class="mode-tab active" data-mode="practice" onclick="setMode('practice',this)">📚 Practice</button>
+        <button class="mode-tab" data-mode="exam" onclick="setMode('exam',this)">🎓 Exam Mode</button>
+        <button class="mode-tab" data-mode="stamina" onclick="setMode('stamina',this)">🔥 Stamina</button>
+      </div>
+      <div class="mode-desc" id="mode-desc"></div>
+    </div>
+    <div class="card">
+      <div class="sec-lbl">UNITS &nbsp;·&nbsp; <span id="sel-count" style="color:var(--amber)"></span></div>
+      <div class="unit-grid" id="unit-grid"></div>
+      <div class="pill-row" style="margin-top:11px">
+        <button class="pill" onclick="selectAllUnits(true)">Select All</button>
+        <button class="pill" onclick="selectAllUnits(false)">Clear</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="sec-lbl">DIFFICULTY</div>
+      <div class="pill-row">
+        <button class="pill active" data-tier="all" onclick="setTier('all',this)">All Tiers</button>
+        <button class="pill" data-tier="1" onclick="setTier(1,this)">① Foundational</button>
+        <button class="pill" data-tier="2" onclick="setTier(2,this)">② Intermediate</button>
+        <button class="pill" data-tier="3" onclick="setTier(3,this)">③ Challenge</button>
+      </div>
+    </div>
+    <button class="btn btn-go" id="btn-start" onclick="startSession()">Start Session</button>
+  </div>
+
+  <div class="screen" id="screen-q">
+    <div class="card">
+      <div class="q-top">
+        <div class="q-counter" id="q-counter"></div>
+        <div class="q-badges" id="q-badges"></div>
+        <div class="timer" id="q-timer" style="display:none"></div>
+      </div>
+      <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+      <div class="q-text" id="q-text"></div>
+      <div class="opts" id="q-opts"></div>
+      <div class="feedback" id="q-feedback"></div>
+      <button class="btn btn-next" id="btn-nextq" style="display:none;width:100%" onclick="nextQuestion()">Next Question →</button>
+    </div>
+  </div>
+
+  <div class="screen" id="screen-res">
+    <div class="card">
+      <div class="sec-lbl" id="res-mode">SESSION COMPLETE</div>
+      <div class="res-score" id="res-score"></div>
+      <div class="res-grade" id="res-grade"></div>
+      <div class="res-sub" id="res-sub"></div>
+      <div class="sec-lbl" style="margin-top:20px">BREAKDOWN BY UNIT</div>
+      <div id="res-breakdown"></div>
+      <div class="res-btns">
+        <button class="btn btn-ghost" onclick="goSetup()">← Setup</button>
+        <button class="btn btn-teal" onclick="retrySession()">Retry Same</button>
+        <button class="btn btn-next" id="btn-retry-missed" onclick="retryMissed()">Drill Missed Only</button>
+      </div>
+    </div>
+    <div class="card" id="res-missed-card" style="display:none">
+      <div class="sec-lbl">QUESTIONS MISSED</div>
+      <div id="res-missed"></div>
+    </div>
+  </div>
+
+  <div style="margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center">
+    Pre-AP World History &amp; Geography (21094150) · College Board Pre-AP Framework · Pathway 2 · Drill Trainer
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+// PRE-AP WORLD HISTORY & GEOGRAPHY — DRILL TRAINER
+// Pathway 2: U1 Geography | U2 Early Modern (c.1450-1750)
+// U3 Modern (c.1750-1914) | U4 Contemporary (c.1914-present)
+// tier: 1=foundational 2=intermediate 3=challenge
+// ═══════════════════════════════════════════
+const QB = [
+{u:"U1",tier:1,q:"Describing a city as 'located at 41°N, 12°E' is an example of which kind of location?",o:["Absolute location","Relative location","Regional location","Cultural location"],a:0,exp:"Absolute location uses fixed coordinates such as latitude and longitude to pinpoint an exact position on Earth's surface, unlike relative location, which describes position in relation to other places."},
+{u:"U1",tier:1,q:"Which best distinguishes human geography from physical geography?",o:["Human geography studies landforms; physical geography studies climate","Human geography applies only to cities","They are two names for the same field","Human geography studies people's organization and environment interaction; physical geography studies natural features and processes"],a:3,exp:"Physical geography covers Earth's natural systems — landforms, climate, water. Human geography covers how people organize themselves and interact with their environment — population, culture, economics."},
+{u:"U1",tier:2,q:"A famine drives thousands of people to leave their home region. In migration terms, the famine is best described as a:",o:["Pull factor","Cultural diffusion event","Push factor","Demographic transition"],a:2,exp:"A push factor is a condition that drives people to leave a place — war, famine, persecution. A pull factor, by contrast, attracts people toward a new place, such as economic opportunity."},
+{u:"U1",tier:2,q:"The spread of Buddhism from South Asia into East Asia along trade routes is a clear example of:",o:["Cultural diffusion","Colonization","Urbanization","Absolute location"],a:0,exp:"Cultural diffusion is the spread of ideas, customs, or beliefs from one society to another through contact — exactly what happened as Buddhism moved along Silk Road trade networks."},
+{u:"U1",tier:2,q:"Why does every flat map projection necessarily distort the Earth's true geography in some way?",o:["Mapmakers make mistakes","Only Mercator projections are inaccurate","A curved surface cannot be shown on a flat plane without distorting shape, area, distance, or direction","Modern satellites have fixed this problem"],a:2,exp:"Because the Earth is a sphere, transferring its surface onto a flat map always requires trade-offs — no projection can preserve shape, area, distance, and direction all at once."},
+{u:"U1",tier:1,q:"Which term describes the original inhabitants of a region prior to colonization or significant outside settlement?",o:["Indigenous peoples","Diaspora","Proletariat","Refugees"],a:0,exp:"Indigenous peoples are the original inhabitants of a region before colonization or major outside settlement — a term used throughout the study of the Americas, Africa, and other colonized regions."},
+{u:"U1",tier:3,q:"A historian argues that mountainous terrain slowed the spread of a particular empire's administrative control. This argument relies most directly on which geographic concept?",o:["Absolute location","Topography and its effect on human activity","Cultural diffusion","Demography"],a:1,exp:"Topography — the physical shape and elevation of the land — directly affects human activity, including how quickly armies, administrators, and trade could move through difficult terrain."},
+{u:"U1",tier:2,q:"Which best defines sovereignty?",o:["A state's total population","A country's total land area","The authority of a state to govern itself without external interference","The number of trade routes passing through a region"],a:2,exp:"Sovereignty is a state's authority to govern itself within its own territory without external interference — a concept central to understanding colonization, since colonization overrides a colonized people's sovereignty."},
+{u:"U2",tier:1,q:"The Columbian Exchange refers to the transfer of which of the following between the Americas, Europe, and Africa after 1492?",o:["Only gold and silver","Only religious ideas","Plants, animals, diseases, technologies, and people","Only military technology"],a:2,exp:"The Columbian Exchange was a wide-ranging transfer — crops like maize and potatoes, animals like horses, and unfortunately diseases like smallpox, moving in both directions across the Atlantic."},
+{u:"U2",tier:2,q:"Under the economic theory of mercantilism, a nation's wealth and power were believed to depend primarily on:",o:["Free trade with all nations equally","Abolishing all tariffs","Accumulating gold and silver by maximizing exports and minimizing imports","Democratic political participation"],a:2,exp:"Mercantilism held that a nation grew wealthy and powerful by accumulating precious metals, achieved by exporting more than it imported — a major justification for establishing colonies as resource sources and captive markets."},
+{u:"U2",tier:2,q:"In the Triangular Trade network, what did ships typically carry from the Americas back to Europe?",o:["Manufactured goods","Raw materials such as sugar","Enslaved people","Gunpowder weapons"],a:1,exp:"The Triangular Trade moved manufactured goods to Africa, enslaved people to the Americas (the Middle Passage), and raw materials such as sugar, tobacco, and cotton back to Europe."},
+{u:"U2",tier:1,q:"What event is traditionally marked as the beginning of the Protestant Reformation?",o:["The Council of Trent","Martin Luther's Ninety-Five Theses in 1517","The Peace of Westphalia","The fall of Constantinople"],a:1,exp:"Martin Luther's posting of the Ninety-Five Theses in 1517, criticizing Catholic Church practices, is traditionally marked as the start of the Protestant Reformation."},
+{u:"U2",tier:2,q:"Which best describes the Catholic Church's Counter-Reformation?",o:["An effort to unite with Protestant churches","A declaration of war on Protestant states","An internal reform effort and reaffirmation of Catholic doctrine in response to the Reformation","The founding of the Church of England"],a:2,exp:"The Counter-Reformation was the Catholic Church's response to the Protestant Reformation, involving internal reforms and doctrinal clarification, notably through the Council of Trent."},
+{u:"U2",tier:2,q:"What distinguished the Scientific Revolution's approach to knowledge from earlier periods?",o:["Reliance on ancient authority alone","Emphasis on observation, experimentation, and mathematical reasoning","Rejection of all mathematics","Exclusive focus on religious texts"],a:1,exp:"The Scientific Revolution marked a shift toward direct observation, controlled experimentation, and mathematical description of nature, challenging explanations based solely on received authority."},
+{u:"U2",tier:1,q:"Absolutism describes a system of government in which:",o:["Power is divided equally among branches of government","A monarch holds total, largely unchecked authority, often justified by divine right","Citizens vote directly on all laws","The military rules without a monarch"],a:1,exp:"Absolutism concentrates total authority in a monarch, often justified by the doctrine of divine right — the claim that a ruler's power comes directly from God and cannot be legitimately challenged."},
+{u:"U2",tier:2,q:"Which empire's cannons famously breached the walls of Constantinople in 1453, ending the Byzantine Empire?",o:["The Ottoman Empire","The Mughal Empire","The Safavid Empire","The Ming Dynasty"],a:0,exp:"The Ottoman Empire's use of massive cannons to breach Constantinople's walls in 1453 is a classic example of a 'gunpowder empire' using new military technology to reshape a region."},
+{u:"U2",tier:2,q:"The Taj Mahal was constructed under which early modern empire?",o:["The Mughal Empire","The Safavid Empire","The Ottoman Empire","The Qing Dynasty"],a:0,exp:"The Taj Mahal was built under Mughal emperor Shah Jahan, reflecting the wealth and architectural sophistication of the Mughal Empire, which ruled most of the Indian subcontinent."},
+{u:"U2",tier:2,q:"Admiral Zheng He's massive maritime expeditions across the Indian Ocean in the early 1400s were sponsored by which dynasty?",o:["Ming Dynasty","Qing Dynasty","Tokugawa Shogunate","Safavid Empire"],a:0,exp:"The Ming Dynasty sponsored Zheng He's treasure fleet voyages, which projected Chinese influence across the Indian Ocean decades before major European voyages of exploration."},
+{u:"U2",tier:3,q:"What was a central policy characteristic of the Tokugawa Shogunate's rule over Japan?",o:["Long-term political stability paired with limited contact with the outside world","Aggressive overseas colonization","Complete abolition of the samurai class","Alliance with European colonial powers"],a:0,exp:"The Tokugawa Shogunate enforced over two centuries of internal stability while largely closing Japan to outside trade and influence — a striking contrast to the outward expansion of European powers in the same era."},
+{u:"U2",tier:2,q:"Enlightenment philosopher John Locke argued that life, liberty, and property were:",o:["Privileges granted by monarchs","Natural rights inherent to all people, not granted by government","Available only to the nobility","Subject to a king's divine right"],a:1,exp:"Locke argued these were natural rights — rights people possess simply by being human, which no government could justly take away. This idea heavily influenced later revolutionary movements."},
+{u:"U2",tier:2,q:"The idea that legitimate government arises from an agreement among individuals to form a society and consent to be governed is known as:",o:["Mercantilism","Syncretism","Absolutism","The social contract"],a:3,exp:"The social contract, developed by Enlightenment thinkers like Locke and Rousseau, holds that government's legitimacy depends on the consent of the governed, not on divine right or inherited authority."},
+{u:"U2",tier:2,q:"What was the primary purpose of a joint-stock company such as the British East India Company?",o:["To fund religious missions exclusively","To govern European domestic affairs","To pool investor capital and share profits and losses on large trading ventures","To enforce the Counter-Reformation"],a:2,exp:"A joint-stock company let investors pool capital and share risk on expensive, high-reward ventures — a financial innovation that funded much of early modern colonial trade and expansion."},
+{u:"U2",tier:3,q:"Silver mined at Potosí in the Andes became especially significant in early modern global trade because it:",o:["Was used exclusively within the Americas","Had no economic value outside Europe","Became a dominant medium of exchange in trade networks reaching as far as China","Replaced gold entirely in European economies"],a:2,exp:"American silver flowed through vast global trade networks, becoming a dominant currency used to purchase goods from China and linking the economies of the Americas, Europe, and Asia."},
+{u:"U2",tier:2,q:"The 1648 Peace of Westphalia is widely credited with establishing which modern political concept?",o:["Universal suffrage","The modern concept of state sovereignty","The League of Nations","Colonial independence movements"],a:1,exp:"The Treaty of Westphalia, ending the Thirty Years' War, is often cited as the origin point of the modern state system, in which each state holds sovereign authority within its own borders."},
+{u:"U2",tier:2,q:"How did chattel slavery in the Americas differ from many earlier historical forms of bondage?",o:["It was always temporary","It treated enslaved people as permanent, often hereditary personal property that could be bought and sold","It applied equally to all ethnic groups","It did not involve forced labor"],a:1,exp:"Chattel slavery treated enslaved people as property in a permanent and often hereditary sense — distinct from some earlier and other contemporary systems of bondage that were more limited in duration or scope."},
+{u:"U3",tier:1,q:"The Industrial Revolution, beginning in Britain in the mid-1700s, marked a shift from agrarian, hand-production economies toward:",o:["Purely agricultural economies","Exclusively artisan workshops","A return to feudal labor systems","Machine-based manufacturing and factory production"],a:3,exp:"The Industrial Revolution introduced machine-based manufacturing and centralized factory production, replacing the slower, smaller-scale hand production that had dominated earlier economies."},
+{u:"U3",tier:2,q:"According to Karl Marx's theory, the proletariat refers to:",o:["The industrial working class who sell their labor for wages","The class of factory owners","The landed aristocracy","Colonial administrators"],a:0,exp:"In Marxist theory, the proletariat is the working class that owns no property and must sell its labor for wages — the class Marx predicted would eventually rise up against capitalist owners."},
+{u:"U3",tier:2,q:"Which document, drafted in 1776, drew heavily on Enlightenment ideas of natural rights and the consent of the governed?",o:["The Treaty of Westphalia","The Treaty of Versailles","The Congress of Vienna agreements","The U.S. Declaration of Independence"],a:3,exp:"The Declaration of Independence explicitly invoked Enlightenment concepts — natural rights and government by consent — to justify the American colonies' break from Britain."},
+{u:"U3",tier:2,q:"The Haitian Revolution (1791–1804) is historically significant because it resulted in:",o:["The expansion of the transatlantic slave trade","The unification of the Caribbean under one government","A restoration of French colonial control","The first nation founded by a successful revolt of enslaved people, abolishing slavery"],a:3,exp:"The Haitian Revolution succeeded in abolishing slavery and establishing Haiti as an independent nation — the first state founded through a successful uprising of enslaved people."},
+{u:"U3",tier:1,q:"Nationalism, as a nineteenth-century political ideology, is best defined as:",o:["Loyalty to a monarch above all else","A purely economic theory","Opposition to all forms of government","Devotion to one's nation, often based on shared language, culture, or history, frequently linked to demands for self-governance"],a:3,exp:"Nationalism centers loyalty on the nation itself, typically grounded in shared culture, language, or history, and often fuels movements demanding self-governance or unification — as seen in Italy and Germany."},
+{u:"U3",tier:2,q:"Otto von Bismarck led the process, completed in 1871, that resulted in the:",o:["Unification of Italy","Partition of India","Congress of Vienna","Unification of Germany"],a:3,exp:"Bismarck, through a combination of diplomacy and war, led Prussia in consolidating numerous separate German states into a single German Empire by 1871."},
+{u:"U3",tier:2,q:"The primary goal of the 1814–1815 Congress of Vienna was to:",o:["Establish the United Nations","Begin the colonization of Africa","Redraw the European political map and restore stability after the Napoleonic Wars","End the transatlantic slave trade"],a:2,exp:"After the disruption of the Napoleonic Wars, the Congress of Vienna sought to redraw European borders and restore conservative political stability, aiming to prevent further large-scale revolutionary upheaval."},
+{u:"U3",tier:1,q:"Simón Bolívar is most closely associated with which historical development?",o:["Leading independence movements across much of northern South America","The Meiji Restoration","The Opium Wars","The unification of Italy"],a:0,exp:"Simón Bolívar led major independence movements across northern South America in the early 1800s, becoming one of the most prominent figures of the Latin American Wars of Independence."},
+{u:"U3",tier:2,q:"The 1884–1885 Berlin Conference is most notable for:",o:["Ending the transatlantic slave trade","Negotiating the end of World War I","Founding the League of Nations","Establishing procedures among European powers for colonizing and partitioning Africa, without African representation"],a:3,exp:"European powers met at the Berlin Conference to set rules for dividing Africa among themselves. No African leaders or representatives were present, and resulting borders often ignored existing ethnic and political boundaries."},
+{u:"U3",tier:3,q:"How was Social Darwinism typically used to justify late-nineteenth-century imperialism?",o:["By arguing colonization was economically unprofitable","By applying the concept of natural selection to human societies to claim colonial domination was natural and inevitable","By promoting equal treatment of all colonized peoples","By condemning all forms of racial hierarchy"],a:1,exp:"Social Darwinism misapplied the concept of natural selection to human societies, and some imperial powers used this reasoning to portray colonial domination and racial hierarchy as a natural, inevitable order."},
+{u:"U3",tier:2,q:"The Sepoy Rebellion of 1857–1858 resulted directly in:",o:["Indian independence from Britain","The end of British involvement in South Asia","The British Crown taking direct control of India from the British East India Company","The unification of India and Pakistan"],a:2,exp:"After the rebellion was suppressed, governance of India shifted from the East India Company directly to the British Crown, beginning a new phase of formal British colonial rule."},
+{u:"U3",tier:2,q:"The Opium Wars between China and Western powers resulted in which outcome for China?",o:["China gained new colonial territory","China closed all its ports to foreign trade permanently","China was forced to accept unequal treaties granting Western powers disproportionate advantages","China became a Western colony"],a:2,exp:"China's defeats in the Opium Wars led to unequal treaties — agreements imposed by the stronger power on the weaker one — including ceding Hong Kong and opening ports to Western trade on unfavorable terms."},
+{u:"U3",tier:2,q:"The Meiji Restoration of 1868 is significant because it:",o:["Restored the Tokugawa Shogunate to power","Ended the shogunate, restored imperial rule, and launched rapid Japanese modernization and industrialization","Began Japan's colonization by Western powers","Abolished the Japanese monarchy"],a:1,exp:"The Meiji Restoration ended over two centuries of shogunate rule and launched a rapid program of modernization, allowing Japan to industrialize quickly enough to defeat Russia in war by 1905."},
+{u:"U3",tier:1,q:"Nineteenth- and early-twentieth-century suffrage movements primarily campaigned for:",o:["Abolishing all monarchies","Extending the right to vote, particularly to women","Ending child labor exclusively","Establishing free public education"],a:1,exp:"Suffrage movements focused specifically on extending voting rights to groups previously excluded — most prominently women — through decades of organized campaigning in countries like Britain and the United States."},
+{u:"U3",tier:2,q:"Zionism, as it emerged in the late nineteenth century, was a nationalist movement advocating for:",o:["The abolition of all national borders","German unification","The establishment of a Jewish homeland, primarily in the historic region of Palestine","The end of the Ottoman Empire"],a:2,exp:"Zionism emerged as a nationalist movement calling for a Jewish homeland, primarily in Palestine, with figures like Theodor Herzl helping organize it into an active political movement in the 1890s."},
+{u:"U3",tier:2,q:"A laissez-faire economic philosophy, often invoked by nineteenth-century industrialists, holds that:",o:["Governments should closely regulate all factories","Trade between nations should be banned","All industry should be state-owned","Markets function best with minimal government intervention"],a:3,exp:"Laissez-faire economics argues that markets operate most efficiently with minimal government interference — a philosophy industrialists frequently invoked to resist factory safety and labor regulations."},
+{u:"U4",tier:1,q:"What event is traditionally identified as the immediate trigger of World War I?",o:["The Treaty of Versailles","The Russian Revolution","The assassination of Archduke Franz Ferdinand in 1914","The Berlin Conference"],a:2,exp:"The assassination of Archduke Franz Ferdinand of Austria-Hungary in 1914 triggered a rapid chain of alliance obligations that escalated into full-scale continental, and eventually global, war."},
+{u:"U4",tier:2,q:"Trench warfare on the Western Front of World War I is most associated with:",o:["Enormous casualties for minimal territorial gain amid static, dug-in fighting","Rapid, decisive troop movements","The complete absence of artillery","Naval combat exclusively"],a:0,exp:"Opposing armies dug extensive trench networks and fought over narrow strips of land, often at enormous human cost for very little territorial change — a defining feature of the Western Front."},
+{u:"U4",tier:2,q:"The Treaty of Versailles, ending World War I, is often cited by historians as contributing to later instability primarily because of its:",o:["Harsh terms and heavy reparations imposed on Germany","Generous treatment of Germany","Failure to redraw any European borders","Immediate creation of the United Nations"],a:0,exp:"The treaty's war-guilt clause and substantial reparations placed a heavy burden on Germany, a factor historians often cite among the causes of the economic and political instability that followed."},
+{u:"U4",tier:1,q:"The Bolsheviks, led by Vladimir Lenin, seized power in Russia during which event?",o:["The October Revolution of 1917","The Congress of Vienna","The Meiji Restoration","The Treaty of Versailles negotiations"],a:0,exp:"The October Revolution of 1917 brought the Bolshevik Party, led by Lenin, to power in Russia, setting the stage for the eventual establishment of the Soviet Union."},
+{u:"U4",tier:2,q:"Which best describes fascism as a political ideology?",o:["A movement promoting international cooperation and democracy","An authoritarian, ultranationalist ideology marked by dictatorial power and suppression of opposition","A purely economic theory with no political component","A movement for decolonization"],a:1,exp:"Fascism is an authoritarian and ultranationalist ideology characterized by concentrated dictatorial power and the suppression of political opposition, as seen under Mussolini's Italy and Hitler's Germany."},
+{u:"U4",tier:2,q:"The Great Depression of the 1930s is often cited by historians as contributing to which broader development?",o:["The end of colonialism worldwide","The start of World War I","The founding of the League of Nations","Rising political extremism in several countries, including Germany"],a:3,exp:"The severe economic hardship of the Great Depression created conditions that historians link to the rise of political extremism, including the growth of fascist movements in several countries."},
+{u:"U4",tier:1,q:"The Holocaust refers specifically to:",o:["All casualties of World War II","The bombing campaigns of the Pacific theater","The systematic, state-sponsored murder of six million European Jews and millions of others by Nazi Germany","Soviet purges under Stalin"],a:2,exp:"The Holocaust refers specifically to Nazi Germany's systematic, state-sponsored persecution and murder of six million European Jews, along with millions of other victims, during World War II."},
+{u:"U4",tier:2,q:"The Cold War (roughly 1947–1991) was primarily characterized by:",o:["Direct large-scale war between the United States and the Soviet Union","The complete absence of military buildup","A period with no international tension","Geopolitical tension between the U.S. and USSR expressed through proxy conflicts, an arms race, and ideological rivalry rather than direct war"],a:3,exp:"Despite intense rivalry, the United States and Soviet Union never fought each other directly. Instead, the Cold War played out through proxy conflicts, a nuclear arms race, and ideological competition."},
+{u:"U4",tier:2,q:"The U.S. Cold War strategy of containment was aimed at:",o:["Preventing the spread of communism to new countries","Rolling back communism wherever it already existed","Expanding U.S. territory","Allying with the Soviet Union"],a:0,exp:"Containment sought to stop communism from spreading further, rather than attempting to eliminate it where already established — a strategy that shaped U.S. involvement in conflicts like Korea and Vietnam."},
+{u:"U4",tier:1,q:"Decolonization refers to the process by which:",o:["European powers gained new colonies","Former colonies gained independence from imperial powers, especially after World War II","The Cold War began","The United Nations was replaced"],a:1,exp:"Decolonization describes the widespread process, especially accelerating after World War II, by which colonized nations across Asia and Africa gained independence from their imperial rulers."},
+{u:"U4",tier:2,q:"The Non-Aligned Movement, formed during the Cold War, was made up of states that:",o:["Formally allied with the Soviet Union","Declared neutrality and refused formal alignment with either superpower","Formally allied with the United States","Refused to join the United Nations"],a:1,exp:"The Non-Aligned Movement consisted of states, including India under Jawaharlal Nehru, that declared themselves neutral in the Cold War rivalry rather than aligning formally with either superpower."},
+{u:"U4",tier:2,q:"Why did the League of Nations, founded after World War I, ultimately fail to prevent World War II?",o:["It lacked the authority and enforcement power to stop aggression by member states","It had too much enforcement power","All major powers were permanent members with veto power","It successfully resolved every international dispute"],a:0,exp:"The League of Nations lacked meaningful enforcement mechanisms, and it proved unable to stop aggressive actions by member states such as Japan and Italy in the lead-up to World War II."},
+{u:"U4",tier:1,q:"The 1947 Partition of India resulted in:",o:["The division of British India into India and Pakistan, accompanied by mass migration and severe violence","The peaceful merger of India and Pakistan","Continued direct British rule","The unification of South Asia under one government"],a:0,exp:"Partition divided British India into two independent nations, India and Pakistan, but was accompanied by massive population displacement and severe communal violence, with an enormous human toll."},
+{u:"U4",tier:2,q:"Apartheid, enforced in South Africa from 1948 to the early 1990s, was a system of:",o:["Free and open elections for all citizens","Decolonization","Economic cooperation between all ethnic groups","Institutionalized racial segregation and discrimination"],a:3,exp:"Apartheid was a legally enforced system of racial segregation and discrimination in South Africa, which Nelson Mandela became a global symbol of resisting before becoming the country's first Black president."},
+{u:"U4",tier:2,q:"Globalization refers to:",o:["The isolation of national economies from one another","The increasing interconnection of the world's economies, cultures, and populations through trade, communication, and technology","The end of international trade","A purely political, non-economic process"],a:1,exp:"Globalization describes the accelerating interconnection of economies, cultures, and populations worldwide, driven especially by expanding trade, communication technology, and multinational business."},
+{u:"U4",tier:1,q:"The 1948 Universal Declaration of Human Rights was adopted by which organization?",o:["The League of Nations","The Non-Aligned Movement","The European Union","The United Nations"],a:3,exp:"The United Nations adopted the Universal Declaration of Human Rights in 1948, in the aftermath of World War II and the Holocaust, articulating rights considered inherent to all people."},
+{u:"U4",tier:2,q:"Which best describes the fall of the Berlin Wall in 1989?",o:["The start of the Cold War","The start of World War II","The founding of the European Union","An event widely seen as marking the beginning of the Cold War's end"],a:3,exp:"The Berlin Wall, dividing East and West Berlin since 1961, fell in 1989 in an event widely regarded as signaling the beginning of the end of the Cold War division of Europe."}
+];
+
+const UNIT_NAMES = {
+  U1:"Geography & World Regions", U2:"Early Modern Period", U3:"Modern Period", U4:"Contemporary Period"
+};
+const MODE_DESC = {
+  practice:"<b style='color:var(--amber)'>Practice</b> — one question at a time with instant feedback and a full explanation after every answer. No timer. Best for learning.",
+  exam:"<b style='color:var(--sky)'>Exam Mode</b> — a timed 20-question session under test conditions. Explanations are withheld until the session ends.",
+  stamina:"<b style='color:var(--red)'>Stamina</b> — answer correctly to continue. One wrong answer ends the run. How far can you get?"
+};
+const LS='worldhistory_drill_stats';
+
+let mode='practice', tier='all';
+let selUnits=new Set(['U1','U2','U3','U4']);
+let deck=[], idx=0, right=0, answered=false, missed=[], lastConfig=null;
+let streak=0, timerId=null, timeLeft=0;
+let stats=JSON.parse(localStorage.getItem(LS)||'{"total":0,"correct":0,"best":0,"sessions":0}');
+
+function saveStats(){ localStorage.setItem(LS, JSON.stringify(stats)); }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
+
+function setMode(m,btn){ mode=m; document.querySelectorAll('.mode-tab').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); document.getElementById('mode-desc').innerHTML=MODE_DESC[m]; updatePool(); }
+function setTier(t,btn){ tier=t; document.querySelectorAll('.pill[data-tier]').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); updatePool(); }
+function toggleUnit(u){ if(selUnits.has(u)) selUnits.delete(u); else selUnits.add(u); renderUnits(); updatePool(); }
+function selectAllUnits(on){ selUnits=on?new Set(Object.keys(UNIT_NAMES)):new Set(); renderUnits(); updatePool(); }
+function renderUnits(){
+  document.getElementById('unit-grid').innerHTML=Object.keys(UNIT_NAMES).map(u=>{
+    const n=QB.filter(q=>q.u===u).length, on=selUnits.has(u);
+    return `<div class="unit-box ${on?'on':''}" onclick="toggleUnit('${u}')"><div class="unit-check">${on?'✓':''}</div><div><div class="unit-name">${u} · ${UNIT_NAMES[u]}</div><div class="unit-qty">${n} questions</div></div></div>`;
+  }).join('');
+}
+function pool(){ return QB.filter(q=>selUnits.has(q.u) && (tier==='all'||q.tier===tier)); }
+function updatePool(){
+  const n=pool().length;
+  document.getElementById('sel-count').textContent=`${n} question${n===1?'':'s'} available`;
+  const btn=document.getElementById('btn-start');
+  btn.disabled=n<1;
+  btn.textContent=n<1?'No questions match — adjust filters':`Start ${mode==='exam'?'Exam':mode==='stamina'?'Stamina Run':'Practice'} (${mode==='exam'?Math.min(20,n):n} questions)`;
+}
+function startSession(){
+  const p=pool(); if(p.length<1) return;
+  deck=p.slice().sort(()=>Math.random()-0.5);
+  if(mode==='exam') deck=deck.slice(0,Math.min(20,deck.length));
+  lastConfig={mode,tier,units:[...selUnits]};
+  idx=0; right=0; missed=[]; answered=false; streak=0;
+  document.getElementById('btn-setup').style.display='inline-block';
+  if(mode==='exam'){ timeLeft=deck.length*60; document.getElementById('q-timer').style.display='block'; startTimer(); }
+  else document.getElementById('q-timer').style.display='none';
+  show('screen-q'); renderQ();
+}
+function startTimer(){
+  clearInterval(timerId);
+  timerId=setInterval(()=>{
+    timeLeft--;
+    const m=Math.floor(timeLeft/60), s=timeLeft%60;
+    const el=document.getElementById('q-timer');
+    el.textContent=`⏱ ${m}:${String(s).padStart(2,'0')}`;
+    el.classList.toggle('warn',timeLeft<=60);
+    if(timeLeft<=0){ clearInterval(timerId); finishSession(true); }
+  },1000);
+}
+function renderQ(){
+  const q=deck[idx]; answered=false;
+  document.getElementById('q-counter').textContent=`QUESTION ${idx+1} OF ${deck.length}`;
+  document.getElementById('q-badges').innerHTML=`<span class="badge b-unit">${q.u} ${UNIT_NAMES[q.u]}</span><span class="badge b-t${q.tier}">${q.tier===1?'① Foundational':q.tier===2?'② Intermediate':'③ Challenge'}</span>`;
+  document.getElementById('prog-fill').style.width=((idx)/deck.length*100)+'%';
+  document.getElementById('q-text').textContent=q.q;
+  document.getElementById('q-opts').innerHTML=q.o.map((opt,i)=>`<button class="opt" id="opt-${i}" onclick="answer(${i})"><span class="opt-key">${'ABCD'[i]}</span><span>${esc(opt)}</span></button>`).join('');
+  document.getElementById('q-feedback').className='feedback';
+  document.getElementById('q-feedback').innerHTML='';
+  document.getElementById('btn-nextq').style.display='none';
+}
+function answer(choice){
+  if(answered) return; answered=true;
+  const q=deck[idx], correct=choice===q.a;
+  if(correct){ right++; streak++; if(streak>stats.best) stats.best=streak; } else { missed.push({q,chose:choice}); streak=0; }
+  stats.total++; if(correct) stats.correct++;
+  saveStats(); renderGlobalStats();
+  document.querySelectorAll('.opt').forEach((b,i)=>{ b.disabled=true; if(i===q.a) b.classList.add('correct'); else if(i===choice) b.classList.add('wrong'); });
+  if(mode==='stamina' && !correct){ finishSession(); return; }
+  if(mode!=='exam'){
+    const fb=document.getElementById('q-feedback');
+    fb.className='feedback show '+(correct?'fb-right':'fb-wrong');
+    fb.innerHTML=`<div class="fb-head">${correct?'✓ Correct':'✗ Not quite'}</div><div class="fb-body">${esc(q.exp)}</div>`;
+  }
+  const nb=document.getElementById('btn-nextq');
+  nb.style.display='block';
+  nb.textContent=(idx>=deck.length-1)?'See Results →':'Next Question →';
+}
+function nextQuestion(){ idx++; if(idx>=deck.length){ finishSession(); return; } renderQ(); }
+function finishSession(timeUp){
+  clearInterval(timerId);
+  stats.sessions++; saveStats(); renderGlobalStats();
+  const attempted=(mode==='stamina')?idx+1:deck.length;
+  const pct=attempted?Math.round(right/attempted*100):0;
+  document.getElementById('res-mode').textContent=timeUp?'TIME EXPIRED':(mode==='stamina'?`STAMINA RUN — ${right} IN A ROW`:'SESSION COMPLETE');
+  document.getElementById('res-score').innerHTML=`${right}<span>/${attempted}</span>`;
+  const grade=pct>=90?'Excellent':pct>=80?'Strong':pct>=70?'Solid':pct>=60?'Developing':'Needs Review';
+  const gcol=pct>=80?'var(--teal)':pct>=60?'var(--amber)':'var(--red)';
+  document.getElementById('res-grade').innerHTML=`<span style="color:${gcol}">${grade}</span>`;
+  document.getElementById('res-sub').textContent=`${pct}% correct · ${mode==='exam'?'Exam Mode':mode==='stamina'?'Stamina':'Practice'}`;
+  const seen=deck.slice(0,attempted), byUnit={};
+  seen.forEach(q=>{ byUnit[q.u]=byUnit[q.u]||{n:0,ok:0}; byUnit[q.u].n++; });
+  seen.forEach(q=>{ if(!missed.some(m=>m.q===q)) byUnit[q.u].ok++; });
+  document.getElementById('res-breakdown').innerHTML=Object.keys(byUnit).sort().map(u=>{
+    const d=byUnit[u], p=Math.round(d.ok/d.n*100);
+    const c=p>=80?'var(--teal)':p>=60?'var(--amber)':'var(--red)';
+    return `<div class="brk-row"><div class="brk-name">${u} ${UNIT_NAMES[u]}</div><div class="brk-bar"><div class="brk-fill" style="width:${p}%;background:${c}"></div></div><div class="brk-num">${d.ok}/${d.n}</div></div>`;
+  }).join('')||'<div style="font-size:12.5px;color:var(--muted)">No questions attempted.</div>';
+  const mc=document.getElementById('res-missed-card');
+  document.getElementById('btn-retry-missed').style.display=missed.length?'block':'none';
+  if(missed.length){
+    mc.style.display='block';
+    document.getElementById('res-missed').innerHTML=missed.map(m=>`<div class="miss-item"><div class="miss-q">${esc(m.q.q)}</div><div class="miss-a">You chose: ${esc(m.q.o[m.chose])} · Correct: <b>${esc(m.q.o[m.q.a])}</b></div><div class="miss-a" style="margin-top:6px;opacity:.85">${esc(m.q.exp)}</div></div>`).join('');
+  } else mc.style.display='none';
+  show('screen-res');
+}
+function retrySession(){
+  if(!lastConfig) return goSetup();
+  idx=0; right=0; missed=[]; streak=0;
+  deck=deck.slice().sort(()=>Math.random()-0.5);
+  if(mode==='exam'){ timeLeft=deck.length*60; startTimer(); }
+  show('screen-q'); renderQ();
+}
+function retryMissed(){
+  if(!missed.length) return;
+  deck=missed.map(m=>m.q).sort(()=>Math.random()-0.5);
+  idx=0; right=0; missed=[]; streak=0;
+  clearInterval(timerId);
+  document.getElementById('q-timer').style.display='none';
+  if(mode==='exam') mode='practice';
+  show('screen-q'); renderQ();
+}
+function goSetup(){ clearInterval(timerId); document.getElementById('btn-setup').style.display='none'; show('screen-setup'); }
+function renderGlobalStats(){
+  document.getElementById('gs-total').textContent=stats.total;
+  document.getElementById('gs-acc').textContent=stats.total?Math.round(stats.correct/stats.total*100)+'%':'—';
+  document.getElementById('gs-streak').textContent=stats.best;
+  document.getElementById('gs-sessions').textContent=stats.sessions;
+}
+(function init(){
+  const total=QB.length, units=new Set(QB.map(q=>q.u)).size;
+  document.getElementById('page-sub').textContent=`${total} questions · ${units} units · 3 difficulty tiers · Pathway 2`;
+  document.getElementById('mode-desc').innerHTML=MODE_DESC.practice;
+  renderUnits(); updatePool(); renderGlobalStats();
+})();
+</script>
+</body>
+</html>
