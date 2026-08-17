@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pre-AP World History &amp; Geography — Common Confusions</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
+  --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(229,148,0,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(229,148,0,0.035) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:26px 20px 70px}
+
+.header{margin-bottom:14px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--amber)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+
+.about-banner{background:linear-gradient(135deg,rgba(229,148,0,.1),rgba(46,139,192,.06));border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:14px;font-size:12.5px;color:var(--text);line-height:1.55}
+.about-banner b{color:#efb44e}
+
+.path-banner{background:linear-gradient(135deg,rgba(229,148,0,.1),rgba(46,139,192,.06));border:1px solid var(--border);border-radius:12px;padding:11px 16px;margin-bottom:18px;font-size:12.5px;color:var(--text)}
+.path-banner b{color:#efb44e}
+
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+
+.controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;flex-direction:column;gap:11px}
+.ctrl-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--muted);min-width:52px}
+.search-wrap{position:relative;flex:1;min-width:220px}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.55}
+.search-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px 10px 34px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13.5px}
+.search-input:focus{outline:none;border-color:var(--amber)}
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--amber);color:var(--text)}
+.pill.active{background:var(--amber);border-color:var(--amber);color:#1a1200}
+
+.count-line{font-size:12px;color:var(--muted);margin-bottom:12px}
+.count-line b{color:var(--white);font-family:'DM Mono',monospace}
+
+.pair-card{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:18px 20px;margin-bottom:12px;transition:all .18s}
+.pair-card:hover{border-color:rgba(229,148,0,.4)}
+.pair-tags{display:flex;gap:6px;margin-bottom:12px}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:6px}
+.t-unit{background:rgba(46,139,192,.16);color:#7cc0e6;border:1px solid rgba(46,139,192,.3)}
+.vs-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:start;margin-bottom:12px}
+@media(max-width:600px){.vs-grid{grid-template-columns:1fr}.vs-divider{display:none}}
+.vs-box{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:13px 15px}
+.vs-term{font-size:15.5px;font-weight:800;color:var(--white);margin-bottom:6px}
+.vs-def{font-size:13px;color:var(--text);opacity:.9;line-height:1.5}
+.vs-divider{display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;font-weight:700;padding-top:20px}
+.distinguisher{background:rgba(229,148,0,.07);border-left:2px solid var(--amber);border-radius:9px;padding:11px 14px;font-size:13px;margin-bottom:9px}
+.dist-lbl{font-size:9px;font-weight:700;letter-spacing:.11em;color:#efb44e;display:block;margin-bottom:5px}
+.hook{background:rgba(29,158,117,.07);border-left:2px solid var(--teal);border-radius:9px;padding:11px 14px;font-size:13px;font-weight:600}
+.hook-lbl{font-size:9px;font-weight:700;letter-spacing:.11em;color:#4fd1a5;display:block;margin-bottom:5px}
+
+.empty{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px}
+
+@media(max-width:640px){.page-title{font-size:1.5rem}.ctrl-label{min-width:auto}}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <a href="WorldHistory_StudyHub.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--amber);text-decoration:none;margin-bottom:14px;opacity:.85">← World History Study Hub</a>
+
+  <div class="header">
+    <div class="series-label">Pre-AP World History &amp; Geography · Study Resource Series · Build 5</div>
+    <div class="page-title">Common <span>Confusions</span></div>
+    <div class="page-sub" id="page-sub">Loading…</div>
+  </div>
+
+  <div class="about-banner">📎 A fast side-by-side reference for terms and events that get mixed up on an exam. This is a quick lookup, not a diagnostic — for the deeper "why students mix these up" breakdown, see the <a href="WorldHistory_Mistakes_Autopsy.html" style="color:#efb44e">Mistakes Autopsy</a> instead.</div>
+
+  <div class="path-banner">🗺️ <b>Pathway 2</b> — Geography, Early Modern, Modern, and Contemporary periods, per the College Board Pre-AP framework.</div>
+
+  <div class="stats-row">
+    <div class="stat-chip"><div class="stat-num" id="s-total">—</div><div class="stat-lbl">TERM PAIRS</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--sky)" id="s-shown">—</div><div class="stat-lbl">SHOWING</div></div>
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-row">
+      <span class="ctrl-label">SEARCH</span>
+      <div class="search-wrap">
+        <span class="search-icon">🔎</span>
+        <input class="search-input" id="search-input" type="text" placeholder="Search either term or definition…" oninput="applyFilters()">
+      </div>
+    </div>
+    <div class="ctrl-row">
+      <span class="ctrl-label">UNIT</span>
+      <button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button>
+      <button class="pill" data-unit="U1" onclick="setUnit('U1',this)">U1</button>
+      <button class="pill" data-unit="U2" onclick="setUnit('U2',this)">U2</button>
+      <button class="pill" data-unit="U3" onclick="setUnit('U3',this)">U3</button>
+      <button class="pill" data-unit="U4" onclick="setUnit('U4',this)">U4</button>
+    </div>
+  </div>
+
+  <div class="count-line" id="count-line"></div>
+  <div id="pair-list"></div>
+
+  <div style="margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center">
+    Pre-AP World History &amp; Geography (21094150) · College Board Pre-AP Framework · Pathway 2 · Common Confusions
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+// PRE-AP WORLD HISTORY & GEOGRAPHY — COMMON CONFUSIONS
+// Quick-reference term-pair lookup, distinct from Mistakes Autopsy's
+// deep-dive diagnostic scenarios. Pathway 2. u = unit tag.
+// ═══════════════════════════════════════════
+const PAIRS = [
+{u:"U1",termA:"Absolute Location",defA:"A place's EXACT position using fixed coordinates like latitude/longitude.",termB:"Relative Location",defB:"A place's position DESCRIBED in relation to other places.",dist:"Coordinates never change; a relative description depends entirely on what you're comparing the place to.",hook:"Absolute = coordinates. Relative = compared to something else."},
+{u:"U1",termA:"Push Factor",defA:"A condition that drives people to LEAVE a place — war, famine, persecution.",termB:"Pull Factor",defB:"A condition that ATTRACTS people to a new place — jobs, safety, land.",dist:"Push factors point away from home; pull factors point toward the destination.",hook:"Push = away from home. Pull = toward somewhere new."},
+{u:"U1",termA:"Migration",defA:"The GENERAL movement of people to settle somewhere new.",termB:"Diaspora",defB:"The DISPERSAL of a people across many regions, often retaining shared cultural or religious ties.",dist:"Migration can describe a single move; diaspora specifically implies a scattered population maintaining a shared identity across many places.",hook:"Migration is the move. Diaspora is the scattered result over time."},
+
+{u:"U2",termA:"Reformation",defA:"The movement, led by figures like Martin Luther, CHALLENGING the Catholic Church.",termB:"Counter-Reformation",defB:"The Catholic Church's own RESPONSE to that challenge.",dist:"The prefix 'Counter' signals a reaction against the Reformation, not the movement itself.",hook:"Reformation = the challenge. Counter-Reformation = the Church's answer."},
+{u:"U2",termA:"Mercantilism",defA:"An economic theory: national wealth comes from STATE-CONTROLLED trade and accumulating gold/silver.",termB:"Capitalism",defB:"An economic system built on PRIVATE ownership and market competition.",dist:"Mercantilism centers on the state directing trade for national wealth; capitalism centers on private markets with far less state direction.",hook:"Mercantilism = state-controlled. Capitalism = market-driven."},
+{u:"U2",termA:"Ottoman Empire",defA:"Islamic empire centered in Anatolia and Southeast Europe.",termB:"Mughal Empire",defB:"Islamic empire that ruled most of the Indian subcontinent.",dist:"Both are 'gunpowder empires' of the same era, but they controlled entirely different regions — don't credit one's achievements to the other.",hook:"Ottoman = Anatolia/SE Europe. Mughal = Indian subcontinent."},
+{u:"U2",termA:"Triangular Trade",defA:"The OVERALL transatlantic network — goods to Africa, enslaved people to the Americas, raw materials to Europe.",termB:"Middle Passage",defB:"Specifically the transatlantic VOYAGE transporting enslaved Africans to the Americas.",dist:"The Middle Passage is one leg of the larger Triangular Trade system — the deadliest and most infamous one.",hook:"Triangular Trade = the whole network. Middle Passage = one brutal leg of it."},
+{u:"U2",termA:"Absolutism",defA:"A monarch holds TOTAL, unchecked authority.",termB:"Divine Right of Kings",defB:"The DOCTRINE used to justify that total authority as God-given.",dist:"Absolutism is the system of government; divine right is the specific justification used to defend it.",hook:"Absolutism is the power. Divine right is the excuse for it."},
+
+{u:"U3",termA:"American Revolution",defA:"1775–1783 — Britain's American colonies win independence.",termB:"French Revolution",defB:"1789–1799 — overthrows the French monarchy.",dist:"The American Revolution came first, by over a decade, and partly inspired the French Revolution that followed.",hook:"America: 1775. France: 1789 — America came first."},
+{u:"U3",termA:"Imperialism",defA:"The BROADER policy of extending power through territory, military, or economic control.",termB:"Colonization",defB:"ONE SPECIFIC method of imperialism — establishing settlements and direct rule.",dist:"Colonization is a visible form of imperialism, but imperialism can also happen through economic or political domination without formal colonies.",hook:"Imperialism is the broader policy. Colonization is one method of it."},
+{u:"U3",termA:"Socialism",defA:"A BROAD ideology advocating collective or state ownership to reduce inequality.",termB:"Communism",defB:"In Marxist theory, a theorized final CLASSLESS stage — and the one-party states built to pursue it.",dist:"Socialism is the broader umbrella; communism specifically refers to the end-stage Marxist theory describes and the governments modeled on achieving it.",hook:"Socialism = the broad idea. Communism = the specific Marxist end-goal and system."},
+{u:"U3",termA:"Nationalism",defA:"Devotion to one's NATION, often driving demands for self-governance or unification.",termB:"Imperialism",defB:"Extending POWER over other nations or territories.",dist:"Nationalism looks inward toward one's own nation; imperialism looks outward to control others — though the two often fueled each other historically.",hook:"Nationalism = pride in your own nation. Imperialism = control over someone else's."},
+
+{u:"U4",termA:"Treaty of Versailles",defA:"1919 — ENDED World War I, imposed harsh terms on Germany.",termB:"World War I",defB:"1914–1918 — the war ITSELF, triggered by the assassination of Franz Ferdinand.",dist:"The Treaty of Versailles is a consequence of WWI, not its cause — but it's often cited as a contributing cause of WWII two decades later.",hook:"WWI happened, THEN Versailles ended it — don't reverse the order."},
+{u:"U4",termA:"League of Nations",defA:"Founded after WORLD WAR I, failed to prevent WWII.",termB:"United Nations",defB:"Founded after WORLD WAR II, in 1945.",dist:"The UN is often called the League's successor, addressing the weaknesses that let the League fail.",hook:"League: after WWI. United Nations: after WWII, 1945."},
+{u:"U4",termA:"Cold War",defA:"The overall decades-long TENSION between the US and USSR (1947–1991).",termB:"Proxy War",defB:"A SPECIFIC conflict where two powers back opposing sides without fighting directly.",dist:"The Cold War is the broad rivalry; a proxy war (like Vietnam or Korea) is one specific conflict fought within that rivalry.",hook:"Cold War = the whole standoff. Proxy war = one battlefield within it."},
+{u:"U4",termA:"Containment",defA:"US strategy to PREVENT communism from spreading to new countries.",termB:"Non-Aligned Movement",defB:"Countries that declared NEUTRALITY, refusing to formally join either Cold War side.",dist:"Containment was a US policy choice; the Non-Aligned Movement was a stance taken by other nations trying to stay out of the US-Soviet rivalry altogether.",hook:"Containment: the US acting. Non-Aligned: other nations opting out entirely."},
+{u:"U4",termA:"The Holocaust",defA:"The SPECIFIC systematic murder of six million European Jews and millions of others by Nazi Germany.",termB:"Genocide",defB:"The GENERAL term for deliberate destruction of a national, ethnic, racial, or religious group.",dist:"The Holocaust is the most extensively studied case — and the term genocide was coined partly in response to it — but genocide as a category includes other instances in the twentieth century too.",hook:"Holocaust = one specific, central case. Genocide = the general category it belongs to."},
+{u:"U4",termA:"Decolonization",defA:"Former colonies gaining independence, especially after WORLD WAR II.",termB:"World War I's aftermath",defB:"Redrew borders and mandates, but did NOT trigger the major decolonization wave.",dist:"It's tempting to attach the big decolonization wave to WWI since that war also reshaped empires — but the major wave came roughly three decades later, after WWII.",hook:"Big decolonization wave = after WWII, not WWI."},
+{u:"U4",termA:"Globalization",defA:"The BROAD, multidirectional interconnection of world economies and cultures.",termB:"Americanization",defB:"Specifically the spread of AMERICAN culture and products.",dist:"Globalization involves flows in every direction between many countries — reducing it to just American cultural spread misses most of what the term actually covers.",hook:"Globalization = many directions, many countries. Americanization = one direction, one country."}
+];
+
+const UNIT_NAMES = {
+  U1:"Geography & World Regions", U2:"Early Modern Period", U3:"Modern Period", U4:"Contemporary Period"
+};
+
+let curUnit='all';
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function setUnit(u,btn){ curUnit=u; document.querySelectorAll('.pill[data-unit]').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); applyFilters(); }
+function getFiltered(){
+  const q=document.getElementById('search-input').value.trim().toLowerCase();
+  return PAIRS.filter(p=>{
+    if(curUnit!=='all' && p.u!==curUnit) return false;
+    if(q){
+      const hay=(p.termA+' '+p.termB+' '+p.defA+' '+p.defB+' '+p.dist+' '+p.hook).toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+}
+function applyFilters(){
+  const list=getFiltered();
+  document.getElementById('s-shown').textContent=list.length;
+  document.getElementById('count-line').innerHTML=`<b>${list.length}</b> pairs shown`;
+  const box=document.getElementById('pair-list');
+  if(!list.length){ box.innerHTML='<div class="empty">No pairs match your search or filter.</div>'; return; }
+  box.innerHTML=list.map(p=>`
+    <div class="pair-card">
+      <div class="pair-tags"><span class="tag t-unit">${p.u} · ${UNIT_NAMES[p.u]}</span></div>
+      <div class="vs-grid">
+        <div class="vs-box"><div class="vs-term">${esc(p.termA)}</div><div class="vs-def">${esc(p.defA)}</div></div>
+        <div class="vs-divider">VS</div>
+        <div class="vs-box"><div class="vs-term">${esc(p.termB)}</div><div class="vs-def">${esc(p.defB)}</div></div>
+      </div>
+      <div class="distinguisher"><span class="dist-lbl">THE KEY DIFFERENCE</span>${esc(p.dist)}</div>
+      <div class="hook"><span class="hook-lbl">MEMORY HOOK</span>${esc(p.hook)}</div>
+    </div>`).join('');
+}
+(function init(){
+  const total=PAIRS.length, units=new Set(PAIRS.map(p=>p.u)).size;
+  document.getElementById('s-total').textContent=total;
+  document.getElementById('page-sub').textContent=`${total} frequently confused pairs · ${units} units · side-by-side quick reference`;
+  applyFilters();
+})();
+</script>
+</body>
+</html>

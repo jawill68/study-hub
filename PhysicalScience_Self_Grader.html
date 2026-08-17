@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physical Science Honors — Self-Grader</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
+  --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(29,158,117,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(29,158,117,0.04) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:26px 20px 70px}
+
+.header{margin-bottom:14px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--teal)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+
+.about-banner{background:linear-gradient(135deg,rgba(29,158,117,.1),rgba(46,139,192,.06));border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:12.5px;color:var(--text);line-height:1.55}
+.about-banner b{color:#4fd1a5}
+
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px;flex:1}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+
+.controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;flex-direction:column;gap:11px}
+.ctrl-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--muted);min-width:52px}
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--teal);color:var(--text)}
+.pill.active{background:#188663;border-color:var(--teal);color:#fff}
+.pill-type.active{background:var(--purple);border-color:var(--purple)}
+
+.count-line{font-size:12px;color:var(--muted);margin-bottom:12px}
+.count-line b{color:var(--white);font-family:'DM Mono',monospace}
+
+.prompt-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:14px}
+.prompt-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:12px}
+.prompt-tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:6px}
+.t-unit{background:rgba(46,139,192,.16);color:#7cc0e6;border:1px solid rgba(46,139,192,.3)}
+.t-calc{background:rgba(139,92,246,.15);color:#b39bf5;border:1px solid rgba(139,92,246,.3)}
+.t-concept{background:rgba(229,148,0,.14);color:#efb44e;border:1px solid rgba(229,148,0,.3)}
+.mastered-badge{font-size:9.5px;font-weight:700;padding:3px 9px;border-radius:6px;background:rgba(29,158,117,.15);color:#4fd1a5;border:1px solid rgba(29,158,117,.3)}
+.prompt-text{font-size:15px;font-weight:600;color:var(--white);line-height:1.5;margin-bottom:14px}
+.answer-area{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:13px 15px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13.5px;min-height:90px;resize:vertical;margin-bottom:12px}
+.answer-area:focus{outline:none;border-color:var(--teal)}
+.btn-row{display:flex;gap:9px;flex-wrap:wrap}
+.btn{border:none;border-radius:11px;padding:11px 20px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .18s}
+.btn-reveal{background:#188663;color:#fff}
+.btn-reveal:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(29,158,117,.3)}
+.btn-mastered{background:var(--bg);border:1px solid var(--border);color:var(--muted)}
+.btn-mastered:hover{border-color:var(--teal);color:var(--teal)}
+.btn-mastered.on{background:#188663;border-color:var(--teal);color:#fff}
+
+.model-box{display:none;margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
+.model-box.show{display:block}
+.model-lbl{font-size:10px;font-weight:700;letter-spacing:.11em;color:var(--teal);margin-bottom:8px}
+.model-answer{background:rgba(29,158,117,.06);border-left:2px solid var(--teal);border-radius:9px;padding:13px 15px;font-size:13.5px;line-height:1.6;margin-bottom:14px;white-space:pre-wrap}
+.model-answer .calc-line{font-family:'DM Mono',monospace;color:#8ecbec}
+.rubric-lbl{font-size:10px;font-weight:700;letter-spacing:.11em;color:#efb44e;margin-bottom:8px}
+.rubric-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.rubric-item:last-child{border-bottom:none}
+.rubric-check{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--border);background:var(--bg);flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;margin-top:1px}
+.rubric-check.on{background:#188663;border-color:var(--teal);color:#fff}
+.rubric-text{font-size:13px;color:var(--text);line-height:1.5}
+.rubric-score{margin-top:12px;font-size:13px;font-weight:700;color:var(--white);text-align:right}
+.rubric-score span{color:var(--teal)}
+
+.empty{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px}
+
+@media(max-width:640px){.page-title{font-size:1.5rem}.ctrl-label{min-width:auto}}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <a href="PhysicalScience_StudyHub.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--sky);text-decoration:none;margin-bottom:14px;opacity:.85">← Physical Science Study Hub</a>
+
+  <div class="header">
+    <div class="series-label">Physical Science Honors · Study Resource Series · Build 6</div>
+    <div class="page-title">Self-<span>Grader</span></div>
+    <div class="page-sub" id="page-sub">Loading…</div>
+  </div>
+
+  <div class="about-banner">✍️ Free-response practice — the kind of question a multiple-choice drill can't test. Write your own answer or work the calculation out on paper, then reveal a full model answer and self-score against the rubric. Nobody but you sees what you write here.</div>
+
+  <div class="stats-row">
+    <div class="stat-chip"><div class="stat-num" id="s-total">—</div><div class="stat-lbl">TOTAL PROMPTS</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--teal)" id="s-mastered">0</div><div class="stat-lbl">MASTERED</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--sky)" id="s-shown">—</div><div class="stat-lbl">SHOWING</div></div>
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-row">
+      <span class="ctrl-label">UNIT</span>
+      <button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button>
+      <button class="pill" data-unit="U1" onclick="setUnit('U1',this)">U1</button>
+      <button class="pill" data-unit="U2" onclick="setUnit('U2',this)">U2</button>
+      <button class="pill" data-unit="U3" onclick="setUnit('U3',this)">U3</button>
+      <button class="pill" data-unit="U4" onclick="setUnit('U4',this)">U4</button>
+      <button class="pill" data-unit="U5" onclick="setUnit('U5',this)">U5</button>
+      <button class="pill" data-unit="U6" onclick="setUnit('U6',this)">U6</button>
+    </div>
+    <div class="ctrl-row">
+      <span class="ctrl-label">TYPE</span>
+      <button class="pill pill-type active" data-type="all" onclick="setType('all',this)">All</button>
+      <button class="pill pill-type" data-type="calc" onclick="setType('calc',this)">🧮 Calculation</button>
+      <button class="pill pill-type" data-type="concept" onclick="setType('concept',this)">💬 Conceptual</button>
+    </div>
+  </div>
+
+  <div class="count-line" id="count-line"></div>
+  <div id="prompt-list"></div>
+
+  <div style="margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center">
+    Physical Science Honors (2003320) · Florida NGSSS Science Standards · Self-Grader
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+// PHYSICAL SCIENCE HONORS — SELF-GRADER
+// Free-response practice distinct from the multiple-choice Drill Trainer.
+// type: "calc" (worked calculation, show-work) | "concept" (short-answer)
+// rubric = array of criteria the student self-checks against
+// ═══════════════════════════════════════════
+const PROMPTS = [
+{u:"U1",type:"calc",prompt:"A student measures the mass of a mineral sample as 68.4 g and its volume as 8.0 cm³. Calculate the density, showing your formula and units.",model:"Formula: D = m / V\nD = 68.4 g / 8.0 cm³\nD = 8.55 g/cm³ → rounds to 8.6 g/cm³ (2 sig figs, matching the volume's precision)",rubric:["Wrote the correct formula (D = m/V) before substituting numbers","Substituted the correct values with correct units","Arrived at 8.55 g/cm³ (or correctly rounded to 8.6 g/cm³)","Final answer includes the unit g/cm³"]},
+{u:"U1",type:"concept",prompt:"Explain the difference between a scientific theory and a scientific law, using one example of each.",model:"A law describes a consistent, observable relationship — often mathematically — but doesn't explain the underlying cause. A theory is a well-substantiated explanation of WHY something happens, backed by extensive evidence.\n\nExample of a law: The law of conservation of mass — mass is neither created nor destroyed in a chemical reaction.\nExample of a theory: Atomic theory — explains that matter is composed of atoms, supported by over a century of experimental evidence.\n\nCritically, a theory does not 'become' a law with enough evidence. They are two different kinds of scientific statements.",rubric:["Correctly stated that a law describes WHAT happens","Correctly stated that a theory explains WHY it happens","Gave one accurate, specific example of a law","Gave one accurate, specific example of a theory","Did NOT say that theories become laws with enough evidence"]},
+
+{u:"U2",type:"calc",prompt:"An atom has 20 protons and 22 neutrons. Determine its mass number and identify the element using a periodic table.",model:"Mass number = protons + neutrons = 20 + 22 = 42\n\nThe element with atomic number 20 (20 protons) is Calcium (Ca).\nThis is the isotope Calcium-42.",rubric:["Correctly added protons + neutrons to get mass number 42","Correctly identified the element as Calcium using the proton count","Understood that neutron count does not affect element identity"]},
+{u:"U2",type:"concept",prompt:"Explain why atomic radius increases as you move down a group on the periodic table, but decreases as you move across a period.",model:"Down a group: each row down adds a new occupied energy level, placing the outermost electrons progressively farther from the nucleus. This outweighs the increasing nuclear charge, so atoms get larger.\n\nAcross a period: electrons are added to the SAME energy level while the number of protons (and therefore nuclear charge) also increases. The stronger pull draws the electron cloud in tighter, so atoms get smaller, even though more electrons are present.",rubric:["Explained that new energy levels are added going down a group","Explained that this outweighs increasing nuclear charge","Explained that electrons stay in the same energy level moving across a period","Explained that increasing nuclear charge pulls electrons in tighter across a period"]},
+
+{u:"U3",type:"calc",prompt:"Balance the following equation and identify its reaction type: Al + O₂ → Al₂O₃",model:"Balanced equation: 4Al + 3O₂ → 2Al₂O₃\n\nCheck: Left side has 4 Al and 6 O. Right side has 2×2=4 Al and 2×3=6 O. Balanced.\n\nReaction type: Synthesis (two simpler substances combine into one more complex product, following the pattern A + B → AB).",rubric:["Correctly balanced with coefficients 4, 3, 2","Verified the atom count matches on both sides","Correctly identified this as a synthesis reaction","Did not alter any subscripts while balancing"]},
+{u:"U3",type:"concept",prompt:"A student claims a beaker feeling cold during a reaction proves the reaction is exothermic. Explain what's wrong with this reasoning and give the correct classification.",model:"This reasoning is backwards. A cold beaker means the reaction ABSORBED energy from its surroundings — pulling heat out of the beaker and your hand — which is the definition of an ENDOTHERMIC reaction.\n\nExothermic reactions release energy into their surroundings, which would make the beaker feel warmer, not colder.\n\nThe direction of temperature change in the surroundings tells you the direction energy is flowing: cold surroundings mean energy flowed IN to the reaction (endothermic); warm surroundings mean energy flowed OUT (exothermic).",rubric:["Correctly identified the reaction as endothermic, not exothermic","Explained that cold surroundings mean the reaction absorbed energy","Correctly used the endo (in) / exo (out) prefix logic","Did not simply state the answer without explaining the reasoning"]},
+
+{u:"U4",type:"calc",prompt:"A 1500 kg roller coaster car is at rest at the top of a 20 m hill. Calculate its gravitational potential energy at the top (g = 9.8 m/s²), and its kinetic energy at the bottom assuming no energy is lost to friction.",model:"At the top: PE = mgh = 1500 × 9.8 × 20 = 294,000 J\n\nBy conservation of energy, if no energy is lost to friction, all of that potential energy converts to kinetic energy at the bottom:\nKE at bottom = 294,000 J (same value, different form of energy)",rubric:["Used PE = mgh correctly with all three values","Calculated PE = 294,000 J (or 2.94 × 10⁵ J)","Applied conservation of energy to state KE at the bottom equals the initial PE","Recognized that 'no friction' means no energy is lost, only converted"]},
+{u:"U4",type:"concept",prompt:"Explain why a large lukewarm pool can have more total thermal energy than a small cup of boiling water, even though the pool has a lower temperature.",model:"Temperature measures the AVERAGE kinetic energy per particle — and the boiling water's particles are, on average, moving faster, so it has the higher temperature.\n\nThermal energy is the TOTAL kinetic energy summed across ALL particles in the object. The pool contains vastly more particles than the cup, so even though each individual particle has less energy on average, the sheer number of particles means the total thermal energy is far greater in the pool.\n\nThis is why temperature and thermal energy are not the same quantity — one is an average, the other is a total, and total depends on the amount of matter present.",rubric:["Correctly defined temperature as average kinetic energy per particle","Correctly defined thermal energy as the total across all particles","Explained that the pool has far more particles despite lower temperature","Explicitly distinguished 'average' from 'total' as the key difference"]},
+
+{u:"U5",type:"calc",prompt:"A radioactive isotope has a half-life of 8 days. Starting with a 160 g sample, how much remains after 32 days? Show your reasoning.",model:"32 days ÷ 8-day half-life = 4 half-lives\n\n160 g → (half-life 1) → 80 g → (half-life 2) → 40 g → (half-life 3) → 20 g → (half-life 4) → 10 g\n\n10 g remains after 32 days.",rubric:["Correctly determined that 32 days = 4 half-lives","Halved the sample correctly at each step","Arrived at the final answer of 10 g","Showed the step-by-step halving rather than jumping straight to the answer"]},
+{u:"U5",type:"concept",prompt:"Explain why heating a radioactive sample to a very high temperature does NOT change its half-life.",model:"Half-life is a property of the nucleus — specifically, the probability that an unstable nucleus will spontaneously emit particles or energy. This process originates deep in the nucleus, which is largely shielded from external influences like temperature and pressure, which act on the much more loosely bound outer electrons instead.\n\nBecause nuclear decay is essentially independent of these external conditions, half-life remains constant no matter how the sample is heated, pressurized, or chemically combined. This constancy is exactly what makes radiometric dating a reliable technique.",rubric:["Identified that half-life is a nuclear-level property","Explained that temperature/pressure act on electrons, not the nucleus","Connected this to why radiometric dating is considered reliable","Did not claim heating has any effect on decay rate"]},
+
+{u:"U6",type:"calc",prompt:"A 6.0 kg object is acted on by a 24 N net force. Calculate its acceleration, then determine its velocity after 5.0 seconds starting from rest.",model:"Step 1: a = F/m = 24 N / 6.0 kg = 4.0 m/s²\n\nStep 2: starting from rest (v₀ = 0), using a = Δv/t:\nv = v₀ + at = 0 + (4.0)(5.0) = 20 m/s",rubric:["Correctly calculated acceleration as 4.0 m/s² using F = ma","Correctly identified starting velocity as 0 (at rest)","Correctly calculated final velocity as 20 m/s","Showed both steps rather than only the final answer"]},
+{u:"U6",type:"concept",prompt:"A student argues that a car moving at a constant 60 km/h in a straight line must have a net force acting on it, 'because it's still moving.' Explain what's wrong with this reasoning.",model:"This confuses what causes MOTION with what causes a CHANGE in motion. Newton's first law states that an object in motion continues at constant velocity unless acted on by an unbalanced (net) force.\n\nConstant velocity means zero acceleration, and by Newton's second law (F = ma), zero acceleration means zero NET force. Forces are certainly still acting on the car — the engine's forward thrust and resistance/friction backward — but they are BALANCED, canceling to a net force of zero.\n\nA net force is required to change an object's motion, not to sustain it.",rubric:["Identified the reasoning error as confusing 'moving' with 'accelerating'","Correctly stated constant velocity means zero net force","Explained that individual forces (thrust, friction) still exist but cancel","Connected the explanation back to Newton's first and/or second law"]}
+];
+
+const UNIT_NAMES = {
+  U1:"Nature of Science", U2:"Atomic Structure", U3:"Bonding & Reactions",
+  U4:"Energy, Heat & Waves", U5:"Nuclear Science", U6:"Motion & Forces"
+};
+const LS_M='physci_selfgrader_mastered';
+
+let curUnit='all', curType='all';
+let mastered=new Set(JSON.parse(localStorage.getItem(LS_M)||'[]'));
+let revealed=new Set();
+let checks={}; // promptIndex -> Set of checked rubric indices
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function nl(s){ return esc(s).replace(/\n/g,'<br>'); }
+function saveM(){ localStorage.setItem(LS_M, JSON.stringify([...mastered])); }
+
+function setUnit(u,btn){ curUnit=u; document.querySelectorAll('.pill[data-unit]').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); render(); }
+function setType(t,btn){ curType=t; document.querySelectorAll('.pill[data-type]').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); render(); }
+
+function getFiltered(){
+  return PROMPTS.filter(p=>{
+    if(curUnit!=='all' && p.u!==curUnit) return false;
+    if(curType!=='all' && p.type!==curType) return false;
+    return true;
+  });
+}
+function reveal(i){ revealed.add(i); if(!checks[i]) checks[i]=new Set(); render(); }
+function toggleMastered(i,ev){ ev.stopPropagation(); if(mastered.has(i)) mastered.delete(i); else mastered.add(i); saveM(); render(); }
+function toggleCheck(i,j){
+  if(!checks[i]) checks[i]=new Set();
+  if(checks[i].has(j)) checks[i].delete(j); else checks[i].add(j);
+  render();
+}
+function render(){
+  const list=getFiltered();
+  document.getElementById('s-mastered').textContent=mastered.size;
+  document.getElementById('s-shown').textContent=list.length;
+  document.getElementById('count-line').innerHTML=`<b>${list.length}</b> of <b>${PROMPTS.length}</b> shown`;
+  const box=document.getElementById('prompt-list');
+  if(!list.length){ box.innerHTML='<div class="empty">No prompts match your filters.</div>'; return; }
+  box.innerHTML=list.map(p=>{
+    const i=PROMPTS.indexOf(p);
+    const isRevealed=revealed.has(i), isM=mastered.has(i);
+    const checkedSet=checks[i]||new Set();
+    const score=checkedSet.size, total=p.rubric.length;
+    return `<div class="prompt-card">
+      <div class="prompt-top">
+        <div class="prompt-tags">
+          <span class="tag t-unit">${p.u} · ${UNIT_NAMES[p.u]}</span>
+          <span class="tag ${p.type==='calc'?'t-calc':'t-concept'}">${p.type==='calc'?'🧮 Calculation':'💬 Conceptual'}</span>
+        </div>
+        ${isM?'<span class="mastered-badge">✓ Mastered</span>':''}
+      </div>
+      <div class="prompt-text">${esc(p.prompt)}</div>
+      <textarea class="answer-area" placeholder="Write your answer here, or work the problem on paper — this text isn't saved or graded automatically." id="ans-${i}"></textarea>
+      <div class="btn-row">
+        <button class="btn btn-reveal" onclick="reveal(${i})">Show Model Answer &amp; Rubric</button>
+        <button class="btn btn-mastered ${isM?'on':''}" onclick="toggleMastered(${i},event)">${isM?'✓ Mastered':'Mark Mastered'}</button>
+      </div>
+      <div class="model-box ${isRevealed?'show':''}">
+        <div class="model-lbl">MODEL ANSWER</div>
+        <div class="model-answer">${nl(p.model)}</div>
+        <div class="rubric-lbl">SELF-CHECK RUBRIC — check off what your answer included</div>
+        ${p.rubric.map((r,j)=>`
+          <div class="rubric-item">
+            <div class="rubric-check ${checkedSet.has(j)?'on':''}" onclick="toggleCheck(${i},${j})">${checkedSet.has(j)?'✓':''}</div>
+            <div class="rubric-text">${esc(r)}</div>
+          </div>`).join('')}
+        <div class="rubric-score">Self-score: <span>${score} / ${total}</span></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+(function init(){
+  const total=PROMPTS.length;
+  const calc=PROMPTS.filter(p=>p.type==='calc').length;
+  const concept=PROMPTS.filter(p=>p.type==='concept').length;
+  document.getElementById('s-total').textContent=total;
+  document.getElementById('page-sub').textContent=`${total} free-response prompts · ${calc} calculation · ${concept} conceptual · self-scored rubrics`;
+  render();
+})();
+</script>
+</body>
+</html>

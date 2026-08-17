@@ -40,7 +40,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .cert-note{font-size:11.5px;color:var(--muted);margin-top:3px}
 .cert-switch{display:flex;gap:6px}
 .cert-pill{background:var(--card2);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:11.5px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
-.cert-pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.cert-pill.active{background:#8558EC;border-color:var(--accent);color:#fff}
 .cert-pill.locked{opacity:.5;cursor:default}
 
 .prog-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 20px;margin-bottom:22px}
@@ -119,7 +119,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
       <span class="hero-chip chip-purple">📖 79 Glossary Terms</span>
       <span class="hero-chip chip-sky">✏️ 42 Drill Questions</span>
       <span class="hero-chip chip-red">🔬 16 Bug Autopsies</span>
-      <span class="hero-chip">⌨ 37 Code Examples</span>
+      <span class="hero-chip">📎 20 Common Confusions</span>
+      <span class="hero-chip">✍️ 11 Self-Grader Prompts</span>
     </div>
   </div>
 
@@ -144,7 +145,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     <div class="prog-label" id="prog-label">Loading your activity…</div>
   </div>
 
-  <div class="sec-label">The Three Builds</div>
+  <div class="sec-label">The Five Builds</div>
   <div class="builds">
 
     <a class="bcard bcard-glossary" href="GameDesign_Master_Glossary.html">
@@ -167,6 +168,16 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
       <div class="bcard-cta cta-drill">Open Drill Trainer <span class="arrow">→</span></div>
     </a>
 
+    <a class="bcard" style="border-color:rgba(46,139,192,.3)" href="GameDesign_Common_Confusions.html">
+      <div class="bcard-head">
+        <div><div class="bcard-eyebrow" style="color:#7cc0e6">Build 5 · Quick Reference</div><div class="bcard-name">Common Confusions</div></div>
+        <div class="bcard-icon" style="background:rgba(46,139,192,.14);border:1px solid rgba(46,139,192,.3)">📎</div>
+      </div>
+      <div class="bcard-desc">20 term pairs that get mixed up constantly — Awake vs Start, = vs ==, Collision vs Trigger — shown side-by-side with a memory hook for each.</div>
+      <div class="bcard-tags"><span class="btag bt-sky">20 pairs</span><span class="btag bt-muted">Side-by-side format</span><span class="btag bt-muted">5 categories</span></div>
+      <div class="bcard-cta" style="color:var(--accent2)">Open Common Confusions <span class="arrow">→</span></div>
+    </a>
+
     <a class="bcard bcard-autopsy" href="GameDesign_Mistakes_Autopsy.html">
       <div class="bcard-head">
         <div><div class="bcard-eyebrow eb-autopsy">Build 3 · Error Review</div><div class="bcard-name">Mistakes Autopsy</div></div>
@@ -175,6 +186,16 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
       <div class="bcard-desc">16 beginner bugs dissected with real code — = vs ==, missing Time.deltaTime, physics in the wrong method. Includes a Find My Mistake diagnostic and mastery tracking.</div>
       <div class="bcard-tags"><span class="btag bt-red">16 bugs</span><span class="btag bt-muted">Code analysis</span><span class="btag bt-muted">Diagnostic mode</span></div>
       <div class="bcard-cta cta-autopsy">Open Autopsy <span class="arrow">→</span></div>
+    </a>
+
+    <a class="bcard" style="border-color:rgba(29,158,117,.3)" href="GameDesign_Self_Grader.html">
+      <div class="bcard-head">
+        <div><div class="bcard-eyebrow" style="color:#4fd1a5">Build 6 · Free Response</div><div class="bcard-name">Self-Grader</div></div>
+        <div class="bcard-icon" style="background:rgba(29,158,117,.14);border:1px solid rgba(29,158,117,.3)">✍️</div>
+      </div>
+      <div class="bcard-desc">11 prompts the multiple-choice Drill Trainer can't test — write real C# code, explain a bug, or reason through a design problem. Self-score against a rubric.</div>
+      <div class="bcard-tags"><span class="btag bt-teal">11 prompts</span><span class="btag bt-muted">Code · concept · design</span><span class="btag bt-muted">Self-scored rubric</span></div>
+      <div class="bcard-cta" style="color:var(--teal)">Open Self-Grader <span class="arrow">→</span></div>
     </a>
 
     <div class="bcard" style="cursor:default;justify-content:center;align-items:center;text-align:center;border-style:dashed;opacity:.7">
@@ -189,8 +210,10 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   <div class="path-card">
     <div class="path-step"><div class="path-num">1</div><div class="path-body"><div class="path-name"><a href="GameDesign_Master_Glossary.html">Learn the vocabulary</a></div><div class="path-note">Start in the Master Glossary. Work one category at a time — Engine, then C#, then Gameplay — and study the code examples closely; they mirror what the certification tests.</div></div></div>
     <div class="path-step"><div class="path-num">2</div><div class="path-body"><div class="path-name"><a href="GameDesign_DrillTrainer.html">Drill in Practice mode</a></div><div class="path-note">Move to the Drill Trainer in Practice mode. Read every explanation, especially on the code-reading questions — understanding why an answer is right matters more than the score.</div></div></div>
-    <div class="path-step"><div class="path-num">3</div><div class="path-body"><div class="path-name"><a href="GameDesign_Mistakes_Autopsy.html">Autopsy the classic bugs</a></div><div class="path-note">Open the Mistakes Autopsy and study the errors every beginner makes. Recognizing these on sight is a large part of passing a Unity certification exam.</div></div></div>
-    <div class="path-step"><div class="path-num">4</div><div class="path-body"><div class="path-name"><a href="GameDesign_DrillTrainer.html">Test under exam conditions</a></div><div class="path-note">Return to the Drill Trainer and run a timed Exam Mode session across all categories. Use the per-category breakdown to see exactly where to review.</div></div></div>
+    <div class="path-step"><div class="path-num">3</div><div class="path-body"><div class="path-name"><a href="GameDesign_Common_Confusions.html">Untangle the look-alikes</a></div><div class="path-note">Skim Common Confusions once a few mix-ups show up in drilling — Awake vs Start, = vs ==, and Collider vs Trigger are worth locking in early rather than re-confusing on the cert exam.</div></div></div>
+    <div class="path-step"><div class="path-num">4</div><div class="path-body"><div class="path-name"><a href="GameDesign_Mistakes_Autopsy.html">Autopsy the classic bugs</a></div><div class="path-note">Open the Mistakes Autopsy and study the errors every beginner makes. Recognizing these on sight is a large part of passing a Unity certification exam.</div></div></div>
+    <div class="path-step"><div class="path-num">5</div><div class="path-body"><div class="path-name"><a href="GameDesign_Self_Grader.html">Practice writing real code</a></div><div class="path-note">Work through the Self-Grader's code-writing and design-reasoning prompts. Multiple choice tests recognition — this is the closest thing here to actually writing a script yourself.</div></div></div>
+    <div class="path-step"><div class="path-num">6</div><div class="path-body"><div class="path-name"><a href="GameDesign_DrillTrainer.html">Test under exam conditions</a></div><div class="path-note">Return to the Drill Trainer and run a timed Exam Mode session across all categories. Use the per-category breakdown to see exactly where to review.</div></div></div>
   </div>
 
   <div class="sec-label">The Five Content Areas</div>
@@ -221,9 +244,9 @@ function setCert(c, btn){
   document.getElementById('cert-name').textContent = CERT_NAMES[c];
 }
 
-// Progress reads the same localStorage keys the three tools write
+// Progress reads the same localStorage keys the four other tools write
 function readProgress(){
-  let signals=[], done=0, total=4;
+  let signals=[], done=0, total=5;
   const gStar=JSON.parse(localStorage.getItem('gamedesign_glossary_starred')||'[]');
   const gQuiz=localStorage.getItem('gamedesign_glossary_quizscore');
   if(gStar.length||gQuiz){ done++; signals.push(`Glossary: ${gStar.length} starred${gQuiz?', quiz '+gQuiz:''}`); }
@@ -233,15 +256,17 @@ function readProgress(){
   if(mastered.length){ done++; signals.push(`Autopsy: ${mastered.length}/16 mastered`); }
   const fmm=localStorage.getItem('gamedesign_autopsy_fmm');
   if(fmm){ done++; signals.push(`Find My Mistake: ${fmm}`); }
+  const sgMastered=JSON.parse(localStorage.getItem('gamedesign_selfgrader_mastered')||'[]');
+  if(sgMastered.length){ done++; signals.push(`Self-Grader: ${sgMastered.length}/11 mastered`); }
   const pct=Math.round(done/total*100);
   document.getElementById('prog-fill').style.width=pct+'%';
   document.getElementById('prog-label').innerHTML = signals.length
     ? `<b>${pct}%</b> of study milestones started · ${signals.join(' · ')}`
-    : 'No activity yet — open the Master Glossary to begin. Your progress across all three tools will appear here.';
+    : 'No activity yet — open the Master Glossary to begin. Your progress across all tools will appear here.';
 }
 function resetProgress(){
-  if(!confirm('Reset all Game Design progress? This clears starred terms, quiz scores, drill stats, and mastered bugs across every tool.')) return;
-  ['gamedesign_glossary_starred','gamedesign_glossary_quizscore','gamedesign_drill_stats','gamedesign_autopsy_mastered','gamedesign_autopsy_fmm']
+  if(!confirm('Reset all Game Design progress? This clears starred terms, quiz scores, drill stats, mastered bugs, and Self-Grader progress across every tool.')) return;
+  ['gamedesign_glossary_starred','gamedesign_glossary_quizscore','gamedesign_drill_stats','gamedesign_autopsy_mastered','gamedesign_autopsy_fmm','gamedesign_selfgrader_mastered']
     .forEach(k=>localStorage.removeItem(k));
   readProgress();
 }

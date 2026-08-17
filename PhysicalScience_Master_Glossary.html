@@ -23,7 +23,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
 .page-title span{color:var(--teal)}
 .page-sub{font-size:13px;color:var(--muted);margin-top:6px}
-.quiz-launch-btn{background:linear-gradient(135deg,var(--teal),#12b886);border:none;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:11px 20px;border-radius:11px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.quiz-launch-btn{background:linear-gradient(135deg,#188663,#0D8661);border:none;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:11px 20px;border-radius:11px;cursor:pointer;transition:all .2s;white-space:nowrap}
 .quiz-launch-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(29,158,117,.35)}
 
 .stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
@@ -40,7 +40,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .search-input:focus{outline:none;border-color:var(--sky)}
 .pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
 .pill:hover{border-color:var(--sky);color:var(--text)}
-.pill.active{background:var(--sky);border-color:var(--sky);color:#fff}
+.pill.active{background:#297DAC;border-color:var(--sky);color:#fff}
 .pill-star.active{background:var(--amber);border-color:var(--amber)}
 .pill-formula.active{background:var(--purple);border-color:var(--purple)}
 .view-toggle{margin-left:auto;display:flex;gap:6px}
@@ -49,7 +49,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .az-btn{background:transparent;border:none;color:var(--muted);font-family:'DM Mono',monospace;font-size:12.5px;font-weight:500;width:26px;height:26px;border-radius:6px;cursor:pointer;transition:all .15s}
 .az-btn:hover{background:var(--card2);color:var(--text)}
 .az-btn.has{color:var(--sky)}
-.az-btn.active{background:var(--sky);color:#fff}
+.az-btn.active{background:#297DAC;color:#fff}
 
 .count-line{font-size:12px;color:var(--muted);margin-bottom:12px}
 .count-line b{color:var(--white);font-family:'DM Mono',monospace}
@@ -96,9 +96,9 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .quiz-answer .qa-formula{font-family:'DM Mono',monospace;color:#c4b2f7;margin-top:8px;font-size:12.5px}
 .quiz-btns{display:flex;gap:8px;flex-wrap:wrap}
 .qbtn{flex:1;min-width:110px;border:none;border-radius:11px;padding:12px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .18s}
-.qbtn-show{background:var(--sky);color:#fff}
-.qbtn-got{background:var(--teal);color:#fff}
-.qbtn-miss{background:var(--red);color:#fff}
+.qbtn-show{background:#297DAC;color:#fff}
+.qbtn-got{background:#188663;color:#fff}
+.qbtn-miss{background:#D24536;color:#fff}
 .qbtn:hover{transform:translateY(-2px)}
 .quiz-done{text-align:center}
 .quiz-score{font-size:2.6rem;font-weight:800;color:var(--teal);font-family:'DM Mono',monospace}
@@ -122,7 +122,10 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
       <div class="page-title">Master <span>Glossary</span></div>
       <div class="page-sub" id="page-sub">Loading…</div>
     </div>
-    <button class="quiz-launch-btn" onclick="launchQuiz()">🧠 Flashcard Quiz</button>
+    <div style="display:flex;gap:9px;flex-wrap:wrap">
+      <button class="quiz-launch-btn" onclick="launchQuiz()">🧠 Flashcard Quiz</button>
+      <button class="quiz-launch-btn" style="background:linear-gradient(135deg,var(--red),#c0392b)" onclick="launchFocusReview()">🎯 Focus Review</button>
+    </div>
   </div>
 
   <!-- STATS -->
@@ -404,6 +407,42 @@ let curUnit='all', starOnly=false, formulaOnly=false, curLetter=null, curView='c
 let starred = new Set(JSON.parse(localStorage.getItem('physci_glossary_starred')||'[]'));
 let quizScore = localStorage.getItem('physci_glossary_quizscore');
 
+// ── SPACED REPETITION (per-term seen/missed tracking) ──
+// Keyed by term name (stable across edits, unlike array index).
+let srs = JSON.parse(localStorage.getItem('physci_glossary_srs')||'{}');
+function saveSRS(){ localStorage.setItem('physci_glossary_srs', JSON.stringify(srs)); }
+function srsRecord(termName){ return srs[termName] || {seen:0, missed:0}; }
+function srsUpdate(termName, gotItRight){
+  const r = srsRecord(termName);
+  r.seen++;
+  if(!gotItRight) r.missed++;
+  srs[termName] = r;
+  saveSRS();
+}
+// Unseen terms get moderate priority (ensures full coverage over time).
+// Missed terms get boosted priority proportional to their miss rate.
+// Mastered terms (0% miss) keep a floor weight of 1 so they still resurface occasionally.
+function srsWeight(termName){
+  const r = srsRecord(termName);
+  if(r.seen===0) return 3;
+  const missRate = r.missed / r.seen;
+  return Math.max(1, 1 + missRate*6);
+}
+// Weighted random sample without replacement.
+function weightedSample(items, n){
+  const pool = items.map(it=>({it, w: srsWeight(it.t)}));
+  const picked = [];
+  for(let k=0; k<n && pool.length; k++){
+    const total = pool.reduce((s,p)=>s+p.w, 0);
+    let r = Math.random()*total, idx=0;
+    for(; idx<pool.length; idx++){ r -= pool[idx].w; if(r<=0) break; }
+    idx = Math.min(idx, pool.length-1);
+    picked.push(pool[idx].it);
+    pool.splice(idx,1);
+  }
+  return picked;
+}
+
 // ── HELPERS ──
 function saveStars(){ localStorage.setItem('physci_glossary_starred', JSON.stringify([...starred])); }
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
@@ -508,13 +547,26 @@ function applyFilters(){
   }).join('');
 }
 
-// ── FLASHCARD QUIZ ──
-let quizDeck=[], quizIdx=0, quizRight=0, quizRevealed=false;
+// ── FLASHCARD QUIZ (spaced-repetition weighted) ──
+let quizDeck=[], quizIdx=0, quizRight=0, quizRevealed=false, quizFocusMode=false;
 
 function launchQuiz(){
+  quizFocusMode=false;
   const pool = getFiltered();
   if(pool.length < 4){ alert('Need at least 4 terms in the current filter to start a quiz.'); return; }
-  quizDeck = pool.slice().sort(()=>Math.random()-0.5).slice(0, Math.min(20, pool.length));
+  quizDeck = weightedSample(pool, Math.min(20, pool.length));
+  quizIdx=0; quizRight=0; quizRevealed=false;
+  document.getElementById('quiz-modal').classList.add('open');
+  renderQuiz();
+}
+// Focus Review: pulls only the highest-priority terms (most missed / least practiced)
+// from the current filter, for a short, targeted session.
+function launchFocusReview(){
+  quizFocusMode=true;
+  const pool = getFiltered();
+  if(pool.length < 4){ alert('Need at least 4 terms in the current filter to start a Focus Review.'); return; }
+  const ranked = pool.slice().sort((a,b)=> srsWeight(b.t) - srsWeight(a.t));
+  quizDeck = ranked.slice(0, Math.min(10, ranked.length));
   quizIdx=0; quizRight=0; quizRevealed=false;
   document.getElementById('quiz-modal').classList.add('open');
   renderQuiz();
@@ -522,6 +574,8 @@ function launchQuiz(){
 function closeQuiz(){ document.getElementById('quiz-modal').classList.remove('open'); }
 function revealAnswer(){ quizRevealed=true; renderQuiz(); }
 function markQuiz(correct){
+  const t = quizDeck[quizIdx];
+  srsUpdate(t.t, correct);
   if(correct) quizRight++;
   quizIdx++; quizRevealed=false;
   if(quizIdx>=quizDeck.length){
@@ -532,11 +586,11 @@ function markQuiz(correct){
     document.getElementById('quiz-box').innerHTML = `
       <button class="quiz-close" onclick="closeQuiz()">✕</button>
       <div class="quiz-done">
-        <div style="font-size:11px;letter-spacing:.12em;color:var(--muted);margin-bottom:10px">SESSION COMPLETE</div>
+        <div style="font-size:11px;letter-spacing:.12em;color:var(--muted);margin-bottom:10px">SESSION COMPLETE${quizFocusMode?' · FOCUS REVIEW':''}</div>
         <div class="quiz-score">${quizRight}/${quizDeck.length}</div>
         <div style="font-size:14px;color:var(--muted);margin:8px 0 20px">${pct}% correct</div>
         <div class="quiz-btns">
-          <button class="qbtn qbtn-show" onclick="launchQuiz()">Run Again</button>
+          <button class="qbtn qbtn-show" onclick="${quizFocusMode?'launchFocusReview()':'launchQuiz()'}">Run Again</button>
           <button class="qbtn qbtn-got" onclick="closeQuiz()">Done</button>
         </div>
       </div>`;
@@ -551,7 +605,7 @@ function renderQuiz(){
   ansHtml += `</div>`;
   document.getElementById('quiz-box').innerHTML = `
     <button class="quiz-close" onclick="closeQuiz()">✕</button>
-    <div class="quiz-progress">CARD ${quizIdx+1} OF ${quizDeck.length} · ${t.u} ${UNIT_NAMES[t.u]}</div>
+    <div class="quiz-progress">${quizFocusMode?'🎯 FOCUS REVIEW · ':''}CARD ${quizIdx+1} OF ${quizDeck.length} · ${t.u} ${UNIT_NAMES[t.u]}</div>
     <div class="quiz-prompt-lbl">DEFINE THIS TERM</div>
     <div class="quiz-term">${esc(t.t)}</div>
     ${ansHtml}

@@ -3,1629 +3,732 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Algebra 2 — Drill Trainer</title>
+<title>Algebra 2 — Mistakes Autopsy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
   --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
   --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
-  --t1:#2E8BC0;--t2:#1D9E75;--t3:#E59400;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);min-height:100vh;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle at 20% 20%,rgba(46,139,192,0.06) 0%,transparent 50%),radial-gradient(circle at 80% 80%,rgba(27,58,107,0.08) 0%,transparent 50%);pointer-events:none;z-index:0}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle at 20% 20%,rgba(231,76,60,0.05) 0%,transparent 50%),radial-gradient(circle at 80% 80%,rgba(27,58,107,0.08) 0%,transparent 50%);pointer-events:none;z-index:0}
 
-/* ── LAYOUT ── */
-.app{max-width:900px;margin:0 auto;padding:0 16px 80px;position:relative;z-index:1}
+.app{max-width:920px;margin:0 auto;padding:0 16px 80px;position:relative;z-index:1}
 .header{padding:28px 0 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .header-left{display:flex;flex-direction:column;gap:4px}
-.series-label{font-size:10px;font-weight:700;color:var(--sky);letter-spacing:.14em;text-transform:uppercase}
+.series-label{font-size:10px;font-weight:700;color:var(--red);letter-spacing:.14em;text-transform:uppercase}
 .page-title{font-size:28px;font-weight:800;color:var(--white);letter-spacing:-.3px}
-.page-title span{color:var(--sky)}
+.page-title span{color:var(--red)}
 .header-actions{display:flex;gap:8px;flex-wrap:wrap}
-
-/* ── BADGES / PILLS ── */
-.pill{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.04em;cursor:pointer;border:1px solid transparent;transition:all .2s}
+.pill{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.04em;cursor:pointer;border:1px solid transparent;transition:all .2s;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--muted)}
 .pill-sky{background:rgba(46,139,192,.12);color:var(--sky);border-color:rgba(46,139,192,.25)}
 .pill-sky:hover,.pill-sky.active{background:rgba(46,139,192,.25);border-color:var(--sky)}
-.pill-teal{background:rgba(29,158,117,.12);color:var(--teal);border-color:rgba(29,158,117,.25)}
-.pill-teal:hover,.pill-teal.active{background:rgba(29,158,117,.25);border-color:var(--teal)}
-.pill-amber{background:rgba(229,148,0,.12);color:var(--amber);border-color:rgba(229,148,0,.25)}
-.pill-amber:hover,.pill-amber.active{background:rgba(229,148,0,.25);border-color:var(--amber)}
 .pill-red{background:rgba(231,76,60,.12);color:var(--red);border-color:rgba(231,76,60,.25)}
+.pill-red:hover,.pill-red.active{background:rgba(231,76,60,.25);border-color:var(--red)}
 .pill-navy{background:rgba(27,58,107,.4);color:var(--muted);border-color:var(--border)}
 .pill-navy:hover,.pill-navy.active{background:rgba(27,58,107,.7);color:var(--text);border-color:var(--sky)}
+.pill-teal{background:rgba(29,158,117,.12);color:var(--teal);border-color:rgba(29,158,117,.25)}
+.pill-teal:hover,.pill-teal.active{background:rgba(29,158,117,.25);border-color:var(--teal)}
 
-/* ── CARDS ── */
-.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px}
-.card-lg{border-radius:20px;padding:28px}
-.card:hover{transition:border-color .25s}
-.glow-on-hover{transition:all .25s}
-.glow-on-hover:hover{border-color:var(--sky);box-shadow:0 0 22px rgba(46,139,192,.2)}
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:96px}
+.stat-num{font-family:'DM Mono',monospace;font-size:20px;font-weight:800;color:var(--white);line-height:1}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:3px}
 
-/* ── SECTION LABEL ── */
-.sec-label{display:flex;align-items:center;gap:10px;font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
-.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.controls{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:18px;display:flex;flex-direction:column;gap:12px}
+.ctrl-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.1em;color:var(--muted);min-width:56px}
+.search-wrap{flex:1;min-width:200px;position:relative}
+.search-input{width:100%;padding:9px 14px 9px 34px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px}
+.search-input:focus{outline:none;border-color:var(--red)}
+.search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.5}
+.view-toggle{display:flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-left:auto}
+.view-btn{padding:7px 14px;font-size:11px;font-weight:700;background:transparent;border:none;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif}
+.view-btn.active{background:rgba(231,76,60,.15);color:var(--red)}
 
-/* ── CONTROL PANEL ── */
-.control-panel{display:grid;gap:14px;margin-bottom:20px}
-.control-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.control-label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.1em;min-width:90px;flex-shrink:0}
+.launch-fmm{background:linear-gradient(135deg,#8558EC,#6d3fd4);color:#fff;border:none;padding:10px 20px;font-size:13px;font-weight:800;border-radius:12px;cursor:pointer;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:6px}
+.launch-fmm:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(139,92,246,.3)}
 
-/* Mode tabs */
-.mode-tabs{display:flex;gap:6px;flex-wrap:wrap}
-.mode-tab{padding:7px 16px;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:transparent;color:var(--muted);transition:all .2s;white-space:nowrap}
-.mode-tab:hover{border-color:var(--sky);color:var(--text)}
-.mode-tab.active{border-color:var(--sky);background:rgba(46,139,192,.15);color:var(--sky)}
-.mode-tab.locked{cursor:not-allowed;opacity:.5}
-.mode-tab.locked::after{content:' 🔒'}
+.mistake{background:var(--card);border:1px solid var(--border);border-radius:16px;margin-bottom:16px;overflow:hidden}
+.mistake.mastered{border-color:rgba(29,158,117,.4)}
+.m-head{padding:14px 18px;background:var(--card2);display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;cursor:pointer}
+.m-num{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;color:#fff;background:var(--navy);padding:3px 9px;border-radius:6px}
+.m-title{font-size:14.5px;font-weight:700;color:var(--white);flex:1}
+.m-tags{display:flex;gap:6px;align-items:center}
+.unit-tag{font-size:10px;font-weight:700;color:var(--sky);background:rgba(46,139,192,.12);border:1px solid rgba(46,139,192,.25);padding:2px 8px;border-radius:6px}
+.mastered-badge{font-size:10px;font-weight:700;color:var(--teal);background:rgba(29,158,117,.15);border:1px solid rgba(29,158,117,.3);padding:2px 8px;border-radius:6px}
+.m-body{padding:0 18px 18px;display:none}
+.mistake.open .m-body{display:block}
+.why-bar{background:rgba(229,148,0,.08);border-left:3px solid var(--amber);border-radius:0 8px 8px 0;padding:10px 14px;margin-bottom:12px;font-size:12.5px;line-height:1.6}
+.why-bar b{color:var(--amber);display:block;font-size:9.5px;letter-spacing:.1em;margin-bottom:4px;font-family:'DM Mono',monospace}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+@media(max-width:640px){.compare-grid{grid-template-columns:1fr}}
+.wrong-col,.right-col{border-radius:10px;padding:12px 14px;font-family:'DM Mono',monospace;font-size:12px;line-height:1.7;white-space:pre-wrap}
+.wrong-col{background:rgba(231,76,60,.07);border:1px solid rgba(231,76,60,.25)}
+.right-col{background:rgba(29,158,117,.07);border:1px solid rgba(29,158,117,.25)}
+.col-lbl{font-family:'DM Sans',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.1em;margin-bottom:6px;display:block}
+.wrong-col .col-lbl{color:var(--red)}
+.right-col .col-lbl{color:var(--teal)}
+.memory-bar{background:rgba(139,92,246,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:10px 14px;margin-bottom:10px;font-size:12.5px;font-weight:600;color:#c4b5fd}
+.memory-bar b{color:var(--purple);display:block;font-size:9.5px;letter-spacing:.1em;margin-bottom:4px;font-family:'DM Mono',monospace;font-weight:700}
+.watchout-bar{background:var(--bg);border:1px dashed var(--border);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--muted);margin-bottom:12px}
+.watchout-bar b{color:var(--text);display:block;font-size:9.5px;letter-spacing:.1em;margin-bottom:4px;font-family:'DM Mono',monospace}
+.m-actions{display:flex;gap:8px}
+.btn-small{border:1px solid var(--border);background:var(--bg);color:var(--muted);padding:7px 14px;border-radius:9px;font-size:11.5px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif}
+.btn-small:hover{border-color:var(--sky);color:var(--text)}
+.btn-small.on{background:rgba(29,158,117,.15);border-color:var(--teal);color:var(--teal)}
 
-/* Unit selector */
-.unit-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;flex:1}
-.unit-btn{padding:7px 4px;border-radius:9px;border:1.5px solid var(--border);background:transparent;color:var(--muted);font-size:11px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .2s;text-align:center}
-.unit-btn:hover{border-color:var(--sky);color:var(--text)}
-.unit-btn.active{border-color:var(--teal);background:rgba(29,158,117,.12);color:var(--teal)}
-.unit-select-actions{display:flex;gap:6px;margin-top:8px}
+.compact .m-body{display:none!important}
+.compact .m-head{padding:11px 16px}
 
-/* Difficulty */
-.diff-toggle{display:flex;border-radius:10px;overflow:hidden;border:1.5px solid var(--border);width:fit-content}
-.diff-btn{padding:7px 14px;font-size:11px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;border:none;background:transparent;color:var(--muted);transition:all .2s}
-.diff-btn:hover{color:var(--text)}
-.diff-btn.active{background:rgba(229,148,0,.15);color:var(--amber)}
+.empty{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px}
 
-/* ── START BUTTON ── */
-.start-btn{width:100%;padding:16px;border-radius:14px;font-size:16px;font-weight:800;font-family:'DM Sans',sans-serif;cursor:pointer;border:none;background:linear-gradient(135deg,var(--sky),var(--teal));color:#fff;letter-spacing:.02em;transition:all .25s;margin-top:4px}
-.start-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(46,139,192,.35)}
-.start-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
-
-/* ── QUESTION AREA ── */
-.q-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px}
-.q-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.q-unit-tag{font-size:10px;font-weight:700;color:var(--sky);letter-spacing:.1em;background:rgba(46,139,192,.1);padding:3px 10px;border-radius:8px}
-.q-tier-tag{font-size:10px;font-weight:700;padding:3px 10px;border-radius:8px}
-.tier-1-tag{background:rgba(46,139,192,.12);color:var(--t1)}
-.tier-2-tag{background:rgba(29,158,117,.12);color:var(--t2)}
-.tier-3-tag{background:rgba(229,148,0,.12);color:var(--t3)}
-.q-topic-tag{font-size:10px;color:var(--muted);letter-spacing:.05em}
-.q-standards{font-size:9px;color:var(--muted);opacity:.7}
-.q-counter{font-size:12px;font-weight:600;color:var(--muted)}
-.q-stem{font-size:18px;font-weight:600;color:var(--white);line-height:1.55;margin-bottom:22px;padding:18px 20px;background:rgba(27,58,107,.3);border-radius:12px;border-left:3px solid var(--sky)}
-
-/* Choices */
-.choices{display:grid;gap:10px;margin-bottom:18px}
-.choice-btn{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border-radius:12px;border:1.5px solid var(--border);background:var(--card2);cursor:pointer;text-align:left;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);transition:all .2s;width:100%}
-.choice-btn:hover:not(:disabled){border-color:var(--sky);background:rgba(46,139,192,.08)}
-.choice-btn.selected{border-color:var(--sky);background:rgba(46,139,192,.12)}
-.choice-btn.correct{border-color:var(--teal)!important;background:rgba(29,158,117,.15)!important;color:var(--white)}
-.choice-btn.wrong{border-color:var(--red)!important;background:rgba(231,76,60,.1)!important}
-.choice-btn:disabled{cursor:default}
-.choice-letter{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--muted);flex-shrink:0;transition:all .2s}
-.choice-btn:hover:not(:disabled) .choice-letter{border-color:var(--sky);color:var(--sky)}
-.choice-btn.selected .choice-letter{border-color:var(--sky);color:var(--sky);background:rgba(46,139,192,.15)}
-.choice-btn.correct .choice-letter{border-color:var(--teal);color:var(--teal);background:rgba(29,158,117,.2)}
-.choice-btn.wrong .choice-letter{border-color:var(--red);color:var(--red);background:rgba(231,76,60,.15)}
-.choice-text{flex:1;line-height:1.5}
-
-/* Work field */
-.work-area{margin-bottom:16px}
-.work-label{font-size:11px;font-weight:700;color:var(--amber);letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;gap:6px}
-.work-label .dot{width:6px;height:6px;border-radius:50%;background:var(--amber);animation:pulse 2s infinite}
-.work-textarea{width:100%;min-height:90px;padding:12px 14px;border-radius:11px;border:1.5px solid var(--border);background:rgba(229,148,0,.04);color:var(--text);font-family:'DM Mono','DM Sans',monospace;font-size:13px;resize:vertical;transition:border-color .2s;outline:none;line-height:1.6}
-.work-textarea:focus{border-color:var(--amber)}
-.work-textarea::placeholder{color:var(--muted);font-family:'DM Sans',sans-serif;font-size:12px}
-.work-nudge{font-size:11px;color:var(--amber);opacity:.8;margin-top:5px}
-
-/* Action buttons */
-.action-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
-.btn{padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;border:1.5px solid transparent;transition:all .2s;white-space:nowrap}
-.btn-primary{background:var(--sky);color:#fff;border-color:var(--sky)}
-.btn-primary:hover{background:#2679a8;box-shadow:0 4px 14px rgba(46,139,192,.3)}
-.btn-primary:disabled{opacity:.35;cursor:not-allowed;box-shadow:none}
-.btn-ghost{background:transparent;color:var(--muted);border-color:var(--border)}
-.btn-ghost:hover{border-color:var(--sky);color:var(--text)}
-.btn-teal{background:rgba(29,158,117,.12);color:var(--teal);border-color:rgba(29,158,117,.3)}
-.btn-teal:hover{background:rgba(29,158,117,.22);box-shadow:0 4px 14px rgba(29,158,117,.2)}
-.btn-amber{background:rgba(229,148,0,.12);color:var(--amber);border-color:rgba(229,148,0,.3)}
-.btn-amber:hover{background:rgba(229,148,0,.22)}
-.btn-next{background:linear-gradient(135deg,var(--sky),var(--teal));color:#fff;border:none;padding:11px 28px;font-size:14px}
-.btn-next:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(46,139,192,.3)}
-
-/* Hint box */
-.hint-box{background:rgba(229,148,0,.07);border:1px solid rgba(229,148,0,.2);border-radius:11px;padding:14px 16px;margin-bottom:14px;display:flex;gap:10px}
-.hint-icon{font-size:16px;flex-shrink:0}
-.hint-text{font-size:13px;color:var(--amber);line-height:1.6}
-
-/* Explanation */
-.explanation-box{border-radius:12px;padding:18px;margin-bottom:16px;border:1px solid}
-.explanation-box.correct-exp{background:rgba(29,158,117,.07);border-color:rgba(29,158,117,.25)}
-.explanation-box.wrong-exp{background:rgba(231,76,60,.05);border-color:rgba(231,76,60,.2)}
-.exp-header{font-size:11px;font-weight:700;letter-spacing:.1em;margin-bottom:8px;display:flex;align-items:center;gap:6px}
-.exp-text{font-size:13px;line-height:1.7;color:var(--text)}
-.exp-text strong{color:var(--amber)}
-
-/* ── AI TUTOR ── */
-.tutor-panel{margin-bottom:16px;border-radius:13px;border:1.5px solid rgba(139,92,246,.3);background:rgba(139,92,246,.05);overflow:hidden;display:none}
-.tutor-panel.open{display:block;animation:fadeUp .25s ease}
-.tutor-header{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid rgba(139,92,246,.15)}
-.tutor-avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#8B5CF6,#2E8BC0);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
-.tutor-name{font-size:12px;font-weight:700;color:#a78bfa;letter-spacing:.06em}
-.tutor-status{font-size:10px;color:var(--muted);margin-left:auto}
-.tutor-body{padding:14px 16px;max-height:280px;overflow-y:auto}
-.tutor-messages{display:flex;flex-direction:column;gap:10px}
-.tutor-msg{font-size:13px;line-height:1.7;color:var(--text)}
-.tutor-msg.thinking{color:var(--muted);font-style:italic;display:flex;align-items:center;gap:8px}
-.tutor-msg.thinking::after{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--purple,#8B5CF6);animation:pulse 1s infinite}
-.tutor-msg strong{color:#c4b5fd}
-.tutor-msg code{font-family:'DM Mono',monospace;font-size:12px;background:rgba(139,92,246,.1);padding:1px 6px;border-radius:4px;color:#c4b5fd}
-.tutor-input-row{display:flex;gap:8px;padding:10px 16px;border-top:1px solid rgba(139,92,246,.15)}
-.tutor-input{flex:1;padding:8px 12px;border-radius:9px;border:1.5px solid rgba(139,92,246,.25);background:rgba(139,92,246,.05);color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;outline:none;transition:border-color .2s}
-.tutor-input:focus{border-color:rgba(139,92,246,.5)}
-.tutor-input::placeholder{color:var(--muted);font-size:12px}
-.tutor-send{padding:8px 14px;border-radius:9px;border:none;background:rgba(139,92,246,.2);color:#a78bfa;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;flex-shrink:0}
-.tutor-send:hover{background:rgba(139,92,246,.35)}
-.tutor-send:disabled{opacity:.4;cursor:not-allowed}
-.btn-tutor{background:rgba(139,92,246,.1);color:#a78bfa;border-color:rgba(139,92,246,.3)}
-.btn-tutor:hover{background:rgba(139,92,246,.2);box-shadow:0 4px 14px rgba(139,92,246,.2)}
-
-/* Timer ring */
-.timer-wrap{display:flex;align-items:center;gap:14px}
-.timer-ring-container{position:relative;width:72px;height:72px;flex-shrink:0}
-.timer-ring-container svg{transform:rotate(-90deg)}
-.timer-digits{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.timer-sec{font-size:18px;font-weight:700;font-family:'DM Mono',monospace;line-height:1}
-.timer-label{font-size:9px;color:var(--muted)}
-
-/* ── STATS BAR ── */
-.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
-.stat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
-.stat-val{font-size:22px;font-weight:800;color:var(--white);line-height:1}
-.stat-val.sky{color:var(--sky)}
-.stat-val.teal{color:var(--teal)}
-.stat-val.amber{color:var(--amber)}
-.stat-val.red{color:var(--red)}
-.stat-label{font-size:10px;color:var(--muted);font-weight:600;letter-spacing:.06em;margin-top:3px}
-
-/* Progress bar */
-.progress-wrap{margin-bottom:18px}
-.progress-bar-outer{height:6px;border-radius:3px;background:rgba(30,58,92,.6);overflow:hidden;margin-top:5px}
-.progress-bar-inner{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--sky),var(--teal));transition:width .4s ease}
-
-/* ── MASTERY PANEL ── */
-.mastery-grid{display:grid;gap:8px}
-.mastery-row{display:flex;align-items:center;gap:10px}
-.mastery-unit{font-size:10px;font-weight:700;color:var(--sky);min-width:28px;letter-spacing:.06em}
-.mastery-name{font-size:11px;color:var(--muted);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mastery-bar-outer{width:80px;height:6px;border-radius:3px;background:rgba(30,58,92,.6);overflow:hidden;flex-shrink:0}
-.mastery-bar-inner{height:100%;border-radius:3px;transition:width .5s ease}
-.mastery-pct{font-size:10px;font-weight:700;color:var(--muted);min-width:30px;text-align:right;flex-shrink:0}
-
-/* ── STAMINA MODE ── */
-.stamina-display{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
-.stamina-dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--border);transition:all .3s}
-.stamina-dot.filled{background:var(--teal);border-color:var(--teal);box-shadow:0 0 8px rgba(29,158,117,.5)}
-.stamina-dot.wrong-dot{background:var(--red);border-color:var(--red)}
-.stamina-label{font-size:11px;color:var(--muted);margin-left:4px}
-.stamina-badge{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700}
-.stamina-fire{background:rgba(229,148,0,.15);color:var(--amber);border:1px solid rgba(229,148,0,.3)}
-.stamina-complete{background:rgba(29,158,117,.15);color:var(--teal);border:1px solid rgba(29,158,117,.3)}
-
-/* ── EXAM MODE ── */
-.exam-header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border)}
-.exam-title{font-size:12px;font-weight:700;color:var(--amber);letter-spacing:.1em}
-.exam-progress-text{font-size:11px;color:var(--muted)}
-
-/* ── SETTINGS PANEL ── */
-.settings-overlay{position:fixed;inset:0;background:rgba(6,14,26,.92);z-index:200;display:none;align-items:center;justify-content:center;padding:16px}
-.settings-overlay.open{display:flex;animation:fadeUp .2s ease}
-.settings-modal{background:#0d1e32;border:1.5px solid var(--sky);border-radius:20px;padding:28px;width:100%;max-width:480px;position:relative}
-.settings-close{position:absolute;top:16px;right:16px;background:none;border:1px solid var(--border);border-radius:50%;width:32px;height:32px;cursor:pointer;color:var(--muted);font-size:18px;display:flex;align-items:center;justify-content:center;transition:all .2s;font-family:sans-serif}
-.settings-close:hover{border-color:var(--sky);color:var(--sky)}
-.settings-title{font-size:18px;font-weight:700;color:var(--white);margin-bottom:20px}
-.settings-section{margin-bottom:20px}
-.settings-section-label{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.12em;margin-bottom:10px}
-.settings-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:10px}
-.settings-row-label{font-size:13px;color:var(--text)}
-.settings-row-sub{font-size:11px;color:var(--muted);margin-top:2px}
-.toggle-wrap{position:relative;width:44px;height:24px;flex-shrink:0}
-.toggle-wrap input{opacity:0;width:0;height:0}
-.toggle-slider{position:absolute;inset:0;border-radius:12px;background:var(--border);cursor:pointer;transition:.3s}
-.toggle-slider::before{content:'';position:absolute;height:18px;width:18px;left:3px;bottom:3px;border-radius:50%;background:#fff;transition:.3s}
-.toggle-wrap input:checked+.toggle-slider{background:var(--teal)}
-.toggle-wrap input:checked+.toggle-slider::before{transform:translateX(20px)}
-.speed-input{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:6px 10px;color:var(--text);font-family:'DM Mono',monospace;font-size:13px;width:70px;outline:none}
-.speed-input:focus{border-color:var(--sky)}
-.lock-warning{background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.2);border-radius:10px;padding:12px 14px;font-size:12px;color:var(--red);line-height:1.55;margin-top:8px}
-
-/* ── RESULTS SCREEN ── */
-.results-card{text-align:center;padding:40px 28px}
-.results-score{font-size:64px;font-weight:800;color:var(--white);line-height:1}
-.results-score span{font-size:32px;color:var(--muted)}
-.results-grade{font-size:14px;font-weight:700;margin:8px 0 6px;letter-spacing:.06em}
-.results-sub{font-size:13px;color:var(--muted);margin-bottom:28px}
-.results-breakdown{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px}
-.result-unit-cell{background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:12px 8px;text-align:center}
-.result-unit-name{font-size:9px;color:var(--muted);font-weight:700;letter-spacing:.07em;margin-bottom:4px}
-.result-unit-score{font-size:18px;font-weight:800;color:var(--white)}
-.result-unit-score.good{color:var(--teal)}
-.result-unit-score.warn{color:var(--amber)}
-.result-unit-score.bad{color:var(--red)}
-.results-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-
-/* ── TIER GATE ── */
-.tier-gate{text-align:center;padding:32px 20px}
-.tier-gate-icon{font-size:40px;margin-bottom:14px}
-.tier-gate-title{font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px}
-.tier-gate-sub{font-size:13px;color:var(--muted);line-height:1.65;max-width:400px;margin:0 auto 20px}
-
-/* ── SCREEN STATES ── */
-.screen{display:none}
-.screen.active{display:block;animation:fadeUp .35s ease}
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-@keyframes pulse{0%,100%{opacity:.6}50%{opacity:1}}
-@keyframes glow{0%,100%{box-shadow:0 0 10px rgba(46,139,192,.12)}50%{box-shadow:0 0 26px rgba(46,139,192,.38)}}
-@keyframes tealGlow{0%,100%{box-shadow:0 0 10px rgba(29,158,117,.12)}50%{box-shadow:0 0 26px rgba(29,158,117,.38)}}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
-.shake{animation:shake .35s ease}
-.choice-btn.correct{animation:tealGlow .6s ease}
-
-/* ── RESPONSIVE ── */
-@media(max-width:600px){
-  .stats-bar{grid-template-columns:repeat(2,1fr)}
-  .unit-grid{grid-template-columns:repeat(5,1fr)}
-  .results-breakdown{grid-template-columns:repeat(2,1fr)}
-  .q-stem{font-size:15px}
-  .page-title{font-size:22px}
-}
-
-/* ── STREAK BADGE ── */
-.streak-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;border:1px solid;transition:all .3s}
-.streak-hot{background:rgba(229,148,0,.12);color:var(--amber);border-color:rgba(229,148,0,.3)}
-.streak-cold{background:rgba(107,138,176,.08);color:var(--muted);border-color:var(--border)}
-
-/* Chip for exam time config */
-.exam-config{display:flex;align-items:center;gap:10px;padding:12px 16px;background:rgba(229,148,0,.06);border:1px solid rgba(229,148,0,.15);border-radius:12px;margin-top:8px;flex-wrap:wrap}
-.exam-config label{font-size:12px;color:var(--muted)}
-.exam-config input{background:var(--card);border:1px solid var(--border);border-radius:7px;padding:5px 8px;color:var(--text);font-family:'DM Mono',monospace;font-size:13px;width:60px;outline:none}
-.exam-config input:focus{border-color:var(--amber)}
+/* FMM overlay */
+.fmm-overlay{position:fixed;inset:0;background:rgba(6,14,26,.95);z-index:300;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:30px 16px 60px}
+.fmm-overlay.open{display:flex}
+.fmm-wrap{width:100%;max-width:640px}
+.fmm-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.fmm-title{font-size:19px;font-weight:800;color:var(--white)}
+.fmm-close{background:none;border:1px solid var(--border);border-radius:50%;width:34px;height:34px;color:var(--muted);cursor:pointer;font-size:16px}
+.fmm-card{background:var(--card);border:1.5px solid var(--border);border-radius:18px;padding:22px;margin-bottom:16px}
+.fmm-prompt-lbl{font-family:'DM Mono',monospace;font-size:10px;color:var(--red);letter-spacing:.1em;margin-bottom:10px}
+.fmm-wrong-shown{font-family:'DM Mono',monospace;font-size:12.5px;line-height:1.7;white-space:pre-wrap;background:rgba(231,76,60,.06);border:1px solid rgba(231,76,60,.2);border-radius:10px;padding:14px;margin-bottom:16px}
+.fmm-choices{display:grid;gap:8px}
+.fmm-opt{padding:11px 14px;border-radius:10px;border:1px solid var(--border);background:transparent;color:var(--text);text-align:left;font-family:'DM Sans',sans-serif;font-size:12.5px;cursor:pointer}
+.fmm-opt:hover:not(:disabled){border-color:var(--red)}
+.fmm-opt.correct{border-color:var(--teal)!important;background:rgba(29,158,117,.1)!important}
+.fmm-opt.wrong{border-color:var(--red)!important;background:rgba(231,76,60,.08)!important}
+.fmm-nav{display:flex;gap:10px;justify-content:center;align-items:center}
+.fmm-score{font-size:13px;color:var(--muted)}
+.btn-fmm-next{background:linear-gradient(135deg,#8558EC,#6d3fd4);color:#fff;border:none;padding:11px 26px;font-weight:800;border-radius:12px;cursor:pointer;font-family:'DM Sans',sans-serif}
+.btn-fmm-exit{background:var(--bg);border:1px solid var(--border);color:var(--muted);padding:11px 18px;border-radius:12px;cursor:pointer;font-family:'DM Sans',sans-serif}
 </style>
 </head>
 <body>
 <div class="app">
 
-  <!-- HEADER -->
-  <div class="header">
-    <div class="header-left">
-      <div class="series-label">Algebra 2 · Study Resource Series · Build 5</div>
-      <div class="page-title">Drill <span>Trainer</span></div>
-    </div>
-    <div class="header-actions">
-      <button class="pill pill-navy" onclick="openSettings()">⚙ Settings</button>
-      <button class="pill pill-sky" onclick="showScreen('setup')" id="btn-back-setup" style="display:none">← Setup</button>
-    </div>
-  </div>
+<a href="Algebra2_StudyHub.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--sky);text-decoration:none;margin-top:16px;opacity:.85">← Algebra 2 Study Hub</a>
 
-  <!-- ═══════════════════════ SETUP SCREEN ═══════════════════════ -->
-  <div id="screen-setup" class="screen active">
+<div class="header">
+<div class="header-left">
+<div class="series-label">Algebra 2 · Study Resource Series · Build 3</div>
+<div class="page-title">Mistakes <span>Autopsy</span></div>
+</div>
+<div class="header-actions">
+<button class="launch-fmm" onclick="launchFMM()">🔍 Find My Mistake</button>
+</div>
+</div>
 
-    <!-- Stats bar -->
-    <div class="stats-bar" id="global-stats">
-      <div class="stat-card"><div class="stat-val sky" id="gs-total">0</div><div class="stat-label">TOTAL DRILLED</div></div>
-      <div class="stat-card"><div class="stat-val teal" id="gs-streak">0</div><div class="stat-label">CURRENT STREAK</div></div>
-      <div class="stat-card"><div class="stat-val amber" id="gs-best">0</div><div class="stat-label">BEST STREAK</div></div>
-      <div class="stat-card"><div class="stat-val" id="gs-acc">—</div><div class="stat-label">ACCURACY</div></div>
-    </div>
+<div class="stats-row">
+<div class="stat-chip"><div class="stat-num" id="s-total">25</div><div class="stat-lbl">TOTAL ERRORS</div></div>
+<div class="stat-chip"><div class="stat-num" style="color:var(--teal)" id="s-mastered">0</div><div class="stat-lbl">MASTERED</div></div>
+<div class="stat-chip"><div class="stat-num" style="color:var(--sky)" id="s-shown">25</div><div class="stat-lbl">SHOWING</div></div>
+</div>
 
-    <!-- Practice Mode -->
-    <div class="card card-lg glow-on-hover" style="margin-bottom:14px">
-      <div class="sec-label">Practice Mode</div>
-      <div class="mode-tabs" id="mode-tabs">
-        <button class="mode-tab active" data-mode="show-work" onclick="setMode('show-work',this)">✍ Show-Work Required</button>
-        <button class="mode-tab" data-mode="standard" onclick="setMode('standard',this)" id="tab-standard">⚡ Standard</button>
-        <button class="mode-tab" data-mode="speed" onclick="setMode('speed',this)" id="tab-speed">⏱ Speed Drill</button>
-      </div>
-      <div style="margin-top:10px;font-size:12px;color:var(--muted);line-height:1.6" id="mode-desc">
-        <strong style="color:var(--amber)">Show-Work Required</strong> — type your work before checking the answer. "Check Answer" activates only after you've written something. Builds the habit your brain needs.
-      </div>
-      <div id="speed-config" style="display:none">
-        <div class="exam-config" style="margin-top:10px">
-          <label>Seconds per question:</label>
-          <input type="number" id="speed-seconds" value="45" min="10" max="300">
-        </div>
-      </div>
-    </div>
+<div class="controls">
+<div class="ctrl-row">
+<span class="ctrl-label">SEARCH</span>
+<div class="search-wrap"><span class="search-icon">🔎</span><input class="search-input" id="search-input" type="text" placeholder="Search mistakes, units, categories…" oninput="render()"></div>
+<div class="view-toggle"><button class="view-btn active" id="listBtn" onclick="setView('list')">List</button><button class="view-btn" id="compactBtn" onclick="setView('compact')">Compact</button></div>
+</div>
+<div class="ctrl-row">
+<span class="ctrl-label">UNIT</span>
+<button class="pill pill-navy active" data-u="all" onclick="setUnit('all',this)">All</button>
+<button class="pill pill-navy" data-u="U1" onclick="setUnit('U1',this)">U1</button>
+<button class="pill pill-navy" data-u="U2" onclick="setUnit('U2',this)">U2</button>
+<button class="pill pill-navy" data-u="U3" onclick="setUnit('U3',this)">U3</button>
+<button class="pill pill-navy" data-u="U4" onclick="setUnit('U4',this)">U4</button>
+<button class="pill pill-navy" data-u="U5" onclick="setUnit('U5',this)">U5</button>
+<button class="pill pill-navy" data-u="U6" onclick="setUnit('U6',this)">U6</button>
+<button class="pill pill-navy" data-u="U7" onclick="setUnit('U7',this)">U7</button>
+<button class="pill pill-navy" data-u="U8" onclick="setUnit('U8',this)">U8</button>
+<button class="pill pill-navy" data-u="U9" onclick="setUnit('U9',this)">U9</button>
+<button class="pill pill-navy" data-u="U10" onclick="setUnit('U10',this)">U10</button>
+</div>
+<div class="ctrl-row">
+<span class="ctrl-label">STATUS</span>
+<button class="pill pill-red active" data-s="all" onclick="setStatus('all',this)">All</button>
+<button class="pill pill-navy" data-s="unmastered" onclick="setStatus('unmastered',this)">Not Yet Mastered</button>
+<button class="pill pill-teal" data-s="mastered" onclick="setStatus('mastered',this)">✓ Mastered</button>
+</div>
+</div>
 
-    <!-- Drill Type -->
-    <div class="card glow-on-hover" style="margin-bottom:14px">
-      <div class="sec-label">Drill Type</div>
-      <div class="mode-tabs" id="type-tabs">
-        <button class="mode-tab active" data-type="drill" onclick="setType('drill',this)">📚 Unit Drill</button>
-        <button class="mode-tab" data-type="stamina" onclick="setType('stamina',this)">🔥 Stamina Mode</button>
-        <button class="mode-tab" data-type="exam" onclick="setType('exam',this)">🎓 Exam Mode</button>
-      </div>
-      <div style="margin-top:10px;font-size:12px;color:var(--muted);line-height:1.6" id="type-desc">
-        <strong style="color:var(--sky)">Unit Drill</strong> — practice questions from selected units, one at a time.
-      </div>
-      <div id="exam-config-area" style="display:none">
-        <div class="exam-config">
-          <label>Questions:</label>
-          <input type="number" id="exam-q-count" value="30" min="5" max="102">
-          <label>Minutes:</label>
-          <input type="number" id="exam-minutes" value="60" min="5" max="180">
-        </div>
-      </div>
-    </div>
+<div id="container"></div>
+<div class="empty" id="empty" style="display:none">No mistakes match your search or filter.</div>
 
-    <!-- Unit Selector -->
-    <div class="card glow-on-hover" style="margin-bottom:14px">
-      <div class="sec-label">Units</div>
-      <div class="unit-grid" id="unit-grid">
-        <button class="unit-btn active" data-unit="U1" onclick="toggleUnit('U1',this)">U1</button>
-        <button class="unit-btn active" data-unit="U2" onclick="toggleUnit('U2',this)">U2</button>
-        <button class="unit-btn active" data-unit="U3" onclick="toggleUnit('U3',this)">U3</button>
-        <button class="unit-btn active" data-unit="U4" onclick="toggleUnit('U4',this)">U4</button>
-        <button class="unit-btn active" data-unit="U5" onclick="toggleUnit('U5',this)">U5</button>
-        <button class="unit-btn active" data-unit="U6" onclick="toggleUnit('U6',this)">U6</button>
-        <button class="unit-btn active" data-unit="U7" onclick="toggleUnit('U7',this)">U7</button>
-        <button class="unit-btn active" data-unit="U8" onclick="toggleUnit('U8',this)">U8</button>
-        <button class="unit-btn active" data-unit="U9" onclick="toggleUnit('U9',this)">U9</button>
-        <button class="unit-btn active" data-unit="U10" onclick="toggleUnit('U10',this)">U10</button>
-      </div>
-      <div class="unit-select-actions">
-        <button class="pill pill-sky" onclick="selectAllUnits()">All</button>
-        <button class="pill pill-navy" onclick="clearAllUnits()">None</button>
-      </div>
-    </div>
+</div>
 
-    <!-- Difficulty -->
-    <div class="card glow-on-hover" style="margin-bottom:14px" id="diff-card">
-      <div class="sec-label">Difficulty</div>
-      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
-        <div class="diff-toggle">
-          <button class="diff-btn active" data-diff="sequential" onclick="setDiff('sequential',this)">🔒 Sequential</button>
-          <button class="diff-btn" data-diff="free" onclick="setDiff('free',this)">🔓 Free Roam</button>
-        </div>
-        <div style="font-size:12px;color:var(--muted);max-width:360px;line-height:1.5" id="diff-desc">
-          <strong style="color:var(--amber)">Sequential</strong> — Tier 1 must be 70% passed per unit before Tier 2 unlocks. Tier 2 before Tier 3.
-        </div>
-      </div>
-      <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
-        <button class="pill pill-sky" onclick="filterTier(0)">All Tiers</button>
-        <button class="pill" id="t1-pill" onclick="filterTier(1)" style="background:rgba(46,139,192,.1);color:var(--t1);border-color:rgba(46,139,192,.25)">T1 Recall</button>
-        <button class="pill" id="t2-pill" onclick="filterTier(2)" style="background:rgba(29,158,117,.1);color:var(--t2);border-color:rgba(29,158,117,.25)">T2 Apply</button>
-        <button class="pill" id="t3-pill" onclick="filterTier(3)" style="background:rgba(229,148,0,.1);color:var(--t3);border-color:rgba(229,148,0,.25)">T3 Analyze</button>
-      </div>
-    </div>
-
-    <!-- Mastery / Unit Progress -->
-    <div class="card" style="margin-bottom:18px">
-      <div class="sec-label">Unit Mastery</div>
-      <div class="mastery-grid" id="mastery-grid"></div>
-    </div>
-
-    <button class="start-btn" id="start-btn" onclick="startSession()">Start Drilling →</button>
-  </div>
-
-  <!-- ═══════════════════════ DRILL SCREEN ═══════════════════════ -->
-  <div id="screen-drill" class="screen">
-
-    <!-- Drill header -->
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px">
-      <div id="drill-mode-badge" class="streak-badge streak-cold">✍ Show-Work Mode</div>
-      <div id="stamina-display" style="display:none">
-        <div class="stamina-display" id="stamina-dots"></div>
-      </div>
-      <div id="timer-container" style="display:none">
-        <div class="timer-wrap">
-          <div class="timer-ring-container">
-            <svg width="72" height="72"><circle cx="36" cy="36" r="30" fill="none" stroke="#1e3a5c" stroke-width="5"/><circle id="timer-ring" cx="36" cy="36" r="30" fill="none" stroke="var(--teal)" stroke-width="5" stroke-dasharray="188.5 188.5" stroke-linecap="round"/></svg>
-            <div class="timer-digits"><span class="timer-sec" id="timer-sec">45</span><span class="timer-label">sec</span></div>
-          </div>
-          <div style="font-size:11px;color:var(--muted)">Speed<br>Drill</div>
-        </div>
-      </div>
-      <div id="exam-timer-display" style="display:none">
-        <div class="streak-badge streak-hot" id="exam-time-left">60:00</div>
-      </div>
-    </div>
-
-    <!-- Progress -->
-    <div class="progress-wrap">
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <span style="font-size:11px;color:var(--muted)" id="progress-label">Question 1 of 30</span>
-        <div class="streak-badge" id="streak-badge" style="font-size:11px">🔥 Streak: 0</div>
-      </div>
-      <div class="progress-bar-outer"><div class="progress-bar-inner" id="progress-bar" style="width:0%"></div></div>
-    </div>
-
-    <!-- Stats mini -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px">
-      <div class="stat-card"><div class="stat-val teal" id="drill-correct">0</div><div class="stat-label">CORRECT</div></div>
-      <div class="stat-card"><div class="stat-val red" id="drill-wrong">0</div><div class="stat-label">WRONG</div></div>
-      <div class="stat-card"><div class="stat-val amber" id="drill-acc">—</div><div class="stat-label">ACCURACY</div></div>
-    </div>
-
-    <!-- Question card -->
-    <div class="card card-lg glow-on-hover" id="q-card">
-      <div class="q-header">
-        <div class="q-meta">
-          <span class="q-unit-tag" id="q-unit-tag">U1</span>
-          <span class="q-tier-tag tier-1-tag" id="q-tier-tag">T1 · Recall</span>
-          <span class="q-topic-tag" id="q-topic-tag">Topic</span>
-        </div>
-        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px">
-          <span class="q-counter" id="q-counter">1/30</span>
-          <span class="q-standards" id="q-standards"></span>
-        </div>
-      </div>
-
-      <div class="q-stem" id="q-stem">Loading question…</div>
-
-      <!-- Work area (show-work mode) -->
-      <div class="work-area" id="work-area" style="display:none">
-        <div class="work-label"><span class="dot"></span> Show Your Work</div>
-        <textarea class="work-textarea" id="work-textarea" placeholder="Write your steps here before checking the answer. Even a few words counts — the habit is the point." oninput="onWorkInput()"></textarea>
-        <div class="work-nudge" id="work-nudge" style="display:none">↑ Write your work above to unlock Check Answer</div>
-      </div>
-
-      <!-- Hint -->
-      <div id="hint-box" style="display:none">
-        <div class="hint-box">
-          <div class="hint-icon">💡</div>
-          <div class="hint-text" id="hint-text"></div>
-        </div>
-      </div>
-
-      <!-- Choices -->
-      <div class="choices" id="choices-container"></div>
-
-      <!-- Explanation -->
-      <div id="explanation-box" style="display:none"></div>
-
-      <!-- AI Tutor Panel -->
-      <div class="tutor-panel" id="tutor-panel">
-        <div class="tutor-header">
-          <div class="tutor-avatar">🧠</div>
-          <div>
-            <div class="tutor-name">ALEPH · AI Tutor</div>
-          </div>
-          <span class="tutor-status" id="tutor-status">Ready</span>
-        </div>
-        <div class="tutor-body" id="tutor-body">
-          <div class="tutor-messages" id="tutor-messages"></div>
-        </div>
-        <div class="tutor-input-row">
-          <input class="tutor-input" id="tutor-input" type="text" placeholder="Ask a follow-up question…" onkeydown="if(event.key==='Enter')sendTutorMessage()">
-          <button class="tutor-send" id="tutor-send" onclick="sendTutorMessage()">Send</button>
-        </div>
-      </div>
-
-      <!-- Action row -->
-      <div class="action-row">
-        <button class="btn btn-primary" id="btn-check" onclick="checkAnswer()" disabled>Check Answer</button>
-        <button class="btn btn-amber" id="btn-hint" onclick="toggleHint()">💡 Hint</button>
-        <button class="btn btn-ghost" id="btn-skip" onclick="skipQuestion()">Skip</button>
-        <button class="btn btn-tutor" id="btn-tutor" onclick="openTutor()" style="display:none">🧠 Ask Tutor</button>
-        <button class="btn btn-next" id="btn-next" onclick="nextQuestion()" style="display:none">Next →</button>
-        <button class="btn btn-teal" id="btn-end" onclick="endSession()" style="margin-left:auto">End Session</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════ RESULTS SCREEN ═══════════════════════ -->
-  <div id="screen-results" class="screen">
-    <div class="card card-lg results-card" id="results-card">
-      <div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.12em;margin-bottom:12px" id="results-mode-label">SESSION COMPLETE</div>
-      <div class="results-score" id="results-score">0<span>/0</span></div>
-      <div class="results-grade" id="results-grade"></div>
-      <div class="results-sub" id="results-sub"></div>
-      <div class="results-breakdown" id="results-breakdown"></div>
-      <div class="results-actions">
-        <button class="btn btn-next" onclick="showScreen('setup');document.getElementById('btn-back-setup').style.display='none'">← Back to Setup</button>
-        <button class="btn btn-teal" onclick="retrySession()">Retry Session</button>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /app -->
-
-<!-- ═══════════════════════ SETTINGS PANEL ═══════════════════════ -->
-<div class="settings-overlay" id="settings-overlay" onclick="closeSettingsOutside(event)">
-  <div class="settings-modal">
-    <button class="settings-close" onclick="closeSettings()">✕</button>
-    <div class="settings-title">⚙ Settings</div>
-
-    <div class="settings-section">
-      <div class="settings-section-label">MODE LOCK (Parent / Teacher)</div>
-      <div class="settings-row">
-        <div>
-          <div class="settings-row-label">Lock Show-Work Mode</div>
-          <div class="settings-row-sub">Prevents student from switching to Standard or Speed Drill</div>
-        </div>
-        <label class="toggle-wrap">
-          <input type="checkbox" id="lock-toggle" onchange="toggleLock()">
-          <span class="toggle-slider"></span>
-        </label>
-      </div>
-      <div class="lock-warning" id="lock-warning" style="display:none">
-        🔒 Show-Work mode is locked. Students cannot change the practice mode until this setting is disabled.
-      </div>
-    </div>
-
-    <div class="settings-section">
-      <div class="settings-section-label">SPEED DRILL</div>
-      <div class="settings-row">
-        <div class="settings-row-label">Default seconds per question</div>
-        <input type="number" class="speed-input" id="settings-speed" value="45" min="10" max="300" onchange="saveSettings()">
-      </div>
-    </div>
-
-    <div class="settings-section">
-      <div class="settings-section-label">DATA</div>
-      <div class="settings-row">
-        <div>
-          <div class="settings-row-label">Reset all progress</div>
-          <div class="settings-row-sub">Clears streaks, mastery, and history</div>
-        </div>
-        <button class="btn btn-ghost" style="font-size:12px" onclick="confirmReset()">Reset</button>
-      </div>
-    </div>
-
-    <div style="margin-top:6px;padding-top:14px;border-top:1px solid var(--border)">
-      <div style="font-size:11px;color:var(--muted);line-height:1.6">
-        <strong style="color:var(--sky)">Teacher URL Presets:</strong><br>
-        Add <code style="color:var(--amber)">?mode=show-work&unit=3&tier=2</code> to the URL to auto-load specific settings on open.
-      </div>
-    </div>
-  </div>
+<div class="fmm-overlay" id="fmm-overlay">
+<div class="fmm-wrap">
+<div class="fmm-head"><div class="fmm-title">🔍 Find My Mistake</div><button class="fmm-close" onclick="closeFMM()">✕</button></div>
+<div class="fmm-card" id="fmm-card"></div>
+<div class="fmm-nav"><span class="fmm-score" id="fmm-live-score">0 / 0</span><button class="btn-fmm-next" id="fmm-next-btn" style="display:none" onclick="fmmNext()">Next →</button><button class="btn-fmm-exit" onclick="closeFMM()">Exit</button></div>
+</div>
 </div>
 
 <script>
-// ════════════════════════════════════════════
-// QUESTION BANK — 94 DOCX + 8 JSX supplements
-// ════════════════════════════════════════════
-const QB = [
-  {id:"d1",unit:"U1",tier:1,topic:"Function Definition",stem:"Which of the following represents a function?",choices:["{ (1,2), (2,3), (3,4) }","{ (1,2), (1,3), (2,4) }","A circle with equation x² + y² = 9","A vertical line x = 5"],ans:0,hint:"A function assigns exactly one output to each input. Check for repeated x-values.",exp:"Choice A has no repeated x-values, so each input maps to exactly one output — that is the definition of a function. Choices B, C, and D all fail the vertical line test or have repeated inputs.",std:"MAFS.912.F-IF.1.1 | F-IF.A.1"},
-  {id:"d2",unit:"U1",tier:1,topic:"Range",stem:"What is the range of f(x) = x² + 3?",choices:["All real numbers","y ≥ 0","y ≥ 3","y ≤ 3"],ans:2,hint:"The smallest possible output of x² is 0 (when x = 0). Then add 3.",exp:"Since x² is always ≥ 0, the minimum value of x² + 3 is 0 + 3 = 3. The parabola opens upward with vertex at (0, 3), so the range is y ≥ 3.",std:"MAFS.912.F-IF.1.1 | F-IF.A.1"},
-  {id:"d3",unit:"U1",tier:1,topic:"Function Notation",stem:"Evaluate f(3) for f(x) = 2x² − 5x + 1.",choices:["4","2","34","10"],ans:0,hint:"Substitute x = 3 into the function: 2(3)² − 5(3) + 1.",exp:"f(3) = 2(9) − 15 + 1 = 18 − 15 + 1 = 4.",std:"MAFS.912.F-IF.1.2 | F-IF.A.2"},
-  {id:"d4",unit:"U1",tier:1,topic:"Transformations",stem:"Which transformation shifts the graph of f(x) = x² three units to the right and two units down?",choices:["f(x) = (x + 3)² − 2","f(x) = (x − 3)² − 2","f(x) = (x − 3)² + 2","f(x) = (x + 3)² + 2"],ans:1,hint:"Horizontal shifts: (x − h) moves RIGHT h units. Vertical: +k moves UP, −k moves DOWN.",exp:"Right 3 means replace x with (x − 3). Down 2 means subtract 2 outside. Result: f(x) = (x − 3)² − 2.",std:"MAFS.912.F-BF.2.3 | F-BF.B.3"},
-  {id:"d5",unit:"U1",tier:1,topic:"Even/Odd Functions",stem:"Which of the following is an even function?",choices:["f(x) = x³","f(x) = x² + 4","f(x) = 2x + 1","f(x) = x³ − x"],ans:1,hint:"Even functions satisfy f(−x) = f(x). Plug in −x and see if you get the same expression back.",exp:"f(−x) = (−x)² + 4 = x² + 4 = f(x). Satisfies f(−x) = f(x) → even function, symmetric about the y-axis.",std:"MAFS.912.F-IF.1.1 | F-IF.A.1"},
-  {id:"d6",unit:"U1",tier:1,topic:"Domain",stem:"What is the domain of f(x) = √(x − 4)?",choices:["x ≥ 0","x ≥ 4","x > 4","All real numbers"],ans:1,hint:"Square roots require the expression inside to be non-negative. Set x − 4 ≥ 0 and solve.",exp:"x − 4 ≥ 0 means x ≥ 4. Any value less than 4 produces a negative radicand. Domain: [4, +∞).",std:"MAFS.912.F-IF.1.1 | F-IF.A.1"},
-  {id:"d7",unit:"U1",tier:2,topic:"Composition",stem:"Given f(x) = 3x − 1 and g(x) = x² + 2, find (f ∘ g)(2).",choices:["17","11","23","5"],ans:0,hint:"Composition means f(g(x)). Find g(2) first, then plug that result into f.",exp:"g(2) = 4 + 2 = 6. Then f(6) = 3(6) − 1 = 17. So (f ∘ g)(2) = 17.",std:"MAFS.912.F-BF.1.1c | F-BF.A.1"},
-  {id:"d8",unit:"U1",tier:2,topic:"Inverse Functions",stem:"Find the inverse of f(x) = (x + 5) / 2.",choices:["f⁻¹(x) = 2x − 5","f⁻¹(x) = 2x + 5","f⁻¹(x) = (x − 5)/2","f⁻¹(x) = x/2 + 5"],ans:0,hint:"Replace f(x) with y, swap x and y, then solve for y.",exp:"y = (x+5)/2. Swap: x = (y+5)/2. Solve: 2x = y + 5 → y = 2x − 5. Therefore f⁻¹(x) = 2x − 5.",std:"MAFS.912.F-BF.2.4 | F-BF.B.4"},
-  {id:"d9",unit:"U1",tier:2,topic:"Transformations",stem:"The graph of g(x) is obtained by reflecting f(x) = x² across the x-axis and then shifting up 4 units. Write the equation of g(x).",choices:["g(x) = −x² + 4","g(x) = x² + 4","g(x) = −(x + 4)²","g(x) = (−x)² − 4"],ans:0,hint:"Reflect across x-axis by multiplying by −1. Then add 4 to shift up.",exp:"Reflecting across the x-axis: −x². Shifting up 4: −x² + 4. So g(x) = −x² + 4.",std:"MAFS.912.F-BF.2.3 | F-BF.B.3"},
-  {id:"d10",unit:"U1",tier:2,topic:"Piecewise Functions",stem:"A function f is defined by f(x) = {2x + 1 if x < 0; x² if x ≥ 0}. What is f(−3) + f(4)?",choices:["11","−3","9","10"],ans:0,hint:"Use the top rule for x = −3 and the bottom rule for x = 4.",exp:"f(−3) = 2(−3) + 1 = −5. f(4) = 4² = 16. Sum: −5 + 16 = 11.",std:"MAFS.912.F-IF.1.2 | F-IF.A.2"},
-  {id:"d11",unit:"U1",tier:2,topic:"Absolute Value",stem:"If f(x) = |2x − 6|, find all values of x where f(x) = 4.",choices:["x = 5 only","x = 1 only","x = 5 and x = 1","x = 4 and x = −4"],ans:2,hint:"Set |2x − 6| = 4. This creates two equations: 2x − 6 = 4 AND 2x − 6 = −4.",exp:"Case 1: 2x − 6 = 4 → x = 5. Case 2: 2x − 6 = −4 → x = 1. Both check: f(5) = |10−6| = 4 and f(1) = |2−6| = 4.",std:"MAFS.912.A-REI.2.4 | A-REI.B.4"},
-  {id:"d12",unit:"U1",tier:2,topic:"Avg Rate of Change",stem:"The average rate of change of f(x) = x² + 3x from x = 1 to x = 4 is:",choices:["5","8","3","14"],ans:1,hint:"Use ARC = [f(b) − f(a)] / (b − a). Compute f(1) and f(4) first.",exp:"f(1) = 1 + 3 = 4. f(4) = 16 + 12 = 28. ARC = (28 − 4) / (4 − 1) = 24/3 = 8.",std:"MAFS.912.F-IF.2.6 | F-IF.B.6"},
-  {id:"d13",unit:"U1",tier:3,topic:"Inverse Functions",stem:"A student claims that if f(f⁻¹(x)) = x, then any function has an inverse. Explain why this reasoning is flawed.",choices:["The function must have an even degree","The function must pass the horizontal line test (be one-to-one)","The domain must include all real numbers","The function must be continuous"],ans:1,hint:"Think about what the horizontal line test tells you about uniqueness of outputs.",exp:"f(f⁻¹(x)) = x holds by definition, but that does not mean all functions have inverses. For an inverse to be a function, each output must come from exactly one input — the function must be one-to-one (horizontal line test). Example: f(x) = x² has f(2) = f(−2) = 4.",std:"MAFS.912.F-BF.2.4 | F-BF.B.4"},
-  {id:"d14",unit:"U1",tier:3,topic:"Transformations",stem:"Given f(x) = 2|x − 3| + 1, which combination of transformations maps y = |x| onto f(x)?",choices:["Shift right 3, stretch by 2, shift up 1","Shift left 3, compress by 2, shift up 1","Shift right 3, compress by 1/2, shift down 1","Shift left 3, stretch by 2, shift down 1"],ans:0,hint:"Match each part: |x − 3| shifts horizontally, the 2 is a vertical stretch, +1 shifts vertically.",exp:"|x − 3|: shifts right 3. Multiplying by 2: vertical stretch by factor 2. +1: shifts up 1. Combined: right 3, vertically stretched by 2, up 1.",std:"MAFS.912.F-BF.2.3 | F-BF.B.3"},
-  {id:"d15",unit:"U1",tier:3,topic:"Domain & Range Shift",stem:"If g(x) = f(x − 2) + 3, how do the domain and range of g compare to those of f?",choices:["Domain shifts right 2; range shifts up 3","Domain shifts left 2; range shifts down 3","Domain and range are identical","Domain shifts right 2; range shifts down 3"],ans:0,hint:"Horizontal shifts affect the domain (x-values); vertical shifts affect the range (y-values).",exp:"g(x) = f(x−2)+3 shifts f right 2 (domain increases by 2) and up 3 (range increases by 3). Domain shifts right 2; range shifts up 3.",std:"MAFS.912.F-BF.2.3 | F-BF.B.3"},
-  {id:"d16",unit:"U2",tier:1,topic:"Degree & Leading Term",stem:"What is the degree of the polynomial 4x⁵ − 3x² + 7x − 1?",choices:["2","4","5","1"],ans:2,hint:"The degree is the highest exponent. Look at every term.",exp:"The term with the highest exponent is 4x⁵. Its exponent is 5, so the polynomial has degree 5.",std:"MAFS.912.A-APR.2.2 | A-APR.B.2"},
-  {id:"d17",unit:"U2",tier:1,topic:"Factor Theorem",stem:"According to the Factor Theorem, if f(3) = 0, which must be a factor of f(x)?",choices:["(x + 3)","(x − 3)","(3x − 1)","(x² − 9)"],ans:1,hint:"The Factor Theorem: if f(c) = 0, then (x − c) is a factor.",exp:"The Factor Theorem states: f(c) = 0 if and only if (x − c) is a factor. Since f(3) = 0, then (x − 3) must be a factor.",std:"MAFS.912.A-APR.2.2 | A-APR.B.2"},
-  {id:"d18",unit:"U2",tier:1,topic:"End Behavior",stem:"What are the end behaviors of f(x) = −2x⁴ + 3x − 5?",choices:["As x→+∞, y→+∞; as x→−∞, y→+∞","As x→+∞, y→−∞; as x→−∞, y→−∞","As x→+∞, y→−∞; as x→−∞, y→+∞","As x→+∞, y→+∞; as x→−∞, y→−∞"],ans:1,hint:"Even degree + negative leading coefficient: both ends fall.",exp:"Degree 4 (even) with leading coefficient −2 (negative): both ends fall. As x→±∞, y→−∞.",std:"MAFS.912.F-IF.3.7c | F-IF.C.7"},
-  {id:"d19",unit:"U2",tier:1,topic:"Finding Zeros",stem:"Which of the following is a zero of f(x) = x³ − 4x² − 7x + 10?",choices:["x = 3","x = −2","x = 5","x = −5"],ans:2,hint:"Plug each option into f(x) and check which makes f(x) = 0.",exp:"f(5) = 125 − 100 − 35 + 10 = 0. So x = 5 is a zero.",std:"MAFS.912.A-APR.2.2 | A-APR.B.2"},
-  {id:"d20",unit:"U2",tier:1,topic:"Remainder Theorem",stem:"Using the Remainder Theorem, find the remainder when f(x) = x³ − 2x + 4 is divided by (x − 2).",choices:["0","4","8","2"],ans:2,hint:"Remainder Theorem: remainder = f(c) when dividing by (x − c). Here c = 2.",exp:"f(2) = 8 − 4 + 4 = 8. The remainder is 8.",std:"MAFS.912.A-APR.2.2 | A-APR.B.2"},
-  {id:"d21",unit:"U2",tier:1,topic:"Multiplicity",stem:"A zero at x = −1 with even multiplicity means the graph will:",choices:["Cross through the x-axis at x = −1","Bounce off (touch) the x-axis at x = −1","Have a vertical asymptote at x = −1","Have a horizontal asymptote at y = −1"],ans:1,hint:"Even multiplicity = even exponent on the factor. Think about what (x+1)² does at x = −1.",exp:"Even multiplicity means the factor appears an even number of times. The graph touches and turns around (bounces) rather than crossing through.",std:"MAFS.912.F-IF.3.7c | F-IF.C.7"},
-  {id:"d22",unit:"U2",tier:2,topic:"Synthetic Division",stem:"Use synthetic division to divide f(x) = x³ − 5x² + 3x + 9 by (x − 3). What is the quotient?",choices:["x² − 2x − 3","x² + 2x + 3","x² − 2x + 3","x² + 3x − 1"],ans:0,hint:"Synthetic division with c = 3: write the coefficients 1, −5, 3, 9 and perform the process.",exp:"Synthetic: 3 | 1  −5   3   9. Row gives 1, −2, −3, remainder 0. Quotient: x² − 2x − 3.",std:"MAFS.912.A-APR.2.2 | A-APR.B.2"},
-  {id:"d23",unit:"U2",tier:2,topic:"Writing Polynomials",stem:"A polynomial has zeros at x = 2, x = −1 (multiplicity 2), and x = 4. Write the polynomial in factored form.",choices:["(x−2)(x+1)²(x−4)","(x+2)(x−1)²(x+4)","(x−2)(x−1)(x+1)(x−4)","(x−2)(x+1)(x−4)"],ans:0,hint:"Each zero r gives a factor (x − r). Multiplicity 2 means the factor appears twice.",exp:"x = 2 → (x−2). x = −1 mult. 2 → (x+1)². x = 4 → (x−4). Factored: f(x) = (x−2)(x+1)²(x−4).",std:"MAFS.912.A-APR.3.4 | A-APR.C.4"},
-  {id:"d24",unit:"U2",tier:2,topic:"Rational Root Theorem",stem:"List all possible rational roots of f(x) = 2x³ − 5x² + 4x − 3 using the Rational Root Theorem.",choices:["±1, ±3, ±1/2, ±3/2","±1, ±2, ±3","±1, ±3","±1/2, ±3/2 only"],ans:0,hint:"Possible rational roots: ±(factors of constant)/(factors of leading coefficient).",exp:"Possible roots: ±(factors of 3)/(factors of 2) = ±1, ±3, ±1/2, ±3/2. Then test each candidate by substitution.",std:"MAFS.912.A-APR.2.2 | A-APR.B.2"},
-  {id:"d25",unit:"U2",tier:2,topic:"Polynomial Modeling",stem:"The profit function for a business is P(x) = −x³ + 6x² − 9x, where x is units in thousands. For what values of x is the business profitable (P(x) > 0)?",choices:["0 < x < 3","0 < x < 6","x > 3","3 < x < 6"],ans:0,hint:"Factor P(x) completely, then use a sign chart or test values in each interval defined by the zeros.",exp:"P(x) = −x(x² − 6x + 9) = −x(x−3)². Zeros at x = 0 and x = 3. Testing x = 1: P(1) = −1(4) = −4 < 0. Testing x = 4: P(4) = −4(1) = −4 < 0. The business is never profitable — a critical lesson in interpreting real-world models before trusting them.",std:"MAFS.912.A-APR.3.4 | A-APR.C.4"},
-  {id:"d26",unit:"U2",tier:2,topic:"Conjugate Pairs",stem:"If x = 2 + i is a zero of a polynomial with real coefficients, which other value must also be a zero?",choices:["x = 2","x = 2 − i","x = −2 + i","x = i"],ans:1,hint:"Recall the Conjugate Pairs Theorem: complex roots of real-coefficient polynomials always come in conjugate pairs.",exp:"By the Conjugate Pairs Theorem, if a + bi is a root of a polynomial with real coefficients, then a − bi must also be a root. The conjugate of 2 + i is 2 − i.",std:"MAFS.912.N-CN.3.9 | N-CN.C.9"},
-  {id:"d27",unit:"U2",tier:2,topic:"Graph Analysis",stem:"Describe the end behavior and number of real zeros for f(x) = x⁴ − 5x² + 4.",choices:["Both ends up; 4 real zeros","Both ends down; 2 real zeros","Both ends up; no real zeros","One end up, one end down; 4 real zeros"],ans:0,hint:"Factor f(x) first. Even degree, positive leading coefficient tells you the ends.",exp:"Factor: (x²−1)(x²−4) = (x−1)(x+1)(x−2)(x+2). Four distinct real zeros. Degree 4, positive LC: both ends rise. Both ends up; 4 real zeros.",std:"MAFS.912.F-IF.3.7c | F-IF.C.7"},
-  {id:"d28",unit:"U2",tier:3,topic:"FTA",stem:"A degree-5 polynomial has exactly 3 real zeros. What can you definitively conclude about its complex zeros?",choices:["There are no complex zeros","There must be exactly 2 complex zeros, occurring as a conjugate pair","There must be 4 complex zeros","There could be 1 or 3 complex zeros"],ans:1,hint:"The FTA guarantees 5 total zeros. Real coefficients mean complex zeros come in pairs.",exp:"A degree-5 polynomial has exactly 5 zeros by the Fundamental Theorem. If 3 are real, the remaining 2 must be complex. Real coefficients → conjugate pairs → exactly one conjugate pair (2 complex zeros).",std:"MAFS.912.N-CN.3.9 | N-CN.C.9"},
-  {id:"d29",unit:"U2",tier:3,topic:"Graph Analysis",stem:"Two students analyze f(x) = x³ − x. Student A says three x-intercepts. Student B says one. Who is correct?",choices:["Student A: the graph crosses at x = −1, 0, and 1","Student B: the graph only crosses at x = 0","Both are correct depending on the viewing window","Neither — the graph has two x-intercepts"],ans:0,hint:"Factor f(x) completely. Set each factor equal to zero.",exp:"f(x) = x(x−1)(x+1). Zeros at x = 0, 1, −1. Three distinct real zeros → three x-intercepts. Student A is correct.",std:"MAFS.912.F-IF.3.7c | F-IF.C.7"},
-  {id:"d30",unit:"U3",tier:1,topic:"Discriminant",stem:"What does a discriminant value of D < 0 tell you about a quadratic equation?",choices:["Two real solutions","One repeated real solution","Two complex (non-real) solutions","No solutions at all"],ans:2,hint:"Discriminant = b² − 4ac. The sign tells you the nature of the solutions.",exp:"When D < 0, the square root in the quadratic formula is of a negative number → two complex conjugate solutions.",std:"MAFS.912.A-REI.2.4 | A-REI.B.4"},
-  {id:"d31",unit:"U3",tier:1,topic:"Imaginary Numbers",stem:"Express √(−36) in terms of i.",choices:["6i","36i","−6i","6"],ans:0,hint:"√(−36) = √36 · √(−1). Recall that √(−1) = i.",exp:"√(−36) = √36 · √(−1) = 6 · i = 6i.",std:"MAFS.912.N-CN.1.1 | N-CN.A.1"},
-  {id:"d32",unit:"U3",tier:1,topic:"Vertex Form",stem:"What is the vertex of f(x) = 2(x − 4)² + 7?",choices:["(4, 7)","(−4, 7)","(4, −7)","(2, 7)"],ans:0,hint:"In vertex form f(x) = a(x − h)² + k, the vertex is at (h, k). Watch the sign of h.",exp:"The function is in vertex form with h = 4 and k = 7. Vertex is (4, 7). Since a = 2 > 0, the parabola opens upward.",std:"MAFS.912.F-IF.3.8a | F-IF.C.8"},
-  {id:"d33",unit:"U3",tier:1,topic:"Complex Arithmetic",stem:"Compute (3 + 2i)(1 − i). Simplify fully.",choices:["5 − i","1 + i","3 − 2i²","5 + i"],ans:0,hint:"FOIL the two complex numbers. Remember i² = −1.",exp:"(3+2i)(1−i) = 3 − 3i + 2i − 2i² = 3 − i − 2(−1) = 3 − i + 2 = 5 − i.",std:"MAFS.912.N-CN.2.2 | N-CN.A.2"},
-  {id:"d34",unit:"U3",tier:1,topic:"Axis of Symmetry",stem:"The axis of symmetry for f(x) = ax² + bx + c is given by:",choices:["x = b / (2a)","x = −b / (2a)","x = c / a","x = −c / b"],ans:1,hint:"This formula is worth memorizing. Think of it as the x-coordinate of the vertex.",exp:"The axis of symmetry is x = −b/(2a). This gives the x-coordinate of the vertex of any quadratic in standard form.",std:"MAFS.912.F-IF.3.8a | F-IF.C.8"},
-  {id:"d35",unit:"U3",tier:1,topic:"Forms of Quadratics",stem:"Which form of a quadratic makes it easiest to identify the x-intercepts (zeros) directly?",choices:["Standard form: ax² + bx + c","Vertex form: a(x−h)² + k","Factored form: a(x−r₁)(x−r₂)","Any form works equally well"],ans:2,hint:"Which form shows the roots r₁ and r₂ right in the equation?",exp:"Factored form a(x−r₁)(x−r₂) immediately reveals the zeros by the Zero Product Property. Setting each factor to zero gives the x-intercepts directly.",std:"MAFS.912.A-SSE.2.3 | A-SSE.B.3"},
-  {id:"d36",unit:"U3",tier:2,topic:"Completing the Square",stem:"Solve by completing the square: x² − 6x + 5 = 0.",choices:["x = 1 and x = 5","x = 3 ± √4","x = −1 and x = −5","x = 6 and x = −5"],ans:0,hint:"Move 5 to the right side. Add (b/2)² = 9 to both sides. Then take square roots.",exp:"x² − 6x = −5. Add 9: (x−3)² = 4. x − 3 = ±2. x = 5 or x = 1.",std:"MAFS.912.A-REI.2.4 | A-REI.B.4"},
-  {id:"d37",unit:"U3",tier:2,topic:"Quadratic Formula",stem:"Use the quadratic formula to solve 2x² − 3x − 2 = 0. Identify both solutions.",choices:["x = 2 and x = −0.5","x = 1 and x = −2","x = 3 and x = −1","x = 2 and x = 1"],ans:0,hint:"Identify a=2, b=−3, c=−2. Substitute into x = [−b ± √(b²−4ac)] / 2a.",exp:"D = 9 + 16 = 25. x = [3 ± 5] / 4. x = 8/4 = 2 or x = −2/4 = −0.5.",std:"MAFS.912.A-REI.2.4 | A-REI.B.4"},
-  {id:"d38",unit:"U3",tier:2,topic:"Vertex & Maximum",stem:"A ball is thrown upward with height h(t) = −16t² + 48t + 4 (feet). What is the maximum height reached?",choices:["40 feet","52 feet","48 feet","36 feet"],ans:0,hint:"Maximum occurs at the vertex. Find t = −b/(2a), then evaluate h at that t.",exp:"a = −16, b = 48. t = −48/(2·−16) = 1.5 s. h(1.5) = −16(2.25) + 48(1.5) + 4 = −36 + 72 + 4 = 40 feet.",std:"MAFS.912.F-IF.2.4 | F-IF.B.4"},
-  {id:"d39",unit:"U3",tier:2,topic:"Complex Division",stem:"Divide (5 + 2i) / (1 + 3i). Write the result in a + bi form.",choices:["(11 − 13i)/10","(11 + 13i)/10","(5 + 6i)/4","(7 − 13i)/10"],ans:0,hint:"Multiply numerator and denominator by the conjugate of the denominator: (1 − 3i).",exp:"Numerator: (5+2i)(1−3i) = 5−15i+2i−6i² = 5−13i+6 = 11−13i. Denominator: (1+3i)(1−3i) = 1+9 = 10. Result: (11−13i)/10.",std:"MAFS.912.N-CN.2.3 | N-CN.A.2"},
-  {id:"d40",unit:"U3",tier:2,topic:"Vertex Form Conversion",stem:"Write f(x) = x² − 8x + 11 in vertex form by completing the square.",choices:["f(x) = (x−4)² − 5","f(x) = (x−8)² + 11","f(x) = (x−4)² + 27","f(x) = (x+4)² − 5"],ans:0,hint:"f(x) = (x² − 8x + ?) + 11 − ?. Add and subtract (8/2)² = 16.",exp:"x² − 8x + 11 = (x² − 8x + 16) − 16 + 11 = (x−4)² − 5. Vertex: (4, −5).",std:"MAFS.912.F-IF.3.8a | F-IF.C.8"},
-  {id:"d41",unit:"U3",tier:3,topic:"Symmetry of Zeros",stem:"A quadratic f(x) has vertex (3, −4) and passes through (5, 0). A student says f(1) = 0 also. Is the student correct?",choices:["Yes — the axis of symmetry makes x = 1 symmetric to x = 5 about x = 3","No — the axis of symmetry is x = 3 but symmetry does not apply to zeros","Yes — all parabolas have symmetric zeros","No — we need more information"],ans:0,hint:"What is the axis of symmetry? How far is x = 5 from x = 3? Apply that distance to the other side.",exp:"Axis of symmetry is x = 3. x = 5 is 2 units to the right of x = 3. By symmetry, the other zero is 2 units to the LEFT: x = 1. So f(1) = 0. The student is correct.",std:"MAFS.912.F-IF.2.4 | F-IF.B.4"},
-  {id:"d42",unit:"U3",tier:3,topic:"Discriminant Analysis",stem:"Determine the number and type of solutions of 3x² + 5x + 4 = 0 WITHOUT solving. What does the graph look like relative to the x-axis?",choices:["Two real solutions; graph crosses x-axis twice","One real solution; graph is tangent to x-axis","Two complex solutions; graph does not cross the x-axis","Cannot be determined without solving"],ans:2,hint:"Compute the discriminant D = b² − 4ac. Its sign gives you everything you need.",exp:"D = 25 − 4(3)(4) = 25 − 48 = −23 < 0. Two complex solutions. Since a = 3 > 0, the parabola opens upward and lives entirely above the x-axis.",std:"MAFS.912.A-REI.2.4 | A-REI.B.4"},
-  {id:"d43",unit:"U4",tier:1,topic:"Excluded Values",stem:"What value of x must be excluded from the domain of f(x) = (x + 2) / (x − 5)?",choices:["x = −2","x = 5","x = 0","x = 2"],ans:1,hint:"The denominator cannot equal zero. Set the denominator equal to zero and solve.",exp:"Set x − 5 = 0: x = 5. Division by zero is undefined, so x = 5 is excluded from the domain.",std:"MAFS.912.A-APR.4.6 | A-APR.D.6"},
-  {id:"d44",unit:"U4",tier:1,topic:"Asymptotes",stem:"The rational function f(x) = 1/x has which asymptotes?",choices:["Vertical: x = 1; Horizontal: y = 1","Vertical: x = 0; Horizontal: y = 0","Vertical: x = 0; Horizontal: y = 1","No asymptotes"],ans:1,hint:"Find where the denominator is zero (vertical), and examine what happens as x gets very large (horizontal).",exp:"Denominator zero at x = 0: VA at x = 0. As x→±∞, 1/x→0: HA at y = 0.",std:"MAFS.912.F-IF.3.7d | F-IF.C.7"},
-  {id:"d45",unit:"U4",tier:1,topic:"Simplifying",stem:"Simplify the rational expression: (x² − 4) / (x − 2).",choices:["x + 2, with x ≠ 2","x − 2","x² + 2","(x+2)(x−2)"],ans:0,hint:"Factor the numerator as a difference of squares, then cancel common factors.",exp:"x² − 4 = (x+2)(x−2). Cancel (x−2): result is (x+2), but x cannot equal 2 — there is a hole at x = 2.",std:"MAFS.912.A-APR.4.6 | A-APR.D.6"},
-  {id:"d46",unit:"U4",tier:1,topic:"Holes vs Asymptotes",stem:"When is there a HOLE in a rational function rather than a vertical asymptote?",choices:["When numerator and denominator share a common factor that cancels","When the degree of the numerator is greater","When the denominator is zero","When the leading coefficients are equal"],ans:0,hint:"Holes and asymptotes both come from the denominator — the difference is whether a factor cancels.",exp:"A hole (removable discontinuity) occurs when a factor cancels from both numerator and denominator. Remaining denominator factors create VAs.",std:"MAFS.912.F-IF.3.7d | F-IF.C.7"},
-  {id:"d47",unit:"U4",tier:1,topic:"Inverse Variation",stem:"For f(x) = k/x (inverse variation), if x doubles, what happens to y?",choices:["y doubles","y is halved","y stays the same","y quadruples"],ans:1,hint:"Write y = k/x. If x becomes 2x, what does y become?",exp:"If x doubles to 2x: y = k/(2x) = (k/x)/2. So y is halved. Inverse variation: as one variable increases, the other decreases proportionally.",std:"MAFS.912.A-CED.1.1 | A-CED.A.1"},
-  {id:"d48",unit:"U4",tier:2,topic:"Finding Asymptotes",stem:"Vertical and horizontal asymptotes of f(x) = (3x + 1)/(x − 4)?",choices:["VA: x = 4, HA: y = 3","VA: x = −4, HA: y = 3","VA: x = 4, HA: y = 0","VA: x = 4, HA: y = 1"],ans:0,hint:"VA: set denominator = 0. HA: compare degrees.",exp:"VA: x − 4 = 0 → x = 4. Equal degrees → HA = ratio of leading coefficients = 3/1 = 3.",std:"MAFS.912.F-IF.3.7d | F-IF.C.7"},
-  {id:"d49",unit:"U4",tier:2,topic:"Holes & Asymptotes",stem:"For f(x) = (x²−1)/(x²−x−2): identify holes and vertical asymptotes.",choices:["Hole at x = −1, VA: x = 2, HA: y = 1","VA: x = −1 and x = 2","Hole at x = 1, VA: x = −1","VA: x = 2 only"],ans:0,hint:"Factor numerator and denominator. Cancel common factors — those become holes.",exp:"Numerator: (x−1)(x+1). Denominator: (x−2)(x+1). (x+1) cancels → hole at x = −1. Remaining: VA at x = 2. HA = 1 (equal degrees).",std:"MAFS.912.F-IF.3.7d | F-IF.C.7"},
-  {id:"d50",unit:"U4",tier:2,topic:"Rational Equations",stem:"Solve: 2/(x−1) = 3/(x+2). Find x.",choices:["x = 7","x = −7","x = 1","x = −1"],ans:0,hint:"Cross-multiply to eliminate fractions. Then solve the resulting equation.",exp:"Cross-multiply: 2(x+2) = 3(x−1). 2x + 4 = 3x − 3. x = 7. Check: 2/6 = 3/9 = 1/3. ✓",std:"MAFS.912.A-REI.2.2 | A-REI.A.2"},
-  {id:"d51",unit:"U4",tier:3,topic:"Error Analysis",stem:"A student simplifies (x²−9)/(x−3) to (x+3) and concludes the functions are identical. Identify the error.",choices:["The student is correct; they are identical","The simplified form has a hole at x = 3 that the original also has — but the simplified form hides it","The functions differ because one is quadratic and one is linear","The simplification is incorrect; the numerator cannot be factored"],ans:1,hint:"What happens at x = 3 in the original? Is x = 3 in the domain of (x + 3)?",exp:"The original is undefined at x = 3 (hole at (3, 6)). After canceling, (x+3) is defined at x = 3. They are NOT identical — the simplified form must carry the restriction x ≠ 3.",std:"MAFS.912.A-APR.4.6 | A-APR.D.6"},
-  {id:"d52",unit:"U5",tier:1,topic:"Rational Exponents",stem:"Simplify: 8^(2/3).",choices:["4","2","16","6"],ans:0,hint:"8^(2/3) = (cube root of 8)². Find the cube root of 8 first.",exp:"8^(1/3) = 2 (cube root of 8). Then 2² = 4. So 8^(2/3) = 4. Root first, power second — keeps numbers small.",std:"MAFS.912.N-RN.1.2 | N-RN.A.2"},
-  {id:"d53",unit:"U5",tier:1,topic:"Domain",stem:"What is the domain of f(x) = √(3x − 9)?",choices:["x ≥ 3","x ≥ 9","x > 3","All real numbers"],ans:0,hint:"The radicand must be ≥ 0. Solve 3x − 9 ≥ 0.",exp:"3x − 9 ≥ 0 means 3x ≥ 9, so x ≥ 3. Domain: [3, ∞).",std:"MAFS.912.F-IF.1.1 | F-IF.A.1"},
-  {id:"d54",unit:"U5",tier:1,topic:"Simplifying Radicals",stem:"Simplify: √72.",choices:["6√2","8√3","6√3","4√6"],ans:0,hint:"Factor 72 to find the largest perfect square: 72 = 36 × 2.",exp:"72 = 36 × 2. √72 = √36 · √2 = 6√2.",std:"MAFS.912.N-RN.1.2 | N-RN.A.2"},
-  {id:"d55",unit:"U5",tier:1,topic:"Extraneous Solutions",stem:"Which is the correct check step when solving radical equations?",choices:["Squaring both sides is always the first step","After solving, substitute back into the ORIGINAL equation to verify","Extraneous solutions only occur with cube root equations","After solving, substitute back into the SIMPLIFIED equation"],ans:1,hint:"Squaring can introduce false solutions. Where must you check?",exp:"Squaring both sides can introduce extraneous solutions. Always substitute back into the ORIGINAL (unsimplified) equation to verify.",std:"MAFS.912.A-REI.1.2 | A-REI.A.2"},
-  {id:"d56",unit:"U5",tier:2,topic:"Solving Radical Equations",stem:"Solve: √(2x + 3) = x − 1. Which is the valid solution?",choices:["x = 7 only","x = 1 and x = 7","x = 7 and x = −1 (extraneous)","x = −1 only"],ans:2,hint:"Square both sides, solve the resulting quadratic. Check BOTH solutions in the original equation.",exp:"Square: 2x+3 = (x−1)² = x²−2x+1. Rearrange: x²−4x−2=0. Solutions: x = 2±√6. Testing x ≈ 4.45: √11.9 ≈ 3.45 ✓. Testing x ≈ −0.45: √(2.1) ≈ 1.45 ≠ −1.45 ✗ (extraneous). This illustrates why you MUST check.",std:"MAFS.912.A-REI.1.2 | A-REI.A.2"},
-  {id:"d57",unit:"U5",tier:2,topic:"Rational Exponents",stem:"Rewrite x^(3/4) as a radical expression.",choices:["⁴√x³","³√x⁴","(√x)³","⁴√x · x"],ans:0,hint:"x^(m/n) = the n-th root of x raised to the m power.",exp:"x^(3/4) = (x³)^(1/4) = the 4th root of x³. Alternatively: (4th root of x)³.",std:"MAFS.912.N-RN.1.2 | N-RN.A.2"},
-  {id:"d58",unit:"U5",tier:3,topic:"Extraneous Solutions",stem:"A student solves √(x − 4) = −3 and gets x = 13 after squaring both sides. Is x = 13 a valid solution?",choices:["Yes — 13 − 4 = 9 and √9 = 3","No — x = 13 is extraneous; the principal square root is never negative","Yes, the negative sign just indicates direction","No — x = 13 makes the radicand undefined"],ans:1,hint:"The principal square root is always ≥ 0. Can it ever equal a negative number?",exp:"√(13−4) = √9 = 3, not −3. The principal square root is non-negative. Therefore √(x−4) can never equal −3 — x = 13 is extraneous. Always check in the original.",std:"MAFS.912.A-REI.1.2 | A-REI.A.2"},
-  {id:"d59",unit:"U6",tier:1,topic:"Evaluating Logarithms",stem:"Evaluate log₃(81).",choices:["3","4","9","27"],ans:1,hint:"Ask yourself: 3 raised to what power equals 81?",exp:"3⁴ = 81. So log₃(81) = 4.",std:"MAFS.912.F-BF.2.5 | F-BF.B.5"},
-  {id:"d60",unit:"U6",tier:1,topic:"Log Properties",stem:"Which of the following is the product property of logarithms?",choices:["log_b(xy) = log_b(x) + log_b(y)","log_b(xy) = log_b(x) · log_b(y)","log_b(x/y) = log_b(x) + log_b(y)","log_b(xⁿ) = log_b(x) + n"],ans:0,hint:"The product of inputs becomes the ___ of their individual logs.",exp:"Product Property: log_b(xy) = log_b(x) + log_b(y). The log of a product equals the SUM of the logs.",std:"MAFS.912.F-BF.2.5 | F-BF.B.5"},
-  {id:"d61",unit:"U6",tier:1,topic:"Exponential Models",stem:"A population of 500 bacteria doubles every hour. Which equation models the population P after t hours?",choices:["P = 500 + 2t","P = 500(2)^t","P = 2(500)^t","P = 500/2^t"],ans:1,hint:"The population doubles — that means it multiplies by 2 each hour.",exp:"Starting at 500, multiplying by 2 each hour: P = 500 · 2^t. At t=1: 1000; t=2: 2000. Exponential growth.",std:"MAFS.912.F-LE.1.1 | F-LE.A.1"},
-  {id:"d62",unit:"U6",tier:1,topic:"Inverse of Exponential",stem:"What is the inverse function of f(x) = 3^x?",choices:["f⁻¹(x) = log₃(x)","f⁻¹(x) = x³","f⁻¹(x) = 3x","f⁻¹(x) = ln(x)"],ans:0,hint:"Exponential and logarithmic functions are inverses of each other. The base stays the same.",exp:"The inverse of f(x) = b^x is f⁻¹(x) = log_b(x). So the inverse of 3^x is log₃(x).",std:"MAFS.912.F-BF.2.5 | F-BF.B.5"},
-  {id:"d63",unit:"U6",tier:2,topic:"Solving Exponentials",stem:"Solve for x: 2^(x + 3) = 32.",choices:["x = 2","x = 5","x = 8","x = 29"],ans:0,hint:"Write 32 as a power of 2. Then set the exponents equal.",exp:"32 = 2⁵. So 2^(x+3) = 2⁵, which means x + 3 = 5, so x = 2.",std:"MAFS.912.F-LE.2.4 | F-LE.B.4"},
-  {id:"d64",unit:"U6",tier:2,topic:"Change of Base",stem:"Use the change of base formula to evaluate log₅(30) to the nearest hundredth.",choices:["2.11","1.86","0.68","3.21"],ans:0,hint:"Change of base: log₅(30) = log(30)/log(5). Use a calculator.",exp:"log(30)/log(5) = 1.4771 / 0.6990 ≈ 2.11.",std:"MAFS.912.F-BF.2.5 | F-BF.B.5"},
-  {id:"d65",unit:"U6",tier:2,topic:"Natural Logarithm",stem:"Solve: ln(x + 2) = 3. Round to the nearest hundredth.",choices:["x = 18.09","x = 1.10","x = 3","x = 20.09"],ans:0,hint:"To undo ln, apply e to both sides. Then solve for x.",exp:"e^(ln(x+2)) = e³. x + 2 = e³ ≈ 20.086. x ≈ 18.09.",std:"MAFS.912.F-LE.2.4 | F-LE.B.4"},
-  {id:"d66",unit:"U6",tier:3,topic:"Compound Interest",stem:"$5,000 is invested at 4% annual interest. Compare annual vs. continuous compounding after 10 years. Which grows more, and by how much?",choices:["Continuous: ~$7,459; Annual: ~$7,401 — difference ≈ $58","Continuous: ~$7,500; Annual: ~$7,200 — difference ≈ $300","Both yield the same final amount","Annual: ~$7,459; Continuous: ~$7,401 — annual grows more"],ans:0,hint:"Annual: A = P(1+r)^t. Continuous: A = Pe^(rt). Use P=5000, r=0.04, t=10.",exp:"Annual: 5000(1.04)^10 ≈ $7,401. Continuous: 5000·e^0.4 ≈ $7,459. Continuous grows more by ≈$58.",std:"MAFS.912.F-LE.1.1 | F-LE.A.1"},
-  {id:"d67",unit:"U6",tier:3,topic:"Error Analysis",stem:"A student says log(x + y) = log(x) + log(y). Identify the error and provide the correct rule.",choices:["The student is correct; this is the product property","Error: log(x+y) does not simplify further — the product property applies to log(xy), not log(x+y)","Correct rule is log(x+y) = log(x) · log(y)","Error: the left side should be written as log(xy)"],ans:1,hint:"The product property involves multiplication inside the log, not addition.",exp:"Product Property: log_b(x·y) = log_b(x) + log_b(y) — applies to a PRODUCT, not a sum. log(x + y) cannot be simplified further. One of the most common Algebra 2 log errors.",std:"MAFS.912.F-BF.2.5 | F-BF.B.5"},
-  {id:"d68",unit:"U7",tier:1,topic:"Arithmetic Sequences",stem:"Find the 10th term of the arithmetic sequence: 3, 7, 11, 15, …",choices:["39","43","35","47"],ans:0,hint:"Use a_n = a₁ + (n−1)d. Here a₁ = 3 and d = 4.",exp:"d = 7 − 3 = 4. a₁₀ = 3 + (10−1)(4) = 3 + 36 = 39.",std:"MAFS.912.F-BF.1.2 | F-BF.A.2"},
-  {id:"d69",unit:"U7",tier:1,topic:"Geometric Sequences",stem:"Find the common ratio of the geometric sequence: 2, 6, 18, 54, …",choices:["4","3","2","8"],ans:1,hint:"Divide any term by the one before it. r = a_(n+1) / a_n.",exp:"r = 6/2 = 3. Verify: 6×3=18, 18×3=54. Common ratio is 3.",std:"MAFS.912.F-BF.1.2 | F-BF.A.2"},
-  {id:"d70",unit:"U7",tier:1,topic:"Arithmetic Series",stem:"What is the sum of the first 5 terms of the arithmetic sequence 4, 9, 14, 19, 24?",choices:["70","60","50","80"],ans:0,hint:"Use S_n = n/2 · (a₁ + a_n). Here n = 5, a₁ = 4, a₅ = 24.",exp:"S₅ = 5/2 · (4 + 24) = 5/2 · 28 = 70.",std:"MAFS.912.F-BF.1.2 | F-BF.A.2"},
-  {id:"d71",unit:"U7",tier:1,topic:"Infinite Geometric",stem:"For an infinite geometric series to have a finite sum, what must be true about r?",choices:["r > 1","|r| < 1","r = 1","r must be a whole number"],ans:1,hint:"Think about what happens when |r| ≥ 1: does the series converge or diverge?",exp:"When |r| < 1, each term shrinks → sum converges to S = a₁/(1−r). When |r| ≥ 1, terms grow → sum diverges.",std:"MAFS.912.A-SSE.2.4 | A-SSE.B.4"},
-  {id:"d72",unit:"U7",tier:2,topic:"Infinite Geometric Sum",stem:"Find the sum of the infinite geometric series: 12 + 4 + 4/3 + 4/9 + …",choices:["18","16","20","24"],ans:0,hint:"Identify a₁ and r. Use S = a₁ / (1 − r). Check |r| < 1.",exp:"a₁ = 12. r = 4/12 = 1/3. |r| < 1. S = 12 / (1 − 1/3) = 12 / (2/3) = 18.",std:"MAFS.912.A-SSE.2.4 | A-SSE.B.4"},
-  {id:"d73",unit:"U7",tier:2,topic:"Explicit Formula",stem:"Write the explicit formula for the geometric sequence where a₁ = 5 and r = 2, then find a₆.",choices:["a_n = 5 · 2^(n−1); a₆ = 160","a_n = 5 + 2(n−1); a₆ = 15","a_n = 5 · 2^n; a₆ = 320","a_n = 2 · 5^(n−1); a₆ = 3125"],ans:0,hint:"Geometric explicit formula: a_n = a₁ · r^(n−1). Plug in n = 6.",exp:"a_n = 5 · 2^(n−1). a₆ = 5 · 2⁵ = 5 · 32 = 160.",std:"MAFS.912.F-BF.1.2 | F-BF.A.2"},
-  {id:"d74",unit:"U7",tier:2,topic:"Sigma Notation",stem:"Evaluate: Σ(k=1 to 5) of (2k + 1).",choices:["35","25","30","40"],ans:0,hint:"Substitute k = 1, 2, 3, 4, 5 into 2k+1 and add the results.",exp:"k=1: 3, k=2: 5, k=3: 7, k=4: 9, k=5: 11. Sum = 3+5+7+9+11 = 35.",std:"MAFS.912.A-SSE.2.4 | A-SSE.B.4"},
-  {id:"d75",unit:"U7",tier:3,topic:"Real-World Series",stem:"A rubber ball is dropped from 10 feet and bounces to 60% of its previous height each time. What total vertical distance does it travel before coming to rest?",choices:["40 feet","50 feet","25 feet","35 feet"],ans:0,hint:"First drop = 10 ft. Each subsequent bounce pair (up + down) forms a geometric series with a₁ = 12, r = 0.6.",exp:"Initial drop: 10 ft. Bounces: a₁ = 2×6 = 12, r = 0.6. Sum of bounces = 12/(1−0.6) = 30 ft. Total = 10 + 30 = 40 feet.",std:"MAFS.912.A-SSE.2.4 | A-SSE.B.4"},
-  {id:"d76",unit:"U8",tier:1,topic:"Permutations",stem:"How many ways can 4 students be arranged in a line from a group of 7?",choices:["35","840","24","210"],ans:1,hint:"Order matters here — use permutations. P(n, r) = n! / (n − r)!",exp:"P(7, 4) = 7! / 3! = 7 × 6 × 5 × 4 = 840.",std:"MAFS.912.S-CP.2.8 | S-CP.B.8"},
-  {id:"d77",unit:"U8",tier:1,topic:"Combinations",stem:"A committee of 3 is chosen from 8 people. How many ways can this be done?",choices:["24","336","56","512"],ans:2,hint:"Order does NOT matter — use combinations. C(n, r) = n! / [r!(n − r)!]",exp:"C(8, 3) = 8! / (3! · 5!) = (8 × 7 × 6) / 6 = 56.",std:"MAFS.912.S-CP.2.8 | S-CP.B.8"},
-  {id:"d78",unit:"U8",tier:1,topic:"Mutually Exclusive",stem:"If P(A) = 0.4 and P(B) = 0.3 and events A and B are mutually exclusive, what is P(A or B)?",choices:["0.12","0.70","0.58","0.07"],ans:1,hint:"Mutually exclusive events cannot both occur. P(A or B) = P(A) + P(B).",exp:"Mutually exclusive: P(A or B) = P(A) + P(B) = 0.4 + 0.3 = 0.7.",std:"MAFS.912.S-CP.1.1 | S-CP.A.1"},
-  {id:"d79",unit:"U8",tier:1,topic:"Normal Distribution",stem:"In a normal distribution, approximately what percent of data falls within one standard deviation of the mean?",choices:["50%","68%","95%","99.7%"],ans:1,hint:"The 68-95-99.7 rule. What percentage corresponds to 1 SD?",exp:"Empirical Rule: ≈68% within 1 SD, 95% within 2 SD, 99.7% within 3 SD.",std:"MAFS.912.S-ID.1.4 | S-ID.A.4"},
-  {id:"d80",unit:"U8",tier:2,topic:"Dependent Probability",stem:"A bag has 5 red marbles and 3 blue marbles. You draw one, keep it, then draw another. What is P(red, then blue)?",choices:["15/64","15/56","1/4","5/8"],ans:1,hint:"Dependent events (no replacement). P(A and B) = P(A) · P(B|A).",exp:"P(red first) = 5/8. After removing a red, P(blue second) = 3/7. P(red then blue) = 5/8 × 3/7 = 15/56.",std:"MAFS.912.S-CP.1.3 | S-CP.A.3"},
-  {id:"d81",unit:"U8",tier:2,topic:"Conditional Probability",stem:"Two events A and B have P(A) = 0.5, P(B) = 0.4, P(A ∩ B) = 0.2. Find P(A|B).",choices:["0.2","0.4","0.5","0.8"],ans:2,hint:"Conditional probability: P(A|B) = P(A ∩ B) / P(B).",exp:"P(A|B) = P(A ∩ B) / P(B) = 0.2 / 0.4 = 0.5. Note: since P(A|B) = P(A), events A and B are actually independent.",std:"MAFS.912.S-CP.1.3 | S-CP.A.3"},
-  {id:"d82",unit:"U8",tier:3,topic:"Normal Distribution",stem:"Heights at a school are normally distributed: mean = 65 in, SD = 3 in. A student is at the 97.5th percentile. Approximately how tall?",choices:["68 inches","71 inches","62 inches","74 inches"],ans:1,hint:"97.5th percentile corresponds to approximately 2 standard deviations above the mean.",exp:"The 97.5th percentile is ≈ 2 SDs above the mean. Height = 65 + 2(3) = 71 inches.",std:"MAFS.912.S-ID.1.4 | S-ID.A.4"},
-  {id:"d83",unit:"U9",tier:1,topic:"Identifying Conics",stem:"Identify the conic section: (x − 2)²/9 + (y + 1)²/16 = 1.",choices:["Circle","Ellipse","Hyperbola","Parabola"],ans:1,hint:"What conic has the form x²/a² + y²/b² = 1 with a ≠ b?",exp:"Two squared terms with DIFFERENT denominators added together, set equal to 1 → standard form of an ellipse.",std:"MAFS.912.G-GPE.1.3 | G-GPE.A.3"},
-  {id:"d84",unit:"U9",tier:1,topic:"Circle Equations",stem:"What is the center and radius of the circle: (x + 3)² + (y − 5)² = 49?",choices:["Center (−3, 5); r = 7","Center (3, −5); r = 7","Center (−3, 5); r = 49","Center (3, 5); r = 7"],ans:0,hint:"Standard form: (x−h)² + (y−k)² = r². Watch the signs of h and k.",exp:"h = −3 (from x+3 = x−(−3)), k = 5, r = √49 = 7. Center: (−3, 5); radius: 7.",std:"MAFS.912.G-GPE.1.1 | G-GPE.A.1"},
-  {id:"d85",unit:"U9",tier:1,topic:"Parabola Focus",stem:"A parabola has equation x² = 12y. Where is the focus?",choices:["(0, 3)","(3, 0)","(0, −3)","(0, 12)"],ans:0,hint:"For x² = 4py, the focus is at (0, p). Find p from 4p = 12.",exp:"4p = 12, so p = 3. Focus is at (0, p) = (0, 3). The parabola opens upward.",std:"MAFS.912.G-GPE.1.2 | G-GPE.A.2"},
-  {id:"d86",unit:"U9",tier:2,topic:"Writing Circle Equations",stem:"Write the equation of a circle with center (4, −2) and passing through (7, 2).",choices:["(x−4)² + (y+2)² = 25","(x−4)² + (y−2)² = 25","(x+4)² + (y−2)² = 25","(x−4)² + (y+2)² = 5"],ans:0,hint:"First find r using the distance formula between center and the given point.",exp:"r = √((7−4)² + (2−(−2))²) = √(9+16) = √25 = 5. Equation: (x−4)² + (y+2)² = 25.",std:"MAFS.912.G-GPE.1.1 | G-GPE.A.1"},
-  {id:"d87",unit:"U9",tier:2,topic:"Ellipse Properties",stem:"For the ellipse x²/25 + y²/9 = 1, identify the vertices and the length of the major axis.",choices:["Vertices at (±5, 0); major axis = 10","Vertices at (±3, 0); major axis = 6","Vertices at (0, ±5); major axis = 10","Vertices at (±9, 0); major axis = 9"],ans:0,hint:"a² > b², so a² = 25, meaning a = 5. Major axis is horizontal.",exp:"a² = 25 → a = 5. b² = 9. Since a² > b², major axis is horizontal. Vertices: (±5, 0). Length = 2a = 10.",std:"MAFS.912.G-GPE.1.3 | G-GPE.A.3"},
-  {id:"d88",unit:"U9",tier:3,topic:"Completing the Square",stem:"Rewrite x² + y² + 6x − 4y − 3 = 0 in standard form and identify the conic.",choices:["(x+3)² + (y−2)² = 16; circle, center (−3, 2), r = 4","(x−3)² + (y+2)² = 16; circle, center (3, −2), r = 4","(x+3)² + (y−2)² = 4; circle, center (−3, 2), r = 2","Not a valid conic section"],ans:0,hint:"Complete the square for both x and y. Group like variables first.",exp:"Group: (x²+6x) + (y²−4y) = 3. Complete both: (x²+6x+9) + (y²−4y+4) = 3+9+4 = 16. → (x+3)² + (y−2)² = 16. Circle with center (−3, 2), r = 4.",std:"MAFS.912.G-GPE.1.1 | G-GPE.A.1"},
-  {id:"d89",unit:"U10",tier:1,topic:"Radian Conversion",stem:"Convert 270° to radians.",choices:["3π/2","π/2","2π","π"],ans:0,hint:"Multiply degrees by π/180. Or note that 90° = π/2, so 270° = 3 times that.",exp:"270 × (π/180) = 270π/180 = 3π/2 radians.",std:"MAFS.912.F-TF.1.1 | F-TF.A.1"},
-  {id:"d90",unit:"U10",tier:1,topic:"Amplitude",stem:"What is the amplitude of y = −4sin(3x) + 2?",choices:["3","4","2","−4"],ans:1,hint:"Amplitude = |A| where A is the coefficient of the trig function. Ignore the negative sign.",exp:"Amplitude = |−4| = 4. The negative sign reflects the graph but does not change the amplitude.",std:"MAFS.912.F-TF.2.5 | F-TF.B.5"},
-  {id:"d91",unit:"U10",tier:1,topic:"Unit Circle",stem:"On the unit circle, what are the coordinates of the point at 90° (π/2 radians)?",choices:["(1, 0)","(0, 1)","(−1, 0)","(0, −1)"],ans:1,hint:"The unit circle has radius 1. At 90°, the point is at the top.",exp:"At 90°, the terminal side points straight up. Point: (0, 1). cos(90°) = 0, sin(90°) = 1.",std:"MAFS.912.F-TF.1.2 | F-TF.A.2"},
-  {id:"d92",unit:"U10",tier:2,topic:"Period",stem:"Find the period of y = sin(4x).",choices:["π/2","2π","4π","π"],ans:0,hint:"Period of sin(Bx) = 2π/|B|. Here B = 4.",exp:"Period = 2π / |4| = 2π/4 = π/2.",std:"MAFS.912.F-TF.2.5 | F-TF.B.5"},
-  {id:"d93",unit:"U10",tier:2,topic:"Transformations",stem:"Describe all transformations applied to y = sin(x) to get y = 3sin(x − π/2) + 1.",choices:["Amplitude 3, right shift π/2, up 1","Amplitude 3, left shift π/2, up 1","Amplitude 1/3, right shift π/2, down 1","Amplitude 3, right shift π, up 2"],ans:0,hint:"Match y = A sin(B(x−h)) + k. Identify A, h, and k.",exp:"A = 3 (amplitude 3). h = π/2 (right shift of π/2). k = 1 (vertical shift up 1). Period unchanged (B = 1).",std:"MAFS.912.F-TF.2.5 | F-TF.B.5"},
-  {id:"d94",unit:"U10",tier:3,topic:"Real-World Modeling",stem:"A Ferris wheel has radius 20 m, its center is 25 m off the ground, and it completes one rotation every 40 s. Write a sine function h(t) for the height of a rider starting at the bottom.",choices:["h(t) = 20sin(π/20 · t) + 25","h(t) = 20sin(π/20 · t − π/2) + 25","h(t) = 25sin(2π/40 · t) + 20","h(t) = 20cos(π/40 · t) + 25"],ans:1,hint:"A = 20 (radius), k = 25 (center height), period = 40. Starting at the bottom needs a phase shift.",exp:"A = 20, k = 25, B = 2π/40 = π/20. Starting at bottom: h(0) = 5 (bottom) → phase shift −π/2. h(t) = 20sin(π/20·t − π/2) + 25. Check: h(0) = 20sin(−π/2)+25 = −20+25 = 5 ✓",std:"MAFS.912.F-TF.2.5 | F-TF.B.5"},
-  // JSX supplements (unique, no DOCX overlap)
-  {id:"j1",unit:"U2",tier:3,topic:"Polynomial Analysis",stem:"f(x) = x³ − x. How many x-intercepts does the graph have? Student A says 3; Student B says 1. Who's right?",choices:["Student A: crosses at x = −1, 0, and 1","Student B: only at x = 0","Both, depending on the window","Neither — the graph has 2 intercepts"],ans:0,hint:"Factor f(x) completely and find all zeros.",exp:"f(x) = x(x−1)(x+1). Zeros: x = 0, 1, −1. Three distinct real zeros → three x-intercepts. Student A is correct.",std:null},
-  {id:"j2",unit:"U3",tier:2,topic:"Powers of i",stem:"Simplify i⁷.",choices:["i","−1","−i","1"],ans:2,hint:"Powers of i cycle every 4. Divide the exponent by 4 and use the remainder.",exp:"i cycle: i¹=i, i²=−1, i³=−i, i⁴=1. 7 ÷ 4 = 1 remainder 3. So i⁷ = i³ = −i.",std:null},
-  {id:"j3",unit:"U4",tier:3,topic:"Error Analysis",stem:"(x²−9)/(x−3) simplified to (x+3) — are the two expressions identical?",choices:["Yes, identical","No — original has a hole at x = 3 that the simplified form hides","No — simplification is wrong","Yes, both are lines"],ans:1,hint:"What happens at x = 3 in the original expression?",exp:"Original undefined at x = 3 (hole at (3,6)). Simplified x+3 is defined there. They differ at x = 3; must write x ≠ 3.",std:null},
-  {id:"j4",unit:"U5",tier:2,topic:"Rational Exponents",stem:"Rewrite x^(3/4) as a radical.",choices:["⁴√x³","³√x⁴","(√x)³","⁴√x · x"],ans:0,hint:"x^(m/n) = the n-th root of x^m. Denominator is the root index.",exp:"x^(3/4) = (x³)^(1/4) = 4th root of x³. The denominator of the exponent is the root index.",std:null},
-  {id:"j5",unit:"U6",tier:3,topic:"Error Analysis",stem:"A student writes log(x+5) = log(x)+log(5). What is the error?",choices:["Correct — product rule","Wrong — product rule applies to log(xy) not log(x+y)","Wrong — should multiply logs","Wrong — log(x+5) = log(x)·log(5)"],ans:1,hint:"The product property involves multiplication inside the log, not addition.",exp:"Product property: log_b(x·y) = log_b(x)+log_b(y). Addition inside a log CANNOT be split. log(x+5) is already in simplest form.",std:null},
-  {id:"j6",unit:"U7",tier:3,topic:"Real-World Series",stem:"Ball dropped 10 ft, bounces 60% each time. Total vertical distance traveled?",choices:["40 ft","50 ft","25 ft","35 ft"],ans:0,hint:"Initial: 10 ft. Bounces (up+down): a₁=12, r=0.6. Use infinite geometric sum, then add initial drop.",exp:"Initial drop: 10 ft. Bounces: a₁ = 2×6 = 12, r = 0.6. Sum = 12/0.4 = 30. Total = 10+30 = 40 ft.",std:null},
-  {id:"j7",unit:"U8",tier:2,topic:"Permutations vs Combinations",stem:"Committee of 4 chosen from 10 people — how many ways? Order does NOT matter.",choices:["5040","210","720","3628800"],ans:1,hint:"Order doesn't matter → combination. C(n,r) = n!/[r!(n−r)!]",exp:"C(10,4) = 10!/(4!·6!) = (10×9×8×7)/(4×3×2×1) = 5040/24 = 210.",std:null},
-  {id:"j8",unit:"U10",tier:2,topic:"Transformations",stem:"What transformations map y = |x| onto f(x) = 2|x − 3| + 1?",choices:["Right 3, stretch ×2, up 1","Left 3, compress, up 1","Right 3, compress, down 1","Left 3, stretch ×2, down 1"],ans:0,hint:"Match each component: |x−3| is horizontal, the 2 is vertical scale, +1 is vertical shift.",exp:"|x−3| shifts right 3. ×2: vertical stretch. +1: shifts up 1. Combined: right 3, stretched by 2, up 1.",std:null},
+// ═══════════════════════════════════════════
+// ALGEBRA 2 — MISTAKES AUTOPSY
+// 25 high-frequency errors, U1-U10. Same 7-field format throughout:
+// id, unit, title, category, why, wrong, right, memory, watchout, fmm_wrong, fmm_choices
+// fmm_choices[0] is always the correct diagnosis.
+// ═══════════════════════════════════════════
+const MISTAKES = [
+{
+  id:1, unit:"U1", title:"Forgetting to Restrict the Domain Before Solving",
+  category:"Domain & Range",
+  why:"Students find the algebraic answer first and only think about domain restrictions afterward, if at all — but for square roots and rational expressions, the restriction has to be checked before the answer is trusted.",
+  wrong:`Find the domain of f(x) = √(x − 4).
+Student solves: x − 4 = 0, so x = 4.
+States: "Domain is x = 4."
+Treats the radical like an equation to solve, not an inequality to satisfy.`,
+  right:`The radicand must be ≥ 0, not = 0.
+Set up an inequality: x − 4 ≥ 0.
+Solve: x ≥ 4.
+Domain: [4, ∞) — every x-value from 4 upward, not just x = 4.`,
+  memory:'"Radicand ≥ 0, not = 0." A square root domain is a whole ray, not a single point.',
+  watchout:"For rational functions, the restriction is the OPPOSITE inequality — the denominator must NOT equal zero, so you solve an equation and then EXCLUDE that value, rather than solving an inequality and keeping a range.",
+  fmm_wrong:`Find the domain of f(x) = √(2x + 6).
+Student sets 2x + 6 = 0, gets x = −3, and writes "Domain: x = −3."`,
+  fmm_choices:["The radicand must be ≥ 0, not = 0 — correct domain is x ≥ −3, an inequality not a single point","x = −3 is correct because that's where the function is undefined","The student should have set 2x + 6 &lt; 0 instead","The domain should exclude x = −3, not include only it"]
+},
+{
+  id:2, unit:"U1", title:"Losing Track of Operation Order in Composite Functions",
+  category:"Composition of Functions",
+  why:"Students read (f ∘ g)(x) left to right like a sentence and apply f first, when the notation actually means \"apply g first, then feed the result into f.\"",
+  wrong:`If f(x) = 3x − 1 and g(x) = x² + 2, find (f ∘ g)(2).
+Student computes f(2) first: f(2) = 3(2) − 1 = 5.
+Then plugs into g: g(5) = 25 + 2 = 27.
+States: "(f ∘ g)(2) = 27."`,
+  right:`(f ∘ g)(x) means f(g(x)) — apply g FIRST, then f to that result.
+Step 1: g(2) = (2)² + 2 = 6.
+Step 2: f(6) = 3(6) − 1 = 17.
+(f ∘ g)(2) = 17.`,
+  memory:'"Read right to left, work left to right." The rightmost function in the notation is the one you compute FIRST.',
+  watchout:"(f ∘ g)(x) and (g ∘ f)(x) are almost never equal — always check which function's letter sits closer to the input before starting.",
+  fmm_wrong:`f(x) = x + 5, g(x) = 2x. Find (g ∘ f)(3).
+Student computes g(3) = 6 first, then f(6) = 11.`,
+  fmm_choices:["(g ∘ f)(x) means g(f(x)) — f should be applied first: f(3) = 8, then g(8) = 16","The student's answer of 11 is correct","The order doesn't matter for composition, so either approach works","g(3) should have been computed as 2(3)+5 instead"]
+},
+{
+  id:3, unit:"U2", title:"Ignoring the Leading Coefficient's Sign in End Behavior",
+  category:"End Behavior",
+  why:"Students correctly identify whether the degree is even or odd but forget that the SIGN of the leading coefficient flips the direction the ends point.",
+  wrong:`Problem: Describe end behavior of f(x) = −3x⁴ + 2x − 1.
+Student thinks: "Even degree — both ends go UP."
+States: as x → ±∞, y → +∞.
+Ignores the negative leading coefficient entirely.`,
+  right:`Degree 4 is even. BUT leading coefficient is −3 (negative).
+Negative LC FLIPS the even-degree behavior.
+Even + positive LC: both ends go UP (+∞).
+Even + negative LC: both ends go DOWN (−∞).
+Correct: as x → +∞, y → −∞ AND as x → −∞, y → −∞.`,
+  memory:'"Negative flips the ends." For even degree, negative LC = both ends DOWN (mountain becomes valley).',
+  watchout:"For ODD degree with negative LC: right end goes DOWN, left end goes UP. Opposite of the positive-LC odd pattern.",
+  fmm_wrong:`f(x) = −2x⁴ + x² − 7
+Student says: "Degree is 4 (even), so both ends go to +∞."`,
+  fmm_choices:["The student correctly identified the degree but ignored the negative leading coefficient — both ends go DOWN","The student should have found the vertex before describing end behavior","The student applied the odd-degree rule to an even-degree polynomial","The student is correct; even degree always means both ends go up"]
+},
+{
+  id:4, unit:"U2", title:"Dropping the Remainder in Synthetic Division",
+  category:"Synthetic Division",
+  why:"Students complete the synthetic division table correctly but treat the last number as part of the quotient instead of the remainder.",
+  wrong:`Divide x³ − x² − 4x + 4 by (x − 2).
+Synthetic: 2 | 1  −1  −4   4
+Result row: 1   1  −2   0
+Student writes quotient as: x³ + x² − 2x + 0.
+Degree of quotient is wrong.`,
+  right:`The number of coefficients in the quotient = (degree of dividend) − 1.
+Row: 1   1  −2  | 0 (remainder)
+Quotient coefficients: 1, 1, −2 → x² + x − 2.
+Remainder: 0 (means (x−2) is a factor).
+Check: (x−2)(x²+x−2) = (x−2)(x+2)(x−1). ✓`,
+  memory:'"Last number = remainder, not part of the quotient." Degree of quotient is always one less than the dividend.',
+  watchout:"If a power of x is missing from the dividend (e.g., x³ + 2x − 1 has no x² term), insert a 0 placeholder or synthetic division will be wrong.",
+  fmm_wrong:`Dividing x³ − 5x² + 3x + 9 by (x − 3).
+Result row: 1  −2  −3  0
+Student writes: quotient = x³ − 2x² − 3x.`,
+  fmm_choices:["The quotient's degree should be one less than the dividend — correct quotient is x² − 2x − 3; the 0 is the remainder, not a term","The student should have used long division instead","The signs of all coefficients should be flipped","The student forgot to include the remainder as a fraction"]
+},
+{
+  id:5, unit:"U2", title:"Confusing Multiplicity's Effect on the Graph",
+  category:"Zeros & Multiplicity",
+  why:"Students know that a root with multiplicity means a repeated factor but cannot translate that into the correct graph behavior at that x-intercept.",
+  wrong:`f(x) = (x − 1)²(x + 3).
+Student plots x-intercepts at x = 1 and x = −3.
+Draws graph CROSSING through x = 1 (same as x = −3).
+Treats both zeros identically, ignoring the exponent of 2 on the first factor.`,
+  right:`Multiplicity determines whether the graph crosses or bounces at that zero.
+x = 1 has multiplicity 2 (even) → graph TOUCHES the x-axis and turns back (bounces).
+x = −3 has multiplicity 1 (odd) → graph CROSSES straight through.
+The graph touches at x=1 and passes through at x=−3 — they look different.`,
+  memory:'"Odd crosses, even bounces." Multiplicity 1, 3, 5… crosses; multiplicity 2, 4, 6… bounces off the axis.',
+  watchout:"Higher even multiplicities (4, 6…) bounce with a flatter, more \"S-curve-like\" touch than multiplicity 2 — the graph flattens out more the higher the even multiplicity gets.",
+  fmm_wrong:`f(x) = (x + 2)(x − 5)³.
+Student draws the graph crossing at x = −2 and BOUNCING at x = 5.`,
+  fmm_choices:["Multiplicity 3 is odd, so the graph CROSSES at x = 5, not bounces — the student reversed the rule","The student is correct; higher multiplicity always means bouncing","Both zeros should show bouncing behavior since one has an exponent","The graph should not touch the x-axis at either zero"]
+},
+{
+  id:6, unit:"U3", title:"Forgetting the ± When Taking a Square Root",
+  category:"Solving Quadratics",
+  why:"Students isolate a squared term correctly, take the square root, but only report the positive root — losing half of the solution set.",
+  wrong:`Solve: (x − 3)² = 16.
+Student takes the square root of both sides: x − 3 = 4.
+Solves: x = 7.
+States: "The solution is x = 7."`,
+  right:`Taking a square root of both sides introduces a ± — there are always two square roots.
+x − 3 = ±4.
+Case 1: x − 3 = 4 → x = 7.
+Case 2: x − 3 = −4 → x = −1.
+Two solutions: x = 7 and x = −1.`,
+  memory:'"Square root of both sides means BOTH signs." Every time you undo a square, write ± immediately, before simplifying further.',
+  watchout:"This is different from taking the square root of a single number under a radical sign (like √16 = 4, principal root only) — the ± only appears when you are UNDOING a squared expression to solve an equation.",
+  fmm_wrong:`Solve (x + 2)² = 25.
+Student writes x + 2 = 5, so x = 3, and stops there.`,
+  fmm_choices:["Taking the square root of both sides requires ±5, giving two solutions: x = 3 and x = −7","x = 3 is the only solution since 25 is positive","The student should have expanded (x+2)² first before taking the root","The equation has no real solutions since a square can't equal 25"]
+},
+{
+  id:7, unit:"U3", title:"Sign Error Substituting into the Quadratic Formula",
+  category:"Quadratic Formula",
+  why:"When b is already negative in the original equation, students substitute −b incorrectly, flipping a sign that should have cancelled.",
+  wrong:`Solve 2x² − 3x − 2 = 0 using the quadratic formula.
+Here a=2, b=−3, c=−2.
+Student writes: x = [−(−3) ± √((−3)² − 4(2)(−2))] / 2(2)
+Then simplifies −(−3) as −3 (sign error — should be +3).`,
+  right:`x = [−b ± √(b² − 4ac)] / 2a.
+b = −3, so −b = −(−3) = +3 (the two negatives cancel).
+Discriminant: (−3)² − 4(2)(−2) = 9 + 16 = 25.
+x = [3 ± 5] / 4 → x = 2 or x = −0.5.`,
+  memory:'"Two negatives make a positive — every time." −(−3) is +3, not −3. Write the substitution step out fully before simplifying.',
+  watchout:"The SAME sign error happens inside b² — squaring a negative b always gives a positive result: (−3)² = 9, never −9.",
+  fmm_wrong:`Solve 3x² + 2x − 5 = 0. a=3, b=2, c=−5.
+Student computes the discriminant as 2² − 4(3)(−5) = 4 − 60 = −56.`,
+  fmm_choices:["The student mixed up the sign: −4(3)(−5) = +60, not −60 — discriminant is 4 + 60 = 64, not −56","The discriminant is correct; the equation has no real solutions","The student should have used −b² instead of b²","c should have been treated as positive 5 in this equation"]
+},
+{
+  id:8, unit:"U3", title:"Treating i² as i Instead of −1",
+  category:"Complex Numbers",
+  why:"Students memorize that i = √(−1) but forget to actually substitute −1 when i² shows up during multiplication, leaving i² sitting in the answer unsimplified.",
+  wrong:`Multiply (3 + 2i)(1 − i).
+Student FOILs: 3 − 3i + 2i − 2i².
+Combines like terms on the i-terms only: 3 − i − 2i².
+States final answer: "3 − i − 2i²." Does not simplify i².`,
+  right:`i² is DEFINED as −1 — it must be replaced, not left in the answer.
+3 − 3i + 2i − 2i² = 3 − i − 2(−1) = 3 − i + 2 = 5 − i.
+Every time i² appears during multiplication, immediately substitute −1.`,
+  memory:'"i² is not a variable — it\'s a stand-in for −1." Replace it the instant it appears, same reflex as simplifying √4 to 2.',
+  watchout:"Higher powers of i cycle every 4: i¹=i, i²=−1, i³=−i, i⁴=1, then it repeats. For i to a large power, divide the exponent by 4 and use the remainder.",
+  fmm_wrong:`Simplify (2 + i)(3 + i).
+Student expands to 6 + 2i + 3i + i² and writes the final answer as "6 + 5i + i²."`,
+  fmm_choices:["i² must be replaced with −1: 6 + 5i + (−1) = 5 + 5i, not left as i² in the final answer","6 + 5i + i² is already fully simplified","i² should be replaced with 1, not −1","The student needs to also simplify the 5i term further"]
+},
+{
+  id:9, unit:"U4", title:"Cancelling Terms Instead of Factors in Rational Expressions",
+  category:"Simplifying Rational Expressions",
+  why:"Students see a matching term in the numerator and denominator and cross it out, even when it's part of a sum rather than a factor of a product — cancellation only works on multiplied factors.",
+  wrong:`Simplify (x + 3) / (x + 5).
+Student "cancels" the x from numerator and denominator, as if x were a common factor.
+Writes: 3/5.
+Treats addition like multiplication.`,
+  right:`You can only cancel FACTORS that are multiplied across the entire numerator and entire denominator — not terms that are added.
+(x + 3) / (x + 5) does not factor further — x is not a factor of the whole numerator or the whole denominator, it's a term inside a sum.
+This expression is already in simplest form; it cannot be reduced.`,
+  memory:'"Cancel factors, never terms." If you can\'t draw a box around the ENTIRE numerator or denominator as one multiplied piece, you can\'t cancel it.',
+  watchout:"This mistake also shows up with expressions like (x² − 4)/(x − 2) where cancelling IS valid — but only after factoring: (x−2)(x+2)/(x−2) = x+2. The factoring step must come first.",
+  fmm_wrong:`Simplify (x² + 2x) / (x + 5).
+Student cancels the x from x² and x in the numerator against nothing, then also cancels against the x+5, writing "2/5."`,
+  fmm_choices:["Nothing can be cancelled here without factoring first — factor the numerator to x(x+2), and since (x+5) shares no common factor, the expression is already simplest form","2/5 is correct after simplifying","The x² should cancel with the x in x+5","The expression simplifies to x + 2/5"]
+},
+{
+  id:10, unit:"U4", title:"Forgetting to Exclude Removable Discontinuities (Holes)",
+  category:"Holes & Excluded Values",
+  why:"After simplifying a rational function and a factor cancels cleanly, students forget that the ORIGINAL denominator's zero is still excluded from the domain — even though it disappeared algebraically.",
+  wrong:`Simplify f(x) = (x² − 4)/(x − 2) and state the domain.
+Student factors and cancels: (x−2)(x+2)/(x−2) = x + 2.
+States: "f(x) = x + 2, domain is all real numbers" — since the simplified form has no denominator at all.`,
+  right:`The ORIGINAL function was undefined at x = 2 (denominator = 0), and simplifying doesn't change that — it creates a HOLE at x = 2, not a removed restriction.
+f(x) = x + 2, domain: x ≠ 2 (all reals except 2).
+The graph looks like the line y = x + 2 but with an open circle at the point (2, 4).`,
+  memory:'"Cancelling creates a hole, it doesn\'t erase the restriction." Always check the ORIGINAL denominator for excluded values before simplifying.',
+  watchout:"A hole (removable discontinuity) is different from a vertical asymptote — a hole comes from a factor that cancels; an asymptote comes from a factor that does NOT cancel and remains in the denominator.",
+  fmm_wrong:`Simplify g(x) = (x² − 9)/(x − 3). Student simplifies to x + 3 and states "domain is all real numbers."`,
+  fmm_choices:["The original denominator is zero at x = 3, so even after simplifying to x+3, the domain must exclude x = 3 (a hole at that point)","All real numbers is correct since the simplified form has no denominator","The domain should exclude x = −3 instead of x = 3","x + 3 is not a valid simplification of this expression"]
+},
+{
+  id:11, unit:"U4", title:"Applying the Wrong Horizontal Asymptote Rule",
+  category:"Horizontal Asymptotes",
+  why:"Students memorize one horizontal asymptote rule and apply it regardless of the relationship between the numerator's and denominator's degrees, without checking which of the three cases actually applies.",
+  wrong:`f(x) = (2x + 1) / (x² − 9).
+Student assumes HA = leading coefficient ratio = 2/1 = 2, without checking the degrees.
+States: "Horizontal asymptote is y = 2."`,
+  right:`THREE cases for horizontal asymptotes, based on comparing degrees:
+Case 1: deg(num) &lt; deg(den) → HA: y = 0
+Case 2: deg(num) = deg(den) → HA: y = leading coeff ratio
+Case 3: deg(num) &gt; deg(den) → NO horizontal asymptote
+Here: numerator degree 1, denominator degree 2 → Case 1 applies. HA is y = 0, not y = 2.`,
+  memory:'"Less = Zero, Equal = Ratio, Greater = None (or Slant)." Check degrees FIRST, every single time, before reaching for a ratio.',
+  watchout:"When deg(num) = deg(den) + 1 exactly (Case 3, one degree higher), there IS a slant asymptote — found by polynomial long division, not by comparing leading coefficients.",
+  fmm_wrong:`f(x) = (5x²) / (x + 1). Student says "HA = 5/1 = 5" without checking degrees.`,
+  fmm_choices:["Degree of numerator (2) is greater than denominator (1), so there is no horizontal asymptote — there's a slant asymptote instead, found by long division","HA = 5 is correct since 5 is the leading coefficient","HA = 0 because the denominator has a lower degree","The function has two horizontal asymptotes, y=5 and y=0"]
+},
+{
+  id:12, unit:"U4", title:"Applying a Single Horizontal Asymptote Rule Without Checking Degrees",
+  category:"Horizontal Asymptotes",
+  why:"Students apply one rule to every rational function without checking which of the three degree-comparison cases actually applies to the specific function in front of them.",
+  wrong:`f(x) = (3x² + 1) / (x² − 4).
+Student states: "Numerator degree is higher, so HA = 0."
+Or: "HA = numerator leading coefficient / 1 = 3."
+Applied one rule without checking degrees first.`,
+  right:`THREE cases for horizontal asymptotes:
+Case 1: deg(num) &lt; deg(den) → HA: y = 0
+Case 2: deg(num) = deg(den) → HA: y = leading coeff(num) / leading coeff(den)
+Case 3: deg(num) &gt; deg(den) → NO horizontal asymptote
+Here: both degrees = 2 (equal). HA = 3/1 = 3. So y = 3. ✓`,
+  memory:'"Less = Zero, Equal = Ratio, Greater = None (or Slant)." Check degrees FIRST.',
+  watchout:"When deg(num) = deg(den) + 1, use polynomial long division to find the SLANT asymptote. It is not zero.",
+  fmm_wrong:`f(x) = (4x³ − 1) / (x² + 2x)
+Student says: "HA = 4/1 = 4."`,
+  fmm_choices:["Degree of numerator (3) &gt; degree of denominator (2) — no horizontal asymptote; there is a SLANT asymptote","The student is correct; 4 is the HA because degrees are close","HA = 0 because the numerator degree is higher","HA = 1 because the leading coefficient of the denominator is 1"]
+},
+{
+  id:13, unit:"U5", title:"Failing to Check for Extraneous Solutions",
+  category:"Radical Equations",
+  why:"Squaring both sides is an irreversible step that can introduce false solutions. Students solve the resulting quadratic but do not verify answers in the original equation.",
+  wrong:`Solve: √(x + 3) = x − 3.
+Square both sides: x + 3 = x² − 6x + 9.
+x² − 7x + 6 = 0 → (x−1)(x−6) = 0.
+Solutions: x = 1 and x = 6. Done.
+(Did NOT check either solution.)`,
+  right:`After solving: x = 1 and x = 6. CHECK BOTH.
+Check x = 1: √(1+3) = √4 = 2. But x − 3 = 1 − 3 = −2. 2 ≠ −2. EXTRANEOUS. ✗
+Check x = 6: √(6+3) = √9 = 3. And x − 3 = 6 − 3 = 3. 3 = 3. VALID. ✓
+Only solution: x = 6. Discarding x = 1 is essential.`,
+  memory:'"Square it? Check it." Every time you square both sides, you MUST verify in the original. No exceptions.',
+  watchout:"If the right side of a radical equation is a negative number (e.g., √x = −5), STOP immediately. Principal square root is never negative — no solution exists.",
+  fmm_wrong:`Solve: √(x − 4) = −3.
+Student squares both sides: x − 4 = 9 → x = 13.
+States: "x = 13 is the solution."`,
+  fmm_choices:["The principal square root is never negative — √(x−4) cannot equal −3, so the equation has NO solution before squaring","x = 13 is correct because √9 = ±3","The student should have squared the left side first","The student needed to add 4 to both sides before squaring"]
+},
+{
+  id:14, unit:"U5", title:"Incorrect Order of Operations with Rational Exponents",
+  category:"Rational Exponents",
+  why:"Students confuse which part of x^(m/n) is the power and which is the root, often computing in the wrong order or applying the wrong operation entirely.",
+  wrong:`Simplify: 27^(2/3).
+ERROR 1: Student computes 27 × (2/3) = 18. (Multiplied instead of exponentiating.)
+ERROR 2: (27)² / 3 = 729/3 = 243. (Applied division instead of root.)
+Both treat the fractional exponent as an arithmetic operation on 27 rather than a power-and-root instruction.`,
+  right:`x^(m/n) means: take the n-th root, then raise to the m power (or either order — root first is usually easier with smaller numbers).
+27^(2/3) = (³√27)² = (3)² = 9.
+Root first (n-th root, here cube root), THEN apply the power (m), not multiplication or division.`,
+  memory:'"Bottom is the root, top is the power." For x^(m/n): n (bottom) tells you which root; m (top) tells you which power. Do the root first to keep numbers small.',
+  watchout:"A negative rational exponent still means reciprocal first: x^(−m/n) = 1 / x^(m/n) — don't forget to flip before applying the root and power.",
+  fmm_wrong:`Simplify 8^(2/3).
+Student computes 8 × 2 ÷ 3 = 5.33, and writes "8^(2/3) ≈ 5.33."`,
+  fmm_choices:["8^(2/3) means (cube root of 8)² = 2² = 4 — it's a root-and-power operation, not multiplication and division","5.33 is the correct simplified value","The student should have computed 8² first, then divided by 3","8^(2/3) simplifies to 8 − 2/3"]
+},
+{
+  id:15, unit:"U6", title:"Confusing the Product Property with Sum Inside a Log",
+  category:"Logarithm Properties",
+  why:"Students see log(x + y) and try to apply the product property, not realizing the product property only applies to log(xy) — a sum inside a log doesn't simplify at all using log rules.",
+  wrong:`A student says log(x + y) = log(x) + log(y).
+Applies the product property to what looks like a similar-looking expression.
+Treats addition inside the log the same as multiplication inside the log.`,
+  right:`The Product Property states: log_b(x · y) = log_b(x) + log_b(y) — it applies to a PRODUCT inside the log, not a sum.
+log(x + y) does NOT simplify further using any logarithm property. It has no equivalent expanded form.
+The student confused log(xy) — which DOES expand — with log(x+y), which does not.`,
+  memory:'"Logs split products, never sums." If it\'s x+y inside the log, there is nothing more you can do with properties — leave it as is.',
+  watchout:"The same confusion happens with the quotient property: log(x/y) = log(x) − log(y) applies to DIVISION inside the log, not to log(x) − log(y) being rewritten as log(x−y) — that direction is also invalid.",
+  fmm_wrong:`Student simplifies log(a) − log(b) as log(a − b).`,
+  fmm_choices:["This reverses the Quotient Property — log(a) − log(b) = log(a/b), a quotient, not log(a−b)","log(a−b) is a valid simplification of log(a) − log(b)","The student should have added instead of subtracted","Neither expression can be simplified further"]
+},
+{
+  id:16, unit:"U6", title:"Forgetting to Apply Change of Base Correctly",
+  category:"Change of Base Formula",
+  why:"Students remember there's a change-of-base formula but flip the numerator and denominator, or forget which log goes on top.",
+  wrong:`Evaluate log₅(20) using a calculator (which only has log base 10).
+Student writes: log₅(20) = log(5) / log(20).
+Puts the BASE on top instead of the argument.`,
+  right:`Change of Base Formula: log_b(x) = log(x) / log(b) — the ARGUMENT (x) goes on top, the BASE (b) goes on the bottom.
+log₅(20) = log(20) / log(5) = 1.301 / 0.699 ≈ 1.861.
+Flipping the formula gives a completely different (and wrong) value.`,
+  memory:'"Argument on top, base on bottom — same order as the original expression, just stacked as a fraction."',
+  watchout:"This formula works with natural log (ln) just as well as common log (log base 10) — log_b(x) = ln(x)/ln(b) gives the identical answer, just using a different calculator button.",
+  fmm_wrong:`Evaluate log₃(50). Student writes log(3)/log(50) and gets approximately 0.269.`,
+  fmm_choices:["The formula is backwards — it should be log(50)/log(3), giving approximately 3.56, not log(3)/log(50)","0.269 is the correct value of log₃(50)","The student should have used ln instead of log","log₃(50) cannot be evaluated with a base-10 calculator"]
+},
+{
+  id:17, unit:"U6", title:"Treating Exponential Growth and Linear Growth the Same Way",
+  category:"Exponential Models",
+  why:"Students set up growth problems by adding a percentage once, like a one-time linear increase, rather than recognizing that percentage growth compounds multiplicatively over each time period.",
+  wrong:`A population of 500 grows 8% per year. Find the population after 3 years.
+Student computes: 500 + (500 × 0.08 × 3) = 500 + 120 = 620.
+Treats the growth as a flat percentage added once per year, added together linearly.`,
+  right:`Exponential growth compounds — each year's growth is based on the NEW total, not the original amount.
+Formula: P(t) = P₀(1 + r)^t.
+P(3) = 500(1.08)³ = 500(1.2597) ≈ 630.
+The difference (630 vs 620) grows larger every additional year — that's what makes it exponential, not linear.`,
+  memory:'"Percent growth means multiply, not add." Each period multiplies by (1 + r); it never just adds r × original once per period.',
+  watchout:"Continuous growth (using base e: A = Pe^(rt)) grows slightly faster than compounding once per year at the same rate — don't mix up the two formulas.",
+  fmm_wrong:`A $2000 investment grows at 5% annually. Student estimates the value after 4 years as 2000 + (2000)(0.05)(4) = $2400.`,
+  fmm_choices:["Growth compounds: P(4) = 2000(1.05)⁴ ≈ $2431, not a flat linear addition of $400","$2400 is the correct compounded value","The formula should use subtraction since the rate is a percentage","Compounding only applies to loans, not investments"]
+},
+{
+  id:18, unit:"U7", title:"Mixing Up Arithmetic and Geometric Sequence Formulas",
+  category:"Sequences",
+  why:"Students see a sequence, correctly identify a pattern, but reach for the wrong formula — using the common DIFFERENCE formula on a sequence that actually has a common RATIO, or vice versa.",
+  wrong:`Find the 6th term of 3, 6, 12, 24, ...
+Student assumes arithmetic (thinks the pattern is "+3, then doubling coincidentally") and uses a_n = a_1 + (n−1)d with d = 3.
+a_6 = 3 + 5(3) = 18. (Incorrect — this sequence is geometric, not arithmetic.)`,
+  right:`Check FIRST: is there a common DIFFERENCE (arithmetic) or a common RATIO (geometric)?
+3, 6, 12, 24: each term is DOUBLE the previous (ratio r = 2), not a constant difference. This is geometric.
+Use a_n = a_1 · r^(n−1): a_6 = 3 · 2⁵ = 3 · 32 = 96.`,
+  memory:'"Subtract to check arithmetic, divide to check geometric." Always test BOTH before picking a formula — never assume from the first two terms alone.',
+  watchout:"Some sequences are neither arithmetic nor geometric (e.g., 1, 4, 9, 16 — square numbers). If neither a constant difference nor a constant ratio appears, neither formula applies.",
+  fmm_wrong:`Find the 5th term of 2, 6, 18, 54, ...
+Student uses a_n = a_1 + (n−1)d with d = 4 (from 6−2), getting a_5 = 2 + 4(4) = 18.`,
+  fmm_choices:["This sequence has a common RATIO of 3 (geometric), not a common difference — correct formula gives a_5 = 2(3)⁴ = 162","18 is correct since d = 4 was calculated properly","The sequence is arithmetic with d = 16","Both formulas give the same answer for this sequence"]
+},
+{
+  id:19, unit:"U7", title:"Applying the Infinite Sum Formula When |r| ≥ 1",
+  category:"Infinite Geometric Series",
+  why:"Students memorize the formula S = a₁/(1−r) but plug in values without first checking whether the series actually converges — the formula produces a nonsense answer if it's used when it doesn't apply.",
+  wrong:`Find the sum of the infinite series: 3 + 6 + 12 + 24 + ...
+Student identifies a_1 = 3, r = 2, and plugs into S = a_1/(1−r).
+S = 3/(1−2) = 3/(−1) = −3.
+States: "The sum is −3."`,
+  right:`The infinite sum formula ONLY applies when |r| &lt; 1 — otherwise the series diverges (grows without bound) and has NO finite sum.
+Here r = 2, and |2| = 2, which is NOT less than 1.
+This series diverges. There is no finite sum — the formula should never have been applied.`,
+  memory:'"Check |r| &lt; 1 BEFORE reaching for the formula." If the ratio is 1 or bigger in absolute value, the series has no sum at all — stop there.',
+  watchout:"A negative ratio can still converge if its absolute value is under 1 — e.g., r = −1/2 converges just fine, since |−1/2| = 1/2 &lt; 1.",
+  fmm_wrong:`Find the sum of 5 + 15 + 45 + 135 + ... Student computes S = 5/(1−3) = −2.5.`,
+  fmm_choices:["r = 3, and |3| ≥ 1, so this series diverges — it has no finite sum; the formula doesn't apply here","−2.5 is the correct sum","The student should have used S = a₁/(1+r) instead","The series converges to 2.5, the student just has a sign error"]
+},
+{
+  id:20, unit:"U8", title:"Confusing Independent and Dependent (Conditional) Probability",
+  category:"Probability",
+  why:"Students multiply straight-through P(A) × P(B) for two events without checking whether the second event's probability actually changes once the first has occurred.",
+  wrong:`A bag has 5 red and 3 blue marbles. Find P(red, then red) drawing WITHOUT replacement.
+Student computes: P(red) × P(red) = (5/8)(5/8) = 25/64.
+Treats the second draw as if the bag still has 8 marbles with 5 red, ignoring that a marble was removed.`,
+  right:`Without replacement, the SECOND probability is conditional on the first draw already happening — the bag composition has changed.
+P(red, then red) = P(red) × P(red | first was red).
+= (5/8) × (4/7) = 20/56 = 5/14.
+After removing one red marble, only 4 red remain out of 7 total.`,
+  memory:'"Replacement keeps the denominator the same; no replacement shrinks it every draw." Always ask: did anything get removed and NOT put back?',
+  watchout:"WITH replacement, independent events DO just multiply straight through — (5/8)×(5/8) is only wrong here specifically because the marble wasn't replaced. Read the problem carefully for that phrase.",
+  fmm_wrong:`A deck has 4 aces in 52 cards. Find P(ace, then ace) drawing two cards without replacement. Student computes (4/52)×(4/52).`,
+  fmm_choices:["Without replacement, the second draw only has 3 aces left in 51 cards: (4/52)×(3/51), not (4/52)×(4/52)","(4/52)×(4/52) is correct since both cards are aces","The second probability should be 4/51 since one card was removed, not 3/51","Order doesn't matter for probability, so the calculation is fine either way"]
+},
+{
+  id:21, unit:"U8", title:"Misreading What Standard Deviation Actually Measures",
+  category:"Statistics",
+  why:"Students correctly calculate standard deviation numerically but describe what it means in words incorrectly, confusing it with the mean or with a simple range.",
+  wrong:`Data set: {2, 4, 4, 4, 5, 5, 7, 9}. Mean = 5, SD ≈ 2.
+Student describes: "The standard deviation of 2 means the average value in the data set is 2 away from zero."
+Confuses SD (a measure of spread AROUND the mean) with a description of individual values or the mean itself.`,
+  right:`Standard deviation measures how spread out the data is FROM THE MEAN — not from zero, and not a description of any single value.
+SD ≈ 2 means: on average, data points sit about 2 units away from the mean of 5.
+So most values cluster roughly between 5−2=3 and 5+2=7 — matching this data set reasonably well.`,
+  memory:'"Standard deviation = typical distance FROM THE MEAN, not from zero." Always anchor the interpretation to the mean, not to the number line origin.',
+  watchout:"A small SD means data is tightly clustered near the mean; a large SD means data is spread widely. Don't confuse \"small SD = small numbers\" — a data set of {998,999,1000,1001,1002} has a small SD despite large values.",
+  fmm_wrong:`For a data set with mean 50 and SD 5, student says "most values are close to 5."`,
+  fmm_choices:["SD describes spread AROUND the mean (50), not a value near 5 itself — most values are close to 50, typically within about 5 of it","Most values being close to 5 is a correct interpretation","SD of 5 means the mean must be recalculated","The mean and standard deviation describe the same thing here"]
+},
+{
+  id:22, unit:"U9", title:"Mixing Up Which Denominator Is a² and Which Is b² in an Ellipse",
+  category:"Conic Sections — Ellipses",
+  why:"Students memorize the ellipse equation form but don't check which denominator is larger to determine whether the ellipse is wider (horizontal) or taller (vertical) — a is always tied to the LARGER denominator, not automatically the x-term.",
+  wrong:`Given x²/9 + y²/25 = 1, student assumes a² is always under x² (since that's the "standard" position they memorized).
+States: a = 3 (under x²), so the major axis is horizontal, along the x-axis.`,
+  right:`a² is always the LARGER denominator, regardless of whether it's under x² or y² — a always corresponds to the major (longer) axis.
+Here 25 &gt; 9, so a² = 25 (a = 5), and it's under y². The major axis is VERTICAL.
+b² = 9 (b = 3) is the smaller denominator, under x², giving the minor axis.`,
+  memory:'"Bigger denominator wins the major axis — wherever it sits." Compare the two numbers FIRST; don\'t assume position based on which variable looks first.',
+  watchout:"This is different from a circle, where both denominators are equal (a = b) — if you see equal denominators, it's not an ellipse at all, it's a circle.",
+  fmm_wrong:`Given x²/16 + y²/4 = 1, student says the major axis is vertical because y² "usually" indicates vertical.`,
+  fmm_choices:["16 &gt; 4, so a² = 16 is under x² — the major axis is actually HORIZONTAL, not vertical","The student is correct; y² always means vertical major axis","Both axes are equal length since this is technically a circle","The major axis length can't be determined from this equation"]
+},
+{
+  id:23, unit:"U9", title:"Sign Errors Completing the Square for a Circle's Equation",
+  category:"Conic Sections — Circles",
+  why:"When converting a general circle equation to standard form, students complete the square correctly on the numbers but flip the sign when reading off the center coordinates.",
+  wrong:`Convert x² − 6x + y² + 4y − 12 = 0 to standard form and find the center.
+Student completes the square correctly: (x−3)² + (y+2)² = 25.
+Then reads the center as (3, 2) — copying the SIGNS shown inside the parentheses directly, instead of flipping them.`,
+  right:`Standard form is (x−h)² + (y−k)² = r² where the CENTER is (h, k) — note the equation has MINUS signs built in.
+(x−3)² means h = 3 (matches, since it's x minus 3).
+(y+2)² is really (y − (−2))², so k = −2 (the sign flips because the form is y MINUS k).
+Center is (3, −2), not (3, 2).`,
+  memory:'"The form is x MINUS h — so a plus sign inside means the coordinate is negative." Always rewrite (y+2)² as (y−(−2))² before reading off the center.',
+  watchout:"This same sign-flip trap appears in vertex form of a parabola and in ellipse/hyperbola center-finding — anywhere you see (variable + number)², rewrite it as (variable − negative number)² before reading coordinates.",
+  fmm_wrong:`Given (x+4)² + (y−1)² = 9, student states the center is (4, 1).`,
+  fmm_choices:["(x+4)² means x − (−4), so h = −4, not 4 — the center is (−4, 1), with the x-coordinate's sign flipped","(4, 1) is the correct center","The radius should be used as part of the center coordinates","The center can't be determined without completing the square first"]
+},
+{
+  id:24, unit:"U10", title:"Using the Wrong Reference Angle Quadrant Rule for Sign",
+  category:"Unit Circle & Trigonometric Ratios",
+  why:"Students correctly compute a reference angle's numeric trig value but forget to apply the correct positive/negative sign based on which quadrant the original angle actually lands in.",
+  wrong:`Find sin(210°).
+Student finds the reference angle: 210° − 180° = 30°. sin(30°) = 1/2.
+States: "sin(210°) = 1/2." Forgets to check the sign for the quadrant 210° is actually in.`,
+  right:`210° is in Quadrant III (between 180° and 270°). In Quadrant III, sine is NEGATIVE (only tangent is positive there).
+Reference angle is 30°, and sin(30°) = 1/2 gives the MAGNITUDE only.
+Apply the Quadrant III sign: sin(210°) = −1/2.`,
+  memory:'"All Students Take Calculus" (ASTC) — Quadrant I: All positive. II: Sine positive. III: Tangent positive. IV: Cosine positive. Everything else in that quadrant is negative.',
+  watchout:"This sign step is easy to forget specifically because the reference-angle magnitude calculation feels like the \"real work\" — but the answer is incomplete and often wrong without checking the quadrant's sign rule afterward.",
+  fmm_wrong:`Find cos(300°). Student finds reference angle 60°, cos(60°) = 1/2, and states cos(300°) = 1/2.`,
+  fmm_choices:["300° is in Quadrant IV, where cosine IS positive — so cos(300°) = 1/2 is actually correct in this case","Cosine is always negative outside Quadrant I","The reference angle should have been 120°, not 60°","300° is in Quadrant III, so the sign should be negative"]
+},
+{
+  id:25, unit:"U10", title:"Confusing Degrees and Radians When Evaluating Trig Functions",
+  category:"Radian Measure",
+  why:"Students mix calculator modes or unit systems — plugging a radian value into a degree-mode calculation (or vice versa) — producing a numerically plausible but completely wrong answer.",
+  wrong:`Evaluate sin(π/6) by hand, thinking of π/6 as approximately "0.524 degrees" rather than 0.524 RADIANS.
+Student treats the number 0.524 as if it were already in degrees and looks for it on a degrees-based unit circle, getting confused when nothing matches a known value.`,
+  right:`π/6 is a RADIAN measure representing 30°, since π radians = 180°.
+π/6 = (180°)/6 = 30°.
+sin(π/6) = sin(30°) = 1/2.
+Converting radians to degrees: multiply by (180°/π). Converting degrees to radians: multiply by (π/180°).`,
+  memory:'"π radians = 180°. That single equivalence unlocks every conversion." Always convert to degrees mentally if the unit circle in degrees is more familiar to you.',
+  watchout:"On a calculator, always check whether it's set to DEG or RAD mode before evaluating — the exact same button press gives wildly different answers depending on the mode, and this is one of the most common sources of \"my answer doesn't match\" on trig homework.",
+  fmm_wrong:`Evaluate cos(π/3) using a calculator set to DEGREE mode, typing in "π/3" (≈1.047) directly. Student gets cos(1.047°) ≈ 0.9998 and reports that as the answer.`,
+  fmm_choices:["The calculator should be set to RADIAN mode since π/3 is a radian measure — in radians, cos(π/3) = 0.5, a completely different value","0.9998 is the correct value of cos(π/3)","π/3 should be evaluated as degrees directly without any mode change","The student needs to multiply the final answer by π to correct it"]
+}
 ];
 
-// ═══════════════════════════════
-// CONSTANTS
-// ═══════════════════════════════
-const UNIT_NAMES = {U1:"Functions & Transformations",U2:"Polynomial Functions",U3:"Quadratics & Complex Numbers",U4:"Rational Functions",U5:"Radical Functions",U6:"Exponential & Logarithmic",U7:"Sequences & Series",U8:"Probability & Statistics",U9:"Conic Sections",U10:"Trigonometry"};
-const UNITS = ["U1","U2","U3","U4","U5","U6","U7","U8","U9","U10"];
-const TIER_NAMES = {1:"T1 · Recall",2:"T2 · Apply",3:"T3 · Analyze"};
-const TIER_CLASS = {1:"tier-1-tag",2:"tier-2-tag",3:"tier-3-tag"};
-const LETTERS = ["A","B","C","D"];
-
-// ═══════════════════════════════
-// STATE
-// ═══════════════════════════════
-let state = {
-  mode:'show-work', // show-work | standard | speed
-  type:'drill',     // drill | stamina | exam
-  selectedUnits: new Set(UNITS),
-  tierFilter: 0,    // 0=all, 1,2,3
-  difficulty:'sequential',
-  speedSeconds: 45,
-  examQCount: 30,
-  examMinutes: 60,
-  locked: false,
+const UNIT_NAMES = {
+  U1:"Functions & Transformations", U2:"Polynomial Functions", U3:"Quadratics & Complex Numbers",
+  U4:"Rational Functions", U5:"Radical Functions", U6:"Exponential & Logarithmic Functions",
+  U7:"Sequences & Series", U8:"Probability & Statistics", U9:"Conic Sections", U10:"Trigonometry Intro"
 };
 
-let session = {
-  queue:[],
-  idx:0,
-  correct:0,
-  wrong:0,
-  streak:0,
-  bestStreak:0,
-  answered:false,
-  selectedChoice:-1,
-  hintShown:false,
-  startTime:null,
-  examTimerID:null,
-  speedTimerID:null,
-  speedLeft:0,
-  staminaCount:0, // consecutive correct in stamina mode
-  unitStats:{},   // {U1:{correct:0,total:0}, ...}
-};
+const LS_M = 'a2ma_mastered';
+let mastered = new Set(JSON.parse(localStorage.getItem(LS_M)||'[]'));
+let curUnit='all', curStatus='all', curView='list', openSet=new Set();
 
-// Persisted data
-let persisted = {
-  totalAnswered:0,
-  totalCorrect:0,
-  streak:0,
-  bestStreak:0,
-  unitMastery:{}, // {U1:{correct:0,total:0,tier1Pct:0,tier2Pct:0}}
-};
-
-// ═══════════════════════════════
-// INIT
-// ═══════════════════════════════
-function init(){
-  loadPersisted();
-  parseQueryParams();
-  applySettings();
-  renderMastery();
-  updateGlobalStats();
-}
-
-function loadPersisted(){
-  try{
-    const raw = localStorage.getItem('a2dt_v1');
-    if(raw){ persisted = {...persisted,...JSON.parse(raw)}; }
-    const sets = localStorage.getItem('a2dt_settings');
-    if(sets){ const s=JSON.parse(sets); state.locked=s.locked||false; state.speedSeconds=s.speedSeconds||45; }
-  }catch(e){}
-}
-
-function savePersisted(){
-  try{ localStorage.setItem('a2dt_v1',JSON.stringify(persisted)); }catch(e){}
-}
-
-function saveSettings(){
-  try{
-    const spd = parseInt(document.getElementById('settings-speed').value)||45;
-    state.speedSeconds = spd;
-    document.getElementById('speed-seconds').value = spd;
-    localStorage.setItem('a2dt_settings',JSON.stringify({locked:state.locked,speedSeconds:state.speedSeconds}));
-  }catch(e){}
-}
-
-function parseQueryParams(){
-  const p = new URLSearchParams(window.location.search);
-  if(p.get('mode')){
-    const m = p.get('mode');
-    if(['show-work','standard','speed'].includes(m)){
-      state.mode = m;
-      document.querySelectorAll('.mode-tab').forEach(t=>{
-        t.classList.toggle('active', t.dataset.mode===m);
-      });
-      updateModeDesc();
-    }
+// ── SPACED REPETITION for Find My Mistake — weight toward not-yet-mastered items ──
+function weightedFMMSample(items, n){
+  const p = items.map(m=>({m, w: mastered.has(m.id) ? 1 : 4}));
+  const picked = [];
+  for(let k=0; k<n && p.length; k++){
+    const total = p.reduce((s,x)=>s+x.w, 0);
+    let r = Math.random()*total, idx=0;
+    for(; idx<p.length; idx++){ r -= p[idx].w; if(r<=0) break; }
+    idx = Math.min(idx, p.length-1);
+    picked.push(p[idx].m);
+    p.splice(idx,1);
   }
-  if(p.get('unit')){
-    const u = 'U'+p.get('unit');
-    if(UNITS.includes(u)){
-      state.selectedUnits = new Set([u]);
-      document.querySelectorAll('.unit-btn').forEach(b=>{
-        const active = b.dataset.unit === u;
-        b.classList.toggle('active', active);
-      });
-    }
-  }
-  if(p.get('tier')){
-    const t = parseInt(p.get('tier'));
-    if([1,2,3].includes(t)){ state.tierFilter = t; }
-  }
+  return picked;
 }
 
-function applySettings(){
-  document.getElementById('lock-toggle').checked = state.locked;
-  document.getElementById('settings-speed').value = state.speedSeconds;
-  document.getElementById('speed-seconds').value = state.speedSeconds;
-  if(state.locked){
-    document.getElementById('lock-warning').style.display='block';
-    document.getElementById('tab-standard').classList.add('locked');
-    document.getElementById('tab-speed').classList.add('locked');
-    if(state.mode !== 'show-work'){
-      state.mode = 'show-work';
-      document.querySelectorAll('.mode-tab').forEach(t=>t.classList.toggle('active',t.dataset.mode==='show-work'));
-      updateModeDesc();
-    }
-  }
-}
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function saveMastered(){ localStorage.setItem(LS_M, JSON.stringify([...mastered])); }
 
-// ═══════════════════════════════
-// SCREEN NAVIGATION
-// ═══════════════════════════════
-function showScreen(name){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById('screen-'+name).classList.add('active');
-  const backBtn = document.getElementById('btn-back-setup');
-  backBtn.style.display = (name==='drill') ? 'block' : 'none';
-}
+function setUnit(u,btn){ curUnit=u; document.querySelectorAll('.pill[data-u]').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); render(); }
+function setStatus(s,btn){ curStatus=s; document.querySelectorAll('.pill[data-s]').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); render(); }
+function setView(v){ curView=v; document.getElementById('listBtn').classList.toggle('active', v==='list'); document.getElementById('compactBtn').classList.toggle('active', v==='compact'); document.getElementById('container').classList.toggle('compact', v==='compact'); }
+function toggleOpen(id,ev){ if(ev) ev.stopPropagation(); if(openSet.has(id)) openSet.delete(id); else openSet.add(id); render(); }
+function toggleMastered(id,ev){ ev.stopPropagation(); if(mastered.has(id)) mastered.delete(id); else mastered.add(id); saveMastered(); render(); }
 
-// ═══════════════════════════════
-// SETUP CONTROLS
-// ═══════════════════════════════
-function setMode(m, el){
-  if(state.locked && m !== 'show-work'){ return; } // locked
-  state.mode = m;
-  document.querySelectorAll('.mode-tab').forEach(t=>t.classList.remove('active'));
-  el.classList.add('active');
-  updateModeDesc();
-}
-
-function updateModeDesc(){
-  const descs = {
-    'show-work':'<strong style="color:var(--amber)">Show-Work Required</strong> — type your work before checking the answer. "Check Answer" activates only after you\'ve written something. Builds the habit your brain needs.',
-    'standard':'<strong style="color:var(--sky)">Standard</strong> — instant answer check, no work required. Pure practice mode.',
-    'speed':'<strong style="color:var(--teal)">Speed Drill</strong> — countdown timer per question. Train under pressure. Time limit configurable above.'
-  };
-  document.getElementById('mode-desc').innerHTML = descs[state.mode]||'';
-  document.getElementById('speed-config').style.display = state.mode==='speed' ? 'block' : 'none';
-}
-
-function setType(t, el){
-  state.type = t;
-  document.querySelectorAll('#type-tabs .mode-tab').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
-  const descs = {
-    drill:'<strong style="color:var(--sky)">Unit Drill</strong> — practice questions from selected units, one at a time.',
-    stamina:'<strong style="color:var(--amber)">Stamina Mode</strong> — 10-in-a-row challenge per session. Streak resets on wrong answer. How far can you go?',
-    exam:'<strong style="color:var(--amber)">Exam Mode</strong> — timed session with mixed-unit questions. Simulates test conditions.'
-  };
-  document.getElementById('type-desc').innerHTML = descs[t]||'';
-  document.getElementById('exam-config-area').style.display = t==='exam' ? 'block' : 'none';
-  document.getElementById('diff-card').style.display = t==='exam' ? 'none' : 'block';
-}
-
-function toggleUnit(u, el){
-  if(state.selectedUnits.has(u)){
-    if(state.selectedUnits.size > 1){ state.selectedUnits.delete(u); el.classList.remove('active'); }
-  } else {
-    state.selectedUnits.add(u);
-    el.classList.add('active');
-  }
-}
-
-function selectAllUnits(){
-  state.selectedUnits = new Set(UNITS);
-  document.querySelectorAll('.unit-btn').forEach(b=>b.classList.add('active'));
-}
-
-function clearAllUnits(){
-  const first = UNITS[0];
-  state.selectedUnits = new Set([first]);
-  document.querySelectorAll('.unit-btn').forEach(b=>b.classList.toggle('active',b.dataset.unit===first));
-}
-
-function setDiff(d, el){
-  state.difficulty = d;
-  document.querySelectorAll('.diff-btn').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
-  const descs = {
-    sequential:'<strong style="color:var(--amber)">Sequential</strong> — Tier 1 must be 70%+ passed per unit before Tier 2 unlocks. Tier 2 before Tier 3.',
-    free:'<strong style="color:var(--sky)">Free Roam</strong> — all tiers available immediately. No gating.'
-  };
-  document.getElementById('diff-desc').innerHTML = descs[d]||'';
-}
-
-function filterTier(t){
-  state.tierFilter = t;
-  document.querySelectorAll('#diff-card .pill').forEach((p,i)=>p.classList.toggle('active',i===t));
-}
-
-// ═══════════════════════════════
-// SESSION BUILD
-// ═══════════════════════════════
-function startSession(){
-  // Validate
-  if(state.selectedUnits.size === 0){ alert('Select at least one unit.'); return; }
-
-  // Get speed seconds
-  state.speedSeconds = parseInt(document.getElementById('speed-seconds').value)||45;
-  state.examQCount = parseInt(document.getElementById('exam-q-count').value)||30;
-  state.examMinutes = parseInt(document.getElementById('exam-minutes').value)||60;
-
-  // Build question pool
-  let pool = QB.filter(q => state.selectedUnits.has(q.unit));
-
-  if(state.tierFilter > 0){
-    pool = pool.filter(q => q.tier === state.tierFilter);
-  }
-
-  if(state.difficulty === 'sequential' && state.type !== 'exam'){
-    pool = applySequentialFilter(pool);
-  }
-
-  if(pool.length === 0){
-    alert('No questions match the current filters. Try adjusting your unit or tier selection.');
-    return;
-  }
-
-  // Shuffle
-  pool = shuffle(pool);
-
-  // Build queue
-  let queue;
-  if(state.type === 'exam'){
-    queue = pool.slice(0, Math.min(state.examQCount, pool.length));
-  } else if(state.type === 'stamina'){
-    queue = [...pool,...shuffle([...pool])].slice(0,50); // up to 50 for stamina
-  } else {
-    queue = pool;
-  }
-
-  // Init session
-  session = {
-    queue, idx:0, correct:0, wrong:0,
-    streak:persisted.streak, bestStreak:persisted.bestStreak,
-    answered:false, selectedChoice:-1, hintShown:false,
-    startTime:Date.now(), examTimerID:null, speedTimerID:null, speedLeft:state.speedSeconds,
-    staminaCount:0, unitStats:{}
-  };
-  UNITS.forEach(u=>{ session.unitStats[u]={correct:0,total:0}; });
-
-  showScreen('drill');
-  setupDrillUI();
-  renderQuestion();
-}
-
-function applySequentialFilter(pool){
-  // For each unit, check mastery to gate tiers
-  const filtered = pool.filter(q => {
-    const um = persisted.unitMastery[q.unit]||{};
-    if(q.tier === 1) return true;
-    if(q.tier === 2){
-      const t1pct = um.tier1Pct !== undefined ? um.tier1Pct : 0;
-      return t1pct >= 70;
-    }
-    if(q.tier === 3){
-      const t2pct = um.tier2Pct !== undefined ? um.tier2Pct : 0;
-      return t2pct >= 70;
+function getFiltered(){
+  const q = document.getElementById('search-input').value.trim().toLowerCase();
+  return MISTAKES.filter(m=>{
+    if(curUnit!=='all' && m.unit!==curUnit) return false;
+    if(curStatus==='mastered' && !mastered.has(m.id)) return false;
+    if(curStatus==='unmastered' && mastered.has(m.id)) return false;
+    if(q){
+      const hay=(m.title+' '+m.category+' '+m.unit+' '+m.why).toLowerCase();
+      if(!hay.includes(q)) return false;
     }
     return true;
   });
-  // If filtered would be empty, return at least tier 1
-  return filtered.length > 0 ? filtered : pool.filter(q=>q.tier===1);
 }
 
-function shuffle(arr){
-  const a=[...arr];
-  for(let i=a.length-1;i>0;i--){
-    const j=Math.floor(Math.random()*(i+1));
-    [a[i],a[j]]=[a[j],a[i]];
-  }
-  return a;
+function render(){
+  const list = getFiltered();
+  document.getElementById('s-mastered').textContent = mastered.size;
+  document.getElementById('s-shown').textContent = list.length;
+  const container = document.getElementById('container');
+  const empty = document.getElementById('empty');
+  if(list.length===0){ container.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display='none';
+  container.innerHTML = list.map(m=>{
+    const isOpen = openSet.has(m.id);
+    const isMastered = mastered.has(m.id);
+    return `<div class="mistake ${isOpen?'open':''} ${isMastered?'mastered':''}">
+      <div class="m-head" onclick="toggleOpen(${m.id})">
+        <span class="m-num">#${String(m.id).padStart(2,'0')}</span>
+        <span class="m-title">${esc(m.title)}</span>
+        <div class="m-tags">
+          <span class="unit-tag">${m.unit}</span>
+          ${isMastered?'<span class="mastered-badge">✓ Mastered</span>':''}
+        </div>
+      </div>
+      <div class="m-body">
+        <div class="why-bar"><b>WHY IT HAPPENS</b>${esc(m.why)}</div>
+        <div class="compare-grid">
+          <div class="wrong-col"><span class="col-lbl">✕ WRONG APPROACH</span>${esc(m.wrong)}</div>
+          <div class="right-col"><span class="col-lbl">✓ CORRECT APPROACH</span>${esc(m.right)}</div>
+        </div>
+        <div class="memory-bar"><b>MEMORY LOCK</b>${esc(m.memory)}</div>
+        <div class="watchout-bar"><b>WATCH OUT FOR</b>${esc(m.watchout)}</div>
+        <div class="m-actions">
+          <button class="btn-small ${isMastered?'on':''}" onclick="toggleMastered(${m.id},event)">${isMastered?'✓ Mastered':'Mark Mastered'}</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
 }
 
-// ═══════════════════════════════
-// DRILL UI SETUP
-// ═══════════════════════════════
-function setupDrillUI(){
-  // Mode badge
-  const badges = {'show-work':'✍ Show-Work Mode','standard':'⚡ Standard Mode','speed':'⏱ Speed Drill'};
-  const badgeEl = document.getElementById('drill-mode-badge');
-  badgeEl.textContent = badges[state.mode]||'';
-  badgeEl.className = 'streak-badge ' + (state.mode==='show-work'?'streak-hot':'streak-cold');
-
-  // Timer visibility
-  document.getElementById('timer-container').style.display = state.mode==='speed' ? 'flex' : 'none';
-  document.getElementById('exam-timer-display').style.display = state.type==='exam' ? 'flex' : 'none';
-  document.getElementById('stamina-display').style.display = state.type==='stamina' ? 'flex' : 'none';
-
-  // Exam timer
-  if(state.type==='exam'){
-    startExamTimer(state.examMinutes * 60);
-  }
+// ── FIND MY MISTAKE ──
+let fmmDeck=[], fmmIdx=0, fmmRight=0, fmmAnswered=false;
+function launchFMM(){
+  const pool = getFiltered().length >= 3 ? getFiltered() : MISTAKES;
+  fmmDeck = weightedFMMSample(pool, Math.min(12, pool.length));
+  fmmIdx=0; fmmRight=0; fmmAnswered=false;
+  document.getElementById('fmm-overlay').classList.add('open');
+  renderFMM();
 }
-
-// ═══════════════════════════════
-// QUESTION RENDER
-// ═══════════════════════════════
-function renderQuestion(){
-  if(session.idx >= session.queue.length){
-    endSession();
+function closeFMM(){ document.getElementById('fmm-overlay').classList.remove('open'); }
+function renderFMM(){
+  if(fmmIdx >= fmmDeck.length){
+    document.getElementById('fmm-card').innerHTML = `<div style="text-align:center;padding:20px 0"><div style="font-size:11px;color:var(--muted);letter-spacing:.1em;margin-bottom:10px">SESSION COMPLETE</div><div style="font-size:32px;font-weight:800;color:var(--white)">${fmmRight}/${fmmDeck.length}</div></div>`;
+    document.getElementById('fmm-next-btn').style.display='none';
     return;
   }
-
-  const q = session.queue[session.idx];
-  session.answered = false;
-  session.selectedChoice = -1;
-  session.hintShown = false;
-
-  // Progress
-  const total = session.queue.length;
-  const pct = (session.idx / total) * 100;
-  document.getElementById('progress-bar').style.width = pct+'%';
-  document.getElementById('progress-label').textContent = `Question ${session.idx+1} of ${total}`;
-  document.getElementById('q-counter').textContent = `${session.idx+1}/${total}`;
-
-  // Streak badge
-  const sb = document.getElementById('streak-badge');
-  sb.textContent = `🔥 Streak: ${session.streak}`;
-  sb.className = 'streak-badge ' + (session.streak>=3 ? 'streak-hot' : 'streak-cold');
-
-  // Stats
-  document.getElementById('drill-correct').textContent = session.correct;
-  document.getElementById('drill-wrong').textContent = session.wrong;
-  const tot = session.correct + session.wrong;
-  document.getElementById('drill-acc').textContent = tot ? Math.round((session.correct/tot)*100)+'%' : '—';
-
-  // Tags
-  document.getElementById('q-unit-tag').textContent = q.unit+' · '+UNIT_NAMES[q.unit];
-  const tierTag = document.getElementById('q-tier-tag');
-  tierTag.textContent = TIER_NAMES[q.tier]||q.tier;
-  tierTag.className = 'q-tier-tag '+(TIER_CLASS[q.tier]||'tier-1-tag');
-  document.getElementById('q-topic-tag').textContent = q.topic;
-  document.getElementById('q-standards').textContent = q.std||'';
-
-  // Stem
-  document.getElementById('q-stem').textContent = q.stem;
-
-  // Choices
-  const cc = document.getElementById('choices-container');
-  cc.innerHTML = '';
-  q.choices.forEach((ch,i)=>{
-    const btn = document.createElement('button');
-    btn.className = 'choice-btn';
-    btn.innerHTML = `<span class="choice-letter">${LETTERS[i]}</span><span class="choice-text">${ch}</span>`;
-    btn.onclick = () => selectChoice(i, btn);
-    cc.appendChild(btn);
+  const m = fmmDeck[fmmIdx];
+  fmmAnswered=false;
+  const shuffled = m.fmm_choices.map((c,i)=>({c,correct:i===0})).sort(()=>Math.random()-0.5);
+  document.getElementById('fmm-card').innerHTML = `
+    <div class="fmm-prompt-lbl">MISTAKE ${fmmIdx+1} OF ${fmmDeck.length} · ${m.unit} · ${esc(m.title)}</div>
+    <div class="fmm-wrong-shown">${esc(m.fmm_wrong)}</div>
+    <div class="fmm-choices">${shuffled.map((s,i)=>`<button class="fmm-opt" onclick="fmmAnswer(${i},this)">${esc(s.c)}</button>`).join('')}</div>`;
+  window.__fmmShuffled = shuffled;
+  document.getElementById('fmm-next-btn').style.display='none';
+  document.getElementById('fmm-live-score').textContent = `${fmmRight} / ${fmmDeck.length}`;
+}
+function fmmAnswer(i, btn){
+  if(fmmAnswered) return;
+  fmmAnswered=true;
+  const correct = window.__fmmShuffled[i].correct;
+  const m = fmmDeck[fmmIdx];
+  if(correct) fmmRight++;
+  document.querySelectorAll('.fmm-opt').forEach((b,idx)=>{
+    b.disabled=true;
+    if(window.__fmmShuffled[idx].correct) b.classList.add('correct');
+    else if(idx===i) b.classList.add('wrong');
   });
-
-  // Work area
-  const wa = document.getElementById('work-area');
-  wa.style.display = state.mode==='show-work' ? 'block' : 'none';
-  if(state.mode==='show-work'){
-    document.getElementById('work-textarea').value = '';
-    document.getElementById('work-nudge').style.display = 'block';
-  }
-
-  // Hint
-  document.getElementById('hint-box').style.display = 'none';
-  document.getElementById('btn-hint').style.display = q.hint ? 'inline-flex' : 'none';
-
-  // Explanation
-  document.getElementById('explanation-box').style.display = 'none';
-
-  // Buttons
-  document.getElementById('btn-check').disabled = (state.mode==='show-work');
-  document.getElementById('btn-check').style.display = 'inline-flex';
-  document.getElementById('btn-next').style.display = 'none';
-  document.getElementById('btn-skip').style.display = 'inline-flex';
-  document.getElementById('btn-hint').textContent = '💡 Hint';
-
-  // Tutor — reset on each new question
-  document.getElementById('btn-tutor').style.display = 'none';
-  document.getElementById('tutor-panel').classList.remove('open');
-  document.getElementById('tutor-messages').innerHTML = '';
-  tutorHistory = [];
-
-  // Speed timer
-  if(state.mode==='speed'){
-    startSpeedTimer();
-  }
-
-  // Stamina dots
-  if(state.type==='stamina'){
-    renderStaminaDots();
-  }
-
-  // Animate in
-  document.getElementById('q-card').style.animation='none';
-  requestAnimationFrame(()=>{ document.getElementById('q-card').style.animation='fadeUp .3s ease'; });
+  document.getElementById('fmm-next-btn').style.display='inline-flex';
+  document.getElementById('fmm-live-score').textContent = `${fmmRight} / ${fmmDeck.length}`;
 }
+function fmmNext(){ fmmIdx++; renderFMM(); }
 
-function selectChoice(i, btn){
-  if(session.answered) return;
-  session.selectedChoice = i;
-  document.querySelectorAll('.choice-btn').forEach(b=>b.classList.remove('selected'));
-  btn.classList.add('selected');
-  if(state.mode === 'standard' || state.mode === 'speed'){
-    document.getElementById('btn-check').disabled = false;
-  }
-}
-
-function onWorkInput(){
-  const txt = document.getElementById('work-textarea').value.trim();
-  document.getElementById('btn-check').disabled = (txt.length === 0);
-  document.getElementById('work-nudge').style.display = txt.length>0 ? 'none' : 'block';
-}
-
-function toggleHint(){
-  const hb = document.getElementById('hint-box');
-  const q = session.queue[session.idx];
-  if(hb.style.display==='none'||hb.style.display===''){
-    document.getElementById('hint-text').textContent = q.hint||'';
-    hb.style.display = 'block';
-    document.getElementById('btn-hint').textContent = '💡 Hide Hint';
-  } else {
-    hb.style.display = 'none';
-    document.getElementById('btn-hint').textContent = '💡 Hint';
-  }
-}
-
-function skipQuestion(){
-  session.wrong++;
-  session.streak = 0;
-  updateMastery(false);
-  nextQuestion();
-}
-
-// ═══════════════════════════════
-// CHECK ANSWER
-// ═══════════════════════════════
-function checkAnswer(){
-  if(session.answered) return;
-  if(session.selectedChoice < 0){
-    // No choice selected — shake
-    document.getElementById('q-card').classList.add('shake');
-    setTimeout(()=>document.getElementById('q-card').classList.remove('shake'),400);
-    return;
-  }
-
-  if(state.mode==='speed') stopSpeedTimer();
-
-  session.answered = true;
-  const q = session.queue[session.idx];
-  const correct = session.selectedChoice === q.ans;
-
-  // Mark choices
-  const btns = document.querySelectorAll('.choice-btn');
-  btns.forEach((b,i)=>{
-    b.disabled = true;
-    if(i === q.ans) b.classList.add('correct');
-    else if(i === session.selectedChoice && !correct) b.classList.add('wrong');
-  });
-
-  // Update stats
-  if(correct){
-    session.correct++;
-    session.streak++;
-    if(session.streak > session.bestStreak) session.bestStreak = session.streak;
-    if(state.type==='stamina') session.staminaCount++;
-  } else {
-    session.wrong++;
-    session.streak = 0;
-    if(state.type==='stamina') session.staminaCount = 0;
-  }
-
-  // Unit stats
-  const us = session.unitStats[q.unit]||{correct:0,total:0};
-  us.total++;
-  if(correct) us.correct++;
-  session.unitStats[q.unit] = us;
-
-  updateMastery(correct, q);
-  updateSessionStatsDisplay();
-
-  // Explanation
-  showExplanation(correct, q.exp);
-
-  // Stamina dots
-  if(state.type==='stamina') renderStaminaDots(correct);
-
-  // Buttons
-  document.getElementById('btn-check').style.display = 'none';
-  document.getElementById('btn-skip').style.display = 'none';
-  document.getElementById('btn-hint').style.display = 'none';
-  document.getElementById('btn-next').style.display = 'inline-flex';
-  document.getElementById('btn-tutor').style.display = 'inline-flex';
-
-  // Stamina complete check
-  if(state.type==='stamina' && session.staminaCount >= 10){
-    document.getElementById('btn-next').textContent = '🎉 Stamina Complete!';
-  } else {
-    document.getElementById('btn-next').textContent = 'Next →';
-  }
-}
-
-function showExplanation(correct, text){
-  const box = document.getElementById('explanation-box');
-  const cls = correct ? 'correct-exp' : 'wrong-exp';
-  const icon = correct ? '✅' : '❌';
-  const label = correct ? 'CORRECT' : 'INCORRECT';
-  box.className = 'explanation-box '+cls;
-  box.innerHTML = `<div class="exp-header" style="color:var(--${correct?'teal':'red'})">${icon} ${label}</div><div class="exp-text">${text}</div>`;
-  box.style.display = 'block';
-}
-
-function updateSessionStatsDisplay(){
-  document.getElementById('drill-correct').textContent = session.correct;
-  document.getElementById('drill-wrong').textContent = session.wrong;
-  const tot = session.correct + session.wrong;
-  document.getElementById('drill-acc').textContent = tot ? Math.round((session.correct/tot)*100)+'%' : '—';
-  const sb = document.getElementById('streak-badge');
-  sb.textContent = `🔥 Streak: ${session.streak}`;
-  sb.className = 'streak-badge ' + (session.streak>=3 ? 'streak-hot' : 'streak-cold');
-}
-
-function nextQuestion(){
-  if(state.type==='stamina' && session.staminaCount >= 10){
-    endSession();
-    return;
-  }
-  session.idx++;
-  if(session.idx >= session.queue.length){
-    endSession();
-  } else {
-    renderQuestion();
-  }
-}
-
-// ═══════════════════════════════
-// MASTERY
-// ═══════════════════════════════
-function updateMastery(correct, q){
-  if(!q) return;
-  if(!persisted.unitMastery[q.unit]) persisted.unitMastery[q.unit]={correct:0,total:0,tier1Correct:0,tier1Total:0,tier2Correct:0,tier2Total:0,tier3Correct:0,tier3Total:0};
-  const um = persisted.unitMastery[q.unit];
-  um.total++;
-  if(correct) um.correct++;
-  const tk = 'tier'+q.tier;
-  um[tk+'Total'] = (um[tk+'Total']||0)+1;
-  if(correct) um[tk+'Correct'] = (um[tk+'Correct']||0)+1;
-  um.tier1Pct = um.tier1Total ? Math.round((um.tier1Correct/um.tier1Total)*100) : 0;
-  um.tier2Pct = um.tier2Total ? Math.round((um.tier2Correct/um.tier2Total)*100) : 0;
-  // Global
-  persisted.totalAnswered++;
-  if(correct) persisted.totalCorrect++;
-  persisted.streak = session.streak;
-  persisted.bestStreak = Math.max(persisted.bestStreak, session.bestStreak);
-  savePersisted();
-}
-
-function renderMastery(){
-  const grid = document.getElementById('mastery-grid');
-  grid.innerHTML = '';
-  UNITS.forEach(u=>{
-    const um = persisted.unitMastery[u]||{correct:0,total:0};
-    const pct = um.total ? Math.round((um.correct/um.total)*100) : 0;
-    const color = pct>=80?'var(--teal)':pct>=60?'var(--sky)':pct>=40?'var(--amber)':'var(--red)';
-    const shown = um.total>0 ? pct+'%' : '—';
-    const row = document.createElement('div');
-    row.className = 'mastery-row';
-    row.innerHTML = `
-      <span class="mastery-unit">${u}</span>
-      <span class="mastery-name">${UNIT_NAMES[u]}</span>
-      <div class="mastery-bar-outer"><div class="mastery-bar-inner" style="width:${pct}%;background:${color}"></div></div>
-      <span class="mastery-pct">${shown}</span>
-    `;
-    grid.appendChild(row);
-  });
-}
-
-function updateGlobalStats(){
-  document.getElementById('gs-total').textContent = persisted.totalAnswered||0;
-  document.getElementById('gs-streak').textContent = persisted.streak||0;
-  document.getElementById('gs-best').textContent = persisted.bestStreak||0;
-  const acc = persisted.totalAnswered ? Math.round((persisted.totalCorrect/persisted.totalAnswered)*100)+'%' : '—';
-  const accEl = document.getElementById('gs-acc');
-  accEl.textContent = acc;
-  accEl.className = 'stat-val ' + (persisted.totalAnswered ? (parseInt(acc)>=80?'teal':parseInt(acc)>=60?'sky':'amber') : '');
-}
-
-// ═══════════════════════════════
-// TIMERS
-// ═══════════════════════════════
-function startSpeedTimer(){
-  stopSpeedTimer();
-  session.speedLeft = state.speedSeconds;
-  updateTimerRing();
-  session.speedTimerID = setInterval(()=>{
-    session.speedLeft--;
-    updateTimerRing();
-    if(session.speedLeft <= 0){
-      stopSpeedTimer();
-      if(!session.answered) autoTimeOut();
-    }
-  },1000);
-}
-
-function stopSpeedTimer(){
-  if(session.speedTimerID){ clearInterval(session.speedTimerID); session.speedTimerID=null; }
-}
-
-function updateTimerRing(){
-  const pct = session.speedLeft / state.speedSeconds;
-  const circ = 2*Math.PI*30;
-  const dash = circ*pct;
-  const ring = document.getElementById('timer-ring');
-  const color = pct>0.5?'var(--teal)':pct>0.25?'var(--amber)':'var(--red)';
-  ring.style.stroke = color;
-  ring.setAttribute('stroke-dasharray',`${dash} ${circ}`);
-  document.getElementById('timer-sec').textContent = session.speedLeft;
-  document.getElementById('timer-sec').style.color = color;
-}
-
-function autoTimeOut(){
-  // Force wrong answer with no selection
-  session.answered = true;
-  session.wrong++;
-  session.streak = 0;
-  const q = session.queue[session.idx];
-  const btns = document.querySelectorAll('.choice-btn');
-  btns.forEach((b,i)=>{ b.disabled=true; if(i===q.ans) b.classList.add('correct'); });
-  session.unitStats[q.unit] = session.unitStats[q.unit]||{correct:0,total:0};
-  session.unitStats[q.unit].total++;
-  updateMastery(false,q);
-  updateSessionStatsDisplay();
-  showExplanation(false,'⏰ Time\'s up! '+q.exp);
-  document.getElementById('btn-check').style.display='none';
-  document.getElementById('btn-skip').style.display='none';
-  document.getElementById('btn-next').style.display='inline-flex';
-  document.getElementById('btn-tutor').style.display='inline-flex';
-}
-
-function startExamTimer(totalSeconds){
-  let left = totalSeconds;
-  updateExamTimerDisplay(left);
-  session.examTimerID = setInterval(()=>{
-    left--;
-    updateExamTimerDisplay(left);
-    if(left<=0){ clearInterval(session.examTimerID); endSession(); }
-  },1000);
-}
-
-function updateExamTimerDisplay(s){
-  const m = Math.floor(s/60);
-  const sec = s%60;
-  const disp = `${m}:${sec.toString().padStart(2,'0')}`;
-  const el = document.getElementById('exam-time-left');
-  el.textContent = disp;
-  el.className = 'streak-badge '+(s<300?'streak-hot':'streak-cold');
-}
-
-// ═══════════════════════════════
-// STAMINA DOTS
-// ═══════════════════════════════
-function renderStaminaDots(lastCorrect){
-  const container = document.getElementById('stamina-dots');
-  container.innerHTML = '';
-  for(let i=0;i<10;i++){
-    const dot = document.createElement('div');
-    dot.className = 'stamina-dot';
-    if(i < session.staminaCount) dot.classList.add('filled');
-    container.appendChild(dot);
-  }
-  const lbl = document.createElement('span');
-  lbl.className = 'stamina-label';
-  if(session.staminaCount >= 10){
-    lbl.innerHTML = '<span class="stamina-badge stamina-complete">🏆 10-in-a-row!</span>';
-  } else {
-    lbl.textContent = `${session.staminaCount}/10`;
-  }
-  container.appendChild(lbl);
-}
-
-// ═══════════════════════════════
-// END SESSION
-// ═══════════════════════════════
-function endSession(){
-  stopSpeedTimer();
-  if(session.examTimerID){ clearInterval(session.examTimerID); session.examTimerID=null; }
-
-  // Save final state
-  persisted.streak = session.streak;
-  persisted.bestStreak = Math.max(persisted.bestStreak, session.bestStreak);
-  savePersisted();
-  renderMastery();
-  updateGlobalStats();
-
-  // Results
-  showScreen('results');
-  renderResults();
-}
-
-function renderResults(){
-  const tot = session.correct + session.wrong;
-  const pct = tot ? Math.round((session.correct/tot)*100) : 0;
-  document.getElementById('results-score').innerHTML = `${session.correct}<span>/${tot}</span>`;
-
-  let grade='', gradeColor='var(--text)';
-  if(pct>=90){grade='EXCELLENT';gradeColor='var(--teal)';}
-  else if(pct>=80){grade='GREAT';gradeColor='var(--sky)';}
-  else if(pct>=70){grade='SOLID';gradeColor='var(--sky)';}
-  else if(pct>=60){grade='DEVELOPING';gradeColor='var(--amber)';}
-  else{grade='NEEDS WORK';gradeColor='var(--red)';}
-
-  document.getElementById('results-grade').innerHTML = `<span style="color:${gradeColor}">${grade} — ${pct}%</span>`;
-
-  const modeLabel = {drill:'UNIT DRILL',stamina:'STAMINA MODE',exam:'EXAM MODE'}[state.type]||'SESSION';
-  document.getElementById('results-mode-label').textContent = modeLabel+' COMPLETE';
-
-  const bestStr = session.bestStreak>0 ? ` · Best streak: ${session.bestStreak}` : '';
-  document.getElementById('results-sub').textContent = `${session.correct} correct out of ${tot} questions${bestStr}`;
-
-  // Unit breakdown
-  const bd = document.getElementById('results-breakdown');
-  bd.innerHTML = '';
-  const activeUnits = [...state.selectedUnits];
-  activeUnits.forEach(u=>{
-    const us = session.unitStats[u]||{correct:0,total:0};
-    if(us.total===0) return;
-    const upct = Math.round((us.correct/us.total)*100);
-    const cls = upct>=80?'good':upct>=60?'warn':'bad';
-    const cell = document.createElement('div');
-    cell.className = 'result-unit-cell';
-    cell.innerHTML = `<div class="result-unit-name">${u}</div><div class="result-unit-score ${cls}">${us.correct}/${us.total}</div>`;
-    bd.appendChild(cell);
-  });
-}
-
-function retrySession(){
-  // Rebuild same session
-  startSession();
-}
-
-// ═══════════════════════════════
-// SETTINGS
-// ═══════════════════════════════
-function openSettings(){
-  document.getElementById('settings-overlay').classList.add('open');
-}
-function closeSettings(){
-  document.getElementById('settings-overlay').classList.remove('open');
-  saveSettings();
-}
-function closeSettingsOutside(e){
-  if(e.target===document.getElementById('settings-overlay')) closeSettings();
-}
-
-function toggleLock(){
-  state.locked = document.getElementById('lock-toggle').checked;
-  document.getElementById('lock-warning').style.display = state.locked ? 'block' : 'none';
-  if(state.locked){
-    document.getElementById('tab-standard').classList.add('locked');
-    document.getElementById('tab-speed').classList.add('locked');
-    state.mode='show-work';
-    document.querySelectorAll('.mode-tab').forEach(t=>t.classList.toggle('active',t.dataset.mode==='show-work'));
-    updateModeDesc();
-  } else {
-    document.getElementById('tab-standard').classList.remove('locked');
-    document.getElementById('tab-speed').classList.remove('locked');
-  }
-  saveSettings();
-}
-
-function confirmReset(){
-  if(confirm('Reset ALL progress? This cannot be undone.')){
-    persisted={totalAnswered:0,totalCorrect:0,streak:0,bestStreak:0,unitMastery:{}};
-    savePersisted();
-    renderMastery();
-    updateGlobalStats();
-    closeSettings();
-  }
-}
-
-// ═══════════════════════════════
-// AI TUTOR — ALEPH
-// ═══════════════════════════════
-let tutorHistory = [];
-let tutorOpen = false;
-
-function openTutor(){
-  const panel = document.getElementById('tutor-panel');
-  if(panel.classList.contains('open')) return;
-  panel.classList.add('open');
-
-  // Auto-trigger an opening message contextualised to the question result
-  const q = session.queue[session.idx];
-  const wasCorrect = session.answered && (session.selectedChoice === q.ans);
-  const chosenText = session.selectedChoice >= 0 ? q.choices[session.selectedChoice] : null;
-
-  const context = buildTutorContext(q, wasCorrect, chosenText);
-  const opener = wasCorrect
-    ? `Great work getting that right. I'm here if you want to go deeper or if anything in the explanation wasn't clear.`
-    : `Let me walk you through why that one was tricky. ${q.exp}`;
-
-  appendTutorMsg('assistant', opener);
-  tutorHistory.push({role:'user', content: context});
-  tutorHistory.push({role:'assistant', content: opener});
-
-  // Scroll into view
-  setTimeout(()=>document.getElementById('tutor-panel').scrollIntoView({behavior:'smooth',block:'nearest'}),100);
-}
-
-function buildTutorContext(q, wasCorrect, chosenText){
-  return `CONTEXT (do not repeat this to the student verbatim):
-Topic: ${q.topic} | Unit: ${q.unit} | Tier: ${q.tier}
-Question: ${q.stem}
-Choices: ${q.choices.map((c,i)=>String.fromCharCode(65+i)+') '+c).join(' | ')}
-Correct answer: ${q.choices[q.ans]}
-Student selected: ${chosenText || 'skipped'}
-Student was ${wasCorrect ? 'CORRECT' : 'INCORRECT'}
-Official explanation: ${q.exp}
-${q.hint ? 'Hint provided: '+q.hint : ''}
-${q.std ? 'Standard: '+q.std : ''}`;
-}
-
-function buildTutorSystemPrompt(){
-  return `You are ALEPH, an Algebra 2 AI tutor embedded in a drill practice tool. You are warm, precise, and pedagogically sharp.
-
-RULES:
-- Keep responses short (2-4 sentences max unless the student asks for more).
-- Never just re-read the explanation back. Add something — a different angle, a concrete analogy, a worked step, a common trap to avoid.
-- If the student asks a follow-up, answer it directly and briefly.
-- Use plain text. No markdown headers. Short inline code for math expressions is fine.
-- Never say "Great question!" or anything hollow. Get straight to the point.
-- If the student asks something unrelated to Algebra 2, redirect them warmly.
-- Address the student as "you" — second-person direct.`;
-}
-
-async function sendTutorMessage(){
-  const input = document.getElementById('tutor-input');
-  const msg = input.value.trim();
-  if(!msg) return;
-  input.value = '';
-
-  appendTutorMsg('user', msg);
-  tutorHistory.push({role:'user', content: msg});
-
-  setTutorStatus('Thinking…');
-  document.getElementById('tutor-send').disabled = true;
-  const thinkingEl = appendTutorMsg('assistant', null, true);
-
-  try{
-    const messages = tutorHistory.slice();
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({
-        model:'claude-sonnet-4-6',
-        max_tokens:1000,
-        system: buildTutorSystemPrompt(),
-        messages: messages
-      })
-    });
-
-    const data = await response.json();
-    const reply = data.content && data.content[0] && data.content[0].text
-      ? data.content[0].text
-      : 'Sorry, I couldn\'t generate a response. Try again.';
-
-    thinkingEl.remove();
-    appendTutorMsg('assistant', reply);
-    tutorHistory.push({role:'assistant', content: reply});
-
-    // Keep history from bloating — trim to last 10 turns
-    if(tutorHistory.length > 12) tutorHistory = tutorHistory.slice(tutorHistory.length - 12);
-
-  } catch(err){
-    thinkingEl.remove();
-    appendTutorMsg('assistant', 'Connection issue. Check your network and try again.');
-  }
-
-  setTutorStatus('Ready');
-  document.getElementById('tutor-send').disabled = false;
-
-  // Scroll body to bottom
-  const body = document.getElementById('tutor-body');
-  body.scrollTop = body.scrollHeight;
-}
-
-function appendTutorMsg(role, text, isThinking=false){
-  const container = document.getElementById('tutor-messages');
-  const el = document.createElement('div');
-  if(isThinking){
-    el.className = 'tutor-msg thinking';
-    el.textContent = 'Thinking';
-  } else {
-    el.className = 'tutor-msg';
-    el.style.cssText = role==='user'
-      ? 'background:rgba(46,139,192,.07);padding:10px 12px;border-radius:9px;border-left:2px solid var(--sky)'
-      : 'padding:2px 0';
-    // Minimal formatting: bold **text**, inline `code`
-    el.innerHTML = text
-      .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
-      .replace(/`([^`]+)`/g,'<code>$1</code>')
-      .replace(/\n/g,'<br>');
-  }
-  container.appendChild(el);
-  const body = document.getElementById('tutor-body');
-  body.scrollTop = body.scrollHeight;
-  return el;
-}
-
-function setTutorStatus(s){
-  document.getElementById('tutor-status').textContent = s;
-}
-
-// ═══════════════════════════════
-// BOOT
-// ═══════════════════════════════
-document.addEventListener('DOMContentLoaded',()=>{
-  init();
-  updateModeDesc();
-});
+document.addEventListener('DOMContentLoaded', render);
 </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cambridge AICE General Paper 8021 — Question Bank Pass 2 (Q21-40)</title>
+<title>Cambridge AICE General Paper 8021 — Self-Grader Tool</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -14,7 +14,7 @@
     --purple:#534AB7;--purple-light:#EEEDFE;--purple-dark:#2E2779;
     --gold:#C4922E;--gold-light:#FAEEDA;--gold-dark:#6B4F11;
     --green:#639922;--green-light:#EAF3DE;--green-dark:#27500A;
-    --red-light:#FCEBEB;--red-dark:#501313;--red-mid:#E24B4A;
+    --red-light:#FCEBEB;--red-dark:#501313;--red-mid:#E24B4A;--red:#D63333;
     --gray-light:#F5F5F3;--gray-dark:#444441;
     --text:#1A1A1A;--muted:#555;--border:#DDD;
     --bg:#FFF;--surface:#F8F8F6;
@@ -22,576 +22,553 @@
     --shadow:0 1px 3px rgba(0,0,0,0.08);
     --shadow-lg:0 4px 12px rgba(0,0,0,0.06)
   }
-  body{font-family:Georgia,'Times New Roman',serif;background:var(--surface);color:var(--text);line-height:1.55;font-size:15px}
-  .site-header{background:var(--navy);color:#fff;padding:1rem 2rem;position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:1rem;box-shadow:var(--shadow-lg);border-bottom:3px solid var(--wine)}
+  body{font-family:Georgia,'Times New Roman',serif;background:var(--surface);color:var(--text);line-height:1.55;font-size:15px;min-height:100vh}
+  .site-header{background:var(--navy);color:#fff;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;box-shadow:var(--shadow-lg);border-bottom:3px solid var(--wine)}
   .site-header .brand{font-size:1rem;font-weight:700;font-family:Arial,sans-serif}
   .site-header .meta{font-size:0.78rem;color:#c8d4e3;font-family:Arial,sans-serif}
   .module-tag{display:inline-block;background:var(--wine);color:#fff;font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:999px;font-family:Arial,sans-serif;letter-spacing:0.5px}
-  .page-wrap{max-width:1100px;margin:0 auto;padding:0 1rem 3rem}
+  .page-wrap{max-width:980px;margin:0 auto;padding:0 1rem 3rem}
   .hero{background:linear-gradient(135deg,var(--navy) 0%,#1d4068 100%);color:#fff;border-radius:var(--radius-lg);padding:1.75rem;margin:1.25rem 0;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
   .hero::before{content:"";position:absolute;top:-50%;right:-10%;width:300px;height:300px;background:var(--wine);opacity:0.15;border-radius:50%}
   .hero-badge{display:inline-block;background:var(--wine);color:#fff;font-size:0.7rem;font-weight:700;padding:4px 12px;border-radius:999px;margin-bottom:0.65rem;font-family:Arial,sans-serif;letter-spacing:0.5px;text-transform:uppercase}
-  .hero h2{font-size:1.7rem;margin-bottom:0.4rem;font-family:Arial,sans-serif}
-  .hero p{font-size:0.92rem;color:#c8d4e3;font-family:Arial,sans-serif;max-width:760px;position:relative}
-  .controls{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:0.95rem 1.15rem;margin:1rem 0;font-family:Arial,sans-serif;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:0.75rem}
-  .filter-row{display:flex;flex-wrap:wrap;gap:0.4rem;align-items:center}
-  .filter-row .label{font-size:0.72rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-right:0.3rem}
-  .filter-btn{background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:0.35rem 0.8rem;font-family:Arial,sans-serif;font-size:0.78rem;cursor:pointer;color:var(--text);transition:all 0.15s;font-weight:600}
-  .filter-btn:hover{background:var(--navy-light)}
-  .filter-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
-  .filter-btn.active.p1{background:var(--wine)}
-  .filter-btn.active.p2{background:var(--teal-dark)}
-  .stats{font-size:0.72rem;color:var(--muted);font-family:Arial,sans-serif}
-  .stats strong{color:var(--navy)}
-  .card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem 1.4rem;margin-bottom:1rem;box-shadow:var(--shadow)}
-  .card h2{font-size:1.15rem;font-family:Arial,sans-serif;color:var(--navy);margin-bottom:0.6rem;padding-bottom:0.4rem;border-bottom:2px solid var(--wine)}
-  .card h3{font-size:1rem;font-family:Arial,sans-serif;color:var(--blue);margin:0.85rem 0 0.4rem}
-  .card p{color:var(--muted);margin-bottom:0.5rem;font-size:0.88rem}
-  .question{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:1.5rem;box-shadow:var(--shadow);overflow:hidden}
-  .q-head{padding:0.85rem 1.2rem;background:var(--navy);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:0.5rem;flex-wrap:wrap}
-  .q-num{display:inline-block;background:rgba(255,255,255,0.15);font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:4px;font-family:Arial,sans-serif;letter-spacing:0.5px}
-  .q-paper{font-family:Arial,sans-serif;font-size:0.78rem;color:#c8d4e3;font-weight:600;flex-grow:1}
-  .marks-badge{background:var(--wine);color:#fff;font-family:Arial,sans-serif;font-size:0.75rem;font-weight:700;padding:3px 10px;border-radius:4px;letter-spacing:0.3px}
-  .q-body{padding:1.1rem 1.3rem}
-  .q-title{font-size:1rem;font-family:Arial,sans-serif;color:var(--navy);font-weight:700;margin-bottom:0.6rem}
-  .extract-block{background:var(--gray-light);border:1px dashed var(--gray-dark);border-radius:var(--radius);padding:0.85rem 1.1rem;margin:0.85rem 0;font-family:Georgia,serif;font-size:0.88rem;line-height:1.65;color:var(--text);font-style:italic}
-  .extract-block::before{content:"Extract";display:block;font-style:normal;font-weight:700;font-size:0.7rem;color:var(--gray-dark);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.4rem;font-family:Arial,sans-serif}
-  .question-block{background:#fff;border-left:5px solid var(--navy);padding:0.85rem 1.1rem;margin:0.85rem 0;font-family:Arial,sans-serif;font-size:0.95rem;line-height:1.6;color:var(--text);font-weight:600}
-  .question-block::before{content:"Question";display:block;font-weight:700;font-size:0.7rem;color:var(--navy);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.4rem}
-  .scheme-block{margin:1rem 0}
-  .scheme-block h4{font-family:Arial,sans-serif;font-size:0.78rem;color:var(--gold-dark);text-transform:uppercase;letter-spacing:0.5px;font-weight:700;margin-bottom:0.5rem}
-  .scheme-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--gold);font-family:Arial,sans-serif;font-size:0.82rem}
-  .scheme-table th{background:var(--gold-light);color:var(--gold-dark);padding:0.5rem 0.7rem;text-align:left;border:1px solid var(--gold);font-weight:700;font-size:0.78rem}
-  .scheme-table td{padding:0.5rem 0.7rem;border:1px solid var(--gold);vertical-align:top}
-  .scheme-table td:first-child{font-weight:700;color:var(--gold-dark);white-space:nowrap;width:90px}
-  .answer-block{background:var(--teal-light);border-left:5px solid var(--teal);border-radius:0 var(--radius) var(--radius) 0;padding:0.85rem 1.1rem;margin:0.95rem 0;font-family:Arial,sans-serif;font-size:0.85rem;line-height:1.65;color:var(--text)}
-  .answer-block::before{content:"Model Answer / Indicative Response";display:block;font-weight:700;font-size:0.7rem;color:var(--teal-dark);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem}
-  .answer-block p{margin-bottom:0.5rem}
-  .answer-block p:last-child{margin-bottom:0}
-  .errors-block{background:var(--red-light);border-left:5px solid var(--red-mid);border-radius:0 var(--radius) var(--radius) 0;padding:0.85rem 1.1rem;margin:0.85rem 0;font-family:Arial,sans-serif;font-size:0.83rem;line-height:1.6}
-  .errors-block::before{content:"\u26A0  Common Errors to Avoid";display:block;font-weight:700;font-size:0.7rem;color:var(--red-dark);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.45rem}
-  .errors-block ul{padding-left:1.1rem;margin:0;list-style:none}
-  .errors-block li{margin-bottom:0.35rem;color:var(--text);position:relative;padding-left:0.7rem}
-  .errors-block li::before{content:"\u2715";color:var(--red-mid);position:absolute;left:-0.3rem;font-weight:700}
-  .type-tag{font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:999px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap}
-  .type-tag.essay{background:var(--purple-light);color:var(--purple-dark)}
-  .type-tag.comprehension{background:var(--blue-light);color:var(--blue-dark)}
-  .type-tag.evaluation{background:var(--gold-light);color:var(--gold-dark)}
-  .type-tag.writing{background:var(--green-light);color:var(--green-dark)}
-  @media print{.site-header,.controls{display:none}.question{break-inside:avoid;page-break-inside:avoid;box-shadow:none}body{background:#fff}}
+  .hero h2{font-size:1.6rem;margin-bottom:0.4rem;font-family:Arial,sans-serif}
+  .hero p{font-size:0.9rem;color:#c8d4e3;font-family:Arial,sans-serif;max-width:760px;position:relative}
+
+  .steps-nav{display:flex;gap:0.5rem;margin:1.25rem 0;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:0.7rem;box-shadow:var(--shadow);font-family:Arial,sans-serif}
+  .step-pill{flex:1;padding:0.55rem 0.7rem;border-radius:var(--radius);text-align:center;font-size:0.78rem;font-weight:700;color:var(--muted);background:var(--surface);border:1px solid var(--border);position:relative;cursor:default}
+  .step-pill.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .step-pill.complete{background:var(--teal-light);color:var(--teal-dark);border-color:var(--teal)}
+  .step-pill .num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,0.2);font-size:0.72rem;margin-right:6px;font-weight:700}
+  .step-pill.complete .num{background:#188663;color:#fff}
+  .step-pill:not(.active):not(.complete) .num{background:var(--border);color:var(--muted)}
+
+  .step-panel{display:none;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;box-shadow:var(--shadow);margin-bottom:1rem;font-family:Arial,sans-serif}
+  .step-panel.active{display:block}
+  .step-panel h3{font-size:1.2rem;color:var(--navy);margin-bottom:0.5rem;padding-bottom:0.4rem;border-bottom:2px solid var(--wine)}
+  .step-panel .lead{color:var(--muted);font-size:0.92rem;margin-bottom:1.2rem;line-height:1.6}
+
+  .qtype-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0.75rem;margin-bottom:1rem}
+  .qtype-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:0.95rem 1.1rem;cursor:pointer;transition:all 0.15s;text-align:left}
+  .qtype-card:hover{border-color:var(--navy);background:var(--navy-light)}
+  .qtype-card.selected{border-color:var(--wine);background:var(--wine-light);box-shadow:0 0 0 3px rgba(107,31,46,0.15)}
+  .qtype-card .paper{font-size:0.65rem;font-weight:700;color:var(--wine);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:0.25rem}
+  .qtype-card .title{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:0.25rem}
+  .qtype-card .desc{font-size:0.78rem;color:var(--muted);line-height:1.5}
+  .qtype-card .marks{display:inline-block;background:var(--navy);color:#fff;font-size:0.7rem;font-weight:700;padding:2px 8px;border-radius:4px;margin-top:0.45rem}
+
+  .answer-input{width:100%;min-height:240px;padding:0.95rem 1.1rem;border:1.5px solid var(--border);border-radius:var(--radius);font-family:Georgia,serif;font-size:0.92rem;line-height:1.65;color:var(--text);background:var(--surface);resize:vertical}
+  .answer-input:focus{outline:none;border-color:var(--navy)}
+  .word-count{margin-top:0.5rem;font-size:0.78rem;color:var(--muted);text-align:right}
+  .word-count .num{color:var(--navy);font-weight:700}
+
+  .criteria-list{display:flex;flex-direction:column;gap:0.85rem}
+  .criterion{border:1px solid var(--border);border-radius:var(--radius);padding:0.9rem 1.1rem;background:var(--surface);transition:all 0.15s}
+  .criterion.marked{background:var(--bg);border-color:var(--navy-light)}
+  .criterion-head{display:flex;justify-content:space-between;align-items:flex-start;gap:0.75rem;margin-bottom:0.45rem}
+  .criterion-label{font-weight:700;color:var(--navy);font-size:0.95rem;flex-grow:1}
+  .criterion-desc{font-size:0.83rem;color:var(--muted);line-height:1.55;margin-bottom:0.6rem}
+  .ypn-group{display:flex;gap:0.4rem;flex-shrink:0}
+  .ypn-btn{flex:0 0 auto;padding:0.35rem 0.7rem;border:1.5px solid var(--border);border-radius:var(--radius);background:var(--bg);font-family:Arial,sans-serif;font-size:0.78rem;font-weight:700;cursor:pointer;transition:all 0.12s;color:var(--muted);min-width:54px;text-align:center}
+  .ypn-btn:hover{border-color:var(--navy);color:var(--navy)}
+  .ypn-btn.selected[data-val="Y"]{background:var(--teal);color:#fff;border-color:var(--teal)}
+  .ypn-btn.selected[data-val="P"]{background:var(--gold);color:#fff;border-color:var(--gold)}
+  .ypn-btn.selected[data-val="N"]{background:var(--red);color:#fff;border-color:var(--red)}
+
+  .button-row{display:flex;justify-content:space-between;gap:0.75rem;margin-top:1.25rem;flex-wrap:wrap}
+  .btn{padding:0.65rem 1.4rem;font-family:Arial,sans-serif;font-size:0.88rem;font-weight:700;border-radius:var(--radius);cursor:pointer;border:none;transition:all 0.15s}
+  .btn-primary{background:var(--navy);color:#fff}
+  .btn-primary:hover{background:#1d4068}
+  .btn-primary:disabled{background:var(--border);color:var(--muted);cursor:not-allowed}
+  .btn-secondary{background:var(--bg);color:var(--navy);border:1.5px solid var(--navy)}
+  .btn-secondary:hover{background:var(--navy-light)}
+  .btn-danger{background:var(--bg);color:var(--red-dark);border:1.5px solid var(--red)}
+  .btn-danger:hover{background:var(--red-light)}
+
+  .result-band{background:linear-gradient(135deg,var(--navy) 0%,#1d4068 100%);color:#fff;border-radius:var(--radius-lg);padding:1.5rem 1.75rem;margin-bottom:1.25rem;text-align:center}
+  .result-band .level{font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#c8d4e3;margin-bottom:0.35rem}
+  .result-band .level-name{font-size:2rem;font-weight:700;margin-bottom:0.25rem;font-family:Arial,sans-serif}
+  .result-band .marks{font-size:1.1rem;color:#c8d4e3;font-family:Arial,sans-serif;margin-bottom:0.6rem}
+  .result-band .desc{font-size:0.88rem;color:#dfe6f0;font-family:Arial,sans-serif;line-height:1.5;max-width:580px;margin:0 auto}
+  .result-band .score-summary{margin-top:0.95rem;padding-top:0.8rem;border-top:1px solid rgba(255,255,255,0.15);font-size:0.78rem;color:#c8d4e3;font-family:Arial,sans-serif}
+  .result-band .score-summary strong{color:#fff;font-weight:700;font-size:0.9rem}
+
+  .feedback-section{margin-bottom:1.25rem}
+  .feedback-section h4{font-size:1rem;color:var(--navy);margin-bottom:0.5rem;display:flex;align-items:center;gap:0.45rem}
+  .feedback-box{padding:0.85rem 1.1rem;border-radius:var(--radius);margin-bottom:0.55rem;font-size:0.85rem;line-height:1.6}
+  .feedback-box.strength{background:var(--teal-light);border-left:4px solid var(--teal);color:var(--text)}
+  .feedback-box.weakness{background:var(--red-light);border-left:4px solid var(--red-mid);color:var(--text)}
+  .feedback-box.partial{background:var(--gold-light);border-left:4px solid var(--gold);color:var(--text)}
+  .feedback-box .crit{font-weight:700;color:var(--navy);font-size:0.88rem;display:block;margin-bottom:0.25rem}
+  .feedback-box .guide{color:var(--muted);font-size:0.82rem;font-style:italic}
+
+  .info-callout{background:var(--purple-light);border-left:4px solid var(--purple);padding:0.85rem 1.1rem;border-radius:0 var(--radius) var(--radius) 0;font-size:0.85rem;line-height:1.6;color:var(--purple-dark);font-family:Arial,sans-serif;margin-bottom:1rem}
+  .info-callout strong{font-weight:700;display:block;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.25rem}
+
+  .qtype-selected-banner{background:var(--wine-light);border:1px solid var(--wine-mid);border-radius:var(--radius);padding:0.7rem 1rem;margin-bottom:1rem;font-family:Arial,sans-serif;font-size:0.85rem;color:var(--wine-dark);display:flex;justify-content:space-between;align-items:center;gap:0.5rem}
+  .qtype-selected-banner strong{font-weight:700}
+  .qtype-selected-banner .change-link{color:var(--wine);font-size:0.78rem;cursor:pointer;text-decoration:underline;font-weight:600}
+
+  .progress-bar{margin:1rem 0;background:var(--border);border-radius:999px;height:8px;overflow:hidden}
+  .progress-bar .fill{background:linear-gradient(90deg,var(--wine) 0%,var(--navy) 100%);height:100%;transition:width 0.3s;border-radius:999px}
+  .progress-text{font-size:0.78rem;color:var(--muted);text-align:center;font-family:Arial,sans-serif;margin-top:0.4rem}
+
+  @media print{.site-header,.steps-nav,.button-row{display:none}.step-panel{box-shadow:none;page-break-inside:avoid}body{background:#fff}}
 </style>
 </head>
 <body>
 
 <header class="site-header">
   <div>
-    <div class="brand">📝 Cambridge AICE General Paper 8021</div>
-    <div class="meta">Diagnostic Question Bank — Pass 2 (Q21-40)</div>
+    <div class="brand">📊 Cambridge AICE General Paper 8021</div>
+    <div class="meta">Self-Grader Tool — Rubric-Guided Self-Assessment</div>
   </div>
-  <span class="module-tag">Question Bank</span>
+  <span class="module-tag">Self-Grader</span>
 </header>
 
 <div class="page-wrap">
 
   <div class="hero">
-    <div class="hero-badge">Pass 2 of 2 · Questions 21-40</div>
-    <h2>Extended Diagnostic Across Both Papers</h2>
-    <p>Twenty more questions extending Pass 1 with additional topic areas and more sophisticated question types. Paper 1 essays cover arts, sport, journalism, inequality, privacy, religion, scientific responsibility, and generational change. Paper 2 questions extend into nuanced comprehension, multi-fallacy evaluation, statistical reasoning, and varied directed writing tasks.</p>
+    <div class="hero-badge">Diagnose Your Own Writing</div>
+    <h2>Interactive Self-Assessment Against Cambridge Rubrics</h2>
+    <p>Write your answer, paste it in, work through the rubric criteria honestly, and receive a band estimate with specific guidance pointing to the resources that address your weaknesses. Generous self-marking is the enemy of improvement \u2014 mark yourself honestly, and the tool will diagnose accurately. This is the same rubric structure Cambridge examiners apply.</p>
   </div>
 
-  <div class="card">
-    <h2>How This Pass Extends Pass 1</h2>
-    <p><strong>More demanding essay prompts:</strong> Pass 2 prompts more often interrogate widely held framings rather than presenting clear binaries. They reward students who can examine the question itself, not just answer it.</p>
-    <p><strong>More sophisticated Paper 2 tasks:</strong> Comprehension questions require identifying nuanced positions, distinguishing claims from evidence, and tracking tonal shifts. Evaluation questions involve passages with multiple reasoning flaws and statistical/empirical claims to assess. Directed writing extends to news articles and formal submissions.</p>
-    <h3>What's in this Pass</h3>
-    <p><strong>Paper 1 \u2014 Essay (Q21-28):</strong> 8 essay prompts on arts/culture, sport, journalism, economic inequality, privacy, religion, scientific responsibility, and generational claims.<br>
-    <strong>Paper 2 \u2014 Comprehension (Q29-34):</strong> 6 questions requiring more sophisticated reading: nuanced positions, evidence vs claim, tonal complexity, overall purpose.<br>
-    <strong>Paper 2 \u2014 Evaluation (Q35-38):</strong> 4 questions involving multiple fallacies, statistical reasoning, logical consistency, and selective evidence.<br>
-    <strong>Paper 2 \u2014 Directed Writing (Q39-40):</strong> 2 questions: news article and formal submission.</p>
+  <div class="steps-nav">
+    <div class="step-pill active" id="pill-1"><span class="num">1</span>Select Question Type</div>
+    <div class="step-pill" id="pill-2"><span class="num">2</span>Paste Your Answer</div>
+    <div class="step-pill" id="pill-3"><span class="num">3</span>Self-Assess</div>
+    <div class="step-pill" id="pill-4"><span class="num">4</span>View Results</div>
   </div>
 
-  <div class="controls">
-    <div class="filter-row">
-      <span class="label">Paper:</span>
-      <button class="filter-btn active" data-filter="all" onclick="setFilter('all',this)">All 20</button>
-      <button class="filter-btn" data-filter="p1" onclick="setFilter('p1',this)">Paper 1 Essays (8)</button>
-      <button class="filter-btn" data-filter="p2" onclick="setFilter('p2',this)">Paper 2 (12)</button>
-      <button class="filter-btn" data-filter="comprehension" onclick="setFilter('comprehension',this)">— Comprehension (6)</button>
-      <button class="filter-btn" data-filter="evaluation" onclick="setFilter('evaluation',this)">— Evaluation (4)</button>
-      <button class="filter-btn" data-filter="writing" onclick="setFilter('writing',this)">— Directed Writing (2)</button>
+  <!-- STEP 1: Question Type Selection -->
+  <div class="step-panel active" id="step-1">
+    <h3>Step 1 \u2014 What kind of question did you answer?</h3>
+    <p class="lead">Choose the type that matches what you attempted. The rubric in step 3 will be tailored to that question type and its specific Cambridge mark scheme criteria.</p>
+    <div class="info-callout">
+      <strong>If you're unsure</strong>
+      Paper 1 has one question type only \u2014 the 30-mark discursive essay. Paper 2 has multiple question types within a single source-based paper. Match what you attempted as closely as possible.
     </div>
-    <div class="stats" id="stats">Showing <strong>20</strong> of <strong>20</strong> questions</div>
+    <div class="qtype-grid" id="qtype-grid"></div>
+    <div class="button-row">
+      <span></span>
+      <button class="btn btn-primary" id="btn-to-step-2" disabled onclick="goToStep(2)">Continue \u2192</button>
+    </div>
   </div>
 
-  <div id="container"></div>
+  <!-- STEP 2: Paste Answer -->
+  <div class="step-panel" id="step-2">
+    <h3>Step 2 \u2014 Paste your answer</h3>
+    <p class="lead">Copy in the answer you wrote. The text won't be analysed automatically \u2014 having it here lets you refer to it as you self-assess in the next step. Be honest about what you actually wrote, not what you intended to write.</p>
+    <div class="qtype-selected-banner">
+      <span>Question type: <strong id="qtype-banner-name"></strong></span>
+      <span class="change-link" onclick="goToStep(1)">Change</span>
+    </div>
+    <textarea class="answer-input" id="answer-input" placeholder="Paste your answer here..."></textarea>
+    <div class="word-count">Word count: <span class="num" id="word-count">0</span></div>
+    <div class="button-row">
+      <button class="btn btn-secondary" onclick="goToStep(1)">\u2190 Back</button>
+      <button class="btn btn-primary" onclick="goToStep(3)">Continue \u2192</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: Rubric Self-Assessment -->
+  <div class="step-panel" id="step-3">
+    <h3>Step 3 \u2014 Mark yourself against the rubric</h3>
+    <p class="lead">For each criterion, mark whether your answer fully meets it (<strong style="color:var(--teal-dark)">Y</strong>), partially meets it (<strong style="color:var(--gold-dark)">P</strong>), or does not meet it (<strong style="color:var(--red-dark)">N</strong>). Refer to your pasted answer above. Honest self-assessment produces accurate diagnosis; generous self-assessment produces useless results.</p>
+    <div class="info-callout">
+      <strong>Use the marking criteria as designed</strong>
+      <strong style="color:var(--teal-dark)">Y (Yes)</strong> = the answer clearly and substantively meets this criterion. <strong style="color:var(--gold-dark)">P (Partial)</strong> = some elements present but not fully developed. <strong style="color:var(--red-dark)">N (No)</strong> = this criterion is largely missing or weakly attempted.
+    </div>
+    <div class="progress-bar"><div class="fill" id="progress-fill" style="width:0%"></div></div>
+    <div class="progress-text"><span id="progress-text">0 of 0 criteria marked</span></div>
+    <div class="criteria-list" id="criteria-list"></div>
+    <div class="button-row">
+      <button class="btn btn-secondary" onclick="goToStep(2)">\u2190 Back</button>
+      <button class="btn btn-primary" id="btn-to-step-4" disabled onclick="goToStep(4)">View Results \u2192</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: Results -->
+  <div class="step-panel" id="step-4">
+    <h3>Step 4 \u2014 Your estimated band and feedback</h3>
+    <p class="lead">Based on your self-assessment, here is the estimated band and specific guidance for improvement. The feedback points to the specific resources \u2014 Common Confusions, Common Mistakes Autopsy, Question Bank \u2014 that address your weaknesses.</p>
+    <div id="result-content"></div>
+    <div class="button-row">
+      <button class="btn btn-secondary" onclick="goToStep(3)">\u2190 Back to Assessment</button>
+      <div style="display:flex;gap:0.5rem">
+        <button class="btn btn-secondary" onclick="window.print()">Print Results</button>
+        <button class="btn btn-danger" onclick="resetAll()">Start New Assessment</button>
+      </div>
+    </div>
+  </div>
 
 </div>
 
 <script>
-const QUESTIONS = [
-  // ============ PAPER 1 ESSAYS (Q21-28) ============
-  {
-    num:21, paper:"p1", type:"essay", marks:30, time:"75 minutes",
-    title:"The Arts as Luxury?",
-    question:"\u201CThe arts are a luxury society cannot afford in times of crisis.\u201D Discuss.",
-    scheme:[
-      {level:"Level 5 (25-30)",desc:"Sophisticated interrogation of \"luxury\" and \"crisis\" as fixed categories; specific examples of arts funding decisions in real crises; distinguishes types of arts and types of crisis; engages economic, cultural, and existential dimensions; sustained evaluation."},
-      {level:"Level 4 (19-24)",desc:"Clear argument with developed support; engages both sides; specific examples from arts funding or crisis contexts."},
-      {level:"Level 3 (13-18)",desc:"Adequate argument; treats arts and luxury as fixed categories; limited evaluation."},
-      {level:"Level 2 (7-12)",desc:"Basic argument listing reasons; mostly descriptive."},
-      {level:"Level 1 (1-6)",desc:"Minimal engagement; assertion without development."}
-    ],
-    answer:`Open by interrogating the framing. Both \"luxury\" and \"crisis\" carry implicit assumptions \u2014 that arts spending is discretionary and that crisis demands narrow priorities. The essay's task is to test these assumptions rather than accept them.\n\nThe \"luxury\" case: in genuine emergencies (war, famine, pandemic), survival and security have moral priority. Arts spending is small but visible, and the opportunity cost is real. Communities under existential threat have historically restricted artistic activity to focus on survival. Pragmatic governments must allocate scarce resources to greatest immediate need.\n\nThe counterargument: arts have flourished in crisis as often as they have been suppressed \u2014 WWII produced literature, film, and music of lasting consequence; the Soviet bloc produced extraordinary art under conditions of severe constraint. Arts contribute measurable economic activity (UK creative industries account for approximately 6% of GDP); they sustain employment; their absence damages collective morale in ways that have practical consequences. The claim that arts are \"unaffordable\" in crisis often reflects political choice, not fiscal necessity \u2014 arts budgets are typically a tiny fraction of total spending.\n\nThe sophisticated move: examine what \"the arts\" means. The phrase encompasses high culture (opera, museums, galleries) and popular culture (film, music, video games); state-funded arts and commercial arts; participation and consumption. The luxury framing applies very differently to a free public library than to a heavily subsidised opera house.\n\nAddress the existential dimension: arts perform functions \u2014 meaning-making, processing collective trauma, sustaining identity \u2014 that may matter more in crisis, not less. A society that suspends these functions during emergencies may discover the emergency has eroded what made survival worthwhile.\n\nConclude with a calibrated thesis: the framing of arts as luxury reflects a particular and contested conception of social value. The serious question is not whether arts are \"affordable\" but which arts, funded how, at what cost \u2014 and whether the rhetoric of luxury is being used to justify decisions that have political rather than fiscal foundations.`,
-    errors:[
-      "Accepting the \"luxury\" framing without examining what it presupposes",
-      "Listing famous artists or works without analysing the social function of art",
-      "Failing to distinguish high culture from popular culture and state from commercial arts",
-      "Pure utilitarian economic argument ignoring meaning, identity, and morale dimensions",
-      "Generic claims about arts being \"important\" without specifying how, for whom, and at what cost"
+const QUESTION_TYPES = {
+  p1_essay: {
+    label: "Paper 1 \u2014 Discursive Essay",
+    paper: "Paper 1",
+    description: "The 30-mark essay on one of the listed prompts (75 minutes)",
+    marks: 30,
+    criteria: [
+      {id:"thesis", label:"Clear thesis stated", desc:"Your introduction states a specific position on the question \u2014 not just identifying the topic.", weak:"Without a thesis, you have a topic; with one, you have an argument. See Autopsy #6 (Topic Without Thesis)."},
+      {id:"command", label:"Addresses the command word accurately", desc:"You actually answer what the question asks \u2014 \u201Cdiscuss\u201D demands a position; \u201Cto what extent\u201D demands calibration; \u201Chow far\u201D demands nuanced (dis)agreement.", weak:"See Autopsy #1\u20133 (Command Word Errors)."},
+      {id:"argument", label:"Argument structure (premises \u2192 conclusions)", desc:"Each paragraph makes a clear claim supported by reasons, not just assertion repeated.", weak:"Use \u201Cbecause,\u201D \u201Csince,\u201D \u201Cgiven that.\u201D See Autopsy #4 (Opinion as Argument); Common Confusions #1 (Argument vs Opinion)."},
+      {id:"evidence", label:"Specific, accurate evidence", desc:"You use specific examples, data, or named cases \u2014 not vague generalities or fabricated specifics.", weak:"\u201CStudies show\u201D without specifics is weak. \u201CEveryone knows\u201D is not evidence. See Autopsy #7\u20139, #17 (fabricated specifics)."},
+      {id:"counterargument", label:"Engages strongest counterargument", desc:"You acknowledge the strongest case against your position and respond to it, not strawmen of it.", weak:"See Autopsy #5 (Missing Counterargument); Common Confusions #4 (Counterargument vs Rebuttal)."},
+      {id:"evaluation", label:"Evaluation, not just description", desc:"You weigh competing considerations and reach judgements; you don't just list points.", weak:"See Autopsy #10 (Description Instead of Analysis), #13 (One-Sided as Evaluation); Common Confusions #12 (Refute vs Disagree)."},
+      {id:"nuance", label:"Calibrated, nuanced claims", desc:"Your claims are appropriately qualified \u2014 you avoid \u201Calways,\u201D \u201Cnever,\u201D and false dichotomies.", weak:"See Autopsy #14 (False Dichotomy), #15 (Vague Nuance Without Commitment)."},
+      {id:"register", label:"Formal register throughout", desc:"You use formal academic prose: no contractions, no colloquialisms, no slang, no \u201CI feel like.\u201D", weak:"See Autopsy #16 (Wrong Register); Common Confusions #6 (Tone vs Register)."},
+      {id:"conclusion", label:"Substantive conclusion", desc:"Your conclusion takes a defended position based on the body, not just summarising what you said.", weak:"Conclusions should synthesise, not merely review. See Common Confusions #11 (Summary vs Synthesis)."}
     ]
   },
-  {
-    num:22, paper:"p1", type:"essay", marks:30, time:"75 minutes",
-    title:"Sport and Commercialisation",
-    question:"\u201CSport has lost its way in becoming a major commercial enterprise.\u201D How far do you agree?",
-    scheme:[
-      {level:"Level 5 (25-30)",desc:"Sophisticated argument distinguishing types of sport (professional, amateur, grassroots); engages the gains commercialisation has produced alongside the losses; specific examples (specific leagues, transfer fees, broadcast deals, ticket prices); engages the contested concept of sport's \"way.\""},
-      {level:"Level 4 (19-24)",desc:"Clear argument with developed support; engages both sides; specific examples."},
-      {level:"Level 3 (13-18)",desc:"Adequate argument; treats sport as one phenomenon; some examples."},
-      {level:"Level 2 (7-12)",desc:"Basic argument; vague examples; descriptive."},
-      {level:"Level 1 (1-6)",desc:"Minimal engagement."}
-    ],
-    answer:`Open by interrogating what sport's \"way\" actually is. The claim that sport has lost something presupposes a previous state worth recovering \u2014 a presupposition worth examining rather than accepting.\n\nThe \"lost its way\" case: top-tier professional sport has been transformed by media rights, sponsorship, and private ownership. Transfer fees and player wages have reached scales disconnected from local communities. Tickets have priced out traditional fans; clubs have moved or rebranded for commercial reasons; competitive integrity is compromised by financial fair-play violations and state ownership of clubs. The corruption scandals in FIFA, the IOC, and major federations reflect institutional capture by commercial interests.\n\nThe counterargument: commercialisation has also produced gains. Player welfare, training quality, and sport science have improved enormously through investment that requires commercial revenue. Global broadcasting brings high-quality sport to billions who could not otherwise see it. Women's sport, long underfunded, is finally being commercialised \u2014 a development feminists have demanded. Many fans benefit from professionalisation through superior product quality.\n\nThe sophisticated move: distinguish types of sport. Elite professional football, basketball, and American football operate in commercial conditions distinct from second-tier leagues, grassroots, and amateur sport. Olympic sport, university sport, and school sport face entirely different pressures. Treating \"sport\" as a single thing flattens important variation.\n\nAddress the values dimension. Sport carries non-commercial values \u2014 fair play, character, community, transcendent achievement \u2014 that commercialisation can erode or preserve depending on how it is governed. The question is not whether commerce belongs in sport (it always has, even in ancient Olympia) but how its dynamics are shaped by institutional choices.\n\nConclude with a calibrated thesis: elite professional sport has changed in ways that justify some of the criticism, but the framing of having \"lost its way\" overstates a unitary past that never quite existed. The serious questions are about governance, distribution of revenue, and which sports for which purposes \u2014 not whether commerce has corrupted a pure original form.`,
-    errors:[
-      "Treating \"sport\" as one phenomenon rather than distinguishing professional, amateur, and grassroots",
-      "Listing dramatic examples (transfer fees, scandals) without analysing the underlying dynamics",
-      "Nostalgic appeal to a \"pure\" sport that never existed",
-      "Ignoring gains in player welfare, women's sport, and global access",
-      "Generic moralising about \"money in sport\" without engaging the governance question"
+  p2_identify: {
+    label: "Paper 2 \u2014 Identify Main Argument or Position",
+    paper: "Paper 2 Comprehension",
+    description: "Identifying the writer's main argument or position in a passage (4\u20136 marks)",
+    marks: 6,
+    criteria: [
+      {id:"accurate", label:"Identifies the position accurately", desc:"You correctly identify what the writer is actually arguing, including any nuanced or qualified elements.", weak:"Surface readings miss nuanced positions. See Autopsy #11 (Surface Reading of a Source)."},
+      {id:"ownwords", label:"Uses your own words", desc:"You paraphrase rather than quote directly from the passage.", weak:"Quoting is not paraphrasing. See Question Bank Q9, Q11."},
+      {id:"complete", label:"Captures the full position", desc:"You include all parts of the writer's position \u2014 not just one half of a nuanced argument.", weak:"Partial summaries lose marks even when accurate as far as they go."},
+      {id:"bounded", label:"Stays within what the passage says", desc:"You don't extend beyond what the writer actually claims; no added opinions or extensions.", weak:"Adding your own views or extending the writer's claim into territory the passage doesn't cover is over-extension."},
+      {id:"concise", label:"Concise and focused", desc:"The answer is focused on the question; no irrelevant material or padding.", weak:"Length doesn't equal quality; focused answers earn full marks more reliably."}
     ]
   },
-  {
-    num:23, paper:"p1", type:"essay", marks:30, time:"75 minutes",
-    title:"Journalism and Government Secrecy",
-    question:"To what extent should journalists be free to publish information that governments wish to keep secret?",
-    scheme:[
-      {level:"Level 5 (25-30)",desc:"Sophisticated argument engaging competing values (free press, national security, democratic accountability, individual privacy); specific examples (Pentagon Papers, Snowden, WikiLeaks); engages institutional alternatives (legal frameworks, editorial responsibility)."},
-      {level:"Level 4 (19-24)",desc:"Clear argument engaging both sides; specific examples; mostly substantiated."},
-      {level:"Level 3 (13-18)",desc:"Adequate argument; treats issue as one-dimensional; limited engagement with counter-position."},
-      {level:"Level 2 (7-12)",desc:"Basic argument; few examples; descriptive."},
-      {level:"Level 1 (1-6)",desc:"Minimal argument."}
-    ],
-    answer:`Open by clarifying that this question pits two genuine democratic values against each other: government's need for some legitimate secrecy and the press's role in holding power accountable. Neither absolute press freedom nor absolute deference to government secrecy claims is defensible.\n\nThe pro-press case: democratic accountability requires the public to know what its government actually does. Throughout history, governments have used secrecy claims to conceal misconduct, corruption, illegal activity, and policy disasters. The Pentagon Papers revealed years of executive deception about the Vietnam War; the Snowden disclosures revealed mass surveillance programmes operating beyond their stated legal limits; Watergate, the Iraq WMD case, and countless others depended on journalists publishing what governments preferred to hide. Government claims of \"national security\" have a long history of being used to suppress political embarrassment, not actual security threats.\n\nThe pro-secrecy counterargument: some information genuinely endangers lives if published \u2014 identities of intelligence sources, specific operational details of ongoing security operations, nuclear weapons information, identities of vulnerable witnesses. Diplomatic candour depends on some confidentiality. Citizens have legitimately delegated some secrecy to their elected representatives through democratic processes. Journalists are not democratically accountable to anyone; their editorial judgement is their own.\n\nThe sophisticated move: the question is not whether journalists should be \"free\" but what institutional arrangements best balance these values. Strong democracies have developed:\n\n\u2022 Constitutional press protections (US First Amendment, EU charters);\n\u2022 Procedural mechanisms (subpoena rules, source protection laws);\n\u2022 Editorial responsibility expectations (responsible journalism organisations consult with governments on genuine security concerns);\n\u2022 Judicial review of prior restraint and post-publication prosecution.\n\nThese frameworks vary across democracies. The UK's Official Secrets Act creates much stronger restrictions than the US system; both have produced functioning democracies but with different patterns of accountability and risk.\n\nAddress the digital context: WikiLeaks and similar platforms have changed the question. Mass document dumps differ from traditional journalism's curated disclosure. The Snowden case illustrated this \u2014 he chose journalists to mediate the disclosure, which differed materially from Manning's earlier WikiLeaks dump.\n\nConclude with a calibrated thesis: journalists should be free to publish information that governments wish to keep secret in most cases, with narrow exceptions for genuinely operationally specific national security information \u2014 and the burden of demonstrating the genuine harm should rest with governments, not journalists. Institutional design (constitutional protections, source confidentiality, editorial responsibility) is what makes this workable.`,
-    errors:[
-      "Treating press freedom as absolute or government secrecy as always illegitimate",
-      "Listing famous cases without analysing the institutional questions they raise",
-      "Failing to engage with the strongest version of the national-security argument",
-      "Vague references to \"the public's right to know\" without examining what that right entails",
-      "Missing the question of who decides what is genuine security versus political embarrassment"
+  p2_explain: {
+    label: "Paper 2 \u2014 Explain Meaning or Implication",
+    paper: "Paper 2 Comprehension",
+    description: "Explaining what a specific phrase, claim, or concept means in context (4\u20135 marks)",
+    marks: 5,
+    criteria: [
+      {id:"contextual", label:"Explains the term in this specific context", desc:"You explain not just what the term generally means but what it means in the passage \u2014 the writer's specific usage.", weak:"Generic dictionary explanation misses the contextual meaning."},
+      {id:"implication", label:"Captures implications, not just surface meaning", desc:"You go beyond surface restating to identify what the term implies in the writer's argument.", weak:"Stopping at surface meaning leaves marks on the table; implications are where higher bands are earned."},
+      {id:"purpose", label:"Connects to the writer's broader purpose", desc:"You show how the term fits into what the writer is doing in the passage, not just defining it in isolation.", weak:"Isolated explanation misses the rhetorical work the term is doing."},
+      {id:"ownwords", label:"Uses your own words", desc:"You explain in your own language, not by quoting the passage.", weak:"Quoted explanation is not explanation."},
+      {id:"accurate", label:"Stays accurate to the passage", desc:"You don't extend beyond what the writer actually claims or implies.", weak:"Over-extension and misreading both lose marks."}
     ]
   },
-  {
-    num:24, paper:"p1", type:"essay", marks:30, time:"75 minutes",
-    title:"Inequality and Prosperity",
-    question:"\u201CEconomic inequality is the unavoidable price of prosperity.\u201D Discuss.",
-    scheme:[
-      {level:"Level 5 (25-30)",desc:"Sophisticated argument engaging the empirical and ethical dimensions; distinguishes types of inequality (income, wealth, opportunity); engages countries with high prosperity but lower inequality; specific data; sustained evaluation."},
-      {level:"Level 4 (19-24)",desc:"Clear argument with developed support; engages both sides; specific examples."},
-      {level:"Level 3 (13-18)",desc:"Adequate argument; treats inequality and prosperity as one-dimensional; some examples."},
-      {level:"Level 2 (7-12)",desc:"Basic argument; vague examples; descriptive."},
-      {level:"Level 1 (1-6)",desc:"Minimal engagement."}
-    ],
-    answer:`Open by interrogating the claim's structure. \"Unavoidable\" is empirical: is it actually true that prosperity requires inequality at observed levels? \"The price of\" implies a trade-off rather than complementary relationship. Both presuppositions deserve scrutiny.\n\nThe \"unavoidable price\" case: market economies use unequal rewards to incentivise productive activity, risk-taking, and investment. The countries that have produced the greatest prosperity (US, UK, China since reform, post-war Japan) have all featured substantial inequality. Attempts to eliminate inequality (Soviet experiment, Maoist China, Venezuelan socialism) have produced economic stagnation or collapse. Some economists argue inequality is the engine that drives the dynamism producing aggregate gains; redistribution risks killing the goose laying the eggs.\n\nThe counterargument: the empirical claim is weaker than it appears. Nordic countries (Denmark, Sweden, Norway) combine high prosperity with substantially lower inequality than the US. Germany has higher labour-market equality than the UK without lower productivity. Within the US, post-war decades produced strong growth alongside compressed inequality; the recent rise in inequality has accompanied slowing growth, not accelerated growth. The relationship between inequality and prosperity is not the simple positive correlation the \"unavoidable\" claim suggests.\n\nDistinguish types of inequality. Income inequality differs from wealth inequality, which differs from opportunity inequality. Wealth concentration at the very top (top 0.1%) is qualitatively different from variation within the broad middle class. Inequality of opportunity (children's prospects determined by birth) is corrosive in ways that inequality of outcome is not.\n\nAddress the political dimension. High inequality damages political institutions: it concentrates power, distorts policy toward the interests of the wealthy, and corrodes social trust. Even if some inequality is unavoidable, the levels reached in some democracies appear to be undermining the political conditions for continued prosperity.\n\nThe ethical dimension matters too. \"Unavoidable\" suggests we should accept current levels. But economies are shaped by policy choices \u2014 tax structures, labour laws, education systems, antitrust enforcement \u2014 that distribute outcomes. Treating inequality as a force of nature, rather than the result of choices, lets policymakers off the hook.\n\nConclude with a calibrated thesis: some inequality is unavoidable in productive market economies, but current levels in many developed countries exceed what is needed for prosperity and may themselves threaten the conditions for further prosperity. The serious questions are which inequalities, at what levels, with what consequences for opportunity and democratic stability.`,
-    errors:[
-      "Accepting the \"unavoidable\" claim as empirical fact rather than examining the evidence",
-      "Treating inequality as one thing rather than distinguishing types",
-      "Ignoring countries that achieve prosperity with lower inequality",
-      "Vague references to \"capitalism\" without engaging specific institutional variation",
-      "Missing the political-stability dimension \u2014 inequality's effect on democratic conditions for prosperity"
+  p2_reasons: {
+    label: "Paper 2 \u2014 Identify Reasons or Compare Positions",
+    paper: "Paper 2 Comprehension",
+    description: "Identifying specific reasons given for a claim, OR comparing positions presented in the extract (6 marks)",
+    marks: 6,
+    criteria: [
+      {id:"count", label:"Identifies the correct number of items", desc:"If the question asks for two reasons, you give two distinct reasons \u2014 not one repeated or three to be safe.", weak:"Read the question carefully \u2014 the number requested is part of the instruction."},
+      {id:"distinct", label:"Each item is genuinely distinct", desc:"Your items are different points, not the same point in two ways.", weak:"Variations of one point count as one. See Autopsy #15 (Vague Nuance)."},
+      {id:"accurate", label:"Each item is accurate to the passage", desc:"You faithfully represent what the writer actually says \u2014 no embellishment or distortion.", weak:"Inaccuracy on any item costs that item's marks even if other items are correct."},
+      {id:"ownwords", label:"Uses your own words for each", desc:"You paraphrase rather than quoting.", weak:"Direct quotation is not paraphrasing."},
+      {id:"organised", label:"Items are clearly distinguished", desc:"The reader can tell where one item ends and another begins \u2014 list, numbering, or clear paragraph structure.", weak:"Run-together items lose marks even when their content is accurate."},
+      {id:"comparative", label:"If comparing, captures comparative judgement", desc:"If the question asks for comparison, you note the writer's own comparative evaluation (whose case is stronger, etc.).", weak:"Identifying positions without identifying the comparison the writer is making misses half the question. See Question Bank Q31."}
     ]
   },
-  {
-    num:25, paper:"p1", type:"essay", marks:30, time:"75 minutes",
-    title:"Privacy in the Digital Age",
-    question:"\u201CPrivacy is a 20th-century concept that no longer applies.\u201D How far do you agree?",
-    scheme:[
-      {level:"Level 5 (25-30)",desc:"Sophisticated argument distinguishing types of privacy (informational, decisional, bodily, spatial); engages how digital technologies have changed each; specific examples; engages competing values (security, convenience, autonomy)."},
-      {level:"Level 4 (19-24)",desc:"Clear argument with developed support; engages both sides; specific examples."},
-      {level:"Level 3 (13-18)",desc:"Adequate argument; treats privacy as one thing; some examples."},
-      {level:"Level 2 (7-12)",desc:"Basic argument; vague engagement; descriptive."},
-      {level:"Level 1 (1-6)",desc:"Minimal argument."}
-    ],
-    answer:`Open by examining what privacy actually is. The concept is multi-dimensional: informational privacy (control over personal data), decisional privacy (freedom from intrusion in personal choices), bodily privacy (control of one's person), spatial privacy (zones free of observation). Digital technology has affected these dimensions very differently \u2014 the blanket claim that privacy \"no longer applies\" obscures these distinctions.\n\nThe \"no longer applies\" case: informational privacy has been transformed almost beyond recognition. Smartphones track location continuously; browsers reveal interests, anxieties, and intentions to advertisers; social media records preferences and relationships at industrial scale; facial recognition enables identification in public space. The 20th-century framework of consent, notice, and limited collection has collapsed under technologies that collect ambient data without meaningful user agency. Many young users seem indifferent to privacy invasions older generations would have considered outrageous \u2014 some commentators argue the concept itself has become culturally obsolete.\n\nThe counterargument: the claim that privacy \"no longer applies\" confuses descriptive observation (privacy is harder to maintain) with normative conclusion (it doesn't matter). Privacy violations continue to produce concrete harms: identity theft, harassment, employment discrimination, stalking, authoritarian state control, manipulation of behaviour through micro-targeting. The fact that privacy is harder to protect is not evidence that it has ceased to matter; it may be evidence that it matters more.\n\nThe sophisticated move: distinguish dimensions. Bodily, decisional, and spatial privacy remain robust concepts in most democracies \u2014 the right to control one's body, one's choices, one's home is more or less intact. Informational privacy has been radically reshaped but not eliminated; it requires new institutional arrangements (GDPR-style frameworks, breach notification, right to deletion) rather than abandonment of the concept.\n\nAddress the generational claim. Young people's apparent indifference may reflect a different calibration rather than actual abandonment of privacy \u2014 the same users who share extensively with friends often vigorously protect against family or employer view. Privacy has become contextual rather than absolute, but contextual privacy is still privacy.\n\nConsider the authoritarian alternative. Countries with weak privacy protections (China's social credit system, Russia's surveillance state) demonstrate what happens when privacy ceases to be a meaningful constraint on state power. The strongest case for privacy in 2026 is not nostalgia for the 20th century but observation of contemporary authoritarianism.\n\nConclude with a calibrated thesis: privacy as a concept absolutely still applies, but the institutional and technological context has changed. The 20th-century model of privacy (notice and consent for limited collection) is obsolete; new frameworks are needed. The claim that the concept itself is obsolete is a rhetorical move that benefits those who profit from its erosion.`,
-    errors:[
-      "Treating privacy as one undifferentiated concept rather than distinguishing dimensions",
-      "Confusing descriptive observation (harder to protect) with normative conclusion (no longer matters)",
-      "Generic complaints about technology without engaging specific privacy harms",
-      "Citing young people's behaviour without examining whether it reflects different calibration vs abandonment",
-      "Missing the authoritarian-state argument for why privacy still matters"
+  p2_flaw: {
+    label: "Paper 2 \u2014 Identify a Reasoning Flaw",
+    paper: "Paper 2 Evaluation",
+    description: "Identifying a specific fallacy or reasoning flaw in an argument (5\u20136 marks)",
+    marks: 6,
+    criteria: [
+      {id:"named", label:"Names the flaw accurately", desc:"You correctly identify the fallacy (slippery slope, ad hominem, false dichotomy, etc.) or describe it precisely if no formal name applies.", weak:"Misnaming the fallacy is worse than not naming it. See Common Confusions #8 (Fallacy types)."},
+      {id:"structure", label:"Explains the structure of the flaw", desc:"You show how the flaw works \u2014 e.g., for slippery slope, the assumed inevitability of escalation.", weak:"Identifying a flaw without explaining its mechanism leaves marks unclaimed. See Autopsy #13."},
+      {id:"weakening", label:"Explains why this weakens the argument", desc:"You go beyond identifying the flaw to explaining why it damages the argument's persuasive force.", weak:"Just naming a fallacy is not evaluation; explaining why it weakens the case is."},
+      {id:"specific", label:"Engages the specific text, not the topic", desc:"You evaluate this argument as written, not the underlying topic in general.", weak:"Substituting your view of the topic for evaluation of this argument is the most common error."},
+      {id:"neutral", label:"Doesn't simply agree or disagree with the conclusion", desc:"You can identify a flaw in an argument whose conclusion you agree with, and you do so here.", weak:"Agreeing with the conclusion doesn't make the reasoning valid. See Common Confusions #2 (Validity vs Truth)."}
     ]
   },
-  {
-    num:26, paper:"p1", type:"essay", marks:30, time:"75 minutes",
-    title:"Religion's Effect in the Modern World",
-    question:"Has religion done more good or harm in the modern world?",
-    scheme:[
-      {level:"Level 5 (25-30)",desc:"Sophisticated argument that engages religion as a category with enormous internal variation; distinguishes religious traditions, denominations, and movements; engages specific examples of religiously-motivated good and harm; engages the counterfactual question (what would have happened without religion)."},
-      {level:"Level 4 (19-24)",desc:"Clear argument engaging both sides; specific examples from multiple traditions; mostly substantiated."},
-      {level:"Level 3 (13-18)",desc:"Adequate argument; treats religion as one thing; limited examples."},
-      {level:"Level 2 (7-12)",desc:"Basic argument; vague examples; one-sided."},
-      {level:"Level 1 (1-6)",desc:"Minimal engagement; pure opinion."}
-    ],
-    answer:`Open by acknowledging that \"religion\" is not a single phenomenon. The question requires care: religion encompasses Christian, Islamic, Hindu, Buddhist, Jewish, Sikh, and many other traditions; within each, vast denominational variation; within each denomination, individuals who interpret and act differently. The same religion produces both liberation theology and the Inquisition. Generalisations are risky.\n\nThe \"more harm\" case: religion has motivated or justified significant 20th-21st century violence \u2014 Hindu-Muslim partition violence (1947), the Troubles in Northern Ireland, conflicts in the former Yugoslavia, ongoing tensions in Israel/Palestine, sectarian violence in Iraq, Syria, and Sudan, religiously-motivated terrorism across continents. Religion has often resisted scientific progress, restricted women's rights and reproductive autonomy, opposed LGBTQ+ rights, and licensed authoritarian rule in theocracies. Child abuse scandals in major religious institutions have damaged countless lives. Some religious movements have spread misinformation about climate change, vaccines, and other empirical matters.\n\nThe \"more good\" counterargument: religious traditions and institutions have provided essential social services that secular institutions have not adequately replaced \u2014 hospitals, schools, hospices, refugee aid, disaster relief. Religious motivation has driven major moral movements: abolitionism, civil rights (Martin Luther King and other clergy), opposition to apartheid (Desmond Tutu, the Anglican Church), poverty relief (Catholic Worker, religious NGOs), reconciliation efforts (Truth and Reconciliation in South Africa). Religious communities provide meaning, belonging, and ethical formation that contribute to individual flourishing for billions. Many adherents report that religion gives their lives purpose, sustains their moral commitments, and supports their families.\n\nThe sophisticated move: ask the counterfactual question. The harms attributed to religion are sometimes really harms produced by other forces (ethnic conflict, political competition, tribal identity) for which religion provided ideology rather than cause. The Bosnian war was as much about ethnicity as religion; Hindu-Muslim violence has political roots beyond theology. Without religion, would these conflicts have happened differently or not at all? Similarly, would abolitionism have succeeded without religious motivation? These are genuinely contested counterfactual questions.\n\nAddress the distribution of effects. Religion produces vastly different effects in different communities \u2014 a Quaker congregation supporting refugee resettlement and an extremist sect inciting violence are both \"religion\" but bear little resemblance to each other.\n\nThe broader \"good vs harm\" framing may itself be too crude. Religion's effects are entangled with culture, politics, history, and individual psychology in ways that make net accounting impossible. What can be said is that religious traditions are powerful forces whose effects depend enormously on how they are interpreted, institutionalised, and lived.\n\nConclude with a calibrated thesis: religion has produced both significant harm and significant good in the modern world, often through the same institutions and traditions. The serious question is not the impossible accounting but how religious traditions can be supported in their better expressions and constrained in their worse ones \u2014 a project requiring engagement with religious communities, not their dismissal.`,
-    errors:[
-      "Treating religion as one undifferentiated thing rather than examining specific traditions, denominations, and individuals",
-      "Reducing religion to either pure progress (Whig view) or pure obscurantism (New Atheist view)",
-      "Cherry-picking dramatic examples without engaging the strongest cases on the other side",
-      "Failing to ask counterfactual questions about whether harms attributed to religion would have occurred without it",
-      "Personal animus toward or for religion taking the place of analysis"
+  p2_argstrength: {
+    label: "Paper 2 \u2014 Evaluate Argument Strength",
+    paper: "Paper 2 Evaluation",
+    description: "Evaluating the overall strength of an argument, often identifying multiple flaws (6\u20137 marks)",
+    marks: 7,
+    criteria: [
+      {id:"count", label:"Identifies at least the required number of weaknesses", desc:"If the question asks for at least three weaknesses, you give three or more distinct ones.", weak:"Stopping short of the requested number caps marks."},
+      {id:"distinct", label:"Each weakness is genuinely distinct", desc:"Your weaknesses are different problems, not variations of one issue.", weak:"Three labels for the same problem is one problem identified, not three."},
+      {id:"explained", label:"Each weakness is explained, not just named", desc:"You show how each flaw works and what it damages.", weak:"Naming flaws without analysis is at most mid-band. See Autopsy #13."},
+      {id:"damage", label:"Each weakness's impact on the argument is shown", desc:"You explain why each flaw weakens the case specifically \u2014 not generically.", weak:"\u201CThis is a weakness\u201D is incomplete without explaining why."},
+      {id:"alternatives", label:"Considers alternative explanations where relevant", desc:"You acknowledge that the same observations could support different conclusions, where the argument fails to consider them.", weak:"Strong evaluation includes what the writer should have considered but didn't."},
+      {id:"neutral", label:"Evaluates the argument, not the topic", desc:"You don't substitute your opinion on the underlying issue for evaluation of the argument.", weak:"Agreeing or disagreeing with the conclusion isn't evaluation."}
     ]
   },
-  {
-    num:27, paper:"p1", type:"essay", marks:30, time:"75 minutes",
-    title:"Scientific Responsibility",
-    question:"Should scientists bear moral responsibility for how their discoveries are used?",
-    scheme:[
-      {level:"Level 5 (25-30)",desc:"Sophisticated argument distinguishing types of discovery, types of use, and types of responsibility (causal, moral, professional); specific examples (Manhattan Project, dual-use research, genetic engineering); engages institutional alternatives."},
-      {level:"Level 4 (19-24)",desc:"Clear argument with developed support; engages both sides; specific examples."},
-      {level:"Level 3 (13-18)",desc:"Adequate argument; treats responsibility and discovery as one-dimensional; some examples."},
-      {level:"Level 2 (7-12)",desc:"Basic argument; few examples; descriptive."},
-      {level:"Level 1 (1-6)",desc:"Minimal engagement."}
-    ],
-    answer:`Open by distinguishing the question's terms. \"Moral responsibility\" can mean causal involvement, blame-worthiness, prospective duty to consider consequences, or remedial obligation. \"Discovery\" ranges from foundational science (general relativity) to immediate technical innovation (specific weapons systems). \"Use\" ranges from intended applications to unforeseeable downstream consequences. Scientists' responsibility differs across these dimensions.\n\nThe \"yes, responsibility\" case: scientists are not passive observers \u2014 they choose what to research, accept funding from specific sources, and often publish findings knowing the likely uses. The Manhattan Project physicists knew they were building a weapon; many later became advocates for arms control. Researchers working on dual-use biology (gain-of-function viruses, genetic enhancement) cannot reasonably claim ignorance about possible misuse. Engineering and medical professions hold their practitioners to ethical codes that include responsibility for foreseeable consequences; science cannot exempt itself from comparable accountability.\n\nThe counterargument: the relationship between discovery and use is often loose. Einstein's relativistic mass-energy equivalence is decades upstream of nuclear weapons; was he responsible? The internet was developed for academic and military research and is now used for both education and child exploitation \u2014 are its designers responsible for its worst uses? Holding scientists responsible for all downstream uses would paralyse research, especially basic research whose applications are unforeseeable. Society allocates use decisions to other institutions (governments, regulators, markets) for good reason; collapsing this distinction conflates discovery and policy.\n\nThe sophisticated move: distinguish degrees of foreseeability and proximity. A scientist designing a specific weapon system bears more responsibility than one pursuing foundational research with eventually-realised but unforeseeable applications. A researcher publishing dual-use techniques to anonymous journals operates differently from one working within a regulated framework. Proximity to use, foreseeability of harm, alternatives available, and the researcher's institutional context all matter.\n\nAddress the institutional dimension. Individual moral responsibility is part of the picture, but institutional structures \u2014 funding sources, ethics boards, publication norms, dual-use research oversight \u2014 are arguably more important. The 1975 Asilomar Conference on recombinant DNA established a model of researcher self-regulation that has informed subsequent dual-use governance. Holding scientists individually responsible without supporting these institutional structures places unrealistic moral demands on individuals.\n\nConsider the counterfactual. If specific scientists refuse to do specific research, will others do it? In many cases yes, particularly under international competition; refusal becomes morally satisfying gesture rather than effective prevention. This argues for institutional rather than individual approaches to consequential research.\n\nConclude with a calibrated thesis: scientists bear real moral responsibility, but it is differentiated by foreseeability, proximity, and institutional context. The serious question is not whether they bear responsibility but how scientific institutions can support careful moral reasoning while preserving the freedom of inquiry that produces both progress and risk. Pure freedom-of-research absolutism and total responsibility-for-all-uses are both wrong.`,
-    errors:[
-      "Treating responsibility as binary (totally responsible vs. totally not) rather than differentiated",
-      "Listing famous cases without analysing the specific responsibility relationships",
-      "Ignoring the difference between foundational research and applied development",
-      "Missing the institutional dimension \u2014 ethics boards, dual-use review, publication norms",
-      "Pure absolutism in either direction without engaging the strongest version of the opposing view"
+  p2_language: {
+    label: "Paper 2 \u2014 Analyse Language or Stance",
+    paper: "Paper 2 Evaluation",
+    description: "Analysing the writer's use of language, rhetorical techniques, or evaluating the writer's stance (5\u20136 marks)",
+    marks: 6,
+    criteria: [
+      {id:"specific", label:"Identifies specific techniques", desc:"You name specific devices (metaphor, hyperbole, juxtaposition, ad hominem, etc.), not generic descriptions like \u201Cuses persuasive language.\u201D", weak:"Vague descriptions cap marks at mid-band. See Common Confusions #8 (Simile vs Metaphor); Question Bank Q17."},
+      {id:"named", label:"Names techniques accurately", desc:"You distinguish similes from metaphors, irony from sarcasm, ad hominem from straw man, etc.", weak:"Misnamed techniques are worse than unnamed ones. See Common Confusions #8\u20139."},
+      {id:"effect", label:"Explains the effect of each technique", desc:"You go beyond identifying techniques to explaining what they do for the writer's argument.", weak:"\u201CThe writer uses metaphor\u201D is identification, not analysis. Analysis explains what the metaphor accomplishes."},
+      {id:"cumulative", label:"Engages cumulative effect", desc:"You show how techniques work together, not just as a list of separate features.", weak:"Listing techniques separately misses how they cumulatively position the reader. See Question Bank Q17."},
+      {id:"stance", label:"Distinguishes stance from description", desc:"You identify the writer's position and how the language constructs it, not just what the passage says.", weak:"Reporting content without analysing rhetorical positioning is surface reading. See Autopsy #11."},
+      {id:"engage", label:"Analyses, doesn't just respond to topic", desc:"You evaluate how the writer makes their case, not your own view of the topic.", weak:"Personal stance on the topic is irrelevant to language analysis."}
     ]
   },
-  {
-    num:28, paper:"p1", type:"essay", marks:30, time:"75 minutes",
-    title:"Generational Claims",
-    question:"\u201CYoung people today face challenges no previous generation has known.\u201D How far do you agree?",
-    scheme:[
-      {level:"Level 5 (25-30)",desc:"Sophisticated engagement with the claim's structure; distinguishes scale, novelty, and continuity of challenges; compares specific challenges (climate, AI, economic precarity) with those of previous generations (wars, pandemics, depression); engages how generations are constructed."},
-      {level:"Level 4 (19-24)",desc:"Clear argument engaging both sides; specific examples from current and historical generations."},
-      {level:"Level 3 (13-18)",desc:"Adequate argument; treats challenges as either unique or generic; some examples."},
-      {level:"Level 2 (7-12)",desc:"Basic argument; vague comparisons; one-sided."},
-      {level:"Level 1 (1-6)",desc:"Minimal engagement."}
-    ],
-    answer:`Open by examining the claim's structure. It contains two layers: that young people face significant challenges, and that those challenges are unprecedented. The first is almost certainly true; the second is more contested and worth examining carefully.\n\nThe \"unprecedented\" case: today's young people face genuine novel challenges. Climate change is an existential threat with unprecedented timescales \u2014 previous generations faced wars and pandemics, but not the prospect of irreversible planetary degradation determining the conditions of long lives. Artificial intelligence may displace or transform a substantially larger range of human work than any previous technological change. Economic precarity has accompanied declining home ownership, rising rent burdens, and student debt at levels previous generations did not face. Mental health among young people has measurably worsened in recent decades. Social media has rewired social relationships in ways without historical parallel.\n\nThe counterargument: previous generations faced challenges that current young people, including those making this claim, would find unimaginable. Young people in 1939-1945 faced industrial-scale war and the genocide of fellow young people across whole continents. The generation entering adulthood in 1914 lost an unprecedented proportion of its young men in trench warfare. Young people in the 1930s entered a Great Depression that destroyed family livelihoods. Generations in many parts of the world have faced famine, ethnic cleansing, polio, smallpox, and conditions of poverty that would shock contemporary discussions of \"precarity.\" The Cold War generations grew up with credible nuclear annihilation as a daily possibility. Treating today's challenges as uniquely severe risks historical illiteracy.\n\nThe sophisticated move: distinguish scale, novelty, and persistence. Some of today's challenges are genuinely novel (the specific configuration of AI risk, the planetary timescale of climate change). Others are continuations of long-running patterns under new conditions (economic precarity is unusual in post-1945 Western context, normal historically). Others are amplifications of existing problems through new media (mental health concerns, political polarisation). Each category supports different conclusions about \"unprecedented\" status.\n\nAddress how generations are constructed. \"Young people today\" is itself a heterogeneous category \u2014 the challenges facing affluent youth in stable democracies differ enormously from those facing youth in conflict zones, displaced populations, and low-income countries. The default frame of generational discussion is often a particular slice of one cultural context.\n\nConsider the political function of the claim. Asserting unprecedented challenges can be a way to claim attention, support, or resources that previous generations did not extract. It can also be a way to dismiss older generations' experience as irrelevant. Both moves have political consequences.\n\nConclude with a calibrated thesis: today's young people face significant challenges, some of which are genuinely novel in important respects. But the framing of \"unprecedented\" is partly empirical (climate, AI) and partly comparative-rhetorical (precarity, mental health). The serious question is not whether challenges are unprecedented but how each specific challenge compares to its historical analogues and what response is warranted in each case.`,
-    errors:[
-      "Either accepting the \"unprecedented\" claim or rejecting it without examining its structure",
-      "Listing modern challenges without comparing them to historical ones",
-      "Failing to distinguish scale, novelty, and amplification dimensions",
-      "Treating \"young people today\" as homogeneous globally",
-      "Missing the rhetorical/political function of generational claims of unique hardship"
-    ]
-  },
-
-  // ============ PAPER 2 COMPREHENSION (Q29-34) ============
-  {
-    num:29, paper:"p2", type:"comprehension", marks:5, time:"10 minutes",
-    title:"Identifying a Nuanced Position",
-    extract:"The welfare state debate has long been conducted as if there were only two positions: those who want to expand it and those who want to dismantle it. This binary obscures what most thoughtful observers actually believe. Welfare systems can be too generous in some respects and too stingy in others; well-designed in their employment incentives and badly designed in their treatment of single parents; sustainable in periods of growth and unsustainable when demographics shift. Defending the welfare state from its enemies and criticising it from a friendly position are not contradictory activities. They are what serious engagement with the institution actually looks like.",
-    question:"In your own words, identify the writer's main position on welfare state debates. [5 marks]",
-    scheme:[
-      {level:"4-5",desc:"Captures the nuanced position fully: the writer rejects the binary expand/dismantle framing; argues that welfare systems can be simultaneously good in some aspects and flawed in others; defending the welfare state and criticising it from a sympathetic position are compatible \u2014 indeed both are required for serious engagement."},
-      {level:"2-3",desc:"Captures part of the position \u2014 e.g., only that the writer rejects binaries, or only that they support engagement with flaws."},
-      {level:"0-1",desc:"Misidentifies the position or quotes directly."}
-    ],
-    answer:`The writer rejects the polarised framing of welfare state debates that treats the only options as wholesale defence or wholesale opposition. Their position is that thoughtful engagement requires accepting complexity: welfare systems can be simultaneously well-designed in some areas and poorly designed in others, sustainable under some economic conditions and unsustainable under others. Critically, the writer holds that defending the welfare state against fundamental attack and criticising its specific failures are not opposing activities but complementary parts of serious engagement with the institution. The writer's main position is therefore a substantive third option \u2014 sympathetic but critical engagement \u2014 distinct from both polar camps.`,
-    errors:[
-      "Reporting only one half of the position (rejection of binary, or sympathetic-critic stance, but not both)",
-      "Treating the writer as taking a side in the binary they are explicitly rejecting",
-      "Quoting the passage directly rather than paraphrasing",
-      "Adding personal opinion about welfare states",
-      "Missing the writer's key claim that defence and criticism are compatible rather than contradictory"
-    ]
-  },
-  {
-    num:30, paper:"p2", type:"comprehension", marks:6, time:"12 minutes",
-    title:"Distinguishing Claim from Evidence",
-    extract:"Standardised testing has failed as a measure of educational quality. The tests reward narrow forms of cognition while neglecting the breadth of human intelligence \u2014 creativity, character, practical wisdom, ethical reasoning. They generate intense student anxiety, with reported rates of test-related stress rising sharply over the past decade. They consume teaching time that could be devoted to actual learning. And the results they produce are statistically unreliable at the individual level, as the variability between tests for the same student frequently exceeds the meaningful differences between students. Yet entire educational systems are now organised around these instruments.",
-    question:"Identify the writer's main claim, and list the four supporting reasons given for it. [6 marks]",
-    scheme:[
-      {level:"5-6",desc:"Correctly identifies the main claim (standardised testing has failed as a measure of educational quality) AND lists all four supporting reasons in own words: narrow cognitive focus; anxiety/stress effects; consumption of teaching time; statistical unreliability at individual level."},
-      {level:"3-4",desc:"Identifies claim and three reasons, or four reasons but conflates claim with one of them."},
-      {level:"1-2",desc:"Identifies claim and fewer than three reasons, or quotes rather than paraphrasing."},
-      {level:"0",desc:"Misidentifies claim or fails to distinguish from evidence."}
-    ],
-    answer:`The writer's main claim is that standardised testing has failed as a measure of educational quality.\n\nThe writer offers four supporting reasons for this claim:\n\nFirst, the tests assess only a narrow form of cognition and neglect broader human intelligence \u2014 specifically including creativity, character, practical wisdom, and ethical reasoning.\n\nSecond, the tests cause significant student anxiety, with stress related to testing reportedly rising sharply over the past decade.\n\nThird, the tests consume teaching time that could otherwise be devoted to actual learning.\n\nFourth, the test results are statistically unreliable at the individual student level, since the variability between successive tests for the same student often exceeds any meaningful difference between students.`,
-    errors:[
-      "Confusing the main claim with one of the supporting reasons",
-      "Listing fewer than four reasons or merging reasons together",
-      "Quoting passages directly rather than paraphrasing",
-      "Adding personal opinion about testing rather than reporting the writer's view",
-      "Treating examples within reasons as separate reasons (e.g., listing \"creativity\" and \"character\" as two reasons rather than one reason about cognitive narrowness)"
-    ]
-  },
-  {
-    num:31, paper:"p2", type:"comprehension", marks:6, time:"12 minutes",
-    title:"Comparing Positions Within an Extract",
-    extract:"The debate over remote work has divided employers and workers into camps that largely talk past each other. Employers worry about company culture, mentoring, accidental collaboration, and the value of office space they have already paid for. They are not always wrong about these concerns, but they are usually arguing from anecdote rather than evidence. Workers, for their part, point to the time saved on commuting, the absence of office distractions, and the benefits of being present for their families. They are not always right that productivity is unchanged, but they are increasingly supported by data showing it is at least as high as in office settings. The truth is that both sides have substantive points; the failure has been the lack of serious data-driven comparison.",
-    question:"Compare the positions of employers and workers as presented by the writer. Whose case does the writer treat as stronger, and why? [6 marks]",
-    scheme:[
-      {level:"5-6",desc:"Captures both positions fully \u2014 employer concerns (culture, mentoring, accidental collaboration, sunk office cost) and worker arguments (commute time, fewer distractions, family presence). Identifies that the writer treats the worker case as somewhat stronger because it is increasingly supported by productivity data, while employer concerns rely on anecdote. Notes the writer's overall fair-minded framing."},
-      {level:"3-4",desc:"Captures both positions but misses the writer's comparative judgement, or captures the comparative judgement without fully representing both sides."},
-      {level:"1-2",desc:"Partial summary of one or both positions; misses the writer's evaluation."},
-      {level:"0",desc:"Misrepresents the positions or treats them as identical."}
-    ],
-    answer:`The writer presents both sides of the remote work debate with care.\n\nEmployers' concerns: they worry about the effects of remote work on company culture, on mentoring of newer staff, on the kind of accidental collaboration that can happen when colleagues share physical space, and on the value of office space they have already invested in.\n\nWorkers' arguments: they point to time saved by not commuting, the relative absence of office-based distractions, and the benefits of being physically present for their families during work hours.\n\nIn terms of comparative judgement, the writer treats both sides as having substantive points but suggests the worker case is somewhat stronger in evidential terms. The writer characterises employer concerns as \"usually arguing from anecdote rather than evidence,\" while the worker claim about productivity is \"increasingly supported by data showing it is at least as high as in office settings.\" The writer concedes that workers are \"not always right\" about productivity, but the empirical support tilts toward their case. The writer's overall framing is even-handed but identifies the lack of \"serious data-driven comparison\" as the real failure on both sides.`,
-    errors:[
-      "Summarising one position thoroughly while neglecting the other",
-      "Missing the writer's evaluative judgement that the worker case has stronger empirical support",
-      "Treating the writer as endorsing one side wholesale rather than offering nuanced comparison",
-      "Failing to note the writer's concession that workers are \"not always right\"",
-      "Adding personal opinion about remote work rather than analysing the writer's framing"
-    ]
-  },
-  {
-    num:32, paper:"p2", type:"comprehension", marks:5, time:"10 minutes",
-    title:"Explaining an Apparent Paradox",
-    extract:"Connection technology has produced a generation that is simultaneously the most connected and the most isolated in modern history. The same students who maintain hundreds of online friendships report unprecedented rates of loneliness. Communities in which everyone can reach everyone instantly are communities in which fewer people know their neighbours' names. The technology that promised to abolish distance has somehow generated new forms of it. This is not a contradiction to be resolved but a paradox to be understood.",
-    question:"Explain the paradox the writer identifies. Why does the writer argue this is \"not a contradiction to be resolved but a paradox to be understood\"? [5 marks]",
-    scheme:[
-      {level:"4-5",desc:"Captures the paradox: technological connection coexists with experienced isolation; quantity of online contact correlates with qualitative loneliness. Explains the writer's distinction: a contradiction implies one claim must be false, but here both are simultaneously true and require explanation rather than resolution. The paradox identifies a feature of how the technology actually works, not a logical error."},
-      {level:"2-3",desc:"Identifies the paradox without explaining the contradiction/paradox distinction; or explains the distinction without grounding it in the specific paradox."},
-      {level:"0-1",desc:"Treats the paradox as a simple contradiction or fails to engage with the writer's distinction."}
-    ],
-    answer:`The paradox the writer identifies is that the same technological developments that have produced unprecedented levels of social connection have coincided with unprecedented levels of social isolation. The young people maintaining hundreds of online friendships are the same population reporting record loneliness; the communities with universal instant communication are the ones where fewer people know their neighbours.\n\nThe writer's claim that this is \"not a contradiction to be resolved but a paradox to be understood\" rests on a meaningful distinction. A contradiction implies one of the two claims must be false \u2014 if connection technology truly produces connection, it should not also produce isolation. A paradox, by contrast, is an apparent contradiction that holds up under examination and points to something genuine about reality. The writer argues that both claims are simultaneously true: the technology does produce real connection AND it produces real isolation. This is not a logical puzzle requiring one claim to be revised but a substantive feature of how the technology actually shapes social experience. The writer's framing invites readers to investigate the mechanisms producing both effects rather than dismiss one or the other.`,
-    errors:[
-      "Treating the paradox as a simple contradiction the writer hasn't noticed",
-      "Restating that connection coexists with loneliness without explaining the writer's distinction between contradiction and paradox",
-      "Resolving the paradox prematurely by dismissing one side (e.g., \"online friendships aren't real\")",
-      "Adding personal opinion about social media rather than explaining the writer's framing",
-      "Missing the writer's invitation to investigate mechanisms rather than dismiss the puzzle"
-    ]
-  },
-  {
-    num:33, paper:"p2", type:"comprehension", marks:5, time:"10 minutes",
-    title:"Identifying Tone Shifts",
-    extract:"For the first six months of the campaign, observers were charmed. Here was a candidate willing to speak honestly, to acknowledge complexity, to admit uncertainty. Voters who had grown weary of slick professional politicians flocked to the rallies and recorded the unscripted moments. Then, slowly, the cracks began to show. The honesty was selective, the acknowledgements of complexity disappeared whenever pressed for specifics, and the admissions of uncertainty were always about other people's questions, never one's own. By the time the polling shifted, the very qualities that had drawn supporters now seemed less like authenticity and more like a particular kind of performance.",
-    question:"Identify the tone of the passage and explain how it shifts. [5 marks]",
-    scheme:[
-      {level:"4-5",desc:"Identifies the overall tone (e.g., reflective, disillusioned, gently sceptical); identifies the SHIFT from initial favourable framing (\"charmed,\" \"honesty,\" \"complexity\") to subsequent critical reframing (\"selective,\" \"cracks,\" \"performance\"); explains how the writer engineers the shift through the structure (first six months / then / by the time) and through reframing the same qualities."},
-      {level:"2-3",desc:"Identifies the shift but doesn't analyse how it is engineered, or identifies a single tone without acknowledging the shift."},
-      {level:"0-1",desc:"Mistakes the tone or fails to identify shift."}
-    ],
-    answer:`The passage's overall tone is reflective and gently disillusioned \u2014 the writer is recounting a process of revised judgement rather than expressing immediate emotion. There is no direct anger; the disappointment is processed and reflective.\n\nThe tone shifts noticeably across the passage. The opening section adopts a sympathetic, almost admiring framing: observers were \"charmed\"; the candidate offered \"honesty,\" acknowledgement of \"complexity,\" admission of \"uncertainty\"; voters had \"grown weary of slick professional politicians\" and \"flocked\" to the candidate. This early framing presents the candidate's qualities positively and the supporters' enthusiasm as understandable.\n\nThe shift begins with the phrase \"Then, slowly, the cracks began to show.\" The same qualities are now reframed: the honesty is \"selective,\" the acknowledgements of complexity \"disappeared,\" and the admissions of uncertainty are \"never one's own.\" The closing sentence completes the shift by recasting what initially appeared as \"authenticity\" as \"a particular kind of performance.\"\n\nThe writer engineers this shift through deliberate structural cues (\"for the first six months,\" \"then, slowly,\" \"by the time\") and through systematic reframing of the same observed qualities. The tone never becomes overtly hostile; it remains measured, which makes the critical conclusion more rhetorically effective.`,
-    errors:[
-      "Identifying a single tone without acknowledging the shift",
-      "Describing the shift without analysing how the writer engineers it",
-      "Confusing tone (writer's attitude) with register (formality level)",
-      "Adding political opinion about the candidate type described",
-      "Missing the rhetorical effect of measured tone making the critical reframe more powerful"
-    ]
-  },
-  {
-    num:34, paper:"p2", type:"comprehension", marks:5, time:"10 minutes",
-    title:"Identifying Overall Purpose",
-    extract:"Defenders of human spaceflight have used the same arguments since the 1960s: scientific discovery, technological spinoff, inspirational value, and the long-term need to spread the species beyond Earth. Each is real, and none is sufficient. The science can be done more cheaply by robots, the spinoff claims are largely retrospective rationalisation, the inspiration is shared by fewer people each decade, and the species-spreading argument applies to timescales that should embarrass anyone making it in a budget hearing. The case for human spaceflight today is real, but it must be made on different grounds: as cultural achievement, as practice for harder challenges, and as the visible demonstration of what cooperative ambition can produce. The old arguments deserve retirement.",
-    question:"Identify the writer's overall purpose in this passage. [5 marks]",
-    scheme:[
-      {level:"4-5",desc:"Captures the multi-layered purpose: the writer is NOT arguing against human spaceflight but FOR a different rationale; the writer aims to retire stale traditional arguments while replacing them with stronger contemporary ones (cultural achievement, practice for harder challenges, demonstrated cooperation). The purpose is constructive critique within the pro-spaceflight position."},
-      {level:"2-3",desc:"Identifies the writer as critical of traditional arguments OR as supportive of spaceflight, but not both."},
-      {level:"0-1",desc:"Misidentifies the writer as opposed to human spaceflight, or treats the purpose as straightforward defence."}
-    ],
-    answer:`The writer's overall purpose is constructive critique within the pro-spaceflight camp \u2014 to retire traditional justifications for human spaceflight while proposing better ones. The writer is not opposed to human spaceflight; they explicitly state that \"the case for human spaceflight today is real.\" Their target is the four standard arguments that have been used since the 1960s (scientific discovery, technological spinoff, inspirational value, species spreading), which they argue have become weak or obsolete.\n\nIn place of these stale arguments, the writer proposes three contemporary alternatives: human spaceflight as cultural achievement, as preparation for harder future challenges, and as visible demonstration of cooperative ambition. The closing sentence captures the purpose succinctly: \"the old arguments deserve retirement.\" The writer is making a friendly critique \u2014 supporting the activity while demanding better justifications for it.\n\nThe purpose is therefore neither pure attack nor pure defence but reformist advocacy: improving the case for an activity the writer supports by sharpening its rationale.`,
-    errors:[
-      "Misidentifying the writer as opposed to human spaceflight",
-      "Treating the purpose as simple defence without recognising the critique of traditional arguments",
-      "Missing the writer's proposed alternative justifications",
-      "Adding personal opinion about space programmes rather than identifying the writer's purpose",
-      "Treating the dismantling of traditional arguments as the only purpose, missing the constructive replacement"
-    ]
-  },
-
-  // ============ PAPER 2 EVALUATION (Q35-38) ============
-  {
-    num:35, paper:"p2", type:"evaluation", marks:7, time:"15 minutes",
-    title:"Multiple Reasoning Flaws",
-    extract:"Anyone who opposes the new immigration policy is anti-American. Every previous attempt to control the borders has been blocked by these same opponents, and look where we are now: record numbers crossing illegally, communities overwhelmed, criminal networks profiting. Either we secure the border now, or we admit that we don't believe in borders at all. The polls show 60% of Americans want stronger enforcement, and 60% can't be wrong about what their country needs.",
-    question:"Identify at least three distinct reasoning flaws in this argument and explain why each weakens the case. [7 marks]",
-    scheme:[
-      {level:"6-7",desc:"Identifies and explains at least three (often four or five) distinct fallacies: ad hominem (\"anyone who opposes is anti-American\"); false dichotomy (\"either secure or don't believe in borders\"); appeal to popularity / argumentum ad populum (\"60% can't be wrong\"); possibly post hoc / false attribution (linking previous opposition to current outcomes); explains how each undermines the case."},
-      {level:"4-5",desc:"Identifies three flaws but explanations of why they weaken are limited; or two well-explained."},
-      {level:"2-3",desc:"Identifies one or two flaws without fully explaining."},
-      {level:"0-1",desc:"Treats the argument as strong, or misidentifies the flaws."}
-    ],
-    answer:`The argument contains multiple distinct reasoning flaws.\n\nFirst, ad hominem. The opening claim that \"anyone who opposes the new immigration policy is anti-American\" attacks opponents' character rather than their arguments. The strength or weakness of immigration policy positions is independent of whether their advocates love their country. By characterising disagreement as disloyalty, the argument tries to discredit opponents without engaging their reasoning. This weakens the case by substituting smear for argument and making rational disagreement impossible within the writer's terms.\n\nSecond, false dichotomy. The claim \"either we secure the border now, or we admit that we don't believe in borders at all\" presents only two extreme options when many intermediate positions exist: different enforcement levels, different mixes of enforcement and legal pathways, different policy designs entirely. The false dichotomy weakens the case by foreclosing the actual range of policy choices and forcing readers into a binary they have not consented to.\n\nThird, appeal to popularity (argumentum ad populum). The claim that \"60% can't be wrong about what their country needs\" treats majority opinion as evidence of correctness. Majorities have been wrong about many things throughout history (slavery, women's suffrage, segregation). Public opinion polls measure preferences, not policy effectiveness. This weakens the case by substituting head-counting for substantive policy analysis.\n\nFourth, the argument implies a post hoc connection between past opposition and present problems (\"every previous attempt has been blocked by these same opponents, and look where we are\"). The implication is that current outcomes are caused by the opposition. This conflates correlation with causation \u2014 outcomes have multiple causes, and identifying past opposition as the principal cause requires evidence not provided.\n\nFifth, the argument loads emotive language throughout (\"overwhelmed,\" \"criminal networks profiting\") to substitute alarm for analysis.\n\nCollectively, these flaws weaken the case because they prevent any of the substantive policy questions from being addressed. A reader who finds themselves in agreement with the conclusion should still recognise that no actual case has been made.`,
-    errors:[
-      "Identifying fewer than three distinct flaws when the question requires at least three",
-      "Naming fallacies (\"ad hominem\") without explaining how they weaken the specific argument",
-      "Agreeing or disagreeing with the conclusion as if that addressed the question",
-      "Confusing fallacies (e.g., calling ad populum \"appeal to authority\")",
-      "Missing how the flaws work together to prevent substantive engagement with the actual policy questions"
-    ]
-  },
-  {
-    num:36, paper:"p2", type:"evaluation", marks:6, time:"12 minutes",
-    title:"Evaluating Statistical Claims",
-    extract:"Crime is exploding in our cities. Reports of theft have risen 23% over the last year. Violent assaults are up 15%. Carjackings have nearly doubled. The numbers are clear and the trend undeniable. Politicians who deny the crime problem are insulting our intelligence \u2014 just look at the data.",
-    question:"Evaluate this statistical argument. Identify at least three problems with the way evidence is used. [6 marks]",
-    scheme:[
-      {level:"5-6",desc:"Identifies at least three problems: base rates not given (23% increase of what \u2014 a small or large number?); short timeframe (one year is too short to establish a trend, especially against pandemic-disrupted baseline); selection of categories (cherry-picked categories rising; what about categories falling?); reporting vs incidence confusion; lack of context (long-term trends, comparisons across cities); the move from data to inference (\"explosion\" is editorial, not statistical)."},
-      {level:"3-4",desc:"Identifies two problems with reasonable explanation."},
-      {level:"1-2",desc:"Identifies one problem or misidentifies statistical issues."},
-      {level:"0",desc:"Accepts the argument as supported by data."}
-    ],
-    answer:`The statistical argument has several significant problems.\n\nFirst, base rates are absent. A 23% increase in theft reports could mean either a substantial absolute change or a trivial one, depending on the starting point. An increase from 100 to 123 reports is qualitatively different from an increase from 10,000 to 12,300. Without base rates, the percentages are uninterpretable.\n\nSecond, the timeframe is too short to establish a trend. One year of data tells us about a single year, not about a long-term pattern. If the comparison baseline year was unusually low (for example, a pandemic year when many crimes went unreported or did not occur), increases the following year may reflect return to normal rather than \"explosion.\" Longer-term trend data (5-10 years) would be needed to support claims about whether crime is genuinely rising.\n\nThird, the categories appear cherry-picked. The argument cites three categories that have risen, but says nothing about categories that may have fallen. National crime data typically shows diverse patterns across categories; selecting only the rising ones produces a misleading picture. A fair argument would address the full crime portfolio, not its most alarming components.\n\nFourth, there is a possible confusion between reported crime and actual crime. Reports of crime can rise because actual crime has risen, OR because reporting rates have improved, OR because categorisation has changed. The argument treats reports as identical to incidence without examining this distinction.\n\nFifth, the move from data to inference is editorial rather than statistical. \"Crime is exploding\" is the writer's characterisation. Even taken at face value, single-year increases of 15-23% in certain categories do not constitute an \"explosion\" \u2014 that word imports an evaluation the numbers themselves do not warrant.\n\nFinally, the argument ends by dismissing opponents (\"insulting our intelligence\") rather than engaging the substantive question of whether the data shows what the writer claims it shows. This rhetorical move substitutes for the methodological scrutiny the argument needs.`,
-    errors:[
-      "Accepting the percentages as conclusive evidence without examining base rates and timeframes",
-      "Identifying fewer than three problems",
-      "Confusing critique of the statistical use with critique of the underlying topic (crime)",
-      "Missing the reporting-vs-incidence distinction",
-      "Failing to notice the editorial language (\"exploding\") doing work that the numbers don't support"
-    ]
-  },
-  {
-    num:37, paper:"p2", type:"evaluation", marks:6, time:"12 minutes",
-    title:"Evaluating Logical Consistency",
-    extract:"Free speech is the cornerstone of democracy. No one should ever be silenced for expressing their views, even if those views are deeply unpopular. The recent move to restrict hate speech is a dangerous attack on this fundamental freedom. At the same time, the spread of disinformation has reached intolerable levels, and platforms have a clear duty to remove false content before it can cause harm. Anyone who genuinely cares about democracy must recognise both that speech must remain free and that misleading content must be controlled.",
-    question:"Evaluate the logical consistency of this argument. Identify the central tension and assess whether the writer resolves it. [6 marks]",
-    scheme:[
-      {level:"5-6",desc:"Identifies the central inconsistency: the writer simultaneously claims that speech should be unrestricted (\"no one should ever be silenced\") AND that some speech (disinformation, by implication hate speech the writer dismisses) must be controlled. Notes that the writer attempts no resolution, simply asserts both positions. Identifies how the inconsistency damages the argument: the position is incoherent unless additional distinctions are introduced that the writer does not provide."},
-      {level:"3-4",desc:"Identifies the tension but does not fully analyse the absence of resolution."},
-      {level:"1-2",desc:"Notes some tension without identifying its centrality."},
-      {level:"0",desc:"Treats the argument as coherent."}
-    ],
-    answer:`The argument contains a central logical inconsistency that the writer does not resolve.\n\nThe writer makes two claims that cannot both be true as stated:\n\nFirst, that \"no one should ever be silenced for expressing their views, even if those views are deeply unpopular\" \u2014 a position of speech absolutism that admits no exceptions. The writer cites this principle to oppose restrictions on hate speech, characterising such restrictions as \"a dangerous attack\" on free speech.\n\nSecond, that platforms \"have a clear duty to remove false content before it can cause harm\" \u2014 a position that explicitly permits silencing speech (specifically, disinformation) for the sake of preventing harm.\n\nThese positions are incompatible at the level the writer states them. Removing content IS silencing; preventing speech from reaching audiences IS restriction; the writer cannot consistently hold both that no one should ever be silenced and that disinformation must be removed.\n\nThe writer attempts no resolution. The closing sentence presents the two positions as if they were compatible (\"both that speech must remain free and that misleading content must be controlled\"), but mere juxtaposition does not produce consistency. To resolve the tension, the writer would need to introduce additional distinctions: perhaps between protected categories (political speech) and unprotected categories (false factual claims); perhaps between state restriction and platform moderation; perhaps between content removal and content labelling. The writer introduces none of these.\n\nThe inconsistency damages the argument because it makes the writer's actual position unclear. A reader who agrees with disinformation removal must conclude that the absolute principle was overstated; a reader who agrees with the absolute principle must conclude that disinformation removal is inconsistent with it. Either way, the writer's coalition (everyone who \"genuinely cares about democracy\") collapses because the unifying claim contains a contradiction.\n\nThis kind of inconsistency is common in real free-speech debates. A more coherent argument would acknowledge the tension and propose principled distinctions to navigate it.`,
-    errors:[
-      "Treating the argument as consistent or merely \"complicated\"",
-      "Identifying the tension without explaining why it damages the argument",
-      "Resolving the tension on the writer's behalf rather than evaluating what the writer actually does",
-      "Adding personal opinion about free speech vs hate speech rather than evaluating the writer's logic",
-      "Missing that the closing sentence asserts compatibility without producing it"
-    ]
-  },
-  {
-    num:38, paper:"p2", type:"evaluation", marks:6, time:"12 minutes",
-    title:"Evaluating Selective Evidence",
-    extract:"Climate scientists have made dramatic predictions for decades, and the predictions have repeatedly failed. In the 1970s, scientists warned of imminent ice ages. In the 1980s, they warned that fossil fuel reserves would be exhausted within a generation. In the 1990s, they predicted rising sea levels that would inundate coastal cities by 2020. Yet here we are: no ice age, plenty of oil, and our coastal cities largely intact. The repeated failure of these predictions suggests we should be sceptical of the current alarming forecasts about climate change.",
-    question:"Evaluate this argument. Pay particular attention to how the writer selects and uses evidence. [6 marks]",
-    scheme:[
-      {level:"5-6",desc:"Identifies multiple problems with the evidence selection: (1) cherry-picking individual fringe predictions rather than mainstream scientific consensus; (2) some claims are simply false or distorted (1970s ice age was not the scientific consensus; 1990s sea level predictions were typically century-scale, not 2020); (3) ignores the predictions that DID come true (CO2 rise, warming, glacier melt, extreme weather); (4) treats individual predictions as if they were the central claims of climate science; (5) the logic is fallacious even if the predictions were as described \u2014 past prediction errors do not invalidate independent current evidence."},
-      {level:"3-4",desc:"Identifies two clear problems with reasonable explanation."},
-      {level:"1-2",desc:"Identifies one problem; accepts most of the argument."},
-      {level:"0",desc:"Treats the argument as a fair characterisation of climate science."}
-    ],
-    answer:`The argument is built on systematically distorted use of evidence.\n\nFirst, the writer cherry-picks individual claims that were never the mainstream scientific consensus. The \"1970s ice age\" claim refers to a small number of researchers and popular magazine articles; the actual scientific literature of the 1970s already showed substantially more publication on warming than cooling. Citing fringe positions and characterising them as the consensus is a distortion.\n\nSecond, some of the cited predictions are mischaracterised. Sea level rise predictions from the 1990s were typically expressed in century-scale projections (by 2100, not 2020); attributing year-2020 inundation predictions to climate scientists distorts what was actually claimed. The fossil fuel exhaustion claim mixed industry projections, environmental writing, and limited specific scientific arguments \u2014 the writer aggregates these into a single \"prediction\" that climate science did not collectively make.\n\nThird, the writer's evidence is purely negative \u2014 listing claimed prediction failures while ignoring predictions that DID come true. Climate science has correctly predicted: continued rise in atmospheric CO2 concentrations, continued warming of average global temperature, accelerating ice loss in Arctic and Antarctic regions, increasing frequency of certain extreme weather events. A balanced evaluation of climate-science prediction quality would include both successes and failures, not only the supposed failures.\n\nFourth, the writer treats individual predictions as if they were the central claims of climate science. The science is built on physical mechanisms (greenhouse gas radiative forcing) and observational evidence (ice cores, temperature records, ocean measurements) that stand or fall on their own merits. Individual scientists' predictions, even when wrong, do not invalidate the underlying physical understanding.\n\nFifth, even if the writer's characterisation of past predictions were accurate, the logic would still be fallacious. Past prediction failures in any discipline do not invalidate current independent evidence. If a doctor predicted in 1980 that you would develop a particular condition by 2020, and you did not, that does not mean your current symptoms today are unrelated to disease.\n\nThe argument is rhetorically effective because each specific claim sounds plausible to readers without specialist knowledge, but the cumulative effect distorts what climate science actually predicted, ignores what it correctly predicted, and applies a fallacious logic to its conclusion.`,
-    errors:[
-      "Accepting the writer's characterisation of past predictions without checking accuracy",
-      "Identifying only one or two problems",
-      "Failing to notice the absence of predictions that came true",
-      "Confusing critique of the argument with personal stance on climate science",
-      "Missing the deeper logical point: past prediction errors don't invalidate current independent evidence"
-    ]
-  },
-
-  // ============ PAPER 2 DIRECTED WRITING (Q39-40) ============
-  {
-    num:39, paper:"p2", type:"writing", marks:15, time:"30 minutes",
-    title:"News Article",
-    extract:"Local food bank use in the city has increased by 34% over the past two years. Of those receiving support, 41% are now in employment \u2014 a category that did not previously rely on food assistance in significant numbers. Volunteers report that many new clients arrive with apparent embarrassment, often during evening hours when fewer people are present. Funding for the largest bank has been flat in cash terms over the same period, meaning real-terms funding has fallen as both demand and food costs have risen. The director of the largest local bank declined to call the situation a crisis publicly but said privately that they are turning people away on certain days for the first time in their history.",
-    question:"Using the information in the extract, write a news article reporting on the situation at the city's food banks. Write in an appropriate journalistic register, with an opening that captures the key facts and a structure suitable for newspaper publication. (200-250 words.) [15 marks]",
-    scheme:[
-      {level:"13-15",desc:"Strong journalistic register (headline-style opening, attribution, balanced reporting, paragraph structure); uses source material accurately; integrates statistics smoothly; captures the key human dimensions (working clients, embarrassment, declined-to-comment director); appropriate tone (informative, not editorialising); meets word limit."},
-      {level:"9-12",desc:"Mostly journalistic register; uses most source material; reasonable structure."},
-      {level:"5-8",desc:"Some journalistic features; uses some source; tone uneven."},
-      {level:"1-4",desc:"Lacks journalistic register; minimal use of source; editorialising or polemical."}
-    ],
-    answer:`WORKING POOR DRIVING SURGE IN FOOD BANK USE, NEW FIGURES SHOW\n\nThe number of residents relying on the city's food banks has risen 34 per cent over the past two years, according to figures released this week, with a striking shift in who is now turning up for help.\n\nForty-one per cent of those receiving food assistance are currently in paid employment, a category that did not previously feature significantly among food bank users. Many arrive during evening hours, volunteers report, apparently to avoid being seen.\n\n\"They come in embarrassed,\" said one volunteer, who asked not to be named. \"They are working people. They never thought they would be here.\"\n\nThe surge in demand has come as funding has remained flat in cash terms, meaning the city's largest food bank has seen real-terms funding fall while food costs have continued to rise. The combined pressure has now produced what staff describe as a first in their operating history: certain days when clients are being turned away.\n\nThe director of the largest local food bank declined to characterise the situation as a crisis publicly but acknowledged privately that capacity limits are now being reached regularly.\n\nThe figures raise wider questions about whether employment alone is sufficient to keep families fed in the current cost-of-living environment, and whether the food bank network, originally designed as emergency provision, has effectively become a routine supplement to working-poor household budgets.\n\nThe city council has not yet commented on the figures.`,
-    errors:[
-      "Wrong register \u2014 first-person commentary, editorialising, or polemical tone",
-      "Burying the lead \u2014 failing to put the key facts in the opening paragraph",
-      "Direct quotation of the source extract instead of paraphrasing into journalistic prose",
-      "Missing the human dimension (volunteer testimony, embarrassment, declined comment)",
-      "Adding fabricated quotes or facts beyond what the source provides"
-    ]
-  },
-  {
-    num:40, paper:"p2", type:"writing", marks:15, time:"30 minutes",
-    title:"Formal Submission",
-    extract:"A national review is currently considering whether to restrict screen time in primary schools. Submitted evidence from schools shows mixed results: some have benefited substantially from limited screen time with structured offline learning; others have used digital tools well and would lose significant capability under restrictions. Teachers' organisations are divided. Parent groups are also divided, with some welcoming firm guidance and others wanting to retain discretion. The review has invited submissions from individuals and organisations representing all sides of the question.",
-    question:"Using the information in the extract, write a formal submission to the national review. Take a clear position on whether screens should be restricted in primary schools and argue for it persuasively to a panel of policymakers. (200-250 words; formal register expected.) [15 marks]",
-    scheme:[
-      {level:"13-15",desc:"Clear position; appropriate formal submission register (structured, evidence-based, acknowledges other side honestly); uses source material substantively; specific proposals or principles rather than vague preferences; persuasive without polemic; appropriate to policymaker audience."},
-      {level:"9-12",desc:"Clear position with substantial use of source; mostly appropriate register; reasonable structure."},
-      {level:"5-8",desc:"Position taken but register uneven; weaker engagement with opposing view."},
-      {level:"1-4",desc:"Minimal source use; inappropriate register; assertion without argument."}
-    ],
-    answer:`Submission to the National Review on Screen Time in Primary Schools\n\nSummary of position: I support principled guidance rather than uniform restriction. The evidence the review has already received suggests that screen use in primary schools is neither uniformly beneficial nor uniformly harmful \u2014 outcomes depend on how digital tools are integrated with structured learning.\n\nThe review's own evidence shows mixed results across schools: some institutions have benefited substantially from limited screen time combined with structured offline activity, while others have developed strong practice with digital tools and would lose significant educational capability under uniform restriction. Teacher and parent groups are similarly divided, suggesting that no single nationwide rule will fit the actual variation in school contexts.\n\nMy proposal is therefore three-fold:\n\nFirst, the review should establish principles \u2014 not quotas \u2014 governing screen use. Principles such as \"screens used in service of identified learning objectives,\" \"daily limits on continuous passive screen use,\" and \"protected offline time for collaborative and physical activity\" can guide schools without imposing one approach.\n\nSecond, the review should require schools to publish their screen-time policies, including evidence of their effectiveness, so that parents can make informed choices and good practice can be shared.\n\nThird, the review should commission longitudinal evaluation of different approaches over five years, recognising that the evidence base for primary-age screen effects remains underdeveloped.\n\nThis position acknowledges the genuine concerns motivating the review while preserving the institutional flexibility that the submitted evidence shows is producing genuinely good outcomes in some schools.`,
-    errors:[
-      "Wrong register \u2014 informal language, first-person reflection without structure, polemical framing",
-      "Vague proposals (\"more research\") without specific suggestions",
-      "One-sided polemic ignoring the mixed evidence in the source",
-      "Adding fabricated statistics or studies",
-      "Failing to acknowledge legitimate concerns on the other side"
+  p2_writing: {
+    label: "Paper 2 \u2014 Directed Writing",
+    paper: "Paper 2 Directed Writing",
+    description: "Writing in a specific form for a specific audience based on source material (15 marks)",
+    marks: 15,
+    criteria: [
+      {id:"register", label:"Register appropriate to audience and form", desc:"Letter, speech, news article, formal submission \u2014 each has distinct register conventions. Yours matches what was specified.", weak:"Wrong register caps marks regardless of content quality. See Autopsy #16; Question Bank Q19, Q20, Q39, Q40."},
+      {id:"source", label:"Uses source material substantively", desc:"You draw on the source's specific information, not just generic claims about the topic.", weak:"Generic writing that ignores the provided source loses the integration marks."},
+      {id:"structure", label:"Clear structure suited to the form", desc:"Letters open with appropriate greeting and close with sign-off; speeches use direct address and varied rhythm; news articles lead with key facts; submissions are organised by argument.", weak:"Generic structure loses form-specific marks."},
+      {id:"persuasive", label:"Persuasive without being polemical", desc:"You make a case while acknowledging legitimate concerns on the other side; you don't dismiss opponents.", weak:"Polemical writing loses marks even when persuasive on its terms. See Question Bank Q20."},
+      {id:"opposing", label:"Engages opposing view where appropriate", desc:"In persuasive forms, you acknowledge the strongest concerns of the audience or other side and respond to them.", weak:"One-sided submissions to mixed audiences are less effective and lose marks. See Autopsy #5."},
+      {id:"specifics", label:"Specific proposals or claims, not vague calls", desc:"You make concrete proposals, claims, or arguments \u2014 not vague gestures like \u201Cwe should do something.\u201D", weak:"Vague proposals demonstrate poor understanding of the form."},
+      {id:"length", label:"Meets word limit and format conventions", desc:"You stay within the specified word range and follow conventions of the form.", weak:"Significant under- or over-length costs marks; format conventions matter for the form."}
     ]
   }
+};
+
+const BANDS_30 = [
+  {min:90, level:"Level 5", marks:"25\u201330", desc:"Sophisticated argument with sustained evaluation, wide-ranging support, nuanced engagement with counter-positions, and fluent expression. Top-band performance."},
+  {min:70, level:"Level 4", marks:"19\u201324", desc:"Clear argument with developed support, genuine engagement with both sides, and generally effective evaluation and expression. Strong work."},
+  {min:50, level:"Level 3", marks:"13\u201318", desc:"Adequate argument with some support and evaluation. May be one-sided, under-developed, or weakly structured in places."},
+  {min:30, level:"Level 2", marks:"7\u201312", desc:"Basic argument with limited support. Largely descriptive rather than evaluative. Significant gaps in argument quality."},
+  {min:0,  level:"Level 1", marks:"1\u20136",   desc:"Minimal argument, little support or evaluation, significant weaknesses in expression. Fundamental issues to address."}
 ];
 
-let currentFilter = 'all';
+const BANDS_GENERIC = [
+  {min:85, level:"Top Band",   marksFactor:1.00, desc:"Strong, complete response that meets all or nearly all criteria. Top of the available marks."},
+  {min:65, level:"Upper Mid",  marksFactor:0.75, desc:"Solid response with most criteria met substantively. Strong work with some gaps."},
+  {min:45, level:"Mid Band",   marksFactor:0.55, desc:"Adequate response with several criteria met but significant gaps in others. Mid-band work."},
+  {min:25, level:"Lower Mid",  marksFactor:0.35, desc:"Partial response with some criteria addressed but several missing or weakly attempted."},
+  {min:0,  level:"Lower Band", marksFactor:0.15, desc:"Limited response with most criteria missing or significantly weak."}
+];
 
-function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+let state = {
+  qtype: null,
+  answer: "",
+  marks: {}
+};
 
-function renderList(){
-  const container = document.getElementById('container');
-  const stats = document.getElementById('stats');
-  const filtered = QUESTIONS.filter(q => {
-    if(currentFilter === 'all') return true;
-    if(currentFilter === 'p1') return q.paper === 'p1';
-    if(currentFilter === 'p2') return q.paper === 'p2';
-    return q.type === currentFilter;
+function initQTypeGrid(){
+  const grid = document.getElementById('qtype-grid');
+  grid.innerHTML = Object.entries(QUESTION_TYPES).map(([key, qt]) => `
+    <div class="qtype-card" data-key="${key}" onclick="selectQType('${key}', this)">
+      <div class="paper">${qt.paper}</div>
+      <div class="title">${qt.label}</div>
+      <div class="desc">${qt.description}</div>
+      <div class="marks">${qt.marks} marks</div>
+    </div>
+  `).join('');
+}
+
+function selectQType(key, el){
+  state.qtype = key;
+  document.querySelectorAll('.qtype-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('btn-to-step-2').disabled = false;
+  document.getElementById('qtype-banner-name').textContent = QUESTION_TYPES[key].label;
+}
+
+function goToStep(n){
+  if(n === 2 && !state.qtype) return;
+  if(n === 3){
+    state.answer = document.getElementById('answer-input').value;
+    buildCriteriaList();
+  }
+  if(n === 4){
+    if(!allCriteriaMarked()) return;
+    renderResults();
+  }
+  document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('step-' + n).classList.add('active');
+  document.querySelectorAll('.step-pill').forEach((p, i) => {
+    p.classList.remove('active','complete');
+    if(i + 1 === n) p.classList.add('active');
+    else if(i + 1 < n) p.classList.add('complete');
   });
+  window.scrollTo({top:0, behavior:'smooth'});
+}
 
-  container.innerHTML = filtered.map(q => {
-    const paperLabel = q.paper === 'p1' ? 'Paper 1 \u00b7 Essay' : `Paper 2 \u00b7 ${q.type.charAt(0).toUpperCase() + q.type.slice(1)}`;
-    const typeLabel = q.type === 'essay' ? 'Essay' : q.type === 'comprehension' ? 'Comprehension' : q.type === 'evaluation' ? 'Evaluation' : 'Directed Writing';
-    const schemeRows = q.scheme.map(s => `<tr><td>${escapeHtml(s.level)}</td><td>${escapeHtml(s.desc)}</td></tr>`).join('');
-    const answerParas = q.answer.split('\n\n').map(p => `<p>${escapeHtml(p)}</p>`).join('');
-    const errorList = q.errors.map(e => `<li>${escapeHtml(e)}</li>`).join('');
-    return `
-      <div class="question">
-        <div class="q-head">
-          <span class="q-num">Q${String(q.num).padStart(2,'0')}</span>
-          <span class="q-paper">${paperLabel} \u00b7 ${q.time}</span>
-          <span class="type-tag ${q.type}">${typeLabel}</span>
-          <span class="marks-badge">${q.marks} marks</span>
-        </div>
-        <div class="q-body">
-          <div class="q-title">${escapeHtml(q.title)}</div>
-          ${q.extract ? `<div class="extract-block">${escapeHtml(q.extract)}</div>` : ''}
-          <div class="question-block">${escapeHtml(q.question)}</div>
-          <div class="scheme-block">
-            <h4>Mark Scheme \u2014 Indicative Bands</h4>
-            <table class="scheme-table">
-              <thead><tr><th>Band</th><th>Descriptor</th></tr></thead>
-              <tbody>${schemeRows}</tbody>
-            </table>
-          </div>
-          <div class="answer-block">${answerParas}</div>
-          <div class="errors-block"><ul>${errorList}</ul></div>
+function buildCriteriaList(){
+  const qt = QUESTION_TYPES[state.qtype];
+  const list = document.getElementById('criteria-list');
+  state.marks = {};
+  list.innerHTML = qt.criteria.map(c => `
+    <div class="criterion" id="crit-${c.id}">
+      <div class="criterion-head">
+        <div class="criterion-label">${c.label}</div>
+        <div class="ypn-group">
+          <button class="ypn-btn" data-val="Y" onclick="markCriterion('${c.id}','Y',this)" title="Yes \u2014 fully meets">Y</button>
+          <button class="ypn-btn" data-val="P" onclick="markCriterion('${c.id}','P',this)" title="Partial \u2014 some elements present">P</button>
+          <button class="ypn-btn" data-val="N" onclick="markCriterion('${c.id}','N',this)" title="No \u2014 missing or weak">N</button>
         </div>
       </div>
+      <div class="criterion-desc">${c.desc}</div>
+    </div>
+  `).join('');
+  updateProgress();
+}
+
+function markCriterion(id, val, btn){
+  state.marks[id] = val;
+  const crit = document.getElementById('crit-' + id);
+  crit.classList.add('marked');
+  crit.querySelectorAll('.ypn-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  updateProgress();
+}
+
+function updateProgress(){
+  const qt = QUESTION_TYPES[state.qtype];
+  const total = qt.criteria.length;
+  const marked = Object.keys(state.marks).length;
+  const pct = (marked / total) * 100;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = `${marked} of ${total} criteria marked`;
+  document.getElementById('btn-to-step-4').disabled = marked < total;
+}
+
+function allCriteriaMarked(){
+  const qt = QUESTION_TYPES[state.qtype];
+  return Object.keys(state.marks).length === qt.criteria.length;
+}
+
+function calculateScore(){
+  const qt = QUESTION_TYPES[state.qtype];
+  let total = 0;
+  const max = qt.criteria.length * 2;
+  qt.criteria.forEach(c => {
+    const val = state.marks[c.id];
+    if(val === 'Y') total += 2;
+    else if(val === 'P') total += 1;
+  });
+  return {points:total, max:max, pct:Math.round((total / max) * 100)};
+}
+
+function getBand(score){
+  const qt = QUESTION_TYPES[state.qtype];
+  const pct = score.pct;
+
+  if(state.qtype === 'p1_essay'){
+    for(const b of BANDS_30){
+      if(pct >= b.min) return {level:b.level, marks:b.marks, desc:b.desc};
+    }
+  }
+
+  for(const b of BANDS_GENERIC){
+    if(pct >= b.min){
+      const marks = Math.max(1, Math.round(qt.marks * b.marksFactor));
+      const lower = Math.max(1, Math.round(qt.marks * (b.marksFactor - 0.18)));
+      const upper = Math.min(qt.marks, Math.round(qt.marks * (b.marksFactor + 0.07)));
+      return {level:b.level, marks:`${lower}\u2013${upper}`, desc:b.desc};
+    }
+  }
+}
+
+function renderResults(){
+  const qt = QUESTION_TYPES[state.qtype];
+  const score = calculateScore();
+  const band = getBand(score);
+
+  const strengths = qt.criteria.filter(c => state.marks[c.id] === 'Y');
+  const partials = qt.criteria.filter(c => state.marks[c.id] === 'P');
+  const weaknesses = qt.criteria.filter(c => state.marks[c.id] === 'N');
+
+  let html = `
+    <div class="result-band">
+      <div class="level">Estimated Band</div>
+      <div class="level-name">${band.level}</div>
+      <div class="marks">${band.marks} out of ${qt.marks} marks</div>
+      <div class="desc">${band.desc}</div>
+      <div class="score-summary">
+        Self-assessment score: <strong>${score.points} of ${score.max}</strong> (${score.pct}%)<br>
+        <strong>${strengths.length}</strong> strengths \u00b7 <strong>${partials.length}</strong> partial \u00b7 <strong>${weaknesses.length}</strong> weaknesses
+      </div>
+    </div>
+  `;
+
+  if(strengths.length > 0){
+    html += `
+      <div class="feedback-section">
+        <h4>\u2713 Strengths (${strengths.length})</h4>
+        ${strengths.map(c => `
+          <div class="feedback-box strength">
+            <span class="crit">${c.label}</span>
+            You marked this as fully met. Maintain this strength in future answers.
+          </div>
+        `).join('')}
+      </div>
     `;
-  }).join('');
-  stats.innerHTML = `Showing <strong>${filtered.length}</strong> of <strong>${QUESTIONS.length}</strong> questions`;
+  }
+
+  if(partials.length > 0){
+    html += `
+      <div class="feedback-section">
+        <h4>\u26A0 Partially Met (${partials.length}) \u2014 Refine These</h4>
+        ${partials.map(c => `
+          <div class="feedback-box partial">
+            <span class="crit">${c.label}</span>
+            Some elements present but not fully developed. <span class="guide">${c.weak}</span>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  if(weaknesses.length > 0){
+    html += `
+      <div class="feedback-section">
+        <h4>\u2715 Weaknesses (${weaknesses.length}) \u2014 Priority for Improvement</h4>
+        ${weaknesses.map(c => `
+          <div class="feedback-box weakness">
+            <span class="crit">${c.label}</span>
+            Largely missing or weakly attempted. <span class="guide">${c.weak}</span>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  // Overall guidance
+  let priorityText = '';
+  if(weaknesses.length >= 3){
+    priorityText = "Multiple foundational weaknesses suggest working through the Common Mistakes Autopsy from start to finish before further practice. Pattern recognition will lift your writing across many question types.";
+  } else if(weaknesses.length >= 1){
+    priorityText = "Address the specific weakness areas using the resources cited above. Re-attempt similar questions in the Question Bank, then re-grade yourself. Improvement should be visible within two or three cycles.";
+  } else if(partials.length >= 2){
+    priorityText = "No major weaknesses but several areas need refinement to consolidate top-band performance. Focus on the partial criteria \u2014 small refinements often lift answers by a band.";
+  } else {
+    priorityText = "Strong performance across the rubric. Maintain these habits, and consider attempting more challenging question types (the harder essay prompts in Pass 2, or the multi-fallacy evaluation questions).";
+  }
+
+  html += `
+    <div class="info-callout">
+      <strong>Where to focus next</strong>
+      ${priorityText}
+    </div>
+  `;
+
+  // Resource map reminder
+  html += `
+    <div class="info-callout" style="background:var(--teal-light);border-left-color:var(--teal-dark);color:var(--teal-dark)">
+      <strong>Resource map</strong>
+      <strong>Essential 50 / Complete Reference</strong> \u2014 vocabulary precision. <strong>Common Confusions</strong> \u2014 critical distinctions. <strong>Question Bank Pass 1\u20132</strong> \u2014 40 questions with model answers. <strong>Common Mistakes Autopsy</strong> \u2014 18 worked examples of what goes wrong and how to fix it.
+    </div>
+  `;
+
+  document.getElementById('result-content').innerHTML = html;
 }
 
-function setFilter(filter, btn){
-  currentFilter = filter;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active','p1','p2'));
-  if(filter === 'p1') btn.classList.add('active','p1');
-  else if(filter === 'p2') btn.classList.add('active','p2');
-  else btn.classList.add('active');
-  renderList();
+function resetAll(){
+  if(!confirm("Start a new assessment? Your current results will be cleared.")) return;
+  state = {qtype:null, answer:"", marks:{}};
+  document.getElementById('answer-input').value = "";
+  document.getElementById('word-count').textContent = "0";
+  document.getElementById('btn-to-step-2').disabled = true;
+  document.querySelectorAll('.qtype-card').forEach(c => c.classList.remove('selected'));
+  goToStep(1);
 }
 
-renderList();
+document.getElementById('answer-input').addEventListener('input', e => {
+  const wc = e.target.value.trim() === '' ? 0 : e.target.value.trim().split(/\s+/).length;
+  document.getElementById('word-count').textContent = wc;
+});
+
+initQTypeGrid();
 </script>
 </body>
 </html>

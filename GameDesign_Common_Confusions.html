@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game &amp; Simulation Foundations — Common Confusions</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#0a0612;--card:#150e24;--card2:#1d1533;--border:#2f2248;
+  --text:#ece8f4;--muted:#9585b0;--white:#ffffff;--accent:#8B5CF6;--accent2:#2E8BC0;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(139,92,246,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(139,92,246,0.04) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:26px 20px 70px}
+
+.header{margin-bottom:14px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--accent)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+
+.about-banner{background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(46,139,192,.06));border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:14px;font-size:12.5px;color:var(--text);line-height:1.55}
+.about-banner b{color:#c3a5f7}
+
+.cert-banner{background:linear-gradient(135deg,rgba(139,92,246,.12),rgba(46,139,192,.06));border:1px solid var(--border);border-radius:14px;padding:11px 16px;margin-bottom:18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.cert-text{font-size:12.5px;color:var(--text)}
+.cert-text b{color:#c3a5f7}
+.cert-switch{margin-left:auto;display:flex;gap:6px}
+.cert-pill{background:var(--card2);border:1px solid var(--border);border-radius:999px;padding:5px 13px;font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
+.cert-pill.active{background:#8558EC;border-color:var(--accent);color:#fff}
+.cert-pill.locked{opacity:.5;cursor:default}
+
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+
+.controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;flex-direction:column;gap:11px}
+.ctrl-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--muted);min-width:52px}
+.search-wrap{position:relative;flex:1;min-width:220px}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.55}
+.search-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px 10px 34px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13.5px}
+.search-input:focus{outline:none;border-color:var(--accent)}
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--accent);color:var(--text)}
+.pill.active{background:#8558EC;border-color:var(--accent);color:#fff}
+
+.count-line{font-size:12px;color:var(--muted);margin-bottom:12px}
+.count-line b{color:var(--white);font-family:'DM Mono',monospace}
+
+.pair-card{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:18px 20px;margin-bottom:12px;transition:all .18s}
+.pair-card:hover{border-color:rgba(139,92,246,.4)}
+.pair-tags{display:flex;gap:6px;margin-bottom:12px}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:6px}
+.t-cat{background:rgba(139,92,246,.16);color:#b39bf5;border:1px solid rgba(139,92,246,.3)}
+.vs-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:start;margin-bottom:12px}
+@media(max-width:600px){.vs-grid{grid-template-columns:1fr}.vs-divider{display:none}}
+.vs-box{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:13px 15px}
+.vs-term{font-size:15.5px;font-weight:800;color:var(--white);margin-bottom:6px;font-family:'DM Mono',monospace}
+.vs-def{font-size:13px;color:var(--text);opacity:.9;line-height:1.5}
+.vs-divider{display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;font-weight:700;padding-top:20px}
+.distinguisher{background:rgba(229,148,0,.07);border-left:2px solid var(--amber);border-radius:9px;padding:11px 14px;font-size:13px;margin-bottom:9px}
+.dist-lbl{font-size:9px;font-weight:700;letter-spacing:.11em;color:#efb44e;display:block;margin-bottom:5px}
+.hook{background:rgba(29,158,117,.07);border-left:2px solid var(--teal);border-radius:9px;padding:11px 14px;font-size:13px;font-weight:600}
+.hook-lbl{font-size:9px;font-weight:700;letter-spacing:.11em;color:#4fd1a5;display:block;margin-bottom:5px}
+
+.empty{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px}
+
+@media(max-width:640px){.page-title{font-size:1.5rem}.ctrl-label{min-width:auto}.cert-switch{margin-left:0}}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <a href="GameDesign_StudyHub.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;margin-bottom:14px;opacity:.85">← Game Design Study Hub</a>
+
+  <div class="header">
+    <div class="series-label">Game &amp; Simulation Foundations · Study Resource Series · Build 5</div>
+    <div class="page-title">Common <span>Confusions</span></div>
+    <div class="page-sub" id="page-sub">Loading…</div>
+  </div>
+
+  <div class="about-banner">📎 A fast side-by-side reference for terms and code concepts that get mixed up constantly. This is a quick lookup, not a diagnostic — for a deeper breakdown with real buggy code, see the <a href="GameDesign_Mistakes_Autopsy.html" style="color:#c3a5f7">Mistakes Autopsy</a> instead.</div>
+
+  <div class="cert-banner">
+    <span>🎮</span>
+    <span class="cert-text">Certification track: <b id="cert-name">Unity Certified User: Programmer</b></span>
+    <div class="cert-switch">
+      <button class="cert-pill active" data-cert="programmer" onclick="setCert('programmer',this)">Programmer</button>
+      <button class="cert-pill locked" data-cert="artist" title="Reserved — activate when confirmed with instructor">Artist 🔒</button>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-chip"><div class="stat-num" id="s-total">—</div><div class="stat-lbl">TERM PAIRS</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--accent2)" id="s-shown">—</div><div class="stat-lbl">SHOWING</div></div>
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-row">
+      <span class="ctrl-label">SEARCH</span>
+      <div class="search-wrap">
+        <span class="search-icon">🔎</span>
+        <input class="search-input" id="search-input" type="text" placeholder="Search either term or definition…" oninput="applyFilters()">
+      </div>
+    </div>
+    <div class="ctrl-row">
+      <span class="ctrl-label">CATEGORY</span>
+      <button class="pill active" data-cat="all" onclick="setCat('all',this)">All</button>
+      <button class="pill" data-cat="engine" onclick="setCat('engine',this)">Engine</button>
+      <button class="pill" data-cat="csharp" onclick="setCat('csharp',this)">C# Scripting</button>
+      <button class="pill" data-cat="gameplay" onclick="setCat('gameplay',this)">Gameplay</button>
+      <button class="pill" data-cat="ui" onclick="setCat('ui',this)">UI &amp; Audio</button>
+      <button class="pill" data-cat="design" onclick="setCat('design',this)">Design</button>
+    </div>
+  </div>
+
+  <div class="count-line" id="count-line"></div>
+  <div id="pair-list"></div>
+
+  <div style="margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center">
+    Game &amp; Simulation Foundations (82081100) · Unity Certified User: Programmer objectives · Common Confusions
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+// GAME & SIMULATION FOUNDATIONS — COMMON CONFUSIONS
+// Quick-reference term-pair lookup, distinct from Mistakes Autopsy's
+// deep-dive diagnostic scenarios. cat = category, cert = "programmer"|"both"
+// ═══════════════════════════════════════════
+const PAIRS = [
+{cat:"engine",cert:"both",termA:"GameObject",defA:"The base object in a scene — does nothing on its own.",termB:"Component",defB:"A piece of functionality (Rigidbody, script, Collider) attached to a GameObject.",dist:"A GameObject is an empty container; its behavior comes entirely from the Components attached to it.",hook:"GameObject = the box. Component = what's inside the box."},
+{cat:"engine",cert:"both",termA:"Scene",defA:"A container holding a level, menu, or screen's worth of content.",termB:"Prefab",defB:"A reusable, pre-configured GameObject template saved as an asset.",dist:"A Scene is where things happen; a Prefab is a reusable blueprint you can place into any Scene, many times over.",hook:"Scene = the stage. Prefab = a reusable prop you can place on it repeatedly."},
+{cat:"engine",cert:"both",termA:"Play Mode",defA:"Runs the game live for testing — changes made here are TEMPORARY.",termB:"Edit Mode",defB:"The normal Editor state — changes made here are PERMANENT.",dist:"Editing values while in Play Mode feels like normal editing, but everything resets the moment you press Stop.",hook:"Play Mode changes vanish. Edit Mode changes stick."},
+
+{cat:"csharp",cert:"programmer",termA:"Awake",defA:"Runs once, FIRST, even if the component starts disabled.",termB:"Start",defB:"Runs once, AFTER Awake, only if the component is enabled.",dist:"Use Awake for early setup (caching references); use Start for logic that depends on other objects already being initialized.",hook:"Awake wakes up first. Start starts the actual gameplay logic."},
+{cat:"csharp",cert:"programmer",termA:"Update",defA:"Runs every FRAME — frame rate can vary.",termB:"FixedUpdate",defB:"Runs on a FIXED timestep, independent of frame rate.",dist:"Input goes in Update. Physics forces go in FixedUpdate, so they behave consistently regardless of device speed.",hook:"Update = every frame. FixedUpdate = every fixed tick, for physics."},
+{cat:"csharp",cert:"programmer",termA:"= (single equals)",defA:"ASSIGNMENT — sets a variable to a value.",termB:"== (double equals)",defB:"COMPARISON — checks if two values are equal.",dist:"'if (health = 0)' assigns 0 to health instead of checking it — one of the most common beginner bugs in any C-family language.",hook:"One = sets a value. Two == asks a question."},
+{cat:"csharp",cert:"programmer",termA:"public",defA:"Visible to other scripts AND editable in the Inspector.",termB:"private",defB:"Hidden from other scripts and from the Inspector (the default).",dist:"A variable that should be tunable by a designer without touching code needs to be public.",hook:"public shows up in the Inspector. private stays hidden."},
+{cat:"csharp",cert:"programmer",termA:"int",defA:"Whole numbers only — no decimal point.",termB:"float",defB:"Decimal numbers — requires an f suffix, like 5.5f.",dist:"Health, lives, and score are usually int. Speed, time, and physics values are usually float.",hook:"int = whole. float = needs that f."},
+{cat:"csharp",cert:"programmer",termA:"Parameter",defA:"A value passed INTO a method to customize what it does.",termB:"Return Value",defB:"A value a method sends BACK to whatever called it.",dist:"In 'int GetScore()', GetScore takes no parameters but returns an int. In 'void TakeDamage(int amount)', amount is a parameter and the method returns nothing (void).",hook:"Parameters go in. Return values come out."},
+{cat:"csharp",cert:"programmer",termA:"Class",defA:"A BLUEPRINT defining what data and behavior a type of object has.",termB:"Object (Instance)",defB:"An actual, individual thing created FROM that blueprint at runtime.",dist:"There is one Enemy class, but potentially dozens of enemy objects/instances in the scene, each following the same blueprint.",hook:"Class = the recipe. Object = the actual dish made from it."},
+
+{cat:"gameplay",cert:"programmer",termA:"Collider",defA:"Physically BLOCKS other objects from passing through.",termB:"Trigger",defB:"DETECTS overlap without blocking movement.",dist:"A solid wall uses a regular Collider. A pickup zone or level-exit uses a Trigger — same component type, one checkbox different (Is Trigger).",hook:"Collider blocks. Trigger only watches."},
+{cat:"gameplay",cert:"programmer",termA:"Rigidbody",defA:"Puts an object under PHYSICS control — gravity, forces, momentum.",termB:"Collider",defB:"Defines the SHAPE used for contact/collision detection.",dist:"An object needs a Rigidbody to be affected by gravity at all. Colliders alone only define shape, not physics behavior.",hook:"Rigidbody = physics behavior. Collider = physical shape."},
+{cat:"gameplay",cert:"programmer",termA:"Instantiate",defA:"CREATES a new copy of a prefab at runtime.",termB:"Destroy",defB:"REMOVES a GameObject from the scene.",dist:"Instantiate spawns a bullet when the player fires; Destroy removes it a few seconds later so it doesn't pile up forever.",hook:"Instantiate = spawn in. Destroy = remove."},
+{cat:"gameplay",cert:"programmer",termA:"Vector2",defA:"Two float values (x, y) — for 2D positions/directions.",termB:"Vector3",defB:"Three float values (x, y, z) — for 3D positions/directions.",dist:"A 2D platformer's movement uses Vector2; a full 3D scene's positions use Vector3.",hook:"Vector2 = flat (2D). Vector3 = depth added (3D)."},
+{cat:"gameplay",cert:"programmer",termA:"NavMesh",defA:"The pre-baked MAP of walkable surfaces in a level.",termB:"NavMeshAgent",defB:"The COMPONENT that moves a GameObject along that map toward a destination.",dist:"Without a baked NavMesh, a NavMeshAgent has no map to path across and won't move intelligently at all.",hook:"NavMesh is the map. NavMeshAgent is the traveler using it."},
+
+{cat:"ui",cert:"programmer",termA:"AudioSource",defA:"The COMPONENT that plays a sound from a GameObject.",termB:"AudioClip",defB:"The imported sound FILE/asset itself.",dist:"One AudioSource component can play many different AudioClips over time — the source is the player, the clip is the track.",hook:"AudioSource plays. AudioClip is what gets played."},
+{cat:"ui",cert:"programmer",termA:"Canvas",defA:"The root container that RENDERS all UI elements.",termB:"UI Element",defB:"An individual piece (Button, Text, Slider) placed INSIDE a Canvas.",dist:"A Button placed directly in the scene without a Canvas parent will never appear on screen.",hook:"Canvas is the screen. UI elements are what's drawn on it."},
+
+{cat:"design",cert:"both",termA:"Game Mechanic",defA:"A specific RULE governing player interaction — jumping, collecting, shooting.",termB:"Game Loop",defB:"The technical CYCLE running every frame — input, update, render.",dist:"Mechanics are what the player experiences; the game loop is the underlying engine process that makes any mechanic possible.",hook:"Mechanic = a verb of play. Game loop = the engine's heartbeat."},
+{cat:"design",cert:"both",termA:"Prototype",defA:"A rough, fast build made to test if a mechanic is FUN.",termB:"Playtesting",defB:"Watching REAL PLAYERS use a build to find what's confusing or not fun.",dist:"You build a prototype first, then playtest it — the prototype is the artifact, playtesting is the activity you do with it.",hook:"Prototype = the thing you built. Playtesting = watching someone else use it."},
+{cat:"design",cert:"both",termA:"Iteration",defA:"The repeated design CYCLE of build → test → refine.",termB:"Version Control",defB:"A SYSTEM (like Git) for tracking changes to project files over time.",dist:"Iteration is a design process; version control is the technical tool that lets a team iterate safely without overwriting each other's work.",hook:"Iteration is the loop you run. Version control is what protects the loop's history."}
+];
+
+const CAT_NAMES = {
+  engine:"Engine & Editor", csharp:"C# Scripting", gameplay:"Gameplay & Physics",
+  ui:"UI & Audio", design:"Design & Production"
+};
+const CERT_NAMES = {
+  programmer:"Unity Certified User: Programmer",
+  artist:"Unity Certified User: Artist"
+};
+
+let curCert='programmer', curCat='all';
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function certMatch(p){ return p.cert===curCert || p.cert==='both'; }
+
+function setCert(c, btn){
+  if(btn.classList.contains('locked')) return;
+  curCert=c;
+  document.querySelectorAll('.cert-pill').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('cert-name').textContent = CERT_NAMES[c];
+  refreshTotal(); applyFilters();
+}
+function setCat(c,btn){ curCat=c; document.querySelectorAll('.pill[data-cat]').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); applyFilters(); }
+function getFiltered(){
+  const q=document.getElementById('search-input').value.trim().toLowerCase();
+  return PAIRS.filter(p=>{
+    if(!certMatch(p)) return false;
+    if(curCat!=='all' && p.cat!==curCat) return false;
+    if(q){
+      const hay=(p.termA+' '+p.termB+' '+p.defA+' '+p.defB+' '+p.dist+' '+p.hook).toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+}
+function refreshTotal(){ document.getElementById('s-total').textContent = PAIRS.filter(certMatch).length; }
+function applyFilters(){
+  const list=getFiltered();
+  document.getElementById('s-shown').textContent=list.length;
+  document.getElementById('count-line').innerHTML=`<b>${list.length}</b> pairs shown`;
+  const box=document.getElementById('pair-list');
+  if(!list.length){ box.innerHTML='<div class="empty">No pairs match your search or filter.</div>'; return; }
+  box.innerHTML=list.map(p=>`
+    <div class="pair-card">
+      <div class="pair-tags"><span class="tag t-cat">${CAT_NAMES[p.cat]}</span></div>
+      <div class="vs-grid">
+        <div class="vs-box"><div class="vs-term">${esc(p.termA)}</div><div class="vs-def">${esc(p.defA)}</div></div>
+        <div class="vs-divider">VS</div>
+        <div class="vs-box"><div class="vs-term">${esc(p.termB)}</div><div class="vs-def">${esc(p.defB)}</div></div>
+      </div>
+      <div class="distinguisher"><span class="dist-lbl">THE KEY DIFFERENCE</span>${esc(p.dist)}</div>
+      <div class="hook"><span class="hook-lbl">MEMORY HOOK</span>${esc(p.hook)}</div>
+    </div>`).join('');
+}
+(function init(){
+  const total=PAIRS.filter(certMatch).length;
+  const cats=new Set(PAIRS.filter(certMatch).map(p=>p.cat)).size;
+  document.getElementById('s-total').textContent=total;
+  document.getElementById('page-sub').textContent=`${total} frequently confused pairs · ${cats} categories · side-by-side quick reference`;
+  applyFilters();
+})();
+</script>
+</body>
+</html>

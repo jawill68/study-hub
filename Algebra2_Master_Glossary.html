@@ -8,9 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
-  --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
-  --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
+--navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+--bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
+--text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);min-height:100vh;overflow-x:hidden}
@@ -177,11 +177,11 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .quiz-result-lbl{font-size:10px;font-weight:700;letter-spacing:.1em;margin-bottom:6px}
 .quiz-nav{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
 .quiz-score-disp{font-size:13px;color:var(--muted)}
-.btn-quiz-next{background:linear-gradient(135deg,var(--teal),var(--sky));color:#fff;border:none;padding:11px 28px;font-size:14px;font-weight:800;border-radius:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .25s}
+.btn-quiz-next{background:linear-gradient(135deg,#188663,#297DAC);color:#fff;border:none;padding:11px 28px;font-size:14px;font-weight:800;border-radius:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .25s}
 .btn-quiz-next:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(29,158,117,.3)}
 .btn-quiz-exit{background:rgba(107,138,176,.08);color:var(--muted);border:1.5px solid var(--border);padding:11px 20px;font-size:13px;font-weight:700;border-radius:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
 .btn-quiz-exit:hover{border-color:var(--sky);color:var(--text)}
-.quiz-launch-btn{background:linear-gradient(135deg,var(--teal),var(--sky));color:#fff;border:none;padding:10px 20px;font-size:13px;font-weight:800;border-radius:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .25s;display:inline-flex;align-items:center;gap:6px}
+.quiz-launch-btn{background:linear-gradient(135deg,#188663,#297DAC);color:#fff;border:none;padding:10px 20px;font-size:13px;font-weight:800;border-radius:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .25s;display:inline-flex;align-items:center;gap:6px}
 .quiz-launch-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(29,158,117,.3)}
 
 /* ── ANIMATIONS ── */
@@ -197,98 +197,100 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 <body>
 <div class="app">
 
-  <!-- HEADER -->
-  <div class="header">
-    <div>
-      <div class="series-label">Algebra 2 · Study Resource Series · Build 1</div>
-      <div class="page-title">Master <span>Glossary</span></div>
-      <div class="page-sub">200 essential terms · All 10 units · A-Z with formulas and examples</div>
-    </div>
-    <button class="quiz-launch-btn" onclick="launchQuiz()">🧠 Flashcard Quiz</button>
-  </div>
+<a href="Algebra2_StudyHub.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--teal);text-decoration:none;margin-top:16px;opacity:.85">← Algebra 2 Study Hub</a>
 
-  <!-- STATS -->
-  <div class="stats-row">
-    <div class="stat-chip"><div><div class="stat-num" id="s-total">200</div><div class="stat-lbl">TOTAL TERMS</div></div></div>
-    <div class="stat-chip"><div><div class="stat-num" style="color:var(--amber)" id="s-starred">0</div><div class="stat-lbl">STARRED</div></div></div>
-    <div class="stat-chip"><div><div class="stat-num" style="color:var(--teal)" id="s-quiz">—</div><div class="stat-lbl">QUIZ SCORE</div></div></div>
-    <div class="stat-chip"><div><div class="stat-num" style="color:var(--sky)" id="s-shown">200</div><div class="stat-lbl">SHOWING</div></div></div>
-  </div>
+<!-- HEADER -->
+<div class="header">
+<div>
+<div class="series-label">Algebra 2 · Study Resource Series · Build 1</div>
+<div class="page-title">Master <span>Glossary</span></div>
+<div class="page-sub" id="page-sub">200 essential terms · All 10 units · A-Z with formulas and examples</div>
+</div>
+<button class="quiz-launch-btn" onclick="launchQuiz()">🧠 Flashcard Quiz</button>
+</div>
 
-  <!-- CONTROLS -->
-  <div class="controls">
-    <div class="ctrl-row">
-      <span class="ctrl-label">SEARCH</span>
-      <div class="search-wrap">
-        <span class="search-icon">🔎</span>
-        <input class="search-input" id="search-input" type="text" placeholder="Search terms, definitions, formulas, examples…" oninput="applyFilters()">
-      </div>
-    </div>
-    <div class="ctrl-row">
-      <span class="ctrl-label">UNIT</span>
-      <button class="pill pill-all active" onclick="setUnit('all',this)">All</button>
-      <button class="pill pill-u" onclick="setUnit('U1',this)">U1</button>
-      <button class="pill pill-u" onclick="setUnit('U2',this)">U2</button>
-      <button class="pill pill-u" onclick="setUnit('U3',this)">U3</button>
-      <button class="pill pill-u" onclick="setUnit('U4',this)">U4</button>
-      <button class="pill pill-u" onclick="setUnit('U5',this)">U5</button>
-      <button class="pill pill-u" onclick="setUnit('U6',this)">U6</button>
-      <button class="pill pill-u" onclick="setUnit('U7',this)">U7</button>
-      <button class="pill pill-u" onclick="setUnit('U8',this)">U8</button>
-      <button class="pill pill-u" onclick="setUnit('U9',this)">U9</button>
-      <button class="pill pill-u" onclick="setUnit('U10',this)">U10</button>
-    </div>
-    <div class="ctrl-row" style="justify-content:space-between;flex-wrap:wrap;gap:10px">
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="pill pill-all active" onclick="setStatus('all',this)" id="status-all">All Terms</button>
-        <button class="pill pill-starred" onclick="setStatus('starred',this)" id="status-starred">⭐ Starred Only</button>
-        <button class="pill pill-u" onclick="setStatus('formula',this)">📐 Has Formula</button>
-      </div>
-      <div class="view-toggle">
-        <button class="view-btn active" onclick="setView('card',this)">📄 Card</button>
-        <button class="view-btn" onclick="setView('compact',this)">≡ Compact</button>
-      </div>
-    </div>
-  </div>
+<!-- STATS -->
+<div class="stats-row">
+<div class="stat-chip"><div><div class="stat-num" id="s-total">200</div><div class="stat-lbl">TOTAL TERMS</div></div></div>
+<div class="stat-chip"><div><div class="stat-num" style="color:var(--amber)" id="s-starred">0</div><div class="stat-lbl">STARRED</div></div></div>
+<div class="stat-chip"><div><div class="stat-num" style="color:var(--teal)" id="s-quiz">—</div><div class="stat-lbl">QUIZ SCORE</div></div></div>
+<div class="stat-chip"><div><div class="stat-num" style="color:var(--sky)" id="s-shown">200</div><div class="stat-lbl">SHOWING</div></div></div>
+</div>
 
-  <!-- A-Z JUMP BAR -->
-  <div class="alpha-bar" id="alpha-bar"></div>
+<!-- CONTROLS -->
+<div class="controls">
+<div class="ctrl-row">
+<span class="ctrl-label">SEARCH</span>
+<div class="search-wrap">
+<span class="search-icon">🔎</span>
+<input class="search-input" id="search-input" type="text" placeholder="Search terms, definitions, formulas, examples…" oninput="applyFilters()">
+</div>
+</div>
+<div class="ctrl-row">
+<span class="ctrl-label">UNIT</span>
+<button class="pill pill-all active" onclick="setUnit('all',this)">All</button>
+<button class="pill pill-u" onclick="setUnit('U1',this)">U1</button>
+<button class="pill pill-u" onclick="setUnit('U2',this)">U2</button>
+<button class="pill pill-u" onclick="setUnit('U3',this)">U3</button>
+<button class="pill pill-u" onclick="setUnit('U4',this)">U4</button>
+<button class="pill pill-u" onclick="setUnit('U5',this)">U5</button>
+<button class="pill pill-u" onclick="setUnit('U6',this)">U6</button>
+<button class="pill pill-u" onclick="setUnit('U7',this)">U7</button>
+<button class="pill pill-u" onclick="setUnit('U8',this)">U8</button>
+<button class="pill pill-u" onclick="setUnit('U9',this)">U9</button>
+<button class="pill pill-u" onclick="setUnit('U10',this)">U10</button>
+</div>
+<div class="ctrl-row" style="justify-content:space-between;flex-wrap:wrap;gap:10px">
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<button class="pill pill-all active" onclick="setStatus('all',this)" id="status-all">All Terms</button>
+<button class="pill pill-starred" onclick="setStatus('starred',this)" id="status-starred">⭐ Starred Only</button>
+<button class="pill pill-u" onclick="setStatus('formula',this)">📐 Has Formula</button>
+</div>
+<div class="view-toggle">
+<button class="view-btn active" onclick="setView('card',this)">📄 Card</button>
+<button class="view-btn" onclick="setView('compact',this)">≡ Compact</button>
+</div>
+</div>
+</div>
 
-  <div class="count-label" id="count-label"><strong>200</strong> terms shown</div>
+<!-- A-Z JUMP BAR -->
+<div class="alpha-bar" id="alpha-bar"></div>
 
-  <!-- GLOSSARY CONTENT -->
-  <div id="glossary-content"></div>
+<div class="count-label" id="count-label"><strong>200</strong> terms shown</div>
+
+<!-- GLOSSARY CONTENT -->
+<div id="glossary-content"></div>
 
 </div>
 
 <!-- QUIZ OVERLAY -->
 <div class="quiz-overlay" id="quiz-overlay">
-  <div class="quiz-wrap">
-    <div class="quiz-header">
-      <div>
-        <div class="quiz-title">🧠 Flashcard Quiz</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:3px">Read the definition. Identify the term.</div>
-      </div>
-      <button class="quiz-close" onclick="closeQuiz()">✕</button>
-    </div>
-    <div class="quiz-card" id="quiz-card">
-      <div class="quiz-prompt">
-        <div class="quiz-prompt-label">WHAT TERM MATCHES THIS DEFINITION?</div>
-        <div class="quiz-term-display" id="quiz-def-text"></div>
-        <div class="quiz-unit-tag" id="quiz-unit-hint"></div>
-      </div>
-      <div class="quiz-choices" id="quiz-choices"></div>
-      <div class="quiz-result" id="quiz-result">
-        <div class="quiz-result-lbl" id="quiz-result-lbl"></div>
-        <div id="quiz-result-body"></div>
-      </div>
-    </div>
-    <div class="quiz-nav">
-      <span class="quiz-score-disp" id="quiz-live-score">0 / 0</span>
-      <button class="btn-quiz-next" id="quiz-next-btn" onclick="quizNext()" style="display:none">Next →</button>
-      <button class="btn-quiz-exit" onclick="closeQuiz()">Exit</button>
-    </div>
-  </div>
+<div class="quiz-wrap">
+<div class="quiz-header">
+<div>
+<div class="quiz-title">🧠 Flashcard Quiz</div>
+<div style="font-size:12px;color:var(--muted);margin-top:3px">Read the definition. Identify the term.</div>
+</div>
+<button class="quiz-close" onclick="closeQuiz()">✕</button>
+</div>
+<div class="quiz-card" id="quiz-card">
+<div class="quiz-prompt">
+<div class="quiz-prompt-label">WHAT TERM MATCHES THIS DEFINITION?</div>
+<div class="quiz-term-display" id="quiz-def-text"></div>
+<div class="quiz-unit-tag" id="quiz-unit-hint"></div>
+</div>
+<div class="quiz-choices" id="quiz-choices"></div>
+<div class="quiz-result" id="quiz-result">
+<div class="quiz-result-lbl" id="quiz-result-lbl"></div>
+<div id="quiz-result-body"></div>
+</div>
+</div>
+<div class="quiz-nav">
+<span class="quiz-score-disp" id="quiz-live-score">0 / 0</span>
+<button class="btn-quiz-next" id="quiz-next-btn" onclick="quizNext()" style="display:none">Next →</button>
+<button class="btn-quiz-exit" onclick="closeQuiz()">Exit</button>
+</div>
+</div>
 </div>
 
 <script>
@@ -296,428 +298,464 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 // GLOSSARY DATA — All terms from DOCX
 // ════════════════════════════════════════════
 const TERMS = [
-  // ── A ──
-  {term:"Absolute Value",unit:"U1",def:"The distance a number is from zero on a number line — always zero or positive, never negative.",formula:"|a| = a if a ≥ 0; |a| = −a if a < 0",example:"|−7| = 7 and |5| = 5."},
-  {term:"Absolute Value Function",unit:"U1",def:"A function that returns the absolute value of its input, creating a V-shaped graph.",formula:"f(x) = |x|; vertex at origin for parent function",example:"f(x) = |x − 3| + 2 shifts the V right 3 units and up 2 units."},
-  {term:"Amplitude",unit:"U10",def:"Half the vertical distance between the highest and lowest points of a wave — how tall the wave is from center.",formula:"Amplitude = |A| in y = A sin(x)",example:"y = 3 sin(x) has amplitude 3; the graph reaches 3 and −3."},
-  {term:"Arithmetic Sequence",unit:"U7",def:"A list of numbers where you add (or subtract) the same amount each time to get the next term.",formula:"aₙ = a₁ + (n − 1)d, where d = common difference",example:"2, 5, 8, 11, 14 — add 3 each time; d = 3."},
-  {term:"Arithmetic Series",unit:"U7",def:"The sum of the terms of an arithmetic sequence.",formula:"Sₙ = n/2 · (a₁ + aₙ)",example:"Sum of 2 + 5 + 8 + 11 + 14: S₅ = 5/2 · (2 + 14) = 40."},
-  {term:"Asymptote",unit:"U4",def:"A line that a graph approaches but never quite touches or crosses.",formula:"Vertical: x = a; Horizontal: y = b; Oblique: y = mx + b",example:"f(x) = 1/x has vertical asymptote x = 0 and horizontal asymptote y = 0."},
-  {term:"Augmented Matrix",unit:"U8",def:"A matrix that combines the coefficient matrix of a system of equations with the constants column — used to solve systems efficiently.",formula:"[A|b] where A is coefficients and b is constants",example:"System 2x + y = 5, x − y = 1 becomes [2 1 | 5; 1 −1 | 1]."},
-  {term:"Average Rate of Change",unit:"U1",def:"How much a function's output changes per unit of input over an interval — the slope of the secant line between two points.",formula:"ARC = [f(b) − f(a)] / (b − a)",example:"For f(x) = x² from x = 1 to x = 3: ARC = (9 − 1)/(3 − 1) = 4."},
-  // ── B ──
-  {term:"Base (Exponential)",unit:"U6",def:"The number being repeatedly multiplied in an exponential expression. The base determines whether the function grows or decays.",formula:"f(x) = bˣ; b > 0, b ≠ 1",example:"In 3ˣ, the base is 3. In (0.5)ˣ, the base is 0.5 (decay)."},
-  {term:"Binomial",unit:"U2",def:"A polynomial with exactly two terms.",formula:"(a + b) — two terms connected by + or −",example:"3x² − 5 and x + 7 are both binomials."},
-  {term:"Binomial Theorem",unit:"U7",def:"A formula for expanding (a + b)ⁿ without multiplying it out step by step.",formula:"(a+b)ⁿ = Σ C(n,k) · aⁿ⁻ᵏ · bᵏ",example:"(x + 1)³ = x³ + 3x² + 3x + 1 using the theorem."},
-  {term:"Boundary Condition",unit:"U3",def:"A constraint placed on the solution of an equation — typically specifying what values are allowed.",formula:null,example:"In a real-world problem, a negative length is not allowed, so x > 0 is a boundary condition."},
-  // ── C ──
-  {term:"Change of Base Formula",unit:"U6",def:"A rule that lets you rewrite a logarithm in any base using common (base 10) or natural (base e) logs — essential for calculator use.",formula:"log_b(x) = log(x)/log(b) = ln(x)/ln(b)",example:"log₅(20) = log(20)/log(5) = 1.301/0.699 ≈ 1.861."},
-  {term:"Circle (Conic)",unit:"U9",def:"The set of all points in a plane equidistant from a fixed center point. One of the four conic sections.",formula:"(x − h)² + (y − k)² = r²",example:"(x − 2)² + (y + 1)² = 25 is a circle centered at (2, −1) with radius 5."},
-  {term:"Coefficient",unit:"U2",def:"The numerical multiplier in front of a variable term in a polynomial.",formula:null,example:"In 7x³ − 4x + 2, the coefficients are 7, −4, and 2."},
-  {term:"Combination",unit:"U8",def:"The number of ways to choose items from a group when order does NOT matter.",formula:"C(n, r) = n! / [r!(n − r)!]",example:"Choosing 2 students from 5: C(5,2) = 10 ways."},
-  {term:"Common Difference",unit:"U7",def:"The constant value added (or subtracted) between terms in an arithmetic sequence.",formula:"d = a_(n+1) − aₙ",example:"In 3, 7, 11, 15 — the common difference is 4."},
-  {term:"Common Ratio",unit:"U7",def:"The constant value multiplied between consecutive terms in a geometric sequence.",formula:"r = a_(n+1) / aₙ",example:"In 2, 6, 18, 54 — the common ratio is 3."},
-  {term:"Completing the Square",unit:"U3",def:"A technique for rewriting a quadratic in vertex form by adding and subtracting the square of half the x-coefficient.",formula:"x² + bx + (b/2)² = (x + b/2)²",example:"x² + 6x + 5 = (x² + 6x + 9) − 4 = (x + 3)² − 4."},
-  {term:"Complex Conjugate",unit:"U3",def:"The partner of a complex number formed by changing the sign of the imaginary part. Multiplying conjugates eliminates the imaginary part.",formula:"Conjugate of (a + bi) is (a − bi)",example:"Conjugate of (3 + 2i) is (3 − 2i). Product: (3+2i)(3−2i) = 9 + 4 = 13."},
-  {term:"Complex Number",unit:"U3",def:"A number with a real part and an imaginary part, written in the form a + bi where i = √(−1).",formula:"a + bi, where a is real and b is the imaginary coefficient",example:"4 + 3i: real part is 4, imaginary part is 3."},
-  {term:"Composition of Functions",unit:"U1",def:"Plugging one function into another — the output of one becomes the input of the other.",formula:"(f ∘ g)(x) = f(g(x))",example:"If f(x) = x² and g(x) = x + 1, then (f ∘ g)(x) = (x+1)²."},
-  {term:"Compound Interest",unit:"U6",def:"Interest calculated on both the principal and previously earned interest, causing exponential growth.",formula:"A = P(1 + r/n)^(nt)",example:"$1000 at 5% compounded quarterly for 3 years: A = 1000(1.0125)¹² ≈ $1160.75."},
-  {term:"Conditional Probability",unit:"U8",def:"The probability of event A occurring given that event B has already occurred.",formula:"P(A|B) = P(A and B) / P(B)",example:"If P(rain) = 0.4 and P(rain and cold) = 0.2, then P(cold | rain) = 0.2/0.4 = 0.5."},
-  {term:"Conic Section",unit:"U9",def:"A curve formed by slicing a cone with a flat plane — produces circles, ellipses, parabolas, or hyperbolas.",formula:null,example:"Slicing a cone parallel to the base gives a circle; at an angle gives an ellipse."},
-  {term:"Conjugate Pairs Theorem",unit:"U2",def:"If a polynomial with real coefficients has a complex root (a + bi), then its conjugate (a − bi) is also a root.",formula:null,example:"If 2 + 3i is a root of a real polynomial, then 2 − 3i must also be a root."},
-  {term:"Constant Function",unit:"U1",def:"A function whose output value never changes regardless of the input — a horizontal line.",formula:"f(x) = c",example:"f(x) = 7 is constant — every input gives output 7."},
-  {term:"Continuous Growth/Decay",unit:"U6",def:"Growth or decay modeled with the natural base e, representing processes that happen at every instant.",formula:"A = Peʳᵗ",example:"A bacteria culture of 100 growing at 3% continuously: A = 100e^(0.03t)."},
-  {term:"Correlation Coefficient",unit:"U8",def:"A value r between −1 and 1 that measures the strength and direction of a linear relationship between two variables.",formula:"r near 1 = strong positive; r near −1 = strong negative; r near 0 = weak/none",example:"r = 0.95 indicates a very strong positive linear relationship."},
-  // ── D ──
-  {term:"Degree (Polynomial)",unit:"U2",def:"The highest power (exponent) of the variable in a polynomial — tells you about the shape and end behavior of its graph.",formula:null,example:"3x⁴ − 2x² + 1 has degree 4."},
-  {term:"Dependent Variable",unit:"U1",def:"The output variable of a function — its value depends on what you plug in. Usually called y or f(x).",formula:null,example:"In y = 3x + 2, y is the dependent variable; it changes based on x."},
-  {term:"Directrix",unit:"U9",def:"A fixed line used in the definition of a parabola — every point on the parabola is equidistant from the focus and the directrix.",formula:"For x² = 4py, directrix is y = −p",example:"For y = x²/8 (i.e., x² = 8y), p = 2, so directrix is y = −2."},
-  {term:"Discriminant",unit:"U3",def:"The expression under the square root in the quadratic formula. Its sign tells you how many real solutions the equation has.",formula:"D = b² − 4ac; D>0: two real; D=0: one real; D<0: two complex",example:"For 2x² − 4x + 5: D = 16 − 40 = −24 (two complex roots)."},
-  {term:"Domain",unit:"U1",def:"The set of all allowed input values (x-values) for a function — what you can plug in.",formula:null,example:"For f(x) = 1/x, domain is all real numbers except 0 (x ≠ 0)."},
-  // ── E ──
-  {term:"e (Euler's Number)",unit:"U6",def:"An irrational constant approximately equal to 2.718… used as the base of natural logarithms and continuous growth/decay models.",formula:"e ≈ 2.71828…",example:"e¹ = 2.718; ln(e) = 1. Used in continuous compounding: A = Peʳᵗ."},
-  {term:"Ellipse",unit:"U9",def:"An oval-shaped conic section — the set of all points where the sum of distances from two fixed points (foci) is constant.",formula:"x²/a² + y²/b² = 1 (a > b > 0)",example:"x²/25 + y²/9 = 1 is an ellipse with a = 5 and b = 3."},
-  {term:"End Behavior",unit:"U2",def:"What happens to a function's output (y-values) as x gets very large (rightward) or very small (leftward).",formula:"Determined by leading coefficient and degree",example:"For f(x) = −2x³: as x → +∞, y → −∞; as x → −∞, y → +∞."},
-  {term:"Even Function",unit:"U1",def:"A function symmetric about the y-axis — plugging in −x gives the same output as plugging in x.",formula:"f(−x) = f(x) for all x",example:"f(x) = x² is even: f(−3) = 9 = f(3)."},
-  {term:"Excluded Value",unit:"U4",def:"An x-value that makes a rational function undefined because it creates a zero in the denominator.",formula:null,example:"In f(x) = (x+2)/(x−5), the excluded value is x = 5."},
-  {term:"Explicit Formula",unit:"U7",def:"A formula that lets you calculate any term of a sequence directly using the term number, without finding all previous terms.",formula:"aₙ = a₁ + (n−1)d (arithmetic) or aₙ = a₁ · rⁿ⁻¹ (geometric)",example:"For 3, 7, 11,…: aₙ = 3 + (n−1)(4) = 4n − 1. Find a₁₀₀ = 399 directly."},
-  {term:"Exponential Decay",unit:"U6",def:"A pattern where a quantity decreases by the same percentage over equal time intervals — modeled with a base between 0 and 1.",formula:"f(t) = A · bᵗ, where 0 < b < 1",example:"A car valued at $20,000 depreciating 15% per year: V(t) = 20000(0.85)ᵗ."},
-  {term:"Exponential Function",unit:"U6",def:"A function where the variable is in the exponent — the base is a constant and the exponent is the variable.",formula:"f(x) = a · bˣ, b > 0, b ≠ 1",example:"f(x) = 2ˣ doubles every time x increases by 1."},
-  {term:"Exponential Growth",unit:"U6",def:"A pattern where a quantity increases by the same percentage over equal time intervals — modeled with a base greater than 1.",formula:"f(t) = A · bᵗ, where b > 1",example:"A population of 500 growing at 8% per year: P(t) = 500(1.08)ᵗ."},
-  {term:"Extraneous Solution",unit:"U5",def:"A solution that satisfies the transformed equation but NOT the original equation — always appears when squaring both sides. Must be checked.",formula:null,example:"Solving √x = −3 by squaring gives x = 9, but √9 = 3 ≠ −3. Extraneous."},
-  // ── F ──
-  {term:"Factor Theorem",unit:"U2",def:"If f(c) = 0, then (x − c) is a factor of the polynomial f(x). And vice versa — if (x − c) is a factor, then c is a root.",formula:"f(c) = 0 ⟺ (x − c) is a factor",example:"If f(2) = 0, then (x − 2) is a factor of f(x)."},
-  {term:"Finite Sequence",unit:"U7",def:"A sequence with a definite end — a countable number of terms.",formula:null,example:"1, 4, 9, 16, 25 is a finite sequence of 5 terms."},
-  {term:"Focus (Conic)",unit:"U9",def:"A fixed reference point used in defining conic sections. Parabolas have one focus; ellipses and hyperbolas have two.",formula:"For x² = 4py, focus is at (0, p)",example:"For x² = 12y, p = 3, so focus is at (0, 3)."},
-  {term:"Function",unit:"U1",def:"A relationship where each input value has exactly one output value — every x maps to exactly one y.",formula:null,example:"{(1,3), (2,5), (3,7)} is a function. {(1,3), (1,5)} is not (1 maps to two outputs)."},
-  {term:"Function Notation",unit:"U1",def:"Writing f(x) instead of y to name a function and show what it depends on.",formula:"f(x) = expression in x",example:"f(x) = 2x + 1 means: 'take x, double it, add 1.' f(4) = 9."},
-  {term:"Fundamental Theorem of Algebra",unit:"U2",def:"Every polynomial of degree n has exactly n roots (counting complex roots and repeated roots) in the complex number system.",formula:null,example:"x³ − 1 = 0 has exactly 3 roots: x = 1, x = (−1+i√3)/2, x = (−1−i√3)/2."},
-  // ── G ──
-  {term:"Geometric Sequence",unit:"U7",def:"A list of numbers where you multiply by the same ratio each time to get the next term.",formula:"aₙ = a₁ · rⁿ⁻¹",example:"3, 6, 12, 24 — multiply by 2 each time; r = 2."},
-  {term:"Geometric Series",unit:"U7",def:"The sum of the terms of a geometric sequence.",formula:"Sₙ = a₁(1 − rⁿ) / (1 − r), r ≠ 1",example:"3 + 6 + 12 + 24: S₄ = 3(1 − 2⁴)/(1 − 2) = 45."},
-  {term:"Greatest Integer Function",unit:"U1",def:"A step function that rounds any input DOWN to the nearest integer. Also called the floor function.",formula:"f(x) = ⌊x⌋ or floor(x)",example:"⌊3.7⌋ = 3; ⌊−2.1⌋ = −3 (rounds down toward negative infinity)."},
-  // ── H ──
-  {term:"Half-Life",unit:"U6",def:"The time it takes for a decaying quantity to reduce to half its original amount — a key concept in radioactive decay and pharmacology.",formula:"A(t) = A₀ · (1/2)^(t/h), where h = half-life",example:"If a substance has half-life of 10 years: after 20 years, 1/4 of original remains."},
-  {term:"Hole (Removable Discontinuity)",unit:"U4",def:"A gap in a rational function's graph at a point where a common factor cancels from numerator and denominator.",formula:"Occurs when a factor cancels: (x−a)/(x−a) creates hole at x = a",example:"f(x) = (x²−4)/(x−2) simplifies to (x+2) with a hole at x = 2."},
-  {term:"Horizontal Asymptote",unit:"U4",def:"A horizontal line y = b that a rational function approaches as x goes to positive or negative infinity.",formula:"deg(num) < deg(den) → y=0; deg(num)=deg(den) → y=ratio of leading coefficients",example:"f(x) = 2x/(x+5): degrees equal, HA is y = 2/1 = 2."},
-  {term:"Hyperbola",unit:"U9",def:"A conic section with two separate curved branches — defined as the set of all points where the difference of distances from two foci is constant.",formula:"x²/a² − y²/b² = 1 (horizontal) or y²/a² − x²/b² = 1 (vertical)",example:"x²/9 − y²/4 = 1 is a hyperbola opening left and right."},
-  // ── I ──
-  {term:"Identity Function",unit:"U1",def:"A function that returns its input unchanged — the output equals the input.",formula:"f(x) = x",example:"f(5) = 5; f(−2) = −2. Graph is a diagonal line through the origin."},
-  {term:"Imaginary Number",unit:"U3",def:"The square root of a negative number. The base unit is i = √(−1).",formula:"i = √(−1); i² = −1",example:"√(−9) = 3i. i² = −1; i³ = −i; i⁴ = 1 (cycle of 4)."},
-  {term:"Imaginary Unit (i)",unit:"U3",def:"The number i, defined as the square root of −1, which allows us to work with square roots of negative numbers.",formula:"i = √(−1); i² = −1",example:"i¹=i, i²=−1, i³=−i, i⁴=1 — the pattern repeats every 4 powers."},
-  {term:"Independent Variable",unit:"U1",def:"The input variable of a function — the value you choose or control. Usually called x.",formula:null,example:"In y = 3x + 2, x is the independent variable — you pick the x-value."},
-  {term:"Index (Radical)",unit:"U5",def:"The small number in the crook of a radical sign that tells you which root to take.",formula:"ⁿ√x = x^(1/n)",example:"Cube root symbol with index 3: ³√27 = 3. Square root has implied index 2."},
-  {term:"Infinite Geometric Series",unit:"U7",def:"A geometric series with infinitely many terms that has a finite sum — possible only when the common ratio satisfies |r| < 1.",formula:"S = a₁ / (1 − r), when |r| < 1",example:"1 + 1/2 + 1/4 + 1/8 + … = 1/(1−0.5) = 2."},
-  {term:"Infinite Sequence",unit:"U7",def:"A sequence that continues without end — has no last term.",formula:null,example:"1, 2, 3, 4, … (natural numbers) is an infinite sequence."},
-  {term:"Interval Notation",unit:"U1",def:"A shorthand way to write ranges of numbers using brackets [ ] for included endpoints and parentheses ( ) for excluded ones.",formula:"[a, b] includes endpoints; (a, b) excludes; mix for half-open",example:"Domain of x ≥ 2: [2, +∞). x between −1 and 3, not including −1: (−1, 3]."},
-  {term:"Inverse Function",unit:"U1",def:"A function that undoes another function — swaps the input and output. If f maps x to y, then f⁻¹ maps y back to x.",formula:"f(f⁻¹(x)) = x; f⁻¹(f(x)) = x",example:"If f(x) = 2x + 1, then f⁻¹(x) = (x−1)/2. f(3)=7 and f⁻¹(7)=3."},
-  {term:"Inverse Variation",unit:"U4",def:"A relationship where one variable increases as another decreases proportionally — their product is constant.",formula:"y = k/x, or xy = k (k is the constant of variation)",example:"Speed and travel time: if you double your speed, you halve your travel time."},
-  {term:"Irrational Number",unit:"U5",def:"A real number that cannot be written as a fraction — its decimal expansion never terminates or repeats.",formula:null,example:"√2 = 1.41421356… and π = 3.14159… are irrational."},
-  // ── J ──
-  {term:"Joint Variation",unit:"U4",def:"When a variable varies directly with two or more other variables simultaneously.",formula:"z = k · x · y",example:"The area of a triangle varies jointly with base b and height h: A = (1/2)bh."},
-  // ── L ──
-  {term:"Leading Coefficient",unit:"U2",def:"The coefficient of the highest-degree term in a polynomial — determines end behavior direction.",formula:null,example:"In −3x⁴ + 2x − 1, the leading coefficient is −3."},
-  {term:"Leading Term",unit:"U2",def:"The term with the highest power in a polynomial — drives the end behavior.",formula:null,example:"In 5x³ − 2x + 7, the leading term is 5x³."},
-  {term:"Logarithm",unit:"U6",def:"The inverse of an exponential function — answers the question 'what exponent gives me this result?'",formula:"log_b(x) = y means bʸ = x",example:"log₂(8) = 3 because 2³ = 8."},
-  {term:"Logarithmic Function",unit:"U6",def:"The inverse of an exponential function, written as f(x) = log_b(x). Slow-growing, with a vertical asymptote at x = 0.",formula:"f(x) = log_b(x), b > 0, b ≠ 1",example:"f(x) = log₁₀(x): f(100) = 2, f(1000) = 3."},
-  {term:"Long Division (Polynomial)",unit:"U2",def:"A method for dividing one polynomial by another, similar to long division with numbers.",formula:"Dividend = Divisor × Quotient + Remainder",example:"(x³ − 1) / (x − 1) = x² + x + 1 with remainder 0."},
-  {term:"Lower Bound",unit:"U2",def:"A value less than or equal to all roots of a polynomial — used with synthetic division to confirm no roots exist below that value.",formula:null,example:"If synthetic division with c = −3 gives alternating signs in the last row, −3 is a lower bound."},
-  // ── M ──
-  {term:"Matrix",unit:"U8",def:"A rectangular array of numbers organized in rows and columns — used to solve systems of equations and represent data.",formula:null,example:"[2 1; 3 −4] is a 2×2 matrix with 2 rows and 2 columns."},
-  {term:"Midpoint Formula",unit:"U9",def:"A formula that finds the exact center point between two coordinate points.",formula:"M = ((x₁ + x₂)/2, (y₁ + y₂)/2)",example:"Midpoint of (2, 4) and (8, 10): M = (5, 7)."},
-  {term:"Monomial",unit:"U2",def:"A polynomial with exactly one term — a number, variable, or product of numbers and variables.",formula:null,example:"7x³, −2y, and 5 are all monomials."},
-  {term:"Multiplicity",unit:"U2",def:"The number of times a root is repeated in a polynomial. Affects how the graph behaves at that x-intercept.",formula:"Odd multiplicity: crosses x-axis. Even multiplicity: bounces (touches and turns)",example:"In (x−2)²(x+1), x = 2 has multiplicity 2 (bounces); x = −1 has multiplicity 1 (crosses)."},
-  {term:"Mutually Exclusive Events",unit:"U8",def:"Events that cannot both occur at the same time — if one happens, the other cannot.",formula:"P(A or B) = P(A) + P(B) if mutually exclusive",example:"Rolling a 3 and rolling a 5 on the same die roll are mutually exclusive."},
-  // ── N ──
-  {term:"Natural Logarithm",unit:"U6",def:"A logarithm with base e (Euler's number). Written as ln(x). The inverse of the natural exponential function eˣ.",formula:"ln(x) = log_e(x); ln(eˣ) = x",example:"ln(e³) = 3; ln(1) = 0; ln(e) = 1."},
-  {term:"Negative Exponent",unit:"U6",def:"A negative exponent means take the reciprocal — flip the base to the other side of the fraction.",formula:"a⁻ⁿ = 1/aⁿ",example:"2⁻³ = 1/8; x⁻¹ = 1/x."},
-  {term:"Normal Distribution",unit:"U8",def:"A symmetric, bell-shaped distribution where most data clusters around the mean and tails extend on both sides.",formula:"68% within 1 SD; 95% within 2 SD; 99.7% within 3 SD (Empirical Rule)",example:"Heights of adults often follow a normal distribution centered at the mean height."},
-  // ── O ──
-  {term:"Odd Function",unit:"U1",def:"A function symmetric about the origin — rotating the graph 180° gives the same graph. f(−x) = −f(x).",formula:"f(−x) = −f(x) for all x",example:"f(x) = x³ is odd: f(−2) = −8 = −f(2)."},
-  {term:"One-to-One Function",unit:"U1",def:"A function where every output value is produced by exactly one input — passes both the vertical and horizontal line tests. Required for an inverse to exist.",formula:null,example:"f(x) = 2x + 1 is one-to-one. f(x) = x² is NOT (f(2) = f(−2) = 4)."},
-  // ── P ──
-  {term:"Parabola",unit:"U3",def:"A U-shaped (or upside-down U) conic section — the graph of any quadratic function or the set of all points equidistant from the focus and directrix.",formula:"f(x) = ax² + bx + c or (x−h)² = 4p(y−k)",example:"f(x) = x² − 4x + 3 is a parabola opening upward."},
-  {term:"Parent Function",unit:"U1",def:"The simplest, most basic form of a family of functions — before any transformations are applied.",formula:null,example:"y = x² is the parent of all quadratics. y = |x| is the parent of all absolute value functions."},
-  {term:"Pascal's Triangle",unit:"U7",def:"A triangular pattern of numbers where each number is the sum of the two above it. Used to find binomial expansion coefficients.",formula:"Row n gives the coefficients for (a+b)ⁿ",example:"Row 3: 1, 3, 3, 1 — so (a+b)³ = a³ + 3a²b + 3ab² + b³."},
-  {term:"Period",unit:"U10",def:"The length of one complete cycle of a repeating function — the horizontal distance before the pattern starts over.",formula:"Period = 2π/|B| for y = A sin(Bx)",example:"y = sin(2x) has period 2π/2 = π — completes its cycle twice as fast."},
-  {term:"Permutation",unit:"U8",def:"The number of ways to arrange items from a group when order DOES matter.",formula:"P(n, r) = n! / (n − r)!",example:"Arranging 3 of 5 students for 1st, 2nd, 3rd: P(5,3) = 60 arrangements."},
-  {term:"Piecewise Function",unit:"U1",def:"A function defined by different rules for different intervals of the domain — like a function with multiple 'sections.'",formula:null,example:"f(x) = { x + 1 if x < 0; x² if x ≥ 0 } — two different rules depending on x."},
-  {term:"Point of Discontinuity",unit:"U4",def:"A point where a function is not defined or has a break in its graph — includes holes, jumps, and vertical asymptotes.",formula:null,example:"f(x) = (x²−1)/(x−1) has a point of discontinuity (hole) at x = 1."},
-  {term:"Polynomial",unit:"U2",def:"An expression of one or more terms consisting of variables raised to whole-number powers, added or subtracted together.",formula:"aₙxⁿ + aₙ₋₁xⁿ⁻¹ + … + a₁x + a₀",example:"3x⁴ − 2x³ + x − 7 is a 4th-degree polynomial."},
-  {term:"Power Function",unit:"U2",def:"A function of the form f(x) = xⁿ where n is a constant — polynomials and radicals are special cases.",formula:"f(x) = xⁿ",example:"f(x) = x³ (power 3), f(x) = x^(1/2) = √x (power 1/2)."},
-  {term:"Principal Square Root",unit:"U5",def:"The positive (non-negative) square root of a number — by convention, the √ symbol always refers to this positive value.",formula:"√a ≥ 0 for all a ≥ 0",example:"√25 = 5 (not −5), because we always take the principal root."},
-  {term:"Product Property (Logs)",unit:"U6",def:"The logarithm of a product equals the sum of the individual logarithms.",formula:"log_b(xy) = log_b(x) + log_b(y)",example:"log(3 × 7) = log(3) + log(7) = 0.477 + 0.845 = 1.322."},
-  {term:"Profit",unit:"U2",def:"In polynomial modeling, the difference between revenue and cost functions.",formula:"P(x) = R(x) − C(x)",example:"If R(x) = 50x and C(x) = 10x + 200, then P(x) = 40x − 200."},
-  // ── Q ──
-  {term:"Quadratic Formula",unit:"U3",def:"The universal formula for solving any quadratic equation ax² + bx + c = 0 — always works, even when factoring fails.",formula:"x = [−b ± √(b² − 4ac)] / (2a)",example:"Solve 2x² − 3x − 2 = 0: x = [3 ± √25] / 4 = [3 ± 5] / 4; x = 2 or x = −0.5."},
-  {term:"Quadratic Function",unit:"U3",def:"A second-degree polynomial function whose graph is a parabola.",formula:"f(x) = ax² + bx + c, a ≠ 0",example:"f(x) = x² − 4x + 3 is a quadratic. Vertex at (2, −1)."},
-  {term:"Quotient Property (Logs)",unit:"U6",def:"The logarithm of a quotient equals the difference of the individual logarithms.",formula:"log_b(x/y) = log_b(x) − log_b(y)",example:"log(100/10) = log(100) − log(10) = 2 − 1 = 1."},
-  // ── R ──
-  {term:"Radical",unit:"U5",def:"An expression using a root symbol — includes square roots, cube roots, and higher roots.",formula:"ⁿ√x = x^(1/n)",example:"√16 = 4; ³√8 = 2; ⁴√81 = 3."},
-  {term:"Radicand",unit:"U5",def:"The number or expression inside a radical (root) symbol.",formula:null,example:"In √(3x + 5), the radicand is 3x + 5."},
-  {term:"Range",unit:"U1",def:"The set of all possible output values (y-values) a function can produce.",formula:null,example:"For f(x) = x², range is y ≥ 0 (can't produce a negative output)."},
-  {term:"Rational Equation",unit:"U4",def:"An equation containing at least one rational expression — a fraction with a polynomial in the numerator, denominator, or both.",formula:null,example:"2/x + 3/(x+1) = 1 is a rational equation."},
-  {term:"Rational Exponent",unit:"U5",def:"A fractional exponent that represents both a power and a root simultaneously.",formula:"x^(m/n) = (ⁿ√x)ᵐ = ⁿ√(xᵐ)",example:"8^(2/3) = (³√8)² = 2² = 4."},
-  {term:"Rational Expression",unit:"U4",def:"A fraction where the numerator and/or denominator contains a polynomial.",formula:"P(x)/Q(x), where Q(x) ≠ 0",example:"(x² − 1)/(x + 3) is a rational expression."},
-  {term:"Rational Function",unit:"U4",def:"A function that is the ratio of two polynomials — can have asymptotes and holes.",formula:"f(x) = P(x)/Q(x)",example:"f(x) = (2x+1)/(x−3) is a rational function with vertical asymptote at x = 3."},
-  {term:"Rational Root Theorem",unit:"U2",def:"A tool for listing all possible rational roots of a polynomial — the candidates are factors of the constant divided by factors of the leading coefficient.",formula:"Possible rational roots: ±(factors of constant) / (factors of leading coefficient)",example:"For 2x³ − 3x + 1, possible rational roots: ±1/2, ±1."},
-  {term:"Real Number",unit:"U3",def:"Any number on the number line — includes all rational and irrational numbers. The 'normal' numbers before imaginary numbers are introduced.",formula:null,example:"−7, 0, 3.14, √2, 1/3 are all real numbers. 2i is NOT real."},
-  {term:"Recursive Formula",unit:"U7",def:"A formula that defines each term of a sequence using the previous term(s) — you must know earlier terms to find later ones.",formula:"aₙ = aₙ₋₁ + d (arithmetic) or aₙ = r · aₙ₋₁ (geometric)",example:"a₁ = 3; aₙ = aₙ₋₁ + 4. To find a₅: 3,7,11,15,19 — a₅ = 19."},
-  {term:"Reflection",unit:"U1",def:"A transformation that flips a graph across an axis, creating a mirror image.",formula:"Across x-axis: replace f(x) with −f(x). Across y-axis: replace f(x) with f(−x)",example:"f(x) = −x² reflects y = x² across the x-axis (opens downward)."},
-  {term:"Regression",unit:"U8",def:"A statistical method for finding an equation that best fits a set of data — allows prediction and modeling.",formula:null,example:"Plotting income vs. education years and finding the best-fit linear regression line."},
-  {term:"Remainder Theorem",unit:"U2",def:"When a polynomial f(x) is divided by (x − c), the remainder equals f(c).",formula:"f(x) / (x − c) has remainder f(c)",example:"For f(x) = x³ − 4x + 1, dividing by (x − 2): remainder = f(2) = 8 − 8 + 1 = 1."},
-  {term:"Root (Zero) of a Polynomial",unit:"U2",def:"A value of x that makes f(x) = 0 — where the graph crosses or touches the x-axis.",formula:"f(c) = 0 means c is a root",example:"For f(x) = x² − 4, roots are x = 2 and x = −2 because f(2)=0 and f(−2)=0."},
-  // ── S ──
-  {term:"Sample Space",unit:"U8",def:"The set of all possible outcomes of an experiment.",formula:null,example:"Flipping a coin: sample space = {H, T}. Rolling a die: {1, 2, 3, 4, 5, 6}."},
-  {term:"Scatter Plot",unit:"U8",def:"A graph of plotted points showing the relationship between two sets of data values.",formula:null,example:"Plotting (study hours, test score) for 20 students to see if more study time correlates with higher scores."},
-  {term:"Sequence",unit:"U7",def:"An ordered list of numbers following a specific rule or pattern.",formula:null,example:"1, 3, 5, 7, 9, … is a sequence of odd numbers."},
-  {term:"Series",unit:"U7",def:"The sum of the terms in a sequence.",formula:"Sₙ = a₁ + a₂ + … + aₙ",example:"1 + 3 + 5 + 7 + 9 = 25 is a series (sum of the first 5 odd numbers)."},
-  {term:"Set Notation",unit:"U1",def:"A way to describe a group of numbers using braces and descriptions of membership.",formula:"{ x | condition on x }",example:"{x | x > 3} means 'all x values greater than 3.' Equivalent to (3, +∞) in interval notation."},
-  {term:"Sigma Notation",unit:"U7",def:"A compact way to write the sum of many terms using the Greek letter sigma and index variables.",formula:"Σ (k=1 to n) aₖ = a₁ + a₂ + … + aₙ",example:"Σ (k=1 to 4) k² = 1 + 4 + 9 + 16 = 30."},
-  {term:"Simplest Radical Form",unit:"U5",def:"A radical expression reduced so the radicand has no perfect square factors and no fractions under the radical.",formula:null,example:"√50 = √(25·2) = 5√2 is in simplest radical form."},
-  {term:"Slant Asymptote",unit:"U4",def:"A diagonal asymptote that a rational function approaches when the degree of the numerator is exactly one more than the denominator.",formula:"Found by polynomial long division; slant asymptote is the quotient (ignore remainder)",example:"f(x) = (x²+1)/(x−1): long division gives x+1 remainder 2. Slant asymptote: y = x+1."},
-  {term:"Solution Set",unit:"U3",def:"The complete collection of all values that satisfy an equation or inequality.",formula:null,example:"For x² = 4, solution set is {2, −2}."},
-  {term:"Square Root Function",unit:"U5",def:"The function f(x) = √x, which gives the principal (non-negative) square root. Domain is x ≥ 0 and range is y ≥ 0.",formula:"f(x) = √x, x ≥ 0",example:"f(9) = 3; f(0) = 0; f(4) = 2. Graph starts at origin and curves right."},
-  {term:"Standard Deviation",unit:"U8",def:"A measure of how spread out the data values are from the mean — larger SD means more variability.",formula:"SD = √[Σ(xᵢ − mean)² / n]",example:"Data {2,4,4,4,5,5,7,9}: mean=5, SD=2. Most values within 2 of mean."},
-  {term:"Standard Form (Quadratic)",unit:"U3",def:"The form ax² + bx + c = 0, useful for applying the quadratic formula or finding the y-intercept.",formula:"ax² + bx + c = 0",example:"x² − 5x + 6 = 0 is standard form. Factor to (x−2)(x−3)=0, solutions x=2,3."},
-  {term:"Substitution Method",unit:"U8",def:"A way to solve a system of equations by isolating one variable and substituting that expression into the other equation.",formula:null,example:"y = 2x; x + y = 6. Substitute: x + 2x = 6, so x = 2, y = 4."},
-  {term:"Symmetry Axis",unit:"U3",def:"The vertical line that passes through the vertex of a parabola, dividing it into two mirror-image halves.",formula:"x = −b/(2a) for f(x) = ax² + bx + c",example:"For f(x) = x² − 4x + 1: axis of symmetry is x = −(−4)/(2·1) = 2."},
-  {term:"Synthetic Division",unit:"U2",def:"A shortcut method for dividing a polynomial by a linear factor (x − c) — faster than long division.",formula:"Divide by (x − c): use c as divisor in the synthetic division table",example:"Divide x³ − 2x² − 5x + 6 by (x − 3) using synthetic division with c = 3."},
-  // ── T ──
-  {term:"Term (Sequence)",unit:"U7",def:"Each individual number in a sequence.",formula:null,example:"In 2, 5, 8, 11 — the terms are a₁=2, a₂=5, a₃=8, a₄=11."},
-  {term:"Transformation",unit:"U1",def:"A change applied to a parent function that shifts, stretches, compresses, or reflects its graph.",formula:"y = a·f(b(x−h)) + k: h=horizontal shift, k=vertical shift, a=vertical stretch, b=horizontal stretch",example:"y = 2|x−3| + 1: shifts right 3, up 1, stretches vertically by 2."},
-  {term:"Trinomial",unit:"U2",def:"A polynomial with exactly three terms.",formula:null,example:"x² − 5x + 6 and 3a² + 2ab − b² are trinomials."},
-  // ── U ──
-  {term:"Upper Bound",unit:"U2",def:"A value greater than or equal to all real roots of a polynomial — synthetic division confirms no roots exist above that value.",formula:null,example:"If synthetic division with c = 4 gives all non-negative numbers in the last row, 4 is an upper bound."},
-  // ── V ──
-  {term:"Variable",unit:"U1",def:"A symbol (usually a letter) representing an unknown or changing quantity.",formula:null,example:"In 3x + 7 = 16, x is the variable. Solving: x = 3."},
-  {term:"Vertex (Parabola)",unit:"U3",def:"The turning point of a parabola — the minimum point if it opens upward, or maximum point if it opens downward.",formula:"Vertex = (−b/2a, f(−b/2a))",example:"For f(x) = x² − 6x + 5: vertex x = 3, y = −4. Vertex: (3, −4)."},
-  {term:"Vertex Form",unit:"U3",def:"A way of writing a quadratic function that immediately reveals the vertex (h, k) and direction of opening.",formula:"f(x) = a(x − h)² + k; vertex is (h, k)",example:"f(x) = 2(x−1)² + 3: vertex is (1, 3), opens upward (a = 2 > 0)."},
-  {term:"Vertical Asymptote",unit:"U4",def:"A vertical line x = a that a rational function approaches but never crosses — occurs where the denominator equals zero (and the numerator does not).",formula:"Set Q(x) = 0; if P(a) ≠ 0, then x = a is a vertical asymptote",example:"f(x) = 3/(x−2) has vertical asymptote at x = 2."},
-  {term:"Vertical Line Test",unit:"U1",def:"A visual method to check if a graph represents a function — if any vertical line crosses the graph more than once, it is NOT a function.",formula:null,example:"A circle fails the vertical line test (vertical lines hit it twice). A parabola passes."},
-  {term:"Vertical Stretch/Compression",unit:"U1",def:"A transformation that multiplies all y-values by a constant — makes the graph taller (stretch, |a|>1) or shorter (compression, 0<|a|<1).",formula:"y = a·f(x): |a|>1 stretches; 0<|a|<1 compresses",example:"y = 3x² stretches y = x² by factor 3 (narrower). y = 0.5x² compresses it (wider)."},
-  // ── W ──
-  {term:"Writing an Equation from Roots",unit:"U2",def:"Working backward from known roots to build the polynomial — each root r gives a factor (x − r).",formula:"f(x) = a(x − r₁)(x − r₂)…(x − rₙ)",example:"Roots at x = 1 and x = −3: f(x) = (x−1)(x+3) = x² + 2x − 3."},
-  // ── X ──
-  {term:"x-intercept",unit:"U1",def:"The point(s) where a graph crosses the x-axis — where the output (y) equals zero.",formula:"Set f(x) = 0 and solve for x",example:"For f(x) = x² − 9: set 0 = x² − 9, so x = 3 and x = −3."},
-  // ── Y ──
-  {term:"y-intercept",unit:"U1",def:"The point where a graph crosses the y-axis — where the input (x) equals zero.",formula:"Evaluate f(0)",example:"For f(x) = 3x² − 2x + 5: f(0) = 5. y-intercept is (0, 5)."},
-  // ── Z ──
-  {term:"Zero Product Property",unit:"U3",def:"If two factors multiply to zero, then at least one of them must be zero. The key principle behind solving factored equations.",formula:"If ab = 0, then a = 0 or b = 0",example:"(x−3)(x+2) = 0 means x = 3 or x = −2."},
-  {term:"Zeros of a Function",unit:"U2",def:"The x-values that make f(x) = 0 — the roots or x-intercepts of the function.",formula:"Solve f(x) = 0",example:"For f(x) = x² − 4, zeros are x = 2 and x = −2."},
+// ── A ──
+{term:"Absolute Value",unit:"U1",def:"The distance a number is from zero on a number line — always zero or positive, never negative.",formula:"|a| = a if a ≥ 0; |a| = −a if a < 0",example:"|−7| = 7 and |5| = 5."},
+{term:"Absolute Value Function",unit:"U1",def:"A function that returns the absolute value of its input, creating a V-shaped graph.",formula:"f(x) = |x|; vertex at origin for parent function",example:"f(x) = |x − 3| + 2 shifts the V right 3 units and up 2 units."},
+{term:"Amplitude",unit:"U10",def:"Half the vertical distance between the highest and lowest points of a wave — how tall the wave is from center.",formula:"Amplitude = |A| in y = A sin(x)",example:"y = 3 sin(x) has amplitude 3; the graph reaches 3 and −3."},
+{term:"Arithmetic Sequence",unit:"U7",def:"A list of numbers where you add (or subtract) the same amount each time to get the next term.",formula:"aₙ = a₁ + (n − 1)d, where d = common difference",example:"2, 5, 8, 11, 14 — add 3 each time; d = 3."},
+{term:"Arithmetic Series",unit:"U7",def:"The sum of the terms of an arithmetic sequence.",formula:"Sₙ = n/2 · (a₁ + aₙ)",example:"Sum of 2 + 5 + 8 + 11 + 14: S₅ = 5/2 · (2 + 14) = 40."},
+{term:"Asymptote",unit:"U4",def:"A line that a graph approaches but never quite touches or crosses.",formula:"Vertical: x = a; Horizontal: y = b; Oblique: y = mx + b",example:"f(x) = 1/x has vertical asymptote x = 0 and horizontal asymptote y = 0."},
+{term:"Augmented Matrix",unit:"U8",def:"A matrix that combines the coefficient matrix of a system of equations with the constants column — used to solve systems efficiently.",formula:"[A|b] where A is coefficients and b is constants",example:"System 2x + y = 5, x − y = 1 becomes [2 1 | 5; 1 −1 | 1]."},
+{term:"Average Rate of Change",unit:"U1",def:"How much a function's output changes per unit of input over an interval — the slope of the secant line between two points.",formula:"ARC = [f(b) − f(a)] / (b − a)",example:"For f(x) = x² from x = 1 to x = 3: ARC = (9 − 1)/(3 − 1) = 4."},
+// ── B ──
+{term:"Base (Exponential)",unit:"U6",def:"The number being repeatedly multiplied in an exponential expression. The base determines whether the function grows or decays.",formula:"f(x) = bˣ; b > 0, b ≠ 1",example:"In 3ˣ, the base is 3. In (0.5)ˣ, the base is 0.5 (decay)."},
+{term:"Binomial",unit:"U2",def:"A polynomial with exactly two terms.",formula:"(a + b) — two terms connected by + or −",example:"3x² − 5 and x + 7 are both binomials."},
+{term:"Binomial Theorem",unit:"U7",def:"A formula for expanding (a + b)ⁿ without multiplying it out step by step.",formula:"(a+b)ⁿ = Σ C(n,k) · aⁿ⁻ᵏ · bᵏ",example:"(x + 1)³ = x³ + 3x² + 3x + 1 using the theorem."},
+{term:"Boundary Condition",unit:"U3",def:"A constraint placed on the solution of an equation — typically specifying what values are allowed.",formula:null,example:"In a real-world problem, a negative length is not allowed, so x > 0 is a boundary condition."},
+// ── C ──
+{term:"Change of Base Formula",unit:"U6",def:"A rule that lets you rewrite a logarithm in any base using common (base 10) or natural (base e) logs — essential for calculator use.",formula:"log_b(x) = log(x)/log(b) = ln(x)/ln(b)",example:"log₅(20) = log(20)/log(5) = 1.301/0.699 ≈ 1.861."},
+{term:"Circle (Conic)",unit:"U9",def:"The set of all points in a plane equidistant from a fixed center point. One of the four conic sections.",formula:"(x − h)² + (y − k)² = r²",example:"(x − 2)² + (y + 1)² = 25 is a circle centered at (2, −1) with radius 5."},
+{term:"Coefficient",unit:"U2",def:"The numerical multiplier in front of a variable term in a polynomial.",formula:null,example:"In 7x³ − 4x + 2, the coefficients are 7, −4, and 2."},
+{term:"Combination",unit:"U8",def:"The number of ways to choose items from a group when order does NOT matter.",formula:"C(n, r) = n! / [r!(n − r)!]",example:"Choosing 2 students from 5: C(5,2) = 10 ways."},
+{term:"Common Difference",unit:"U7",def:"The constant value added (or subtracted) between terms in an arithmetic sequence.",formula:"d = a_(n+1) − aₙ",example:"In 3, 7, 11, 15 — the common difference is 4."},
+{term:"Common Ratio",unit:"U7",def:"The constant value multiplied between consecutive terms in a geometric sequence.",formula:"r = a_(n+1) / aₙ",example:"In 2, 6, 18, 54 — the common ratio is 3."},
+{term:"Completing the Square",unit:"U3",def:"A technique for rewriting a quadratic in vertex form by adding and subtracting the square of half the x-coefficient.",formula:"x² + bx + (b/2)² = (x + b/2)²",example:"x² + 6x + 5 = (x² + 6x + 9) − 4 = (x + 3)² − 4."},
+{term:"Complex Conjugate",unit:"U3",def:"The partner of a complex number formed by changing the sign of the imaginary part. Multiplying conjugates eliminates the imaginary part.",formula:"Conjugate of (a + bi) is (a − bi)",example:"Conjugate of (3 + 2i) is (3 − 2i). Product: (3+2i)(3−2i) = 9 + 4 = 13."},
+{term:"Complex Number",unit:"U3",def:"A number with a real part and an imaginary part, written in the form a + bi where i = √(−1).",formula:"a + bi, where a is real and b is the imaginary coefficient",example:"4 + 3i: real part is 4, imaginary part is 3."},
+{term:"Composition of Functions",unit:"U1",def:"Plugging one function into another — the output of one becomes the input of the other.",formula:"(f ∘ g)(x) = f(g(x))",example:"If f(x) = x² and g(x) = x + 1, then (f ∘ g)(x) = (x+1)²."},
+{term:"Compound Interest",unit:"U6",def:"Interest calculated on both the principal and previously earned interest, causing exponential growth.",formula:"A = P(1 + r/n)^(nt)",example:"$1000 at 5% compounded quarterly for 3 years: A = 1000(1.0125)¹² ≈ $1160.75."},
+{term:"Conditional Probability",unit:"U8",def:"The probability of event A occurring given that event B has already occurred.",formula:"P(A|B) = P(A and B) / P(B)",example:"If P(rain) = 0.4 and P(rain and cold) = 0.2, then P(cold | rain) = 0.2/0.4 = 0.5."},
+{term:"Conic Section",unit:"U9",def:"A curve formed by slicing a cone with a flat plane — produces circles, ellipses, parabolas, or hyperbolas.",formula:null,example:"Slicing a cone parallel to the base gives a circle; at an angle gives an ellipse."},
+{term:"Conjugate Pairs Theorem",unit:"U2",def:"If a polynomial with real coefficients has a complex root (a + bi), then its conjugate (a − bi) is also a root.",formula:null,example:"If 2 + 3i is a root of a real polynomial, then 2 − 3i must also be a root."},
+{term:"Constant Function",unit:"U1",def:"A function whose output value never changes regardless of the input — a horizontal line.",formula:"f(x) = c",example:"f(x) = 7 is constant — every input gives output 7."},
+{term:"Continuous Growth/Decay",unit:"U6",def:"Growth or decay modeled with the natural base e, representing processes that happen at every instant.",formula:"A = Peʳᵗ",example:"A bacteria culture of 100 growing at 3% continuously: A = 100e^(0.03t)."},
+{term:"Correlation Coefficient",unit:"U8",def:"A value r between −1 and 1 that measures the strength and direction of a linear relationship between two variables.",formula:"r near 1 = strong positive; r near −1 = strong negative; r near 0 = weak/none",example:"r = 0.95 indicates a very strong positive linear relationship."},
+// ── D ──
+{term:"Degree (Polynomial)",unit:"U2",def:"The highest power (exponent) of the variable in a polynomial — tells you about the shape and end behavior of its graph.",formula:null,example:"3x⁴ − 2x² + 1 has degree 4."},
+{term:"Dependent Variable",unit:"U1",def:"The output variable of a function — its value depends on what you plug in. Usually called y or f(x).",formula:null,example:"In y = 3x + 2, y is the dependent variable; it changes based on x."},
+{term:"Directrix",unit:"U9",def:"A fixed line used in the definition of a parabola — every point on the parabola is equidistant from the focus and the directrix.",formula:"For x² = 4py, directrix is y = −p",example:"For y = x²/8 (i.e., x² = 8y), p = 2, so directrix is y = −2."},
+{term:"Discriminant",unit:"U3",def:"The expression under the square root in the quadratic formula. Its sign tells you how many real solutions the equation has.",formula:"D = b² − 4ac; D>0: two real; D=0: one real; D<0: two complex",example:"For 2x² − 4x + 5: D = 16 − 40 = −24 (two complex roots)."},
+{term:"Domain",unit:"U1",def:"The set of all allowed input values (x-values) for a function — what you can plug in.",formula:null,example:"For f(x) = 1/x, domain is all real numbers except 0 (x ≠ 0)."},
+// ── E ──
+{term:"e (Euler's Number)",unit:"U6",def:"An irrational constant approximately equal to 2.718… used as the base of natural logarithms and continuous growth/decay models.",formula:"e ≈ 2.71828…",example:"e¹ = 2.718; ln(e) = 1. Used in continuous compounding: A = Peʳᵗ."},
+{term:"Ellipse",unit:"U9",def:"An oval-shaped conic section — the set of all points where the sum of distances from two fixed points (foci) is constant.",formula:"x²/a² + y²/b² = 1 (a > b > 0)",example:"x²/25 + y²/9 = 1 is an ellipse with a = 5 and b = 3."},
+{term:"End Behavior",unit:"U2",def:"What happens to a function's output (y-values) as x gets very large (rightward) or very small (leftward).",formula:"Determined by leading coefficient and degree",example:"For f(x) = −2x³: as x → +∞, y → −∞; as x → −∞, y → +∞."},
+{term:"Even Function",unit:"U1",def:"A function symmetric about the y-axis — plugging in −x gives the same output as plugging in x.",formula:"f(−x) = f(x) for all x",example:"f(x) = x² is even: f(−3) = 9 = f(3)."},
+{term:"Excluded Value",unit:"U4",def:"An x-value that makes a rational function undefined because it creates a zero in the denominator.",formula:null,example:"In f(x) = (x+2)/(x−5), the excluded value is x = 5."},
+{term:"Explicit Formula",unit:"U7",def:"A formula that lets you calculate any term of a sequence directly using the term number, without finding all previous terms.",formula:"aₙ = a₁ + (n−1)d (arithmetic) or aₙ = a₁ · rⁿ⁻¹ (geometric)",example:"For 3, 7, 11,…: aₙ = 3 + (n−1)(4) = 4n − 1. Find a₁₀₀ = 399 directly."},
+{term:"Exponential Decay",unit:"U6",def:"A pattern where a quantity decreases by the same percentage over equal time intervals — modeled with a base between 0 and 1.",formula:"f(t) = A · bᵗ, where 0 < b < 1",example:"A car valued at $20,000 depreciating 15% per year: V(t) = 20000(0.85)ᵗ."},
+{term:"Exponential Function",unit:"U6",def:"A function where the variable is in the exponent — the base is a constant and the exponent is the variable.",formula:"f(x) = a · bˣ, b > 0, b ≠ 1",example:"f(x) = 2ˣ doubles every time x increases by 1."},
+{term:"Exponential Growth",unit:"U6",def:"A pattern where a quantity increases by the same percentage over equal time intervals — modeled with a base greater than 1.",formula:"f(t) = A · bᵗ, where b > 1",example:"A population of 500 growing at 8% per year: P(t) = 500(1.08)ᵗ."},
+{term:"Extraneous Solution",unit:"U5",def:"A solution that satisfies the transformed equation but NOT the original equation — always appears when squaring both sides. Must be checked.",formula:null,example:"Solving √x = −3 by squaring gives x = 9, but √9 = 3 ≠ −3. Extraneous."},
+// ── F ──
+{term:"Factor Theorem",unit:"U2",def:"If f(c) = 0, then (x − c) is a factor of the polynomial f(x). And vice versa — if (x − c) is a factor, then c is a root.",formula:"f(c) = 0 ⟺ (x − c) is a factor",example:"If f(2) = 0, then (x − 2) is a factor of f(x)."},
+{term:"Finite Sequence",unit:"U7",def:"A sequence with a definite end — a countable number of terms.",formula:null,example:"1, 4, 9, 16, 25 is a finite sequence of 5 terms."},
+{term:"Focus (Conic)",unit:"U9",def:"A fixed reference point used in defining conic sections. Parabolas have one focus; ellipses and hyperbolas have two.",formula:"For x² = 4py, focus is at (0, p)",example:"For x² = 12y, p = 3, so focus is at (0, 3)."},
+{term:"Function",unit:"U1",def:"A relationship where each input value has exactly one output value — every x maps to exactly one y.",formula:null,example:"{(1,3), (2,5), (3,7)} is a function. {(1,3), (1,5)} is not (1 maps to two outputs)."},
+{term:"Function Notation",unit:"U1",def:"Writing f(x) instead of y to name a function and show what it depends on.",formula:"f(x) = expression in x",example:"f(x) = 2x + 1 means: 'take x, double it, add 1.' f(4) = 9."},
+{term:"Fundamental Theorem of Algebra",unit:"U2",def:"Every polynomial of degree n has exactly n roots (counting complex roots and repeated roots) in the complex number system.",formula:null,example:"x³ − 1 = 0 has exactly 3 roots: x = 1, x = (−1+i√3)/2, x = (−1−i√3)/2."},
+// ── G ──
+{term:"Geometric Sequence",unit:"U7",def:"A list of numbers where you multiply by the same ratio each time to get the next term.",formula:"aₙ = a₁ · rⁿ⁻¹",example:"3, 6, 12, 24 — multiply by 2 each time; r = 2."},
+{term:"Geometric Series",unit:"U7",def:"The sum of the terms of a geometric sequence.",formula:"Sₙ = a₁(1 − rⁿ) / (1 − r), r ≠ 1",example:"3 + 6 + 12 + 24: S₄ = 3(1 − 2⁴)/(1 − 2) = 45."},
+{term:"Greatest Integer Function",unit:"U1",def:"A step function that rounds any input DOWN to the nearest integer. Also called the floor function.",formula:"f(x) = ⌊x⌋ or floor(x)",example:"⌊3.7⌋ = 3; ⌊−2.1⌋ = −3 (rounds down toward negative infinity)."},
+// ── H ──
+{term:"Half-Life",unit:"U6",def:"The time it takes for a decaying quantity to reduce to half its original amount — a key concept in radioactive decay and pharmacology.",formula:"A(t) = A₀ · (1/2)^(t/h), where h = half-life",example:"If a substance has half-life of 10 years: after 20 years, 1/4 of original remains."},
+{term:"Hole (Removable Discontinuity)",unit:"U4",def:"A gap in a rational function's graph at a point where a common factor cancels from numerator and denominator.",formula:"Occurs when a factor cancels: (x−a)/(x−a) creates hole at x = a",example:"f(x) = (x²−4)/(x−2) simplifies to (x+2) with a hole at x = 2."},
+{term:"Horizontal Asymptote",unit:"U4",def:"A horizontal line y = b that a rational function approaches as x goes to positive or negative infinity.",formula:"deg(num) < deg(den) → y=0; deg(num)=deg(den) → y=ratio of leading coefficients",example:"f(x) = 2x/(x+5): degrees equal, HA is y = 2/1 = 2."},
+{term:"Hyperbola",unit:"U9",def:"A conic section with two separate curved branches — defined as the set of all points where the difference of distances from two foci is constant.",formula:"x²/a² − y²/b² = 1 (horizontal) or y²/a² − x²/b² = 1 (vertical)",example:"x²/9 − y²/4 = 1 is a hyperbola opening left and right."},
+// ── I ──
+{term:"Identity Function",unit:"U1",def:"A function that returns its input unchanged — the output equals the input.",formula:"f(x) = x",example:"f(5) = 5; f(−2) = −2. Graph is a diagonal line through the origin."},
+{term:"Imaginary Number",unit:"U3",def:"The square root of a negative number. The base unit is i = √(−1).",formula:"i = √(−1); i² = −1",example:"√(−9) = 3i. i² = −1; i³ = −i; i⁴ = 1 (cycle of 4)."},
+{term:"Imaginary Unit (i)",unit:"U3",def:"The number i, defined as the square root of −1, which allows us to work with square roots of negative numbers.",formula:"i = √(−1); i² = −1",example:"i¹=i, i²=−1, i³=−i, i⁴=1 — the pattern repeats every 4 powers."},
+{term:"Independent Variable",unit:"U1",def:"The input variable of a function — the value you choose or control. Usually called x.",formula:null,example:"In y = 3x + 2, x is the independent variable — you pick the x-value."},
+{term:"Index (Radical)",unit:"U5",def:"The small number in the crook of a radical sign that tells you which root to take.",formula:"ⁿ√x = x^(1/n)",example:"Cube root symbol with index 3: ³√27 = 3. Square root has implied index 2."},
+{term:"Infinite Geometric Series",unit:"U7",def:"A geometric series with infinitely many terms that has a finite sum — possible only when the common ratio satisfies |r| < 1.",formula:"S = a₁ / (1 − r), when |r| < 1",example:"1 + 1/2 + 1/4 + 1/8 + … = 1/(1−0.5) = 2."},
+{term:"Infinite Sequence",unit:"U7",def:"A sequence that continues without end — has no last term.",formula:null,example:"1, 2, 3, 4, … (natural numbers) is an infinite sequence."},
+{term:"Interval Notation",unit:"U1",def:"A shorthand way to write ranges of numbers using brackets [ ] for included endpoints and parentheses ( ) for excluded ones.",formula:"[a, b] includes endpoints; (a, b) excludes; mix for half-open",example:"Domain of x ≥ 2: [2, +∞). x between −1 and 3, not including −1: (−1, 3]."},
+{term:"Inverse Function",unit:"U1",def:"A function that undoes another function — swaps the input and output. If f maps x to y, then f⁻¹ maps y back to x.",formula:"f(f⁻¹(x)) = x; f⁻¹(f(x)) = x",example:"If f(x) = 2x + 1, then f⁻¹(x) = (x−1)/2. f(3)=7 and f⁻¹(7)=3."},
+{term:"Inverse Variation",unit:"U4",def:"A relationship where one variable increases as another decreases proportionally — their product is constant.",formula:"y = k/x, or xy = k (k is the constant of variation)",example:"Speed and travel time: if you double your speed, you halve your travel time."},
+{term:"Irrational Number",unit:"U5",def:"A real number that cannot be written as a fraction — its decimal expansion never terminates or repeats.",formula:null,example:"√2 = 1.41421356… and π = 3.14159… are irrational."},
+// ── J ──
+{term:"Joint Variation",unit:"U4",def:"When a variable varies directly with two or more other variables simultaneously.",formula:"z = k · x · y",example:"The area of a triangle varies jointly with base b and height h: A = (1/2)bh."},
+// ── L ──
+{term:"Leading Coefficient",unit:"U2",def:"The coefficient of the highest-degree term in a polynomial — determines end behavior direction.",formula:null,example:"In −3x⁴ + 2x − 1, the leading coefficient is −3."},
+{term:"Leading Term",unit:"U2",def:"The term with the highest power in a polynomial — drives the end behavior.",formula:null,example:"In 5x³ − 2x + 7, the leading term is 5x³."},
+{term:"Logarithm",unit:"U6",def:"The inverse of an exponential function — answers the question 'what exponent gives me this result?'",formula:"log_b(x) = y means bʸ = x",example:"log₂(8) = 3 because 2³ = 8."},
+{term:"Logarithmic Function",unit:"U6",def:"The inverse of an exponential function, written as f(x) = log_b(x). Slow-growing, with a vertical asymptote at x = 0.",formula:"f(x) = log_b(x), b > 0, b ≠ 1",example:"f(x) = log₁₀(x): f(100) = 2, f(1000) = 3."},
+{term:"Long Division (Polynomial)",unit:"U2",def:"A method for dividing one polynomial by another, similar to long division with numbers.",formula:"Dividend = Divisor × Quotient + Remainder",example:"(x³ − 1) / (x − 1) = x² + x + 1 with remainder 0."},
+{term:"Lower Bound",unit:"U2",def:"A value less than or equal to all roots of a polynomial — used with synthetic division to confirm no roots exist below that value.",formula:null,example:"If synthetic division with c = −3 gives alternating signs in the last row, −3 is a lower bound."},
+// ── M ──
+{term:"Matrix",unit:"U8",def:"A rectangular array of numbers organized in rows and columns — used to solve systems of equations and represent data.",formula:null,example:"[2 1; 3 −4] is a 2×2 matrix with 2 rows and 2 columns."},
+{term:"Midpoint Formula",unit:"U9",def:"A formula that finds the exact center point between two coordinate points.",formula:"M = ((x₁ + x₂)/2, (y₁ + y₂)/2)",example:"Midpoint of (2, 4) and (8, 10): M = (5, 7)."},
+{term:"Monomial",unit:"U2",def:"A polynomial with exactly one term — a number, variable, or product of numbers and variables.",formula:null,example:"7x³, −2y, and 5 are all monomials."},
+{term:"Multiplicity",unit:"U2",def:"The number of times a root is repeated in a polynomial. Affects how the graph behaves at that x-intercept.",formula:"Odd multiplicity: crosses x-axis. Even multiplicity: bounces (touches and turns)",example:"In (x−2)²(x+1), x = 2 has multiplicity 2 (bounces); x = −1 has multiplicity 1 (crosses)."},
+{term:"Mutually Exclusive Events",unit:"U8",def:"Events that cannot both occur at the same time — if one happens, the other cannot.",formula:"P(A or B) = P(A) + P(B) if mutually exclusive",example:"Rolling a 3 and rolling a 5 on the same die roll are mutually exclusive."},
+// ── N ──
+{term:"Natural Logarithm",unit:"U6",def:"A logarithm with base e (Euler's number). Written as ln(x). The inverse of the natural exponential function eˣ.",formula:"ln(x) = log_e(x); ln(eˣ) = x",example:"ln(e³) = 3; ln(1) = 0; ln(e) = 1."},
+{term:"Negative Exponent",unit:"U6",def:"A negative exponent means take the reciprocal — flip the base to the other side of the fraction.",formula:"a⁻ⁿ = 1/aⁿ",example:"2⁻³ = 1/8; x⁻¹ = 1/x."},
+{term:"Normal Distribution",unit:"U8",def:"A symmetric, bell-shaped distribution where most data clusters around the mean and tails extend on both sides.",formula:"68% within 1 SD; 95% within 2 SD; 99.7% within 3 SD (Empirical Rule)",example:"Heights of adults often follow a normal distribution centered at the mean height."},
+// ── O ──
+{term:"Odd Function",unit:"U1",def:"A function symmetric about the origin — rotating the graph 180° gives the same graph. f(−x) = −f(x).",formula:"f(−x) = −f(x) for all x",example:"f(x) = x³ is odd: f(−2) = −8 = −f(2)."},
+{term:"One-to-One Function",unit:"U1",def:"A function where every output value is produced by exactly one input — passes both the vertical and horizontal line tests. Required for an inverse to exist.",formula:null,example:"f(x) = 2x + 1 is one-to-one. f(x) = x² is NOT (f(2) = f(−2) = 4)."},
+// ── P ──
+{term:"Parabola",unit:"U3",def:"A U-shaped (or upside-down U) conic section — the graph of any quadratic function or the set of all points equidistant from the focus and directrix.",formula:"f(x) = ax² + bx + c or (x−h)² = 4p(y−k)",example:"f(x) = x² − 4x + 3 is a parabola opening upward."},
+{term:"Parent Function",unit:"U1",def:"The simplest, most basic form of a family of functions — before any transformations are applied.",formula:null,example:"y = x² is the parent of all quadratics. y = |x| is the parent of all absolute value functions."},
+{term:"Pascal's Triangle",unit:"U7",def:"A triangular pattern of numbers where each number is the sum of the two above it. Used to find binomial expansion coefficients.",formula:"Row n gives the coefficients for (a+b)ⁿ",example:"Row 3: 1, 3, 3, 1 — so (a+b)³ = a³ + 3a²b + 3ab² + b³."},
+{term:"Period",unit:"U10",def:"The length of one complete cycle of a repeating function — the horizontal distance before the pattern starts over.",formula:"Period = 2π/|B| for y = A sin(Bx)",example:"y = sin(2x) has period 2π/2 = π — completes its cycle twice as fast."},
+{term:"Permutation",unit:"U8",def:"The number of ways to arrange items from a group when order DOES matter.",formula:"P(n, r) = n! / (n − r)!",example:"Arranging 3 of 5 students for 1st, 2nd, 3rd: P(5,3) = 60 arrangements."},
+{term:"Piecewise Function",unit:"U1",def:"A function defined by different rules for different intervals of the domain — like a function with multiple 'sections.'",formula:null,example:"f(x) = { x + 1 if x < 0; x² if x ≥ 0 } — two different rules depending on x."},
+{term:"Point of Discontinuity",unit:"U4",def:"A point where a function is not defined or has a break in its graph — includes holes, jumps, and vertical asymptotes.",formula:null,example:"f(x) = (x²−1)/(x−1) has a point of discontinuity (hole) at x = 1."},
+{term:"Polynomial",unit:"U2",def:"An expression of one or more terms consisting of variables raised to whole-number powers, added or subtracted together.",formula:"aₙxⁿ + aₙ₋₁xⁿ⁻¹ + … + a₁x + a₀",example:"3x⁴ − 2x³ + x − 7 is a 4th-degree polynomial."},
+{term:"Power Function",unit:"U2",def:"A function of the form f(x) = xⁿ where n is a constant — polynomials and radicals are special cases.",formula:"f(x) = xⁿ",example:"f(x) = x³ (power 3), f(x) = x^(1/2) = √x (power 1/2)."},
+{term:"Principal Square Root",unit:"U5",def:"The positive (non-negative) square root of a number — by convention, the √ symbol always refers to this positive value.",formula:"√a ≥ 0 for all a ≥ 0",example:"√25 = 5 (not −5), because we always take the principal root."},
+{term:"Product Property (Logs)",unit:"U6",def:"The logarithm of a product equals the sum of the individual logarithms.",formula:"log_b(xy) = log_b(x) + log_b(y)",example:"log(3 × 7) = log(3) + log(7) = 0.477 + 0.845 = 1.322."},
+{term:"Profit",unit:"U2",def:"In polynomial modeling, the difference between revenue and cost functions.",formula:"P(x) = R(x) − C(x)",example:"If R(x) = 50x and C(x) = 10x + 200, then P(x) = 40x − 200."},
+// ── Q ──
+{term:"Quadratic Formula",unit:"U3",def:"The universal formula for solving any quadratic equation ax² + bx + c = 0 — always works, even when factoring fails.",formula:"x = [−b ± √(b² − 4ac)] / (2a)",example:"Solve 2x² − 3x − 2 = 0: x = [3 ± √25] / 4 = [3 ± 5] / 4; x = 2 or x = −0.5."},
+{term:"Quadratic Function",unit:"U3",def:"A second-degree polynomial function whose graph is a parabola.",formula:"f(x) = ax² + bx + c, a ≠ 0",example:"f(x) = x² − 4x + 3 is a quadratic. Vertex at (2, −1)."},
+{term:"Quotient Property (Logs)",unit:"U6",def:"The logarithm of a quotient equals the difference of the individual logarithms.",formula:"log_b(x/y) = log_b(x) − log_b(y)",example:"log(100/10) = log(100) − log(10) = 2 − 1 = 1."},
+// ── R ──
+{term:"Radical",unit:"U5",def:"An expression using a root symbol — includes square roots, cube roots, and higher roots.",formula:"ⁿ√x = x^(1/n)",example:"√16 = 4; ³√8 = 2; ⁴√81 = 3."},
+{term:"Radicand",unit:"U5",def:"The number or expression inside a radical (root) symbol.",formula:null,example:"In √(3x + 5), the radicand is 3x + 5."},
+{term:"Range",unit:"U1",def:"The set of all possible output values (y-values) a function can produce.",formula:null,example:"For f(x) = x², range is y ≥ 0 (can't produce a negative output)."},
+{term:"Rational Equation",unit:"U4",def:"An equation containing at least one rational expression — a fraction with a polynomial in the numerator, denominator, or both.",formula:null,example:"2/x + 3/(x+1) = 1 is a rational equation."},
+{term:"Rational Exponent",unit:"U5",def:"A fractional exponent that represents both a power and a root simultaneously.",formula:"x^(m/n) = (ⁿ√x)ᵐ = ⁿ√(xᵐ)",example:"8^(2/3) = (³√8)² = 2² = 4."},
+{term:"Rational Expression",unit:"U4",def:"A fraction where the numerator and/or denominator contains a polynomial.",formula:"P(x)/Q(x), where Q(x) ≠ 0",example:"(x² − 1)/(x + 3) is a rational expression."},
+{term:"Rational Function",unit:"U4",def:"A function that is the ratio of two polynomials — can have asymptotes and holes.",formula:"f(x) = P(x)/Q(x)",example:"f(x) = (2x+1)/(x−3) is a rational function with vertical asymptote at x = 3."},
+{term:"Rational Root Theorem",unit:"U2",def:"A tool for listing all possible rational roots of a polynomial — the candidates are factors of the constant divided by factors of the leading coefficient.",formula:"Possible rational roots: ±(factors of constant) / (factors of leading coefficient)",example:"For 2x³ − 3x + 1, possible rational roots: ±1/2, ±1."},
+{term:"Real Number",unit:"U3",def:"Any number on the number line — includes all rational and irrational numbers. The 'normal' numbers before imaginary numbers are introduced.",formula:null,example:"−7, 0, 3.14, √2, 1/3 are all real numbers. 2i is NOT real."},
+{term:"Recursive Formula",unit:"U7",def:"A formula that defines each term of a sequence using the previous term(s) — you must know earlier terms to find later ones.",formula:"aₙ = aₙ₋₁ + d (arithmetic) or aₙ = r · aₙ₋₁ (geometric)",example:"a₁ = 3; aₙ = aₙ₋₁ + 4. To find a₅: 3,7,11,15,19 — a₅ = 19."},
+{term:"Reflection",unit:"U1",def:"A transformation that flips a graph across an axis, creating a mirror image.",formula:"Across x-axis: replace f(x) with −f(x). Across y-axis: replace f(x) with f(−x)",example:"f(x) = −x² reflects y = x² across the x-axis (opens downward)."},
+{term:"Regression",unit:"U8",def:"A statistical method for finding an equation that best fits a set of data — allows prediction and modeling.",formula:null,example:"Plotting income vs. education years and finding the best-fit linear regression line."},
+{term:"Remainder Theorem",unit:"U2",def:"When a polynomial f(x) is divided by (x − c), the remainder equals f(c).",formula:"f(x) / (x − c) has remainder f(c)",example:"For f(x) = x³ − 4x + 1, dividing by (x − 2): remainder = f(2) = 8 − 8 + 1 = 1."},
+{term:"Root (Zero) of a Polynomial",unit:"U2",def:"A value of x that makes f(x) = 0 — where the graph crosses or touches the x-axis.",formula:"f(c) = 0 means c is a root",example:"For f(x) = x² − 4, roots are x = 2 and x = −2 because f(2)=0 and f(−2)=0."},
+// ── S ──
+{term:"Sample Space",unit:"U8",def:"The set of all possible outcomes of an experiment.",formula:null,example:"Flipping a coin: sample space = {H, T}. Rolling a die: {1, 2, 3, 4, 5, 6}."},
+{term:"Scatter Plot",unit:"U8",def:"A graph of plotted points showing the relationship between two sets of data values.",formula:null,example:"Plotting (study hours, test score) for 20 students to see if more study time correlates with higher scores."},
+{term:"Sequence",unit:"U7",def:"An ordered list of numbers following a specific rule or pattern.",formula:null,example:"1, 3, 5, 7, 9, … is a sequence of odd numbers."},
+{term:"Series",unit:"U7",def:"The sum of the terms in a sequence.",formula:"Sₙ = a₁ + a₂ + … + aₙ",example:"1 + 3 + 5 + 7 + 9 = 25 is a series (sum of the first 5 odd numbers)."},
+{term:"Set Notation",unit:"U1",def:"A way to describe a group of numbers using braces and descriptions of membership.",formula:"{ x | condition on x }",example:"{x | x > 3} means 'all x values greater than 3.' Equivalent to (3, +∞) in interval notation."},
+{term:"Sigma Notation",unit:"U7",def:"A compact way to write the sum of many terms using the Greek letter sigma and index variables.",formula:"Σ (k=1 to n) aₖ = a₁ + a₂ + … + aₙ",example:"Σ (k=1 to 4) k² = 1 + 4 + 9 + 16 = 30."},
+{term:"Simplest Radical Form",unit:"U5",def:"A radical expression reduced so the radicand has no perfect square factors and no fractions under the radical.",formula:null,example:"√50 = √(25·2) = 5√2 is in simplest radical form."},
+{term:"Slant Asymptote",unit:"U4",def:"A diagonal asymptote that a rational function approaches when the degree of the numerator is exactly one more than the denominator.",formula:"Found by polynomial long division; slant asymptote is the quotient (ignore remainder)",example:"f(x) = (x²+1)/(x−1): long division gives x+1 remainder 2. Slant asymptote: y = x+1."},
+{term:"Solution Set",unit:"U3",def:"The complete collection of all values that satisfy an equation or inequality.",formula:null,example:"For x² = 4, solution set is {2, −2}."},
+{term:"Square Root Function",unit:"U5",def:"The function f(x) = √x, which gives the principal (non-negative) square root. Domain is x ≥ 0 and range is y ≥ 0.",formula:"f(x) = √x, x ≥ 0",example:"f(9) = 3; f(0) = 0; f(4) = 2. Graph starts at origin and curves right."},
+{term:"Standard Deviation",unit:"U8",def:"A measure of how spread out the data values are from the mean — larger SD means more variability.",formula:"SD = √[Σ(xᵢ − mean)² / n]",example:"Data {2,4,4,4,5,5,7,9}: mean=5, SD=2. Most values within 2 of mean."},
+{term:"Standard Form (Quadratic)",unit:"U3",def:"The form ax² + bx + c = 0, useful for applying the quadratic formula or finding the y-intercept.",formula:"ax² + bx + c = 0",example:"x² − 5x + 6 = 0 is standard form. Factor to (x−2)(x−3)=0, solutions x=2,3."},
+{term:"Substitution Method",unit:"U8",def:"A way to solve a system of equations by isolating one variable and substituting that expression into the other equation.",formula:null,example:"y = 2x; x + y = 6. Substitute: x + 2x = 6, so x = 2, y = 4."},
+{term:"Symmetry Axis",unit:"U3",def:"The vertical line that passes through the vertex of a parabola, dividing it into two mirror-image halves.",formula:"x = −b/(2a) for f(x) = ax² + bx + c",example:"For f(x) = x² − 4x + 1: axis of symmetry is x = −(−4)/(2·1) = 2."},
+{term:"Synthetic Division",unit:"U2",def:"A shortcut method for dividing a polynomial by a linear factor (x − c) — faster than long division.",formula:"Divide by (x − c): use c as divisor in the synthetic division table",example:"Divide x³ − 2x² − 5x + 6 by (x − 3) using synthetic division with c = 3."},
+// ── T ──
+{term:"Term (Sequence)",unit:"U7",def:"Each individual number in a sequence.",formula:null,example:"In 2, 5, 8, 11 — the terms are a₁=2, a₂=5, a₃=8, a₄=11."},
+{term:"Transformation",unit:"U1",def:"A change applied to a parent function that shifts, stretches, compresses, or reflects its graph.",formula:"y = a·f(b(x−h)) + k: h=horizontal shift, k=vertical shift, a=vertical stretch, b=horizontal stretch",example:"y = 2|x−3| + 1: shifts right 3, up 1, stretches vertically by 2."},
+{term:"Trinomial",unit:"U2",def:"A polynomial with exactly three terms.",formula:null,example:"x² − 5x + 6 and 3a² + 2ab − b² are trinomials."},
+// ── U ──
+{term:"Upper Bound",unit:"U2",def:"A value greater than or equal to all real roots of a polynomial — synthetic division confirms no roots exist above that value.",formula:null,example:"If synthetic division with c = 4 gives all non-negative numbers in the last row, 4 is an upper bound."},
+// ── V ──
+{term:"Variable",unit:"U1",def:"A symbol (usually a letter) representing an unknown or changing quantity.",formula:null,example:"In 3x + 7 = 16, x is the variable. Solving: x = 3."},
+{term:"Vertex (Parabola)",unit:"U3",def:"The turning point of a parabola — the minimum point if it opens upward, or maximum point if it opens downward.",formula:"Vertex = (−b/2a, f(−b/2a))",example:"For f(x) = x² − 6x + 5: vertex x = 3, y = −4. Vertex: (3, −4)."},
+{term:"Vertex Form",unit:"U3",def:"A way of writing a quadratic function that immediately reveals the vertex (h, k) and direction of opening.",formula:"f(x) = a(x − h)² + k; vertex is (h, k)",example:"f(x) = 2(x−1)² + 3: vertex is (1, 3), opens upward (a = 2 > 0)."},
+{term:"Vertical Asymptote",unit:"U4",def:"A vertical line x = a that a rational function approaches but never crosses — occurs where the denominator equals zero (and the numerator does not).",formula:"Set Q(x) = 0; if P(a) ≠ 0, then x = a is a vertical asymptote",example:"f(x) = 3/(x−2) has vertical asymptote at x = 2."},
+{term:"Vertical Line Test",unit:"U1",def:"A visual method to check if a graph represents a function — if any vertical line crosses the graph more than once, it is NOT a function.",formula:null,example:"A circle fails the vertical line test (vertical lines hit it twice). A parabola passes."},
+{term:"Vertical Stretch/Compression",unit:"U1",def:"A transformation that multiplies all y-values by a constant — makes the graph taller (stretch, |a|>1) or shorter (compression, 0<|a|<1).",formula:"y = a·f(x): |a|>1 stretches; 0<|a|<1 compresses",example:"y = 3x² stretches y = x² by factor 3 (narrower). y = 0.5x² compresses it (wider)."},
+// ── W ──
+{term:"Writing an Equation from Roots",unit:"U2",def:"Working backward from known roots to build the polynomial — each root r gives a factor (x − r).",formula:"f(x) = a(x − r₁)(x − r₂)…(x − rₙ)",example:"Roots at x = 1 and x = −3: f(x) = (x−1)(x+3) = x² + 2x − 3."},
+// ── X ──
+{term:"x-intercept",unit:"U1",def:"The point(s) where a graph crosses the x-axis — where the output (y) equals zero.",formula:"Set f(x) = 0 and solve for x",example:"For f(x) = x² − 9: set 0 = x² − 9, so x = 3 and x = −3."},
+// ── Y ──
+{term:"y-intercept",unit:"U1",def:"The point where a graph crosses the y-axis — where the input (x) equals zero.",formula:"Evaluate f(0)",example:"For f(x) = 3x² − 2x + 5: f(0) = 5. y-intercept is (0, 5)."},
+// ── Z ──
+{term:"Zero Product Property",unit:"U3",def:"If two factors multiply to zero, then at least one of them must be zero. The key principle behind solving factored equations.",formula:"If ab = 0, then a = 0 or b = 0",example:"(x−3)(x+2) = 0 means x = 3 or x = −2."},
+{term:"Zeros of a Function",unit:"U2",def:"The x-values that make f(x) = 0 — the roots or x-intercepts of the function.",formula:"Solve f(x) = 0",example:"For f(x) = x² − 4, zeros are x = 2 and x = −2."},
 ];
 
 // ════════════════════════════════════════
 // STATE
 // ════════════════════════════════════════
 let state = {
-  unit: 'all',
-  status: 'all',
-  view: 'card',
-  expanded: new Set(),
-  search: '',
+unit: 'all',
+status: 'all',
+view: 'card',
+expanded: new Set(),
+search: '',
 };
 let progress = {
-  starred: new Set(),
-  quizCorrect: 0,
-  quizTotal: 0,
+starred: new Set(),
+quizCorrect: 0,
+quizTotal: 0,
 };
 
 // Quiz
 let quizQueue = [], quizIdx = 0, quizSessionCorrect = 0, quizSessionTotal = 0, quizAnswered = false;
 
+// ── SPACED REPETITION (per-term seen/missed tracking, keyed by term name) ──
+let srs = {};
+function loadSRS(){
+try{ const raw = localStorage.getItem('a2gl_srs_v1'); if(raw) srs = JSON.parse(raw); }catch(e){}
+}
+function saveSRS(){ try{ localStorage.setItem('a2gl_srs_v1', JSON.stringify(srs)); }catch(e){} }
+function srsUpdate(termName, gotItRight){
+const r = srs[termName] || {seen:0, missed:0};
+r.seen++;
+if(!gotItRight) r.missed++;
+srs[termName] = r;
+saveSRS();
+}
+function srsWeight(termName){
+const r = srs[termName] || {seen:0, missed:0};
+if(r.seen===0) return 3;
+const missRate = r.missed / r.seen;
+return Math.max(1, 1 + missRate*6);
+}
+function weightedSample(items, n){
+const pool = items.map(it=>({it, w: srsWeight(it.term)}));
+const picked = [];
+for(let k=0; k<n && pool.length; k++){
+const total = pool.reduce((s,p)=>s+p.w, 0);
+let r = Math.random()*total, idx=0;
+for(; idx<pool.length; idx++){ r -= pool[idx].w; if(r<=0) break; }
+idx = Math.min(idx, pool.length-1);
+picked.push(pool[idx].it);
+pool.splice(idx,1);
+}
+return picked;
+}
+
 // ════════════════════════════════════════
 // INIT
 // ════════════════════════════════════════
 function init(){
-  try{
-    const raw = localStorage.getItem('a2gl_v1');
-    if(raw){ const p=JSON.parse(raw); progress.starred=new Set(p.starred||[]); progress.quizCorrect=p.qc||0; progress.quizTotal=p.qt||0; }
-  }catch(e){}
-  buildAlphaBar();
-  applyFilters();
-  updateStats();
+loadSRS();
+try{
+const raw = localStorage.getItem('a2gl_v1');
+if(raw){ const p=JSON.parse(raw); progress.starred=new Set(p.starred||[]); progress.quizCorrect=p.qc||0; progress.quizTotal=p.qt||0; }
+}catch(e){}
+document.getElementById('s-total').textContent = TERMS.length;
+document.getElementById('page-sub').textContent = TERMS.length + ' essential terms · All 10 units · A-Z with formulas and examples';
+buildAlphaBar();
+applyFilters();
+updateStats();
 }
 
 function save(){
-  try{ localStorage.setItem('a2gl_v1',JSON.stringify({starred:[...progress.starred],qc:progress.quizCorrect,qt:progress.quizTotal})); }catch(e){}
+try{ localStorage.setItem('a2gl_v1',JSON.stringify({starred:[...progress.starred],qc:progress.quizCorrect,qt:progress.quizTotal})); }catch(e){}
 }
 
 // ════════════════════════════════════════
 // ALPHA BAR
 // ════════════════════════════════════════
 function buildAlphaBar(){
-  const bar = document.getElementById('alpha-bar');
-  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-  const termLetters = new Set(TERMS.map(t=>t.term[0].toUpperCase()));
-  bar.innerHTML = letters.map(l=>`<button class="alpha-btn${termLetters.has(l)?' has-terms':''}" onclick="jumpToLetter('${l}')">${l}</button>`).join('');
+const bar = document.getElementById('alpha-bar');
+const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+const termLetters = new Set(TERMS.map(t=>t.term[0].toUpperCase()));
+bar.innerHTML = letters.map(l=>`<button class="alpha-btn${termLetters.has(l)?' has-terms':''}" onclick="jumpToLetter('${l}')">${l}</button>`).join('');
 }
 
 function jumpToLetter(l){
-  document.querySelectorAll('.alpha-btn').forEach(b=>b.classList.toggle('active',b.textContent===l));
-  const el = document.getElementById('letter-'+l);
-  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+document.querySelectorAll('.alpha-btn').forEach(b=>b.classList.toggle('active',b.textContent===l));
+const el = document.getElementById('letter-'+l);
+if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 // ════════════════════════════════════════
 // FILTERS
 // ════════════════════════════════════════
 function setUnit(u, el){
-  state.unit = u;
-  document.querySelectorAll('.ctrl-row:nth-child(2) .pill').forEach(p=>p.classList.remove('active'));
-  el.classList.add('active');
-  applyFilters();
+state.unit = u;
+document.querySelectorAll('.ctrl-row:nth-child(2) .pill').forEach(p=>p.classList.remove('active'));
+el.classList.add('active');
+applyFilters();
 }
 
 function setStatus(s, el){
-  state.status = s;
-  document.querySelectorAll('#status-all,#status-starred,.pill-u').forEach(p=>{
-    if(p.id==='status-all'||p.id==='status-starred') p.classList.remove('active');
-  });
-  document.querySelectorAll('.ctrl-row:nth-child(3) .pill').forEach(p=>p.classList.remove('active'));
-  el.classList.add('active');
-  applyFilters();
+state.status = s;
+document.querySelectorAll('#status-all,#status-starred,.pill-u').forEach(p=>{
+if(p.id==='status-all'||p.id==='status-starred') p.classList.remove('active');
+});
+document.querySelectorAll('.ctrl-row:nth-child(3) .pill').forEach(p=>p.classList.remove('active'));
+el.classList.add('active');
+applyFilters();
 }
 
 function setView(v, el){
-  state.view = v;
-  document.querySelectorAll('.view-btn').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
-  applyFilters();
+state.view = v;
+document.querySelectorAll('.view-btn').forEach(b=>b.classList.remove('active'));
+el.classList.add('active');
+applyFilters();
 }
 
 function applyFilters(){
-  state.search = document.getElementById('search-input').value.toLowerCase().trim();
-  renderGlossary();
+state.search = document.getElementById('search-input').value.toLowerCase().trim();
+renderGlossary();
 }
 
 function getFiltered(){
-  return TERMS.filter(t=>{
-    if(state.unit !== 'all' && t.unit !== state.unit) return false;
-    if(state.status === 'starred' && !progress.starred.has(t.term)) return false;
-    if(state.status === 'formula' && !t.formula) return false;
-    if(state.search){
-      const blob = (t.term+t.def+(t.formula||'')+(t.example||'')+t.unit).toLowerCase();
-      if(!blob.includes(state.search)) return false;
-    }
-    return true;
-  });
+return TERMS.filter(t=>{
+if(state.unit !== 'all' && t.unit !== state.unit) return false;
+if(state.status === 'starred' && !progress.starred.has(t.term)) return false;
+if(state.status === 'formula' && !t.formula) return false;
+if(state.search){
+const blob = (t.term+t.def+(t.formula||'')+(t.example||'')+t.unit).toLowerCase();
+if(!blob.includes(state.search)) return false;
+}
+return true;
+});
 }
 
 // ════════════════════════════════════════
 // RENDER
 // ════════════════════════════════════════
 function renderGlossary(){
-  const filtered = getFiltered();
-  const content = document.getElementById('glossary-content');
-  content.innerHTML = '';
-  document.getElementById('count-label').innerHTML = `<strong>${filtered.length}</strong> term${filtered.length===1?'':'s'} shown`;
-  document.getElementById('s-shown').textContent = filtered.length;
+const filtered = getFiltered();
+const content = document.getElementById('glossary-content');
+content.innerHTML = '';
+document.getElementById('count-label').innerHTML = `<strong>${filtered.length}</strong> term${filtered.length===1?'':'s'} shown`;
+document.getElementById('s-shown').textContent = filtered.length;
 
-  if(filtered.length === 0){
-    content.innerHTML = '<div class="empty-state"><div class="emoji">🔎</div><p>No terms match the current filters.</p></div>';
-    return;
-  }
+if(filtered.length === 0){
+content.innerHTML = '<div class="empty-state"><div class="emoji">🔎</div><p>No terms match the current filters.</p></div>';
+return;
+}
 
-  // Group by first letter
-  const byLetter = {};
-  filtered.forEach(t=>{
-    const l = t.term[0].toUpperCase();
-    if(!byLetter[l]) byLetter[l] = [];
-    byLetter[l].push(t);
-  });
+// Group by first letter
+const byLetter = {};
+filtered.forEach(t=>{
+const l = t.term[0].toUpperCase();
+if(!byLetter[l]) byLetter[l] = [];
+byLetter[l].push(t);
+});
 
-  Object.keys(byLetter).sort().forEach((l,li)=>{
-    const group = byLetter[l];
-    const sec = document.createElement('div');
-    sec.className = 'letter-section';
-    sec.id = 'letter-'+l;
+Object.keys(byLetter).sort().forEach((l,li)=>{
+const group = byLetter[l];
+const sec = document.createElement('div');
+sec.className = 'letter-section';
+sec.id = 'letter-'+l;
 
-    const hdr = document.createElement('div');
-    hdr.className = 'letter-header';
-    hdr.innerHTML = `<div class="letter-badge">${l}</div><span class="letter-count">${group.length} term${group.length===1?'':'s'}</span>`;
-    sec.appendChild(hdr);
+const hdr = document.createElement('div');
+hdr.className = 'letter-header';
+hdr.innerHTML = `<div class="letter-badge">${l}</div><span class="letter-count">${group.length} term${group.length===1?'':'s'}</span>`;
+sec.appendChild(hdr);
 
-    const grid = document.createElement('div');
-    grid.className = `terms-grid ${state.view}-view`;
+const grid = document.createElement('div');
+grid.className = `terms-grid ${state.view}-view`;
 
-    group.forEach((t, idx)=>{
-      const el = state.view === 'compact' ? renderCompact(t) : renderCard(t);
-      el.style.animationDelay = (idx*0.02)+'s';
-      grid.appendChild(el);
-    });
+group.forEach((t, idx)=>{
+const el = state.view === 'compact' ? renderCompact(t) : renderCard(t);
+el.style.animationDelay = (idx*0.02)+'s';
+grid.appendChild(el);
+});
 
-    sec.appendChild(grid);
-    content.appendChild(sec);
-  });
+sec.appendChild(grid);
+content.appendChild(sec);
+});
 }
 
 function renderCard(t){
-  const isStarred = progress.starred.has(t.term);
-  const isExpanded = state.expanded.has(t.term);
-  const card = document.createElement('div');
-  card.className = `term-card${isStarred?' starred':''}${isExpanded?' expanded':''}`;
+const isStarred = progress.starred.has(t.term);
+const isExpanded = state.expanded.has(t.term);
+const card = document.createElement('div');
+card.className = `term-card${isStarred?' starred':''}${isExpanded?' expanded':''}`;
 
-  const defPreview = t.def.length > 100 ? t.def.slice(0,100)+'…' : t.def;
+const defPreview = t.def.length > 100 ? t.def.slice(0,100)+'…' : t.def;
 
-  card.innerHTML = `
-    <div class="term-header">
-      <span class="term-name">${t.term}</span>
-      <div class="term-tags">
-        <span class="unit-badge">${t.unit}</span>
-        ${t.formula ? '<span class="has-formula">📐 Formula</span>' : ''}
-        ${t.example ? '<span class="has-example">💡 Example</span>' : ''}
-      </div>
-      <button class="star-btn${isStarred?' starred-active':''}" onclick="event.stopPropagation();toggleStar('${t.term}')" title="${isStarred?'Unstar':'Star'}">${isStarred?'⭐':'☆'}</button>
-      <span class="expand-arrow">▾</span>
-    </div>
-    <div class="term-def-preview">${isExpanded ? '' : defPreview}</div>
-    <div class="term-body">
-      <div class="def-full">${t.def}</div>
-      ${t.formula ? `<div class="formula-bar"><span class="formula-label">📐 KEY FORMULA</span><span class="formula-text">${t.formula}</span></div>` : ''}
-      ${t.example ? `<div class="example-bar"><span class="example-label">💡 EXAMPLE</span><span class="example-text">${t.example}</span></div>` : ''}
-      <div class="term-tutor" id="tutor-${t.term.replace(/[^a-zA-Z0-9]/g,'_')}">
-        <div class="term-tutor-header" onclick="toggleTermTutor('${t.term.replace(/'/g,"\\'")}',this)">
-          <div class="term-tutor-avatar">🧠</div>
-          <span class="term-tutor-label">ALEPH · Ask the AI Tutor</span>
-          <span class="term-tutor-toggle">▾</span>
-        </div>
-        <div class="term-tutor-body">
-          <div class="tutor-chat" id="tc-${t.term.replace(/[^a-zA-Z0-9]/g,'_')}"></div>
-          <div class="tutor-row">
-            <input class="tutor-field" id="tf-${t.term.replace(/[^a-zA-Z0-9]/g,'_')}" type="text" placeholder="e.g. Can you explain this a different way?" onkeydown="if(event.key==='Enter')glossTutorSend('${t.term.replace(/'/g,"\\'")}')">
-            <button class="tutor-go" id="tg-${t.term.replace(/[^a-zA-Z0-9]/g,'_')}" onclick="glossTutorSend('${t.term.replace(/'/g,"\\'")}')">Ask</button>
-          </div>
-        </div>
-      </div>
-    </div>`;
+card.innerHTML = `
+<div class="term-header">
+<span class="term-name">${t.term}</span>
+<div class="term-tags">
+<span class="unit-badge">${t.unit}</span>
+${t.formula ? '<span class="has-formula">📐 Formula</span>' : ''}
+${t.example ? '<span class="has-example">💡 Example</span>' : ''}
+</div>
+<button class="star-btn${isStarred?' starred-active':''}" onclick="event.stopPropagation();toggleStar('${t.term}')" title="${isStarred?'Unstar':'Star'}">${isStarred?'⭐':'☆'}</button>
+<span class="expand-arrow">▾</span>
+</div>
+<div class="term-def-preview">${isExpanded ? '' : defPreview}</div>
+<div class="term-body">
+<div class="def-full">${t.def}</div>
+${t.formula ? `<div class="formula-bar"><span class="formula-label">📐 KEY FORMULA</span><span class="formula-text">${t.formula}</span></div>` : ''}
+${t.example ? `<div class="example-bar"><span class="example-label">💡 EXAMPLE</span><span class="example-text">${t.example}</span></div>` : ''}
+<div class="term-tutor" id="tutor-${t.term.replace(/[^a-zA-Z0-9]/g,'_')}">
+<div class="term-tutor-header" onclick="toggleTermTutor('${t.term.replace(/'/g,"\\'")}',this)">
+<div class="term-tutor-avatar">🧠</div>
+<span class="term-tutor-label">ALEPH · Ask the AI Tutor</span>
+<span class="term-tutor-toggle">▾</span>
+</div>
+<div class="term-tutor-body">
+<div class="tutor-chat" id="tc-${t.term.replace(/[^a-zA-Z0-9]/g,'_')}"></div>
+<div class="tutor-row">
+<input class="tutor-field" id="tf-${t.term.replace(/[^a-zA-Z0-9]/g,'_')}" type="text" placeholder="e.g. Can you explain this a different way?" onkeydown="if(event.key==='Enter')glossTutorSend('${t.term.replace(/'/g,"\\'")}')">
+<button class="tutor-go" id="tg-${t.term.replace(/[^a-zA-Z0-9]/g,'_')}" onclick="glossTutorSend('${t.term.replace(/'/g,"\\'")}')">Ask</button>
+</div>
+</div>
+</div>
+</div>`;
 
-  card.querySelector('.term-header').addEventListener('click', ()=>toggleCard(t.term));
-  return card;
+card.querySelector('.term-header').addEventListener('click', ()=>toggleCard(t.term));
+return card;
 }
 
 function renderCompact(t){
-  const isStarred = progress.starred.has(t.term);
-  const isExpanded = state.expanded.has(t.term);
-  const row = document.createElement('div');
-  row.className = `term-card${isStarred?' starred':''}${isExpanded?' expanded':''}`;
+const isStarred = progress.starred.has(t.term);
+const isExpanded = state.expanded.has(t.term);
+const row = document.createElement('div');
+row.className = `term-card${isStarred?' starred':''}${isExpanded?' expanded':''}`;
 
-  row.innerHTML = `
-    <div class="term-header" style="padding:10px 14px">
-      <span class="term-name" style="font-size:13px">${t.term}</span>
-      <div class="term-tags"><span class="unit-badge">${t.unit}</span></div>
-      <button class="star-btn${isStarred?' starred-active':''}" onclick="event.stopPropagation();toggleStar('${t.term}')">${isStarred?'⭐':'☆'}</button>
-      <span class="expand-arrow">▾</span>
-    </div>
-    ${!isExpanded ? `<div class="term-def-preview" style="font-size:12px;padding:0 14px 10px">${t.def.slice(0,90)}…</div>` : ''}
-    <div class="term-body">
-      <div class="def-full">${t.def}</div>
-      ${t.formula ? `<div class="formula-bar"><span class="formula-label">📐</span><span class="formula-text">${t.formula}</span></div>` : ''}
-      ${t.example ? `<div class="example-bar"><span class="example-label">💡</span><span class="example-text">${t.example}</span></div>` : ''}
-      <div class="term-tutor" id="tutor-${t.term.replace(/[^a-zA-Z0-9]/g,'_')}">
-        <div class="term-tutor-header" onclick="toggleTermTutor('${t.term.replace(/'/g,"\\'")}',this)">
-          <div class="term-tutor-avatar">🧠</div>
-          <span class="term-tutor-label">ALEPH · Ask the AI Tutor</span>
-          <span class="term-tutor-toggle">▾</span>
-        </div>
-        <div class="term-tutor-body">
-          <div class="tutor-chat" id="tc-${t.term.replace(/[^a-zA-Z0-9]/g,'_')}"></div>
-          <div class="tutor-row">
-            <input class="tutor-field" id="tf-${t.term.replace(/[^a-zA-Z0-9]/g,'_')}" type="text" placeholder="Ask anything about this term…" onkeydown="if(event.key==='Enter')glossTutorSend('${t.term.replace(/'/g,"\\'")}')">
-            <button class="tutor-go" id="tg-${t.term.replace(/[^a-zA-Z0-9]/g,'_')}" onclick="glossTutorSend('${t.term.replace(/'/g,"\\'")}')">Ask</button>
-          </div>
-        </div>
-      </div>
-    </div>`;
+row.innerHTML = `
+<div class="term-header" style="padding:10px 14px">
+<span class="term-name" style="font-size:13px">${t.term}</span>
+<div class="term-tags"><span class="unit-badge">${t.unit}</span></div>
+<button class="star-btn${isStarred?' starred-active':''}" onclick="event.stopPropagation();toggleStar('${t.term}')">${isStarred?'⭐':'☆'}</button>
+<span class="expand-arrow">▾</span>
+</div>
+${!isExpanded ? `<div class="term-def-preview" style="font-size:12px;padding:0 14px 10px">${t.def.slice(0,90)}…</div>` : ''}
+<div class="term-body">
+<div class="def-full">${t.def}</div>
+${t.formula ? `<div class="formula-bar"><span class="formula-label">📐</span><span class="formula-text">${t.formula}</span></div>` : ''}
+${t.example ? `<div class="example-bar"><span class="example-label">💡</span><span class="example-text">${t.example}</span></div>` : ''}
+<div class="term-tutor" id="tutor-${t.term.replace(/[^a-zA-Z0-9]/g,'_')}">
+<div class="term-tutor-header" onclick="toggleTermTutor('${t.term.replace(/'/g,"\\'")}',this)">
+<div class="term-tutor-avatar">🧠</div>
+<span class="term-tutor-label">ALEPH · Ask the AI Tutor</span>
+<span class="term-tutor-toggle">▾</span>
+</div>
+<div class="term-tutor-body">
+<div class="tutor-chat" id="tc-${t.term.replace(/[^a-zA-Z0-9]/g,'_')}"></div>
+<div class="tutor-row">
+<input class="tutor-field" id="tf-${t.term.replace(/[^a-zA-Z0-9]/g,'_')}" type="text" placeholder="Ask anything about this term…" onkeydown="if(event.key==='Enter')glossTutorSend('${t.term.replace(/'/g,"\\'")}')">
+<button class="tutor-go" id="tg-${t.term.replace(/[^a-zA-Z0-9]/g,'_')}" onclick="glossTutorSend('${t.term.replace(/'/g,"\\'")}')">Ask</button>
+</div>
+</div>
+</div>
+</div>`;
 
-  row.querySelector('.term-header').addEventListener('click', ()=>toggleCard(t.term));
-  return row;
+row.querySelector('.term-header').addEventListener('click', ()=>toggleCard(t.term));
+return row;
 }
 
 function toggleCard(name){
-  if(state.expanded.has(name)) state.expanded.delete(name);
-  else state.expanded.add(name);
-  renderGlossary();
-  // Scroll to keep position stable
-  const el = document.querySelector(`[data-term="${name}"]`);
-  if(el) el.scrollIntoView({behavior:'smooth',block:'nearest'});
+if(state.expanded.has(name)) state.expanded.delete(name);
+else state.expanded.add(name);
+renderGlossary();
+// Scroll to keep position stable
+const el = document.querySelector(`[data-term="${name}"]`);
+if(el) el.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
 // ════════════════════════════════════════
 // STAR
 // ════════════════════════════════════════
 function toggleStar(name){
-  if(progress.starred.has(name)) progress.starred.delete(name);
-  else progress.starred.add(name);
-  save();
-  updateStats();
-  renderGlossary();
+if(progress.starred.has(name)) progress.starred.delete(name);
+else progress.starred.add(name);
+save();
+updateStats();
+renderGlossary();
 }
 
 function updateStats(){
-  document.getElementById('s-starred').textContent = progress.starred.size;
-  const qDisp = progress.quizTotal > 0 ? Math.round((progress.quizCorrect/progress.quizTotal)*100)+'%' : '—';
-  document.getElementById('s-quiz').textContent = qDisp;
+document.getElementById('s-starred').textContent = progress.starred.size;
+const qDisp = progress.quizTotal > 0 ? Math.round((progress.quizCorrect/progress.quizTotal)*100)+'%' : '—';
+document.getElementById('s-quiz').textContent = qDisp;
 }
 
 // ════════════════════════════════════════
@@ -726,93 +764,94 @@ function updateStats(){
 function shuffleArr(a){ const b=[...a]; for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];} return b; }
 
 function launchQuiz(){
-  // Use filtered terms (or all if no filter)
-  const pool = getFiltered().length >= 4 ? getFiltered() : TERMS;
-  quizQueue = shuffleArr(pool);
-  quizIdx = 0; quizSessionCorrect = 0; quizSessionTotal = 0;
-  document.getElementById('quiz-overlay').classList.add('open');
-  renderQuizQ();
+// Use filtered terms (or all if no filter)
+const pool = getFiltered().length >= 4 ? getFiltered() : TERMS;
+quizQueue = weightedSample(pool, pool.length);
+quizIdx = 0; quizSessionCorrect = 0; quizSessionTotal = 0;
+document.getElementById('quiz-overlay').classList.add('open');
+renderQuizQ();
 }
 
 function closeQuiz(){
-  document.getElementById('quiz-overlay').classList.remove('open');
-  progress.quizCorrect += quizSessionCorrect;
-  progress.quizTotal += quizSessionTotal;
-  save();
-  updateStats();
+document.getElementById('quiz-overlay').classList.remove('open');
+progress.quizCorrect += quizSessionCorrect;
+progress.quizTotal += quizSessionTotal;
+save();
+updateStats();
 }
 
 function renderQuizQ(){
-  if(quizIdx >= quizQueue.length){
-    document.getElementById('quiz-def-text').textContent = `Session complete! You got ${quizSessionCorrect} / ${quizSessionTotal} correct.`;
-    document.getElementById('quiz-choices').innerHTML = '';
-    document.getElementById('quiz-result').className = 'quiz-result';
-    document.getElementById('quiz-next-btn').style.display = 'none';
-    document.getElementById('quiz-live-score').textContent = `${quizSessionCorrect} / ${quizSessionTotal}`;
-    return;
-  }
+if(quizIdx >= quizQueue.length){
+document.getElementById('quiz-def-text').textContent = `Session complete! You got ${quizSessionCorrect} / ${quizSessionTotal} correct.`;
+document.getElementById('quiz-choices').innerHTML = '';
+document.getElementById('quiz-result').className = 'quiz-result';
+document.getElementById('quiz-next-btn').style.display = 'none';
+document.getElementById('quiz-live-score').textContent = `${quizSessionCorrect} / ${quizSessionTotal}`;
+return;
+}
 
-  const t = quizQueue[quizIdx];
-  quizAnswered = false;
+const t = quizQueue[quizIdx];
+quizAnswered = false;
 
-  document.getElementById('quiz-def-text').textContent = t.def;
-  document.getElementById('quiz-unit-hint').textContent = `Unit: ${t.unit}${t.formula ? ' · Has a formula' : ''}`;
+document.getElementById('quiz-def-text').textContent = t.def;
+document.getElementById('quiz-unit-hint').textContent = `Unit: ${t.unit}${t.formula ? ' · Has a formula' : ''}`;
 
-  // Build 4 choices: correct + 3 random wrong
-  const wrongPool = TERMS.filter(x=>x.term!==t.term && x.unit===t.unit);
-  const wrongExtra = TERMS.filter(x=>x.term!==t.term && x.unit!==t.unit);
-  const wrongs = shuffleArr([...wrongPool,...wrongExtra]).slice(0,3);
-  const choices = shuffleArr([t, ...wrongs]);
+// Build 4 choices: correct + 3 random wrong
+const wrongPool = TERMS.filter(x=>x.term!==t.term && x.unit===t.unit);
+const wrongExtra = TERMS.filter(x=>x.term!==t.term && x.unit!==t.unit);
+const wrongs = shuffleArr([...wrongPool,...wrongExtra]).slice(0,3);
+const choices = shuffleArr([t, ...wrongs]);
 
-  const container = document.getElementById('quiz-choices');
-  container.innerHTML = '';
-  choices.forEach(c=>{
-    const btn = document.createElement('button');
-    btn.className = 'quiz-opt';
-    btn.textContent = c.term;
-    btn.onclick = ()=>selectQuizAnswer(c.term===t.term, btn, t);
-    container.appendChild(btn);
-  });
+const container = document.getElementById('quiz-choices');
+container.innerHTML = '';
+choices.forEach(c=>{
+const btn = document.createElement('button');
+btn.className = 'quiz-opt';
+btn.textContent = c.term;
+btn.onclick = ()=>selectQuizAnswer(c.term===t.term, btn, t);
+container.appendChild(btn);
+});
 
-  document.getElementById('quiz-result').className = 'quiz-result';
-  document.getElementById('quiz-next-btn').style.display = 'none';
-  document.getElementById('quiz-live-score').textContent = `${quizSessionCorrect} / ${quizSessionTotal}`;
+document.getElementById('quiz-result').className = 'quiz-result';
+document.getElementById('quiz-next-btn').style.display = 'none';
+document.getElementById('quiz-live-score').textContent = `${quizSessionCorrect} / ${quizSessionTotal}`;
 
-  document.getElementById('quiz-card').style.animation='none';
-  requestAnimationFrame(()=>{document.getElementById('quiz-card').style.animation='fadeBody .3s ease';});
+document.getElementById('quiz-card').style.animation='none';
+requestAnimationFrame(()=>{document.getElementById('quiz-card').style.animation='fadeBody .3s ease';});
 }
 
 function selectQuizAnswer(correct, btn, t){
-  if(quizAnswered) return;
-  quizAnswered = true;
-  quizSessionTotal++;
+if(quizAnswered) return;
+quizAnswered = true;
+quizSessionTotal++;
+srsUpdate(t.term, correct);
 
-  document.querySelectorAll('.quiz-opt').forEach(b=>b.disabled=true);
-  if(correct){
-    btn.classList.add('q-correct');
-    quizSessionCorrect++;
-  } else {
-    btn.classList.add('q-wrong');
-    document.querySelectorAll('.quiz-opt').forEach(b=>{ if(b.textContent===t.term) b.classList.add('q-correct'); });
-  }
+document.querySelectorAll('.quiz-opt').forEach(b=>b.disabled=true);
+if(correct){
+btn.classList.add('q-correct');
+quizSessionCorrect++;
+} else {
+btn.classList.add('q-wrong');
+document.querySelectorAll('.quiz-opt').forEach(b=>{ if(b.textContent===t.term) b.classList.add('q-correct'); });
+}
 
-  const res = document.getElementById('quiz-result');
-  const lbl = document.getElementById('quiz-result-lbl');
-  const body = document.getElementById('quiz-result-body');
-  if(correct){
-    res.className = 'quiz-result res-ok show';
-    lbl.style.color = 'var(--teal)';
-    lbl.textContent = '✓ CORRECT';
-    body.innerHTML = t.formula ? `<strong>Formula:</strong> <code style="color:var(--teal)">${t.formula}</code>${t.example?'<br><em>'+t.example+'</em>':''}` : (t.example?`<em>${t.example}</em>`:'');
-  } else {
-    res.className = 'quiz-result res-no show';
-    lbl.style.color = 'var(--red)';
-    lbl.textContent = '✗ INCORRECT';
-    body.innerHTML = `<strong>That was:</strong> ${t.term}<br><em>${t.def.slice(0,120)}…</em>`;
-  }
+const res = document.getElementById('quiz-result');
+const lbl = document.getElementById('quiz-result-lbl');
+const body = document.getElementById('quiz-result-body');
+if(correct){
+res.className = 'quiz-result res-ok show';
+lbl.style.color = 'var(--teal)';
+lbl.textContent = '✓ CORRECT';
+body.innerHTML = t.formula ? `<strong>Formula:</strong> <code style="color:var(--teal)">${t.formula}</code>${t.example?'<br><em>'+t.example+'</em>':''}` : (t.example?`<em>${t.example}</em>`:'');
+} else {
+res.className = 'quiz-result res-no show';
+lbl.style.color = 'var(--red)';
+lbl.textContent = '✗ INCORRECT';
+body.innerHTML = `<strong>That was:</strong> ${t.term}<br><em>${t.def.slice(0,120)}…</em>`;
+}
 
-  document.getElementById('quiz-live-score').textContent = `${quizSessionCorrect} / ${quizSessionTotal}`;
-  document.getElementById('quiz-next-btn').style.display = 'inline-flex';
+document.getElementById('quiz-live-score').textContent = `${quizSessionCorrect} / ${quizSessionTotal}`;
+document.getElementById('quiz-next-btn').style.display = 'inline-flex';
 }
 
 function quizNext(){ quizIdx++; renderQuizQ(); }
@@ -825,68 +864,68 @@ const glossTutorHistories = {}; // per-term conversation history
 function termKey(name){ return name.replace(/[^a-zA-Z0-9]/g,'_'); }
 
 function toggleTermTutor(termName, headerEl){
-  const tutor = document.getElementById('tutor-'+termKey(termName));
-  if(!tutor) return;
-  const isOpen = tutor.classList.contains('term-tutor-open');
-  tutor.classList.toggle('term-tutor-open', !isOpen);
+const tutor = document.getElementById('tutor-'+termKey(termName));
+if(!tutor) return;
+const isOpen = tutor.classList.contains('term-tutor-open');
+tutor.classList.toggle('term-tutor-open', !isOpen);
 
-  // On first open — send a contextual greeting from Aleph
-  if(!isOpen && !glossTutorHistories[termName]){
-    const t = TERMS.find(x=>x.term===termName);
-    if(t) glossTutorOpeningMsg(t);
-  }
+// On first open — send a contextual greeting from Aleph
+if(!isOpen && !glossTutorHistories[termName]){
+const t = TERMS.find(x=>x.term===termName);
+if(t) glossTutorOpeningMsg(t);
+}
 }
 
 function glossTutorOpeningMsg(t){
-  const key = termKey(t.term);
-  const history = [];
-  glossTutorHistories[t.term] = history;
+const key = termKey(t.term);
+const history = [];
+glossTutorHistories[t.term] = history;
 
-  const systemCtx = `TERM: ${t.term} | Unit: ${t.unit}
+const systemCtx = `TERM: ${t.term} | Unit: ${t.unit}
 Definition: ${t.def}
 ${t.formula ? 'Formula: '+t.formula : ''}
 ${t.example ? 'Example: '+t.example : ''}`;
 
-  history.push({role:'user', content: systemCtx + '\n\nStudent just opened the tutor for this term. Give a one-sentence acknowledgment that invites a question. Do NOT re-read the definition back.'});
+history.push({role:'user', content: systemCtx + '\n\nStudent just opened the tutor for this term. Give a one-sentence acknowledgment that invites a question. Do NOT re-read the definition back.'});
 
-  // Fire-and-forget opening — show a canned opener, skip API call to save quota
-  const opener = `"${t.term}" is one of the core concepts in ${t.unit}. What part would you like me to unpack?`;
-  glossAppendBubble(key, 'a', opener);
-  history.push({role:'assistant', content: opener});
+// Fire-and-forget opening — show a canned opener, skip API call to save quota
+const opener = `"${t.term}" is one of the core concepts in ${t.unit}. What part would you like me to unpack?`;
+glossAppendBubble(key, 'a', opener);
+history.push({role:'assistant', content: opener});
 }
 
 async function glossTutorSend(termName){
-  const key = termKey(termName);
-  const field = document.getElementById('tf-'+key);
-  const btn   = document.getElementById('tg-'+key);
-  const msg = field.value.trim();
-  if(!msg) return;
-  field.value = '';
+const key = termKey(termName);
+const field = document.getElementById('tf-'+key);
+const btn = document.getElementById('tg-'+key);
+const msg = field.value.trim();
+if(!msg) return;
+field.value = '';
 
-  glossAppendBubble(key, 'u', msg);
+glossAppendBubble(key, 'u', msg);
 
-  if(!glossTutorHistories[termName]){
-    const t = TERMS.find(x=>x.term===termName);
-    glossTutorHistories[termName] = t ? [{
-      role:'user',
-      content:`TERM: ${t.term} | Unit: ${t.unit}\nDefinition: ${t.def}\n${t.formula?'Formula: '+t.formula:''}\n${t.example?'Example: '+t.example:''}`
-    },{role:'assistant', content:`"${t.term}" is a core concept in ${t.unit}. What would you like me to clarify?`}] : [];
-  }
+if(!glossTutorHistories[termName]){
+const t = TERMS.find(x=>x.term===termName);
+glossTutorHistories[termName] = t ? [{
+role:'user',
+content:`TERM: ${t.term} | Unit: ${t.unit}\nDefinition: ${t.def}\n${t.formula?'Formula: '+t.formula:''}\n${t.example?'Example: '+t.example:''}`
+},{role:'assistant', content:`"${t.term}" is a core concept in ${t.unit}. What would you like me to clarify?`}] : [];
+}
 
-  const history = glossTutorHistories[termName];
-  history.push({role:'user', content: msg});
+const history = glossTutorHistories[termName];
+history.push({role:'user', content: msg});
 
-  btn.disabled = true;
-  const thinkEl = glossAppendBubble(key, 'a', null, true);
+btn.disabled = true;
+const thinkEl = glossAppendBubble(key, 'a', null, true);
 
-  try{
-    const resp = await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({
-        model:'claude-sonnet-4-6',
-        max_tokens:1000,
-        system:`You are ALEPH, an Algebra 2 AI tutor embedded in a glossary. A student is looking at a specific term and asking a question about it.
+try{
+const resp = await fetch('https://api.anthropic.com/v1/messages',{
+method:'POST',
+headers:{'Content-Type':'application/json'},
+body: JSON.stringify({
+model:'claude-sonnet-4-6',
+max_tokens:1000,
+system:`You are ALEPH, an Algebra 2 AI tutor embedded in a glossary. A student is looking at a specific term and asking a question about it.
 
 RULES:
 - Keep responses short — 2-4 sentences unless the student asks for a deeper explanation.
@@ -894,42 +933,42 @@ RULES:
 - Use plain text. No markdown headers. Inline code with backticks for math is fine.
 - Never open with filler like "Great question!" Jump straight in.
 - If asked something unrelated to Algebra 2, redirect warmly.`,
-        messages: history
-      })
-    });
-    const data = await resp.json();
-    const reply = data.content?.[0]?.text || 'Sorry — couldn\'t generate a response. Try again.';
-    thinkEl.remove();
-    glossAppendBubble(key, 'a', reply);
-    history.push({role:'assistant', content: reply});
-    if(history.length > 14) glossTutorHistories[termName] = history.slice(history.length-12);
-  } catch(e){
-    thinkEl.remove();
-    glossAppendBubble(key, 'a', 'Connection issue. Check your network and try again.');
-  }
+messages: history
+})
+});
+const data = await resp.json();
+const reply = data.content?.[0]?.text || 'Sorry — couldn\'t generate a response. Try again.';
+thinkEl.remove();
+glossAppendBubble(key, 'a', reply);
+history.push({role:'assistant', content: reply});
+if(history.length > 14) glossTutorHistories[termName] = history.slice(history.length-12);
+} catch(e){
+thinkEl.remove();
+glossAppendBubble(key, 'a', 'Connection issue. Check your network and try again.');
+}
 
-  btn.disabled = false;
-  const chat = document.getElementById('tc-'+key);
-  if(chat) chat.scrollTop = chat.scrollHeight;
+btn.disabled = false;
+const chat = document.getElementById('tc-'+key);
+if(chat) chat.scrollTop = chat.scrollHeight;
 }
 
 function glossAppendBubble(key, role, text, isThinking=false){
-  const chat = document.getElementById('tc-'+key);
-  if(!chat) return null;
-  const el = document.createElement('div');
-  if(isThinking){
-    el.className = 'tutor-bubble thinking';
-    el.textContent = 'Thinking…';
-  } else {
-    el.className = 'tutor-bubble '+role;
-    el.innerHTML = text
-      .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
-      .replace(/`([^`]+)`/g,'<code>$1</code>')
-      .replace(/\n/g,'<br>');
-  }
-  chat.appendChild(el);
-  chat.scrollTop = chat.scrollHeight;
-  return el;
+const chat = document.getElementById('tc-'+key);
+if(!chat) return null;
+const el = document.createElement('div');
+if(isThinking){
+el.className = 'tutor-bubble thinking';
+el.textContent = 'Thinking…';
+} else {
+el.className = 'tutor-bubble '+role;
+el.innerHTML = text
+.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+.replace(/`([^`]+)`/g,'<code>$1</code>')
+.replace(/\n/g,'<br>');
+}
+chat.appendChild(el);
+chat.scrollTop = chat.scrollHeight;
+return el;
 }
 
 document.addEventListener('DOMContentLoaded', init);

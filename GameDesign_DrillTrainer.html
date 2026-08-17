@@ -31,7 +31,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .cert-text b{color:#b39bf5}
 .cert-switch{margin-left:auto;display:flex;gap:6px}
 .cert-pill{background:var(--card2);border:1px solid var(--border);border-radius:999px;padding:5px 13px;font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
-.cert-pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.cert-pill.active{background:#8558EC;border-color:var(--accent);color:#fff}
 .cert-pill.locked{opacity:.5;cursor:default}
 
 .stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
@@ -46,7 +46,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 
 .pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:7px 15px;font-size:12.5px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
 .pill:hover{border-color:var(--accent);color:var(--text)}
-.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.pill.active{background:#8558EC;border-color:var(--accent);color:#fff}
 .pill-row{display:flex;gap:7px;flex-wrap:wrap}
 
 .mode-tab{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:11px 17px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
@@ -59,17 +59,17 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .cat-box:hover{border-color:var(--accent)}
 .cat-box.on{background:rgba(139,92,246,.12);border-color:var(--accent)}
 .cat-check{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
-.cat-box.on .cat-check{background:var(--accent);border-color:var(--accent);color:#fff}
+.cat-box.on .cat-check{background:#8558EC;border-color:var(--accent);color:#fff}
 .cat-name{font-size:12.5px;font-weight:700;color:var(--text)}
 .cat-qty{font-size:10.5px;color:var(--muted);font-family:'DM Mono',monospace}
 
 .btn{border:none;border-radius:12px;padding:14px 26px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s}
-.btn-go{background:linear-gradient(135deg,var(--accent),#6d3fd4);color:#fff;width:100%}
+.btn-go{background:linear-gradient(135deg,#8558EC,#6d3fd4);color:#fff;width:100%}
 .btn-go:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(139,92,246,.32)}
 .btn-go:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
 .btn-ghost{background:var(--bg);border:1px solid var(--border);color:var(--text)}
-.btn-teal{background:var(--teal);color:#fff}
-.btn-next{background:var(--accent);color:#fff}
+.btn-teal{background:#188663;color:#fff}
+.btn-next{background:#8558EC;color:#fff}
 
 .q-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
 .q-counter{font-family:'DM Mono',monospace;font-size:11.5px;letter-spacing:.1em;color:var(--muted)}
@@ -96,9 +96,9 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .opt-mono{font-family:'DM Mono',monospace;font-size:13px}
 .opt-key{width:24px;height:24px;border-radius:7px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0;color:var(--muted)}
 .opt.correct{border-color:var(--teal);background:rgba(29,158,117,.11)}
-.opt.correct .opt-key{background:var(--teal);border-color:var(--teal);color:#fff}
+.opt.correct .opt-key{background:#188663;border-color:var(--teal);color:#fff}
 .opt.wrong{border-color:var(--red);background:rgba(231,76,60,.10)}
-.opt.wrong .opt-key{background:var(--red);border-color:var(--red);color:#fff}
+.opt.wrong .opt-key{background:#D24536;border-color:var(--red);color:#fff}
 
 .feedback{border-radius:12px;padding:14px 16px;margin-bottom:16px;display:none}
 .feedback.show{display:block}
@@ -295,17 +295,48 @@ const CERT_NAMES = {
   artist:"Unity Certified User: Artist"
 };
 const MODE_DESC = {
-  practice:"<b style='color:var(--accent)'>Practice</b> — one question at a time with instant feedback and a full explanation after every answer. No timer. Best for learning.",
-  exam:"<b style='color:var(--amber)'>Exam Mode</b> — a timed 20-question session under test conditions. Explanations are withheld until the session ends.",
+  practice:"<b style='color:var(--accent)'>Practice</b> — one question at a time with instant feedback and a full explanation after every answer. No timer. 🎯 Questions you've missed most show up more often; ones you've nailed fade into occasional review.",
+  exam:"<b style='color:var(--amber)'>Exam Mode</b> — a timed 20-question session under test conditions, sampled evenly across your selection. Explanations are withheld until the session ends.",
   stamina:"<b style='color:var(--red)'>Stamina</b> — answer correctly to continue. One wrong answer ends the run. How far can you get?"
 };
 const LS='gamedesign_drill_stats';
+const LS_SRS='gamedesign_drill_srs';
 
 let curCert='programmer', mode='practice', tier='all';
 let selCats = new Set(['engine','csharp','gameplay','ui','design']);
 let deck=[], idx=0, right=0, answered=false, missed=[], lastConfig=null;
 let streak=0, timerId=null, timeLeft=0;
 let stats = JSON.parse(localStorage.getItem(LS)||'{"total":0,"correct":0,"best":0,"sessions":0}');
+
+// ── SPACED REPETITION (Practice mode only — keyed by question text) ──
+let srs = JSON.parse(localStorage.getItem(LS_SRS)||'{}');
+function saveSRS(){ localStorage.setItem(LS_SRS, JSON.stringify(srs)); }
+function srsUpdate(qText, gotItRight){
+  const r = srs[qText] || {seen:0, missed:0};
+  r.seen++;
+  if(!gotItRight) r.missed++;
+  srs[qText] = r;
+  saveSRS();
+}
+function srsWeight(qText){
+  const r = srs[qText] || {seen:0, missed:0};
+  if(r.seen===0) return 3;
+  const missRate = r.missed / r.seen;
+  return Math.max(1, 1 + missRate*6);
+}
+function weightedSample(items, n){
+  const p = items.map(it=>({it, w: srsWeight(it.q)}));
+  const picked = [];
+  for(let k=0; k<n && p.length; k++){
+    const total = p.reduce((s,x)=>s+x.w, 0);
+    let r = Math.random()*total, idx=0;
+    for(; idx<p.length; idx++){ r -= p[idx].w; if(r<=0) break; }
+    idx = Math.min(idx, p.length-1);
+    picked.push(p[idx].it);
+    p.splice(idx,1);
+  }
+  return picked;
+}
 
 function saveStats(){ localStorage.setItem(LS, JSON.stringify(stats)); }
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
@@ -357,7 +388,11 @@ function updatePool(){
 }
 function startSession(){
   const p=pool(); if(p.length<1) return;
-  deck=p.slice().sort(()=>Math.random()-0.5);
+  if(mode==='practice'){
+    deck = weightedSample(p, p.length);
+  } else {
+    deck = p.slice().sort(()=>Math.random()-0.5);
+  }
   if(mode==='exam') deck=deck.slice(0,Math.min(20,deck.length));
   lastConfig={mode,tier,cats:[...selCats]};
   idx=0; right=0; missed=[]; answered=false; streak=0;
@@ -404,6 +439,7 @@ function answer(choice){
   else { missed.push({q,chose:choice}); streak=0; }
   stats.total++; if(correct) stats.correct++;
   saveStats(); renderGlobalStats();
+  if(mode==='practice') srsUpdate(q.q, correct);
   document.querySelectorAll('.opt').forEach((b,i)=>{ b.disabled=true; if(i===q.a) b.classList.add('correct'); else if(i===choice) b.classList.add('wrong'); });
   if(mode==='stamina' && !correct){ finishSession(); return; }
   if(mode!=='exam'){
@@ -446,7 +482,11 @@ function finishSession(timeUp){
 function retrySession(){
   if(!lastConfig) return goSetup();
   idx=0; right=0; missed=[]; streak=0;
-  deck=deck.slice().sort(()=>Math.random()-0.5);
+  if(mode==='practice'){
+    deck = weightedSample(deck, deck.length);
+  } else {
+    deck=deck.slice().sort(()=>Math.random()-0.5);
+  }
   if(mode==='exam'){ timeLeft=deck.length*60; startTimer(); }
   show('screen-q'); renderQ();
 }

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pre-AP World History &amp; Geography — Self-Grader</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
+  --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(29,158,117,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(29,158,117,0.035) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:26px 20px 70px}
+
+.header{margin-bottom:14px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--teal)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+
+.about-banner{background:linear-gradient(135deg,rgba(29,158,117,.1),rgba(229,148,0,.06));border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:14px;font-size:12.5px;color:var(--text);line-height:1.55}
+.about-banner b{color:#4fd1a5}
+
+.path-banner{background:linear-gradient(135deg,rgba(229,148,0,.1),rgba(46,139,192,.06));border:1px solid var(--border);border-radius:12px;padding:11px 16px;margin-bottom:18px;font-size:12.5px;color:var(--text)}
+.path-banner b{color:#efb44e}
+
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px;flex:1}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+
+.controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;flex-direction:column;gap:11px}
+.ctrl-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--muted);min-width:52px}
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--teal);color:var(--text)}
+.pill.active{background:#188663;border-color:var(--teal);color:#fff}
+.pill-type.active{background:var(--purple);border-color:var(--purple)}
+
+.count-line{font-size:12px;color:var(--muted);margin-bottom:12px}
+.count-line b{color:var(--white);font-family:'DM Mono',monospace}
+
+.prompt-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:14px}
+.prompt-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:12px}
+.prompt-tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:6px}
+.t-unit{background:rgba(46,139,192,.16);color:#7cc0e6;border:1px solid rgba(46,139,192,.3)}
+.t-explain{background:rgba(229,148,0,.14);color:#efb44e;border:1px solid rgba(229,148,0,.3)}
+.t-compare{background:rgba(139,92,246,.15);color:#b39bf5;border:1px solid rgba(139,92,246,.3)}
+.t-argument{background:rgba(231,76,60,.14);color:#f08579;border:1px solid rgba(231,76,60,.3)}
+.mastered-badge{font-size:9.5px;font-weight:700;padding:3px 9px;border-radius:6px;background:rgba(29,158,117,.15);color:#4fd1a5;border:1px solid rgba(29,158,117,.3)}
+.prompt-text{font-size:15px;font-weight:600;color:var(--white);line-height:1.5;margin-bottom:14px}
+.answer-area{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:13px 15px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13.5px;min-height:110px;resize:vertical;margin-bottom:12px}
+.answer-area:focus{outline:none;border-color:var(--teal)}
+.btn-row{display:flex;gap:9px;flex-wrap:wrap}
+.btn{border:none;border-radius:11px;padding:11px 20px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .18s}
+.btn-reveal{background:#188663;color:#fff}
+.btn-reveal:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(29,158,117,.3)}
+.btn-mastered{background:var(--bg);border:1px solid var(--border);color:var(--muted)}
+.btn-mastered:hover{border-color:var(--teal);color:var(--teal)}
+.btn-mastered.on{background:#188663;border-color:var(--teal);color:#fff}
+
+.model-box{display:none;margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
+.model-box.show{display:block}
+.model-lbl{font-size:10px;font-weight:700;letter-spacing:.11em;color:var(--teal);margin-bottom:8px}
+.model-answer{background:rgba(29,158,117,.06);border-left:2px solid var(--teal);border-radius:9px;padding:13px 15px;font-size:13.5px;line-height:1.65;margin-bottom:14px;white-space:pre-wrap}
+.rubric-lbl{font-size:10px;font-weight:700;letter-spacing:.11em;color:#efb44e;margin-bottom:8px}
+.rubric-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.rubric-item:last-child{border-bottom:none}
+.rubric-check{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--border);background:var(--bg);flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;margin-top:1px}
+.rubric-check.on{background:#188663;border-color:var(--teal);color:#fff}
+.rubric-text{font-size:13px;color:var(--text);line-height:1.5}
+.rubric-score{margin-top:12px;font-size:13px;font-weight:700;color:var(--white);text-align:right}
+.rubric-score span{color:var(--teal)}
+
+.empty{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px}
+
+@media(max-width:640px){.page-title{font-size:1.5rem}.ctrl-label{min-width:auto}}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <a href="WorldHistory_StudyHub.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--amber);text-decoration:none;margin-bottom:14px;opacity:.85">← World History Study Hub</a>
+
+  <div class="header">
+    <div class="series-label">Pre-AP World History &amp; Geography · Study Resource Series · Build 6</div>
+    <div class="page-title">Self-<span>Grader</span></div>
+    <div class="page-sub" id="page-sub">Loading…</div>
+  </div>
+
+  <div class="about-banner">✍️ Short-answer and DBQ-style writing practice — the format the multiple-choice Drill Trainer can't test. Write your response, reveal a model answer, and self-score against a rubric. Nobody but you sees what you write here.</div>
+
+  <div class="path-banner">🗺️ <b>Pathway 2</b> — Geography, Early Modern, Modern, and Contemporary periods, per the College Board Pre-AP framework.</div>
+
+  <div class="stats-row">
+    <div class="stat-chip"><div class="stat-num" id="s-total">—</div><div class="stat-lbl">TOTAL PROMPTS</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--teal)" id="s-mastered">0</div><div class="stat-lbl">MASTERED</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--sky)" id="s-shown">—</div><div class="stat-lbl">SHOWING</div></div>
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-row">
+      <span class="ctrl-label">UNIT</span>
+      <button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button>
+      <button class="pill" data-unit="U1" onclick="setUnit('U1',this)">U1</button>
+      <button class="pill" data-unit="U2" onclick="setUnit('U2',this)">U2</button>
+      <button class="pill" data-unit="U3" onclick="setUnit('U3',this)">U3</button>
+      <button class="pill" data-unit="U4" onclick="setUnit('U4',this)">U4</button>
+    </div>
+    <div class="ctrl-row">
+      <span class="ctrl-label">TYPE</span>
+      <button class="pill pill-type active" data-type="all" onclick="setType('all',this)">All</button>
+      <button class="pill pill-type" data-type="explain" onclick="setType('explain',this)">💬 Explain</button>
+      <button class="pill pill-type" data-type="compare" onclick="setType('compare',this)">⚖ Compare</button>
+      <button class="pill pill-type" data-type="argument" onclick="setType('argument',this)">📝 Short Argument</button>
+    </div>
+  </div>
+
+  <div class="count-line" id="count-line"></div>
+  <div id="prompt-list"></div>
+
+  <div style="margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center">
+    Pre-AP World History &amp; Geography (21094150) · College Board Pre-AP Framework · Pathway 2 · Self-Grader
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+// PRE-AP WORLD HISTORY & GEOGRAPHY — SELF-GRADER
+// Short-answer/DBQ-style writing practice, distinct from the
+// multiple-choice Drill Trainer. Pathway 2.
+// type: "explain" (cause/significance) | "compare" (two things) | "argument" (short thesis-driven paragraph)
+// ═══════════════════════════════════════════
+const PROMPTS = [
+{u:"U1",type:"explain",prompt:"Explain how a push factor and a pull factor might work together to cause a specific migration. Use a concrete historical or hypothetical example.",model:"A push factor and a pull factor typically work together rather than separately — migration usually requires both a reason to leave and a reason to go somewhere specific.\n\nExample: Religious persecution in a home country (a push factor) might drive a group to leave, while the promise of religious tolerance and available land in a specific destination (a pull factor) determines where they go. Without the push, they might not leave at all; without the pull, they might not choose that particular destination.\n\nThe two factors are usually best understood as complementary, not competing, explanations for why a specific migration happened.",rubric:["Correctly identified a push factor as a reason to LEAVE","Correctly identified a pull factor as a reason to go to a SPECIFIC destination","Used a concrete, plausible example connecting the two","Explained that push and pull factors typically work together rather than in isolation"]},
+{u:"U1",type:"compare",prompt:"Compare physical geography and human geography as fields of study, and give one example of a question each field would investigate.",model:"Physical geography studies Earth's natural features and processes — landforms, climate, water systems, ecosystems — largely independent of human activity.\nExample question: Why did the Himalayas form where they did?\n\nHuman geography studies how people organize themselves and interact with their environment — population patterns, culture, economics, political systems.\nExample question: Why do cities tend to cluster along rivers and coastlines?\n\nThe two fields often intersect — human geography frequently examines how physical geography shapes human decisions, and vice versa — but they ask fundamentally different core questions: one about the Earth itself, the other about people.",rubric:["Correctly defined physical geography as the study of natural features/processes","Correctly defined human geography as the study of people's organization and environment interaction","Gave a plausible example question for physical geography","Gave a plausible example question for human geography"]},
+
+{u:"U2",type:"explain",prompt:"Explain why the Columbian Exchange is described as having effects that moved in both directions, rather than being a one-way transfer of goods.",model:"The Columbian Exchange is described as bidirectional because significant transfers moved both from the Americas to the rest of the world AND from the rest of the world to the Americas.\n\nFrom the Americas outward: crops like maize and potatoes spread to Europe, Africa, and Asia, eventually reshaping diets and populations worldwide.\n\nFrom Europe (and elsewhere) to the Americas: horses and other livestock arrived, along with devastating diseases like smallpox, to which Indigenous populations had no prior immunity, causing catastrophic population loss.\n\nDescribing it as one-directional — only crops moving to Europe — omits the disease transfer that had the single largest demographic impact of the entire exchange, on Indigenous peoples of the Americas.",rubric:["Identified at least one item moving FROM the Americas outward (crops)","Identified at least one item moving TO the Americas (disease and/or livestock)","Explained that disease had a catastrophic impact on Indigenous populations","Explicitly stated why calling it one-directional would be incomplete/inaccurate"]},
+{u:"U2",type:"compare",prompt:"Compare the Ottoman, Safavid, and Mughal Empires in terms of the regions each controlled.",model:"All three are classified as 'gunpowder empires' due to their reliance on gunpowder weaponry for expansion, and all rose to power in overlapping centuries — but they controlled entirely distinct regions.\n\nThe Ottoman Empire was centered in Anatolia, controlling territory across Southeast Europe, West Asia, and North Africa.\n\nThe Safavid Empire controlled Persia, establishing Shia Islam as its state religion and sitting geographically between the Ottoman and Mughal empires.\n\nThe Mughal Empire ruled most of the Indian subcontinent, known for administrative sophistication and architecture such as the Taj Mahal.\n\nThe shared 'gunpowder empire' label describes a similarity in military technology and era, not a similarity in territory — the three empires never controlled the same core regions.",rubric:["Correctly identified the Ottoman Empire's region (Anatolia/SE Europe/W Asia/N Africa)","Correctly identified the Safavid Empire's region (Persia)","Correctly identified the Mughal Empire's region (Indian subcontinent)","Explained that 'gunpowder empire' describes shared technology/era, not shared territory"]},
+{u:"U2",type:"argument",prompt:"In 2–3 sentences, argue whether mercantilism or the Enlightenment had a greater influence on why European powers established overseas colonies. Support your position with one specific reason.",model:"Mercantilism had the greater influence on colonization, because it provided the direct economic MOTIVE — colonies supplied raw materials and captive markets that a nation's wealth, under mercantilist theory, depended on accumulating. The Enlightenment, by contrast, mainly shaped how Europeans later justified or challenged colonial rule intellectually, rather than driving the initial decision to colonize. A strong counter-argument could note that Enlightenment ideas about human capability and 'natural rights' shaped which peoples European colonizers considered worth respecting sovereignty over, indirectly enabling colonization even without being the original motive.",rubric:["Took a clear position (mercantilism OR Enlightenment) rather than staying vague","Supported the position with one specific, accurate reason","Response is appropriately short (2-3 sentences), not a full essay","Reasoning connects logically to the historical content, not just an opinion"]},
+
+{u:"U3",type:"explain",prompt:"Explain how the Industrial Revolution contributed to the growth of both capitalism and socialism as competing economic ideologies.",model:"The Industrial Revolution created capitalism's engine — the factory system generated enormous private wealth for owners who invested capital and competed in markets, exactly the conditions capitalism depends on.\n\nBut the same industrialization created the conditions socialism arose to criticize: harsh factory working conditions, long hours, low wages, and stark inequality between owners and workers. Thinkers like Karl Marx developed socialist and communist theory specifically in response to observing this industrial-era inequality, arguing the working class (the proletariat) would eventually rise against capitalist owners.\n\nIn this sense, the Industrial Revolution didn't just create one ideology — it created the wealth that fueled capitalism AND the inequality that fueled socialism as its direct critique.",rubric:["Explained how industrialization enabled capitalist wealth accumulation","Explained how industrialization created the harsh conditions socialism criticized","Connected this to Marx's theory specifically","Framed both ideologies as arising from the same industrial conditions, not unrelated developments"]},
+{u:"U3",type:"argument",prompt:"In 2–3 sentences, argue whether the Berlin Conference or the Opium Wars better illustrates the imbalance of power between Western and non-Western states in the nineteenth century. Support your position with one specific detail.",model:"The Berlin Conference better illustrates this imbalance, because it shows European powers dividing an entire continent among themselves with zero African representation at the table — the affected peoples had no voice at all in decisions about their own territory. The Opium Wars, while also demonstrating Western coercion through unequal treaties forced on China, at least involved direct negotiation (however unequal) between recognized states, whereas Africa's partition didn't involve African states being consulted in any form.",rubric:["Took a clear position (Berlin Conference OR Opium Wars)","Supported the position with one specific, accurate historical detail","Response is appropriately short, not a full essay","Comparison shows understanding of what 'imbalance of power' means in context"]},
+
+{u:"U4",type:"explain",prompt:"Explain why historians distinguish between the Treaty of Versailles as a cause of World War II and the assassination of Franz Ferdinand as a cause of World War I.",model:"These are different links in the same chain of twentieth-century conflict, and keeping the causal direction straight matters.\n\nThe assassination of Archduke Franz Ferdinand in 1914 was the immediate TRIGGER of World War I — it set off a rapid chain of alliance obligations that escalated into full-scale war.\n\nThe Treaty of Versailles, in 1919, was not a cause of WWI — it was the settlement that ENDED WWI. However, its harsh terms and reparations on Germany are frequently cited by historians as a CONTRIBUTING cause of the economic and political instability that helped enable World War II two decades later.\n\nSo Franz Ferdinand's assassination and the Treaty of Versailles sit at opposite ends of WWI — one starting it, one ending it — while only the treaty carries forward as a cause of the NEXT war.",rubric:["Correctly identified Franz Ferdinand's assassination as WWI's trigger","Correctly identified the Treaty of Versailles as ending WWI, not causing it","Explained the treaty's role as a contributing cause of WWII specifically","Explicitly distinguished the two causal roles rather than conflating them"]},
+{u:"U4",type:"compare",prompt:"Compare containment and the Non-Aligned Movement as two different responses to Cold War pressure.",model:"Containment was a UNITED STATES foreign policy strategy aimed at preventing the spread of communism to new countries, without attempting to eliminate it where already established. It represented one superpower's active approach to managing the Cold War rivalry, shaping US involvement in conflicts like Korea and Vietnam.\n\nThe Non-Aligned Movement, by contrast, was the response of THIRD-PARTY nations — states like India under Jawaharlal Nehru — who declared neutrality and refused to formally join either the US or Soviet side at all.\n\nThe key difference: containment was one superpower's strategy for fighting the Cold War; the Non-Aligned Movement was other nations' strategy for opting out of it entirely.",rubric:["Correctly explained containment as US policy to prevent communism's spread","Correctly explained the Non-Aligned Movement as neutral nations refusing to pick a side","Identified at least one country/leader associated with the Non-Aligned Movement","Framed the core distinction: one is a superpower's strategy, the other is a bystander nation's strategy"]},
+{u:"U4",type:"argument",prompt:"In 2–3 sentences, argue whether decolonization or the Cold War had a greater impact on shaping the modern political map. Support your position with one specific example.",model:"Decolonization had the greater impact, because it created the majority of the world's current sovereign nations — for example, the wave of independence across Asia and Africa after World War II produced dozens of new states whose borders and governments still define the map today. The Cold War shaped alliances and internal conflicts within many of these new nations, but it operated on top of a map decolonization had already redrawn, rather than creating the nations themselves.",rubric:["Took a clear position (decolonization OR Cold War)","Supported the position with one specific, accurate example","Response is appropriately short, not a full essay","Shows understanding that these two forces overlapped in time but had different effects"]}
+];
+
+const UNIT_NAMES = {
+  U1:"Geography & World Regions", U2:"Early Modern Period", U3:"Modern Period", U4:"Contemporary Period"
+};
+const LS_M='worldhistory_selfgrader_mastered';
+
+let curUnit='all', curType='all';
+let mastered=new Set(JSON.parse(localStorage.getItem(LS_M)||'[]'));
+let revealed=new Set();
+let checks={};
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function nl(s){ return esc(s).replace(/\n/g,'<br>'); }
+function saveM(){ localStorage.setItem(LS_M, JSON.stringify([...mastered])); }
+
+function setUnit(u,btn){ curUnit=u; document.querySelectorAll('.pill[data-unit]').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); render(); }
+function setType(t,btn){ curType=t; document.querySelectorAll('.pill[data-type]').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); render(); }
+
+function getFiltered(){
+  return PROMPTS.filter(p=>{
+    if(curUnit!=='all' && p.u!==curUnit) return false;
+    if(curType!=='all' && p.type!==curType) return false;
+    return true;
+  });
+}
+function reveal(i){ revealed.add(i); if(!checks[i]) checks[i]=new Set(); render(); }
+function toggleMastered(i,ev){ ev.stopPropagation(); if(mastered.has(i)) mastered.delete(i); else mastered.add(i); saveM(); render(); }
+function toggleCheck(i,j){ if(!checks[i]) checks[i]=new Set(); if(checks[i].has(j)) checks[i].delete(j); else checks[i].add(j); render(); }
+
+function render(){
+  const list=getFiltered();
+  document.getElementById('s-mastered').textContent=mastered.size;
+  document.getElementById('s-shown').textContent=list.length;
+  document.getElementById('count-line').innerHTML=`<b>${list.length}</b> of <b>${PROMPTS.length}</b> shown`;
+  const box=document.getElementById('prompt-list');
+  if(!list.length){ box.innerHTML='<div class="empty">No prompts match your filters.</div>'; return; }
+  const typeTag={explain:'💬 Explain', compare:'⚖ Compare', argument:'📝 Short Argument'};
+  const typeClass={explain:'t-explain', compare:'t-compare', argument:'t-argument'};
+  box.innerHTML=list.map(p=>{
+    const i=PROMPTS.indexOf(p);
+    const isRevealed=revealed.has(i), isM=mastered.has(i);
+    const checkedSet=checks[i]||new Set();
+    const score=checkedSet.size, total=p.rubric.length;
+    return `<div class="prompt-card">
+      <div class="prompt-top">
+        <div class="prompt-tags">
+          <span class="tag t-unit">${p.u} · ${UNIT_NAMES[p.u]}</span>
+          <span class="tag ${typeClass[p.type]}">${typeTag[p.type]}</span>
+        </div>
+        ${isM?'<span class="mastered-badge">✓ Mastered</span>':''}
+      </div>
+      <div class="prompt-text">${esc(p.prompt)}</div>
+      <textarea class="answer-area" placeholder="Write your response here — this text isn't saved or graded automatically." id="ans-${i}"></textarea>
+      <div class="btn-row">
+        <button class="btn btn-reveal" onclick="reveal(${i})">Show Model Answer &amp; Rubric</button>
+        <button class="btn btn-mastered ${isM?'on':''}" onclick="toggleMastered(${i},event)">${isM?'✓ Mastered':'Mark Mastered'}</button>
+      </div>
+      <div class="model-box ${isRevealed?'show':''}">
+        <div class="model-lbl">MODEL ANSWER</div>
+        <div class="model-answer">${nl(p.model)}</div>
+        <div class="rubric-lbl">SELF-CHECK RUBRIC — check off what your answer included</div>
+        ${p.rubric.map((r,j)=>`
+          <div class="rubric-item">
+            <div class="rubric-check ${checkedSet.has(j)?'on':''}" onclick="toggleCheck(${i},${j})">${checkedSet.has(j)?'✓':''}</div>
+            <div class="rubric-text">${esc(r)}</div>
+          </div>`).join('')}
+        <div class="rubric-score">Self-score: <span>${score} / ${total}</span></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+(function init(){
+  const total=PROMPTS.length;
+  const explain=PROMPTS.filter(p=>p.type==='explain').length;
+  const compare=PROMPTS.filter(p=>p.type==='compare').length;
+  const argument=PROMPTS.filter(p=>p.type==='argument').length;
+  document.getElementById('s-total').textContent=total;
+  document.getElementById('page-sub').textContent=`${total} free-response prompts · ${explain} explain · ${compare} compare · ${argument} short argument · self-scored rubrics`;
+  render();
+})();
+</script>
+</body>
+</html>

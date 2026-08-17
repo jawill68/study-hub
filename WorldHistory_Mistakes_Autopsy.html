@@ -23,7 +23,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
 .page-title span{color:var(--red)}
 .page-sub{font-size:13px;color:var(--muted);margin-top:6px}
-.fmm-btn{background:linear-gradient(135deg,var(--red),#c0392b);border:none;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:11px 20px;border-radius:11px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.fmm-btn{background:linear-gradient(135deg,#D24536,#c0392b);border:none;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:11px 20px;border-radius:11px;cursor:pointer;transition:all .2s;white-space:nowrap}
 .fmm-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(231,76,60,.32)}
 
 .path-banner{background:linear-gradient(135deg,rgba(229,148,0,.1),rgba(46,139,192,.06));border:1px solid var(--border);border-radius:12px;padding:11px 16px;margin-bottom:18px;font-size:12.5px;color:var(--text)}
@@ -39,7 +39,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--muted);min-width:56px}
 .pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
 .pill:hover{border-color:var(--red);color:var(--text)}
-.pill.active{background:var(--red);border-color:var(--red);color:#fff}
+.pill.active{background:#D24536;border-color:var(--red);color:#fff}
 .pill-mastered.active{background:var(--teal);border-color:var(--teal)}
 .search-wrap{position:relative;flex:1;min-width:200px}
 .search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.55}
@@ -66,7 +66,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .mk.open .chev{transform:rotate(180deg)}
 .master-btn{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:5px 11px;font-size:10.5px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap}
 .master-btn:hover{border-color:var(--teal);color:var(--teal)}
-.master-btn.on{background:var(--teal);border-color:var(--teal);color:#fff}
+.master-btn.on{background:#188663;border-color:var(--teal);color:#fff}
 
 .mk-body{display:none;padding:0 18px 18px}
 .mk.open .mk-body{display:block}
@@ -103,15 +103,15 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .fmm-opt:disabled{cursor:default}
 .fmm-key{width:22px;height:22px;border-radius:6px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0;color:var(--muted)}
 .fmm-opt.correct{border-color:var(--teal);background:rgba(29,158,117,.11)}
-.fmm-opt.correct .fmm-key{background:var(--teal);border-color:var(--teal);color:#fff}
+.fmm-opt.correct .fmm-key{background:#188663;border-color:var(--teal);color:#fff}
 .fmm-opt.wrong{border-color:var(--red);background:rgba(231,76,60,.10)}
-.fmm-opt.wrong .fmm-key{background:var(--red);border-color:var(--red);color:#fff}
+.fmm-opt.wrong .fmm-key{background:#D24536;border-color:var(--red);color:#fff}
 .fmm-fb{border-radius:11px;padding:13px 15px;font-size:13px;margin-bottom:14px;display:none}
 .fmm-fb.show{display:block}
 .fmm-fb.ok{background:rgba(29,158,117,.09);border:1px solid rgba(29,158,117,.3)}
 .fmm-fb.no{background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.3)}
 .btn{border:none;border-radius:11px;padding:12px 22px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;width:100%}
-.btn-next{background:var(--sky);color:#fff}
+.btn-next{background:#297DAC;color:#fff}
 .btn-ghost{background:var(--bg);border:1px solid var(--border);color:var(--text)}
 .fmm-done{text-align:center}
 .fmm-score{font-size:2.6rem;font-weight:800;font-family:'DM Mono',monospace;color:var(--teal)}
@@ -387,10 +387,23 @@ function render(){
 }
 
 let fdeck=[], fidx=0, fright=0, fanswered=false;
+function weightedFMMSample(items, n){
+  const p = items.map(m=>({m, w: mastered.has(MISTAKES.indexOf(m)) ? 1 : 4}));
+  const picked = [];
+  for(let k=0; k<n && p.length; k++){
+    const total = p.reduce((s,x)=>s+x.w, 0);
+    let r = Math.random()*total, idx=0;
+    for(; idx<p.length; idx++){ r -= p[idx].w; if(r<=0) break; }
+    idx = Math.min(idx, p.length-1);
+    picked.push(p[idx].m);
+    p.splice(idx,1);
+  }
+  return picked;
+}
 function startFMM(){
   const pool=filtered();
   if(pool.length<3){ alert('Need at least 3 mistakes in the current filter to run a diagnostic.'); return; }
-  fdeck=pool.slice().sort(()=>Math.random()-0.5).slice(0,Math.min(12,pool.length));
+  fdeck=weightedFMMSample(pool, Math.min(12,pool.length));
   fidx=0; fright=0; fanswered=false;
   document.getElementById('fmm-modal').classList.add('open');
   renderFMM();

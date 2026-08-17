@@ -112,6 +112,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
       <span class="hero-chip chip-teal">📖 194 Glossary Terms</span>
       <span class="hero-chip chip-sky">✏️ 117 Drill Questions</span>
       <span class="hero-chip chip-red">🔬 33 Mistake Autopsies</span>
+      <span class="hero-chip">📎 28 Common Confusions</span>
+      <span class="hero-chip">✍️ 12 Self-Grader Prompts</span>
       <span class="hero-chip">⚛ 6 Units</span>
     </div>
   </div>
@@ -125,7 +127,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     <div class="prog-label" id="prog-label">Loading your activity…</div>
   </div>
 
-  <div class="sec-label">The Three Builds</div>
+  <div class="sec-label">The Five Builds</div>
   <div class="builds">
 
     <a class="bcard bcard-glossary" href="PhysicalScience_Master_Glossary.html">
@@ -162,6 +164,23 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
       <div class="bcard-cta cta-drill">Open Drill Trainer <span class="arrow">→</span></div>
     </a>
 
+    <a class="bcard" style="border-color:rgba(46,139,192,.3)" href="PhysicalScience_Common_Confusions.html">
+      <div class="bcard-head">
+        <div>
+          <div class="bcard-eyebrow" style="color:#7cc0e6">Build 5 · Quick Reference</div>
+          <div class="bcard-name">Common Confusions</div>
+        </div>
+        <div class="bcard-icon" style="background:rgba(46,139,192,.14);border:1px solid rgba(46,139,192,.3)">📎</div>
+      </div>
+      <div class="bcard-desc">28 term pairs that look or sound alike on an exam, shown side-by-side with the one distinguishing line and a memory hook for each. A fast lookup, not a deep dive.</div>
+      <div class="bcard-tags">
+        <span class="btag bt-sky">28 pairs</span>
+        <span class="btag bt-muted">Side-by-side format</span>
+        <span class="btag bt-muted">6 units</span>
+      </div>
+      <div class="bcard-cta" style="color:var(--sky)">Open Common Confusions <span class="arrow">→</span></div>
+    </a>
+
     <a class="bcard bcard-autopsy" href="PhysicalScience_Mistakes_Autopsy.html">
       <div class="bcard-head">
         <div>
@@ -177,6 +196,23 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <span class="btag bt-muted">Diagnostic mode</span>
       </div>
       <div class="bcard-cta cta-autopsy">Open Autopsy <span class="arrow">→</span></div>
+    </a>
+
+    <a class="bcard" style="border-color:rgba(29,158,117,.3)" href="PhysicalScience_Self_Grader.html">
+      <div class="bcard-head">
+        <div>
+          <div class="bcard-eyebrow" style="color:#4fd1a5">Build 6 · Free Response</div>
+          <div class="bcard-name">Self-Grader</div>
+        </div>
+        <div class="bcard-icon" style="background:rgba(29,158,117,.14);border:1px solid rgba(29,158,117,.3)">✍️</div>
+      </div>
+      <div class="bcard-desc">12 calculation and short-answer prompts the multiple-choice Drill Trainer can't test. Write your answer, reveal a full model solution, and self-score against a rubric.</div>
+      <div class="bcard-tags">
+        <span class="btag bt-teal">12 prompts</span>
+        <span class="btag bt-muted">6 calc · 6 conceptual</span>
+        <span class="btag bt-muted">Self-scored rubric</span>
+      </div>
+      <div class="bcard-cta" style="color:var(--teal)">Open Self-Grader <span class="arrow">→</span></div>
     </a>
 
     <div class="bcard" style="cursor:default;justify-content:center;align-items:center;text-align:center;border-style:dashed;opacity:.7">
@@ -206,12 +242,26 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     <div class="path-step">
       <div class="path-num">3</div>
       <div class="path-body">
+        <div class="path-name"><a href="PhysicalScience_Common_Confusions.html">Sort out the look-alikes</a></div>
+        <div class="path-note">Skim Common Confusions once you've hit a few mix-ups in drilling — mass vs. weight, fission vs. fusion, and similar pairs are worth locking in early rather than re-confusing on exam day.</div>
+      </div>
+    </div>
+    <div class="path-step">
+      <div class="path-num">4</div>
+      <div class="path-body">
         <div class="path-name"><a href="PhysicalScience_Mistakes_Autopsy.html">Autopsy your errors</a></div>
         <div class="path-note">When you start missing questions, open the Mistakes Autopsy. Find the misconception behind each error and mark it mastered once it clicks.</div>
       </div>
     </div>
     <div class="path-step">
-      <div class="path-num">4</div>
+      <div class="path-num">5</div>
+      <div class="path-body">
+        <div class="path-name"><a href="PhysicalScience_Self_Grader.html">Practice writing it out</a></div>
+        <div class="path-note">Work through the Self-Grader's calculation and short-answer prompts on paper. This is the closest thing to a free-response exam question — multiple choice alone won't prepare you for showing your work.</div>
+      </div>
+    </div>
+    <div class="path-step">
+      <div class="path-num">6</div>
       <div class="path-body">
         <div class="path-name"><a href="PhysicalScience_DrillTrainer.html">Test under exam conditions</a></div>
         <div class="path-note">Return to the Drill Trainer and run a timed Exam Mode session across all units. Use the per-unit breakdown to see exactly where to circle back.</div>
@@ -245,9 +295,9 @@ document.getElementById('units-grid').innerHTML = UNITS.map(u=>`
     <div class="unit-strand">${u.strand}</div>
   </div>`).join('');
 
-// ── Progress: reads the localStorage the other three tools write ──
+// ── Progress: reads the localStorage the four other tools write ──
 function readProgress(){
-  let signals=[], done=0, totalSignals=4;
+  let signals=[], done=0, totalSignals=5;
 
   // 1. Glossary: any starred terms OR a quiz score
   const gStar = JSON.parse(localStorage.getItem('physci_glossary_starred')||'[]');
@@ -262,19 +312,23 @@ function readProgress(){
   const mastered = JSON.parse(localStorage.getItem('physci_autopsy_mastered')||'[]');
   if(mastered.length){ done++; signals.push(`Autopsy: ${mastered.length}/33 mastered`); }
 
-  // 4. Autopsy diagnostic OR drill exam done (test-readiness signal)
+  // 4. Autopsy diagnostic (test-readiness signal)
   const fmm = localStorage.getItem('physci_autopsy_fmm');
   if(fmm){ done++; signals.push(`Find My Mistake: ${fmm}`); }
+
+  // 5. Self-Grader: prompts marked mastered
+  const sgMastered = JSON.parse(localStorage.getItem('physci_selfgrader_mastered')||'[]');
+  if(sgMastered.length){ done++; signals.push(`Self-Grader: ${sgMastered.length}/12 mastered`); }
 
   const pct = Math.round(done/totalSignals*100);
   document.getElementById('prog-fill').style.width = pct+'%';
   document.getElementById('prog-label').innerHTML = signals.length
     ? `<b>${pct}%</b> of study milestones started · ${signals.join(' · ')}`
-    : 'No activity yet — open the Master Glossary to begin. Your progress across all three tools will appear here.';
+    : 'No activity yet — open the Master Glossary to begin. Your progress across all tools will appear here.';
 }
 function resetProgress(){
-  if(!confirm('Reset all Physical Science progress? This clears starred terms, quiz scores, drill stats, and mastered mistakes across every tool.')) return;
-  ['physci_glossary_starred','physci_glossary_quizscore','physci_drill_stats','physci_autopsy_mastered','physci_autopsy_fmm']
+  if(!confirm('Reset all Physical Science progress? This clears starred terms, quiz scores, drill stats, mastered mistakes, Self-Grader progress, and spaced-repetition history across every tool.')) return;
+  ['physci_glossary_starred','physci_glossary_quizscore','physci_drill_stats','physci_autopsy_mastered','physci_autopsy_fmm','physci_selfgrader_mastered','physci_glossary_srs','physci_drill_srs']
     .forEach(k=>localStorage.removeItem(k));
   readProgress();
 }

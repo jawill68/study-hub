@@ -23,7 +23,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
 .page-title span{color:var(--amber)}
 .page-sub{font-size:13px;color:var(--muted);margin-top:6px}
-.quiz-launch-btn{background:linear-gradient(135deg,var(--amber),#c07800);border:none;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:11px 20px;border-radius:11px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.quiz-launch-btn{background:linear-gradient(135deg,var(--amber),#c07800);border:none;color:#1A1A1A;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:11px 20px;border-radius:11px;cursor:pointer;transition:all .2s;white-space:nowrap}
 .quiz-launch-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(229,148,0,.32)}
 
 .path-banner{background:linear-gradient(135deg,rgba(229,148,0,.1),rgba(46,139,192,.06));border:1px solid var(--border);border-radius:12px;padding:11px 16px;margin-bottom:18px;font-size:12.5px;color:var(--text)}
@@ -94,9 +94,9 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .quiz-answer.show{display:block}
 .quiz-btns{display:flex;gap:8px;flex-wrap:wrap}
 .qbtn{flex:1;min-width:110px;border:none;border-radius:11px;padding:12px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .18s}
-.qbtn-show{background:var(--sky);color:#fff}
-.qbtn-got{background:var(--teal);color:#fff}
-.qbtn-miss{background:var(--red);color:#fff}
+.qbtn-show{background:#297DAC;color:#fff}
+.qbtn-got{background:#188663;color:#fff}
+.qbtn-miss{background:#D24536;color:#fff}
 .qbtn:hover{transform:translateY(-2px)}
 .quiz-done{text-align:center}
 .quiz-score{font-size:2.6rem;font-weight:800;color:var(--amber);font-family:'DM Mono',monospace}
@@ -119,7 +119,10 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
       <div class="page-title">Master <span>Glossary</span></div>
       <div class="page-sub" id="page-sub">Loading…</div>
     </div>
-    <button class="quiz-launch-btn" onclick="launchQuiz()">🧠 Flashcard Quiz</button>
+    <div style="display:flex;gap:9px;flex-wrap:wrap">
+      <button class="quiz-launch-btn" onclick="launchQuiz()">🧠 Flashcard Quiz</button>
+      <button class="quiz-launch-btn" style="background:linear-gradient(135deg,var(--red),#c0392b)" onclick="launchFocusReview()">🎯 Focus Review</button>
+    </div>
   </div>
 
   <div class="path-banner">🗺️ <b>Pathway 2</b> — Geography &amp; World Regions, then the Early Modern (c. 1450–1750), Modern (c. 1750–1914), and Contemporary (c. 1914–present) periods, per the College Board Pre-AP course framework.</div>
@@ -300,6 +303,36 @@ let curUnit='all', starOnly=false, curLetter=null, curView='card';
 let starred = new Set(JSON.parse(localStorage.getItem('worldhistory_glossary_starred')||'[]'));
 let quizScore = localStorage.getItem('worldhistory_glossary_quizscore');
 
+// ── SPACED REPETITION (per-term seen/missed tracking, keyed by term name) ──
+let srs = JSON.parse(localStorage.getItem('worldhistory_glossary_srs')||'{}');
+function saveSRS(){ localStorage.setItem('worldhistory_glossary_srs', JSON.stringify(srs)); }
+function srsUpdate(termName, gotItRight){
+  const r = srs[termName] || {seen:0, missed:0};
+  r.seen++;
+  if(!gotItRight) r.missed++;
+  srs[termName] = r;
+  saveSRS();
+}
+function srsWeight(termName){
+  const r = srs[termName] || {seen:0, missed:0};
+  if(r.seen===0) return 3;
+  const missRate = r.missed / r.seen;
+  return Math.max(1, 1 + missRate*6);
+}
+function weightedSample(items, n){
+  const pool = items.map(it=>({it, w: srsWeight(it.t)}));
+  const picked = [];
+  for(let k=0; k<n && pool.length; k++){
+    const total = pool.reduce((s,p)=>s+p.w, 0);
+    let r = Math.random()*total, idx=0;
+    for(; idx<pool.length; idx++){ r -= pool[idx].w; if(r<=0) break; }
+    idx = Math.min(idx, pool.length-1);
+    picked.push(pool[idx].it);
+    pool.splice(idx,1);
+  }
+  return picked;
+}
+
 function saveStars(){ localStorage.setItem('worldhistory_glossary_starred', JSON.stringify([...starred])); }
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
@@ -376,11 +409,22 @@ function applyFilters(){
   }).join('');
 }
 
-let quizDeck=[], quizIdx=0, quizRight=0, quizRevealed=false;
+let quizDeck=[], quizIdx=0, quizRight=0, quizRevealed=false, quizFocusMode=false;
 function launchQuiz(){
+  quizFocusMode=false;
   const pool=getFiltered();
   if(pool.length<4){ alert('Need at least 4 terms in the current filter to start a quiz.'); return; }
-  quizDeck=pool.slice().sort(()=>Math.random()-0.5).slice(0,Math.min(20,pool.length));
+  quizDeck=weightedSample(pool, Math.min(20,pool.length));
+  quizIdx=0; quizRight=0; quizRevealed=false;
+  document.getElementById('quiz-modal').classList.add('open');
+  renderQuiz();
+}
+function launchFocusReview(){
+  quizFocusMode=true;
+  const pool=getFiltered();
+  if(pool.length<4){ alert('Need at least 4 terms in the current filter to start a Focus Review.'); return; }
+  const ranked=pool.slice().sort((a,b)=>srsWeight(b.t)-srsWeight(a.t));
+  quizDeck=ranked.slice(0,Math.min(10,ranked.length));
   quizIdx=0; quizRight=0; quizRevealed=false;
   document.getElementById('quiz-modal').classList.add('open');
   renderQuiz();
@@ -388,6 +432,8 @@ function launchQuiz(){
 function closeQuiz(){ document.getElementById('quiz-modal').classList.remove('open'); }
 function revealAnswer(){ quizRevealed=true; renderQuiz(); }
 function markQuiz(correct){
+  const t=quizDeck[quizIdx];
+  srsUpdate(t.t, correct);
   if(correct) quizRight++;
   quizIdx++; quizRevealed=false;
   if(quizIdx>=quizDeck.length){
@@ -398,11 +444,11 @@ function markQuiz(correct){
     document.getElementById('quiz-box').innerHTML=`
       <button class="quiz-close" onclick="closeQuiz()">✕</button>
       <div class="quiz-done">
-        <div style="font-size:11px;letter-spacing:.12em;color:var(--muted);margin-bottom:10px">SESSION COMPLETE</div>
+        <div style="font-size:11px;letter-spacing:.12em;color:var(--muted);margin-bottom:10px">SESSION COMPLETE${quizFocusMode?' · FOCUS REVIEW':''}</div>
         <div class="quiz-score">${quizRight}/${quizDeck.length}</div>
         <div style="font-size:14px;color:var(--muted);margin:8px 0 20px">${pct}% correct</div>
         <div class="quiz-btns">
-          <button class="qbtn qbtn-show" onclick="launchQuiz()">Run Again</button>
+          <button class="qbtn qbtn-show" onclick="${quizFocusMode?'launchFocusReview()':'launchQuiz()'}">Run Again</button>
           <button class="qbtn qbtn-got" onclick="closeQuiz()">Done</button>
         </div>
       </div>`;
@@ -414,7 +460,7 @@ function renderQuiz(){
   const t=quizDeck[quizIdx];
   document.getElementById('quiz-box').innerHTML=`
     <button class="quiz-close" onclick="closeQuiz()">✕</button>
-    <div class="quiz-progress">CARD ${quizIdx+1} OF ${quizDeck.length} · ${t.u} ${UNIT_NAMES[t.u]}</div>
+    <div class="quiz-progress">${quizFocusMode?'🎯 FOCUS REVIEW · ':''}CARD ${quizIdx+1} OF ${quizDeck.length} · ${t.u} ${UNIT_NAMES[t.u]}</div>
     <div class="quiz-prompt-lbl">DEFINE THIS TERM</div>
     <div class="quiz-term">${esc(t.t)}</div>
     <div class="quiz-answer ${quizRevealed?'show':''}">${esc(t.d)}</div>
