@@ -104,12 +104,31 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .cat-note{font-size:10.5px;color:var(--muted);margin-top:4px}
 
 .footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center;line-height:1.7}
+
+/* Teacher-sync name banner */
+.sync-banner{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 18px;margin-bottom:16px;display:none;align-items:center;gap:12px;flex-wrap:wrap}
+.sync-banner.show{display:flex}
+.sync-banner-text{font-size:12.5px;color:var(--muted);flex:1;min-width:200px}
+.sync-banner-text b{color:var(--text)}
+.sync-name-input{background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;width:180px}
+.sync-name-input:focus{outline:none;border-color:var(--teal)}
+.sync-save-btn{background:var(--teal);color:#fff;border:none;padding:9px 18px;border-radius:9px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif}
+.sync-save-btn:hover{opacity:.9}
+.sync-status{font-size:11px;color:var(--muted);font-family:'DM Mono',monospace}
+.sync-status.ok{color:var(--teal)}
 </style>
 </head>
 <body>
 <div class="app">
 
   <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;margin-bottom:14px;opacity:.85">← All Courses</a>
+
+  <div class="sync-banner" id="sync-banner">
+    <div class="sync-banner-text">📊 <b>Share your progress with your teacher?</b> Enter your first name and last initial (e.g. "Maria S.") — this is optional and only used so your teacher can see class progress.</div>
+    <input class="sync-name-input" id="sync-name-input" type="text" placeholder="First name + last initial" maxlength="40">
+    <button class="sync-save-btn" onclick="window.saveSyncName()">Save</button>
+    <span class="sync-status" id="sync-status"></span>
+  </div>
 
   <div class="hero">
     <div class="hero-eyebrow">Game &amp; Simulation Foundations · Study Resource Series</div>
@@ -247,30 +266,130 @@ function setCert(c, btn){
 // Progress reads the same localStorage keys the four other tools write
 function readProgress(){
   let signals=[], done=0, total=5;
+  const summary = {};
   const gStar=JSON.parse(localStorage.getItem('gamedesign_glossary_starred')||'[]');
   const gQuiz=localStorage.getItem('gamedesign_glossary_quizscore');
   if(gStar.length||gQuiz){ done++; signals.push(`Glossary: ${gStar.length} starred${gQuiz?', quiz '+gQuiz:''}`); }
+  summary.glossaryStarred = gStar.length;
+  summary.glossaryQuizScore = gQuiz || null;
   const drill=JSON.parse(localStorage.getItem('gamedesign_drill_stats')||'{"sessions":0,"total":0,"correct":0}');
   if(drill.sessions>0){ done++; const acc=drill.total?Math.round(drill.correct/drill.total*100):0; signals.push(`Drill: ${drill.sessions} session${drill.sessions>1?'s':''}, ${acc}% accuracy`); }
+  summary.drillSessions = drill.sessions;
+  summary.drillAccuracyPct = drill.total ? Math.round(drill.correct/drill.total*100) : null;
   const mastered=JSON.parse(localStorage.getItem('gamedesign_autopsy_mastered')||'[]');
   if(mastered.length){ done++; signals.push(`Autopsy: ${mastered.length}/16 mastered`); }
+  summary.autopsyMasteredCount = mastered.length;
   const fmm=localStorage.getItem('gamedesign_autopsy_fmm');
   if(fmm){ done++; signals.push(`Find My Mistake: ${fmm}`); }
+  summary.findMyMistakeScore = fmm || null;
   const sgMastered=JSON.parse(localStorage.getItem('gamedesign_selfgrader_mastered')||'[]');
   if(sgMastered.length){ done++; signals.push(`Self-Grader: ${sgMastered.length}/11 mastered`); }
+  summary.selfGraderMasteredCount = sgMastered.length;
   const pct=Math.round(done/total*100);
+  summary.overallPct = pct;
   document.getElementById('prog-fill').style.width=pct+'%';
   document.getElementById('prog-label').innerHTML = signals.length
     ? `<b>${pct}%</b> of study milestones started · ${signals.join(' · ')}`
     : 'No activity yet — open the Master Glossary to begin. Your progress across all tools will appear here.';
+  if(typeof window.syncStudentProgress === 'function' && signals.length){
+    window.syncStudentProgress(summary);
+  }
 }
 function resetProgress(){
-  if(!confirm('Reset all Game Design progress? This clears starred terms, quiz scores, drill stats, mastered bugs, and Self-Grader progress across every tool.')) return;
+  if(!confirm('Reset all Game Design progress? This clears starred terms, quiz scores, drill stats, mastered bugs, and Self-Grader progress across every tool. If you shared progress with your teacher, that record will be cleared too.')) return;
   ['gamedesign_glossary_starred','gamedesign_glossary_quizscore','gamedesign_drill_stats','gamedesign_autopsy_mastered','gamedesign_autopsy_fmm','gamedesign_selfgrader_mastered']
     .forEach(k=>localStorage.removeItem(k));
+  if(typeof window.clearSyncedProgress === 'function') window.clearSyncedProgress();
   readProgress();
 }
 readProgress();
+</script>
+
+<!-- ═══════════════════════════════════════════
+     TEACHER-SYNC (Firebase/Firestore) — Game Design
+     ═══════════════════════════════════════════ -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+import { getFirestore, doc, setDoc, deleteDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAACUvfh8CUiflSPBmcN2OXOiV6bUcFcNo",
+  authDomain: "study-hub-acec1.firebaseapp.com",
+  projectId: "study-hub-acec1",
+  storageBucket: "study-hub-acec1.firebasestorage.app",
+  messagingSenderId: "34403837526",
+  appId: "1:34403837526:web:94fd2507d8943ddb45bdf7"
+};
+
+const NAME_KEY = 'studyhub_sync_name';
+const COURSE_ID = 'gameDesign';
+
+function sanitizeDocId(name){
+  return name.trim().replace(/[\/\.\#\$\[\]]/g, '').slice(0, 60);
+}
+
+let app, db;
+try{
+  app = initializeApp(firebaseConfig);
+  db = getFirestore(app);
+}catch(e){
+  console.warn('Teacher-sync unavailable (Firebase failed to initialize):', e);
+}
+
+function getSyncName(){
+  return localStorage.getItem(NAME_KEY) || '';
+}
+
+function showBannerIfNeeded(){
+  const banner = document.getElementById('sync-banner');
+  if(!banner) return;
+  if(getSyncName()){
+    banner.classList.remove('show');
+  } else {
+    banner.classList.add('show');
+  }
+}
+
+window.saveSyncName = function(){
+  const input = document.getElementById('sync-name-input');
+  const status = document.getElementById('sync-status');
+  const name = sanitizeDocId(input.value || '');
+  if(!name){
+    status.textContent = 'Enter a name first';
+    status.className = 'sync-status';
+    return;
+  }
+  localStorage.setItem(NAME_KEY, name);
+  status.textContent = '✓ Saved';
+  status.className = 'sync-status ok';
+  document.getElementById('sync-banner').classList.remove('show');
+  readProgress();
+};
+
+window.syncStudentProgress = async function(summary){
+  if(!db) return;
+  const name = getSyncName();
+  if(!name) return;
+  try{
+    const ref = doc(db, 'classes', COURSE_ID, 'students', name);
+    await setDoc(ref, { displayName: name, ...summary, lastUpdated: serverTimestamp() }, { merge: true });
+  }catch(e){
+    console.warn('Teacher-sync write failed (local progress is unaffected):', e);
+  }
+};
+
+window.clearSyncedProgress = async function(){
+  if(!db) return;
+  const name = getSyncName();
+  if(!name) return;
+  try{
+    await deleteDoc(doc(db, 'classes', COURSE_ID, 'students', name));
+  }catch(e){
+    console.warn('Teacher-sync clear failed:', e);
+  }
+};
+
+showBannerIfNeeded();
 </script>
 </body>
 </html>

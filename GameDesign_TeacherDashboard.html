@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game &amp; Simulation Foundations — Teacher Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#8B5CF6;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#0a0612;--card:#150e24;--card2:#1d1533;--border:#2f2248;
+  --text:#ece8f4;--muted:#9585b0;--white:#ffffff;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(139,92,246,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(139,92,246,0.04) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:26px 20px 70px}
+
+.header{margin-bottom:6px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+.page-title{font-size:2rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--teal)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+
+.limitation-banner{background:linear-gradient(135deg,rgba(229,148,0,.1),rgba(46,139,192,.06));border:1px solid var(--border);border-radius:12px;padding:13px 16px;margin:18px 0;font-size:12.5px;color:var(--text);line-height:1.6}
+.limitation-banner b{color:#efb44e}
+
+.toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.refresh-btn{background:var(--teal);color:#fff;border:none;padding:9px 18px;border-radius:10px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:6px}
+.refresh-btn:hover{opacity:.9}
+.refresh-btn:disabled{opacity:.5;cursor:default}
+.sort-select{background:var(--card);border:1px solid var(--border);border-radius:9px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:12.5px}
+.status-text{font-size:12px;color:var(--muted);margin-left:auto;font-family:'DM Mono',monospace}
+
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:110px}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+
+.table-wrap{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--card2);text-align:left;padding:12px 14px;font-family:'DM Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;border-bottom:1px solid var(--border)}
+tbody td{padding:12px 14px;border-bottom:1px solid var(--border)}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:rgba(139,92,246,.04)}
+.student-name{font-weight:700;color:var(--white)}
+.pct-badge{display:inline-block;padding:3px 10px;border-radius:999px;font-family:'DM Mono',monospace;font-weight:700;font-size:12px}
+.pct-high{background:rgba(139,92,246,.15);color:var(--teal)}
+.pct-mid{background:rgba(229,148,0,.15);color:var(--amber)}
+.pct-low{background:rgba(231,76,60,.15);color:var(--red)}
+.cell-muted{color:var(--muted);font-size:12.5px}
+.timestamp{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)}
+
+.empty-state{text-align:center;padding:60px 20px;color:var(--muted)}
+.empty-state .emoji{font-size:32px;margin-bottom:12px}
+.loading-state{text-align:center;padding:60px 20px;color:var(--muted);font-family:'DM Mono',monospace;font-size:13px}
+.error-state{text-align:center;padding:40px 20px;color:var(--red);font-size:13px}
+
+@media(max-width:700px){
+  .table-wrap{overflow-x:auto}
+  table{min-width:640px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <a href="GameDesign_StudyHub.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--sky);text-decoration:none;margin-bottom:14px;opacity:.85">← Game Design Study Hub</a>
+
+  <div class="header">
+    <div class="series-label">Game &amp; Simulation Foundations · Teacher View · Prototype</div>
+    <div class="page-title">Teacher <span>Dashboard</span></div>
+    <div class="page-sub">Class-wide progress across every student who has chosen to share it from their own Study Hub.</div>
+  </div>
+
+  <div class="limitation-banner">⚠ <b>No login on this page.</b> This is a prototype — there's no authentication here or on the student side, so this view isn't restricted to you specifically; anyone with this link and the project's public config could open it. Data shown is limited to a first name + last initial and progress percentages, nothing more sensitive. If this proves useful, the next step is adding real authentication (Google Sign-In restricted to the school domain is the natural fit) before relying on this for anything beyond a working prototype.</div>
+
+  <div class="toolbar">
+    <button class="refresh-btn" id="refresh-btn" onclick="loadStudents()">↻ Refresh</button>
+    <select class="sort-select" id="sort-select" onchange="renderTable()">
+      <option value="name">Sort: Name (A–Z)</option>
+      <option value="pct-desc">Sort: Progress (High → Low)</option>
+      <option value="pct-asc">Sort: Progress (Low → High)</option>
+      <option value="recent">Sort: Most Recently Active</option>
+    </select>
+    <span class="status-text" id="status-text"></span>
+  </div>
+
+  <div class="stats-row" id="stats-row" style="display:none">
+    <div class="stat-chip"><div class="stat-num" id="s-count">—</div><div class="stat-lbl">STUDENTS SYNCED</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--teal)" id="s-avg">—</div><div class="stat-lbl">CLASS AVG PROGRESS</div></div>
+  </div>
+
+  <div id="content">
+    <div class="loading-state">Loading class data…</div>
+  </div>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAACUvfh8CUiflSPBmcN2OXOiV6bUcFcNo",
+  authDomain: "study-hub-acec1.firebaseapp.com",
+  projectId: "study-hub-acec1",
+  storageBucket: "study-hub-acec1.firebasestorage.app",
+  messagingSenderId: "34403837526",
+  appId: "1:34403837526:web:94fd2507d8943ddb45bdf7"
+};
+
+const COURSE_ID = 'gameDesign';
+let app, db;
+let students = [];
+
+try{
+  app = initializeApp(firebaseConfig);
+  db = getFirestore(app);
+}catch(e){
+  document.getElementById('content').innerHTML = `<div class="error-state">Could not connect to Firebase. Check your internet connection and try refreshing.</div>`;
+  console.error(e);
+}
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function pctClass(pct){
+  if(pct >= 70) return 'pct-high';
+  if(pct >= 35) return 'pct-mid';
+  return 'pct-low';
+}
+
+function formatTimestamp(ts){
+  if(!ts) return '—';
+  try{
+    const d = ts.toDate ? ts.toDate() : new Date(ts);
+    return d.toLocaleDateString(undefined, {month:'short', day:'numeric'}) + ' · ' + d.toLocaleTimeString(undefined, {hour:'numeric', minute:'2-digit'});
+  }catch(e){ return '—'; }
+}
+
+window.loadStudents = async function(){
+  if(!db) return;
+  const btn = document.getElementById('refresh-btn');
+  const status = document.getElementById('status-text');
+  btn.disabled = true;
+  status.textContent = 'Loading…';
+  try{
+    const snap = await getDocs(collection(db, 'classes', COURSE_ID, 'students'));
+    students = [];
+    snap.forEach(docSnap => {
+      students.push({ id: docSnap.id, ...docSnap.data() });
+    });
+    status.textContent = `Last refreshed ${new Date().toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'})}`;
+    renderTable();
+  }catch(e){
+    document.getElementById('content').innerHTML = `<div class="error-state">Couldn't load class data: ${esc(e.message || 'unknown error')}. This can happen if the Firestore security rules haven't been published yet, or the database hasn't been created.</div>`;
+    console.error(e);
+  }finally{
+    btn.disabled = false;
+  }
+};
+
+window.renderTable = function(){
+  const content = document.getElementById('content');
+  const statsRow = document.getElementById('stats-row');
+
+  if(students.length === 0){
+    statsRow.style.display = 'none';
+    content.innerHTML = `<div class="empty-state"><div class="emoji">📭</div><p>No students have shared progress yet.</p><p style="font-size:12px;margin-top:6px">Progress appears here once a student enters a name on their own Study Hub page.</p></div>`;
+    return;
+  }
+
+  const sortBy = document.getElementById('sort-select').value;
+  const sorted = [...students].sort((a,b) => {
+    if(sortBy === 'name') return (a.displayName||'').localeCompare(b.displayName||'');
+    if(sortBy === 'pct-desc') return (b.overallPct||0) - (a.overallPct||0);
+    if(sortBy === 'pct-asc') return (a.overallPct||0) - (b.overallPct||0);
+    if(sortBy === 'recent'){
+      const at = a.lastUpdated?.toMillis ? a.lastUpdated.toMillis() : 0;
+      const bt = b.lastUpdated?.toMillis ? b.lastUpdated.toMillis() : 0;
+      return bt - at;
+    }
+    return 0;
+  });
+
+  statsRow.style.display = 'flex';
+  document.getElementById('s-count').textContent = students.length;
+  const avgPct = Math.round(students.reduce((sum,s) => sum + (s.overallPct||0), 0) / students.length);
+  document.getElementById('s-avg').textContent = avgPct + '%';
+
+  const rows = sorted.map(s => `
+    <tr>
+      <td class="student-name">${esc(s.displayName || s.id)}</td>
+      <td><span class="pct-badge ${pctClass(s.overallPct||0)}">${s.overallPct||0}%</span></td>
+      <td class="cell-muted">${s.glossaryStarred||0} starred${s.glossaryQuizScore?' · '+esc(s.glossaryQuizScore):''}</td>
+      <td class="cell-muted">${s.drillSessions||0} session${s.drillSessions===1?'':'s'}${s.drillAccuracyPct!=null?' · '+s.drillAccuracyPct+'%':''}</td>
+      <td class="cell-muted">${s.autopsyMasteredCount||0}/16</td>
+      <td class="cell-muted">${s.selfGraderMasteredCount||0}/11</td>
+      <td class="timestamp">${formatTimestamp(s.lastUpdated)}</td>
+    </tr>`).join('');
+
+  content.innerHTML = `
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Student</th>
+            <th>Overall</th>
+            <th>Glossary</th>
+            <th>Drill Trainer</th>
+            <th>Autopsy</th>
+            <th>Self-Grader</th>
+            <th>Last Active</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+};
+
+loadStudents();
+</script>
+</body>
+</html>
