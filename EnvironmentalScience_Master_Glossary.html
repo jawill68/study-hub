@@ -1,0 +1,2616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environmental Science Honors - Master Glossary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            border-bottom: 4px solid #764ba2;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .stat .number {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat .label {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .units-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 20px;
+            background: #f8f9fa;
+            justify-content: center;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .unit-btn {
+            padding: 8px 16px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .unit-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .unit-section {
+            margin-bottom: 50px;
+        }
+
+        .unit-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .unit-header h2 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .unit-header p {
+            opacity: 0.95;
+            font-size: 0.95em;
+        }
+
+        .term-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            padding: 25px;
+            transition: all 0.3s;
+            border-left: 4px solid #667eea;
+        }
+
+        .term-card:hover {
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.15);
+            border-left-color: #764ba2;
+        }
+
+        .term-title {
+            font-size: 1.4em;
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .field {
+            margin-bottom: 12px;
+        }
+
+        .field-label {
+            font-weight: 600;
+            color: #667eea;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .field-content {
+            color: #555;
+            margin-left: 10px;
+            padding-left: 10px;
+            border-left: 2px solid #e0e0e0;
+        }
+
+        .formula {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #333;
+        }
+
+        .why-matters {
+            background: #fffbf0;
+            padding: 12px;
+            border-left: 4px solid #f59e0b;
+            border-radius: 4px;
+            color: #92400e;
+            font-style: italic;
+        }
+
+        .conceptual-note {
+            background: #f3f4f6;
+            padding: 12px;
+            border-left: 4px solid #6b7280;
+            border-radius: 4px;
+            color: #374151;
+        }
+
+        footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .term-card {
+                padding: 15px;
+            }
+
+            .term-title {
+                font-size: 1.2em;
+            }
+
+            .content {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌍 Environmental Science Honors</h1>
+            <p>Master Glossary - Comprehensive 7-Field Pedagogical Reference</p>
+        </header>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="number">125</div>
+                <div class="label">Total Terms</div>
+            </div>
+            <div class="stat">
+                <div class="number">5</div>
+                <div class="label">Units</div>
+            </div>
+            <div class="stat">
+                <div class="number">7</div>
+                <div class="label">Fields per Term</div>
+            </div>
+            <div class="stat">
+                <div class="number">Real-World</div>
+                <div class="label">Examples</div>
+            </div>
+        </div>
+
+        <div class="units-nav">
+            <button class="unit-btn" onclick="scrollToUnit('U1')">Unit 1: Ecology</button>
+            <button class="unit-btn" onclick="scrollToUnit('U2')">Unit 2: Biodiversity</button>
+            <button class="unit-btn" onclick="scrollToUnit('U3')">Unit 3: Sustaining Biodiversity</button>
+            <button class="unit-btn" onclick="scrollToUnit('U4')">Unit 4: Environmental Quality</button>
+            <button class="unit-btn" onclick="scrollToUnit('U5')">Unit 5: Environmental Concerns</button>
+        </div>
+
+        <div class="content">
+
+            <div class="unit-section" id="U1">
+                <div class="unit-header">
+                    <h2>Unit 1: Ecology & Ecosystems</h2>
+                    <p>25 terms</p>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Ecology</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">The scientific study of how organisms interact with each other and their physical environment.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">A biologist studying how wolves affect elk populations in Yellowstone National Park is conducting ecology research.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">If an ecologist observes that removing a predator leads to overgrazing, which then causes erosion and stream pollution, they're documenting ecosystem-wide consequences of a single species change.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Understanding ecology helps us predict environmental changes and manage natural resources sustainably. It underpins conservation efforts and environmental policy.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Common misconception: Ecology is the same as environmentalism. Ecology is objective science; environmentalism is a values-based movement. Both use ecological knowledge, but they're not identical.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Ecosystem</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">A community of living organisms (biotic) interacting with the physical environment (abiotic) in a defined area.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">A coral reef ecosystem includes corals, fish, algae, water, sunlight, and temperature—all interacting as a functional unit.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">If you model a pond ecosystem: remove aquatic plants (biotic) without changing pH or temperature (abiotic), fish populations decline because habitat is lost. Change temperature (abiotic) without adding/removing organisms, and species composition shifts as species with different temperature tolerances become dominant.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Ecosystems are the functional units we manage for conservation. Protecting an ecosystem protects all the species and services it provides—water filtration, carbon storage, pollination.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Tricky distinction: 'community' is all the organisms; 'ecosystem' is organisms + the abiotic environment. A community is part of an ecosystem. Students often use these interchangeably—they're not quite the same.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Biotic factors</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">All the living organisms within an ecosystem—plants, animals, fungi, microorganisms, and their interactions.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">In a forest ecosystem, biotic factors include deer, trees, fungi decomposing logs, insects, and bacteria in the soil.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">If you list biotic factors in a wetland, you'd include cattails (plants), dragonflies (insects), fish, frogs, and the algae and bacteria that decompose dead organisms. Leave one out—say, the decomposers—and the model won't account for nutrient cycling.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Biotic factors determine ecosystem function. Without pollinators, plants can't reproduce. Without decomposers, nutrients stay locked in dead matter instead of cycling back to soil.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Students sometimes include 'the food chain' as a biotic factor. The food chain is a *pattern of interactions* between biotic factors, not itself a factor. Biotic factors are the organisms; interactions between them create food chains.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Abiotic factors</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Non-living physical and chemical components of the environment—water, temperature, light, pH, soil, atmosphere, and minerals.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">In a mountain ecosystem, abiotic factors include altitude (affecting temperature and oxygen), sunlight, precipitation, soil composition, and wind.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">A plant adapted to bright, dry conditions (high light, low water abiotic factors) will struggle in a shaded, wet forest (low light, high water). Change the abiotic factors, and the biotic community that thrives changes too.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Abiotic factors set the physical constraints on what organisms can survive. Deserts exist not because there are no biotic factors, but because abiotic factors (low water, high temperature) limit which species thrive.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Easy to confuse: 'abiotic factors affect biotic factors' vs. 'biotic and abiotic factors are independent.' They're deeply interdependent. Temperature (abiotic) determines enzyme activity in animals (biotic effect). Trees (biotic) create shade that lowers temperature (abiotic change).</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Population</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">A group of interbreeding individuals of the same species living in the same geographic area at the same time.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">All the gray squirrels in Central Park, New York form a population because they breed with each other and share the same area.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">If you're studying a wolf population in Alaska, you count all the wolves in a defined region (say, 2,000 wolves in Denali). If a small group migrates 500 miles north and no longer breeds with the original group, it's now a separate population.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Population dynamics—growth, decline, extinction—drive conservation decisions. If a population drops below a certain size, it can't recover even if habitat is restored.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Misconception: 'A population is just a big group.' No—it must be the same species AND capable of interbreeding. Fish and birds in the same pond are separate populations. Fish on opposite sides of an impassable waterfall might be separate populations even within one species if they can't interbreed.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Community</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">All the different populations of species living and interacting in the same geographic area.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">A forest community includes populations of oak trees, deer, squirrels, fungi, insects, and microorganisms all living together.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">If you remove one population—say, all the bees—from a meadow community, flowering plants can't be pollinated, herbivores lose food, and the whole community structure shifts. One population's presence affects others.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Communities determine ecosystem functions like pollination, pest control, and nutrient cycling. Protect the community, and you protect the services it provides.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Hierarchy reminder: Species → Population (one species in one area) → Community (all species in one area) → Ecosystem (community + abiotic factors). Each level adds complexity.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Habitat</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">The physical place where an organism lives, defined by its biotic and abiotic conditions.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">The habitat of a polar bear is the Arctic ice pack, where it finds seals (biotic) and extreme cold (abiotic).</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">A salmon's habitat includes cold, fast-flowing rivers for spawning (abiotic) and smaller fish for food (biotic). Warm the river (change abiotic habitat) and salmon stop spawning there, even if food is still available.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Habitat loss is the leading cause of extinction. You can't conserve a species without protecting its habitat—all the conditions it needs to survive.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Don't confuse: 'Habitat' (where it lives) vs. 'niche' (its role and how it uses resources). A habitat is an address; a niche is a job description.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Niche</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">The role and position an organism has in its environment, including how it obtains food, when it's active, and how it interacts with other species.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">The niche of a honeybee includes foraging for pollen and nectar during the day, pollinating flowers, and communicating location to nestmates.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Two species in the same habitat (desert) can have different niches: a roadrunner hunts small reptiles on the ground during the day; a kit fox hunts small mammals at night. Same habitat, different niches—less competition.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Understanding niches explains how multiple species coexist and why invasive species cause problems—they often occupy niches similar to native species, creating competition.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Misconception: 'Niche and habitat are the same.' Habitat is your address; niche is your job. Two species can share a habitat but have different niches (resource partitioning). Or occupy similar niches and compete fiercely.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Biome</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">A large geographic region characterized by particular climatic conditions and the communities of organisms adapted to those conditions.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">The tropical rainforest biome is warm, wet year-round, and contains more species per square meter than any other biome.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">If you know the biome (tropical rainforest), you can predict conditions: high rainfall, warm temperature, high biodiversity, decomposition happens fast. Predict that nutrient-poor soils develop because nutrients cycle quickly into living biomass.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Biomes group ecosystems with similar conditions and solutions. Conserving biodiversity differs between a rainforest and a desert—different biomes require different strategies.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Level hierarchy: Ecosystem (specific pond/forest) → Biome (all tropical rainforests globally). A biome is a classification; an ecosystem is a functional unit.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Energy flow</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">The movement of energy from the sun through living organisms in an ecosystem, starting with producers and moving through consumers.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Sun → grass (producer) → grasshopper (herbivore) → bird (carnivore). Each step captures some energy; the rest is lost as heat.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Of 1,000 units of solar energy hitting a field, 100 units are captured by grass (10% efficiency). Of that, 10 units go to grasshoppers (10% efficiency). Of that, 1 unit goes to birds (10% efficiency). Energy loss at each step is why food chains rarely exceed 4-5 trophic levels.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Energy flow determines how many organisms an ecosystem can support. More solar energy and efficient capture = larger populations. Energy loss is why eating plants is more efficient than eating herbivores.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Common error: Students think energy cycles (like water). Energy flows one direction: sun → organisms → heat lost to space. It doesn't cycle back. *Nutrients* cycle; *energy* flows.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Food chain</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">A linear sequence showing the flow of energy from one organism to another through feeding relationships.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Grass → Rabbit → Fox. Energy flows from grass to rabbit to fox.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">In a pond: Algae → Zooplankton → Small Fish → Heron. If you remove zooplankton, small fish can't feed (they rely on zooplankton as their primary food source), so heron population drops.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Food chains illustrate energy transfer and predator-prey relationships. Disrupting one link affects the entire chain.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Misconception: 'Food chains are the same as food webs.' A food chain is one path; a food web is all paths combined. Most organisms eat multiple foods and are eaten by multiple predators—making a web, not a chain.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Food web</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">A network of interconnected food chains showing all the feeding relationships in an ecosystem.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">A meadow food web shows that clover is eaten by grasshoppers AND rabbits; grasshoppers are eaten by birds AND spiders; rabbits are eaten by hawks AND foxes. Multiple pathways for energy.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">If hawks (top predators) suddenly disappear, rabbits increase (less predation). More rabbits eat more clover. Less clover means grasshoppers starve. Fewer grasshoppers means birds lose a food source. One species' absence cascades through the web.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Food webs reveal ecosystem complexity and resilience. Ecosystems with complex webs are more stable—if one path fails, others still provide energy.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Web vs. chain: A food web shows reality (organisms eat multiple foods); a food chain is a simplified model. Webs are messier to draw but more accurate.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Producer</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">An organism that produces its own food using energy from the sun (usually plants or photosynthetic bacteria); the base of any food chain.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Oak trees, grass, and algae are producers—they capture sunlight and convert it to chemical energy in glucose.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">In an aquatic ecosystem, diatoms (photosynthetic algae) are producers. They capture 10% of sunlight energy. Zooplankton eat diatoms and capture 10% of that energy. Small fish eat zooplankton and capture 10%. By the time energy reaches large fish, it's 0.1% of the original sunlight.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">No producers = no ecosystem. All energy enters ecosystems through producers. Photosynthesis is the foundation of nearly all life on Earth.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Not all producers are plants: chemosynthetic bacteria near hydrothermal vents produce food without sunlight, using chemicals instead. Energy still enters ecosystems through producers, just via different pathways.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Consumer</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">An organism that eats other organisms to obtain energy. Includes herbivores (primary consumers), carnivores (secondary/tertiary consumers), and omnivores.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">A deer (herbivore) is a primary consumer; a wolf (carnivore) eating deer is a secondary consumer; a human eating both plants and meat is an omnivore consumer.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Primary consumer (grasshopper eating grass) is 10% efficient. Secondary consumer (bird eating grasshopper) is 10% efficient of that. By the time you reach a tertiary consumer (hawk eating bird), it's 0.1% as efficient as the producer. This is why ecosystems can't support long food chains.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Consumers transfer energy up the food chain. The number and size of consumers depend on the productivity of producers.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Trick: Some organisms are multiple types: A bear eats fish (carnivore role) and berries (herbivore role). It's an omnivorous consumer with multiple roles in multiple food chains.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Decomposer</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">An organism that breaks down dead organic matter and releases nutrients back into the soil. Includes bacteria, fungi, and some insects.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Mushrooms (fungi) decomposing a fallen log are decomposers. So are bacteria breaking down a dead animal into nutrients.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Without decomposers, a dead leaf stays a dead leaf. With decomposers: the leaf is broken down, carbon is released (or stored in soil), nitrogen is converted back to a form plants can use. Nutrients cycle; energy is released.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Decomposers complete nutrient cycles. Without them, nutrients get locked in dead matter and plants can't access them. Ecosystems collapse without decomposers.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Misconception: 'Decomposers are parasites or diseases.' No—they break down *dead* matter, not living organisms. They're essential, not harmful.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Photosynthesis</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">The process by which plants and some bacteria use sunlight, water, and carbon dioxide to produce glucose and oxygen.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Formula/Process</div>
+                        <div class="field-content formula">6CO₂ + 6H₂O + sunlight → C₆H₁₂O₆ + 6O₂</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">A chloroplast in a leaf captures sunlight and converts CO₂ from the air into glucose sugar, which the plant uses for energy and growth.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">If a plant is placed in a sealed box with measured CO₂, light, and water, you can measure CO₂ decrease and O₂ increase, proving photosynthesis converts CO₂ to O₂ and stores energy in glucose.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Photosynthesis is the entry point for all energy in most ecosystems. It also produces the oxygen we breathe. Without photosynthesis, life as we know it wouldn't exist.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Common confusion: 'Photosynthesis and cellular respiration are opposites.' They're sort of inverse processes, but plants do both. They use photosynthesis to make glucose, then respiration to break it down for energy.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Cellular respiration</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">The process by which organisms break down glucose to release energy (ATP) for cellular work, producing carbon dioxide and water.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Formula/Process</div>
+                        <div class="field-content formula">C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + energy (ATP)</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Your muscle cells break down glucose during exercise, releasing energy that powers muscle contraction and producing CO₂ you exhale.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">A plant cell produces glucose via photosynthesis during the day. At night (or continuously in all cells), it breaks down that glucose via respiration to power growth, maintenance, and metabolism. Both processes happen in plants; photosynthesis only during daylight.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Respiration releases energy stored in glucose. All organisms (plants, animals, fungi, bacteria) respire. It's how energy stored in food becomes usable energy (ATP) for life processes.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Misconception: 'Plants photosynthesized, animals respire.' Wrong—both photosynthesize and respire. Plants photosynthesis during the day to make glucose, then respiration (day and night) to use it. Animals only respire.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Primary succession</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">The process of community development starting from bare rock or soil with no life, eventually leading to a stable ecosystem.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">A new volcanic island with no soil or life. Lichens colonize bare rock (first pioneers), break down rock into soil, allow mosses to grow, then grasses, shrubs, and finally forests—over 100+ years.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Step 1: Lichens on bare rock. Step 2: Lichens create soil, mosses arrive. Step 3: Soil deep enough for grasses. Step 4: Grasses stabilize soil, shrubs grow. Step 5: Shrubs create shade/humus, forest trees germinate. Each stage prepares conditions for the next.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Primary succession shows how communities assemble from nothing. Understanding succession helps predict ecosystem recovery after disturbances.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Don't confuse: Primary succession (starting from bare rock) vs. Secondary succession (starting from existing soil after disturbance). Primary is slower because soil must form first.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Secondary succession</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">The process of ecosystem recovery in an area that has been disturbed but still has soil, starting with fast-growing pioneer species.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">After a wildfire burns a forest, fast-growing shrubs and small trees (pioneers) colonize the burned area. Over decades, shade-tolerant trees grow beneath them, eventually replacing pioneers—creating a mature forest.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Abandoned farmland: Year 1, weeds colonize. Year 5, shrubs and small trees. Year 25, larger shade-tolerant trees. Year 100, mature forest similar to pre-farming conditions. Secondary succession is faster than primary because soil exists.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Secondary succession explains how ecosystems recover from human disturbance (logging, farming, fire). It's faster than primary succession, but recovery still takes time.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Key difference: Primary succession begins with no soil (bare rock, volcanic islands, retreating glaciers). Secondary succession begins with existing soil (after fire, logging, abandonment)—much faster.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Pioneer species</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Fast-growing, hardy organisms that are first to colonize bare or disturbed areas, preparing conditions for other species.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Lichens are pioneer species on bare rock. Weeds are pioneer species on disturbed soil. Both are hardy, reproduce quickly, and create conditions for slower-growing competitors.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Lichens: Can live on bare rock with no soil, extract minerals from rock, create small amounts of soil. This allows mosses to grow. Mosses add more organic matter, allowing grasses. Grasses further build soil. Each pioneer species makes the environment less harsh for the next.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Pioneer species are ecosystem engineers—they initiate succession. Without them, bare areas would remain lifeless longer.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Not to be confused: 'Pioneer species' (first to arrive, prepare conditions) vs. 'climax species' (slow-growing, shade-tolerant, arrive later in succession). Pioneers are temporary; climax species are stable.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Climax community</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">The stable, final community in ecological succession, with maximum biodiversity and minimal further change if undisturbed.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">A mature forest is a climax community—it's stable, diverse, and self-sustaining if not disturbed. It replaces itself through reproduction of existing species.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Secondary succession: Weeds (pioneer) → Shrubs → Oak-hickory forest (climax). In the oak-hickory forest, when an oak dies, oak seedlings grow in its place (because shade conditions favor oaks). The community sustains itself—that's climax stability.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Climax communities represent ecosystem stability. They have high biodiversity and resilience to disturbance because multiple species fill similar roles.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Modern view: 'Climax community' used to mean a permanent end-state. Now ecologists recognize that climate change, natural disturbance, and human activity mean no community is truly 'permanent'—but the term still describes relatively stable, mature communities.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Carrying capacity</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">The maximum population size of a species that an environment can sustain indefinitely, limited by available resources.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">A forest can sustain 50 deer if there's enough vegetation. If more deer are added, they overgraze, vegetation dies, and the ecosystem carries fewer deer long-term. 50 is the carrying capacity.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">A pond stocked with 100 fish might have a carrying capacity of 50 (limited by food/oxygen). If you add 100 fish, initially they thrive, but food/oxygen decrease. Starvation and disease increase, population crashes to ~50 (carrying capacity). If you remove fish and restock at 50, population stays stable.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Carrying capacity explains population limits and determines sustainable harvest levels. If you harvest more than the population can replace, you overhunt/overfish species to extinction.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Not fixed: Carrying capacity changes if conditions change. More food = higher carrying capacity. Drought = lower carrying capacity. It's a dynamic limit, not a constant number.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Limiting factor</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">An environmental factor (biotic or abiotic) that restricts population growth. The scarcest resource is the limiting factor.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">In a desert, water is the limiting factor for plant growth. In a shaded forest, light is limiting. In a predator-free island, disease might be the limiting factor.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">A farmer adds nitrogen fertilizer to crops. If nitrogen was limiting, crop yield increases. If phosphorus then becomes scarce, adding more nitrogen doesn't help—phosphorus is now the limiting factor. The scarcest resource limits growth.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Understanding limiting factors allows targeted management. If water limits plant growth, irrigation helps. If predation limits herbivores, predator removal helps. Identify the limiting factor, address it.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Easy error: 'Multiple factors limit growth.' True, but *one* factor is the limiting factor at a given time—the scarcest resource. Adding other resources won't increase growth until the limiting factor is addressed.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Density-dependent factor</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">A limiting factor whose effect increases as population density increases—like disease, competition, or predation.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">In a crowded city, disease spreads faster (higher density = more transmission). Starvation affects a crowded population more (more competition for food). Predators eat more of a dense population (easier to find prey).</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">A rabbit population grows to 1,000 in a small area. Disease spreads rapidly (density-dependent). Mortality is 10%. Population drops to 900. Next year, density is lower, disease spreads slower, mortality is 5%. Populations density-dependent factors self-regulate: high density triggers factors that reduce density.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Density-dependent factors create population stability. As populations grow, limiting factors increase, slowing growth. This prevents unlimited exponential growth.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Contrast with density-independent: A hurricane kills 20% of a population whether it's 100 or 1,000 individuals. Its effect doesn't depend on density. Density-dependent factors like disease affect % differently at different densities.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Density-independent factor</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">A limiting factor whose effect does NOT depend on population density—like weather, natural disasters, or human pollution.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">A hurricane kills 30% of a population whether there are 100 or 10,000 individuals. A severe drought affects a small population as much as a large one. Pollution affects all individuals, sparse or dense.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">A freeze kills all flowers at 20°F whether there are 10 or 1,000 plants. Effect is absolute, not relative to population size. Contrast with disease, which spreads faster in dense populations (density-dependent).</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Density-independent factors can cause sudden population crashes regardless of population size. Predicting their impact requires predicting weather/disasters, not population dynamics.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">The contrast: Density-dependent factors regulate populations (stabilizing). Density-independent factors can destabilize them (sudden crashes regardless of density).</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="unit-section" id="U2">
+                <div class="unit-header">
+                    <h2>Unit 2: Biodiversity</h2>
+                    <p>19 terms</p>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Biodiversity</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">The variety of life at all levels—genetic diversity within species, species diversity within ecosystems, and ecosystem diversity across biomes.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">A tropical rainforest with 1,000 species, many genetic variants within each species, and diverse ecosystems (canopy, understory, forest floor) has high biodiversity.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Compare biodiversity: Forest A has 10 species, each genetically uniform (low genetic diversity). Forest B has 5 species but each has high genetic diversity. Forest C has 20 species with high genetic diversity across diverse microhabitats. Forest C ranks highest in overall biodiversity.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Biodiversity is a measure of ecosystem health and resilience. High-biodiversity ecosystems are more stable and provide more services (pollination, water filtration, climate regulation).</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Three levels often confused: Genetic diversity (variation within a species), species diversity (number of species), ecosystem diversity (variety of ecosystems). High biodiversity means high diversity at all three levels.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Genetic diversity</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">The variation in genetic material within a population or species, creating differences in traits among individuals.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">A dog breed might have genetic diversity in coat color (black, brown, white), size (small, large, medium), and metabolism (fast, slow). Each dog's genes are unique.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">If a disease kills dogs with genetic variant A but spares dogs with variant B, and the population has only variant A, all dogs die. If the population has both variants, some survive and reproduce, maintaining the population.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Genetic diversity determines a population's ability to adapt to environmental change. Low genetic diversity makes populations vulnerable to disease, climate change, and disasters.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Not to be confused: Genetic diversity (variation within a species) vs. species diversity (number of different species). A species can have high genetic diversity (many variants) or low genetic diversity (little variation).</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Species diversity</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">The number and variety of different species in an ecosystem or region.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">A coral reef with 500 fish species and 300 coral species has high species diversity. A rocky shore with 20 species has low species diversity.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Species richness (number of species) and species evenness (how equally distributed species are) both measure species diversity. A forest with 50 species where one dominates (inequality) has lower functional diversity than a forest with 50 species equally represented.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Higher species diversity generally means more stable, resilient ecosystems. If one species declines, others fill its role. Low diversity means one species loss can collapse ecosystem function.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Two measures: Richness (number of species) and evenness (how equal their populations are). A forest with 100 species but one species comprising 90% of trees has lower functional diversity than 100 species equally distributed.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Ecosystem diversity</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">The variety of different ecosystems and biomes in a region, each with different species and abiotic conditions.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">A region with forest, wetland, grassland, and river ecosystems has high ecosystem diversity. A region with only desert has low ecosystem diversity.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">A nation protecting only rainforest protects one ecosystem type. Protecting rainforest AND wetland AND grassland AND coral reefs protects ecosystem diversity—and the species and services each provides.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Ecosystem diversity ensures that different species have suitable habitats. It also provides diverse ecosystem services—clean water (wetlands), pollination (grasslands), carbon storage (forests).</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Hierarchy: Genetic diversity (within species) → Species diversity (within ecosystem) → Ecosystem diversity (within region). All three levels matter for overall biodiversity.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Endemic species</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">A species found naturally in only one geographic location—nowhere else on Earth.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Giant Galápagos tortoises are endemic to the Galápagos Islands. Hawaii has many endemic bird species. Madagascar has unique endemic lemurs.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">If an endemic species' habitat is destroyed, the species goes extinct globally. This is why island species are especially vulnerable—they have nowhere else to go. Protecting endemic species requires protecting their specific habitats.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Endemic species are conservation priorities. Losing their habitat means global extinction. Hotspots with many endemics (Madagascar, Galápagos, Hawaiian Islands) are conservation targets.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Not to be confused: Endemic (found in one place only) vs. native (naturally occurs in a place but also elsewhere). An endemic is always native; a native isn't always endemic.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Keystone species</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">A species whose impact on its ecosystem is disproportionately large relative to its abundance.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Sea otters eat sea urchins. Where otters are present, urchins stay low, kelp forests thrive. Where otters were hunted to near-extinction, urchins exploded, ate all kelp, and kelp forests collapsed. Otters are keystone species.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Remove sea otters → urchins increase → kelp forests disappear → fish lose habitat → human fisheries collapse. One species removal cascades through the entire ecosystem. That's why otters are keystone—their ecological role is huge despite being relatively rare.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Keystone species are priorities for conservation. Protecting the ecosystem requires protecting keystone species. Their loss triggers ecosystem collapse.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Easy confusion: 'Keystone species are the most abundant or largest.' No—they're influential, not necessarily numerous. A species can be rare but keystone (sea otters) or abundant but not keystone (a common grass).</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Indicator species</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">A species whose presence, absence, or condition reflects the health of an ecosystem.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Salmon populations indicate river health (clean water, intact spawning habitat, sufficient oxygen). Lichens indicate air quality (they're sensitive to air pollution).</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">If mayfly nymphs are abundant in a stream, water quality is good (mayflies need clean water). If they disappear, pollution has increased. Mayflies are indicator species for water quality.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Indicator species allow quick ecosystem assessment. Instead of measuring hundreds of variables, monitor indicator species—they integrate ecosystem conditions into one signal.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Different from keystone: A keystone species is critical to ecosystem function (removing it causes collapse). An indicator species just signals ecosystem conditions (removing it doesn't cause collapse, it just means we lose the signal).</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Native species</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">A species that naturally occurs in a particular area and has evolved there (not introduced by humans).</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Gray wolves are native to North America. Eucalyptus trees are native to Australia but not North America.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Bring a non-native species (eucalyptus to California) and it might thrive without natural predators/diseases, outcompeting natives. Or it might fail because conditions don't match. Native species are adapted; non-native may not be.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Native species are integral to ecosystem function. Conservation prioritizes protecting native species and removing invasive non-natives.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Native vs. invasive: A non-native species that causes harm is invasive. A non-native species that coexists harmlessly is introduced but not invasive. Most non-natives are harmless; some are devastatingly invasive.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Invasive species</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">A non-native species that spreads rapidly and causes harm to the ecosystem, economy, or human health.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Zebra mussels clog water intake pipes and outcompete native mussels. Asian carp displace native fish. Kudzu vines smother forests. All are invasive—they spread and cause damage.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Cane toads introduced to Australia to control agricultural pests. Toads have no natural predators, toxic skin kills native predators that try to eat them, toad populations explode, native species decline. A well-intentioned introduction becomes an ecological disaster.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Invasive species are one of the leading causes of biodiversity loss. They cost billions in ecosystem damage and economic loss. Prevention and rapid removal are essential.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Why invasive? Often because: (1) No natural predators/diseases in new habitat, (2) Outcompetes natives for resources, (3) Introduces novel diseases/parasites, (4) Alters habitat (e.g., invasive fire-loving plants increase fire frequency).</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Extinct species</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">A species that no longer exists anywhere on Earth. All individuals are dead.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Dodos (extinct 1680s), passenger pigeons (extinct 1914), Baiji dolphins (extinct ~2002), woolly mammoths (extinct ~4,000 years ago).</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Once a species is extinct, it's gone forever. Conservation focuses on preventing extinction (protecting endangered species) rather than recovering extinct ones. (Genetic resurrection, like mammoth cloning, is theoretical and far off.)</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Extinction is permanent. Every extinction reduces global biodiversity and may collapse ecosystems dependent on that species. Preventing extinction is far easier than trying to recover lost species.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Distinction: Extinct (no individuals exist) vs. extinct in the wild (exist only in zoos/captivity) vs. endangered (still exists but at risk). Different conservation strategies apply.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Endangered species</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">A species at high risk of extinction in the foreseeable future due to small population size, habitat loss, or other threats.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Florida panthers (fewer than 200 in wild), California condors (recovered from 27 individuals to ~500 via breeding programs), North Atlantic right whales (~350 remaining).</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">A species with only 50 individuals left is endangered. If habitat is destroyed, disease strikes, or random genetic drift occurs, extinction is likely. Conservation efforts focus on increasing population size and protecting habitat.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Endangered species are conservation priorities. Protecting them requires habitat protection, captive breeding if necessary, and eliminating threats.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Categories: Critically endangered (extremely high extinction risk), endangered (high risk), vulnerable (moderate risk). Each requires different management intensities.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Threatened species</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">A broad category including endangered and vulnerable species—those at risk of extinction if current trends continue.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Many amphibians, big cats, pandas, sea turtles are threatened with extinction.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">A species with 500 individuals is vulnerable (threatened but not yet endangered). If the population continues declining at current rate, it will become endangered in 20 years. Intervention now can prevent endangered status.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Threatened species signal ecosystem stress. Protecting threatened species often requires ecosystem-wide conservation.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">'Endangered' is a specific IUCN category; 'threatened' is broader, including endangered, vulnerable, and sometimes critically endangered. Threatened = at risk; endangered = specifically defined higher risk.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Biodiversity hotspot</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">A region with exceptionally high species diversity and high proportions of endemic species, usually threatened by habitat loss.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Tropical rainforests (Amazon, Congo Basin), Madagascar, Galápagos, Philippines, Mediterranean Basin are hotspots. They have ~50% of Earth's species in ~2% of land area.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Protect Madagascar = protect thousands of endemic species found nowhere else. Lose Madagascar's forests = global extinction of hundreds of species. Hotspots are conservation priorities because endemic species there can't be protected elsewhere.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Biodiversity hotspots contain disproportionate species diversity. Protecting hotspots is the most efficient way to conserve global biodiversity.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Not always obvious: A hotspot isn't always the 'prettiest' ecosystem. Some (Mediterranean Basin) are heavily human-populated. Hotspots are identified by species diversity, endemism, and threat level—not by aesthetics.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Habitat fragmentation</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">The division of continuous habitat into isolated patches, reducing population sizes and genetic diversity.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">A forest cut by roads becomes isolated patches. Each patch has fewer individuals, limiting breeding options. Genetic diversity declines. Species can't move between patches, so local extinction in one patch isn't recolonized.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">A species needing 1,000 square km in one continuous forest can't survive in five 200 sq km patches (same total area). Why? Fewer individuals per patch = less breeding success. No movement between patches = genetic isolation. Fragmentation is as harmful as total habitat loss.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Habitat fragmentation is a major cause of extinction. Even if total habitat area seems sufficient, fragmentation reduces effective population size and genetic diversity.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Easy misconception: 'If we protect the same total area, species survive.' False if fragmented. A species needs continuous habitat. Ten 100-acre patches don't equal one 1,000-acre forest.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Ecological corridors</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Strips of habitat connecting isolated patches, allowing species movement and genetic exchange between populations.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">A riparian corridor (river with vegetation) connects two forest patches, allowing forest species to move and breed between them. A wildlife underpass beneath a highway allows animals to cross safely.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">With corridors: A species in patch A can breed with populations in patch B, maintaining genetic diversity. Without corridors: Populations become isolated, genetic diversity declines, extinction risk increases.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Corridors reduce the harm of fragmentation. They're a key conservation strategy in fragmented landscapes (agricultural areas, suburban sprawl).</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Not all species use corridors equally: Apex predators need large corridors. Small animals can use narrow corridors. Corridor design must match species needs.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Genetic drift</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Random changes in allele frequency in small populations, potentially reducing genetic diversity over time.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">A small population of 20 individuals. By chance, individuals carrying allele A don't breed while those with allele B do. Allele A frequency drops. No selection pressure—just random chance.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">A population of 1,000 is stable in allele frequency (genetic drift is slow). A population of 10 experiences rapid random changes—alleles might be lost by chance alone, reducing diversity without any adaptive reason.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Small populations lose genetic diversity via drift, making them less adaptable and more extinction-prone. This is why conservation requires maintaining large population sizes.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Drift vs. selection: Selection is directional (advantageous alleles increase). Drift is random (any allele might increase/decrease by chance). Both operate, but drift dominates in small populations.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Mutation</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">A random change in DNA sequence, creating new genetic variation.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">A gene controlling flower color mutates, creating a new color variant. This mutation is a new allele, introducing genetic diversity.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">If a population has only one allele at a locus, mutation is the only source of new variation. Mutation rate is low (~1 per million bases per generation), but in large populations, some mutations arise in each generation.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Mutations are the ultimate source of genetic variation. Without mutation, there's no new diversity for selection to act on. But mutations are usually harmful or neutral; beneficial mutations are rare.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Common misconception: 'Mutations are always harmful.' Most are neutral (no effect) or harmful. A tiny fraction are beneficial. It depends on the allele and environment.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Gene flow</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">The movement of alleles between populations through migration and interbreeding.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">A bird species in population A has an allele for large beak. Some birds migrate to population B and breed. The allele spreads to population B via gene flow.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Without gene flow: Populations diverge genetically (different alleles become fixed in each). With gene flow: Populations remain genetically similar (alleles spread throughout the species). Corridors increase gene flow; fragmentation decreases it.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Gene flow maintains genetic diversity and prevents local divergence into separate species. It also spreads new beneficial alleles through populations.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Migration term: In population genetics, 'migration' means gene flow (movement of alleles). In ecology, 'migration' means movement of individuals (like birds migrating south). Context matters.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Genetic bottleneck</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">A drastic reduction in population size, causing loss of genetic diversity and increased genetic drift.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Northern elephant seals hunted to ~20 individuals in 1890. Today ~100,000 exist, but they're all descendants of those 20—essentially genetic clones with minimal diversity.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">A bottleneck of 10 individuals loses 90% of original population diversity instantly. Even if population recovers to 1,000, that genetic diversity can't be recovered (the lost alleles are gone).</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Bottlenecks cause long-term problems even if population size recovers. Low genetic diversity increases extinction risk from disease, environmental change, or inbreeding.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Recovery is tricky: A population can numerically recover (more individuals) but genetically remain bottlenecked (low diversity). Monitoring genetic diversity is as important as monitoring population size.</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="unit-section" id="U3">
+                <div class="unit-header">
+                    <h2>Unit 3: Sustaining Biodiversity</h2>
+                    <p>16 terms</p>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Conservation biology</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">The scientific discipline focused on preserving biodiversity and ecosystem function through research and applied management.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Conservation biologists study endangered species, design wildlife corridors, manage invasive species, and restore ecosystems.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">A conservation biologist studying declining frog populations identifies habitat loss (pollution + water extraction) as the cause. They design interventions (restore wetlands, reduce pollution, limit water extraction), monitor outcomes.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Conservation biology translates ecological knowledge into action. It's the primary discipline guiding biodiversity protection.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Distinction: Ecology is the study of how organisms interact; conservation biology is applied ecology focused on protecting biodiversity. Ecology answers 'how does it work?'; conservation biology asks 'how do we save it?'</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Protected areas</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Lands or waters managed primarily to conserve biodiversity and ecosystem functions, with varying levels of human use restriction.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">National parks, nature reserves, wilderness areas, marine protected areas (MPAs) are protected areas. They range from strict no-access (wilderness) to allowing controlled recreation and research.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">A marine protected area bans fishing (allowing fish populations to recover) but allows research and limited tourism. Results: Fish populations increase, spill over to adjacent fishing areas, local fisheries improve paradoxically by reducing fishing in protected areas.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Protected areas are the primary tool for conserving biodiversity. They allow ecosystem recovery and provide reference ecosystems for research.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Not all protected areas are equal: A paper park exists on the map but is ineffectively enforced. Effective protected areas require funding, enforcement, and local community support.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">National parks</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Large protected areas set aside primarily for conservation and public recreation, with strict limits on resource extraction.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Yellowstone, Grand Canyon, Denali, Great Smoky Mountains—protected from mining, logging, development.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Yellowstone reintroduced wolves (extinct there since 1920s). Wolves killed elk, reducing overgrazing, allowing vegetation recovery. This cascaded: willows grew back, providing songbird habitat; beavers returned, creating wetlands. One reintroduction restored ecosystem function.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">National parks protect large landscapes and their ecosystems. They're conservation flagships and tourism revenue sources.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Different from nature reserves: National parks typically allow public access and recreation; nature reserves often restrict access to research only.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Wildlife corridors</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Protected strips of land or water connecting isolated habitats, allowing species movement and genetic exchange.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">A riparian corridor (vegetated strip along a river) allows wildlife to move between forest patches. An overpass over a highway allows deer to cross safely.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">A population of mountain lions fragmented by sprawl. Corridor protected beneath a highway allows lions to move between ranges, breed, maintain genetic diversity. Without corridor, lions become isolated, inbred, and extinct.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Corridors restore connectivity in fragmented landscapes. They're essential in human-dominated regions.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Corridor width matters: A corridor narrower than a species' home range size doesn't help. Species must be able to survive within the corridor, not just pass through.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Habitat restoration</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Active intervention to repair degraded ecosystems and restore ecosystem function.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Removing invasive plants, replanting native species, restoring hydrological flows (water patterns) to a wetland.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">An agricultural area's stream was channelized (straightened for drainage), killing fish habitat. Restoration: reconstruct meanders (curves), restore floodplain connectivity, replant native vegetation. Result: Water quality improves, fish return, flood risk decreases.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Restoration can recover ecosystem function on degraded lands, providing habitat and ecosystem services.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Restoration isn't simple: Restored systems often differ from historical systems due to changed climate, invasive species pressure, or altered hydrology. 'Restoration' doesn't mean perfect recovery—it means improved function.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Biodiversity monitoring</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Systematic tracking of species populations, genetic diversity, and ecosystem health over time to assess conservation success.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Counting bird populations annually, genetic sequencing of endangered species, measuring forest cover via satellite.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">A reintroduced wolf population is monitored: Annual counts track population growth. Genetic sampling tracks genetic diversity. Prey populations are monitored. These data guide management decisions (when to introduce more wolves, if genetic drift is a problem).</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Without monitoring, you can't assess whether conservation efforts work. Data-driven management is far more effective than guessing.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Challenge: Some species are hard to monitor (migratory birds, deep-sea creatures). Adaptive monitoring strategies are developed for different species.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Captive breeding</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Breeding endangered species in controlled environments (zoos, breeding facilities) to increase population size and prevent extinction.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">California condors bred in captivity from 27 birds (1987) to ~500 today; some released to wild. Arabian oryx saved from extinction via captive breeding.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">A species with 10 wild individuals is nearly extinct. Capture some (say, 5), breed them in a facility, produce 50 offspring. Release some back to wild in a restored habitat. Wild population increases from 10 to 30. Repeat. Extinction averted.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Captive breeding is a last-resort tool for species on the brink of extinction. It's expensive but can prevent extinction.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Problems: Genetic diversity loss (captive populations are small, subject to drift), adaptation to captivity (animals bred in zoos may not survive in wild), cost (expensive and long-term).</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Reintroduction</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Releasing captive-bred or relocated individuals into restored or protected habitat to re-establish populations.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">California condors, Arabian oryx, wolves in Yellowstone, sea otters in coastal California—all reintroduction programs.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Wolves extinct in Yellowstone for 70 years. In 1995, 14 wolves reintroduced. Today ~100 in the ecosystem. Monitoring shows ecosystem restored (vegetation, elk population balanced, other species increased). Successful reintroduction.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Reintroduction recovers species in their historical range. It restores ecosystem function.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Challenges: Habitat must be suitable and protected. Released animals must survive and breed. Reintroduced animals often struggle initially (high mortality). Long-term monitoring is essential.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Sustainable use</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Harvesting or using resources (hunting, fishing, logging, ecotourism) at rates that allow population/ecosystem recovery.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Hunting deer at a sustainable rate (harvest < population growth) maintains deer populations indefinitely. Overhunting (harvest > growth) causes extinction.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">A forest's sustainable timber harvest = timber growth per year. If you harvest more, forest declines. If you harvest less, forest grows. Sustainable harvest = equilibrium point where forest maintains itself and humans harvest continuously.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Sustainable use allows conservation and human benefit simultaneously. Fishing communities can fish indefinitely if they fish sustainably; if they overfish, they destroy their own livelihood.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Challenge: Determining sustainable rates requires data (population growth, harvest). In developing regions, enforcement of sustainable limits is difficult even when limits are known.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Ecotourism</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Low-impact tourism in natural areas, often funding conservation while providing economic incentive to protect habitats.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Tourists pay to see gorillas in Rwanda, funding conservation. Tourists pay to kayak in Belize mangroves, incentivizing protection.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">A protected area generates income through ecotourism, funding rangers, research, and local communities. Local communities support conservation because it provides income. Ecotourism becomes a self-sustaining conservation model.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Ecotourism aligns conservation with local economic benefit. Communities that profit from conservation are more likely to protect it.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Challenges: Ecotourism can damage ecosystems if uncontrolled (trails erode, wildlife is stressed by crowds). 'Ecotourism' is sometimes marketed without actual conservation benefit. Authentic ecotourism requires low-impact practices and conservation outcomes.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Ex situ conservation</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Conservation efforts outside of natural habitats—in zoos, seed banks, tissue banks, breeding facilities.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Captive breeding programs, botanical gardens preserving plant diversity, DNA banks storing genetic material from endangered species.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">If a plant species is extinct in the wild, its genetic material in a seed bank allows restoration. If a species is nearly extinct, tissue samples in a cryogenic bank preserve genetic diversity for potential future cloning.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Ex situ conservation is a backup when in situ conservation fails. It preserves genetic material and allows reintroduction.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Not ideal: Ex situ is backup, not primary strategy. In situ (protecting in natural habitat) is always preferred. Ex situ is insurance and a last resort.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">In situ conservation</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Conservation of species in their natural habitats and ecosystems, through habitat protection and management.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Protecting rainforests protects all rainforest species in situ. Managing park vegetation to maintain habitat diversity.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">In situ: Protect wolf habitat, wolves recover naturally. Ex situ: Breed wolves in zoos, then reintroduce. In situ is preferred (lower cost, maintains ecosystem), but may require ex situ backup (breeding to boost population).</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">In situ conservation is the primary strategy because it protects entire ecosystems, not just single species. It's more cost-effective and sustainable.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Integration: Best conservation uses both. In situ (protect habitat) is primary; ex situ (backup breeding) supports in situ efforts.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">CITES (Convention on International Trade in Endangered Species)</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">An international agreement regulating trade in endangered species and products to prevent extinction from overhunting.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">CITES bans trade in endangered animals (African elephants, rhinos, pangolins) and products (ivory, rhino horn). Trade in other animals is allowed with permits.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Before CITES, rhinos were hunted to near-extinction for their horns (traditional medicine demand). CITES ban reduced poaching pressure. Rhino populations have partially recovered in some regions but remain critically endangered due to ongoing poaching.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">CITES reduces demand for endangered species products, decreasing poaching pressure. International agreement allows collective enforcement.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Limitations: CITES doesn't address habitat loss. Species can be protected from trade but still extinct due to habitat loss. Enforcement is challenging in developing regions with limited resources.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Endangered Species Act (ESA)</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">U.S. federal law protecting species listed as endangered or threatened from harm and requiring habitat protection.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Bald eagles, gray wolves, California condors, sea turtles, manatees—species protected under ESA from hunting, habitat destruction.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Bald eagles hunted to near-extinction, protected under ESA (1973). Protections included habitat protection, captive breeding. Today ~70,000 bald eagles in U.S., removed from endangered list (2007). ESA works when implemented strongly.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">ESA is the legal framework for species protection in the U.S., driving research, captive breeding, reintroduction, habitat restoration.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Limitations: ESA protects after species is endangered. Prevention (protecting habitats before species decline) is cheaper and more effective but politically harder.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Biodiversity loss</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">The decline in genetic, species, or ecosystem diversity over time, reducing ecosystem resilience and services.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Loss of pollinators (bees, butterflies) reduces crop pollination and wildflower reproduction. Loss of decomposers (fungi, bacteria) reduces nutrient cycling. Loss of apex predators disrupts food webs.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Current extinction rate: ~1,000 species per year (100-1,000x natural rate). If current trends continue, 25-30% of species extinct by 2050. Biodiversity loss accelerates as habitats are lost.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Biodiversity loss reduces ecosystem stability, decreases ecosystem services (clean water, pollination, climate regulation), and diminishes human well-being.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Not evenly distributed: Biodiversity loss is fastest in tropical regions, especially in biodiversity hotspots. Temperate regions have already lost significant diversity; tropical regions are losing remaining diversity fastest.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Ecosystem services</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Benefits humans derive from ecosystems—clean water, pollination, climate regulation, food production, flood prevention, air purification.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">A wetland provides water filtration ($1M/year as wastewater treatment), flood prevention, fish habitat. A forest provides carbon storage, oxygen production, water infiltration.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Economic valuation: A wetland's services worth $1 million/year. Destroying it saves $50,000/year (land value for agriculture) but loses $1 million/year in services. Conservation is economically rational.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Ecosystem services are economic arguments for conservation. Even non-conservationists should protect ecosystems because services have economic value.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Valuation is tricky: How much is clean air worth? Economists use various methods (replacement cost, willingness-to-pay). Values are debated, but the point is clear: ecosystems provide huge economic benefits.</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="unit-section" id="U4">
+                <div class="unit-header">
+                    <h2>Unit 4: Environmental Quality</h2>
+                    <p>19 terms</p>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Pollution</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">The introduction of harmful substances or energy into the environment at concentrations above natural levels.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Factory emissions releasing mercury into rivers, car exhaust polluting air with nitrogen dioxide, plastic waste polluting oceans.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">A factory releases heavy metals into a river. The metals accumulate in fish tissue (bioaccumulation). Humans eat the fish and accumulate metals in their bodies, causing neurological damage. Point-source pollution from one location spreads through food webs.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Pollution harms human health and ecosystems. Understanding pollution pathways allows targeted remediation.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Natural vs. human: Some 'pollution' is natural (volcanic ash, pollen). Human pollution is distinguished by: (1) unnatural concentrations, (2) persistence (doesn't break down naturally), (3) toxicity.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Air pollution</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Introduction of harmful substances into the atmosphere—particulates, gases, chemicals—affecting air quality and human health.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Particulate matter (PM2.5) from combustion, nitrogen dioxide (NO₂) from cars, ozone (O₃) from photochemical reactions, sulfur dioxide (SO₂) from industry.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Car exhaust emits NO₂. Sunlight converts NO₂ to ozone. Ozone harms lung tissue, causing asthma, reduced lung function. Children and elderly most vulnerable. Pollution from cars hours away affects air quality downwind.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Air pollution kills ~7 million people yearly (WHO). Major cause of respiratory disease, heart disease, stroke. Reducing pollution is a major public health priority.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Indoor air pollution: Often worse than outdoor because of poor ventilation. Cookstoves in developing regions kill millions via indoor air pollution—not just outdoor pollution.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Water pollution</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Contamination of water (surface water, groundwater, marine) with harmful substances—chemicals, pathogens, excess nutrients.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Industrial waste in rivers, sewage pollution, agricultural runoff (excess nitrates/phosphates), plastic waste in oceans, oil spills.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Fertilizer runoff (excess nitrogen/phosphorus) enters a bay. Algae blooms from nutrient excess. Algae dies, decomposer bacteria respire, consuming dissolved oxygen. Hypoxic 'dead zone' where fish can't breathe and die.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Water pollution contaminates drinking water, harms ecosystems, kills fisheries. 2 billion people lack safe drinking water partly due to pollution.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Nonpoint source (diffuse: agricultural runoff from many fields) vs. point source (specific: one factory). Nonpoint source is harder to regulate because it's diffuse.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Soil pollution</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Contamination of soil with toxic substances—heavy metals, persistent organic pollutants, excess salt.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Lead in soil near old smelters, pesticide residues in agricultural soil, salt accumulation from irrigation.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Children playing in lead-contaminated soil (from old paint, smelter dust) ingest lead. Lead accumulates in bones, damages developing brains. Measured as reduced IQ, behavioral problems in children.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Soil pollution affects food production (uptake of heavy metals into crops), human health (direct contact, ingestion), and ecosystem function.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Remediation is slow: Heavy metals don't break down. 'Waiting out' is sometimes the only option (lead half-life in soil ~40 years). Active remediation (soil removal, phytoremediation) is expensive.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Bioaccumulation</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">The accumulation of a substance in an organism's body over time, increasing concentration from environment or food.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Fish living in mercury-polluted water accumulate mercury in their tissues. Humans eating contaminated fish accumulate mercury in their bodies.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Mercury in water (0.001 ppm) → Fish accumulate it (0.01 ppm) → Humans eating fish (0.1 ppm). Concentrations increase 100x from water to humans because mercury persists and accumulates.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Bioaccumulation explains why low environmental concentrations can still harm organisms. Even 'low' pollution levels become dangerous through accumulation.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Different from biomagnification: Bioaccumulation is in one organism; biomagnification is across food chain (lower concentrations in producers, higher in predators).</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Biomagnification</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Increasing concentration of a substance in organisms at higher trophic levels in a food chain.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">DDT (pesticide) persists and accumulates up the food chain: Algae (0.001 ppm) → Fish (0.01 ppm) → Bird (1 ppm). Top predators have concentrations 1,000x higher than baseline environment.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">DDT in environment doesn't break down. Algae absorb it; fish eat many algae, accumulating it; birds eat many fish, accumulating it. Final concentration in eagle eggs: high enough to weaken shells, causing reproductive failure.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Biomagnification explains why top predators are harmed by 'low' pollution levels. Apex predators (hawks, eagles, orcas) are vulnerable to persistent pollutants.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Why biomagnification? (1) Persistence: DDT doesn't break down, keeps accumulating. (2) Fat solubility: DDT is fat-soluble, concentrated in fat tissue (not water-soluble, so not 'diluted'). (3) Trophic loss: Predator eats many prey, accumulating each prey's pollutant load.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Eutrophication</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Excess nutrient enrichment (nitrogen, phosphorus) in water, causing algae overgrowth, oxygen depletion, and ecosystem collapse.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Agricultural runoff (nitrates, phosphates) enters a lake. Algae bloom. Algae die, bacteria decompose them, consuming dissolved oxygen. Fish die from lack of oxygen.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Mississippi River carries agricultural runoff into Gulf of Mexico. Eutrophication creates a 'dead zone' (area of low oxygen where fish can't survive). Over 17,000 square km of hypoxic water.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Eutrophication destroys fisheries and aquatic ecosystems. It's a global problem affecting ~500 coastal dead zones worldwide.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Problem is excess nutrients: Fertilizers meant to feed crops feed algae instead. The process is natural (lakes eventually eutrophy), but human nutrient input accelerates it dramatically.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Dead zone</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">An area of water with depleted oxygen (hypoxia) where most aquatic life cannot survive.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Gulf of Mexico dead zone (eutrophication), Baltic Sea dead zones, various coastal areas where nutrient runoff creates hypoxic conditions.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Oxygen concentration drops below 2 mg/L (hypoxic). Most fish leave or die. Sediment-dwelling organisms die. The area becomes essentially lifeless.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Dead zones destroy fisheries and aquatic ecosystems. Expanding dead zones reduce available fishing grounds and food sources.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Recovery: Dead zones are reversible if nutrient input is reduced. Baltic Sea has shown some recovery as nutrient runoff decreased. But they can take years to recover.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Acid rain</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Precipitation with pH lower than ~5.6, caused by atmospheric sulfur dioxide and nitrogen oxides forming sulfuric and nitric acids.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Formula/Process</div>
+                        <div class="field-content formula">SO₂ + H₂O → H₂SO₄ (sulfuric acid); NO₂ + H₂O → HNO₃ (nitric acid)</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Industrial emissions (coal-fired power plants, factories) release SO₂ and NO₂. These form acids in clouds. Rain falls as acid, damaging forests, fish populations, buildings.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Acid rain (pH ~4) falls on a forest. Acidifies soil, leaching essential nutrients (calcium, potassium) that plants need. Trees weaken, growth slows, die. Fish lakes become acidic, killing fish eggs and young fish.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Acid rain damages forests, fisheries, and buildings. Controlling SO₂ and NO₂ is essential for environmental quality.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Geographical shift: Emissions in one region are transported by wind, falling as acid rain downwind. Requires international coordination to reduce (not just regional solutions).</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Ozone depletion</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Thinning of the stratospheric ozone layer due to chlorofluorocarbons (CFCs), increasing UV-B radiation reaching Earth.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">CFCs (used in refrigerants, aerosols) release chlorine in the stratosphere. Chlorine destroys ozone. 'Ozone hole' over Antarctica loses ~50% of ozone in spring.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Increased UV-B radiation damages DNA, causing skin cancer, cataracts, immune suppression in humans. In phytoplankton (ocean base of food chain), excess UV-B reduces photosynthesis, diminishing primary productivity.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Ozone depletion increased skin cancer and cataracts. Impact on phytoplankton could disrupt marine food webs. CFC ban (Montreal Protocol, 1987) is one of the great environmental successes.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Common confusion: Ozone depletion (stratosphere) vs. ground-level ozone pollution (troposphere). Different problems, different solutions. Stratospheric ozone depletion is improving (CFC ban works). Ground-level ozone pollution is getting worse.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Greenhouse gases</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Gases that trap heat in the atmosphere—carbon dioxide (CO₂), methane (CH₄), nitrous oxide (N₂O), others—causing global warming.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">CO₂ from fossil fuels, methane from livestock and wetlands, N₂O from agriculture. These gases absorb infrared radiation, warming the atmosphere.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Atmospheric CO₂ increases from 280 ppm (pre-industrial) to 420 ppm (2023). Average global temperature increased 1.1°C. This causes sea level rise, extreme weather, ecosystem shifts.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Greenhouse gases drive climate change, the defining environmental challenge of our time. Reducing emissions is critical.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Not all are equally potent: Methane traps 28-34x more heat than CO₂ per molecule. N₂O is 265x more potent. But CO₂ is most abundant and persists longest, making it the dominant driver of warming.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Global warming</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">An increase in global average temperature due to increased greenhouse gas concentrations, primarily from human activities.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Global temperature increased ~1.1°C since pre-industrial times. Warming is accelerating (0.18°C per decade recently). Impacts: sea level rise, extreme weather, ecosystem shifts.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Warming causes snowpack to melt earlier in spring, reducing summer water availability in western U.S. Warming shifts growing seasons, affecting agriculture. Warming extends disease ranges (tick-borne Lyme disease moving north).</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Global warming is the defining environmental issue. It affects every ecosystem and human society. Mitigation (reducing emissions) and adaptation (adjusting to changes) are priorities.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Distinction: 'Climate change' (broad term for any shift) vs. 'global warming' (temperature increase from greenhouse gases). Climate change includes warming, but also precipitation shifts, extreme weather, etc.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Climate change</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Long-term shifts in global temperature and weather patterns, including warming, precipitation changes, extreme weather, and ecosystem shifts.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Warming drives rising sea levels, changing precipitation (more rain in some regions, droughts in others), intensifying hurricanes/heatwaves, shifting growing seasons.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Climate change shifts where crops can be grown (warmer regions becoming unsuitable, cooler regions becoming suitable). Pests' ranges expand (freeze-kills disappear as winters warm). Water availability changes. Agriculture must adapt or face reduced yields.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Climate change threatens food security, water security, ecosystems, and human societies. It affects agriculture, fisheries, human migration, conflict over resources.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Natural vs. human-caused: Climate always changes naturally. Current warming is ~95% human-caused (IPCC consensus). Rate and magnitude are unusual compared to natural variability.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Mitigation</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Actions to reduce greenhouse gas emissions or remove CO₂ from the atmosphere, slowing climate change.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Transitioning to renewable energy, improving energy efficiency, protecting forests (carbon storage), carbon capture technology.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">A coal plant (emits CO₂) is replaced with a solar farm (no emissions). CO₂ emissions decrease, slowing warming. Or: a forest is protected (prevents CO₂ release from deforestation), sequestering atmospheric carbon.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Mitigation prevents or slows climate change. It's essential to limit warming to survivable levels.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Mitigation vs. adaptation: Mitigation is prevention (reduce emissions). Adaptation is coping (adjust to unavoidable change). Both are necessary.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Adaptation</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Adjustments in human or ecological systems to cope with climate change impacts—changing agriculture practices, building seawalls, managing shifted species ranges.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Coastal communities build seawalls against sea level rise. Farmers shift crop varieties to suit new climates. Conservationists establish corridors so species can shift ranges.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">A region faces drought due to climate change. Adaptation: switch from water-intensive crops to drought-resistant ones, improve irrigation efficiency, harvest rainwater. Population survives through adaptation.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Some climate change is already unavoidable (warming committed by existing CO₂). Adaptation allows people to cope with changes that can't be prevented.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Limits to adaptation: Some changes are too fast or extreme to adapt to. Adaptation slows disaster but doesn't prevent all harms. Mitigation + adaptation are necessary.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Carbon footprint</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">The total amount of greenhouse gases (usually expressed as CO₂ equivalent) emitted directly or indirectly by an individual, organization, or product.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">A person's carbon footprint includes: driving (direct emissions), electricity use (emissions from power plant), food (emissions from production and transport), goods purchased (embodied emissions).</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Calculating individual carbon footprint: Average American emits ~16 metric tons CO₂-equivalent/year. Global average is ~4 tons/year. High-emission lifestyles (driving, flying, heating) increase footprint.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Carbon footprint quantifies individual/organizational impact on climate change. Awareness drives behavior change (reducing emissions).</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Limitations: Carbon footprint attributes all emissions, even indirect ones. But it doesn't account for carbon sequestration (forests) or renewable energy benefits. It's a useful metric but incomplete.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Renewable energy</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Energy sources that are naturally replenished—solar, wind, hydroelectric, geothermal, biomass—producing little to no greenhouse gases.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Solar panels convert sunlight to electricity. Wind turbines convert wind to electricity. Hydroelectric dams use water flow. Geothermal plants tap Earth's heat.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">A region switches 50% of electricity from fossil fuels to solar/wind. Emissions decrease ~50% from that sector. Job creation in renewable energy offsets fossil fuel job losses.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Renewable energy is essential for climate change mitigation. Expanding renewables reduces greenhouse gas emissions.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Not all renewables are equal: Solar/wind have low emissions but face intermittency issues. Hydroelectric is reliable but can disrupt ecosystems. Geothermal has low emissions but limited geographic suitability. Biomass is 'renewable' but can drive deforestation.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Nonrenewable resources</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Resources that are depleted faster than they're naturally formed—fossil fuels (coal, oil, natural gas), minerals, metals.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">Oil took millions of years to form; we extract it in decades. Once depleted, it's gone for millennia. Similarly for coal, natural gas, metallic ores.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Current oil reserves: ~50-60 years at current extraction rate. This assumes no increase in demand. If demand rises, reserves deplete faster. Eventually, easily accessible oil depletes.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Nonrenewable resources are finite. Energy systems based on them are unsustainable long-term. Transitioning to renewables is essential.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Not absolute: With new technology, 'depleted' resources may become accessible again (e.g., oil sands, deep-sea oil). But cost increases, and environmental impact often increases with more difficult extraction.</div>
+                    </div>
+                </div>
+
+                <div class="term-card">
+                    <div class="term-title">Sustainable energy</div>
+
+                    <div class="field">
+                        <div class="field-label">Definition</div>
+                        <div class="field-content">Energy systems that meet current needs without compromising future generations' ability to meet theirs—low-emission, renewable, or efficient energy.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Example</div>
+                        <div class="field-content">100% renewable-powered electricity grid, efficient buildings that minimize heating/cooling needs, electric transportation.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Worked Example</div>
+                        <div class="field-content">Costa Rica generates ~99% of electricity from renewables (hydro, wind, solar, geothermal). They demonstrate that 100% renewable energy is technically feasible for a nation.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Why It Matters</div>
+                        <div class="field-content why-matters">Sustainable energy is essential for climate change mitigation and long-term energy security. It decouples economic growth from emissions.</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="field-label">Conceptual Note</div>
+                        <div class="field-content conceptual-note">Challenges: Renewable energy transitions require infrastructure investment, grid modernization, and storage technology. Political opposition from fossil fuel interests slows transition.</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <footer>
+            <p>Environmental Science Honors - Cascade Phase 1: Master Glossary</p>
+            <p>Generated: 2026-10-03</p>
+        </footer>
+    </div>
+
+    <script>
+        function scrollToUnit(unitId) {
+            const element = document.getElementById(unitId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
