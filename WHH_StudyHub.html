@@ -67,12 +67,12 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
 
 
-.hero{background:linear-gradient(135deg,#2a1d0b 0%,#0f3352 55%,#0a1e38 100%);border:1px solid var(--border);border-radius:20px;padding:30px 28px;margin-bottom:22px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-40%;right:-8%;width:340px;height:340px;background:radial-gradient(circle,rgba(229,148,0,.2),transparent 70%);border-radius:50%}
-.hero::after{content:'⏳';position:absolute;bottom:-26px;right:24px;font-size:140px;opacity:.06;line-height:1}
-.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#efb44e;margin-bottom:10px;position:relative}
+.hero{background:linear-gradient(135deg,#0b2a22 0%,#0f3352 55%,#0a1e38 100%);border:1px solid var(--border);border-radius:20px;padding:30px 28px;margin-bottom:22px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40%;right:-8%;width:340px;height:340px;background:radial-gradient(circle,rgba(29,158,117,.2),transparent 70%);border-radius:50%}
+.hero::after{content:'🌿';position:absolute;bottom:-26px;right:24px;font-size:140px;opacity:.06;line-height:1}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#4fd1a5;margin-bottom:10px;position:relative}
 .hero-title{font-size:2.5rem;font-weight:800;color:#fff;line-height:1.05;position:relative}
-.hero-title span{color:#efb44e}
+.hero-title span{color:#4fd1a5}
 .hero-sub{font-size:14px;color:#a9c2dc;margin-top:12px;max-width:600px;position:relative;line-height:1.6}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;position:relative}
 .chip{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 13px;font-size:12px;font-weight:600;color:#cfe0f0}
@@ -83,7 +83,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .player{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:14px;margin-bottom:22px}
 @media(max-width:760px){.player{grid-template-columns:1fr}}
 .rank-row{display:flex;align-items:center;gap:14px}
-.rank-badge{width:64px;height:64px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;background:radial-gradient(circle at 30% 30%,rgba(229,148,0,.3),rgba(229,148,0,.06));border:1px solid rgba(229,148,0,.5);flex-shrink:0}
+.rank-badge{width:64px;height:64px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;background:radial-gradient(circle at 30% 30%,rgba(29,158,117,.3),rgba(29,158,117,.06));border:1px solid rgba(29,158,117,.5);flex-shrink:0}
 .rank-name{font-size:22px;font-weight:800;color:#fff;line-height:1.1}
 .rank-sub{font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;margin-top:3px}
 .xp-track{height:10px;background:var(--bg);border-radius:99px;overflow:hidden;margin:14px 0 6px}
@@ -103,9 +103,9 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .m-body{flex:1;font-size:12.5px}
 .m-bar{height:4px;background:var(--bg);border-radius:99px;overflow:hidden;margin-top:5px}.m-fill{height:100%;background:var(--teal)}
 .m-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)}
-.focus{margin-top:14px;background:linear-gradient(135deg,rgba(229,148,0,.12),rgba(46,139,192,.06));border:1px solid rgba(229,148,0,.3);border-radius:12px;padding:12px 14px;font-size:12.5px;line-height:1.55}
-.focus a{color:#efb44e;font-weight:700}
-.du-card{background:linear-gradient(135deg,rgba(229,148,0,.10),rgba(229,148,0,.06));border:1px solid rgba(229,148,0,.35);border-radius:18px;padding:20px 22px;margin-bottom:22px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}
+.focus{margin-top:14px;background:linear-gradient(135deg,rgba(29,158,117,.12),rgba(46,139,192,.06));border:1px solid rgba(29,158,117,.3);border-radius:12px;padding:12px 14px;font-size:12.5px;line-height:1.55}
+.focus a{color:#4fd1a5;font-weight:700}
+.du-card{background:linear-gradient(135deg,rgba(229,148,0,.10),rgba(29,158,117,.06));border:1px solid rgba(229,148,0,.35);border-radius:18px;padding:20px 22px;margin-bottom:22px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}
 @media(max-width:640px){.du-card{grid-template-columns:1fr}}
 .du-card h3{font-size:18px;color:#fff;font-weight:800}
 .du-card p{font-size:13px;color:#c8dbe9;line-height:1.6;margin-top:6px}
@@ -117,26 +117,26 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .builds{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:720px){.builds{grid-template-columns:1fr}}
 .bcard{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:10px;transition:all .2s}
-.bcard:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 14px 40px rgba(229,148,0,.14)}
+.bcard:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 14px 40px rgba(29,158,117,.14)}
 .bcard.du{border-color:rgba(229,148,0,.35)}
 .bcard.du:hover{border-color:var(--amber);box-shadow:0 14px 40px rgba(229,148,0,.14)}
 .bhead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-.beb{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#efb44e}
+.beb{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#4fd1a5}
 .bcard.du .beb{color:#efb44e}
 .bname{font-size:1.15rem;font-weight:800;color:#fff;margin-top:3px}
-.bicon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;background:var(--accent-soft);border:1px solid rgba(229,148,0,.3);flex-shrink:0}
+.bicon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;background:var(--accent-soft);border:1px solid rgba(29,158,117,.3);flex-shrink:0}
 .bcard.du .bicon{background:rgba(229,148,0,.12);border-color:rgba(229,148,0,.35)}
 .bdesc{font-size:13px;color:var(--muted);line-height:1.55;flex:1}
 .btags{display:flex;gap:6px;flex-wrap:wrap}
 .btag{font-size:10px;font-weight:700;padding:3px 9px;border-radius:6px;background:var(--card2);color:var(--muted)}
-.bcta{font-size:12.5px;font-weight:700;color:#efb44e}
+.bcta{font-size:12.5px;font-weight:700;color:#4fd1a5}
 .bcard.du .bcta{color:#efb44e}
 .units{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
 @media(max-width:720px){.units{grid-template-columns:repeat(2,1fr)}}
 .ucard{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px;cursor:pointer;transition:all .18s;text-align:left;font-family:'DM Sans',sans-serif;color:var(--text)}
 .ucard:hover,.ucard.active{border-color:var(--accent)}
 .ucard.active{background:var(--accent-soft)}
-.u-num{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;color:#efb44e;display:flex;justify-content:space-between}
+.u-num{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;color:#4fd1a5;display:flex;justify-content:space-between}
 .u-name{font-size:11.5px;font-weight:600;line-height:1.35;margin-top:4px;color:#dbe8f5}
 .u-bar{height:4px;background:var(--bg);border-radius:99px;overflow:hidden;margin-top:8px}.u-bar i{display:block;height:100%}
 .upanel{display:none;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-top:12px}
@@ -151,12 +151,12 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .path{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 20px}
 .pstep{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
 .pstep:last-child{border-bottom:none}
-.pnum{width:28px;height:28px;border-radius:50%;background:var(--accent-soft);border:1px solid var(--accent);color:#efb44e;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0}
-.pname{font-size:13.5px;font-weight:700;color:#fff}.pname a{color:#efb44e;text-decoration:none}
+.pnum{width:28px;height:28px;border-radius:50%;background:var(--accent-soft);border:1px solid var(--accent);color:#4fd1a5;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0}
+.pname{font-size:13.5px;font-weight:700;color:#fff}.pname a{color:#4fd1a5;text-decoration:none}
 .pnote{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.5}
 .reset{background:none;border:1px solid var(--border);border-radius:8px;color:var(--muted);font-size:11px;font-weight:700;padding:6px 12px;cursor:pointer;font-family:'DM Sans',sans-serif}
 .reset:hover{border-color:var(--red);color:#f08579}
-.units4{grid-template-columns:repeat(4,1fr)}@media(max-width:720px){.units4{grid-template-columns:repeat(2,1fr)}}
+.units4{grid-template-columns:repeat(4,1fr)}@media(max-width:720px){.units4{grid-template-columns:repeat(2,1fr)}}.rm{{display:grid;grid-template-columns:70px 1fr auto;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;align-items:baseline}}.rm:last-of-type{{border-bottom:none}}.rm-n{{font-family:DM Mono,monospace;font-size:11px;color:#efb44e;font-weight:700}}.rm-t{{color:#fff;font-weight:700}}.rm-d{{font-family:DM Mono,monospace;font-size:11px;color:var(--muted)}}@media(max-width:560px){{.rm{{grid-template-columns:56px 1fr}}.rm-d{{grid-column:2}}}}
 </style>
 
 <script>window.STUDYHUB_GAME={course:'worldhistoryh'};</script>
@@ -222,8 +222,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   <div class="units units4" id="units"></div>
   <div class="upanel" id="upanel"></div>
 
-  <div class="sec-lbl" style="margin-top:26px">Coming chapters</div>
-  <div class="card" style="font-size:13px;line-height:1.6;color:var(--muted)">New chapters are added as the class reaches them, each with the same set of tools. Earlier chapters stay here for review before exams.</div>
+  <div class="sec-lbl" style="margin-top:26px">Textbook roadmap · the book's 10 units</div>
+  <div class="card roadmap"><div class="rm"><span class="rm-n">Unit 1</span><span class="rm-t">Ancient Worlds</span><span class="rm-d">Neolithic Era – 500 C.E.</span></div><div class="rm"><span class="rm-n">Unit 2</span><span class="rm-t">Far-Reaching Civilizations and Empires</span><span class="rm-d">2200 B.C.E. – 1279 C.E.</span></div><div class="rm"><span class="rm-n">Unit 3</span><span class="rm-t">Byzantine and Arab Civilizations</span><span class="rm-d">330 – 1258</span></div><div class="rm"><span class="rm-n">Unit 4</span><span class="rm-t">Feudal Europe and Imperial East Asia</span><span class="rm-d">481 – 1500</span></div><div class="rm"><span class="rm-n">Unit 5</span><span class="rm-t">Dynamics in Africa and the Americas</span><span class="rm-d">3100 B.C.E. – 1532 C.E.</span></div><div class="rm"><span class="rm-n">Unit 6</span><span class="rm-t">Global Explorations and Expansions</span><span class="rm-d">1296 – 1850</span></div><div class="rm"><span class="rm-n">Unit 7</span><span class="rm-t">New Ideas and Revolution</span><span class="rm-d">1543 – 1848</span></div><div class="rm"><span class="rm-n">Unit 8</span><span class="rm-t">Industrialization and Imperialism</span><span class="rm-d">1615 – 1928</span></div><div class="rm"><span class="rm-n">Unit 9</span><span class="rm-t">The World Wars</span><span class="rm-d">1870 – 1945</span></div><div class="rm"><span class="rm-n">Unit 10</span><span class="rm-t">Global Challenges</span><span class="rm-d">1945 – Present</span></div><div style="font-size:12px;color:var(--muted);margin-top:10px">Chapters get added here as the class reaches them, and earlier chapters stay for exam review.</div></div>
 
   <div style="display:flex;justify-content:flex-end;margin-top:16px"><button class="reset" onclick="resetAll()">Reset all World History Honors progress</button></div>
   <div class="footer">World History Honors (2109320) · Florida NGSSS Social Studies SS.912.W.4 (Renaissance, Reformation) · Organized to follow National Geographic World History: Voyages of Exploration<br><span style="opacity:.6">All study content is original. It is not reproduced from, or affiliated with, National Geographic Learning or Cengage.</span></div>
