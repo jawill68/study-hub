@@ -115,10 +115,10 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 </head>
 <body>
 <div class="app">
-  <a class="back" href="WHH_StudyHub.html">← World History Honors · Ch. 8 Hub</a>
+  <a class="back" href="WHH11_StudyHub.html">← World History Honors · Ch. 11 Hub</a>
   <div class="header">
     <div>
-      <div class="series-label">World History Honors · Chapter 8 · Glossary</div>
+      <div class="series-label">World History Honors · Chapter 11 · Glossary</div>
       <div class="page-title">Master <span>Glossary</span></div>
       <div class="page-sub" id="page-sub"></div>
     </div>
@@ -135,12 +135,12 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   </div>
   <div class="controls">
     <div class="ctrl-row"><span class="ctrl-label">SEARCH</span><input class="search-input" id="q" type="search" placeholder="Search terms, definitions, examples…" oninput="render()" aria-label="Search glossary"></div>
-    <div class="ctrl-row"><span class="ctrl-label">UNIT</span><button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button><button class="pill" data-unit="1.1" onclick="setUnit('1.1',this)">1.1</button><button class="pill" data-unit="1.2" onclick="setUnit('1.2',this)">1.2</button><button class="pill" data-unit="1.3" onclick="setUnit('1.3',this)">1.3</button><button class="pill" data-unit="1.4" onclick="setUnit('1.4',this)">1.4</button><button class="pill" data-unit="2.1" onclick="setUnit('2.1',this)">2.1</button><button class="pill" data-unit="2.2" onclick="setUnit('2.2',this)">2.2</button><button class="pill" data-unit="2.3" onclick="setUnit('2.3',this)">2.3</button><button class="pill" data-unit="2.4" onclick="setUnit('2.4',this)">2.4</button><button class="pill" data-unit="3.1" onclick="setUnit('3.1',this)">3.1</button><button class="pill" data-unit="3.2" onclick="setUnit('3.2',this)">3.2</button><button class="pill" data-unit="4.1" onclick="setUnit('4.1',this)">4.1</button><button class="pill" data-unit="4.2" onclick="setUnit('4.2',this)">4.2</button><button class="pill" data-unit="4.3" onclick="setUnit('4.3',this)">4.3</button></div>
+    <div class="ctrl-row"><span class="ctrl-label">UNIT</span><button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button><button class="pill" data-unit="1.1" onclick="setUnit('1.1',this)">1.1</button><button class="pill" data-unit="1.2" onclick="setUnit('1.2',this)">1.2</button><button class="pill" data-unit="1.3" onclick="setUnit('1.3',this)">1.3</button><button class="pill" data-unit="2.1" onclick="setUnit('2.1',this)">2.1</button><button class="pill" data-unit="2.2" onclick="setUnit('2.2',this)">2.2</button><button class="pill" data-unit="2.3" onclick="setUnit('2.3',this)">2.3</button><button class="pill" data-unit="2.4" onclick="setUnit('2.4',this)">2.4</button></div>
     <div class="ctrl-row"><span class="ctrl-label">SHOW</span><button class="pill active" data-show="all" onclick="setShow('all',this)">All terms</button><button class="pill" data-show="star" onclick="setShow('star',this)">⭐ Starred</button></div>
   </div>
   <div class="alpha" id="alpha"></div>
   <div id="list"></div>
-  <div class="footer">World History Honors (2109320) · Unit 4 · Chapter 8: Renaissance and Reformation · Florida NGSSS Social Studies SS.912.W.4 (Renaissance, Reformation)</div>
+  <div class="footer">World History Honors (2109320) · Unit 4 · Chapter 11: Africans in the Atlantic World · Florida NGSSS Social Studies SS.912.W.3 & W.4 (African kingdoms, Atlantic slave trade, resistance)</div>
 </div>
 
 <div class="overlay" id="ov" onclick="if(event.target===this)closeOv()">
@@ -155,558 +155,492 @@ function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON
 function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
 function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
 
-const UNIT_NAMES = {"1.1": "The Rise of Italian City-States", "1.2": "A Cultural Rebirth", "1.3": "Renaissance Arts", "1.4": "Explorer: Finding a Lost Leonardo", "2.1": "Renaissance Humanism", "2.2": "Raphael's School of Athens", "2.3": "DBQ: Humanist Writings", "2.4": "Renaissances Around the World", "3.1": "Martin Luther and the Protestant Reformation", "3.2": "Reforms Across Europe", "4.1": "Challenges to Habsburg Dominance", "4.2": "The Catholic Reformation", "4.3": "Global Christianities"};
+const UNIT_NAMES = {"1.1": "African History: 1500s to 1700s", "1.2": "The Songhai Empire", "1.3": "Preserving Cultural Heritage: Timbuktu", "2.1": "Traveler: Olaudah Equiano, an African Voice", "2.2": "The Middle Passage", "2.3": "A Global Commodity: Sugar", "2.4": "Resistance to Slavery"};
 const DOMAINS = {};
 const TERMS = [
 {
-"t": "Renaissance",
+"t": "Kingdom of Kongo",
 "u": "1.1",
-"d": "French for \"rebirth\" — the revival of classical Greek and Roman learning, art, and ideas that began in Italy around 1350 and spread across Europe through the 1600s.",
-"ex": "Artists studied ancient statues; scholars hunted for lost Latin manuscripts."
+"d": "A powerful Central African kingdom south of the Congo River, ruled by a king called the manikongo from the capital Mbanza Kongo.",
+"ex": "Its rulers converted to Christianity after contact with the Portuguese beginning in 1483."
 },
 {
-"t": "Humanism",
-"u": "2.1",
-"d": "An intellectual movement that studied classical texts and focused on human potential, achievement, and the subjects of grammar, rhetoric, history, poetry, and moral philosophy (the humanities).",
-"ex": "Petrarch collected and copied ancient Roman writings."
+"t": "Afonso I (Mvemba a Nzinga)",
+"u": "1.1",
+"d": "King of Kongo (ruled c. 1506–1543) who adopted Christianity, sought European learning, and tried to control Portuguese slave traders.",
+"ex": "In 1526 he wrote to the king of Portugal protesting that traders were kidnapping his free subjects, even nobles and relatives."
 },
 {
-"t": "Secular",
+"t": "Kingdom of Benin",
+"u": "1.1",
+"d": "A West African kingdom in the forest region of present-day southern Nigeria, ruled by a king called the oba from Benin City.",
+"ex": "Not the same as the modern country of Benin, which lies farther west."
+},
+{
+"t": "Oba",
+"u": "1.1",
+"d": "The title of the sacred king of Benin, who controlled trade with Europeans and was the patron of royal artists.",
+"ex": "Oba Ewuare (c. 1440s) expanded the kingdom and rebuilt Benin City."
+},
+{
+"t": "Benin Bronzes",
+"u": "1.1",
+"d": "Thousands of brass plaques, heads, and sculptures made by royal guilds in Benin, recording kings, court life, and even Portuguese visitors.",
+"ex": "Many were looted by a British force in 1897 and are now the center of debates over returning them to Nigeria."
+},
+{
+"t": "Asante Empire",
+"u": "1.1",
+"d": "An Akan state in the forest of present-day Ghana that rose around 1700 and grew rich from gold and the Atlantic trade.",
+"ex": "Its capital was Kumasi; its first great ruler was Osei Tutu."
+},
+{
+"t": "Golden Stool",
+"u": "1.1",
+"d": "The sacred symbol of the Asante nation, believed to hold the spirit of the people; no one is allowed to sit on it.",
+"ex": "Tradition says the priest Okomfo Anokye called it down from the sky to unite the Asante under Osei Tutu."
+},
+{
+"t": "Oyo Empire",
+"u": "1.1",
+"d": "A large Yoruba state in present-day southwestern Nigeria whose cavalry made it a major power in the 1600s and 1700s.",
+"ex": "Oyo forced the neighboring kingdom of Dahomey to pay it tribute for much of the 1700s."
+},
+{
+"t": "Kingdom of Dahomey",
+"u": "1.1",
+"d": "A Fon kingdom in present-day Benin, with its capital at Abomey, that expanded to the coast in the 1700s and became deeply involved in the slave trade.",
+"ex": "King Agaja captured the port of Ouidah in 1727; Dahomey's army included a regiment of women soldiers."
+},
+{
+"t": "Kingdom of Ndongo",
+"u": "1.1",
+"d": "A Mbundu kingdom in present-day Angola, ruled by a king titled the ngola — the source of the name \"Angola.\"",
+"ex": "It fought the Portuguese, who founded Luanda in 1576 as a base for slave raiding."
+},
+{
+"t": "Queen Nzinga (Njinga Mbande)",
+"u": "1.1",
+"d": "Ruler of Ndongo and Matamba (c. 1583–1663) who used diplomacy, alliances, and war to resist Portuguese conquest for decades.",
+"ex": "She allied with the Dutch, who seized Luanda in 1641, and made a peace treaty with Portugal in 1656 on her own terms."
+},
+{
+"t": "Swahili Coast",
+"u": "1.1",
+"d": "A chain of trading city-states along the East African coast — such as Kilwa, Mombasa, and Malindi — linked to Arabia, Persia, India, and China by the Indian Ocean trade.",
+"ex": "Swahili is a Bantu language with many Arabic loanwords, reflecting centuries of contact."
+},
+{
+"t": "Fort Jesus",
+"u": "1.1",
+"d": "A fortress the Portuguese built at Mombasa in 1593 to control the Swahili coast.",
+"ex": "Omani Arab forces captured it in 1698, ending Portuguese power north of Mozambique."
+},
+{
+"t": "Ethiopia",
+"u": "1.1",
+"d": "An ancient Christian kingdom in the highlands of East Africa that kept its independence throughout this period.",
+"ex": "Under Fasilides, the royal capital moved to Gondar in the 1630s."
+},
+{
+"t": "Adal Sultanate",
+"u": "1.1",
+"d": "A Muslim state east of Ethiopia whose leader Ahmad ibn Ibrahim invaded the Ethiopian highlands beginning in 1529.",
+"ex": "Ethiopia, with help from a small Portuguese force, defeated Adal in 1543."
+},
+{
+"t": "Elmina Castle",
+"u": "1.1",
+"d": "A fort the Portuguese built on the Gold Coast (present-day Ghana) in 1482, first for gold trade and later as a prison for captives awaiting slave ships.",
+"ex": "The Dutch took it in 1637; today it is a UNESCO World Heritage site and memorial."
+},
+{
+"t": "Songhai Empire",
 "u": "1.2",
-"d": "Concerned with worldly life rather than religious or spiritual matters. Renaissance culture became more secular, though most people remained deeply religious.",
-"ex": "Portraits of merchants and their families, not only saints."
+"d": "A West African empire along the Niger River that replaced Mali as the region's dominant power in the late 1400s and 1500s.",
+"ex": "At its height it was one of the largest empires in African history."
 },
 {
-"t": "Individualism",
+"t": "Gao",
 "u": "1.2",
-"d": "Emphasis on the worth, talent, and achievement of the individual person.",
-"ex": "Artists began signing their work and became famous by name."
+"d": "A city on the Niger River that served as the capital of the Songhai Empire.",
+"ex": "The tomb of Askia Muhammad, a large earthen pyramid built around 1495, still stands there."
 },
 {
-"t": "City-State",
-"u": "1.1",
-"d": "An independent city that controls the surrounding countryside. Northern Italy's wealthy city-states — Florence, Venice, Milan — were the Renaissance's birthplace.",
-"ex": "Venice grew rich from Mediterranean trade."
-},
-{
-"t": "Medici Family",
-"u": "1.1",
-"d": "A wealthy banking family that ruled Florence for much of the 1400s and spent heavily on art and learning.",
-"ex": "Lorenzo de' Medici (\"the Magnificent\") supported Michelangelo as a teenager."
-},
-{
-"t": "Patron",
-"u": "1.1",
-"d": "A person or group who financially supports artists, writers, or scholars. Patronage by merchants, rulers, and popes funded much Renaissance art.",
-"ex": "Pope Julius II commissioned the Sistine Chapel ceiling."
-},
-{
-"t": "Petrarch",
+"t": "Sunni Ali",
 "u": "1.2",
-"d": "Italian poet and scholar (1304–1374), often called the father of humanism, who searched out and promoted classical Latin texts.",
-"ex": "He wrote love sonnets in Italian and letters modeled on Cicero."
+"d": "Songhai ruler (reigned 1464–1492) and military leader who turned Songhai into an empire by conquering Timbuktu and Djenné.",
+"ex": "He used cavalry and a fleet of river boats on the Niger; Muslim scholars criticized him for mixing Islam with traditional beliefs."
 },
 {
-"t": "Vernacular",
+"t": "Askia Muhammad",
 "u": "1.2",
-"d": "The everyday language of a region (Italian, French, English) instead of Latin.",
-"ex": "Dante wrote The Divine Comedy in Italian."
+"d": "Songhai ruler (reigned 1493–1528), also called Askia the Great, who strengthened Islam, organized the government, and expanded trade and learning.",
+"ex": "He made a pilgrimage to Mecca in 1496–1497 and was recognized as a caliph's representative for West Africa."
 },
 {
-"t": "Perspective",
-"u": "1.3",
-"d": "An artistic technique that creates the illusion of depth on a flat surface, using lines that converge at a vanishing point.",
-"ex": "Brunelleschi demonstrated linear perspective in Florence in the early 1400s."
-},
-{
-"t": "Fresco",
-"u": "1.3",
-"d": "A painting made on wet plaster so the pigment bonds to the wall as it dries.",
-"ex": "Raphael's School of Athens in the Vatican."
-},
-{
-"t": "Leonardo da Vinci",
-"u": "1.3",
-"d": "Florentine painter, inventor, and scientist (1452–1519) — the model \"Renaissance man,\" skilled in many fields.",
-"ex": "Mona Lisa; The Last Supper; notebooks of anatomy and machine designs."
-},
-{
-"t": "Michelangelo",
-"u": "1.3",
-"d": "Sculptor, painter, architect, and poet (1475–1564) known for powerful, realistic human figures.",
-"ex": "The statue David; the Sistine Chapel ceiling; the dome of St. Peter's Basilica."
-},
-{
-"t": "Raphael",
-"u": "2.2",
-"d": "Painter (1483–1520) famous for balanced, graceful compositions and Madonnas.",
-"ex": "The School of Athens, showing Plato and Aristotle."
-},
-{
-"t": "Niccolò Machiavelli",
-"u": "2.3",
-"d": "Florentine diplomat (1469–1527) whose book The Prince argued that a ruler should do whatever keeps power and the state secure — judging politics by results, not ideals.",
-"ex": "Origin of the phrase \"the ends justify the means.\""
-},
-{
-"t": "Baldassare Castiglione",
-"u": "2.1",
-"d": "Author of The Book of the Courtier (1528), which described the ideal educated, graceful, multi-talented noble.",
-"ex": "Shaped the idea of the well-rounded gentleman."
-},
-{
-"t": "Renaissance Man",
-"u": "2.1",
-"d": "A person with wide knowledge and skill in many fields — the humanist ideal.",
-"ex": "Leonardo da Vinci, Michelangelo."
-},
-{
-"t": "Fall of Constantinople (1453)",
+"t": "Djenné",
 "u": "1.2",
-"d": "The capture of the Byzantine capital by the Ottoman Turks. Greek scholars fled to Italy with classical manuscripts, feeding the Renaissance.",
-"ex": "Greek texts by Plato became more available in the West."
+"d": "A trading city on an inland branch of the Niger, linked to Timbuktu and famous for its mud-brick architecture.",
+"ex": "Sunni Ali captured it after a long siege around 1473."
 },
 {
-"t": "Johannes Gutenberg",
+"t": "Trans-Saharan Trade",
+"u": "1.2",
+"d": "Camel caravan trade across the Sahara linking West Africa to North Africa and the Mediterranean.",
+"ex": "West African gold moved north; salt from mines like Taghaza moved south."
+},
+{
+"t": "Salt-Gold Trade",
+"u": "1.2",
+"d": "The exchange at the heart of West African empires: salt, scarce in the forest and savanna, traded for gold mined in the south.",
+"ex": "Songhai grew rich by taxing this trade as it passed through its cities."
+},
+{
+"t": "Battle of Tondibi (1591)",
+"u": "1.2",
+"d": "The battle in which a Moroccan army with firearms defeated the much larger Songhai army, leading to the empire's collapse.",
+"ex": "Sultan Ahmad al-Mansur sent the army across the Sahara to seize Songhai's gold sources."
+},
+{
+"t": "Ahmad al-Mansur",
+"u": "1.2",
+"d": "Sultan of Morocco (reigned 1578–1603) who sent an army across the Sahara to conquer Songhai.",
+"ex": "His invasion brought gold to Morocco for a time but failed to control the gold fields."
+},
+{
+"t": "Arquebus",
+"u": "1.2",
+"d": "An early handheld gun fired with a matchlock.",
+"ex": "Moroccan troops carrying arquebuses broke Songhai's cavalry and infantry at Tondibi."
+},
+{
+"t": "Mansa Musa",
+"u": "1.2",
+"d": "Ruler of the Mali Empire, Songhai's predecessor, who made a famous pilgrimage to Mecca in 1324 with so much gold that he became legendary across the Mediterranean world.",
+"ex": "He sponsored mosques and scholars in Timbuktu, setting the stage for its golden age under Songhai."
+},
+{
+"t": "Timbuktu",
+"u": "1.3",
+"d": "A city near the Niger River in present-day Mali that became a major trade hub and a world center of Islamic scholarship.",
+"ex": "At its height in the 1500s it had thousands of students and many private libraries."
+},
+{
+"t": "Sankore Mosque",
+"u": "1.3",
+"d": "A mosque in Timbuktu whose scholars and students formed one of the great centers of Islamic learning in Africa.",
+"ex": "Teaching took place in scholars' homes and mosque courtyards rather than in a single campus."
+},
+{
+"t": "Djinguereber Mosque",
+"u": "1.3",
+"d": "The great mud-brick mosque of Timbuktu, built in the 1320s during the reign of Mansa Musa.",
+"ex": "It is part of Timbuktu's UNESCO World Heritage site."
+},
+{
+"t": "Timbuktu Manuscripts",
+"u": "1.3",
+"d": "Hundreds of thousands of handwritten books and documents, many in Arabic and some in African languages written in Arabic script, kept by Timbuktu families for generations.",
+"ex": "Topics include law, religion, astronomy, mathematics, medicine, poetry, and business records."
+},
+{
+"t": "Ahmed Baba",
+"u": "1.3",
+"d": "Timbuktu scholar (1556–1627) who owned a huge library and wrote many works of Islamic law.",
+"ex": "After the Moroccan conquest he was taken in chains to Marrakesh; Timbuktu's manuscript research center is named for him."
+},
+{
+"t": "Ajami",
+"u": "1.3",
+"d": "Writing African languages, such as Songhai or Fulfulde, in Arabic script.",
+"ex": "Ajami manuscripts show that African languages had written traditions."
+},
+{
+"t": "Tarikh al-Sudan",
+"u": "1.3",
+"d": "A chronicle of the history of Songhai and Timbuktu written in Arabic by the Timbuktu scholar al-Sadi in the 1600s.",
+"ex": "Historians use it as a key African-written source on Songhai."
+},
+{
+"t": "2012–2013 Manuscript Rescue",
+"u": "1.3",
+"d": "A secret operation in which librarians and families smuggled hundreds of thousands of manuscripts out of Timbuktu to safety in Bamako while armed extremist groups occupied the city.",
+"ex": "Militants burned several thousand manuscripts as they fled in January 2013, but the vast majority were saved."
+},
+{
+"t": "Abdel Kader Haidara",
+"u": "1.3",
+"d": "A Timbuktu librarian and manuscript collector who organized the 2012–2013 effort to smuggle the city's manuscripts to safety.",
+"ex": "Couriers moved them in metal trunks by car and boat past checkpoints."
+},
+{
+"t": "Cultural Heritage",
+"u": "1.3",
+"d": "The objects, buildings, traditions, and knowledge a community inherits from the past and works to protect.",
+"ex": "Timbuktu's mosques and manuscripts are protected as world heritage."
+},
+{
+"t": "Olaudah Equiano",
 "u": "2.1",
-"d": "German goldsmith who developed a printing press with movable metal type around 1450.",
-"ex": "The Gutenberg Bible (c. 1455)."
+"d": "An African-born (by his own account) writer and abolitionist (c. 1745–1797) who was enslaved as a child, bought his freedom, and became one of the most important Black voices against the slave trade in Britain.",
+"ex": "He was also called Gustavus Vassa, the name given him by an enslaver."
 },
 {
-"t": "Printing Press",
+"t": "The Interesting Narrative",
 "u": "2.1",
-"d": "A machine that presses inked type onto paper. Gutenberg's version made books faster and far cheaper to produce, spreading ideas quickly.",
-"ex": "Within decades, millions of books circulated in Europe."
+"d": "Equiano's autobiography, published in London in 1789, describing his capture, the Middle Passage, enslavement, and freedom.",
+"ex": "It went through many editions and helped build public support for abolishing the slave trade."
 },
 {
-"t": "Movable Type",
+"t": "Slave Narrative",
 "u": "2.1",
-"d": "Individual metal letters that can be arranged, inked, printed, and reused for new pages.",
-"ex": "Earlier forms existed in China and Korea; Gutenberg's metal type spread rapidly in Europe."
+"d": "A firsthand account written or told by a person who had been enslaved.",
+"ex": "Equiano's and later Frederick Douglass's narratives gave readers evidence from those who suffered slavery."
 },
 {
-"t": "Northern Renaissance",
+"t": "Igbo",
 "u": "2.1",
-"d": "The spread of Renaissance ideas to Flanders, Germany, France, and England after about 1450, often with a stronger religious focus.",
-"ex": "Christian humanists studied the Bible in its original languages."
+"d": "A people of southeastern Nigeria; Equiano wrote that he was born in an Igbo village he called Essaka.",
+"ex": "His description of village life is one of the earliest written accounts of Igbo society in English."
 },
 {
-"t": "Christian Humanism",
+"t": "Birthplace Debate",
 "u": "2.1",
-"d": "A Northern Renaissance movement that used humanist scholarship to reform the Church and improve society through education and Christian values.",
-"ex": "Erasmus edited a new Greek New Testament."
+"d": "A historians' debate over where Equiano was born: he wrote that he was born in Igbo country in Africa, but a baptism record and a naval record list his birthplace as South Carolina.",
+"ex": "Some scholars argue he drew his African chapters from others' memories; many others defend his account. The question is unresolved."
 },
 {
-"t": "Desiderius Erasmus",
+"t": "Manumission",
 "u": "2.1",
-"d": "Dutch Christian humanist (c. 1466–1536) whose The Praise of Folly mocked corrupt clergy and empty rituals. He wanted reform within the Church.",
-"ex": "Saying: \"Erasmus laid the egg that Luther hatched.\""
+"d": "The legal act of an enslaver freeing an enslaved person.",
+"ex": "Equiano bought his manumission in 1766 for £40, money he earned by trading on the side."
 },
 {
-"t": "Thomas More",
-"u": "2.3",
-"d": "English humanist (1478–1535) who wrote Utopia, describing an ideal society, and was executed for refusing to accept Henry VIII as head of the Church.",
-"ex": "\"Utopia\" now means any ideal place."
-},
-{
-"t": "Jan van Eyck",
-"u": "1.3",
-"d": "Flemish painter (c. 1390–1441) known for detailed, realistic oil paintings.",
-"ex": "The Arnolfini Portrait."
-},
-{
-"t": "Oil Painting",
-"u": "1.3",
-"d": "Painting with pigments mixed in oil, allowing rich color, fine detail, and slow drying for blending — perfected by Flemish artists.",
-"ex": "Spread from Flanders to Italy."
-},
-{
-"t": "Albrecht Dürer",
-"u": "1.3",
-"d": "German artist (1471–1528) famous for detailed woodcuts and engravings that spread widely in print.",
-"ex": "Praying Hands; self-portraits."
-},
-{
-"t": "Pieter Bruegel the Elder",
-"u": "1.3",
-"d": "Flemish painter (c. 1525–1569) who showed everyday peasant life in vivid detail.",
-"ex": "The Peasant Wedding."
-},
-{
-"t": "William Shakespeare",
+"t": "Abolitionism",
 "u": "2.1",
-"d": "English playwright and poet (1564–1616) of the Elizabethan era whose plays explored human nature in the vernacular.",
-"ex": "Hamlet, Romeo and Juliet, Macbeth."
+"d": "The movement to end the slave trade and slavery.",
+"ex": "In Britain it combined Black writers like Equiano and Cugoano with Quakers and activists like Thomas Clarkson."
 },
 {
-"t": "Reformation",
-"u": "3.1",
-"d": "The 16th-century religious movement that challenged the Roman Catholic Church and led to Protestant churches.",
-"ex": "Began in 1517 in the German states."
+"t": "Sons of Africa",
+"u": "2.1",
+"d": "A group of Black abolitionists in London, including Equiano and Ottobah Cugoano, who wrote letters and petitions against the slave trade in the 1780s and 1790s.",
+"ex": "They showed that Africans led the fight against slavery, not only white reformers."
 },
 {
-"t": "Indulgence",
-"u": "3.1",
-"d": "A pardon from the Church reducing punishment in purgatory for sins. Their sale to raise money became a major grievance.",
-"ex": "Johann Tetzel sold indulgences to fund St. Peter's Basilica."
+"t": "Ottobah Cugoano",
+"u": "2.1",
+"d": "A Fante man from the Gold Coast, enslaved as a teenager, who wrote Thoughts and Sentiments on the Evil of Slavery (1787) in London.",
+"ex": "He argued that enslaved people had the right to resist."
 },
 {
-"t": "Johann Tetzel",
-"u": "3.1",
-"d": "German friar whose aggressive sale of indulgences in 1517 provoked Martin Luther's protest."
-},
-{
-"t": "Martin Luther",
-"u": "3.1",
-"d": "German monk and professor (1483–1546) who challenged Church practices and taught salvation by faith alone, with the Bible as the sole authority.",
-"ex": "Translated the Bible into German."
-},
-{
-"t": "Ninety-five Theses",
-"u": "3.1",
-"d": "Luther's 1517 list of arguments against the sale of indulgences, which spread rapidly through print.",
-"ex": "Traditionally said to have been posted in Wittenberg on October 31, 1517."
-},
-{
-"t": "Salvation by Faith Alone",
-"u": "3.1",
-"d": "Luther's teaching that people are saved by faith in God's grace, not by good works or buying indulgences."
-},
-{
-"t": "Excommunication",
-"u": "3.1",
-"d": "Official expulsion from the Church and its sacraments.",
-"ex": "Pope Leo X excommunicated Luther in 1521."
-},
-{
-"t": "Diet of Worms (1521)",
-"u": "3.1",
-"d": "An imperial assembly where Emperor Charles V demanded Luther recant. Luther refused and was declared an outlaw.",
-"ex": "Protected afterward by Frederick the Wise of Saxony."
-},
-{
-"t": "Protestant",
-"u": "3.1",
-"d": "Originally, German princes who protested limits on Lutheran reform; later, any Christian belonging to a non-Catholic church that grew from the Reformation."
-},
-{
-"t": "Peace of Augsburg (1555)",
-"u": "4.1",
-"d": "Agreement allowing each German prince to choose whether his territory would be Catholic or Lutheran.",
-"ex": "Principle: \"whose realm, his religion.\""
-},
-{
-"t": "John Calvin",
-"u": "3.2",
-"d": "French reformer (1509–1564) who led Geneva and taught predestination and strict moral discipline.",
-"ex": "Inspired Presbyterians, Huguenots, and Puritans."
-},
-{
-"t": "Predestination",
-"u": "3.2",
-"d": "Calvin's doctrine that God has already decided who will be saved."
-},
-{
-"t": "Theocracy",
-"u": "3.2",
-"d": "Government controlled by religious leaders.",
-"ex": "Calvin's Geneva enforced religious rules by law."
-},
-{
-"t": "Henry VIII",
-"u": "3.2",
-"d": "King of England (r. 1509–1547) who broke with the pope when he was refused an annulment from Catherine of Aragon, creating the Church of England.",
-"ex": "Married six times."
-},
-{
-"t": "Act of Supremacy (1534)",
-"u": "3.2",
-"d": "English law making the monarch the supreme head of the Church of England."
-},
-{
-"t": "Anglican Church",
-"u": "3.2",
-"d": "The Church of England, headed by the English monarch; firmly established under Elizabeth I."
-},
-{
-"t": "Elizabeth I",
-"u": "3.2",
-"d": "Queen of England (r. 1558–1603) who re-established the Protestant Church of England with a moderate middle path.",
-"ex": "Her reign saw Shakespeare and the defeat of the Spanish Armada (1588)."
-},
-{
-"t": "John Wycliffe & Jan Hus",
-"u": "3.1",
-"d": "Earlier critics of the Church: Wycliffe (England, 1300s) urged Bible translation into English; Hus (Bohemia) was burned in 1415. Both anticipated Luther's ideas."
-},
-{
-"t": "Anabaptists",
-"u": "3.2",
-"d": "Radical reformers who rejected infant baptism and favored separation of church and state; persecuted by Catholics and Protestants alike.",
-"ex": "Ancestors of the Mennonites and Amish."
-},
-{
-"t": "Catholic Reformation",
-"u": "4.2",
-"d": "The Catholic Church's 16th-century effort to reform itself and stop the spread of Protestantism; also called the Counter-Reformation."
-},
-{
-"t": "Council of Trent (1545–1563)",
-"u": "4.2",
-"d": "Church council that reaffirmed Catholic doctrine (faith AND works, seven sacraments, the Church's authority), ended indulgence abuses, and required better-trained clergy."
-},
-{
-"t": "Jesuits (Society of Jesus)",
-"u": "4.2",
-"d": "Religious order founded by Ignatius of Loyola in 1540, focused on education, missionary work, and defending Catholicism.",
-"ex": "Founded schools across Europe; missionaries reached Asia and the Americas."
-},
-{
-"t": "Ignatius of Loyola",
-"u": "4.2",
-"d": "Spanish noble and former soldier (1491–1556) who founded the Jesuits and wrote Spiritual Exercises."
-},
-{
-"t": "Inquisition",
-"u": "4.2",
-"d": "Church courts that investigated and punished heresy; strengthened during the Catholic Reformation."
-},
-{
-"t": "Index of Forbidden Books",
-"u": "4.2",
-"d": "A list of books Catholics were forbidden to read because they were judged dangerous to faith or morals; first issued in 1559."
-},
-{
-"t": "Huguenots",
-"u": "4.1",
-"d": "French Protestants influenced by Calvin.",
-"ex": "Thousands killed in the St. Bartholomew's Day Massacre (1572)."
-},
-{
-"t": "Edict of Nantes (1598)",
-"u": "4.1",
-"d": "Decree by Henry IV of France granting Huguenots religious toleration and civil rights, ending the French Wars of Religion."
-},
-{
-"t": "Thirty Years' War (1618–1648)",
-"u": "4.1",
-"d": "A devastating conflict in the Holy Roman Empire that began as Catholic-Protestant fighting and became a European power struggle.",
-"ex": "Some German regions lost a third or more of their population."
-},
-{
-"t": "Peace of Westphalia (1648)",
-"u": "4.1",
-"d": "Treaties ending the Thirty Years' War; recognized Calvinism alongside Lutheranism and Catholicism and strengthened independent states — a foundation of modern state sovereignty."
-},
-{
-"t": "Florence",
-"u": "1.1",
-"d": "A wealthy republic in Tuscany whose wool-cloth industry and banks made it the leading center of the early Renaissance.",
-"ex": "Home of the Medici, Brunelleschi, Leonardo, and Michelangelo."
-},
-{
-"t": "Venice",
-"u": "1.1",
-"d": "A sea-trading republic on the Adriatic that grew rich carrying goods between Europe and the eastern Mediterranean, governed by an elected leader called the doge.",
-"ex": "Its fleets and merchants linked Europe to Ottoman and Asian markets."
-},
-{
-"t": "Condottieri",
-"u": "1.1",
-"d": "Mercenary military captains hired by Italian city-states to fight their wars.",
-"ex": "Some, like Francesco Sforza, took power themselves — he became Duke of Milan."
-},
-{
-"t": "Florin",
-"u": "1.1",
-"d": "Florence's gold coin, first minted in 1252; its reliability made it a standard currency of European trade and banking."
-},
-{
-"t": "Filippo Brunelleschi",
-"u": "1.3",
-"d": "Florentine architect and engineer (1377–1446) who designed the great dome of Florence Cathedral and demonstrated linear perspective.",
-"ex": "The dome, finished in 1436, was the largest of its time and built without full wooden centering."
-},
-{
-"t": "Florence Cathedral (the Duomo)",
-"u": "1.3",
-"d": "Florence's cathedral, begun in 1296; Brunelleschi's dome crowned it in the 1400s and became a symbol of Renaissance engineering and civic pride."
-},
-{
-"t": "David (Michelangelo)",
-"u": "1.3",
-"d": "Michelangelo's marble statue (1501–1504) of the biblical hero, a symbol of the Florentine Republic standing up to stronger enemies."
-},
-{
-"t": "Sistine Chapel Ceiling",
-"u": "1.3",
-"d": "Michelangelo's frescoes (1508–1512) in the Vatican, including the Creation of Adam, commissioned by Pope Julius II."
-},
-{
-"t": "Maurizio Seracini",
-"u": "1.4",
-"d": "Italian engineer and pioneer of art diagnostics who uses scientific imaging to study artworks and search for lost ones.",
-"ex": "He searched for Leonardo's lost Battle of Anghiari in Florence's Palazzo Vecchio."
-},
-{
-"t": "The Battle of Anghiari",
-"u": "1.4",
-"d": "A mural Leonardo began around 1505 in Florence's Palazzo Vecchio, celebrating a 1440 Florentine victory. It was left unfinished and later covered or lost.",
-"ex": "Some researchers believe traces may survive behind a later wall painting by Vasari."
-},
-{
-"t": "Giorgio Vasari",
-"u": "1.4",
-"d": "Painter, architect, and author (1511–1574) who redecorated the Palazzo Vecchio's great hall and wrote Lives of the Artists, an early history of Renaissance art.",
-"ex": "A tiny phrase in one of his battle murals — \"cerca trova\" (\"seek and you shall find\") — fueled the search for Leonardo's lost work."
-},
-{
-"t": "Art Diagnostics",
-"u": "1.4",
-"d": "Using science and technology — infrared, X-rays, thermal imaging, chemical analysis — to study how artworks were made, detect hidden layers, and guide conservation."
-},
-{
-"t": "The School of Athens",
+"t": "Transatlantic Slave Trade",
 "u": "2.2",
-"d": "Raphael's fresco (c. 1509–1511) in the Vatican showing ancient Greek philosophers gathered in a grand classical hall — a visual summary of Renaissance humanism.",
-"ex": "Plato and Aristotle stand at the center under the arches."
+"d": "The forced transport of enslaved Africans across the Atlantic to the Americas, from the 1500s to the mid-1800s.",
+"ex": "About 12.5 million people were embarked; about 10.7 million survived the voyage."
 },
 {
-"t": "Plato and Aristotle (in the fresco)",
+"t": "Middle Passage",
 "u": "2.2",
-"d": "The two central figures of The School of Athens: Plato points upward (toward ideal forms), Aristotle holds his hand out flat (toward the observable world).",
-"ex": "The gestures sum up their different philosophies."
+"d": "The voyage of slave ships from Africa to the Americas — the middle leg of the triangular trade.",
+"ex": "Voyages usually lasted several weeks to a few months in crowded, disease-ridden holds."
 },
 {
-"t": "Stanza della Segnatura",
+"t": "Triangular Trade",
 "u": "2.2",
-"d": "A room in the Vatican Palace decorated by Raphael for Pope Julius II; The School of Athens faces a fresco on theology, pairing classical philosophy with Christian faith."
+"d": "A model of Atlantic trade: European goods to Africa, enslaved Africans to the Americas, and plantation crops back to Europe.",
+"ex": "Textiles and guns went to Africa; sugar, tobacco, and rum went to Europe."
 },
 {
-"t": "Pope Julius II",
+"t": "Factory (Trading Post)",
 "u": "2.2",
-"d": "Pope from 1503 to 1513, a powerful patron who commissioned Raphael's Vatican rooms, Michelangelo's Sistine ceiling, and the new St. Peter's Basilica."
+"d": "A fortified European trading station on the African coast where captives were held until ships arrived.",
+"ex": "Elmina and Cape Coast on the Gold Coast are examples."
 },
 {
-"t": "Cassandra Fedele",
+"t": "Slave Ship (Slaver)",
+"u": "2.2",
+"d": "A ship built or refitted to carry captive Africans, packed below deck on shelves with little air or light.",
+"ex": "Crews used nets, chains, and guns to prevent escape and revolt."
+},
+{
+"t": "Brookes Diagram",
+"u": "2.2",
+"d": "A 1788 abolitionist print showing how hundreds of Africans could be packed into the British slave ship Brookes.",
+"ex": "It became one of the most powerful images of the abolition movement."
+},
+{
+"t": "Zong Massacre (1781)",
+"u": "2.2",
+"d": "The killing of more than 130 enslaved Africans thrown overboard from the British ship Zong so the owners could claim insurance.",
+"ex": "Equiano helped bring the case to the attention of abolitionist Granville Sharp."
+},
+{
+"t": "Asiento",
+"u": "2.2",
+"d": "A Spanish license allowing a person, company, or foreign nation to sell enslaved Africans in Spain's American colonies.",
+"ex": "In 1518 Charles V authorized shipping captives directly from Africa to the Americas."
+},
+{
+"t": "Royal African Company",
+"u": "2.2",
+"d": "An English company chartered in 1672 with a monopoly on English trade in West Africa, including the slave trade.",
+"ex": "It shipped more Africans than any other single institution in the history of the trade."
+},
+{
+"t": "Trans-Atlantic Slave Trade Database",
+"u": "2.2",
+"d": "A research database of more than 36,000 slave-ship voyages that historians use to estimate the size and routes of the trade.",
+"ex": "It is the source of the figures 12.5 million embarked and 10.7 million arrived."
+},
+{
+"t": "Mortality Rate",
+"u": "2.2",
+"d": "The share of people who died; on the Middle Passage, roughly one in seven captives died on average, and many more died before boarding or soon after arrival.",
+"ex": "Dysentery (the \"bloody flux\"), smallpox, and dehydration were leading causes."
+},
+{
+"t": "Sugarcane",
 "u": "2.3",
-"d": "Venetian humanist scholar (c. 1465–1558), among the most celebrated learned women of her time, known for Latin orations praising the value of learning.",
-"ex": "Delivered an oration at the University of Padua in the 1480s."
+"d": "A tall tropical grass whose juice is boiled into sugar; it was first domesticated in New Guinea and spread through India, the Islamic world, and the Mediterranean.",
+"ex": "Columbus carried sugarcane to Hispaniola on his second voyage in 1493."
 },
 {
-"t": "Primary Source",
+"t": "Commodity",
 "u": "2.3",
-"d": "A document or object created during the time being studied, by someone with direct experience.",
-"ex": "The Prince (1513); Utopia (1516)."
+"d": "A raw material or basic good bought and sold in large quantities.",
+"ex": "Sugar turned from a rare luxury into a mass commodity in Europe by the 1700s."
 },
 {
-"t": "Sourcing (HIPP)",
+"t": "Plantation",
 "u": "2.3",
-"d": "Analyzing a source's Historical context, Intended audience, Purpose, and Point of view before using it as evidence."
+"d": "A large farm that grows a single cash crop for export, using large numbers of workers — in the Americas, mostly enslaved Africans.",
+"ex": "Sugar plantations combined field work with a mill and boiling house, making them early factories."
 },
 {
-"t": "Cultural Flowering",
+"t": "São Tomé",
+"u": "2.3",
+"d": "An island in the Gulf of Guinea where the Portuguese built sugar plantations worked by enslaved Africans in the late 1400s and 1500s.",
+"ex": "It served as a model for the plantation system later carried to Brazil."
+},
+{
+"t": "Engenho",
+"u": "2.3",
+"d": "Portuguese word for a sugar mill and the plantation around it, especially in Brazil.",
+"ex": "Northeastern Brazil, around Pernambuco and Bahia, was the world's leading sugar producer in the late 1500s and early 1600s."
+},
+{
+"t": "Sugar Revolution",
+"u": "2.3",
+"d": "The rapid shift in the 1600s, beginning in Barbados in the 1640s, from small farms to large sugar plantations worked by enslaved Africans.",
+"ex": "Barbados's population changed from mostly European to mostly African within a few decades."
+},
+{
+"t": "Boiling House",
+"u": "2.3",
+"d": "The hot, dangerous building where cane juice was boiled down into sugar crystals and molasses.",
+"ex": "Workers labored around the clock during harvest, risking severe burns."
+},
+{
+"t": "Molasses and Rum",
+"u": "2.3",
+"d": "Molasses is the dark syrup left after sugar crystallizes; it was distilled into rum.",
+"ex": "Rum was traded in North America, Europe, and Africa, linking sugar to other Atlantic trades."
+},
+{
+"t": "Cash Crop",
+"u": "2.3",
+"d": "A crop grown to sell for profit rather than to feed the farmer.",
+"ex": "Sugar, tobacco, and later cotton were the major cash crops of the Atlantic world."
+},
+{
+"t": "Maroons",
 "u": "2.4",
-"d": "A period of unusual achievement in art, science, and learning. Historians use \"renaissance\" loosely for such eras in many societies, not just Europe.",
-"ex": "Comparing Europe's Renaissance with flowerings elsewhere avoids treating Europe as the only center of culture."
+"d": "People who escaped slavery and formed independent communities in mountains, forests, or swamps.",
+"ex": "Maroon communities existed in Brazil, Jamaica, Suriname, Florida, and elsewhere."
 },
 {
-"t": "Ulugh Beg",
+"t": "Palmares",
 "u": "2.4",
-"d": "Timurid ruler and astronomer (1394–1449) who built a major observatory in Samarkand and produced a star catalog of remarkable accuracy."
+"d": "The largest and longest-lasting maroon community (quilombo) in Brazil, in the hills of Pernambuco, from about 1605 until 1694.",
+"ex": "Its leaders Ganga Zumba and Zumbi resisted Portuguese and Dutch attacks for decades."
 },
 {
-"t": "Mimar Sinan",
+"t": "Quilombo",
 "u": "2.4",
-"d": "Chief architect of the Ottoman Empire in the 1500s who designed hundreds of buildings, including the Süleymaniye Mosque in Istanbul."
+"d": "The Brazilian term for a maroon community.",
+"ex": "Some quilombo descendant communities still hold land rights in Brazil today."
 },
 {
-"t": "German Peasants' War (1524–1525)",
-"u": "3.1",
-"d": "A large uprising of German peasants who cited Reformation ideas in demanding relief from lords' burdens. Luther condemned the rebels, and princes crushed the revolt.",
-"ex": "Luther's pamphlet against the \"robbing and murdering hordes\" urged princes to put it down."
+"t": "Zumbi",
+"u": "2.4",
+"d": "The last leader of Palmares, who refused a peace deal that would have returned some people to slavery and fought until he was killed in 1695.",
+"ex": "Brazil marks November 20, the day of his death, as Black Consciousness Day."
 },
 {
-"t": "Huldrych Zwingli",
-"u": "3.2",
-"d": "Swiss reformer (1484–1531) who led the Reformation in Zurich, rejecting practices not found in Scripture."
+"t": "Jamaican Maroons",
+"u": "2.4",
+"d": "Communities of formerly enslaved Africans in Jamaica's mountains who fought the British in the First Maroon War and won treaties recognizing their freedom and land in 1739–1740.",
+"ex": "Leaders included Cudjoe in the west and Nanny in the east."
 },
 {
-"t": "Habsburg Dynasty",
-"u": "4.1",
-"d": "An Austrian ruling family that, through marriage and inheritance, controlled the Holy Roman Empire, Spain, the Netherlands, much of Italy, and Spain's American empire in the 1500s."
+"t": "Queen Nanny (Nanny of the Maroons)",
+"u": "2.4",
+"d": "An Akan-born leader of the Windward Maroons in eastern Jamaica in the early 1700s, famous for guerrilla tactics against British troops.",
+"ex": "She is the only woman among Jamaica's official National Heroes."
 },
 {
-"t": "Charles V",
-"u": "4.1",
-"d": "Habsburg ruler (1500–1558) who was Holy Roman Emperor and King of Spain — the most powerful monarch in Europe — yet could not stop Lutheranism, French rivalry, or Ottoman pressure.",
-"ex": "Faced Luther at the Diet of Worms; accepted the Peace of Augsburg; abdicated in 1556."
+"t": "Shipboard Revolt",
+"u": "2.4",
+"d": "An uprising by captives aboard a slave ship, usually near the African coast before the ship sailed far out to sea.",
+"ex": "Historians estimate that roughly one in ten voyages experienced a revolt."
 },
 {
-"t": "Philip II",
-"u": "4.1",
-"d": "King of Spain (r. 1556–1598), Charles V's son, a champion of Catholicism who fought the Dutch Revolt and sent the Spanish Armada against England."
+"t": "Stono Rebellion (1739)",
+"u": "2.4",
+"d": "The largest slave uprising in Britain's mainland North American colonies, in South Carolina, led by an enslaved man named Jemmy.",
+"ex": "The rebels, many likely from Kongo, marched toward Spanish Florida, where freedom was promised; South Carolina then passed the harsh Negro Act of 1740."
 },
 {
-"t": "Dutch Revolt",
-"u": "4.1",
-"d": "The rebellion of the mostly Protestant northern Netherlands against Spanish Habsburg rule, beginning in 1568; the Dutch Republic declared independence in 1581.",
-"ex": "Fueled by religion, taxes, and local rights."
+"t": "Fort Mose",
+"u": "2.4",
+"d": "A settlement north of St. Augustine, Florida, founded in 1738 by Spanish authorities for Africans who escaped slavery in the British colonies.",
+"ex": "It was the first legally sanctioned free Black town in what is now the United States."
 },
 {
-"t": "Spanish Armada (1588)",
-"u": "4.1",
-"d": "The great fleet Philip II sent to invade Protestant England; it was defeated by English ships and storms, weakening Spain's prestige."
+"t": "Everyday Resistance",
+"u": "2.4",
+"d": "Daily acts of defiance by enslaved people, such as working slowly, breaking tools, pretending illness, running away for short periods, or keeping secret traditions.",
+"ex": "These acts were safer than open revolt but steadily challenged enslavers' control."
 },
 {
-"t": "Siege of Vienna (1529)",
-"u": "4.1",
-"d": "The Ottoman Sultan Süleyman's failed attempt to capture Vienna, the Habsburgs' key city — showing Ottoman power pressing Europe from the east."
+"t": "African Diaspora",
+"u": "2.4",
+"d": "The scattering of African peoples and their descendants around the world, especially to the Americas through the slave trade.",
+"ex": "Diaspora cultures blended African, European, and Indigenous American traditions."
 },
 {
-"t": "Battle of Lepanto (1571)",
-"u": "4.1",
-"d": "A naval battle in which a Spanish-led Holy League fleet defeated the Ottoman navy in the Mediterranean."
-},
-{
-"t": "Defenestration of Prague (1618)",
-"u": "4.1",
-"d": "Protestant nobles threw two Catholic Habsburg officials out of a castle window in Prague — the spark of the Thirty Years' War."
-},
-{
-"t": "Francis Xavier",
-"u": "4.3",
-"d": "Jesuit missionary (1506–1552) who preached in India, Southeast Asia, and Japan, arriving in Japan in 1549."
-},
-{
-"t": "Matteo Ricci",
-"u": "4.3",
-"d": "Italian Jesuit (1552–1610) who lived in Ming China, learned Chinese, shared European science and maps, and adapted Christianity to Chinese culture; reached Beijing in 1601."
-},
-{
-"t": "Afonso I of Kongo",
-"u": "4.3",
-"d": "King of Kongo (r. c. 1509–1542) who adopted Catholicism and corresponded with Portugal's king, while protesting the slave trade's damage to his kingdom."
-},
-{
-"t": "Ethiopian Orthodox Church",
-"u": "4.3",
-"d": "An ancient African Christian church dating to the 300s C.E., showing that Christianity had deep non-European roots long before the Reformation era."
-},
-{
-"t": "Congregation for the Propagation of the Faith (1622)",
-"u": "4.3",
-"d": "A Vatican office created in 1622 to organize Catholic missionary work around the world."
+"t": "Gullah Geechee",
+"u": "2.4",
+"d": "A culture and Creole language developed by people of African descent on the coasts and Sea Islands of South Carolina, Georgia, and northeast Florida.",
+"ex": "It preserves many West and Central African words, foods, crafts, and storytelling traditions."
 },
 {
 "t": "Syncretism",
-"u": "4.3",
-"d": "The blending of different religious or cultural traditions.",
-"ex": "Indigenous peoples in the Americas often combined Catholic saints with older beliefs and practices."
+"u": "2.4",
+"d": "The blending of different religious or cultural traditions into something new.",
+"ex": "Vodou in Haiti, Candomblé in Brazil, and Santería in Cuba combine African religions with Catholic elements."
+},
+{
+"t": "Tacky's War (1760)",
+"u": "2.4",
+"d": "A major uprising in Jamaica led by an Akan man named Tacky, one of the largest slave revolts in the British Caribbean before 1800.",
+"ex": "It took British forces months to put it down."
 }
 ].sort((a,b)=>a.t.localeCompare(b.t));
 const TUTOR_NAME = "CLIO";
-const LS_STAR='whh_glossary_starred', LS_QS='whh_glossary_quizscore', LS_SRS='whh_glossary_srs', LS_QT='whh_glossary_quiztotals';
+const LS_STAR='whh_c11_glossary_starred', LS_QS='whh_c11_glossary_quizscore', LS_SRS='whh_c11_glossary_srs', LS_QT='whh_c11_glossary_quiztotals';
 let starred = new Set(lsGet(LS_STAR,[]));
 let srs = lsGet(LS_SRS,{});
 let qt = lsGet(LS_QT,{c:0,t:0});

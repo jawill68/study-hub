@@ -100,10 +100,10 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 </head>
 <body>
 <div class="app">
-  <a class="back" href="WHH_StudyHub.html">← World History Honors · Ch. 8 Hub</a>
+  <a class="back" href="WHH11_StudyHub.html">← World History Honors · Ch. 11 Hub</a>
   <div class="header">
     <div>
-      <div class="series-label">World History Honors · Chapter 8 · Common Confusions</div>
+      <div class="series-label">World History Honors · Chapter 11 · Common Confusions</div>
       <div class="page-title">Common <span>Confusions</span></div>
       <div class="page-sub" id="page-sub"></div>
     </div>
@@ -113,7 +113,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     </div>
   </div>
 
-  <div class="about-banner">📎 Look-alike ideas, side by side: the one line that tells them apart, plus a memory hook. Tap <b>Got it</b> when a pair clicks. Then try <b>⚡ Speed Sort</b>: you see a definition and have 8 seconds to name the right term. For <i>why</i> students mix things up, see the <a href="WHH_Mistakes_Autopsy.html">Mistakes Autopsy</a>.</div>
+  <div class="about-banner">📎 Look-alike ideas, side by side: the one line that tells them apart, plus a memory hook. Tap <b>Got it</b> when a pair clicks. Then try <b>⚡ Speed Sort</b>: you see a definition and have 8 seconds to name the right term. For <i>why</i> students mix things up, see the <a href="WHH11_Mistakes_Autopsy.html">Mistakes Autopsy</a>.</div>
 
   <div class="stats-row">
     <div class="stat-chip"><div class="stat-num" id="s-total">—</div><div class="stat-lbl">TERM PAIRS</div></div>
@@ -123,7 +123,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 
   <div class="controls">
     <div class="ctrl-row"><span class="ctrl-label">SEARCH</span><input class="search-input" id="q" type="search" placeholder="Search either term, definition, or hook…" oninput="render()" aria-label="Search pairs"></div>
-    <div class="ctrl-row"><span class="ctrl-label">UNIT</span><button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button><button class="pill" data-unit="1.1" onclick="setUnit('1.1',this)">1.1</button><button class="pill" data-unit="1.2" onclick="setUnit('1.2',this)">1.2</button><button class="pill" data-unit="1.3" onclick="setUnit('1.3',this)">1.3</button><button class="pill" data-unit="1.4" onclick="setUnit('1.4',this)">1.4</button><button class="pill" data-unit="2.1" onclick="setUnit('2.1',this)">2.1</button><button class="pill" data-unit="2.2" onclick="setUnit('2.2',this)">2.2</button><button class="pill" data-unit="2.3" onclick="setUnit('2.3',this)">2.3</button><button class="pill" data-unit="2.4" onclick="setUnit('2.4',this)">2.4</button><button class="pill" data-unit="3.1" onclick="setUnit('3.1',this)">3.1</button><button class="pill" data-unit="3.2" onclick="setUnit('3.2',this)">3.2</button><button class="pill" data-unit="4.1" onclick="setUnit('4.1',this)">4.1</button><button class="pill" data-unit="4.2" onclick="setUnit('4.2',this)">4.2</button><button class="pill" data-unit="4.3" onclick="setUnit('4.3',this)">4.3</button></div>
+    <div class="ctrl-row"><span class="ctrl-label">UNIT</span><button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button><button class="pill" data-unit="1.1" onclick="setUnit('1.1',this)">1.1</button><button class="pill" data-unit="1.2" onclick="setUnit('1.2',this)">1.2</button><button class="pill" data-unit="1.3" onclick="setUnit('1.3',this)">1.3</button><button class="pill" data-unit="2.1" onclick="setUnit('2.1',this)">2.1</button><button class="pill" data-unit="2.2" onclick="setUnit('2.2',this)">2.2</button><button class="pill" data-unit="2.3" onclick="setUnit('2.3',this)">2.3</button><button class="pill" data-unit="2.4" onclick="setUnit('2.4',this)">2.4</button></div>
     <div class="ctrl-row"><span class="ctrl-label">SHOW</span>
       <button class="pill active" data-show="all" onclick="setShow('all',this)">All</button>
       <button class="pill" data-show="todo" onclick="setShow('todo',this)">Still learning</button>
@@ -132,7 +132,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   </div>
   <div id="list"></div>
 
-  <div class="footer">World History Honors (2109320) · Unit 4 · Chapter 8: Renaissance and Reformation · Florida NGSSS Social Studies SS.912.W.4 (Renaissance, Reformation)</div>
+  <div class="footer">World History Honors (2109320) · Unit 4 · Chapter 11: Africans in the Atlantic World · Florida NGSSS Social Studies SS.912.W.3 & W.4 (African kingdoms, Atlantic slave trade, resistance)</div>
 </div>
 
 <div class="overlay" id="sort-ov" onclick="if(event.target===this)closeSort()">
@@ -151,148 +151,119 @@ function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON
 function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
 function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
 
-const UNIT_NAMES = {"1.1": "The Rise of Italian City-States", "1.2": "A Cultural Rebirth", "1.3": "Renaissance Arts", "1.4": "Explorer: Finding a Lost Leonardo", "2.1": "Renaissance Humanism", "2.2": "Raphael's School of Athens", "2.3": "DBQ: Humanist Writings", "2.4": "Renaissances Around the World", "3.1": "Martin Luther and the Protestant Reformation", "3.2": "Reforms Across Europe", "4.1": "Challenges to Habsburg Dominance", "4.2": "The Catholic Reformation", "4.3": "Global Christianities"};
+const UNIT_NAMES = {"1.1": "African History: 1500s to 1700s", "1.2": "The Songhai Empire", "1.3": "Preserving Cultural Heritage: Timbuktu", "2.1": "Traveler: Olaudah Equiano, an African Voice", "2.2": "The Middle Passage", "2.3": "A Global Commodity: Sugar", "2.4": "Resistance to Slavery"};
 const PAIRS = [
 {
 "u": "1.2",
-"a": "Renaissance",
-"da": "Rebirth of classical learning and art, starting in Italy (c. 1350).",
-"b": "Reformation",
-"db": "Religious movement that split Western Christianity, starting in 1517.",
-"dist": "The Renaissance was cultural and intellectual; the Reformation was religious. The Renaissance came first and helped cause the Reformation.",
-"hook": "Renaissance = rebirth of ideas. Reformation = re-forming the Church."
+"a": "Sunni Ali",
+"da": "Songhai ruler 1464–1492; conqueror who took Timbuktu and Djenné.",
+"b": "Askia Muhammad",
+"db": "Songhai ruler 1493–1528; organizer who strengthened Islam and government.",
+"dist": "Sunni Ali built the empire by conquest; Askia Muhammad organized it and promoted Islamic learning.",
+"hook": "Ali attacks. Askia administers."
 },
 {
-"u": "2.1",
-"a": "Humanism",
-"da": "Study of classical texts and human potential; most humanists were still Christian.",
-"b": "Secularism",
-"db": "Focus on worldly rather than religious life.",
-"dist": "Humanism is a method of study; secularism is an emphasis. Humanism encouraged secular interests but did not reject religion.",
-"hook": "Humanism studies people. Secular means not religious."
+"u": "1.2",
+"a": "Mali Empire",
+"da": "Earlier West African empire; Mansa Musa's 1324 hajj.",
+"b": "Songhai Empire",
+"db": "Later empire on the Niger; capital Gao; fell after Tondibi (1591).",
+"dist": "Mali came first and declined in the 1400s; Songhai replaced it as the dominant power.",
+"hook": "Mali, then Songhai — Musa before the Askias."
 },
 {
 "u": "1.1",
-"a": "Patron",
-"da": "Person who pays for and supports art or scholarship.",
-"ea": "The Medici",
-"b": "Artist",
-"db": "Person who creates the work.",
-"eb": "Michelangelo",
-"dist": "Patrons funded the Renaissance; artists created it. Patrons often chose the subject.",
-"hook": "Patron pays. Artist makes."
+"a": "Kingdom of Kongo",
+"da": "Central African kingdom; Christian kings like Afonso I.",
+"b": "Kingdom of Ndongo",
+"db": "Mbundu kingdom to the south (Angola); Queen Nzinga.",
+"dist": "Kongo allied with Portugal and adopted Christianity; Ndongo was the main target of Portuguese war from Luanda.",
+"hook": "Kongo = Afonso's letters. Ndongo = Nzinga's wars."
 },
 {
-"u": "2.3",
-"a": "Machiavelli",
-"da": "Italian political writer — The Prince; power politics.",
-"b": "Michelangelo",
-"db": "Italian artist — David, the Sistine Chapel.",
-"dist": "Similar names, totally different fields.",
-"hook": "Machiavelli = power. Michelangelo = paint and marble."
+"u": "1.1",
+"a": "Kingdom of Benin",
+"da": "Historic forest kingdom in today's Nigeria; ruled by the oba.",
+"b": "Republic of Benin",
+"db": "Modern country to the west, where the Kingdom of Dahomey was.",
+"dist": "Same name, different places: the historic kingdom is in Nigeria; the modern country took its name from the Bight of Benin.",
+"hook": "Benin bronzes come from Nigeria."
 },
 {
-"u": "2.1",
-"a": "Italian Renaissance",
-"da": "Classical revival, more secular and civic subjects, patrons in city-states.",
-"b": "Northern Renaissance",
-"db": "Spread north after 1450, stronger religious focus, Christian humanism, oil painting.",
-"dist": "Same humanist roots; the north applied them more to religious reform.",
-"hook": "South: civic and classical. North: Christian and reform-minded."
+"u": "1.1",
+"a": "Asante",
+"da": "Akan empire in today's Ghana; Golden Stool; capital Kumasi.",
+"b": "Dahomey",
+"db": "Fon kingdom in today's Benin; capital Abomey; seized Ouidah in 1727.",
+"dist": "Both were 1700s West African powers tied to Atlantic trade, but Asante was in the Gold Coast forest and Dahomey on the Slave Coast farther east.",
+"hook": "Asante has the Stool; Dahomey took the coast."
 },
 {
-"u": "3.1",
-"a": "Erasmus",
-"da": "Criticized Church abuses but stayed Catholic and wanted reform from within.",
-"b": "Luther",
-"db": "Rejected papal authority and founded a new church tradition.",
-"dist": "Both criticized the Church; only Luther broke away.",
-"hook": "Erasmus: reform it. Luther: leave it."
+"u": "1.1",
+"a": "Swahili Coast",
+"da": "East African trading cities on the Indian Ocean.",
+"b": "Gold Coast",
+"db": "West African coast (today's Ghana) on the Atlantic; site of Elmina.",
+"dist": "The Swahili Coast faced the Indian Ocean and Asia; the Gold Coast faced the Atlantic and became central to the slave trade.",
+"hook": "Swahili = east and Indian Ocean. Gold Coast = west and Atlantic."
 },
 {
-"u": "3.2",
-"a": "Luther",
-"da": "German; salvation by faith alone; Bible as sole authority; Lutheran churches.",
-"b": "Calvin",
-"db": "French (in Geneva); predestination; strict moral discipline; Reformed and Presbyterian churches.",
-"dist": "Both rejected papal authority. Calvin stressed predestination and a disciplined godly community.",
-"hook": "Luther = faith alone. Calvin = chosen in advance."
-},
-{
-"u": "3.1",
-"a": "Indulgence",
-"da": "A Church pardon reducing punishment for sins; its sale triggered Luther's protest.",
-"b": "Excommunication",
-"db": "Expelling someone from the Church.",
-"dist": "One reduces punishment; the other cuts a person off. The pope excommunicated Luther for attacking indulgences.",
-"hook": "Indulgence lets you off. Excommunication kicks you out."
-},
-{
-"u": "4.1",
-"a": "Peace of Augsburg (1555)",
-"da": "German princes choose Catholic or Lutheran for their land.",
-"b": "Peace of Westphalia (1648)",
-"db": "Ends the Thirty Years' War; adds Calvinism; strengthens state sovereignty.",
-"dist": "Augsburg was a German compromise for two faiths; Westphalia was a European settlement for three faiths and a new state system.",
-"hook": "Augsburg: 2 faiths, Germany. Westphalia: 3 faiths, Europe."
-},
-{
-"u": "3.2",
-"a": "Lutheran Reformation",
-"da": "Began as religious protest by a monk (1517).",
-"b": "English Reformation",
-"db": "Began as a royal decision by Henry VIII (1534) over his marriage and succession.",
-"dist": "Germany's started from theology; England's from politics.",
-"hook": "Germany: a monk's protest. England: a king's divorce."
-},
-{
-"u": "4.2",
-"a": "Council of Trent",
-"da": "Church council that reaffirmed doctrine and reformed abuses (1545–1563).",
-"b": "Diet of Worms",
-"db": "Imperial assembly where Luther refused to recant (1521).",
-"dist": "Trent was the Catholic response; Worms was the confrontation with Luther.",
-"hook": "Worms: Luther says no. Trent: the Church answers."
-},
-{
-"u": "4.2",
-"a": "Huguenots",
-"da": "French Calvinist Protestants.",
-"b": "Jesuits",
-"db": "Catholic religious order focused on education and missions.",
-"dist": "They were on opposite sides of the religious divide.",
-"hook": "Huguenots protest. Jesuits teach the Catholic faith."
+"u": "1.3",
+"a": "Sankore Mosque",
+"da": "Center of scholars and students in Timbuktu.",
+"b": "Djinguereber Mosque",
+"db": "Great mosque of Timbuktu built in the 1320s under Mansa Musa.",
+"dist": "Both are historic Timbuktu mosques; Sankore is most associated with teaching and scholarship.",
+"hook": "Sankore = scholars."
 },
 {
 "u": "2.2",
-"a": "The School of Athens (Raphael)",
-"da": "Vatican fresco of ancient philosophers in a classical hall.",
-"b": "Sistine Chapel ceiling (Michelangelo)",
-"db": "Vatican ceiling frescoes of scenes from Genesis.",
-"dist": "Both were painted in the Vatican for Pope Julius II at the same time — Raphael on philosophy, Michelangelo on biblical scenes.",
-"hook": "Raphael = philosophers. Michelangelo = Genesis overhead."
+"a": "Triangular Trade",
+"da": "Three-leg model: Europe → Africa → Americas → Europe.",
+"b": "Middle Passage",
+"db": "The forced voyage of captives from Africa to the Americas.",
+"dist": "The triangular trade is the whole system; the Middle Passage is one leg of it — the one carrying people.",
+"hook": "The Passage is the middle of the triangle."
 },
 {
-"u": "4.1",
-"a": "Charles V",
-"da": "Holy Roman Emperor and King of Spain; faced Luther; abdicated in 1556.",
-"b": "Philip II",
-"db": "His son, King of Spain; fought the Dutch Revolt; sent the Armada (1588).",
-"dist": "Father and son: Charles held the whole Habsburg inheritance; Philip ruled the Spanish half.",
-"hook": "Charles = Luther era. Philip = Armada era."
+"u": "2.2",
+"a": "Embarked (~12.5 million)",
+"da": "Africans forced aboard slave ships.",
+"b": "Arrived (~10.7 million)",
+"db": "Africans who survived the voyage to the Americas.",
+"dist": "The difference — about 1.8 million — is the number who died at sea.",
+"hook": "Boarded minus landed = died on the voyage."
 },
 {
-"u": "4.3",
-"a": "Francis Xavier",
-"da": "Jesuit missionary to India, Southeast Asia, and Japan (1549).",
-"b": "Matteo Ricci",
-"db": "Jesuit in Ming China who adapted to Chinese culture; reached Beijing in 1601.",
-"dist": "Both Jesuits in Asia; Xavier pioneered Japan, Ricci China.",
-"hook": "Xavier → Japan. Ricci → China."
+"u": "2.4",
+"a": "Maroon Community",
+"da": "An independent settlement of people who escaped slavery.",
+"b": "Everyday Resistance",
+"db": "Daily acts of defiance by people still enslaved.",
+"dist": "Maroons left slavery and built free communities; everyday resistance happened inside slavery.",
+"hook": "Maroons got out. Everyday resistance pushed back from within."
+},
+{
+"u": "2.4",
+"a": "Palmares",
+"da": "Brazilian quilombo, c. 1605–1694; Zumbi.",
+"b": "Jamaican Maroons",
+"db": "Mountain communities that won treaties with Britain in 1739–1740; Nanny and Cudjoe.",
+"dist": "Palmares was eventually destroyed by force; the Jamaican Maroons won recognized freedom by treaty.",
+"hook": "Palmares fell; the Maroons signed."
+},
+{
+"u": "2.4",
+"a": "Stono Rebellion",
+"da": "1739 uprising in South Carolina, led by Jemmy.",
+"b": "Fort Mose",
+"db": "1738 free Black settlement near St. Augustine, Florida.",
+"dist": "Stono rebels were trying to reach Spanish Florida; Fort Mose was where freedom-seekers who made it there could live.",
+"hook": "Stono marched toward Mose."
 }
 ];
-const LS_GOT = 'whh_confusions_got';
-const LS_BEST = 'whh_confusions_best';
+const LS_GOT = 'whh_c11_confusions_got';
+const LS_BEST = 'whh_c11_confusions_best';
 let got = new Set(lsGet(LS_GOT, []));
 let curUnit = 'all', curShow = 'all';
 function key(p){ return p.a + ' | ' + p.b; }

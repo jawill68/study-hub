@@ -105,9 +105,9 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 </head>
 <body>
 <div class="app">
-  <a class="back" href="WHH_StudyHub.html">← World History Honors · Ch. 8 Hub</a>
+  <a class="back" href="WHH10_StudyHub.html">← World History Honors · Ch. 10 Hub</a>
   <div class="header">
-    <div><div class="series-label">World History Honors · Chapter 8 · Mistakes Autopsy</div><div class="page-title">Mistakes <span>Autopsy</span></div><div class="page-sub" id="page-sub"></div></div>
+    <div><div class="series-label">World History Honors · Chapter 10 · Mistakes Autopsy</div><div class="page-title">Mistakes <span>Autopsy</span></div><div class="page-sub" id="page-sub"></div></div>
     <div style="display:flex;gap:9px;align-items:center;flex-wrap:wrap"><div data-game-hud></div><button class="btn btn-accent" onclick="openFM()">🔍 Find My Mistake</button></div>
   </div>
   <div class="about-banner">🔬 Each card dissects a high-frequency mistake: the scenario, the wrong thinking, the right thinking, <b>why</b> students fall for it, and a Memory Lock to make it stick. Open a card, read it, then <b>Mark mastered</b> once you could explain it to a friend. <b>Find My Mistake</b> tests whether you can spot the right thinking under pressure.</div>
@@ -117,11 +117,11 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     <div class="stat-chip"><div class="stat-num" style="color:var(--amber)" id="s-fm">—</div><div class="stat-lbl">LAST DIAGNOSTIC</div></div>
   </div>
   <div class="controls">
-    <div class="ctrl-row"><span class="ctrl-label">UNIT</span><button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button><button class="pill" data-unit="1.2" onclick="setUnit('1.2',this)">1.2</button><button class="pill" data-unit="2.1" onclick="setUnit('2.1',this)">2.1</button><button class="pill" data-unit="2.4" onclick="setUnit('2.4',this)">2.4</button><button class="pill" data-unit="3.1" onclick="setUnit('3.1',this)">3.1</button><button class="pill" data-unit="3.2" onclick="setUnit('3.2',this)">3.2</button><button class="pill" data-unit="4.1" onclick="setUnit('4.1',this)">4.1</button><button class="pill" data-unit="4.2" onclick="setUnit('4.2',this)">4.2</button><button class="pill" data-unit="4.3" onclick="setUnit('4.3',this)">4.3</button></div>
+    <div class="ctrl-row"><span class="ctrl-label">UNIT</span><button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button><button class="pill" data-unit="1.1" onclick="setUnit('1.1',this)">1.1</button><button class="pill" data-unit="1.2" onclick="setUnit('1.2',this)">1.2</button><button class="pill" data-unit="1.3" onclick="setUnit('1.3',this)">1.3</button><button class="pill" data-unit="1.4" onclick="setUnit('1.4',this)">1.4</button><button class="pill" data-unit="2.1" onclick="setUnit('2.1',this)">2.1</button><button class="pill" data-unit="2.2" onclick="setUnit('2.2',this)">2.2</button><button class="pill" data-unit="3.1" onclick="setUnit('3.1',this)">3.1</button><button class="pill" data-unit="3.2" onclick="setUnit('3.2',this)">3.2</button><button class="pill" data-unit="3.4" onclick="setUnit('3.4',this)">3.4</button></div>
     <div class="ctrl-row"><span class="ctrl-label">SHOW</span><button class="pill active" data-st="all" onclick="setSt('all',this)">All</button><button class="pill" data-st="high" onclick="setSt('high',this)">🔥 High frequency</button><button class="pill" data-st="todo" onclick="setSt('todo',this)">Not mastered</button><button class="pill" data-st="done" onclick="setSt('done',this)">Mastered</button></div>
   </div>
   <div id="list"></div>
-  <div class="footer">World History Honors (2109320) · Unit 4 · Chapter 8: Renaissance and Reformation · Florida NGSSS Social Studies SS.912.W.4 (Renaissance, Reformation)</div>
+  <div class="footer">World History Honors (2109320) · Unit 4 · Chapter 10: Age of Maritime Expansion · Florida NGSSS Social Studies SS.912.W.4 (exploration, Columbian Exchange, colonization)</div>
 </div>
 <div class="overlay" id="ov" onclick="if(event.target===this)closeFM()"><div class="modal" role="dialog" aria-modal="true" id="modal"></div></div>
 <script>
@@ -132,140 +132,110 @@ function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON
 function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
 function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
 
-const UNIT_NAMES={"1.1": "The Rise of Italian City-States", "1.2": "A Cultural Rebirth", "1.3": "Renaissance Arts", "1.4": "Explorer: Finding a Lost Leonardo", "2.1": "Renaissance Humanism", "2.2": "Raphael's School of Athens", "2.3": "DBQ: Humanist Writings", "2.4": "Renaissances Around the World", "3.1": "Martin Luther and the Protestant Reformation", "3.2": "Reforms Across Europe", "4.1": "Challenges to Habsburg Dominance", "4.2": "The Catholic Reformation", "4.3": "Global Christianities"};
+const UNIT_NAMES={"1.1": "Voyages of Discovery", "1.2": "Conquests in the Americas", "1.3": "Explorer: Pardis Sabeti, Math Against Malaria", "1.4": "The Columbian Exchange", "2.1": "Portugal's Trade Empire", "2.2": "The Dutch East India Company", "2.3": "DBQ: Trade and Cross-Cultural Encounters", "3.1": "The Spanish Empire in the Americas", "3.2": "A Global Commodity: Silver", "3.3": "The Portuguese and Dutch in the Americas", "3.4": "The English Colonies and New France"};
 const MK=[
 {
-"u": "1.2",
+"u": "1.1",
 "freq": "high",
-"title": "Thinking the Renaissance rejected religion",
-"setup": "\"Renaissance people stopped believing in God and only cared about science.\"",
-"wrong": "Equating humanism and secularism with atheism.",
-"right": "Most Renaissance figures remained Christian. Humanism added interest in classical learning and human potential, and much great Renaissance art is religious, such as the Sistine Chapel.",
-"why": "\"Secular\" and \"humanism\" sound anti-religious today.",
-"lock": "More human focus, not less faith."
+"title": "Thinking Columbus proved the world was round",
+"setup": "\"Everyone thought the Earth was flat until Columbus.\"",
+"wrong": "Believing a popular myth about medieval science.",
+"right": "Educated Europeans had known Earth was round since ancient Greek times. The real debate was its SIZE — Columbus badly underestimated it, and critics were right that Asia was too far to reach by sailing west.",
+"why": "The flat-Earth story is repeated in cartoons and old textbooks.",
+"lock": "Not the shape — the size."
+},
+{
+"u": "1.1",
+"freq": "high",
+"title": "Saying Columbus \"discovered\" an empty New World",
+"setup": "\"Columbus discovered America in 1492.\"",
+"wrong": "Ignoring the tens of millions of people already living in the Americas.",
+"right": "The Americas were home to millions of Indigenous people with cities, empires, and long histories. Columbus began lasting contact between hemispheres; Norse sailors had also reached North America around 1000.",
+"why": "The word \"discover\" is used from a European point of view.",
+"lock": "You can't discover a place people already live."
 },
 {
 "u": "1.2",
 "freq": "high",
-"title": "Saying the Renaissance was a sudden break from the Middle Ages",
-"setup": "\"In 1350 everything changed overnight.\"",
-"wrong": "Treating historical periods as switches.",
-"right": "The Renaissance grew gradually from medieval foundations — universities, trade, and preserved classical texts — and spread unevenly over three centuries.",
-"why": "Textbook period labels make change look instant.",
-"lock": "Periods blend; they don't flip."
+"title": "Thinking a few hundred Spaniards conquered the Aztec alone",
+"setup": "\"Cortés won because Spanish guns and horses were unbeatable.\"",
+"wrong": "Overcrediting European technology and erasing Indigenous agency.",
+"right": "Tens of thousands of Tlaxcalan and other Indigenous allies fought against Tenochtitlan, and a smallpox epidemic in 1520 killed many defenders. Malintzin's translation made the alliances possible.",
+"why": "Older accounts were written by the conquerors and centered on them.",
+"lock": "Allies + smallpox, not just steel."
 },
 {
-"u": "2.1",
+"u": "1.3",
 "freq": "med",
-"title": "Crediting the printing press to Italy",
-"setup": "\"The Italian Renaissance invented the printing press.\"",
-"wrong": "Mixing up Renaissance locations.",
-"right": "Gutenberg developed movable-type printing in Mainz, Germany, around 1450. Printing then helped spread Italian ideas north and Northern ideas everywhere.",
-"why": "The Renaissance is linked to Italy, so every invention gets placed there.",
-"lock": "Gutenberg = Germany."
+"title": "Believing some groups were \"naturally weaker\" against disease",
+"setup": "\"Native Americans died because they were weaker than Europeans.\"",
+"wrong": "Confusing lack of prior exposure with weakness.",
+"right": "Immunity comes from exposure over generations. Indigenous Americans had never met smallpox; Europeans in turn died in large numbers from malaria and yellow fever in tropical Africa.",
+"why": "Death tolls are easier to remember than the biology behind them.",
+"lock": "Not weaker — unexposed."
+},
+{
+"u": "1.4",
+"freq": "med",
+"title": "Thinking the Columbian Exchange only went one way",
+"setup": "\"Europeans brought everything to the Americas.\"",
+"wrong": "Forgetting what the Americas gave the world.",
+"right": "Maize, potatoes, cassava, tomatoes, chili peppers, and cacao spread from the Americas worldwide; horses, cattle, wheat, sugarcane, and diseases came to the Americas. Millions of enslaved Africans were also forcibly carried across the Atlantic.",
+"why": "Lessons often focus on what Europeans brought.",
+"lock": "Exchange means both directions."
 },
 {
 "u": "2.1",
 "freq": "high",
-"title": "Thinking Erasmus left the Catholic Church",
-"setup": "\"Erasmus and Luther started Protestantism together.\"",
-"wrong": "Assuming every critic of the Church became Protestant.",
-"right": "Erasmus criticized abuses but remained Catholic and opposed splitting the Church. Luther broke away.",
-"why": "Both attacked Church corruption.",
-"lock": "Critic is not the same as convert."
+"title": "Assuming Europeans created Indian Ocean trade",
+"setup": "\"Da Gama opened up trade between India and the world.\"",
+"wrong": "Ignoring the trade network that already existed.",
+"right": "Arab, Persian, Indian, Swahili, Malay, and Chinese merchants had traded across the Indian Ocean for centuries, using monsoon winds. Portugal forced its way in with naval guns and passes.",
+"why": "European-centered stories begin when Europeans arrive.",
+"lock": "Europeans joined a game already in progress."
+},
+{
+"u": "2.2",
+"freq": "med",
+"title": "Thinking the VOC was just a peaceful business",
+"setup": "\"The Dutch East India Company was a company, so it only traded.\"",
+"wrong": "Assuming companies can't act like governments.",
+"right": "The VOC could build forts, sign treaties, and wage war. In 1621 it conquered the Banda Islands, killing, enslaving, or expelling most of the Bandanese to control nutmeg.",
+"why": "Modern companies don't usually have armies.",
+"lock": "The VOC had shareholders AND soldiers."
 },
 {
 "u": "3.1",
 "freq": "high",
-"title": "Saying Luther wanted to start a new church",
-"setup": "\"In 1517 Luther set out to create Protestantism.\"",
-"wrong": "Reading the outcome back into his original goal.",
-"right": "Luther first wanted to reform abuses within the Catholic Church and debate indulgences. The split came as the conflict escalated, through excommunication and the Diet of Worms.",
-"why": "We know how it ended.",
-"lock": "Reform first; split later."
-},
-{
-"u": "3.1",
-"freq": "high",
-"title": "Explaining the Reformation as only about religion",
-"setup": "\"Princes supported Luther purely because of faith.\"",
-"wrong": "Ignoring political and economic motives.",
-"right": "Princes gained independence from the emperor and pope, Church lands and taxes, and local control. Religion, politics, and money were intertwined.",
-"why": "It's called a religious movement.",
-"lock": "Faith + power + money."
+"title": "Thinking all colonists in Spanish America had equal status",
+"setup": "\"Spanish people in the colonies were all on top.\"",
+"wrong": "Ignoring the casta system's ranking by birthplace.",
+"right": "Peninsulares (born in Spain) held the top offices; criollos (American-born Spaniards) were often rich but blocked from power; mestizos, Indigenous people, and Africans faced greater discrimination.",
+"why": "Students group everyone of Spanish ancestry together.",
+"lock": "Birthplace mattered as much as ancestry."
 },
 {
 "u": "3.2",
 "freq": "med",
-"title": "Mixing up Henry VIII's motives",
-"setup": "\"Henry VIII became Protestant because he agreed with Luther.\"",
-"wrong": "Assuming the English Reformation was driven by theology.",
-"right": "Henry had earlier written against Luther. He broke with Rome when the pope refused his annulment, and kept much Catholic practice. Protestant theology grew under Edward VI and Elizabeth I.",
-"why": "All reformations get lumped together.",
-"lock": "A king's marriage, not a monk's theology."
+"title": "Believing American silver mostly stayed in Spain",
+"setup": "\"All that silver made Spain the richest country forever.\"",
+"wrong": "Missing where silver actually went.",
+"right": "Much Spanish silver flowed out to pay war debts and buy goods from other countries, and a large share ended up in China through Europe and the Manila galleons. Spain also suffered inflation.",
+"why": "It seems logical that the miner keeps the treasure.",
+"lock": "Mined in Potosí, spent in China."
 },
 {
-"u": "4.1",
-"freq": "med",
-"title": "Thinking the Peace of Augsburg created religious freedom",
-"setup": "\"After 1555 every German could choose their religion.\"",
-"wrong": "Confusing a ruler's choice with individual freedom.",
-"right": "Each PRINCE chose Catholic or Lutheran for his territory, and subjects had to conform or move. Calvinists weren't included.",
-"why": "\"Peace\" and \"choice\" sound like freedom.",
-"lock": "The prince chose, not the people."
-},
-{
-"u": "4.2",
+"u": "3.4",
 "freq": "high",
-"title": "Treating the Catholic Reformation as only a reaction",
-"setup": "\"The Catholic Church did nothing until Luther forced it.\"",
-"wrong": "Seeing Catholic reform as purely defensive.",
-"right": "Reform movements existed before 1517, and the Catholic Reformation also renewed spirituality, education (Jesuits), and missionary work worldwide — not just opposition to Protestants.",
-"why": "The name \"Counter-Reformation\" emphasizes reaction.",
-"lock": "Reaction AND renewal."
-},
-{
-"u": "4.1",
-"freq": "med",
-"title": "Confusing the Edict of Nantes with the Peace of Westphalia",
-"setup": "\"The Edict of Nantes ended the Thirty Years' War.\"",
-"wrong": "Mixing up two settlements.",
-"right": "Nantes (1598) gave French Huguenots toleration. Westphalia (1648) ended the Thirty Years' War in Central Europe.",
-"why": "Both are religious settlements with French connections.",
-"lock": "Nantes = France 1598. Westphalia = Europe 1648."
-},
-{
-"u": "2.4",
-"freq": "high",
-"title": "Thinking only Europe had a \"renaissance\"",
-"setup": "\"While Europe was having its Renaissance, the rest of the world was standing still.\"",
-"wrong": "Treating Europe as the only center of cultural achievement.",
-"right": "Many societies experienced flowerings of art, science, and learning — Timurid Samarkand, the Ottoman court, Ming China, and others — often linked by trade with Europe.",
-"why": "The word \"Renaissance\" is usually taught only about Europe.",
-"lock": "Many renaissances, one connected world."
-},
-{
-"u": "4.1",
-"freq": "med",
-"title": "Assuming the most powerful ruler could simply crush the Reformation",
-"setup": "\"Charles V ruled half of Europe, so he could have stopped Luther easily.\"",
-"wrong": "Ignoring the competing demands on Habsburg power.",
-"right": "Charles faced France, the Ottomans (Siege of Vienna, 1529), and independent German princes at once. Spreading his power thin forced compromises like the Peace of Augsburg.",
-"why": "A huge empire sounds unbeatable.",
-"lock": "Big empire, many fronts."
-},
-{
-"u": "4.3",
-"freq": "med",
-"title": "Thinking Christianity outside Europe began with European missionaries",
-"setup": "\"Before the 1500s there were no Christians in Africa or Asia.\"",
-"wrong": "Overlooking ancient non-European Christian communities.",
-"right": "Ethiopian and other eastern Christian churches date back to the early centuries C.E. The 1500s brought new Catholic and Protestant missions alongside them.",
-"why": "The era's missionary story gets most of the attention.",
-"lock": "Christianity was already global before the missionaries."
+"title": "Thinking all colonies were alike",
+"setup": "\"The English, French, and Dutch colonies were basically the same.\"",
+"wrong": "Overlooking different goals and labor systems.",
+"right": "Virginia grew tobacco with indentured and then enslaved labor; Plymouth was a religious farm colony; New France and New Netherland relied on the fur trade and Native alliances; Brazil relied on sugar and enslaved Africans.",
+"why": "The word \"colony\" hides big differences.",
+"lock": "Tobacco, faith, fur, sugar — four different colonies."
 }
 ];
-const LS_M='whh_autopsy_mastered', LS_F='whh_autopsy_fmm';
+const LS_M='whh_c10_autopsy_mastered', LS_F='whh_c10_autopsy_fmm';
 let mastered=new Set(lsGet(LS_M,[])), openSet=new Set(), curU='all', curS='all';
 function setUnit(u,b){ curU=u; document.querySelectorAll('.pill[data-unit]').forEach(x=>x.classList.toggle('active',x===b)); render(); }
 function setSt(s,b){ curS=s; document.querySelectorAll('.pill[data-st]').forEach(x=>x.classList.toggle('active',x===b)); render(); }

@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World History Honors — Master Glossary</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
+  --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
+  --accent:#B87700;--accent-soft:rgba(229,148,0,.12);--accent-text:#efb44e;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(46,139,192,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(46,139,192,0.04) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:26px 20px 70px}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent-text);text-decoration:none;margin-bottom:14px;opacity:.9}
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--accent-text)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+.about-banner{background:linear-gradient(135deg,var(--accent-soft),rgba(29,158,117,.05));border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:12.5px;line-height:1.55}
+.about-banner a{color:var(--accent-text)}
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px;flex:1}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:14px}
+.sec-lbl{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.13em;color:var(--muted);margin-bottom:11px;text-transform:uppercase}
+.controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;flex-direction:column;gap:11px}
+.ctrl-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--muted);min-width:56px}
+.search-input{flex:1;min-width:200px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13.5px}
+.search-input:focus{outline:none;border-color:var(--accent)}
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--accent);color:var(--text)}
+.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn{border:none;border-radius:11px;padding:11px 20px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;transition:all .2s;color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-accent{background:var(--accent)}
+.btn-accent:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 22px rgba(0,0,0,.35)}
+.btn-ghost{background:var(--bg);border:1px solid var(--border);color:var(--text)}
+.btn-ghost:hover{border-color:var(--accent)}
+.btn-teal{background:#188663}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:6px;display:inline-block}
+.t-unit{background:var(--accent-soft);color:var(--accent-text);border:1px solid var(--border)}
+.empty{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px}
+.footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center;line-height:1.7}
+.overlay{position:fixed;inset:0;background:rgba(3,8,16,.82);backdrop-filter:blur(4px);z-index:500;display:none;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto}
+.overlay.open{display:flex}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;max-width:640px;width:100%}
+.opt{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:12px 15px;cursor:pointer;transition:all .16s;display:flex;align-items:flex-start;gap:11px;text-align:left;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);width:100%}
+.opt:hover:not(:disabled){border-color:var(--accent);background:var(--card2)}
+.opt:disabled{cursor:default}
+.opt-key{width:24px;height:24px;border-radius:7px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0;color:var(--muted)}
+.opt.correct{border-color:var(--teal);background:rgba(29,158,117,.11)}
+.opt.correct .opt-key{background:#188663;border-color:var(--teal);color:#fff}
+.opt.wrong{border-color:var(--red);background:rgba(231,76,60,.10)}
+.opt.wrong .opt-key{background:#D24536;border-color:var(--red);color:#fff}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+@media(max-width:640px){.page-title{font-size:1.55rem}.ctrl-label{min-width:auto}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+
+.alpha{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:14px}
+.alpha a{font-family:'DM Mono',monospace;font-size:11.5px;color:var(--muted);text-decoration:none;padding:4px 7px;border-radius:6px;border:1px solid transparent}
+.alpha a:hover{border-color:var(--border);color:#fff}
+.alpha a.off{opacity:.25;pointer-events:none}
+.letter{font-family:'DM Mono',monospace;font-size:13px;color:var(--accent-text);margin:20px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.term{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:14px 16px;margin-bottom:9px}
+.term-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.term-name{font-size:15.5px;font-weight:800;color:var(--white)}
+.term-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+.t-du{background:rgba(229,148,0,.12);color:#efb44e;border:1px solid rgba(229,148,0,.3)}
+.term-def{font-size:13.5px;line-height:1.6;margin-top:8px}
+.term-ex{font-size:12.5px;color:#a9c2dc;margin-top:7px;padding-left:10px;border-left:2px solid var(--accent)}
+.star{background:none;border:none;font-size:18px;cursor:pointer;color:var(--muted);line-height:1;padding:2px}
+.star.on{color:#efb44e}
+.tutor-toggle{margin-top:9px;background:none;border:none;color:var(--accent-text);font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;padding:0}
+.tutor{display:none;margin-top:10px;border-top:1px solid var(--border);padding-top:10px}
+.tutor.open{display:block}
+.chat{display:flex;flex-direction:column;gap:7px;max-height:240px;overflow-y:auto;margin-bottom:8px}
+.bub{font-size:13px;line-height:1.6}
+.bub.u{background:var(--accent-soft);padding:8px 11px;border-radius:9px;border-left:2px solid var(--accent)}
+.bub code{font-family:'DM Mono',monospace;font-size:12px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.chip{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:4px 10px;font-size:11.5px;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif}
+.chip:hover{border-color:var(--accent);color:#fff}
+.trow{display:flex;gap:7px}
+.tin{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:8px 11px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:12.5px}
+.tmode{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:6px}
+.fc{perspective:900px;margin:16px 0}
+.fc-inner{position:relative;min-height:210px;transition:transform .5s;transform-style:preserve-3d;cursor:pointer}
+.fc.flip .fc-inner{transform:rotateY(180deg)}
+.fc-face{position:absolute;inset:0;backface-visibility:hidden;background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:22px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.fc-back{transform:rotateY(180deg);font-size:14px;line-height:1.6}
+.fc-term{font-size:24px;font-weight:800;color:#fff}
+.fc-hint{font-size:11px;color:var(--muted);margin-top:10px;font-family:'DM Mono',monospace}
+.q-def{font-size:15px;color:#fff;font-weight:600;line-height:1.55;margin:14px 0 16px;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:16px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.mtop{display:flex;justify-content:space-between;align-items:center;font-family:'DM Mono',monospace;font-size:11.5px;color:var(--muted)}
+.fb{margin-top:12px;font-size:13px;line-height:1.55;display:none}
+.fb.show{display:block}
+
+</style>
+<script src="studyhub-tutor.js"></script>
+<script>window.STUDYHUB_GAME={course:'worldhistoryh'};</script>
+<script src="studyhub-game.js"></script>
+<script src="studyhub-sync.js"></script>
+</head>
+<body>
+<div class="app">
+  <a class="back" href="WHH9_StudyHub.html">← World History Honors · Ch. 9 Hub</a>
+  <div class="header">
+    <div>
+      <div class="series-label">World History Honors · Chapter 9 · Glossary</div>
+      <div class="page-title">Master <span>Glossary</span></div>
+      <div class="page-sub" id="page-sub"></div>
+    </div>
+    <div style="display:flex;gap:9px;align-items:center;flex-wrap:wrap">
+      <div data-game-hud></div>
+      <button class="btn btn-ghost" onclick="openCards()">🃏 Flip Cards</button>
+      <button class="btn btn-accent" onclick="openQuiz()">🧠 Quiz Me</button>
+    </div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-chip"><div class="stat-num" id="s-total">—</div><div class="stat-lbl">TERMS</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--amber)" id="s-star">0</div><div class="stat-lbl">STARRED</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--teal)" id="s-quiz">—</div><div class="stat-lbl">QUIZ ACCURACY</div></div>
+  </div>
+  <div class="controls">
+    <div class="ctrl-row"><span class="ctrl-label">SEARCH</span><input class="search-input" id="q" type="search" placeholder="Search terms, definitions, examples…" oninput="render()" aria-label="Search glossary"></div>
+    <div class="ctrl-row"><span class="ctrl-label">UNIT</span><button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button><button class="pill" data-unit="1.1" onclick="setUnit('1.1',this)">1.1</button><button class="pill" data-unit="1.2" onclick="setUnit('1.2',this)">1.2</button><button class="pill" data-unit="1.3" onclick="setUnit('1.3',this)">1.3</button><button class="pill" data-unit="1.4" onclick="setUnit('1.4',this)">1.4</button><button class="pill" data-unit="2.1" onclick="setUnit('2.1',this)">2.1</button><button class="pill" data-unit="2.2" onclick="setUnit('2.2',this)">2.2</button><button class="pill" data-unit="2.3" onclick="setUnit('2.3',this)">2.3</button><button class="pill" data-unit="2.4" onclick="setUnit('2.4',this)">2.4</button><button class="pill" data-unit="2.5" onclick="setUnit('2.5',this)">2.5</button><button class="pill" data-unit="3.1" onclick="setUnit('3.1',this)">3.1</button><button class="pill" data-unit="3.2" onclick="setUnit('3.2',this)">3.2</button><button class="pill" data-unit="3.3" onclick="setUnit('3.3',this)">3.3</button></div>
+    <div class="ctrl-row"><span class="ctrl-label">SHOW</span><button class="pill active" data-show="all" onclick="setShow('all',this)">All terms</button><button class="pill" data-show="star" onclick="setShow('star',this)">⭐ Starred</button></div>
+  </div>
+  <div class="alpha" id="alpha"></div>
+  <div id="list"></div>
+  <div class="footer">World History Honors (2109320) · Unit 4 · Chapter 9: Land-Based Empires of Eurasia · Florida NGSSS Social Studies, World History (SS.912.W)</div>
+</div>
+
+<div class="overlay" id="ov" onclick="if(event.target===this)closeOv()">
+  <div class="modal" role="dialog" aria-modal="true" id="modal"></div>
+</div>
+
+<script>
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function nl(s){ return esc(s).replace(/\n/g,'<br>'); }
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON.parse(v); }catch(e){ return d; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
+
+const UNIT_NAMES = {"1.1": "Traveler: Evliya Çelebi, Tales from 40 Years of Travel", "1.2": "Süleyman and Ottoman Power", "1.3": "Safavid Rise and Fall", "1.4": "Ottoman Persistence", "2.1": "Mughal India", "2.2": "Preserving Cultural Heritage: The Taj Mahal", "2.3": "Ming Decline to Qing Power", "2.4": "DBQ: Voltaire Writes About Qianlong", "2.5": "Japan's Tokugawa Shogunate", "3.1": "Control of the Steppes", "3.2": "The Romanov Dynasty", "3.3": "Jewish, Tatar, and Armenian Diasporas"};
+const DOMAINS = {};
+const TERMS = [
+{
+"t": "Evliya Çelebi",
+"u": "1.1",
+"d": "An Ottoman traveler and writer (1611–c. 1682) from Istanbul who spent about 40 years journeying through the Ottoman Empire and neighboring lands.",
+"ex": "His writings are one of the richest sources we have on daily life in the 1600s Ottoman world."
+},
+{
+"t": "Seyahatname (Book of Travels)",
+"u": "1.1",
+"d": "Evliya Çelebi's ten-volume account of his travels, describing cities, people, foods, languages, buildings, and customs.",
+"ex": "Historians mine it for details found nowhere else — while checking his numbers, which are often exaggerated."
+},
+{
+"t": "Travelogue",
+"u": "1.1",
+"d": "A written account of a person's travels and what they observed along the way.",
+"ex": "Like Ibn Battuta's Rihla, a travelogue reveals both the places described and the writer's own point of view."
+},
+{
+"t": "Murad IV",
+"u": "1.1",
+"d": "Ottoman sultan (r. 1623–1640) who restored order through strict, often harsh rule; young Evliya Çelebi served at his court.",
+"ex": "Murad IV banned coffeehouses and tobacco for a time to stop gatherings he saw as dangerous."
+},
+{
+"t": "Ottoman Guilds (Esnaf)",
+"u": "1.1",
+"d": "Organizations of craftsmen and merchants in Ottoman cities that set standards, prices, and training for each trade.",
+"ex": "Evliya describes a grand procession of Istanbul's guilds — bakers, tanners, sailors, and many more — parading before the sultan."
+},
+{
+"t": "Hajj",
+"u": "1.1",
+"d": "The pilgrimage to Mecca that every Muslim who is able should make at least once; one of the Five Pillars of Islam.",
+"ex": "Evliya made the hajj late in life, and the Ottoman sultans protected the pilgrimage routes as a sign of their leadership of the Muslim world."
+},
+{
+"t": "Gunpowder Empires",
+"u": "1.2",
+"d": "A label historians use for the Ottoman, Safavid, and Mughal empires, which used cannons and firearms to conquer and hold large territories.",
+"ex": "The label is useful but incomplete — these empires also depended on law, religion, taxes, and alliances, not just guns."
+},
+{
+"t": "Mehmed II",
+"u": "1.2",
+"d": "Ottoman sultan known as \"the Conqueror\" who captured Constantinople in 1453 with huge cannons and made it the Ottoman capital, Istanbul.",
+"ex": "He repopulated the city with Muslims, Christians, and Jews and began building Topkapı Palace."
+},
+{
+"t": "Selim I",
+"u": "1.2",
+"d": "Ottoman sultan (r. 1512–1520) who defeated the Safavids at Chaldiran and conquered the Mamluk Sultanate, adding Syria, Egypt, and the holy cities of Mecca and Medina.",
+"ex": "His conquests nearly doubled the empire and gave the sultans prestige as protectors of Islam's holiest sites."
+},
+{
+"t": "Süleyman the Magnificent",
+"u": "1.2",
+"d": "Ottoman sultan (r. 1520–1566) under whom the empire reached its height in power, territory, law, and culture. Ottomans called him Kanuni, \"the Lawgiver.\"",
+"ex": "He conquered much of Hungary, besieged Vienna, controlled the eastern Mediterranean, and sponsored great mosques by the architect Sinan."
+},
+{
+"t": "Janissaries",
+"u": "1.2",
+"d": "The elite infantry corps of the Ottoman sultan, trained in firearms and loyal only to him; most were recruited through the devshirme.",
+"ex": "Janissary musketeers helped win battles like Chaldiran (1514) and Mohács (1526)."
+},
+{
+"t": "Devshirme",
+"u": "1.2",
+"d": "The Ottoman system of taking boys from Christian families, mainly in the Balkans, converting them to Islam, and training them as soldiers or officials.",
+"ex": "It was a harsh loss for families, yet some recruits rose to become grand viziers — the most powerful officials in the empire."
+},
+{
+"t": "Millet System",
+"u": "1.2",
+"d": "The Ottoman practice of organizing non-Muslim religious communities (such as Greek Orthodox, Armenian, and Jewish) to run their own religious, educational, and family affairs under their own leaders.",
+"ex": "It let a Muslim state govern millions of Christians and Jews with relatively little conflict, though non-Muslims were not equal to Muslims."
+},
+{
+"t": "Kanun",
+"u": "1.2",
+"d": "Laws issued by the Ottoman sultan on matters like taxes, land, and criminal punishment, working alongside Islamic law (sharia).",
+"ex": "Süleyman's law codes earned him the title Kanuni, \"the Lawgiver.\""
+},
+{
+"t": "Jizya",
+"u": "1.2",
+"d": "A tax paid by non-Muslims (dhimmis) living under Muslim rule in exchange for protection and exemption from military service.",
+"ex": "In the Ottoman Empire it was a major source of revenue and a visible sign of non-Muslims' lower legal status."
+},
+{
+"t": "Safavid Empire",
+"u": "1.3",
+"d": "A Persian (Iranian) empire (1501–1736) founded by Ismail I that made Shia Islam the official religion of Iran.",
+"ex": "Its legacy is modern Iran's Shia identity — most Iranians today are Shia Muslims."
+},
+{
+"t": "Ismail I",
+"u": "1.3",
+"d": "Founder of the Safavid dynasty who took the title shah in 1501 at about age 14 and declared Twelver Shia Islam the state religion.",
+"ex": "He led the Qizilbash, Turkic tribal warriors named for their red headgear, who were devoted to him."
+},
+{
+"t": "Twelver Shia Islam",
+"u": "1.3",
+"d": "The largest branch of Shia Islam, which holds that leadership of the Muslim community belonged to twelve imams descended from Ali, the last of whom is hidden and will return.",
+"ex": "Safavid rulers brought in Shia scholars and converted Iran's mostly Sunni population over generations."
+},
+{
+"t": "Battle of Chaldiran (1514)",
+"u": "1.3",
+"d": "A battle in which Selim I's Ottoman army, with cannons and janissary musketeers, defeated Ismail I's Safavid cavalry.",
+"ex": "It stopped Safavid expansion westward and fixed a long-lasting Sunni Ottoman–Shia Safavid rivalry."
+},
+{
+"t": "Shah Abbas I",
+"u": "1.3",
+"d": "The most powerful Safavid ruler (r. 1588–1629), who rebuilt the army, recaptured lost lands, and made Isfahan a magnificent capital.",
+"ex": "He expanded the silk trade and welcomed European envoys and merchants to play rivals against each other."
+},
+{
+"t": "Isfahan",
+"u": "1.3",
+"d": "The Safavid capital from 1598, rebuilt by Shah Abbas around a huge central square (Naqsh-e Jahan) lined with mosques, a palace, and a bazaar.",
+"ex": "Persians said \"Isfahan is half the world\" — its square is now a UNESCO World Heritage Site."
+},
+{
+"t": "Ghulams",
+"u": "1.3",
+"d": "Slave-soldiers and administrators, mostly Georgian, Armenian, and Circassian captives converted to Islam, whom Shah Abbas used to build a force loyal only to him.",
+"ex": "Like the Ottoman janissaries, ghulams weakened the power of the Qizilbash tribal chiefs."
+},
+{
+"t": "Ottoman Decline Thesis",
+"u": "1.4",
+"d": "The older view that the Ottoman Empire steadily declined after Süleyman's death in 1566; many historians now reject it as too simple.",
+"ex": "The empire lost wars but also reformed its army, taxes, and government, and lasted until 1922."
+},
+{
+"t": "Siege of Vienna (1683)",
+"u": "1.4",
+"d": "The second and final major Ottoman attempt to take the Habsburg capital; it failed when a relief army led by Polish king Jan III Sobieski arrived.",
+"ex": "It began a long war in which the Ottomans lost Hungary."
+},
+{
+"t": "Treaty of Karlowitz (1699)",
+"u": "1.4",
+"d": "Peace treaty in which the Ottomans gave up most of Hungary and Transylvania to the Habsburgs, plus other lands to Venice and Poland.",
+"ex": "It was the first major permanent loss of Ottoman territory in Europe."
+},
+{
+"t": "Köprülü Viziers",
+"u": "1.4",
+"d": "A family of grand viziers, starting with Köprülü Mehmed Pasha in 1656, who restored order, finances, and military strength after a period of crisis.",
+"ex": "Their reforms show the empire could recover from turmoil, not just decline."
+},
+{
+"t": "Tulip Period",
+"u": "1.4",
+"d": "A time of peace and elite cultural flowering (1718–1730) under Sultan Ahmed III, named for the craze for tulips among Istanbul's upper class.",
+"ex": "It ended with the Patrona Halil revolt in 1730, partly driven by anger at elite luxury."
+},
+{
+"t": "İbrahim Müteferrika",
+"u": "1.4",
+"d": "A Hungarian-born Ottoman official who received permission in 1727 to open the first printing press producing books in Ottoman Turkish.",
+"ex": "He printed dictionaries, histories, and maps — an example of Ottoman openness to new technology."
+},
+{
+"t": "Abolition of the Janissaries (1826)",
+"u": "1.4",
+"d": "Sultan Mahmud II's destruction of the janissary corps, which had become a powerful group that blocked military reform.",
+"ex": "Ottomans called it the \"Auspicious Incident\"; it cleared the way for a modern, European-style army."
+},
+{
+"t": "Tanzimat",
+"u": "1.4",
+"d": "A period of Ottoman reforms beginning in 1839 (\"reorganization\") that modernized law, taxes, and education and promised equality for subjects of all religions.",
+"ex": "Reformers hoped a modern state could hold the empire together against outside pressure and nationalist revolts."
+},
+{
+"t": "Babur",
+"u": "2.1",
+"d": "Founder of the Mughal Empire, a Central Asian prince descended from Timur and Genghis Khan, who conquered northern India in 1526.",
+"ex": "His cannons and matchlocks helped defeat the much larger army of the Delhi Sultanate at the First Battle of Panipat."
+},
+{
+"t": "Akbar",
+"u": "2.1",
+"d": "Mughal emperor (r. 1556–1605) who expanded the empire, built a strong administration, and promoted religious tolerance.",
+"ex": "He abolished the jizya on Hindus in 1564 and hosted debates among Muslim, Hindu, Jain, Zoroastrian, and Christian scholars."
+},
+{
+"t": "Mansabdari System",
+"u": "2.1",
+"d": "Akbar's system of ranking officials (mansabdars) by the number of soldiers they had to supply and paying them with salaries or the right to collect revenue from land.",
+"ex": "Ranks were not hereditary, so officials depended on the emperor's favor — Hindus, especially Rajputs, held many posts."
+},
+{
+"t": "Sulh-i Kul",
+"u": "2.1",
+"d": "\"Peace with all\" — Akbar's policy of tolerance toward all religions in the empire.",
+"ex": "It helped a Muslim minority dynasty win the loyalty of a mostly Hindu population."
+},
+{
+"t": "Aurangzeb",
+"u": "2.1",
+"d": "Mughal emperor (r. 1658–1707) who pushed the empire to its largest size but enforced stricter Sunni Islamic rule and brought back the jizya in 1679.",
+"ex": "His long wars in the Deccan drained the treasury, and the empire weakened quickly after his death."
+},
+{
+"t": "Marathas",
+"u": "2.1",
+"d": "A Hindu warrior people of western India who, led by Shivaji (crowned 1674), resisted Mughal rule and built their own powerful state.",
+"ex": "By the mid-1700s the Marathas controlled much of India that the Mughals had once ruled."
+},
+{
+"t": "Sikhism",
+"u": "2.1",
+"d": "A faith founded by Guru Nanak (1469–1539) in the Punjab that teaches devotion to one God, equality, and service.",
+"ex": "After Mughal emperors executed Sikh gurus, Guru Gobind Singh created the Khalsa (1699), a community of committed, armed Sikhs."
+},
+{
+"t": "Taj Mahal",
+"u": "2.2",
+"d": "A white marble mausoleum in Agra built by Shah Jahan for his wife Mumtaz Mahal; construction began around 1632 and the complex was finished around 1653.",
+"ex": "It blends Persian, Central Asian, and Indian design and is often called the finest example of Mughal architecture."
+},
+{
+"t": "Mumtaz Mahal",
+"u": "2.2",
+"d": "Wife of Shah Jahan, who died in 1631 giving birth to their fourteenth child; the Taj Mahal is her tomb.",
+"ex": "Shah Jahan was later buried beside her inside the Taj."
+},
+{
+"t": "Mausoleum",
+"u": "2.2",
+"d": "A large, stately building built to house a tomb.",
+"ex": "Humayun's Tomb in Delhi was an earlier Mughal mausoleum that influenced the Taj's design."
+},
+{
+"t": "Pietra Dura",
+"u": "2.2",
+"d": "A decorative technique of cutting and fitting colored semiprecious stones into marble to form flowers and patterns.",
+"ex": "The Taj's walls carry inlaid vines and flowers in stones like jasper and lapis lazuli."
+},
+{
+"t": "Charbagh",
+"u": "2.2",
+"d": "A Persian-style garden divided into four parts by walkways or water channels, symbolizing paradise.",
+"ex": "The Taj Mahal's tomb sits at the end of a great charbagh along the Yamuna River."
+},
+{
+"t": "Taj Trapezium Zone",
+"u": "2.2",
+"d": "A protected area around the Taj Mahal where India's Supreme Court (1996) restricted polluting industries to protect the marble.",
+"ex": "Air pollution had been turning the white marble yellow and brown."
+},
+{
+"t": "UNESCO World Heritage Site",
+"u": "2.2",
+"d": "A place recognized by the United Nations as having outstanding cultural or natural value for all humanity, deserving protection.",
+"ex": "The Taj Mahal was listed in 1983; preservation must balance millions of tourists against damage to the site."
+},
+{
+"t": "Manchus",
+"u": "2.3",
+"d": "A people from Manchuria, northeast of China, who were united by Nurhaci and his son and conquered China in 1644, founding the Qing dynasty.",
+"ex": "They were a small minority ruling a huge Han Chinese population."
+},
+{
+"t": "Banner System",
+"u": "2.3",
+"d": "The Manchu military-social organization that grouped soldiers and their families into eight \"banners,\" later including Mongol and Han Chinese banners.",
+"ex": "Bannermen formed the core of Qing armies and garrisons across China."
+},
+{
+"t": "Queue",
+"u": "2.3",
+"d": "The Manchu men's hairstyle — front of the head shaved, back hair in a long braid — which the Qing forced all Han Chinese men to adopt starting in 1645.",
+"ex": "Refusing could mean death; the queue became a symbol of loyalty to the new dynasty."
+},
+{
+"t": "Kangxi Emperor",
+"u": "2.3",
+"d": "Qing emperor (r. 1661–1722) who crushed rebellions, took Taiwan, made peace with Russia, and sponsored Confucian scholarship.",
+"ex": "He studied mathematics with Jesuits and sponsored the Kangxi Dictionary."
+},
+{
+"t": "Qianlong Emperor",
+"u": "2.3",
+"d": "Qing emperor (r. 1735–1796) whose armies expanded China into Xinjiang and strengthened control of Tibet, giving it its largest size.",
+"ex": "He was a poet, collector, and patron of a giant book project — but also censored and destroyed books he saw as anti-Manchu."
+},
+{
+"t": "Canton System",
+"u": "2.3",
+"d": "The Qing policy (from 1757) that limited European trade to the port of Canton (Guangzhou) through licensed Chinese merchant firms.",
+"ex": "Europeans paid mostly in silver because China wanted few European goods."
+},
+{
+"t": "Macartney Mission (1793)",
+"u": "2.3",
+"d": "A British embassy led by Lord George Macartney that asked the Qianlong Emperor for more open trade and a permanent ambassador; the requests were refused.",
+"ex": "Disputes over the kowtow — kneeling and bowing to the emperor — symbolized the clash of two world orders."
+},
+{
+"t": "Treaty of Nerchinsk (1689)",
+"u": "2.3",
+"d": "A treaty between Qing China and Russia that set their border along the Amur River region and allowed trade; it was China's first treaty with a European state.",
+"ex": "Jesuit priests served as translators, using Latin as the common language."
+},
+{
+"t": "Voltaire",
+"u": "2.4",
+"d": "A French Enlightenment writer (1694–1778) who criticized religious intolerance and praised China as a model of government guided by reason and Confucian ethics.",
+"ex": "He used China partly as a mirror to criticize the Church and kings of France."
+},
+{
+"t": "Enlightenment",
+"u": "2.4",
+"d": "An intellectual movement of the 1700s that stressed reason, science, and natural rights as the basis for understanding society and government.",
+"ex": "Some Enlightenment thinkers saw China's scholar-officials as proof that a state could be run on merit and ethics."
+},
+{
+"t": "Sinophilia",
+"u": "2.4",
+"d": "Strong admiration for China and Chinese culture.",
+"ex": "Voltaire and the economist François Quesnay were leading European Sinophiles; Montesquieu, by contrast, called China a despotism."
+},
+{
+"t": "Chinoiserie",
+"u": "2.4",
+"d": "A European decorative style that imitated (often imaginatively) Chinese art in porcelain, wallpaper, furniture, and gardens.",
+"ex": "European palaces added \"Chinese\" pavilions and porcelain rooms in the 1700s."
+},
+{
+"t": "Ode to Mukden",
+"u": "2.4",
+"d": "A long poem by the Qianlong Emperor praising Mukden (Shenyang), the Manchu homeland; a Jesuit translated it into French, and it was published in Paris in 1770.",
+"ex": "Reading it led Voltaire to write a verse letter praising the emperor as a poet-king."
+},
+{
+"t": "Joseph-Marie Amiot",
+"u": "2.4",
+"d": "A French Jesuit in Beijing (1718–1793) who translated Chinese and Manchu works, including Qianlong's Ode to Mukden, for European readers.",
+"ex": "Jesuit letters and translations were Europe's main window on China — so their views shaped what Voltaire knew."
+},
+{
+"t": "Enlightened Absolutism",
+"u": "2.4",
+"d": "Rule by an all-powerful monarch who claims to govern by reason and for the good of subjects, supporting learning and reforms.",
+"ex": "Voltaire hoped for philosopher-kings — he praised Qianlong, Frederick the Great, and Catherine the Great."
+},
+{
+"t": "Tokugawa Ieyasu",
+"u": "2.5",
+"d": "Warlord who won the Battle of Sekigahara in 1600 and became shogun in 1603, founding the Tokugawa shogunate that ruled Japan until 1868.",
+"ex": "He finished the unification begun by Oda Nobunaga and Toyotomi Hideyoshi."
+},
+{
+"t": "Shogun",
+"u": "2.5",
+"d": "Japan's supreme military ruler, who held real power while the emperor in Kyoto remained a respected but largely ceremonial figure.",
+"ex": "The Tokugawa shoguns governed from Edo (modern Tokyo)."
+},
+{
+"t": "Daimyo",
+"u": "2.5",
+"d": "Powerful regional lords in Japan who controlled lands and samurai retainers.",
+"ex": "Under the Tokugawa, about 250 daimyo ruled domains but had to obey the shogun's rules."
+},
+{
+"t": "Sankin-kōtai (Alternate Attendance)",
+"u": "2.5",
+"d": "A Tokugawa rule requiring daimyo to spend every other year in Edo and to leave their families there as hostages when they returned home.",
+"ex": "The expensive travel kept daimyo too busy and too poor to rebel — and helped roads and towns grow."
+},
+{
+"t": "Sakoku",
+"u": "2.5",
+"d": "The Tokugawa \"closed country\" policies of the 1630s that banned most Japanese from leaving, expelled the Portuguese, and limited foreign trade to tightly controlled channels.",
+"ex": "Japan still traded with the Dutch and Chinese at Nagasaki, with Korea through Tsushima, and with the Ryukyu Kingdom and the Ainu."
+},
+{
+"t": "Dejima",
+"u": "2.5",
+"d": "A small artificial island in Nagasaki harbor where Dutch traders were confined from 1641; they were the only Europeans allowed to trade in Japan.",
+"ex": "Through Dejima, Japanese scholars learned about European science."
+},
+{
+"t": "Shimabara Rebellion",
+"u": "2.5",
+"d": "A 1637–1638 uprising in southern Japan of mostly Christian peasants against heavy taxes and persecution; the shogunate crushed it.",
+"ex": "It convinced the shogunate to expel the Portuguese and enforce its ban on Christianity even more harshly."
+},
+{
+"t": "Rangaku",
+"u": "2.5",
+"d": "\"Dutch learning\" — Japanese study of European science, medicine, and geography through Dutch books obtained at Nagasaki.",
+"ex": "In 1774 Japanese doctors published a translation of a Dutch anatomy book after comparing it to a real dissection."
+},
+{
+"t": "Tsar",
+"u": "3.1",
+"d": "Russian title for an all-powerful ruler, from the Latin \"caesar\"; Ivan IV was the first to be formally crowned tsar, in 1547.",
+"ex": "The title claimed Russia as heir to the Roman and Byzantine empires."
+},
+{
+"t": "Ivan IV (Ivan the Terrible)",
+"u": "3.1",
+"d": "Grand prince and then first crowned tsar of Russia (r. 1533–1584) who conquered the khanates of Kazan and Astrakhan and opened the way into Siberia.",
+"ex": "His later reign turned to terror against nobles; he killed his own son and heir in a rage in 1581."
+},
+{
+"t": "Conquest of Kazan (1552)",
+"u": "3.1",
+"d": "Ivan IV's capture of the Tatar Khanate of Kazan on the Volga River, the first conquest of a Muslim khanate by Moscow.",
+"ex": "St. Basil's Cathedral in Moscow was built to celebrate the victory; Astrakhan followed in 1556, giving Russia the whole Volga."
+},
+{
+"t": "Oprichnina",
+"u": "3.1",
+"d": "Ivan IV's policy (1565–1572) of seizing land as his personal domain and using a black-clad force, the oprichniki, to terrorize nobles and towns he suspected of treason.",
+"ex": "It devastated the city of Novgorod in 1570 and weakened Russia's economy."
+},
+{
+"t": "Cossacks",
+"u": "3.1",
+"d": "Self-governing communities of frontier horsemen on the southern steppes, many of them runaway peasants, who fought for — and sometimes against — the tsars.",
+"ex": "Cossacks led Russian expansion into Siberia, and Cossack leaders headed major peasant revolts."
+},
+{
+"t": "Yermak Timofeyevich",
+"u": "3.1",
+"d": "A Cossack leader who, funded by the Stroganov merchant family, defeated the Khanate of Sibir around 1582, opening Siberia to Russian conquest.",
+"ex": "Within about 60 years Russians reached the Pacific coast."
+},
+{
+"t": "Yasak",
+"u": "3.1",
+"d": "Tribute, usually paid in furs, that Russia forced Siberian peoples to deliver to the tsar.",
+"ex": "Sable fur, called \"soft gold,\" made Siberia hugely valuable — at a heavy cost to Indigenous peoples."
+},
+{
+"t": "Crimean Khanate",
+"u": "3.1",
+"d": "A Tatar state on the Black Sea, under Ottoman protection from the 1470s, whose raiders attacked Russia and Poland and sold captives in the slave trade.",
+"ex": "Its forces burned Moscow in 1571; Catherine the Great annexed Crimea in 1783."
+},
+{
+"t": "Romanov Dynasty",
+"u": "3.2",
+"d": "The family that ruled Russia from 1613 to 1917, beginning when an assembly chose Michael Romanov as tsar to end the Time of Troubles.",
+"ex": "The Time of Troubles (1598–1613) was a period of famine, civil war, false claimants, and Polish invasion."
+},
+{
+"t": "Law Code of 1649",
+"u": "3.2",
+"d": "A Russian legal code that bound peasants permanently to the land and their lords, fully establishing serfdom.",
+"ex": "Serfs could be bought, sold, and punished by their owners; serfdom lasted until 1861."
+},
+{
+"t": "Peter the Great",
+"u": "3.2",
+"d": "Romanov tsar (r. 1682–1725) who toured Western Europe, built a navy, defeated Sweden, and forced Western-style reforms on Russia.",
+"ex": "He made nobles shave their beards (or pay a tax) and wear European clothes."
+},
+{
+"t": "St. Petersburg",
+"u": "3.2",
+"d": "The city Peter the Great founded in 1703 on the Baltic coast and made Russia's capital — his \"window on the West.\"",
+"ex": "Thousands of conscripted laborers died building it on swampland."
+},
+{
+"t": "Table of Ranks",
+"u": "3.2",
+"d": "Peter the Great's 1722 system of 14 ranks in the army, navy, and civil service, in which promotion was supposed to depend on service rather than birth alone.",
+"ex": "Commoners who reached certain ranks became nobles, tying the elite to state service."
+},
+{
+"t": "Catherine the Great",
+"u": "3.2",
+"d": "German-born empress of Russia (r. 1762–1796) who corresponded with Enlightenment thinkers, expanded the empire, and strengthened the nobles' power over serfs.",
+"ex": "She annexed Crimea (1783) and took large parts of Poland."
+},
+{
+"t": "Pugachev's Rebellion",
+"u": "3.2",
+"d": "A massive uprising (1773–1775) of Cossacks, serfs, and non-Russian peoples led by Yemelyan Pugachev, who claimed to be Catherine's murdered husband, Peter III.",
+"ex": "After crushing it, Catherine tightened control rather than reforming serfdom."
+},
+{
+"t": "Partitions of Poland",
+"u": "3.2",
+"d": "The division of the Polish-Lithuanian Commonwealth by Russia, Prussia, and Austria in 1772, 1793, and 1795, which wiped Poland off the map.",
+"ex": "Russia gained the largest share — and with it, the largest Jewish population in the world."
+},
+{
+"t": "Diaspora",
+"u": "3.3",
+"d": "A people living scattered outside their original homeland while keeping a shared identity, faith, or culture.",
+"ex": "Jewish, Armenian, and Tatar communities each kept connections across many empires."
+},
+{
+"t": "Pale of Settlement",
+"u": "3.3",
+"d": "The western region of the Russian Empire, created under Catherine the Great in 1791, where most Jews were legally required to live.",
+"ex": "It covered lands taken from Poland and lasted until 1917; most Jews were barred from moving to Moscow or St. Petersburg."
+},
+{
+"t": "Shtetl",
+"u": "3.3",
+"d": "A small market town in Eastern Europe with a large Jewish population, centered on the synagogue and Yiddish-speaking community life.",
+"ex": "Shtetl Jews worked as artisans, traders, and innkeepers, linking peasants to wider markets."
+},
+{
+"t": "Hasidism",
+"u": "3.3",
+"d": "A Jewish religious movement that began in the 1700s in Eastern Europe, stressing joyful prayer, devotion, and closeness to God for ordinary people.",
+"ex": "Its founder is traditionally named as the Baal Shem Tov; it spread widely within the Pale."
+},
+{
+"t": "Volga Tatars",
+"u": "3.3",
+"d": "A Turkic Muslim people of the Volga region, centered on Kazan, who came under Russian rule after 1552.",
+"ex": "Tatar merchants and teachers later served as go-betweens linking Russia with Central Asia's Muslim peoples."
+},
+{
+"t": "Orenburg Muslim Spiritual Assembly",
+"u": "3.3",
+"d": "An official body created under Catherine the Great in 1788 to oversee Muslim religious life in the Russian Empire.",
+"ex": "It replaced earlier forced-conversion campaigns with state-managed toleration — tolerance, but on the state's terms."
+},
+{
+"t": "New Julfa",
+"u": "3.3",
+"d": "The Armenian quarter of Isfahan, founded after Shah Abbas forcibly moved thousands of Armenians from the town of Julfa around 1604.",
+"ex": "Its merchants built one of the world's great trading networks, carrying Iranian silk from Amsterdam to Manila."
+}
+].sort((a,b)=>a.t.localeCompare(b.t));
+const TUTOR_NAME = "CLIO";
+const LS_STAR='whh_c9_glossary_starred', LS_QS='whh_c9_glossary_quizscore', LS_SRS='whh_c9_glossary_srs', LS_QT='whh_c9_glossary_quiztotals';
+let starred = new Set(lsGet(LS_STAR,[]));
+let srs = lsGet(LS_SRS,{});
+let qt = lsGet(LS_QT,{c:0,t:0});
+let curUnit='all', curShow='all';
+function setUnit(u,b){ curUnit=u; document.querySelectorAll('.pill[data-unit]').forEach(x=>x.classList.toggle('active',x===b)); render(); }
+function setShow(s,b){ curShow=s; document.querySelectorAll('.pill[data-show]').forEach(x=>x.classList.toggle('active',x===b)); render(); }
+function idOf(t){ return t.t.replace(/[^a-zA-Z0-9]/g,'_'); }
+function toggleStar(i){ const k=TERMS[i].t; starred.has(k)?starred.delete(k):starred.add(k); lsSet(LS_STAR,[...starred]); render(); }
+function filtered(){
+  const q=document.getElementById('q').value.trim().toLowerCase();
+  return TERMS.map((t,i)=>({t,i})).filter(({t})=>{
+    if(curUnit!=='all'&&t.u!==curUnit) return false;
+    if(curShow==='star'&&!starred.has(t.t)) return false;
+    if(curShow==='du'&&!t.du) return false;
+    if(q&&!(t.t+' '+t.d+' '+(t.ex||'')).toLowerCase().includes(q)) return false;
+    return true;
+  });
+}
+const openTutors = new Set();
+function render(){
+  const list=filtered();
+  document.getElementById('s-star').textContent=starred.size;
+  const letters=new Set(list.map(x=>x.t.t[0].toUpperCase()));
+  document.getElementById('alpha').innerHTML='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(l=>`<a href="#L-${l}" class="${letters.has(l)?'':'off'}">${l}</a>`).join('');
+  if(!list.length){ document.getElementById('list').innerHTML='<div class="empty">No terms match. Try a different search or filter.</div>'; return; }
+  let html='', last='';
+  list.forEach(({t,i})=>{
+    const L=t.t[0].toUpperCase();
+    if(L!==last){ html+=`<div class="letter" id="L-${L}">${L}</div>`; last=L; }
+    const id=idOf(t), on=starred.has(t.t);
+    html+=`<div class="term">
+      <div class="term-top"><div><div class="term-name">${esc(t.t)}</div>
+        <div class="term-tags"><span class="tag t-unit">${t.u} · ${esc(UNIT_NAMES[t.u])}</span>${t.du&&DOMAINS[t.du]?`<span class="tag t-du">🦆 DU · ${esc(DOMAINS[t.du].name)}</span>`:''}</div></div>
+        <button class="star ${on?'on':''}" onclick="toggleStar(${i})" aria-label="${on?'Unstar':'Star'} ${esc(t.t)}" aria-pressed="${on}">${on?'★':'☆'}</button></div>
+      <div class="term-def">${esc(t.d)}</div>
+      ${t.ex?`<div class="term-ex">${esc(t.ex)}</div>`:''}
+      <button class="tutor-toggle" onclick="toggleTutor(${i})">💬 Ask ${TUTOR_NAME} about this</button>
+      <div class="tutor ${openTutors.has(i)?'open':''}" id="tu-${i}">
+        <div class="chat" id="ch-${i}"></div>
+        <div class="chips"><button class="chip" onclick="askT(${i},'Give me an example')">Example</button><button class="chip" onclick="askT(${i},'Explain it a simpler way')">Simpler</button><button class="chip" onclick="askT(${i},'What do students mix this up with?')">Common mix-up</button></div>
+        <div class="trow"><input class="tin" id="ti-${i}" placeholder="Ask your own question…" onkeydown="if(event.key==='Enter')askT(${i})"><button class="btn btn-accent" style="padding:8px 14px" onclick="askT(${i})">Ask</button></div>
+        <div class="tmode">${esc(StudyHubTutor.modeLabel())}</div>
+      </div>
+    </div>`;
+  });
+  document.getElementById('list').innerHTML=html;
+  openTutors.forEach(i=>restoreChat(i));
+}
+// ── Tutor ──
+const chats={};
+function toggleTutor(i){ openTutors.has(i)?openTutors.delete(i):openTutors.add(i); document.getElementById('tu-'+i).classList.toggle('open'); }
+function restoreChat(i){ const c=document.getElementById('ch-'+i); if(!c||!chats[i]) return; c.innerHTML=chats[i].ui.map(([r,t])=>`<div class="bub ${r}">${fmt(t)}</div>`).join(''); }
+function fmt(t){ return esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/`([^`]+)`/g,'<code>$1</code>').replace(/\n/g,'<br>'); }
+function related(t){ return TERMS.filter(x=>x!==t&&x.u===t.u).slice(0,40).filter(x=>{ const w=t.t.toLowerCase().split(/[^a-z]+/).filter(s=>s.length>4); return w.some(s=>x.d.toLowerCase().includes(s)); }).map(x=>x.t).slice(0,3); }
+async function askT(i,preset){
+  const t=TERMS[i]; const inp=document.getElementById('ti-'+i);
+  const msg=(preset||inp.value).trim(); if(!msg) return; inp.value='';
+  const c = chats[i] = chats[i] || {hist:[{role:'user',content:`TERM: ${t.t} | Unit: ${UNIT_NAMES[t.u]}\nDefinition: ${t.d}\n${t.ex?'Example: '+t.ex:''}`},{role:'assistant',content:'Ready.'}], ui:[]};
+  c.ui.push(['u',msg]); c.hist.push({role:'user',content:msg}); restoreChat(i);
+  const res = await StudyHubTutor.ask({
+    system:`You are ${TUTOR_NAME}, a World History Honors tutor inside a glossary. Keep replies to 2-4 sentences, plain text, high-school friendly. Add a new angle, a Florida or wildlife example, or a common misconception; never just repeat the definition. Redirect off-topic questions warmly.`,
+    messages:c.hist, context:{term:t.t, def:t.d, example:t.ex, unit:UNIT_NAMES[t.u], related:related(t)}, message:msg });
+  c.ui.push(['a',res.text]); c.hist.push({role:'assistant',content:res.text}); if(c.hist.length>14) c.hist.splice(2,2);
+  restoreChat(i);
+}
+// ── SRS helpers ──
+function w(t){ const r=srs[t.t]; if(!r||!r.seen) return 3; return Math.max(1,1+(r.miss/r.seen)*6) * (starred.has(t.t)?1.5:1); }
+function srsUp(t,ok){ const r=srs[t.t]||{seen:0,miss:0}; r.seen++; if(!ok) r.miss++; srs[t.t]=r; lsSet(LS_SRS,srs); }
+function pickWeighted(pool,n){ const p=pool.map(t=>({t,w:w(t)})), out=[]; while(out.length<n&&p.length){ const tot=p.reduce((s,x)=>s+x.w,0); let r=Math.random()*tot,k=0; for(;k<p.length;k++){ r-=p[k].w; if(r<=0) break; } out.push(p.splice(Math.min(k,p.length-1),1)[0].t); } return out; }
+function pool(){ const f=filtered().map(x=>x.t); return f.length>=4?f:TERMS; }
+function closeOv(){ document.getElementById('ov').classList.remove('open'); render(); }
+// ── Flip cards ──
+let deck=[], di=0;
+function openCards(){ deck=pickWeighted(pool(),Math.min(20,pool().length)); di=0; document.getElementById('ov').classList.add('open'); renderCard(); }
+function renderCard(){
+  const m=document.getElementById('modal');
+  if(di>=deck.length){ m.innerHTML=`<div style="text-align:center;padding:20px"><div class="sec-lbl">DECK DONE</div><div style="font-size:15px;margin:8px 0 16px">Cards you marked "Again" will come up more often next time.</div><button class="btn btn-accent" onclick="openCards()">New deck</button> <button class="btn btn-ghost" onclick="closeOv()">Close</button></div>`; return; }
+  const t=deck[di];
+  m.innerHTML=`<div class="mtop"><span>CARD ${di+1} / ${deck.length}</span><button class="pill" onclick="closeOv()">✕ Close</button></div>
+   <div class="fc" id="fc" onclick="this.classList.toggle('flip')" role="button" tabindex="0" aria-label="Flip card" onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();this.classList.toggle('flip')}"><div class="fc-inner">
+     <div class="fc-face"><div class="fc-term">${esc(t.t)}</div><div class="fc-hint">Say the definition out loud, then tap to flip</div></div>
+     <div class="fc-face fc-back"><div>${esc(t.d)}${t.ex?`<div class="term-ex" style="text-align:left;margin-top:10px">${esc(t.ex)}</div>`:''}</div></div>
+   </div></div>
+   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><button class="btn btn-ghost" onclick="rate(false)">↺ Again</button><button class="btn btn-teal" onclick="rate(true)">✓ Got it</button></div>`;
+}
+function rate(ok){ srsUp(deck[di],ok); game().event('flashcard'); di++; renderCard(); }
+// ── Quiz ──
+let qz=null;
+function openQuiz(){ const p=pool(); qz={items:pickWeighted(p,Math.min(10,p.length)),i:0,right:0,ans:false,p}; document.getElementById('ov').classList.add('open'); renderQ(); }
+function renderQ(){
+  const m=document.getElementById('modal');
+  if(qz.i>=qz.items.length){
+    const pct=Math.round(qz.right/qz.items.length*100); localStorage.setItem(LS_QS, pct+'%');
+    document.getElementById('s-quiz').textContent = qt.t?Math.round(qt.c/qt.t*100)+'%':'—';
+    m.innerHTML=`<div style="text-align:center;padding:20px"><div class="sec-lbl">QUIZ COMPLETE</div><div style="font-size:40px;font-weight:800;font-family:'DM Mono',monospace;color:#fff">${qz.right}/${qz.items.length}</div><div style="color:var(--muted);margin:6px 0 16px">Missed terms are weighted to show up again sooner.</div><button class="btn btn-accent" onclick="openQuiz()">Another round</button> <button class="btn btn-ghost" onclick="closeOv()">Close</button></div>`; return;
+  }
+  const t=qz.items[qz.i]; qz.ans=false;
+  const others=shuffle(TERMS.filter(x=>x!==t&&(x.u===t.u||Math.random()<.3))).slice(0,3);
+  qz.opts=shuffle([t,...others]);
+  m.innerHTML=`<div class="mtop"><span>QUESTION ${qz.i+1} / ${qz.items.length}</span><span>${qz.right} correct</span><button class="pill" onclick="closeOv()">✕</button></div>
+    <div class="q-def">${esc(t.d)}</div>
+    <div class="opts">${qz.opts.map((o,k)=>`<button class="opt" id="qo-${k}" onclick="pickQ(${k})"><span class="opt-key">${'ABCD'[k]}</span><span>${esc(o.t)}</span></button>`).join('')}</div>
+    <div class="fb" id="qfb"></div>`;
+}
+function pickQ(k){
+  if(qz.ans) return; qz.ans=true;
+  const t=qz.items[qz.i], ok=qz.opts[k]===t;
+  if(ok) qz.right++; qt.t++; if(ok) qt.c++; lsSet(LS_QT,qt);
+  srsUp(t,ok); game().answer(ok,1);
+  qz.opts.forEach((o,j)=>{ const b=document.getElementById('qo-'+j); b.disabled=true; if(o===t) b.classList.add('correct'); else if(j===k) b.classList.add('wrong'); });
+  const fb=document.getElementById('qfb'); fb.classList.add('show');
+  fb.innerHTML=`<b style="color:${ok?'#4fd1a5':'#f08579'}">${ok?'✓ Correct':'✗ It was '+esc(t.t)}</b>${t.ex?' — '+esc(t.ex):''}<div style="margin-top:12px"><button class="btn btn-accent" onclick="qz.i++;renderQ()">Next →</button></div>`;
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&document.getElementById('ov').classList.contains('open')) closeOv(); });
+(function init(){
+  document.getElementById('s-total').textContent=TERMS.length;
+  if(qt.t) document.getElementById('s-quiz').textContent=Math.round(qt.c/qt.t*100)+'%';
+  const units=new Set(TERMS.map(t=>t.u)).size, du=TERMS.filter(t=>t.du).length;
+  document.getElementById('page-sub').textContent=`${TERMS.length} terms · ${units} units${du?` · ${du} tagged for the DU certification`:''} · flip cards, spaced-repetition quiz, ${TUTOR_NAME} tutor`;
+  const p=new URLSearchParams(location.search);
+  const qu=p.get('unit'); const b=qu&&(document.querySelector('.pill[data-unit="'+qu+'"]')||document.querySelector('.pill[data-unit="U'+qu+'"]'));
+  if(p.get('show')==='du'){ const d=document.querySelector('.pill[data-show="du"]'); if(d){ curShow='du'; document.querySelectorAll('.pill[data-show]').forEach(x=>x.classList.toggle('active',x===d)); } }
+  if(b) setUnit(b.dataset.unit,b); else render();
+})();
+</script>
+</body>
+</html>

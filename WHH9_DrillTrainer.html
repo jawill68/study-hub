@@ -126,10 +126,10 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 </head>
 <body>
 <div class="app">
-  <a class="back" href="WHH_StudyHub.html">← World History Honors · Ch. 8 Hub</a>
+  <a class="back" href="WHH9_StudyHub.html">← World History Honors · Ch. 9 Hub</a>
   <div class="header">
     <div>
-      <div class="series-label">World History Honors · Chapter 8 · Drill Trainer</div>
+      <div class="series-label">World History Honors · Chapter 9 · Drill Trainer</div>
       <div class="page-title">Drill <span>Trainer</span></div>
       <div class="page-sub" id="page-sub"></div>
     </div>
@@ -179,7 +179,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
       <div class="actions" style="margin-top:16px"><button class="btn btn-ghost" onclick="goSetup()">← Setup</button><button class="btn btn-teal" onclick="start(true)">Retry same</button><button class="btn btn-accent" id="btn-missed" onclick="retryMissed()">Drill missed only</button></div></div>
     <div class="card" id="r-missed-card"><div class="sec-lbl">Review what you missed</div><div id="r-missed"></div></div>
   </div>
-  <div class="footer">World History Honors (2109320) · Unit 4 · Chapter 8: Renaissance and Reformation · Florida NGSSS Social Studies SS.912.W.4 (Renaissance, Reformation)</div>
+  <div class="footer">World History Honors (2109320) · Unit 4 · Chapter 9: Land-Based Empires of Eurasia · Florida NGSSS Social Studies, World History (SS.912.W)</div>
 </div>
 <script>
 function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -189,1038 +189,1012 @@ function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON
 function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
 function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
 
-const UNIT_NAMES = {"1.1": "The Rise of Italian City-States", "1.2": "A Cultural Rebirth", "1.3": "Renaissance Arts", "1.4": "Explorer: Finding a Lost Leonardo", "2.1": "Renaissance Humanism", "2.2": "Raphael's School of Athens", "2.3": "DBQ: Humanist Writings", "2.4": "Renaissances Around the World", "3.1": "Martin Luther and the Protestant Reformation", "3.2": "Reforms Across Europe", "4.1": "Challenges to Habsburg Dominance", "4.2": "The Catholic Reformation", "4.3": "Global Christianities"};
+const UNIT_NAMES = {"1.1": "Traveler: Evliya Çelebi, Tales from 40 Years of Travel", "1.2": "Süleyman and Ottoman Power", "1.3": "Safavid Rise and Fall", "1.4": "Ottoman Persistence", "2.1": "Mughal India", "2.2": "Preserving Cultural Heritage: The Taj Mahal", "2.3": "Ming Decline to Qing Power", "2.4": "DBQ: Voltaire Writes About Qianlong", "2.5": "Japan's Tokugawa Shogunate", "3.1": "Control of the Steppes", "3.2": "The Romanov Dynasty", "3.3": "Jewish, Tatar, and Armenian Diasporas"};
 const QB = [
 {
-"u": "1.2",
+"u": "1.1",
 "t": 1,
-"q": "The word \"Renaissance\" means:",
+"q": "Evliya Çelebi is best known for:",
 "o": [
-"Rebirth",
-"Reform",
-"Rebellion",
-"Revolution"
+"Writing a ten-volume account of his travels",
+"Commanding the janissaries",
+"Designing the Süleymaniye Mosque",
+"Translating the Quran into Persian"
 ],
 "a": 0,
-"e": "Renaissance is French for rebirth — a revival of classical Greek and Roman learning and art."
+"e": "His Seyahatname (Book of Travels) records about 40 years of journeys across the Ottoman world and beyond."
 },
 {
 "u": "1.1",
 "t": 1,
-"q": "Where did the Renaissance begin?",
+"q": "Evliya Çelebi's home city, where he grew up near the sultan's court, was:",
 "o": [
-"The city-states of northern Italy",
-"England",
-"The Ottoman Empire",
-"Spain"
-],
-"a": 0,
-"e": "Wealthy northern Italian city-states such as Florence and Venice had money, urban culture, and Roman ruins close at hand."
-},
-{
-"u": "1.1",
-"t": 2,
-"q": "Which factor BEST explains why the Renaissance began in Italy rather than elsewhere?",
-"o": [
-"Italy had no contact with other cultures",
-"Wealth from trade and banking, crowded cities, reminders of ancient Rome, and patrons willing to fund art",
-"Italy was ruled by a single powerful king",
-"The printing press was invented in Italy"
-],
-"a": 1,
-"e": "Trade wealth created rich patrons; cities concentrated talent; Roman heritage was all around. The printing press came from Germany, and Italy was divided into city-states, not one kingdom."
-},
-{
-"u": "2.1",
-"t": 2,
-"q": "Humanists focused mainly on:",
-"o": [
-"Only theology",
-"Classical texts and subjects such as history, poetry, rhetoric, and moral philosophy",
-"Rejecting all religion",
-"Military strategy"
-],
-"a": 1,
-"e": "Humanism studied the humanities through classical sources. Most humanists remained Christian; they added a focus on human achievement."
-},
-{
-"u": "1.2",
-"t": 2,
-"q": "How did the Fall of Constantinople in 1453 contribute to the Renaissance?",
-"o": [
-"It ended trade with Asia",
-"Byzantine scholars fled to Italy carrying classical Greek manuscripts",
-"It destroyed Italian city-states",
-"It caused the Reformation directly"
-],
-"a": 1,
-"e": "Greek scholars and texts arriving in Italy deepened the study of Plato and other Greek thinkers."
-},
-{
-"u": "1.1",
-"t": 1,
-"q": "Which family ruled Florence and became famous patrons of Renaissance art?",
-"o": [
-"The Tudors",
-"The Medici",
-"The Habsburgs",
-"The Bourbons"
-],
-"a": 1,
-"e": "The Medici banking fortune supported artists and scholars such as Botticelli and young Michelangelo."
-},
-{
-"u": "1.3",
-"t": 2,
-"q": "A painting shows a merchant family in their home with realistic faces and a window revealing a landscape behind them. Which Renaissance values does it reflect?",
-"o": [
-"Secularism and individualism, plus realism",
-"Only medieval religious symbolism",
-"The ideas of the Council of Trent",
-"Calvinist predestination"
-],
-"a": 0,
-"e": "Worldly subjects (secular), specific people celebrated (individualism), and realistic depth (perspective) are Renaissance hallmarks."
-},
-{
-"u": "2.3",
-"t": 3,
-"q": "Machiavelli's The Prince was controversial because it argued that rulers should:",
-"o": [
-"Always act morally, even if they lose power",
-"Judge actions by their results in keeping power and the state secure, even if that means being feared or deceptive",
-"Let the pope choose all rulers",
-"Give power to the common people"
-],
-"a": 1,
-"e": "Machiavelli described politics as it actually worked, not as it ideally should. That realism is why \"Machiavellian\" now means cunning and ruthless."
-},
-{
-"u": "1.3",
-"t": 1,
-"q": "Which artist painted the Mona Lisa and filled notebooks with inventions and anatomy?",
-"o": [
-"Michelangelo",
-"Raphael",
-"Leonardo da Vinci",
-"Dürer"
+"Cairo",
+"Isfahan",
+"Istanbul",
+"Vienna"
 ],
 "a": 2,
-"e": "Leonardo da Vinci is the classic Renaissance man — artist, engineer, and scientist."
+"e": "He was born in Istanbul in 1611 and served at the court of Murad IV before beginning his travels."
 },
 {
-"u": "1.3",
-"t": 2,
-"q": "Linear perspective helped Renaissance artists:",
-"o": [
-"Use only gold backgrounds",
-"Create the illusion of three-dimensional depth on a flat surface",
-"Paint faster",
-"Avoid painting people"
-],
-"a": 1,
-"e": "Lines converge at a vanishing point, making flat paintings look deep and realistic."
-},
-{
-"u": "1.2",
+"u": "1.1",
 "t": 3,
-"q": "Writers like Dante and Petrarch writing in Italian rather than Latin mattered because:",
+"q": "Why do historians value Evliya's writings even though some of his numbers are exaggerated?",
 "o": [
-"Latin was illegal",
-"Vernacular writing reached a wider audience beyond the clergy and educated elite",
-"It ended the use of Latin entirely",
-"It was required by the pope"
-],
-"a": 1,
-"e": "The vernacular made literature accessible to ordinary readers, and printing later multiplied that effect."
-},
-{
-"u": "2.1",
-"t": 2,
-"q": "Castiglione's The Book of the Courtier described the ideal noble as:",
-"o": [
-"Uneducated but strong",
-"Well-educated, graceful, skilled in many areas — a \"Renaissance man\"",
-"A monk who avoids society",
-"A merchant only"
-],
-"a": 1,
-"e": "The courtier should be skilled in arms, letters, music, and conversation — the well-rounded ideal."
-},
-{
-"u": "2.1",
-"t": 1,
-"q": "Who developed the printing press with movable metal type in Europe around 1450?",
-"o": [
-"Martin Luther",
-"Johannes Gutenberg",
-"Erasmus",
-"Leonardo da Vinci"
-],
-"a": 1,
-"e": "Gutenberg's press in Mainz made books much faster and cheaper to produce."
-},
-{
-"u": "2.1",
-"t": 2,
-"q": "What was the MOST important effect of the printing press?",
-"o": [
-"Books became more expensive",
-"Ideas, including Renaissance and Reformation ideas, spread faster and to more people, and literacy rose",
-"It ended the use of the vernacular",
-"It stopped the Reformation"
-],
-"a": 1,
-"e": "Cheap print spread humanist scholarship, Bibles, and Luther's pamphlets across Europe within weeks."
-},
-{
-"u": "2.1",
-"t": 2,
-"q": "How did the Northern Renaissance differ from the Italian Renaissance?",
-"o": [
-"It had no artists",
-"It placed greater emphasis on religious reform and Christian humanism",
-"It happened before the Italian Renaissance",
-"It rejected printing"
-],
-"a": 1,
-"e": "Northern humanists like Erasmus applied humanist scholarship to reforming the Church and Christian life."
-},
-{
-"u": "2.1",
-"t": 2,
-"q": "Erasmus's The Praise of Folly criticized:",
-"o": [
-"The printing press",
-"Corrupt clergy and empty religious rituals",
-"Italian artists",
-"The Ottoman Empire"
-],
-"a": 1,
-"e": "Erasmus used satire to mock Church abuses, but he wanted reform from within, not a break with Rome."
-},
-{
-"u": "2.3",
-"t": 1,
-"q": "Thomas More's Utopia describes:",
-"o": [
-"A real English town",
-"An imaginary ideal society",
-"A war with France",
-"A new church"
-],
-"a": 1,
-"e": "Utopia uses an imaginary island to criticize real problems in European society."
-},
-{
-"u": "1.3",
-"t": 2,
-"q": "Flemish painters like Jan van Eyck are known for:",
-"o": [
-"Abstract art",
-"Detailed, realistic oil paintings",
-"Frescoes on ceilings",
-"Mosaics"
-],
-"a": 1,
-"e": "Oil paint allowed fine detail and glowing color; the technique spread from Flanders to Italy."
-},
-{
-"u": "2.1",
-"t": 3,
-"q": "Historians say \"Erasmus laid the egg that Luther hatched.\" What does this mean?",
-"o": [
-"Erasmus and Luther were relatives",
-"Erasmus's criticism of Church abuses prepared the ground for Luther's break with the Church, even though Erasmus himself stayed Catholic",
-"Luther wrote The Praise of Folly",
-"Erasmus started the Thirty Years' War"
-],
-"a": 1,
-"e": "Christian humanist critiques spread doubts about Church practices. Luther took the next step — open rejection of papal authority."
-},
-{
-"u": "2.1",
-"t": 1,
-"q": "Which English playwright wrote Hamlet and Romeo and Juliet?",
-"o": [
-"Thomas More",
-"William Shakespeare",
-"Petrarch",
-"Castiglione"
-],
-"a": 1,
-"e": "Shakespeare's plays in English reflect Renaissance interest in human nature and the vernacular."
-},
-{
-"u": "3.1",
-"t": 3,
-"q": "Without the printing press, the Reformation would most likely have:",
-"o": [
-"Spread just as fast",
-"Spread more slowly and been easier for authorities to suppress, as earlier reformers like Hus were",
-"Never involved Germany",
-"Begun in Italy"
-],
-"a": 1,
-"e": "Earlier critics such as Wycliffe and Hus were contained. Printing let Luther's ideas reach thousands before they could be stopped."
-},
-{
-"u": "1.3",
-"t": 2,
-"q": "Albrecht Dürer helped spread Renaissance artistic ideas north mainly through:",
-"o": [
-"Stained glass",
-"Woodcuts and engravings that could be printed and sold widely",
-"Sculpture",
-"Architecture"
-],
-"a": 1,
-"e": "Prints were cheaper than paintings, so his work reached a broad audience."
-},
-{
-"u": "2.1",
-"t": 2,
-"q": "Why did literacy rise after the invention of the printing press?",
-"o": [
-"Schools became illegal",
-"Books became cheaper and more available, and people wanted to read the Bible and other works for themselves",
-"Latin disappeared",
-"Kings required it by law everywhere"
-],
-"a": 1,
-"e": "Affordable books — especially vernacular Bibles — gave ordinary people a reason and a way to read."
-},
-{
-"u": "3.1",
-"t": 1,
-"q": "In what year did Martin Luther write the Ninety-five Theses?",
-"o": [
-"1453",
-"1517",
-"1555",
-"1648"
-],
-"a": 1,
-"e": "1517 is the traditional start date of the Protestant Reformation."
-},
-{
-"u": "3.1",
-"t": 1,
-"q": "Luther's Ninety-five Theses mainly attacked:",
-"o": [
-"The printing press",
-"The sale of indulgences",
-"The Ottoman Empire",
-"Italian art"
-],
-"a": 1,
-"e": "Luther objected to the claim that buying a pardon could reduce punishment for sin."
-},
-{
-"u": "3.1",
-"t": 2,
-"q": "Which belief is central to Luther's teaching?",
-"o": [
-"Salvation comes through good works and indulgences",
-"Salvation comes through faith in God's grace alone, and the Bible is the only authority",
-"The pope cannot make mistakes",
-"Only priests may read the Bible"
-],
-"a": 1,
-"e": "\"Faith alone\" and \"Scripture alone\" were Luther's core challenges to Church authority."
-},
-{
-"u": "3.1",
-"t": 2,
-"q": "At the Diet of Worms in 1521, Luther:",
-"o": [
-"Accepted the pope's authority",
-"Refused to recant and was declared an outlaw by Emperor Charles V",
-"Became pope",
-"Wrote the Ninety-five Theses"
-],
-"a": 1,
-"e": "Luther refused to take back his writings. Frederick the Wise of Saxony then protected him."
-},
-{
-"u": "3.1",
-"t": 3,
-"q": "Why did many German princes support Luther?",
-"o": [
-"They all agreed on theology",
-"Breaking with Rome let them gain independence from the emperor and pope and take Church lands and wealth",
-"Luther paid them",
-"The pope asked them to"
-],
-"a": 1,
-"e": "Religion and politics were intertwined. Princes saw political and economic advantages in Lutheranism."
-},
-{
-"u": "4.1",
-"t": 2,
-"q": "The Peace of Augsburg (1555) established that:",
-"o": [
-"All Germans must be Catholic",
-"Each German prince could choose whether his territory would be Catholic or Lutheran",
-"Calvinism was legal everywhere",
-"The Thirty Years' War was over"
-],
-"a": 1,
-"e": "\"Whose realm, his religion\": the ruler chose, and subjects were expected to follow or move. Calvinism was not included until 1648."
-},
-{
-"u": "3.2",
-"t": 1,
-"q": "Which reformer taught predestination and led the city of Geneva?",
-"o": [
-"Martin Luther",
-"John Calvin",
-"Henry VIII",
-"Erasmus"
-],
-"a": 1,
-"e": "Calvin's Geneva became a model Protestant community with strict moral rules."
-},
-{
-"u": "3.2",
-"t": 2,
-"q": "Henry VIII broke with the Roman Catholic Church mainly because:",
-"o": [
-"He disagreed with Luther",
-"The pope refused to annul his marriage to Catherine of Aragon",
-"He wanted to become pope",
-"He supported the Jesuits"
-],
-"a": 1,
-"e": "Henry wanted a male heir. The break was political and personal at first; Protestant theology grew stronger later."
-},
-{
-"u": "3.2",
-"t": 2,
-"q": "The Act of Supremacy (1534) made:",
-"o": [
-"The pope head of England",
-"The English monarch the supreme head of the Church of England",
-"Calvin ruler of England",
-"Catholicism England's only legal religion"
-],
-"a": 1,
-"e": "This created the Church of England (Anglican Church) under royal control."
-},
-{
-"u": "3.2",
-"t": 3,
-"q": "How was the English Reformation DIFFERENT from Luther's Reformation in Germany?",
-"o": [
-"England's began mainly for political and dynastic reasons, led by the king, while Germany's began with religious protest by a monk",
-"There was no difference",
-"England's began with the Ninety-five Theses",
-"Germany's was led by a queen"
-],
-"a": 0,
-"e": "Luther's was theology-first, from below. Henry's was a royal decision driven by succession and power."
-},
-{
-"u": "3.1",
-"t": 3,
-"q": "Wycliffe and Hus are sometimes called forerunners of the Reformation because they:",
-"o": [
-"Invented printing",
-"Criticized Church wealth and authority and promoted the Bible's authority more than a century before Luther",
-"Founded the Jesuits",
-"Fought in the Thirty Years' War"
-],
-"a": 1,
-"e": "Their ideas anticipated Luther, but without the printing press they were easier to suppress — Hus was executed in 1415."
-},
-{
-"u": "3.2",
-"t": 2,
-"q": "Anabaptists were persecuted by both Catholics and other Protestants mainly because they:",
-"o": [
-"Supported the pope",
-"Rejected infant baptism and favored separating church and state",
-"Wanted to restore indulgences",
-"Were Ottoman allies"
-],
-"a": 1,
-"e": "Their views challenged both religious and political order of the time."
-},
-{
-"u": "4.2",
-"t": 1,
-"q": "The Catholic Church's response to the Protestant Reformation is called the:",
-"o": [
-"Renaissance",
-"Catholic Reformation (Counter-Reformation)",
-"Enlightenment",
-"Peace of Augsburg"
-],
-"a": 1,
-"e": "The Church reformed abuses and reaffirmed its doctrines to stop Protestantism's spread."
-},
-{
-"u": "4.2",
-"t": 2,
-"q": "The Council of Trent:",
-"o": [
-"Accepted Luther's faith-alone teaching",
-"Reaffirmed Catholic doctrine, ended the sale of indulgences, and required better-educated priests",
-"Created the Church of England",
-"Ended the Thirty Years' War"
-],
-"a": 1,
-"e": "Trent clarified doctrine (faith AND works, seven sacraments) while fixing abuses Protestants had criticized."
-},
-{
-"u": "4.2",
-"t": 1,
-"q": "Who founded the Jesuits?",
-"o": [
-"Ignatius of Loyola",
-"John Calvin",
-"Johann Tetzel",
-"Henry IV"
-],
-"a": 0,
-"e": "Loyola founded the Society of Jesus in 1540."
-},
-{
-"u": "4.2",
-"t": 2,
-"q": "The Jesuits strengthened the Catholic Church mainly through:",
-"o": [
-"Selling indulgences",
-"Education, founding schools, and missionary work around the world",
-"Writing the Ninety-five Theses",
-"Supporting Calvin"
-],
-"a": 1,
-"e": "Jesuit schools trained leaders, and missionaries spread Catholicism to Asia, Africa, and the Americas."
-},
-{
-"u": "4.2",
-"t": 2,
-"q": "The Index of Forbidden Books was created to:",
-"o": [
-"Promote Protestant books",
-"Prevent Catholics from reading works judged dangerous to faith",
-"Catalog Renaissance art",
-"List banned weapons"
-],
-"a": 1,
-"e": "Censorship was one tool of the Catholic Reformation, alongside the Inquisition."
-},
-{
-"u": "4.1",
-"t": 2,
-"q": "The Edict of Nantes (1598) granted religious toleration to:",
-"o": [
-"English Catholics",
-"French Huguenots",
-"German Lutherans",
-"Spanish Jews"
-],
-"a": 1,
-"e": "Henry IV ended the French Wars of Religion by granting Protestants rights while keeping France officially Catholic."
-},
-{
-"u": "4.1",
-"t": 1,
-"q": "The Thirty Years' War lasted from:",
-"o": [
-"1517–1547",
-"1618–1648",
-"1453–1483",
-"1555–1585"
-],
-"a": 1,
-"e": "It began in Bohemia in 1618 and ended with the Peace of Westphalia in 1648."
-},
-{
-"u": "4.1",
-"t": 3,
-"q": "Why is the Peace of Westphalia (1648) considered a turning point?",
-"o": [
-"It reunited all Christians",
-"It ended large-scale religious wars in Central Europe, recognized Calvinism, and strengthened independent, sovereign states over the pope and emperor",
-"It started the Renaissance",
-"It created the Church of England"
-],
-"a": 1,
-"e": "After Westphalia, states — not religious authorities — became the main actors in European politics."
-},
-{
-"u": "4.1",
-"t": 3,
-"q": "The St. Bartholomew's Day Massacre (1572) shows that the Reformation:",
-"o": [
-"Was entirely peaceful",
-"Produced violent conflict, as French Catholics killed thousands of Huguenots",
-"Ended in France immediately",
-"Was supported by all French nobles"
-],
-"a": 1,
-"e": "Religious division turned into civil war in France until the Edict of Nantes."
-},
-{
-"u": "4.3",
-"t": 3,
-"q": "Which statement BEST describes a long-term effect of the Reformation?",
-"o": [
-"Europe became permanently religiously divided, monarchs and states gained power over churches, and education and literacy expanded",
-"Europe became entirely Protestant",
-"The pope gained control over all kings",
-"Printing was banned"
-],
-"a": 0,
-"e": "Christian unity in Western Europe ended; secular rulers gained authority; both sides founded schools to teach their faith."
-},
-{
-"u": "4.2",
-"t": 2,
-"q": "Which was NOT a goal of the Catholic Reformation?",
-"o": [
-"End abuses such as the sale of indulgences",
-"Reaffirm Catholic teaching",
-"Accept salvation by faith alone",
-"Win back people who had become Protestant"
+"They are the only Ottoman books that survive",
+"They were officially approved by the sultan",
+"They describe everyday life — foods, guilds, languages, customs — that official records rarely mention",
+"They were written by a European outsider"
 ],
 "a": 2,
-"e": "The Council of Trent rejected faith alone and taught that faith and good works both matter."
-},
-{
-"u": "4.2",
-"t": 2,
-"q": "The Inquisition was used during the Catholic Reformation to:",
-"o": [
-"Print Bibles",
-"Investigate and punish heresy",
-"Found universities",
-"Make peace with Protestants"
-],
-"a": 1,
-"e": "Church courts enforced orthodoxy, sometimes harshly."
+"e": "Official sources record taxes and wars; a traveler's account captures daily life. Historians cross-check the details they use."
 },
 {
 "u": "1.1",
 "t": 2,
-"q": "Venice became wealthy mainly because it:",
+"q": "Evliya's description of a grand parade of Istanbul's guilds tells historians mainly about:",
 "o": [
-"Controlled sea trade between Europe and the eastern Mediterranean",
-"Had the largest army in Europe",
-"Was the seat of the pope",
-"Mined gold in the Alps"
+"The organization of trades and crafts in Ottoman cities",
+"Ottoman naval battles",
+"Safavid religious practice",
+"The sultan's foreign treaties"
 ],
 "a": 0,
-"e": "Venice's fleets and merchants carried spices, silk, and other goods between Europe, Ottoman lands, and Asian trade routes."
+"e": "Guilds organized bakers, tanners, sailors, and hundreds of other trades — showing a complex urban economy."
 },
 {
 "u": "1.1",
 "t": 2,
-"q": "Italian city-states often hired condottieri because:",
+"q": "Late in life Evliya made the hajj. This journey was:",
 "o": [
-"They had no money",
-"Wealthy merchant states preferred to pay professional mercenary captains rather than raise citizen armies",
-"The pope required it",
-"They were forbidden to own weapons"
+"A military campaign against Persia",
+"A diplomatic mission to Vienna",
+"A trading trip to India",
+"A religious pilgrimage to Mecca"
 ],
-"a": 1,
-"e": "Rich city-states bought military protection. Some condottieri, like Francesco Sforza of Milan, seized power for themselves."
+"a": 3,
+"e": "The hajj is one of the Five Pillars of Islam; Ottoman sultans protected pilgrim routes to Mecca."
 },
 {
 "u": "1.1",
 "t": 3,
-"q": "Why did banking families like the Medici become powerful in politics as well as art?",
+"q": "A student uses Evliya Çelebi as her only source to prove the exact population of an Ottoman town. What is the BEST critique?",
 "o": [
-"They were elected kings",
-"Their wealth let them lend to rulers and popes, reward supporters, and fund buildings and art that displayed their status",
-"They controlled the army by law",
-"They owned all the land in Italy"
+"Evliya never visited Ottoman towns",
+"Travelers' numbers can be exaggerated or estimated, so they should be checked against tax registers or other records",
+"Ottoman sources are always unreliable",
+"Population figures did not exist before 1900"
 ],
 "a": 1,
-"e": "Money brought influence: loans created obligations, patronage built loyalty, and art projected power. The Medici even produced popes."
+"e": "Good historians use travel accounts for texture and perspective, but corroborate hard numbers with other sources."
 },
 {
 "u": "1.2",
 "t": 1,
-"q": "Which describes the Renaissance view of the individual?",
+"q": "Which Ottoman sultan captured Constantinople in 1453?",
 "o": [
-"Individuals were unimportant",
-"Individual talent and achievement deserved recognition and fame",
-"Only kings could achieve greatness",
-"Individuals should avoid education"
+"Süleyman I",
+"Selim I",
+"Murad IV",
+"Mehmed II"
+],
+"a": 3,
+"e": "Mehmed II, \"the Conqueror,\" used massive cannons to break the city's walls and made it the Ottoman capital."
+},
+{
+"u": "1.2",
+"t": 1,
+"q": "The devshirme was:",
+"o": [
+"A tax paid only by Muslims",
+"The levy of Christian boys who were converted and trained to serve the sultan",
+"A Safavid cavalry unit",
+"The Ottoman law code"
 ],
 "a": 1,
-"e": "Individualism prized personal achievement — artists signed works and writers celebrated human potential."
+"e": "Boys from mainly Balkan Christian families were taken, converted, and trained as janissaries or officials."
+},
+{
+"u": "1.2",
+"t": 2,
+"q": "Why did the sultans rely on janissaries drawn from the devshirme rather than on Turkish nobles?",
+"o": [
+"Nobles refused to fight",
+"Janissaries were cheaper than any other soldiers",
+"Devshirme recruits had no family power base, so their loyalty and careers depended on the sultan alone",
+"Islamic law forbade Turks from serving in the army"
+],
+"a": 2,
+"e": "Cut off from their families, recruits owed everything to the sultan — a counterweight to powerful landholding elites."
+},
+{
+"u": "1.2",
+"t": 2,
+"q": "The millet system allowed the Ottomans to:",
+"o": [
+"Force all subjects to convert to Islam",
+"Let religious communities manage their own religious, educational, and family law under their own leaders",
+"Ban Jews and Christians from cities",
+"Give non-Muslims full equality with Muslims"
+],
+"a": 1,
+"e": "Communities like Greek Orthodox, Armenians, and Jews governed internal affairs — tolerance with inequality, since non-Muslims paid jizya and had lower status."
+},
+{
+"u": "1.2",
+"t": 2,
+"q": "Süleyman was called Kanuni, \"the Lawgiver,\" because he:",
+"o": [
+"Replaced Islamic law with European law",
+"Wrote the Quran's commentary",
+"Created the first Ottoman constitution with an elected parliament",
+"Issued and organized law codes on taxes, land, and crime alongside sharia"
+],
+"a": 3,
+"e": "Kanun (sultanic law) supplemented sharia and helped standardize government across the empire."
+},
+{
+"u": "1.2",
+"t": 2,
+"q": "Selim I's conquest of the Mamluk Sultanate (1516–1517) mattered because it:",
+"o": [
+"Gave the Ottomans Egypt, Syria, and control of Mecca and Medina",
+"Ended the Safavid dynasty",
+"Opened Japan to Ottoman trade",
+"Gave the Ottomans control of Vienna"
+],
+"a": 0,
+"e": "Controlling the holy cities and rich Egypt boosted Ottoman wealth and religious prestige."
+},
+{
+"u": "1.2",
+"t": 3,
+"q": "Which statement BEST evaluates the label \"gunpowder empire\" for the Ottomans?",
+"o": [
+"It is wrong — the Ottomans never used firearms",
+"It is complete — firearms alone explain Ottoman success",
+"It is useful but incomplete — cannons and muskets mattered, but so did loyal institutions, law, taxes, and managing diversity",
+"It applies only to the Ottoman navy"
+],
+"a": 2,
+"e": "Weapons won battles; institutions like the devshirme, kanun, and millet system held the empire together for centuries."
 },
 {
 "u": "1.3",
 "t": 1,
-"q": "Who designed the dome of Florence Cathedral?",
+"q": "Ismail I made which form of Islam the official religion of the Safavid Empire?",
 "o": [
-"Michelangelo",
-"Filippo Brunelleschi",
-"Raphael",
-"Vasari"
+"Twelver Shia Islam",
+"Sunni Islam of the Hanafi school",
+"Sufi Islam only",
+"Ismaili Islam"
 ],
-"a": 1,
-"e": "Brunelleschi engineered the dome (completed 1436) using innovative techniques, including a double shell and herringbone brickwork."
+"a": 0,
+"e": "In 1501 Ismail declared Twelver Shiism the state faith — a lasting part of Iranian identity."
+},
+{
+"u": "1.3",
+"t": 1,
+"q": "Shah Abbas I moved the Safavid capital to:",
+"o": [
+"Tabriz",
+"Baghdad",
+"Isfahan",
+"Kabul"
+],
+"a": 2,
+"e": "From 1598 Abbas rebuilt Isfahan around the great Naqsh-e Jahan square."
 },
 {
 "u": "1.3",
 "t": 2,
-"q": "Michelangelo's David became a symbol of Florence because it represented:",
+"q": "The Ottomans won the Battle of Chaldiran (1514) mainly because:",
 "o": [
-"The pope's power",
-"A small, determined republic standing up to stronger enemies",
-"The Ottoman Empire",
-"Northern Renaissance art"
+"The Safavids had no army",
+"Ottoman cannons and janissary musketeers overpowered Safavid cavalry",
+"Russia joined the Ottomans",
+"A storm destroyed the Safavid camp"
 ],
 "a": 1,
-"e": "The biblical David defeated Goliath; Florentines identified with the underdog defending its liberty."
+"e": "Firepower beat the brave Qizilbash horsemen, halting Safavid expansion into Anatolia."
+},
+{
+"u": "1.3",
+"t": 2,
+"q": "Shah Abbas created a corps of ghulams to:",
+"o": [
+"Spread Sunni Islam",
+"Lead pilgrimages to Mecca",
+"Trade silk in Europe",
+"Build an army and administration loyal to him rather than to the Qizilbash tribal chiefs"
+],
+"a": 3,
+"e": "Like the Ottoman janissaries, these converted captives depended on the shah and checked tribal power."
+},
+{
+"u": "1.3",
+"t": 2,
+"q": "Why did Shah Abbas welcome European envoys and merchants?",
+"o": [
+"He wanted to convert to Christianity",
+"He hoped to gain allies against the Ottomans and expand the silk trade",
+"Europeans controlled Iran's government",
+"He planned to invade Europe"
+],
+"a": 1,
+"e": "Abbas used diplomacy and trade — especially silk — to strengthen Iran against its Ottoman rival."
+},
+{
+"u": "1.3",
+"t": 2,
+"q": "Which event brought down Safavid power in 1722?",
+"o": [
+"An Afghan army captured Isfahan",
+"The Mughals conquered Iran",
+"Russia annexed Iran",
+"The Ottomans took Isfahan at Chaldiran"
+],
+"a": 0,
+"e": "Weak rulers and revolts let Afghan forces take Isfahan; the dynasty ended officially in 1736."
+},
+{
+"u": "1.3",
+"t": 3,
+"q": "Historians describe the Ottoman–Safavid conflict as BOTH religious and political. Which evidence best supports the political side?",
+"o": [
+"Both empires were Muslim",
+"Shia and Sunni Muslims share the Quran",
+"Both empires fought for control of Iraq, eastern Anatolia, the Caucasus, and trade routes",
+"Both empires built mosques"
+],
+"a": 2,
+"e": "The Sunni–Shia split gave the rivalry its language, but the prizes were land, borders, and trade — they signed treaties when it suited them."
+},
+{
+"u": "1.4",
+"t": 1,
+"q": "Who led the relief army that broke the Ottoman siege of Vienna in 1683?",
+"o": [
+"Peter the Great",
+"Jan III Sobieski of Poland",
+"Charles V",
+"Napoleon"
+],
+"a": 1,
+"e": "The Polish king's cavalry charge helped defeat the Ottoman army outside Vienna."
+},
+{
+"u": "1.4",
+"t": 1,
+"q": "In the Treaty of Karlowitz (1699), the Ottomans gave up:",
+"o": [
+"Egypt",
+"Istanbul",
+"Mecca and Medina",
+"Most of Hungary and Transylvania"
+],
+"a": 3,
+"e": "It was the first major permanent Ottoman territorial loss in Europe."
 },
 {
 "u": "1.4",
 "t": 2,
-"q": "What was Maurizio Seracini trying to find in Florence's Palazzo Vecchio?",
+"q": "Why did Sultan Mahmud II destroy the janissary corps in 1826?",
 "o": [
-"Michelangelo's lost sculpture",
-"Traces of Leonardo's unfinished mural, The Battle of Anghiari",
-"The Medici treasury",
-"A Roman temple"
+"They had become a privileged group that resisted military modernization",
+"They had converted to Christianity",
+"They were loyal to the Safavids",
+"The British demanded it"
 ],
-"a": 1,
-"e": "Seracini used scientific imaging to search for Leonardo's lost mural, which some believe may survive behind a later painting by Vasari."
+"a": 0,
+"e": "Once an elite force, the janissaries had become a political interest group that blocked reform — removing them allowed a new army."
 },
 {
 "u": "1.4",
 "t": 2,
-"q": "Art diagnostics uses which tools to study paintings without destroying them?",
+"q": "İbrahim Müteferrika's press (from 1727) is evidence that:",
 "o": [
-"Only a magnifying glass",
-"Infrared, X-ray, and other imaging plus chemical analysis",
-"Repainting the surface",
-"Carbon dating every brushstroke"
+"The Ottomans banned all books",
+"Printing was invented in Istanbul",
+"The Ottomans selectively adopted new technologies",
+"Ottoman scholars wrote only in Latin"
+],
+"a": 2,
+"e": "He printed dictionaries, histories, and maps in Ottoman Turkish — adaptation, not stagnation."
+},
+{
+"u": "1.4",
+"t": 2,
+"q": "The Tanzimat reforms (from 1839) aimed to:",
+"o": [
+"Restore the devshirme",
+"Modernize law, taxes, and education and promise equality to subjects of all religions",
+"Move the capital to Cairo",
+"End all contact with Europe"
 ],
 "a": 1,
-"e": "Imaging can reveal hidden sketches and earlier layers, and tiny samples can identify pigments."
+"e": "Reformers hoped a modern, unified citizenship would hold the multi-religious empire together."
 },
 {
 "u": "1.4",
 "t": 3,
-"q": "Why did the search for The Battle of Anghiari stir debate?",
+"q": "Which evidence MOST weakens the claim that the Ottoman Empire was in steady decline after 1566?",
 "o": [
-"Everyone agreed it should be done",
-"Searching could damage Vasari's existing masterpiece, so researchers weighed discovery against preservation",
-"It was in another country",
-"Leonardo never existed"
+"The loss of Hungary in 1699",
+"The failure at Vienna in 1683",
+"The Köprülü recovery, new printing, military reform, and the empire's survival until 1922",
+"The janissaries' growing political power"
+],
+"a": 2,
+"e": "Recovery and reform show adaptation. The other choices are losses — they support decline, so they don't weaken the claim."
+},
+{
+"u": "2.1",
+"t": 1,
+"q": "Who founded the Mughal Empire after winning the First Battle of Panipat in 1526?",
+"o": [
+"Akbar",
+"Babur",
+"Aurangzeb",
+"Shivaji"
 ],
 "a": 1,
-"e": "Drilling small probes behind a historic fresco raised conservation and ethical concerns — a real tension in historical research."
+"e": "Babur, a descendant of Timur and Genghis Khan, used cannons and matchlocks to defeat the Delhi Sultanate."
+},
+{
+"u": "2.1",
+"t": 1,
+"q": "Akbar's policy of sulh-i kul meant:",
+"o": [
+"\"Peace with all\" — tolerance of all religions",
+"Forced conversion to Islam",
+"Closing India to foreign trade",
+"Rule by Persian nobles only"
+],
+"a": 0,
+"e": "Akbar ended the jizya on Hindus in 1564 and welcomed debate among many faiths."
+},
+{
+"u": "2.1",
+"t": 2,
+"q": "Why did Akbar marry Rajput princesses and give Rajput nobles high posts?",
+"o": [
+"To convert the Rajputs to Islam",
+"Because Islamic law required it",
+"To build alliances with powerful Hindu warrior clans and secure their loyalty",
+"To weaken his own army"
+],
+"a": 2,
+"e": "Turning rivals into partners helped a Muslim minority dynasty govern a mostly Hindu land."
+},
+{
+"u": "2.1",
+"t": 2,
+"q": "In the mansabdari system, officials:",
+"o": [
+"Inherited their land forever",
+"Were elected by villages",
+"Were all Persian-born",
+"Held ranks based on the troops they supplied and were paid by salary or revenue rights at the emperor's pleasure"
+],
+"a": 3,
+"e": "Because ranks weren't hereditary, mansabdars depended on the emperor — a tool of central control."
+},
+{
+"u": "2.1",
+"t": 2,
+"q": "Nur Jahan is notable in Mughal history because she:",
+"o": [
+"Founded Sikhism",
+"Exercised real political power during Jahangir's reign, even having coins issued in her name",
+"Designed the Taj Mahal",
+"Led the Maratha army"
+],
+"a": 1,
+"e": "She was one of the most powerful women of the era, issuing orders and shaping court politics."
+},
+{
+"u": "2.1",
+"t": 3,
+"q": "Which comparison of Akbar and Aurangzeb is MOST accurate?",
+"o": [
+"Both abolished the jizya",
+"Akbar built loyalty through tolerance; Aurangzeb expanded territory but his stricter religious policies and endless wars fueled revolts and drained the treasury",
+"Aurangzeb ruled a smaller empire than Akbar",
+"Akbar conquered the Deccan completely"
+],
+"a": 1,
+"e": "Aurangzeb ruled the largest Mughal territory, yet the costs of conquest and alienated subjects weakened the empire after 1707."
 },
 {
 "u": "2.2",
 "t": 1,
-"q": "Who painted The School of Athens?",
+"q": "Shah Jahan built the Taj Mahal as:",
 "o": [
-"Leonardo da Vinci",
-"Michelangelo",
-"Raphael",
-"Botticelli"
+"His palace",
+"A mosque for Friday prayers",
+"A fort to guard Agra",
+"A tomb for his wife Mumtaz Mahal"
 ],
-"a": 2,
-"e": "Raphael painted it in the Vatican around 1509–1511 for Pope Julius II."
+"a": 3,
+"e": "Mumtaz Mahal died in 1631; the white marble mausoleum honored her and later held Shah Jahan too."
 },
 {
 "u": "2.2",
-"t": 2,
-"q": "In The School of Athens, Plato points upward while Aristotle holds his hand out level, palm down. What does this contrast represent?",
+"t": 1,
+"q": "Pietra dura is:",
 "o": [
-"They are arguing about the weather",
-"Plato's focus on ideal, unseen forms versus Aristotle's focus on the observable world",
-"Plato is older",
-"Aristotle is praying"
-],
-"a": 1,
-"e": "The gestures summarize their philosophies — a clever way to show ideas in paint."
-},
-{
-"u": "2.2",
-"t": 3,
-"q": "Why does The School of Athens hang in the Vatican, a Christian space?",
-"o": [
-"It was stolen",
-"Renaissance humanists saw classical philosophy and Christian faith as compatible; the room pairs it with a fresco on theology",
-"The pope disliked it",
-"It was painted for a mosque"
-],
-"a": 1,
-"e": "Humanism blended classical learning with Christianity rather than rejecting religion."
-},
-{
-"u": "2.2",
-"t": 2,
-"q": "The grand arches and perspective in The School of Athens show Raphael's use of:",
-"o": [
-"Medieval flat backgrounds",
-"Classical architecture and linear perspective to create depth",
-"Abstract shapes",
-"Oil painting on canvas"
-],
-"a": 1,
-"e": "The vanishing point draws your eye to Plato and Aristotle at the center."
-},
-{
-"u": "2.3",
-"t": 2,
-"q": "Cassandra Fedele is significant because she:",
-"o": [
-"Painted the Sistine Chapel",
-"Was a celebrated female humanist scholar who publicly praised the value of learning",
-"Founded the Jesuits",
-"Invented the printing press"
-],
-"a": 1,
-"e": "Her fame shows humanist education reached some elite women, though most women were excluded from formal learning."
-},
-{
-"u": "2.3",
-"t": 3,
-"q": "When analyzing Machiavelli's The Prince as a source, why does it matter that he wrote it hoping to win favor with the Medici?",
-"o": [
-"It doesn't matter",
-"His purpose and audience may have shaped his advice — sourcing helps judge a document's perspective and reliability",
-"It proves the book is false",
-"It means he was a Medici"
-],
-"a": 1,
-"e": "Considering purpose and audience (sourcing) is essential to any DBQ."
-},
-{
-"u": "2.3",
-"t": 2,
-"q": "More's Utopia and Machiavelli's The Prince take different approaches because:",
-"o": [
-"Utopia describes an imagined ideal society to criticize real problems, while The Prince describes how power actually works",
-"They are the same book",
-"Both describe real countries",
-"Both are religious texts"
+"Inlay of colored semiprecious stones into marble",
+"A type of Mughal cannon",
+"A Persian garden",
+"A style of calligraphy"
 ],
 "a": 0,
-"e": "One is idealistic satire; the other is political realism — both are humanist responses to their world."
+"e": "Craftsmen cut stones like jasper and lapis to form inlaid flowers on the Taj's walls."
+},
+{
+"u": "2.2",
+"t": 2,
+"q": "The Taj Mahal's four-part charbagh garden was meant to symbolize:",
+"o": [
+"The four Mughal emperors",
+"The four directions of trade",
+"Paradise, as described in Islamic tradition",
+"The four seasons"
+],
+"a": 2,
+"e": "Persian-style gardens with water channels evoked the gardens of paradise."
+},
+{
+"u": "2.2",
+"t": 2,
+"q": "Why did India's Supreme Court create restrictions in the Taj Trapezium Zone?",
+"o": [
+"To ban tourists entirely",
+"To reduce air pollution from industry that was discoloring the marble",
+"To build a new airport",
+"To move the Taj to Delhi"
+],
+"a": 1,
+"e": "Pollutants were yellowing and browning the marble; limiting factories and traffic nearby protects it."
+},
+{
+"u": "2.2",
+"t": 2,
+"q": "The Taj Mahal combines design traditions from:",
+"o": [
+"Only Hindu temples",
+"Gothic Europe and China",
+"Ancient Egypt and Greece",
+"Persia, Central Asia, and India"
+],
+"a": 3,
+"e": "Mughal architecture blended Persian domes and gardens with Indian materials and craftsmanship."
+},
+{
+"u": "2.2",
+"t": 3,
+"q": "Preservationists say the biggest challenge at the Taj Mahal is balance. Which pair of goals is in tension?",
+"o": [
+"Letting millions of visitors experience it vs. limiting wear, crowding, and pollution that damage it",
+"Painting it white vs. painting it gold",
+"Moving it vs. rebuilding it",
+"Turning it into a museum vs. a factory"
+],
+"a": 0,
+"e": "Tourism funds and celebrates heritage but also adds damage — every heritage site faces this tradeoff."
+},
+{
+"u": "2.3",
+"t": 1,
+"q": "In 1644 Beijing fell first to the rebel army of:",
+"o": [
+"Nurhaci",
+"Li Zicheng",
+"Zheng He",
+"Wu Sangui"
+],
+"a": 1,
+"e": "Li Zicheng's rebels took Beijing and the last Ming emperor took his own life; the Manchus then seized the city."
+},
+{
+"u": "2.3",
+"t": 1,
+"q": "The Qing dynasty was founded by:",
+"o": [
+"The Mongols",
+"Han Chinese peasants",
+"The Manchus",
+"Japanese samurai"
+],
+"a": 2,
+"e": "The Manchus from the northeast conquered China in 1644 and ruled until 1912."
+},
+{
+"u": "2.3",
+"t": 3,
+"q": "Which factor contributed MOST to the Ming collapse?",
+"o": [
+"Invasion by Portugal",
+"Too many Jesuits at court",
+"Overuse of the Canton System",
+"Weak rulers, colder weather and famine, money troubles, and peasant rebellions combined"
+],
+"a": 3,
+"e": "Multiple crises — political, environmental, and financial — fed rebellions that the Ming could not stop."
+},
+{
+"u": "2.3",
+"t": 2,
+"q": "Why did the Qing require Han Chinese men to wear the queue?",
+"o": [
+"As a visible sign of submission and loyalty to the new Manchu rulers",
+"For hygiene",
+"Because Confucius required it",
+"To identify soldiers only"
+],
+"a": 0,
+"e": "The hairstyle order of 1645 turned appearance into a loyalty test; resistance was punished harshly."
+},
+{
+"u": "2.3",
+"t": 2,
+"q": "Under the Canton System, European merchants:",
+"o": [
+"Could trade at any Chinese port",
+"Ran their own colony in Beijing",
+"Traded only at Guangzhou through licensed Chinese merchants and paid mostly in silver",
+"Were banned from China entirely"
+],
+"a": 2,
+"e": "The Qing controlled trade on their terms; demand for tea and silk drew silver into China."
+},
+{
+"u": "2.3",
+"t": 3,
+"q": "What does the failure of the Macartney Mission (1793) reveal?",
+"o": [
+"China was too weak to refuse Britain",
+"The Qing saw China as the center of a tribute-based world order and felt little need for British goods or equal diplomacy",
+"Britain had no interest in trade",
+"The emperor did not meet Macartney"
+],
+"a": 1,
+"e": "Two worldviews clashed: Britain wanted equal treaty relations and open trade; the Qing expected foreigners to fit the tribute system."
+},
+{
+"u": "2.3",
+"t": 3,
+"q": "How did the Manchus manage to rule a population many times larger than their own?",
+"o": [
+"They forced all Han to speak Manchu",
+"They abolished the Confucian exams",
+"They ruled only through the army without any Chinese officials",
+"They kept Confucian exams and Ming institutions, shared offices with Han officials, and kept a separate banner army"
+],
+"a": 3,
+"e": "Blending continuity (exams, bureaucracy) with Manchu control (banners, queue) made Qing rule stable."
+},
+{
+"u": "2.4",
+"t": 1,
+"q": "Voltaire was a leading thinker of:",
+"o": [
+"The Enlightenment",
+"The Protestant Reformation",
+"The Tanzimat",
+"The Renaissance in Italy"
+],
+"a": 0,
+"e": "Voltaire (1694–1778) was a French Enlightenment writer famous for attacking intolerance."
+},
+{
+"u": "2.4",
+"t": 1,
+"q": "Chinoiserie refers to:",
+"o": [
+"Chinese writing",
+"A Qing law code",
+"European decorative art imitating Chinese styles",
+"A tea tax"
+],
+"a": 2,
+"e": "Porcelain rooms, wallpapers, and garden pavilions reflected Europe's fascination with China."
 },
 {
 "u": "2.4",
 "t": 2,
-"q": "Why do historians speak of \"renaissances\" in other parts of the world?",
+"q": "Where did most of Voltaire's information about China come from?",
 "o": [
-"Europe copied all of them",
-"Many societies had periods of great achievement in art, science, and learning — Europe's was one of several",
-"Only Europe had culture",
-"The word is only used for Italy"
+"His own travels in China",
+"Qianlong's letters to him personally",
+"Russian diplomats",
+"Reports, letters, and translations by Jesuit missionaries in China"
+],
+"a": 3,
+"e": "Voltaire never went to China. Jesuits like Amiot shaped what Europe knew — and they had reasons to present China favorably."
+},
+{
+"u": "2.4",
+"t": 3,
+"q": "Why did Voltaire praise a Chinese emperor who wrote poetry?",
+"o": [
+"He wanted to move to China",
+"He saw a ruler who honored learning as a model of the philosopher-king he wished Europe's monarchs would be",
+"He was paid by the Qing",
+"He was a Confucian scholar"
 ],
 "a": 1,
-"e": "A global view shows cultural flowerings across Eurasia and beyond, often connected through trade and exchange."
+"e": "Praising China let Voltaire criticize European kings and churches indirectly."
 },
 {
 "u": "2.4",
 "t": 2,
-"q": "Ulugh Beg is known for:",
+"q": "Which Enlightenment thinker disagreed with Voltaire by describing China as a despotism ruled by fear?",
 "o": [
-"Painting the Mona Lisa",
-"Building an observatory in Samarkand and producing an accurate star catalog",
-"Leading the Reformation",
-"Discovering America"
+"Montesquieu",
+"Jean-Jacques Rousseau",
+"Adam Smith",
+"François Quesnay"
 ],
-"a": 1,
-"e": "The Timurid ruler's observatory made Samarkand a center of astronomy in the 1400s."
+"a": 0,
+"e": "Montesquieu's Spirit of the Laws (1748) treated China as despotic; Quesnay, like Voltaire, admired it."
 },
 {
 "u": "2.4",
-"t": 2,
-"q": "The Ottoman architect Sinan is comparable to Brunelleschi because both:",
+"t": 3,
+"q": "A historian reads Voltaire's praise of Qianlong. What is the MOST important limitation of this source as evidence about Qing government?",
 "o": [
-"Were popes",
-"Designed monumental domed buildings that symbolized the power and culture of their societies",
-"Wrote The Prince",
-"Led armies"
+"Voltaire wrote in French",
+"It was written in verse",
+"Voltaire relied on secondhand sources and used China mainly to make points about France",
+"Qianlong did not exist"
+],
+"a": 2,
+"e": "The source reveals more about Enlightenment Europe's hopes than about how the Qing actually governed."
+},
+{
+"u": "2.4",
+"t": 3,
+"q": "Which fact about Qianlong complicates Voltaire's image of him as an enlightened ruler of reason?",
+"o": [
+"He wrote poetry",
+"He collected art",
+"He sponsored a giant library project",
+"His government censored and destroyed thousands of books it considered anti-Manchu"
+],
+"a": 3,
+"e": "The same book project that preserved learning was used to hunt down \"seditious\" writings — patron and censor at once."
+},
+{
+"u": "2.5",
+"t": 1,
+"q": "The battle that let Tokugawa Ieyasu dominate Japan in 1600 was:",
+"o": [
+"Sekigahara",
+"Panipat",
+"Chaldiran",
+"Poltava"
+],
+"a": 0,
+"e": "Victory at Sekigahara made Ieyasu supreme; he became shogun in 1603."
+},
+{
+"u": "2.5",
+"t": 1,
+"q": "The only Europeans allowed to trade in Japan after 1639 were the:",
+"o": [
+"Portuguese",
+"Dutch",
+"Spanish",
+"English"
 ],
 "a": 1,
-"e": "Sinan's Süleymaniye Mosque and Brunelleschi's dome were both engineering triumphs and civic statements."
+"e": "Confined to Dejima island in Nagasaki, the Dutch were seen as traders rather than missionaries."
+},
+{
+"u": "2.5",
+"t": 2,
+"q": "The sankin-kōtai (alternate attendance) system helped keep peace because it:",
+"o": [
+"Gave daimyo more troops",
+"Let daimyo trade freely with Europe",
+"Abolished the samurai class",
+"Forced daimyo to spend heavily on travel and keep families in Edo as hostages"
+],
+"a": 3,
+"e": "Costly, closely watched lords had little chance to rebel — and Japan had over 200 years without major war."
+},
+{
+"u": "2.5",
+"t": 2,
+"q": "Why did the shogunate ban Christianity?",
+"o": [
+"Christians refused to pay taxes to Europe",
+"It feared Christianity divided loyalties and opened the door to European influence, a fear deepened by the Shimabara Rebellion",
+"Japan's emperor converted to Buddhism that year",
+"The Dutch demanded it"
+],
+"a": 1,
+"e": "Rulers worried converts would obey foreign priests over the shogun; Shimabara (1637–1638) confirmed those fears for them."
+},
+{
+"u": "2.5",
+"t": 2,
+"q": "Rangaku (\"Dutch learning\") shows that during sakoku:",
+"o": [
+"Japan learned nothing from outside",
+"Only the shogun could read",
+"Japanese scholars still studied European science and medicine through Dutch books",
+"Japan adopted Christianity secretly"
+],
+"a": 2,
+"e": "Controlled contact let knowledge in even while foreigners were kept out."
+},
+{
+"u": "2.5",
+"t": 3,
+"q": "Which claim about sakoku is MOST accurate?",
+"o": [
+"Japan was completely cut off from the world for over 200 years",
+"Japan closed only to China",
+"Sakoku ended in 1639",
+"Japan controlled foreign contact through set channels — the Dutch and Chinese at Nagasaki, Korea via Tsushima, the Ryukyus, and the Ainu"
+],
+"a": 3,
+"e": "Historians now describe sakoku as managed, limited contact rather than total isolation."
+},
+{
+"u": "3.1",
+"t": 1,
+"q": "The first Russian ruler formally crowned tsar (1547) was:",
+"o": [
+"Peter the Great",
+"Michael Romanov",
+"Ivan IV",
+"Ivan III"
+],
+"a": 2,
+"e": "Ivan IV took the title tsar, from \"caesar,\" claiming imperial status."
+},
+{
+"u": "3.1",
+"t": 1,
+"q": "Yasak was:",
+"o": [
+"Tribute, usually in furs, forced on Siberian peoples",
+"A Cossack boat",
+"Russia's law code",
+"A Tatar city"
+],
+"a": 0,
+"e": "Furs like sable — \"soft gold\" — drove Russian expansion across Siberia."
 },
 {
 "u": "3.1",
 "t": 2,
-"q": "The German Peasants' War (1524–1525) showed that:",
+"q": "Why was Ivan IV's conquest of Kazan (1552) and Astrakhan (1556) so important?",
 "o": [
-"Luther supported all rebellions",
-"Some people used Reformation ideas to challenge social order, but Luther sided with the princes, who crushed the revolt",
-"Peasants won their demands",
-"The pope led the peasants"
+"It ended serfdom",
+"It gave Russia control of the whole Volga River and opened routes toward the Caspian and Siberia",
+"It made Russia Catholic",
+"It conquered Constantinople"
 ],
 "a": 1,
-"e": "Luther wanted religious reform, not social revolution; his support for the princes kept them on his side."
+"e": "Taking the Volga khanates brought trade routes, farmland, and a path east — and many Muslim subjects."
+},
+{
+"u": "3.1",
+"t": 2,
+"q": "Cossacks were important to Russian expansion because they:",
+"o": [
+"Were Ottoman officials",
+"Were monks who converted Siberia",
+"Ran the tsar's navy",
+"Were frontier horsemen who explored, fought, and settled on the steppe and in Siberia"
+],
+"a": 3,
+"e": "Many Cossacks were runaway peasants who formed self-governing communities — useful to tsars but hard to control."
+},
+{
+"u": "3.1",
+"t": 2,
+"q": "Yermak's expedition around 1582 was funded by:",
+"o": [
+"The Stroganov merchant family",
+"The Ottoman sultan",
+"The Qing emperor",
+"The pope"
+],
+"a": 0,
+"e": "The Stroganovs wanted Siberian furs and land; Yermak's Cossacks defeated the Khanate of Sibir."
+},
+{
+"u": "3.1",
+"t": 3,
+"q": "How should historians describe Russia's expansion into Siberia from the viewpoint of its Indigenous peoples?",
+"o": [
+"As settlement of empty land",
+"As a fair trading partnership",
+"As conquest that forced fur tribute, spread disease, and took land, met by resistance",
+"As a purely religious mission"
+],
+"a": 2,
+"e": "Siberia was not empty; peoples like the Khanty, Buryats, and Chukchi resisted conquest and tribute."
 },
 {
 "u": "3.2",
 "t": 1,
-"q": "Huldrych Zwingli led the Reformation in which city?",
+"q": "The Romanov dynasty began in 1613 when:",
 "o": [
-"Geneva",
-"Zurich",
-"Wittenberg",
-"Rome"
+"Peter the Great seized power",
+"Ivan IV died",
+"Catherine the Great married into the family",
+"An assembly chose Michael Romanov as tsar to end the Time of Troubles"
 ],
-"a": 1,
-"e": "Zwingli led reform in Zurich; Calvin later led Geneva."
+"a": 3,
+"e": "After years of chaos, Russians chose Michael Romanov; his family ruled until 1917."
 },
 {
-"u": "4.1",
+"u": "3.2",
 "t": 2,
-"q": "Charles V struggled to stop the Reformation mainly because he:",
+"q": "Peter the Great founded St. Petersburg in 1703 to:",
 "o": [
-"Agreed with Luther",
-"Was fighting France and the Ottomans at the same time and needed the support of German princes",
-"Had no army",
-"Lived in England"
-],
-"a": 1,
-"e": "Ruling a huge, scattered empire meant constant wars on several fronts, which gave Lutheran princes room to grow."
-},
-{
-"u": "4.1",
-"t": 2,
-"q": "The Dutch Revolt against Spain was caused by:",
-"o": [
-"Only trade disputes",
-"A mix of Protestant faith, heavy Spanish taxes, and defense of local rights against Philip II",
-"A volcanic eruption",
-"Ottoman invasion"
-],
-"a": 1,
-"e": "Religion, money, and self-government combined. The northern provinces became the Dutch Republic."
-},
-{
-"u": "4.1",
-"t": 2,
-"q": "What was the result of the Spanish Armada in 1588?",
-"o": [
-"Spain conquered England",
-"The Armada was defeated by English ships and storms, a blow to Spanish prestige",
-"England became Catholic",
-"France joined Spain"
-],
-"a": 1,
-"e": "The defeat protected Protestant England and showed the limits of Habsburg power."
-},
-{
-"u": "4.1",
-"t": 3,
-"q": "How did the Ottoman Empire indirectly help Protestantism survive?",
-"o": [
-"It converted to Protestantism",
-"Ottoman pressure, such as the 1529 Siege of Vienna, forced Charles V to focus on the east and compromise with German princes",
-"It funded Luther",
-"It banned Catholicism"
-],
-"a": 1,
-"e": "Habsburg resources were stretched thin; defending against the Ottomans took priority over crushing Lutherans."
-},
-{
-"u": "4.1",
-"t": 1,
-"q": "Which event sparked the Thirty Years' War in 1618?",
-"o": [
-"The Defenestration of Prague",
-"The Diet of Worms",
-"The Spanish Armada",
-"The Council of Trent"
+"Give Russia a capital on the Baltic and a \"window on the West\"",
+"Defend against the Mongols",
+"Be closer to China",
+"Host the Orthodox patriarch"
 ],
 "a": 0,
-"e": "Protestant nobles threw Habsburg officials out of a window in Prague, triggering war in the Holy Roman Empire."
+"e": "The new port city linked Russia to European trade and ideas."
 },
 {
-"u": "4.1",
+"u": "3.2",
 "t": 2,
-"q": "The Habsburgs controlled such a large empire mainly through:",
+"q": "What was the main effect of the Law Code of 1649?",
 "o": [
-"Conquest of China",
-"Strategic marriages and inheritance",
-"Elections by the people",
-"Purchasing land from the pope"
+"It freed the serfs",
+"It made Russia a democracy",
+"It legally bound peasants to the land as serfs",
+"It ended the tsar's power"
+],
+"a": 2,
+"e": "Serfdom became fixed law and remained until 1861."
+},
+{
+"u": "3.2",
+"t": 2,
+"q": "Peter the Great's Table of Ranks (1722) was designed to:",
+"o": [
+"Rank serfs by wealth",
+"Base promotion in state service more on merit and service, not only birth",
+"Abolish the nobility",
+"Rank cities by population"
 ],
 "a": 1,
-"e": "Marriage alliances brought Austria, Spain, the Netherlands, and more under one family."
+"e": "It tied the nobility to service and allowed some commoners to rise."
 },
 {
-"u": "4.3",
+"u": "3.2",
 "t": 2,
-"q": "Matteo Ricci gained acceptance in Ming China partly by:",
+"q": "What did Russia gain from the Great Northern War (1700–1721)?",
 "o": [
-"Forcing conversions",
-"Learning Chinese, sharing European science and maps, and adapting Christian teaching to Chinese culture",
-"Leading an army",
-"Banning Confucianism"
+"Crimea",
+"Siberia",
+"Control of Constantinople",
+"Baltic territory and recognition as a major European power"
 ],
-"a": 1,
-"e": "His accommodation approach respected Chinese learning — and later stirred debate within the Church."
+"a": 3,
+"e": "Defeating Sweden — especially at Poltava in 1709 — made Russia a leading power."
 },
 {
-"u": "4.3",
-"t": 2,
-"q": "King Afonso I of Kongo is significant because he:",
-"o": [
-"Opposed Christianity",
-"Adopted Catholicism and built ties with Portugal while protesting the harm of the slave trade",
-"Founded the Jesuits",
-"Conquered Portugal"
-],
-"a": 1,
-"e": "His letters show an African ruler engaging with Christianity and Europe on his own terms — and the costs of that relationship."
-},
-{
-"u": "4.3",
+"u": "3.2",
 "t": 3,
-"q": "Which statement BEST describes Christianity's global spread in this era?",
+"q": "Which statement BEST evaluates Peter the Great's westernization?",
 "o": [
-"It spread only through peaceful choice",
-"It spread through missionaries, trade, and colonial conquest, and often blended with local traditions",
-"It stayed only in Europe",
-"It disappeared outside Europe"
-],
-"a": 1,
-"e": "Missions, empires, and local adaptation (syncretism) all shaped global Christianities — and so did coercion."
-},
-{
-"u": "4.3",
-"t": 1,
-"q": "Francis Xavier was a missionary who reached which country in 1549?",
-"o": [
-"Japan",
-"Brazil",
-"Ethiopia",
-"Russia"
+"It brought Western technology, a navy, and new institutions while strengthening autocracy and the burden on serfs",
+"It turned Russia into a democracy",
+"It changed nothing",
+"It ended serfdom"
 ],
 "a": 0,
-"e": "Xavier, a founding Jesuit, preached in India and Southeast Asia before arriving in Japan."
+"e": "Peter borrowed Western tools to strengthen the tsar's state — modernization from the top, paid for by peasants and conscripts."
 },
 {
-"u": "4.3",
-"t": 2,
-"q": "The Ethiopian Orthodox Church shows that:",
+"u": "3.2",
+"t": 3,
+"q": "Catherine the Great praised Enlightenment ideas, yet after Pugachev's Rebellion she:",
 "o": [
-"Christianity arrived in Africa only with Europeans",
-"African Christianity is ancient, dating to the 300s C.E.",
-"Ethiopia was Protestant",
-"Christianity began in Ethiopia"
+"Freed the serfs",
+"Strengthened nobles' control over serfs",
+"Gave Cossacks independence",
+"Adopted a constitution"
 ],
 "a": 1,
-"e": "Christianity had deep roots in Africa and Asia long before the Reformation."
+"e": "Fear of revolt pushed her to side with the nobility — a gap between Enlightenment words and actions."
+},
+{
+"u": "3.3",
+"t": 1,
+"q": "The Pale of Settlement was:",
+"o": [
+"A Cossack fort",
+"The region of the Russian Empire where most Jews were required to live",
+"The Armenian quarter of Isfahan",
+"A Tatar khanate"
+],
+"a": 1,
+"e": "Created under Catherine in 1791, it confined most Jews to lands in the west, largely former Polish territory."
+},
+{
+"u": "3.3",
+"t": 1,
+"q": "New Julfa was founded after Shah Abbas forcibly moved:",
+"o": [
+"Tatars from Kazan",
+"Jews from Poland",
+"Armenians from Julfa",
+"Georgians from Tbilisi"
+],
+"a": 2,
+"e": "Around 1604 Abbas relocated Armenians to Isfahan, where their merchants became central to the silk trade."
+},
+{
+"u": "3.3",
+"t": 2,
+"q": "Why did Russia suddenly have the world's largest Jewish population in the late 1700s?",
+"o": [
+"Jews migrated from Spain",
+"It conquered the Ottoman Empire",
+"It annexed Jerusalem",
+"The Partitions of Poland brought large Jewish communities under Russian rule"
+],
+"a": 3,
+"e": "Russia's share of Poland included hundreds of thousands of Jews — and the state responded with residence restrictions."
+},
+{
+"u": "3.3",
+"t": 2,
+"q": "Armenian merchants of New Julfa succeeded across many empires mainly because:",
+"o": [
+"Family and community networks, shared faith and language, and trust-based contracts linked agents from Europe to Asia",
+"They ruled their own empire",
+"They had a navy",
+"They were exempt from all taxes everywhere"
+],
+"a": 0,
+"e": "Trading diasporas turned scattering into strength: trusted kin and community agents in many ports."
+},
+{
+"u": "3.3",
+"t": 3,
+"q": "The Orenburg Muslim Spiritual Assembly (1788) shows Catherine's approach to Muslim subjects was:",
+"o": [
+"Forced conversion",
+"Expulsion to the Ottoman Empire",
+"Ignoring religion completely",
+"State-supervised toleration — allowing Islam while managing it through an official body"
+],
+"a": 3,
+"e": "Toleration on the state's terms replaced earlier conversion drives and helped bind Muslim elites to the empire."
+},
+{
+"u": "3.3",
+"t": 3,
+"q": "What do the Jewish, Tatar, and Armenian experiences in this era have in common?",
+"o": [
+"All three were Christian",
+"Each faced restrictions or relocation by empires yet sustained identity and built networks of trade, faith, and learning",
+"All three lived only in Russia",
+"None had any contact with empires"
+],
+"a": 1,
+"e": "Diasporas show both the coercive power of empires and the agency of minority communities."
 }
 ];
 const TUTOR = "CLIO";
-const LS='whh_drill_stats', LS_SRS='whh_drill_srs', LS_U='whh_drill_units';
+const LS='whh_c9_drill_stats', LS_SRS='whh_c9_drill_srs', LS_U='whh_c9_drill_units';
 QB.forEach((q,i)=>q.id='q'+i+'_'+q.q.slice(0,20));
 let stats=lsGet(LS,{total:0,correct:0,best:0,sessions:0}), srs=lsGet(LS_SRS,{}), um=lsGet(LS_U,{});
 let mode='practice', tier='all', sel=new Set(Object.keys(UNIT_NAMES));
@@ -1316,7 +1290,7 @@ function finish(timeUp){
   const n = mode==='stamina'? idx+1 : (timeUp? idx+ (answered?1:0) : deck.length);
   const pct = n?Math.round(right/n*100):0;
   document.getElementById('r-mode').textContent= timeUp?'TIME EXPIRED':mode==='stamina'?`STAMINA RUN — ${right} IN A ROW`:'SESSION COMPLETE';
-  if(mode==='stamina'){ const k='whh_drill_stamina_best'; const b=Math.max(lsGet(k,0),right); lsSet(k,b); }
+  if(mode==='stamina'){ const k='whh_c9_drill_stamina_best'; const b=Math.max(lsGet(k,0),right); lsSet(k,b); }
   document.getElementById('r-score').innerHTML=`${right}<span>/${n}</span>`;
   const g=pct>=90?['Excellent','var(--teal)']:pct>=80?['Strong','var(--teal)']:pct>=70?['Solid','var(--amber)']:pct>=60?['Developing','var(--amber)']:['Needs review','var(--red)'];
   document.getElementById('r-grade').innerHTML=`<span style="color:${g[1]}">${g[0]}</span>`;

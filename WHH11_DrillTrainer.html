@@ -126,10 +126,10 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 </head>
 <body>
 <div class="app">
-  <a class="back" href="WHH_StudyHub.html">← World History Honors · Ch. 8 Hub</a>
+  <a class="back" href="WHH11_StudyHub.html">← World History Honors · Ch. 11 Hub</a>
   <div class="header">
     <div>
-      <div class="series-label">World History Honors · Chapter 8 · Drill Trainer</div>
+      <div class="series-label">World History Honors · Chapter 11 · Drill Trainer</div>
       <div class="page-title">Drill <span>Trainer</span></div>
       <div class="page-sub" id="page-sub"></div>
     </div>
@@ -179,7 +179,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
       <div class="actions" style="margin-top:16px"><button class="btn btn-ghost" onclick="goSetup()">← Setup</button><button class="btn btn-teal" onclick="start(true)">Retry same</button><button class="btn btn-accent" id="btn-missed" onclick="retryMissed()">Drill missed only</button></div></div>
     <div class="card" id="r-missed-card"><div class="sec-lbl">Review what you missed</div><div id="r-missed"></div></div>
   </div>
-  <div class="footer">World History Honors (2109320) · Unit 4 · Chapter 8: Renaissance and Reformation · Florida NGSSS Social Studies SS.912.W.4 (Renaissance, Reformation)</div>
+  <div class="footer">World History Honors (2109320) · Unit 4 · Chapter 11: Africans in the Atlantic World · Florida NGSSS Social Studies SS.912.W.3 & W.4 (African kingdoms, Atlantic slave trade, resistance)</div>
 </div>
 <script>
 function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -189,1038 +189,869 @@ function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON
 function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
 function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
 
-const UNIT_NAMES = {"1.1": "The Rise of Italian City-States", "1.2": "A Cultural Rebirth", "1.3": "Renaissance Arts", "1.4": "Explorer: Finding a Lost Leonardo", "2.1": "Renaissance Humanism", "2.2": "Raphael's School of Athens", "2.3": "DBQ: Humanist Writings", "2.4": "Renaissances Around the World", "3.1": "Martin Luther and the Protestant Reformation", "3.2": "Reforms Across Europe", "4.1": "Challenges to Habsburg Dominance", "4.2": "The Catholic Reformation", "4.3": "Global Christianities"};
+const UNIT_NAMES = {"1.1": "African History: 1500s to 1700s", "1.2": "The Songhai Empire", "1.3": "Preserving Cultural Heritage: Timbuktu", "2.1": "Traveler: Olaudah Equiano, an African Voice", "2.2": "The Middle Passage", "2.3": "A Global Commodity: Sugar", "2.4": "Resistance to Slavery"};
 const QB = [
 {
-"u": "1.2",
+"u": "1.1",
 "t": 1,
-"q": "The word \"Renaissance\" means:",
+"q": "What was the title of the king of Benin?",
 "o": [
-"Rebirth",
-"Reform",
-"Rebellion",
-"Revolution"
+"Mansa",
+"Oba",
+"Askia",
+"Ngola"
 ],
-"a": 0,
-"e": "Renaissance is French for rebirth — a revival of classical Greek and Roman learning and art."
+"a": 1,
+"e": "The oba was Benin's sacred king. Mansa was Mali's title, askia was a Songhai title, and ngola was Ndongo's."
 },
 {
 "u": "1.1",
 "t": 1,
-"q": "Where did the Renaissance begin?",
+"q": "Which ruler of Ndongo and Matamba resisted Portuguese conquest for decades through diplomacy and war?",
 "o": [
-"The city-states of northern Italy",
-"England",
-"The Ottoman Empire",
-"Spain"
-],
-"a": 0,
-"e": "Wealthy northern Italian city-states such as Florence and Venice had money, urban culture, and Roman ruins close at hand."
-},
-{
-"u": "1.1",
-"t": 2,
-"q": "Which factor BEST explains why the Renaissance began in Italy rather than elsewhere?",
-"o": [
-"Italy had no contact with other cultures",
-"Wealth from trade and banking, crowded cities, reminders of ancient Rome, and patrons willing to fund art",
-"Italy was ruled by a single powerful king",
-"The printing press was invented in Italy"
-],
-"a": 1,
-"e": "Trade wealth created rich patrons; cities concentrated talent; Roman heritage was all around. The printing press came from Germany, and Italy was divided into city-states, not one kingdom."
-},
-{
-"u": "2.1",
-"t": 2,
-"q": "Humanists focused mainly on:",
-"o": [
-"Only theology",
-"Classical texts and subjects such as history, poetry, rhetoric, and moral philosophy",
-"Rejecting all religion",
-"Military strategy"
-],
-"a": 1,
-"e": "Humanism studied the humanities through classical sources. Most humanists remained Christian; they added a focus on human achievement."
-},
-{
-"u": "1.2",
-"t": 2,
-"q": "How did the Fall of Constantinople in 1453 contribute to the Renaissance?",
-"o": [
-"It ended trade with Asia",
-"Byzantine scholars fled to Italy carrying classical Greek manuscripts",
-"It destroyed Italian city-states",
-"It caused the Reformation directly"
-],
-"a": 1,
-"e": "Greek scholars and texts arriving in Italy deepened the study of Plato and other Greek thinkers."
-},
-{
-"u": "1.1",
-"t": 1,
-"q": "Which family ruled Florence and became famous patrons of Renaissance art?",
-"o": [
-"The Tudors",
-"The Medici",
-"The Habsburgs",
-"The Bourbons"
-],
-"a": 1,
-"e": "The Medici banking fortune supported artists and scholars such as Botticelli and young Michelangelo."
-},
-{
-"u": "1.3",
-"t": 2,
-"q": "A painting shows a merchant family in their home with realistic faces and a window revealing a landscape behind them. Which Renaissance values does it reflect?",
-"o": [
-"Secularism and individualism, plus realism",
-"Only medieval religious symbolism",
-"The ideas of the Council of Trent",
-"Calvinist predestination"
-],
-"a": 0,
-"e": "Worldly subjects (secular), specific people celebrated (individualism), and realistic depth (perspective) are Renaissance hallmarks."
-},
-{
-"u": "2.3",
-"t": 3,
-"q": "Machiavelli's The Prince was controversial because it argued that rulers should:",
-"o": [
-"Always act morally, even if they lose power",
-"Judge actions by their results in keeping power and the state secure, even if that means being feared or deceptive",
-"Let the pope choose all rulers",
-"Give power to the common people"
-],
-"a": 1,
-"e": "Machiavelli described politics as it actually worked, not as it ideally should. That realism is why \"Machiavellian\" now means cunning and ruthless."
-},
-{
-"u": "1.3",
-"t": 1,
-"q": "Which artist painted the Mona Lisa and filled notebooks with inventions and anatomy?",
-"o": [
-"Michelangelo",
-"Raphael",
-"Leonardo da Vinci",
-"Dürer"
+"Queen Nanny",
+"Afonso I",
+"Queen Nzinga",
+"Osei Tutu"
 ],
 "a": 2,
-"e": "Leonardo da Vinci is the classic Renaissance man — artist, engineer, and scientist."
-},
-{
-"u": "1.3",
-"t": 2,
-"q": "Linear perspective helped Renaissance artists:",
-"o": [
-"Use only gold backgrounds",
-"Create the illusion of three-dimensional depth on a flat surface",
-"Paint faster",
-"Avoid painting people"
-],
-"a": 1,
-"e": "Lines converge at a vanishing point, making flat paintings look deep and realistic."
-},
-{
-"u": "1.2",
-"t": 3,
-"q": "Writers like Dante and Petrarch writing in Italian rather than Latin mattered because:",
-"o": [
-"Latin was illegal",
-"Vernacular writing reached a wider audience beyond the clergy and educated elite",
-"It ended the use of Latin entirely",
-"It was required by the pope"
-],
-"a": 1,
-"e": "The vernacular made literature accessible to ordinary readers, and printing later multiplied that effect."
-},
-{
-"u": "2.1",
-"t": 2,
-"q": "Castiglione's The Book of the Courtier described the ideal noble as:",
-"o": [
-"Uneducated but strong",
-"Well-educated, graceful, skilled in many areas — a \"Renaissance man\"",
-"A monk who avoids society",
-"A merchant only"
-],
-"a": 1,
-"e": "The courtier should be skilled in arms, letters, music, and conversation — the well-rounded ideal."
-},
-{
-"u": "2.1",
-"t": 1,
-"q": "Who developed the printing press with movable metal type in Europe around 1450?",
-"o": [
-"Martin Luther",
-"Johannes Gutenberg",
-"Erasmus",
-"Leonardo da Vinci"
-],
-"a": 1,
-"e": "Gutenberg's press in Mainz made books much faster and cheaper to produce."
-},
-{
-"u": "2.1",
-"t": 2,
-"q": "What was the MOST important effect of the printing press?",
-"o": [
-"Books became more expensive",
-"Ideas, including Renaissance and Reformation ideas, spread faster and to more people, and literacy rose",
-"It ended the use of the vernacular",
-"It stopped the Reformation"
-],
-"a": 1,
-"e": "Cheap print spread humanist scholarship, Bibles, and Luther's pamphlets across Europe within weeks."
-},
-{
-"u": "2.1",
-"t": 2,
-"q": "How did the Northern Renaissance differ from the Italian Renaissance?",
-"o": [
-"It had no artists",
-"It placed greater emphasis on religious reform and Christian humanism",
-"It happened before the Italian Renaissance",
-"It rejected printing"
-],
-"a": 1,
-"e": "Northern humanists like Erasmus applied humanist scholarship to reforming the Church and Christian life."
-},
-{
-"u": "2.1",
-"t": 2,
-"q": "Erasmus's The Praise of Folly criticized:",
-"o": [
-"The printing press",
-"Corrupt clergy and empty religious rituals",
-"Italian artists",
-"The Ottoman Empire"
-],
-"a": 1,
-"e": "Erasmus used satire to mock Church abuses, but he wanted reform from within, not a break with Rome."
-},
-{
-"u": "2.3",
-"t": 1,
-"q": "Thomas More's Utopia describes:",
-"o": [
-"A real English town",
-"An imaginary ideal society",
-"A war with France",
-"A new church"
-],
-"a": 1,
-"e": "Utopia uses an imaginary island to criticize real problems in European society."
-},
-{
-"u": "1.3",
-"t": 2,
-"q": "Flemish painters like Jan van Eyck are known for:",
-"o": [
-"Abstract art",
-"Detailed, realistic oil paintings",
-"Frescoes on ceilings",
-"Mosaics"
-],
-"a": 1,
-"e": "Oil paint allowed fine detail and glowing color; the technique spread from Flanders to Italy."
-},
-{
-"u": "2.1",
-"t": 3,
-"q": "Historians say \"Erasmus laid the egg that Luther hatched.\" What does this mean?",
-"o": [
-"Erasmus and Luther were relatives",
-"Erasmus's criticism of Church abuses prepared the ground for Luther's break with the Church, even though Erasmus himself stayed Catholic",
-"Luther wrote The Praise of Folly",
-"Erasmus started the Thirty Years' War"
-],
-"a": 1,
-"e": "Christian humanist critiques spread doubts about Church practices. Luther took the next step — open rejection of papal authority."
-},
-{
-"u": "2.1",
-"t": 1,
-"q": "Which English playwright wrote Hamlet and Romeo and Juliet?",
-"o": [
-"Thomas More",
-"William Shakespeare",
-"Petrarch",
-"Castiglione"
-],
-"a": 1,
-"e": "Shakespeare's plays in English reflect Renaissance interest in human nature and the vernacular."
-},
-{
-"u": "3.1",
-"t": 3,
-"q": "Without the printing press, the Reformation would most likely have:",
-"o": [
-"Spread just as fast",
-"Spread more slowly and been easier for authorities to suppress, as earlier reformers like Hus were",
-"Never involved Germany",
-"Begun in Italy"
-],
-"a": 1,
-"e": "Earlier critics such as Wycliffe and Hus were contained. Printing let Luther's ideas reach thousands before they could be stopped."
-},
-{
-"u": "1.3",
-"t": 2,
-"q": "Albrecht Dürer helped spread Renaissance artistic ideas north mainly through:",
-"o": [
-"Stained glass",
-"Woodcuts and engravings that could be printed and sold widely",
-"Sculpture",
-"Architecture"
-],
-"a": 1,
-"e": "Prints were cheaper than paintings, so his work reached a broad audience."
-},
-{
-"u": "2.1",
-"t": 2,
-"q": "Why did literacy rise after the invention of the printing press?",
-"o": [
-"Schools became illegal",
-"Books became cheaper and more available, and people wanted to read the Bible and other works for themselves",
-"Latin disappeared",
-"Kings required it by law everywhere"
-],
-"a": 1,
-"e": "Affordable books — especially vernacular Bibles — gave ordinary people a reason and a way to read."
-},
-{
-"u": "3.1",
-"t": 1,
-"q": "In what year did Martin Luther write the Ninety-five Theses?",
-"o": [
-"1453",
-"1517",
-"1555",
-"1648"
-],
-"a": 1,
-"e": "1517 is the traditional start date of the Protestant Reformation."
-},
-{
-"u": "3.1",
-"t": 1,
-"q": "Luther's Ninety-five Theses mainly attacked:",
-"o": [
-"The printing press",
-"The sale of indulgences",
-"The Ottoman Empire",
-"Italian art"
-],
-"a": 1,
-"e": "Luther objected to the claim that buying a pardon could reduce punishment for sin."
-},
-{
-"u": "3.1",
-"t": 2,
-"q": "Which belief is central to Luther's teaching?",
-"o": [
-"Salvation comes through good works and indulgences",
-"Salvation comes through faith in God's grace alone, and the Bible is the only authority",
-"The pope cannot make mistakes",
-"Only priests may read the Bible"
-],
-"a": 1,
-"e": "\"Faith alone\" and \"Scripture alone\" were Luther's core challenges to Church authority."
-},
-{
-"u": "3.1",
-"t": 2,
-"q": "At the Diet of Worms in 1521, Luther:",
-"o": [
-"Accepted the pope's authority",
-"Refused to recant and was declared an outlaw by Emperor Charles V",
-"Became pope",
-"Wrote the Ninety-five Theses"
-],
-"a": 1,
-"e": "Luther refused to take back his writings. Frederick the Wise of Saxony then protected him."
-},
-{
-"u": "3.1",
-"t": 3,
-"q": "Why did many German princes support Luther?",
-"o": [
-"They all agreed on theology",
-"Breaking with Rome let them gain independence from the emperor and pope and take Church lands and wealth",
-"Luther paid them",
-"The pope asked them to"
-],
-"a": 1,
-"e": "Religion and politics were intertwined. Princes saw political and economic advantages in Lutheranism."
-},
-{
-"u": "4.1",
-"t": 2,
-"q": "The Peace of Augsburg (1555) established that:",
-"o": [
-"All Germans must be Catholic",
-"Each German prince could choose whether his territory would be Catholic or Lutheran",
-"Calvinism was legal everywhere",
-"The Thirty Years' War was over"
-],
-"a": 1,
-"e": "\"Whose realm, his religion\": the ruler chose, and subjects were expected to follow or move. Calvinism was not included until 1648."
-},
-{
-"u": "3.2",
-"t": 1,
-"q": "Which reformer taught predestination and led the city of Geneva?",
-"o": [
-"Martin Luther",
-"John Calvin",
-"Henry VIII",
-"Erasmus"
-],
-"a": 1,
-"e": "Calvin's Geneva became a model Protestant community with strict moral rules."
-},
-{
-"u": "3.2",
-"t": 2,
-"q": "Henry VIII broke with the Roman Catholic Church mainly because:",
-"o": [
-"He disagreed with Luther",
-"The pope refused to annul his marriage to Catherine of Aragon",
-"He wanted to become pope",
-"He supported the Jesuits"
-],
-"a": 1,
-"e": "Henry wanted a male heir. The break was political and personal at first; Protestant theology grew stronger later."
-},
-{
-"u": "3.2",
-"t": 2,
-"q": "The Act of Supremacy (1534) made:",
-"o": [
-"The pope head of England",
-"The English monarch the supreme head of the Church of England",
-"Calvin ruler of England",
-"Catholicism England's only legal religion"
-],
-"a": 1,
-"e": "This created the Church of England (Anglican Church) under royal control."
-},
-{
-"u": "3.2",
-"t": 3,
-"q": "How was the English Reformation DIFFERENT from Luther's Reformation in Germany?",
-"o": [
-"England's began mainly for political and dynastic reasons, led by the king, while Germany's began with religious protest by a monk",
-"There was no difference",
-"England's began with the Ninety-five Theses",
-"Germany's was led by a queen"
-],
-"a": 0,
-"e": "Luther's was theology-first, from below. Henry's was a royal decision driven by succession and power."
-},
-{
-"u": "3.1",
-"t": 3,
-"q": "Wycliffe and Hus are sometimes called forerunners of the Reformation because they:",
-"o": [
-"Invented printing",
-"Criticized Church wealth and authority and promoted the Bible's authority more than a century before Luther",
-"Founded the Jesuits",
-"Fought in the Thirty Years' War"
-],
-"a": 1,
-"e": "Their ideas anticipated Luther, but without the printing press they were easier to suppress — Hus was executed in 1415."
-},
-{
-"u": "3.2",
-"t": 2,
-"q": "Anabaptists were persecuted by both Catholics and other Protestants mainly because they:",
-"o": [
-"Supported the pope",
-"Rejected infant baptism and favored separating church and state",
-"Wanted to restore indulgences",
-"Were Ottoman allies"
-],
-"a": 1,
-"e": "Their views challenged both religious and political order of the time."
-},
-{
-"u": "4.2",
-"t": 1,
-"q": "The Catholic Church's response to the Protestant Reformation is called the:",
-"o": [
-"Renaissance",
-"Catholic Reformation (Counter-Reformation)",
-"Enlightenment",
-"Peace of Augsburg"
-],
-"a": 1,
-"e": "The Church reformed abuses and reaffirmed its doctrines to stop Protestantism's spread."
-},
-{
-"u": "4.2",
-"t": 2,
-"q": "The Council of Trent:",
-"o": [
-"Accepted Luther's faith-alone teaching",
-"Reaffirmed Catholic doctrine, ended the sale of indulgences, and required better-educated priests",
-"Created the Church of England",
-"Ended the Thirty Years' War"
-],
-"a": 1,
-"e": "Trent clarified doctrine (faith AND works, seven sacraments) while fixing abuses Protestants had criticized."
-},
-{
-"u": "4.2",
-"t": 1,
-"q": "Who founded the Jesuits?",
-"o": [
-"Ignatius of Loyola",
-"John Calvin",
-"Johann Tetzel",
-"Henry IV"
-],
-"a": 0,
-"e": "Loyola founded the Society of Jesus in 1540."
-},
-{
-"u": "4.2",
-"t": 2,
-"q": "The Jesuits strengthened the Catholic Church mainly through:",
-"o": [
-"Selling indulgences",
-"Education, founding schools, and missionary work around the world",
-"Writing the Ninety-five Theses",
-"Supporting Calvin"
-],
-"a": 1,
-"e": "Jesuit schools trained leaders, and missionaries spread Catholicism to Asia, Africa, and the Americas."
-},
-{
-"u": "4.2",
-"t": 2,
-"q": "The Index of Forbidden Books was created to:",
-"o": [
-"Promote Protestant books",
-"Prevent Catholics from reading works judged dangerous to faith",
-"Catalog Renaissance art",
-"List banned weapons"
-],
-"a": 1,
-"e": "Censorship was one tool of the Catholic Reformation, alongside the Inquisition."
-},
-{
-"u": "4.1",
-"t": 2,
-"q": "The Edict of Nantes (1598) granted religious toleration to:",
-"o": [
-"English Catholics",
-"French Huguenots",
-"German Lutherans",
-"Spanish Jews"
-],
-"a": 1,
-"e": "Henry IV ended the French Wars of Religion by granting Protestants rights while keeping France officially Catholic."
-},
-{
-"u": "4.1",
-"t": 1,
-"q": "The Thirty Years' War lasted from:",
-"o": [
-"1517–1547",
-"1618–1648",
-"1453–1483",
-"1555–1585"
-],
-"a": 1,
-"e": "It began in Bohemia in 1618 and ended with the Peace of Westphalia in 1648."
-},
-{
-"u": "4.1",
-"t": 3,
-"q": "Why is the Peace of Westphalia (1648) considered a turning point?",
-"o": [
-"It reunited all Christians",
-"It ended large-scale religious wars in Central Europe, recognized Calvinism, and strengthened independent, sovereign states over the pope and emperor",
-"It started the Renaissance",
-"It created the Church of England"
-],
-"a": 1,
-"e": "After Westphalia, states — not religious authorities — became the main actors in European politics."
-},
-{
-"u": "4.1",
-"t": 3,
-"q": "The St. Bartholomew's Day Massacre (1572) shows that the Reformation:",
-"o": [
-"Was entirely peaceful",
-"Produced violent conflict, as French Catholics killed thousands of Huguenots",
-"Ended in France immediately",
-"Was supported by all French nobles"
-],
-"a": 1,
-"e": "Religious division turned into civil war in France until the Edict of Nantes."
-},
-{
-"u": "4.3",
-"t": 3,
-"q": "Which statement BEST describes a long-term effect of the Reformation?",
-"o": [
-"Europe became permanently religiously divided, monarchs and states gained power over churches, and education and literacy expanded",
-"Europe became entirely Protestant",
-"The pope gained control over all kings",
-"Printing was banned"
-],
-"a": 0,
-"e": "Christian unity in Western Europe ended; secular rulers gained authority; both sides founded schools to teach their faith."
-},
-{
-"u": "4.2",
-"t": 2,
-"q": "Which was NOT a goal of the Catholic Reformation?",
-"o": [
-"End abuses such as the sale of indulgences",
-"Reaffirm Catholic teaching",
-"Accept salvation by faith alone",
-"Win back people who had become Protestant"
-],
-"a": 2,
-"e": "The Council of Trent rejected faith alone and taught that faith and good works both matter."
-},
-{
-"u": "4.2",
-"t": 2,
-"q": "The Inquisition was used during the Catholic Reformation to:",
-"o": [
-"Print Bibles",
-"Investigate and punish heresy",
-"Found universities",
-"Make peace with Protestants"
-],
-"a": 1,
-"e": "Church courts enforced orthodoxy, sometimes harshly."
+"e": "Nzinga (c. 1583–1663) allied with the Dutch, fought the Portuguese, and negotiated a peace treaty in 1656."
 },
 {
 "u": "1.1",
-"t": 2,
-"q": "Venice became wealthy mainly because it:",
-"o": [
-"Controlled sea trade between Europe and the eastern Mediterranean",
-"Had the largest army in Europe",
-"Was the seat of the pope",
-"Mined gold in the Alps"
-],
-"a": 0,
-"e": "Venice's fleets and merchants carried spices, silk, and other goods between Europe, Ottoman lands, and Asian trade routes."
-},
-{
-"u": "1.1",
-"t": 2,
-"q": "Italian city-states often hired condottieri because:",
-"o": [
-"They had no money",
-"Wealthy merchant states preferred to pay professional mercenary captains rather than raise citizen armies",
-"The pope required it",
-"They were forbidden to own weapons"
-],
-"a": 1,
-"e": "Rich city-states bought military protection. Some condottieri, like Francesco Sforza of Milan, seized power for themselves."
-},
-{
-"u": "1.1",
-"t": 3,
-"q": "Why did banking families like the Medici become powerful in politics as well as art?",
-"o": [
-"They were elected kings",
-"Their wealth let them lend to rulers and popes, reward supporters, and fund buildings and art that displayed their status",
-"They controlled the army by law",
-"They owned all the land in Italy"
-],
-"a": 1,
-"e": "Money brought influence: loans created obligations, patronage built loyalty, and art projected power. The Medici even produced popes."
-},
-{
-"u": "1.2",
 "t": 1,
-"q": "Which describes the Renaissance view of the individual?",
+"q": "The Golden Stool is the sacred symbol of which African state?",
 "o": [
-"Individuals were unimportant",
-"Individual talent and achievement deserved recognition and fame",
-"Only kings could achieve greatness",
-"Individuals should avoid education"
-],
-"a": 1,
-"e": "Individualism prized personal achievement — artists signed works and writers celebrated human potential."
-},
-{
-"u": "1.3",
-"t": 1,
-"q": "Who designed the dome of Florence Cathedral?",
-"o": [
-"Michelangelo",
-"Filippo Brunelleschi",
-"Raphael",
-"Vasari"
-],
-"a": 1,
-"e": "Brunelleschi engineered the dome (completed 1436) using innovative techniques, including a double shell and herringbone brickwork."
-},
-{
-"u": "1.3",
-"t": 2,
-"q": "Michelangelo's David became a symbol of Florence because it represented:",
-"o": [
-"The pope's power",
-"A small, determined republic standing up to stronger enemies",
-"The Ottoman Empire",
-"Northern Renaissance art"
-],
-"a": 1,
-"e": "The biblical David defeated Goliath; Florentines identified with the underdog defending its liberty."
-},
-{
-"u": "1.4",
-"t": 2,
-"q": "What was Maurizio Seracini trying to find in Florence's Palazzo Vecchio?",
-"o": [
-"Michelangelo's lost sculpture",
-"Traces of Leonardo's unfinished mural, The Battle of Anghiari",
-"The Medici treasury",
-"A Roman temple"
-],
-"a": 1,
-"e": "Seracini used scientific imaging to search for Leonardo's lost mural, which some believe may survive behind a later painting by Vasari."
-},
-{
-"u": "1.4",
-"t": 2,
-"q": "Art diagnostics uses which tools to study paintings without destroying them?",
-"o": [
-"Only a magnifying glass",
-"Infrared, X-ray, and other imaging plus chemical analysis",
-"Repainting the surface",
-"Carbon dating every brushstroke"
-],
-"a": 1,
-"e": "Imaging can reveal hidden sketches and earlier layers, and tiny samples can identify pigments."
-},
-{
-"u": "1.4",
-"t": 3,
-"q": "Why did the search for The Battle of Anghiari stir debate?",
-"o": [
-"Everyone agreed it should be done",
-"Searching could damage Vasari's existing masterpiece, so researchers weighed discovery against preservation",
-"It was in another country",
-"Leonardo never existed"
-],
-"a": 1,
-"e": "Drilling small probes behind a historic fresco raised conservation and ethical concerns — a real tension in historical research."
-},
-{
-"u": "2.2",
-"t": 1,
-"q": "Who painted The School of Athens?",
-"o": [
-"Leonardo da Vinci",
-"Michelangelo",
-"Raphael",
-"Botticelli"
-],
-"a": 2,
-"e": "Raphael painted it in the Vatican around 1509–1511 for Pope Julius II."
-},
-{
-"u": "2.2",
-"t": 2,
-"q": "In The School of Athens, Plato points upward while Aristotle holds his hand out level, palm down. What does this contrast represent?",
-"o": [
-"They are arguing about the weather",
-"Plato's focus on ideal, unseen forms versus Aristotle's focus on the observable world",
-"Plato is older",
-"Aristotle is praying"
-],
-"a": 1,
-"e": "The gestures summarize their philosophies — a clever way to show ideas in paint."
-},
-{
-"u": "2.2",
-"t": 3,
-"q": "Why does The School of Athens hang in the Vatican, a Christian space?",
-"o": [
-"It was stolen",
-"Renaissance humanists saw classical philosophy and Christian faith as compatible; the room pairs it with a fresco on theology",
-"The pope disliked it",
-"It was painted for a mosque"
-],
-"a": 1,
-"e": "Humanism blended classical learning with Christianity rather than rejecting religion."
-},
-{
-"u": "2.2",
-"t": 2,
-"q": "The grand arches and perspective in The School of Athens show Raphael's use of:",
-"o": [
-"Medieval flat backgrounds",
-"Classical architecture and linear perspective to create depth",
-"Abstract shapes",
-"Oil painting on canvas"
-],
-"a": 1,
-"e": "The vanishing point draws your eye to Plato and Aristotle at the center."
-},
-{
-"u": "2.3",
-"t": 2,
-"q": "Cassandra Fedele is significant because she:",
-"o": [
-"Painted the Sistine Chapel",
-"Was a celebrated female humanist scholar who publicly praised the value of learning",
-"Founded the Jesuits",
-"Invented the printing press"
-],
-"a": 1,
-"e": "Her fame shows humanist education reached some elite women, though most women were excluded from formal learning."
-},
-{
-"u": "2.3",
-"t": 3,
-"q": "When analyzing Machiavelli's The Prince as a source, why does it matter that he wrote it hoping to win favor with the Medici?",
-"o": [
-"It doesn't matter",
-"His purpose and audience may have shaped his advice — sourcing helps judge a document's perspective and reliability",
-"It proves the book is false",
-"It means he was a Medici"
-],
-"a": 1,
-"e": "Considering purpose and audience (sourcing) is essential to any DBQ."
-},
-{
-"u": "2.3",
-"t": 2,
-"q": "More's Utopia and Machiavelli's The Prince take different approaches because:",
-"o": [
-"Utopia describes an imagined ideal society to criticize real problems, while The Prince describes how power actually works",
-"They are the same book",
-"Both describe real countries",
-"Both are religious texts"
-],
-"a": 0,
-"e": "One is idealistic satire; the other is political realism — both are humanist responses to their world."
-},
-{
-"u": "2.4",
-"t": 2,
-"q": "Why do historians speak of \"renaissances\" in other parts of the world?",
-"o": [
-"Europe copied all of them",
-"Many societies had periods of great achievement in art, science, and learning — Europe's was one of several",
-"Only Europe had culture",
-"The word is only used for Italy"
-],
-"a": 1,
-"e": "A global view shows cultural flowerings across Eurasia and beyond, often connected through trade and exchange."
-},
-{
-"u": "2.4",
-"t": 2,
-"q": "Ulugh Beg is known for:",
-"o": [
-"Painting the Mona Lisa",
-"Building an observatory in Samarkand and producing an accurate star catalog",
-"Leading the Reformation",
-"Discovering America"
-],
-"a": 1,
-"e": "The Timurid ruler's observatory made Samarkand a center of astronomy in the 1400s."
-},
-{
-"u": "2.4",
-"t": 2,
-"q": "The Ottoman architect Sinan is comparable to Brunelleschi because both:",
-"o": [
-"Were popes",
-"Designed monumental domed buildings that symbolized the power and culture of their societies",
-"Wrote The Prince",
-"Led armies"
-],
-"a": 1,
-"e": "Sinan's Süleymaniye Mosque and Brunelleschi's dome were both engineering triumphs and civic statements."
-},
-{
-"u": "3.1",
-"t": 2,
-"q": "The German Peasants' War (1524–1525) showed that:",
-"o": [
-"Luther supported all rebellions",
-"Some people used Reformation ideas to challenge social order, but Luther sided with the princes, who crushed the revolt",
-"Peasants won their demands",
-"The pope led the peasants"
-],
-"a": 1,
-"e": "Luther wanted religious reform, not social revolution; his support for the princes kept them on his side."
-},
-{
-"u": "3.2",
-"t": 1,
-"q": "Huldrych Zwingli led the Reformation in which city?",
-"o": [
-"Geneva",
-"Zurich",
-"Wittenberg",
-"Rome"
-],
-"a": 1,
-"e": "Zwingli led reform in Zurich; Calvin later led Geneva."
-},
-{
-"u": "4.1",
-"t": 2,
-"q": "Charles V struggled to stop the Reformation mainly because he:",
-"o": [
-"Agreed with Luther",
-"Was fighting France and the Ottomans at the same time and needed the support of German princes",
-"Had no army",
-"Lived in England"
-],
-"a": 1,
-"e": "Ruling a huge, scattered empire meant constant wars on several fronts, which gave Lutheran princes room to grow."
-},
-{
-"u": "4.1",
-"t": 2,
-"q": "The Dutch Revolt against Spain was caused by:",
-"o": [
-"Only trade disputes",
-"A mix of Protestant faith, heavy Spanish taxes, and defense of local rights against Philip II",
-"A volcanic eruption",
-"Ottoman invasion"
-],
-"a": 1,
-"e": "Religion, money, and self-government combined. The northern provinces became the Dutch Republic."
-},
-{
-"u": "4.1",
-"t": 2,
-"q": "What was the result of the Spanish Armada in 1588?",
-"o": [
-"Spain conquered England",
-"The Armada was defeated by English ships and storms, a blow to Spanish prestige",
-"England became Catholic",
-"France joined Spain"
-],
-"a": 1,
-"e": "The defeat protected Protestant England and showed the limits of Habsburg power."
-},
-{
-"u": "4.1",
-"t": 3,
-"q": "How did the Ottoman Empire indirectly help Protestantism survive?",
-"o": [
-"It converted to Protestantism",
-"Ottoman pressure, such as the 1529 Siege of Vienna, forced Charles V to focus on the east and compromise with German princes",
-"It funded Luther",
-"It banned Catholicism"
-],
-"a": 1,
-"e": "Habsburg resources were stretched thin; defending against the Ottomans took priority over crushing Lutherans."
-},
-{
-"u": "4.1",
-"t": 1,
-"q": "Which event sparked the Thirty Years' War in 1618?",
-"o": [
-"The Defenestration of Prague",
-"The Diet of Worms",
-"The Spanish Armada",
-"The Council of Trent"
-],
-"a": 0,
-"e": "Protestant nobles threw Habsburg officials out of a window in Prague, triggering war in the Holy Roman Empire."
-},
-{
-"u": "4.1",
-"t": 2,
-"q": "The Habsburgs controlled such a large empire mainly through:",
-"o": [
-"Conquest of China",
-"Strategic marriages and inheritance",
-"Elections by the people",
-"Purchasing land from the pope"
-],
-"a": 1,
-"e": "Marriage alliances brought Austria, Spain, the Netherlands, and more under one family."
-},
-{
-"u": "4.3",
-"t": 2,
-"q": "Matteo Ricci gained acceptance in Ming China partly by:",
-"o": [
-"Forcing conversions",
-"Learning Chinese, sharing European science and maps, and adapting Christian teaching to Chinese culture",
-"Leading an army",
-"Banning Confucianism"
-],
-"a": 1,
-"e": "His accommodation approach respected Chinese learning — and later stirred debate within the Church."
-},
-{
-"u": "4.3",
-"t": 2,
-"q": "King Afonso I of Kongo is significant because he:",
-"o": [
-"Opposed Christianity",
-"Adopted Catholicism and built ties with Portugal while protesting the harm of the slave trade",
-"Founded the Jesuits",
-"Conquered Portugal"
-],
-"a": 1,
-"e": "His letters show an African ruler engaging with Christianity and Europe on his own terms — and the costs of that relationship."
-},
-{
-"u": "4.3",
-"t": 3,
-"q": "Which statement BEST describes Christianity's global spread in this era?",
-"o": [
-"It spread only through peaceful choice",
-"It spread through missionaries, trade, and colonial conquest, and often blended with local traditions",
-"It stayed only in Europe",
-"It disappeared outside Europe"
-],
-"a": 1,
-"e": "Missions, empires, and local adaptation (syncretism) all shaped global Christianities — and so did coercion."
-},
-{
-"u": "4.3",
-"t": 1,
-"q": "Francis Xavier was a missionary who reached which country in 1549?",
-"o": [
-"Japan",
-"Brazil",
+"Kongo",
 "Ethiopia",
-"Russia"
+"Oyo",
+"Asante"
 ],
-"a": 0,
-"e": "Xavier, a founding Jesuit, preached in India and Southeast Asia before arriving in Japan."
+"a": 3,
+"e": "The Golden Stool represents the spirit of the Asante nation, united under Osei Tutu around 1700."
 },
 {
-"u": "4.3",
+"u": "1.1",
 "t": 2,
-"q": "The Ethiopian Orthodox Church shows that:",
+"q": "Why did Afonso I of Kongo write to the king of Portugal in 1526?",
 "o": [
-"Christianity arrived in Africa only with Europeans",
-"African Christianity is ancient, dating to the 300s C.E.",
-"Ethiopia was Protestant",
-"Christianity began in Ethiopia"
+"To protest that Portuguese traders were kidnapping and enslaving free Kongo subjects",
+"To request Portuguese soldiers to invade Ndongo",
+"To reject Christianity and expel all missionaries",
+"To offer to sell the entire kingdom to Portugal"
+],
+"a": 0,
+"e": "Afonso was a Christian ally of Portugal, but he complained that the slave trade was out of control and taking his free people, even nobles."
+},
+{
+"u": "1.1",
+"t": 2,
+"q": "How were the Swahili city-states such as Kilwa and Mombasa connected to the wider world before the Portuguese arrived?",
+"o": [
+"Through Atlantic sugar plantations",
+"Through Indian Ocean trade with Arabia, Persia, India, and China",
+"Through the Silk Road across Central Asia",
+"They were isolated until 1498"
 ],
 "a": 1,
-"e": "Christianity had deep roots in Africa and Asia long before the Reformation."
+"e": "Monsoon winds carried Indian Ocean trade for centuries; the Swahili language itself reflects Bantu and Arabic contact."
+},
+{
+"u": "1.1",
+"t": 2,
+"q": "What does the Kingdom of Dahomey's capture of Ouidah in 1727 show?",
+"o": [
+"Dahomey was conquered by European forces",
+"Dahomey abandoned trade to focus on farming",
+"An African state expanded to the coast to control trade directly with Europeans",
+"Ouidah was the capital of the Songhai Empire"
+],
+"a": 2,
+"e": "Under King Agaja, Dahomey seized the coastal port so it could deal directly with European traders rather than through middlemen."
+},
+{
+"u": "1.1",
+"t": 2,
+"q": "Why did the Portuguese build Fort Jesus at Mombasa in 1593?",
+"o": [
+"To protect Christian pilgrims going to Ethiopia",
+"To begin sugar planting in East Africa",
+"To defend Mombasa against the Asante",
+"To control trade along the Swahili coast"
+],
+"a": 3,
+"e": "The Portuguese used force to dominate Indian Ocean trade. Omani forces captured the fort in 1698."
+},
+{
+"u": "1.1",
+"t": 2,
+"q": "How did Ethiopia keep its independence when the Adal Sultanate invaded in the 1500s?",
+"o": [
+"It fought back with help from a small Portuguese force and defeated Adal by 1543",
+"It converted to Islam and joined Adal",
+"It became a Portuguese colony",
+"The Ottoman Empire annexed it"
+],
+"a": 0,
+"e": "Ethiopian forces, aided by about 400 Portuguese musketeers, defeated Ahmad ibn Ibrahim in 1543."
+},
+{
+"u": "1.1",
+"t": 3,
+"q": "Which statement BEST describes the role of African rulers in the Atlantic slave trade?",
+"o": [
+"They had no involvement; Europeans captured all enslaved people themselves",
+"Some participated and profited, some tried to limit or control it, and some fought it — while the trade's growth was driven by European and American plantation demand",
+"All African rulers eagerly supported the trade and had equal power with Europeans",
+"They only sold prisoners convicted of crimes"
+],
+"a": 1,
+"e": "Honest history shows variety: Dahomey and others profited, Afonso I protested, Benin limited exports at times, Nzinga fought — and the demand came from American plantations."
+},
+{
+"u": "1.1",
+"t": 3,
+"q": "A historian argues that Benin, Asante, and Dahomey were 'pawns' of European traders. Which evidence most WEAKENS this claim?",
+"o": [
+"Europeans built forts on the coast",
+"Africans were sold in large numbers",
+"European guns were traded in Africa",
+"African states set terms of trade, controlled access to the interior, and in some cases restricted which captives could be sold"
+],
+"a": 3,
+"e": "European traders generally could not move inland or trade freely; African rulers controlled the terms, which shows agency rather than being pawns."
+},
+{
+"u": "1.2",
+"t": 1,
+"q": "What city was the capital of the Songhai Empire?",
+"o": [
+"Gao",
+"Timbuktu",
+"Kumasi",
+"Benin City"
+],
+"a": 0,
+"e": "Gao, on the Niger River, was Songhai's capital. Timbuktu was its great center of learning."
+},
+{
+"u": "1.2",
+"t": 1,
+"q": "Which battle in 1591 led to the collapse of the Songhai Empire?",
+"o": [
+"Battle of Mbwila",
+"Battle of Adwa",
+"Battle of Tondibi",
+"Battle of Kirina"
+],
+"a": 2,
+"e": "At Tondibi a Moroccan army with firearms defeated Songhai."
+},
+{
+"u": "1.2",
+"t": 1,
+"q": "Which Songhai ruler made a pilgrimage to Mecca in 1496–1497 and strengthened Islamic law and learning?",
+"o": [
+"Sunni Ali",
+"Mansa Musa",
+"Ahmad al-Mansur",
+"Askia Muhammad"
+],
+"a": 3,
+"e": "Askia Muhammad's pilgrimage strengthened his ties to the Islamic world. Mansa Musa's famous hajj was in 1324, for Mali."
+},
+{
+"u": "1.2",
+"t": 2,
+"q": "Why did Muslim scholars in Timbuktu dislike Sunni Ali?",
+"o": [
+"He banned trade on the Niger River",
+"He mixed Islam with traditional religious practices and treated some scholars harshly",
+"He moved the capital to Morocco",
+"He converted to Christianity"
+],
+"a": 1,
+"e": "Sunni Ali was a brilliant general but blended Islam with older Songhai beliefs and persecuted some Timbuktu scholars, so Muslim chroniclers portrayed him negatively."
+},
+{
+"u": "1.2",
+"t": 2,
+"q": "Why did Sultan Ahmad al-Mansur of Morocco invade Songhai?",
+"o": [
+"To spread Christianity",
+"To capture Songhai's sugar plantations",
+"To gain control of the gold and salt trade",
+"To stop Songhai from trading with Portugal"
+],
+"a": 2,
+"e": "Morocco wanted West African gold. The invasion crossed the Sahara and took Songhai's cities, but never controlled the gold fields."
+},
+{
+"u": "1.2",
+"t": 2,
+"q": "What gave the Moroccan army its decisive advantage at Tondibi?",
+"o": [
+"Firearms such as arquebuses and cannons",
+"A much larger army",
+"Elephants",
+"Support from the Portuguese navy"
+],
+"a": 0,
+"e": "The Moroccan force was smaller but carried guns, which broke Songhai's cavalry charge."
+},
+{
+"u": "1.2",
+"t": 2,
+"q": "How did Songhai's location along the Niger River help it grow wealthy?",
+"o": [
+"It allowed Songhai to sell enslaved people directly to the Caribbean",
+"It isolated Songhai from outside enemies",
+"It gave Songhai access to Indian Ocean monsoon winds",
+"It let Songhai control and tax trade between the gold fields, the Sahara caravans, and river cities like Timbuktu and Djenné"
+],
+"a": 3,
+"e": "The Niger was a highway linking forest gold, desert salt routes, and commercial cities, all of which Songhai taxed."
+},
+{
+"u": "1.2",
+"t": 2,
+"q": "How did Askia Muhammad organize Songhai's government?",
+"o": [
+"He ruled alone with no officials",
+"He divided the empire into provinces run by appointed governors and created a professional army and royal officials",
+"He let Morocco appoint governors",
+"He gave all power to the Timbuktu scholars"
+],
+"a": 1,
+"e": "Askia Muhammad built a centralized administration with governors, officials over trade and finance, and a standing army."
+},
+{
+"u": "1.2",
+"t": 3,
+"q": "Compare Sunni Ali and Askia Muhammad. Which statement is most accurate?",
+"o": [
+"Both were Moroccan generals",
+"Sunni Ali focused on administration, while Askia Muhammad was mainly a conqueror",
+"Sunni Ali built the empire through military conquest, while Askia Muhammad organized it and strengthened Islam and learning",
+"They ruled at the same time as rivals"
+],
+"a": 2,
+"e": "Sunni Ali was the conqueror (1464–1492); Askia Muhammad (1493–1528) was the organizer and patron of Islamic scholarship."
+},
+{
+"u": "1.2",
+"t": 3,
+"q": "Which factor was LEAST important in Songhai's fall?",
+"o": [
+"Sunni Ali's conflicts with Timbuktu scholars a century earlier",
+"Moroccan firearms at Tondibi",
+"Internal struggles over succession in the late 1500s",
+"Shifting trade as Europeans opened Atlantic coastal routes"
+],
+"a": 0,
+"e": "Firearms, civil conflicts over succession, and changing trade routes all weakened Songhai in the late 1500s; Sunni Ali's disputes with scholars ended long before."
+},
+{
+"u": "1.3",
+"t": 1,
+"q": "What kind of documents are the Timbuktu manuscripts?",
+"o": [
+"Printed European books brought by Portuguese traders",
+"Handwritten books and records, mostly in Arabic script, on subjects from law to astronomy",
+"Stone carvings in temple walls",
+"Recordings of oral stories made in the 1900s"
+],
+"a": 1,
+"e": "They are handwritten manuscripts kept by Timbuktu families and libraries for centuries."
+},
+{
+"u": "1.3",
+"t": 1,
+"q": "Which Timbuktu scholar was taken to Morocco in chains after the Moroccan conquest?",
+"o": [
+"Ahmed Baba",
+"Askia Muhammad",
+"Mansa Musa",
+"Abdel Kader Haidara"
+],
+"a": 0,
+"e": "Ahmed Baba (1556–1627) was exiled to Marrakesh; a research institute in Timbuktu now bears his name."
+},
+{
+"u": "1.3",
+"t": 1,
+"q": "Who organized the secret rescue of Timbuktu's manuscripts in 2012–2013?",
+"o": [
+"Ahmad al-Mansur",
+"UNESCO soldiers",
+"Abdel Kader Haidara and other local librarians and families",
+"The French army"
+],
+"a": 2,
+"e": "Local Malian librarians and families, led by figures like Haidara, smuggled the manuscripts to Bamako."
+},
+{
+"u": "1.3",
+"t": 2,
+"q": "Why did scholars and students travel to Timbuktu in the 1400s and 1500s?",
+"o": [
+"To enlist in the Moroccan army",
+"To buy sugar",
+"To board ships for the Americas",
+"To study with respected Islamic scholars and use the city's libraries"
+],
+"a": 3,
+"e": "Timbuktu's mosques, scholarly families, and private libraries made it a center of learning in law, theology, and science."
+},
+{
+"u": "1.3",
+"t": 2,
+"q": "Why do the Timbuktu manuscripts matter for understanding African history?",
+"o": [
+"They prove Africa had no oral traditions",
+"They were written by Europeans visiting Africa",
+"They show West Africans had a long written tradition of scholarship, law, and science",
+"They are mostly about the Atlantic slave trade"
+],
+"a": 2,
+"e": "The manuscripts challenge the false idea that African history was only oral or that Africa lacked written learning."
+},
+{
+"u": "1.3",
+"t": 2,
+"q": "What threatened Timbuktu's manuscripts in 2012–2013?",
+"o": [
+"Armed extremist groups that occupied the city and destroyed shrines",
+"A flood of the Niger River",
+"An earthquake",
+"A sale to European museums"
+],
+"a": 0,
+"e": "Militants destroyed historic tombs and, as they retreated in early 2013, burned several thousand manuscripts — but most had already been smuggled out."
+},
+{
+"u": "1.3",
+"t": 3,
+"q": "Which statement best explains why families in Timbuktu kept manuscripts hidden or private for centuries?",
+"o": [
+"The manuscripts were considered worthless",
+"Families protected them from conquerors, colonizers, thieves, and decay, seeing them as an inheritance",
+"Islamic law forbade reading them",
+"They had been banned by Mansa Musa"
+],
+"a": 1,
+"e": "From the Moroccan invasion to French colonial rule to the 2012 occupation, families guarded manuscripts as treasured inheritance, often hiding them."
+},
+{
+"u": "1.3",
+"t": 3,
+"q": "A student says, 'Timbuktu was important only because Mansa Musa was rich.' Which response best corrects this?",
+"o": [
+"Correct — the city had no importance after 1337",
+"Correct — Timbuktu was only a gold mine",
+"Incorrect — Timbuktu was the capital of Morocco",
+"Incorrect — Timbuktu's importance came from its location on trade routes and generations of scholars and libraries, which flourished especially under Songhai"
+],
+"a": 3,
+"e": "Mansa Musa's patronage helped, but trade and a long scholarly tradition sustained Timbuktu, especially in its 1500s golden age."
+},
+{
+"u": "2.1",
+"t": 1,
+"q": "In what year was Equiano's Interesting Narrative published?",
+"o": [
+"1619",
+"1739",
+"1789",
+"1807"
+],
+"a": 2,
+"e": "Published in London in 1789, it became a bestseller and abolitionist tool."
+},
+{
+"u": "2.1",
+"t": 1,
+"q": "What name did an enslaver give Olaudah Equiano, which he used for much of his life?",
+"o": [
+"Gustavus Vassa",
+"Jemmy",
+"Ottobah Cugoano",
+"Cudjoe"
+],
+"a": 0,
+"e": "He was renamed Gustavus Vassa and used that name on legal documents, while publishing as Olaudah Equiano."
+},
+{
+"u": "2.1",
+"t": 1,
+"q": "How did Equiano gain his freedom?",
+"o": [
+"He escaped to Spanish Florida",
+"He led a shipboard revolt",
+"A court freed him",
+"He bought his manumission in 1766 with money he earned trading"
+],
+"a": 3,
+"e": "He saved money from small trading ventures and paid £40 for his freedom."
+},
+{
+"u": "2.1",
+"t": 2,
+"q": "What is the debate over Equiano's birthplace?",
+"o": [
+"Whether he was born in Ethiopia or Egypt",
+"He wrote he was born in Igbo country in Africa, but a baptism record and a naval record list South Carolina",
+"Whether he was born in London or Liverpool",
+"Historians agree he was born in Jamaica"
+],
+"a": 1,
+"e": "Historian Vincent Carretta found records listing South Carolina; others defend Equiano's account. Historians still disagree."
+},
+{
+"u": "2.1",
+"t": 2,
+"q": "Why was Equiano's book so powerful in the fight against the slave trade?",
+"o": [
+"It was written by a member of Parliament",
+"It was a novel with invented characters",
+"It gave British readers a firsthand account by an African of capture, the Middle Passage, and slavery",
+"It defended the slave trade"
+],
+"a": 2,
+"e": "A personal, well-written account by a person who had been enslaved made the trade's cruelty impossible to dismiss."
+},
+{
+"u": "2.1",
+"t": 2,
+"q": "What did the Sons of Africa do?",
+"o": [
+"Wrote letters and petitions in London against the slave trade",
+"Ran a slave-trading company",
+"Led the Stono Rebellion",
+"Founded Palmares"
+],
+"a": 0,
+"e": "Black abolitionists including Equiano and Cugoano organized publicly, showing Africans led the movement for their own freedom."
+},
+{
+"u": "2.1",
+"t": 3,
+"q": "Even if Equiano was born in South Carolina, why do many historians still consider his Narrative valuable evidence?",
+"o": [
+"Because it contains no factual details",
+"Because it was written by the ship captain",
+"Because its descriptions of slavery, the Caribbean, and abolition are confirmed by other sources, and it may preserve memories shared by African-born people",
+"Because it proves he was born in Africa"
+],
+"a": 2,
+"e": "Much of the Narrative is supported by records; the debate is about the early chapters. Even those may reflect real African testimony."
+},
+{
+"u": "2.1",
+"t": 3,
+"q": "Which is the most balanced way to describe Equiano's birthplace in a research paper?",
+"o": [
+"\"Equiano lied about everything in his book.\"",
+"\"Equiano was definitely born in Essaka.\"",
+"\"Historians have proven he was born in South Carolina.\"",
+"\"Equiano wrote that he was born in Igbo country; some records suggest South Carolina, and historians still debate the question.\""
+],
+"a": 3,
+"e": "Good historians state what the evidence shows and admit when a question is unresolved."
+},
+{
+"u": "2.2",
+"t": 1,
+"q": "About how many Africans were forced onto ships in the transatlantic slave trade, according to the Trans-Atlantic Slave Trade Database?",
+"o": [
+"About 1.2 million",
+"About 12.5 million",
+"About 50 million",
+"About 100,000"
+],
+"a": 1,
+"e": "About 12.5 million were embarked and about 10.7 million survived to arrive in the Americas."
+},
+{
+"u": "2.2",
+"t": 1,
+"q": "What was the Middle Passage?",
+"o": [
+"The overland route across the Sahara",
+"The voyage from Europe to Africa",
+"The voyage of enslaved Africans across the Atlantic to the Americas",
+"A canal in Brazil"
+],
+"a": 2,
+"e": "It was the 'middle' leg of the triangular trade."
+},
+{
+"u": "2.2",
+"t": 1,
+"q": "Which region received the largest number of enslaved Africans?",
+"o": [
+"Brazil",
+"British North America",
+"Spain",
+"Mexico (New Spain)"
+],
+"a": 0,
+"e": "Brazil received about 45 percent (nearly half) of all enslaved Africans; mainland North America received under 5 percent."
+},
+{
+"u": "2.2",
+"t": 2,
+"q": "In the triangular trade model, what typically went from Europe to Africa?",
+"o": [
+"Sugar and tobacco",
+"Enslaved people",
+"Gold and ivory only",
+"Manufactured goods such as cloth, guns, and metal goods"
+],
+"a": 3,
+"e": "European and Asian textiles, guns, iron, and alcohol were traded for captives on the African coast."
+},
+{
+"u": "2.2",
+"t": 2,
+"q": "Approximately how many Africans died during the Middle Passage itself, based on the database figures?",
+"o": [
+"Almost none",
+"Roughly 1.8 million",
+"About 10 million",
+"Exactly half of all captives"
+],
+"a": 1,
+"e": "12.5 million embarked minus 10.7 million arrived is about 1.8 million deaths at sea — and many more died before boarding or soon after landing."
+},
+{
+"u": "2.2",
+"t": 2,
+"q": "Why did abolitionists widely publish the Brookes diagram?",
+"o": [
+"To advertise the ship for sale",
+"To train sailors",
+"To visually show the inhuman crowding of enslaved people and stir public outrage",
+"To show how comfortable the voyage was"
+],
+"a": 2,
+"e": "The image made the horrors of the Middle Passage visible to ordinary readers."
+},
+{
+"u": "2.2",
+"t": 2,
+"q": "What did the Zong case of 1781 reveal about the slave trade?",
+"o": [
+"That British law treated enslaved Africans as property — insured cargo — rather than as people",
+"That ships were always well supplied",
+"That enslaved people could sue captains",
+"That the British navy protected captives"
+],
+"a": 0,
+"e": "The owners claimed insurance for people murdered by the crew; the court case treated it as a property dispute, which shocked abolitionists."
+},
+{
+"u": "2.2",
+"t": 2,
+"q": "What was the main cause of death on the Middle Passage?",
+"o": [
+"Battles with pirates",
+"Shipwrecks in storms",
+"Cold weather",
+"Diseases like dysentery and smallpox, worsened by crowding, poor food, and bad water"
+],
+"a": 3,
+"e": "Disease spread quickly in packed, filthy holds; dehydration and despair added to the toll."
+},
+{
+"u": "2.2",
+"t": 3,
+"q": "Why do historians say the 'triangular trade' is an oversimplified model?",
+"o": [
+"Because no trade crossed the Atlantic",
+"Many ships sailed direct routes, such as Brazil to Africa and back, and goods moved in many directions",
+"Because only Spain participated",
+"Because the trade lasted only ten years"
+],
+"a": 1,
+"e": "Brazil's trade with Angola, for example, was a two-way route. The triangle is a helpful model, not a literal map."
+},
+{
+"u": "2.2",
+"t": 3,
+"q": "Which statement BEST uses numbers to evaluate the claim 'most enslaved Africans went to what became the United States'?",
+"o": [
+"True — most went to Virginia",
+"True — the U.S. had the most plantations",
+"False — Brazil and the Caribbean received the vast majority; mainland North America received under 400,000 of about 10.7 million arrivals",
+"False — most stayed in Europe"
+],
+"a": 2,
+"e": "The U.S. received a small share; its enslaved population grew mainly through natural increase, unlike the deadlier sugar colonies."
+},
+{
+"u": "2.3",
+"t": 1,
+"q": "On which island off West Africa did the Portuguese create an early model of the sugar plantation worked by enslaved Africans?",
+"o": [
+"Barbados",
+"Jamaica",
+"Hispaniola",
+"São Tomé"
+],
+"a": 3,
+"e": "São Tomé's sugar plantations in the late 1400s and 1500s became the model later used in Brazil."
+},
+{
+"u": "2.3",
+"t": 1,
+"q": "What is a cash crop?",
+"o": [
+"A crop grown mainly to sell for profit",
+"A crop grown only for the farmer's family",
+"A crop paid in place of taxes",
+"A crop grown only in Europe"
+],
+"a": 0,
+"e": "Sugar, tobacco, and cotton were the great cash crops of the Atlantic world."
+},
+{
+"u": "2.3",
+"t": 2,
+"q": "Why did sugar plantations demand so many enslaved workers?",
+"o": [
+"Sugar grew best in cold climates",
+"Machines did most of the work",
+"Cutting cane and processing it before it spoiled required huge amounts of exhausting labor, and planters wanted cheap, forced labor",
+"Sugar was grown only in small gardens"
+],
+"a": 2,
+"e": "Cane had to be cut and milled quickly; planters chose enslaved labor to maximize profit."
+},
+{
+"u": "2.3",
+"t": 2,
+"q": "What happened in Barbados in the 1640s?",
+"o": [
+"Spain abolished slavery there",
+"Sugar planting spread rapidly, and the island shifted to large plantations worked by enslaved Africans",
+"It became a maroon republic",
+"Sugarcane was first domesticated there"
+],
+"a": 1,
+"e": "This 'sugar revolution' made Barbados one of England's richest colonies and changed its population."
+},
+{
+"u": "2.3",
+"t": 2,
+"q": "Why were death rates among enslaved people especially high on Caribbean and Brazilian sugar plantations?",
+"o": [
+"Planters often worked people to death and bought new captives rather than improving conditions",
+"The climate was too cold",
+"Sugar was poisonous to eat",
+"Most workers were volunteers who left early"
+],
+"a": 0,
+"e": "Brutal labor, disease, and poor food meant deaths outnumbered births, so planters kept importing Africans — which drove the trade."
+},
+{
+"u": "2.3",
+"t": 2,
+"q": "How did sugar change European diets and society?",
+"o": [
+"It was banned in Europe",
+"It stayed a rare medicine",
+"It replaced bread entirely",
+"It went from a luxury to an everyday product used in tea, coffee, and sweets"
+],
+"a": 3,
+"e": "By the 1700s sugar was a mass commodity, and its cheapness depended on enslaved labor."
+},
+{
+"u": "2.3",
+"t": 3,
+"q": "Historians sometimes call sugar plantations 'factories in the field.' What does this mean?",
+"o": [
+"Sugar was grown indoors",
+"They combined farming with industrial processing — mills and boiling houses — under strict schedules, before the Industrial Revolution",
+"They produced only cloth",
+"They used no human labor"
+],
+"a": 1,
+"e": "Plantations mixed agriculture with industrial-style processing and discipline on a massive scale."
+},
+{
+"u": "2.3",
+"t": 3,
+"q": "Which chain of cause and effect is MOST accurate?",
+"o": [
+"European demand for sugar → expansion of plantations in Brazil and the Caribbean → greater demand for enslaved Africans → growth of the slave trade",
+"Growth of the slave trade → invention of sugarcane → European demand",
+"Abolition of slavery → rise of sugar → growth of plantations",
+"Songhai's fall → invention of rum → Brazil's independence"
+],
+"a": 0,
+"e": "Consumer demand and planters' profits drove the expansion of plantations and the trade in captives."
+},
+{
+"u": "2.4",
+"t": 1,
+"q": "What were maroons?",
+"o": [
+"Ship captains",
+"Plantation overseers",
+"People who escaped slavery and formed independent communities",
+"European abolitionists"
+],
+"a": 2,
+"e": "Maroon communities formed across the Americas in hard-to-reach places."
+},
+{
+"u": "2.4",
+"t": 1,
+"q": "Which maroon community in Brazil lasted for most of the 1600s?",
+"o": [
+"Palmares",
+"Fort Mose",
+"Stono",
+"Kumasi"
+],
+"a": 0,
+"e": "Palmares lasted from about 1605 to 1694 in the hills of Pernambuco."
+},
+{
+"u": "2.4",
+"t": 1,
+"q": "In what colony did the Stono Rebellion of 1739 take place?",
+"o": [
+"Virginia",
+"Jamaica",
+"Brazil",
+"South Carolina"
+],
+"a": 3,
+"e": "The rebels marched south from the Stono River toward Spanish Florida."
+},
+{
+"u": "2.4",
+"t": 1,
+"q": "Who led the Windward Maroons of eastern Jamaica and is honored as a National Hero of Jamaica?",
+"o": [
+"Queen Nzinga",
+"Queen Nanny",
+"Zumbi",
+"Tacky"
+],
+"a": 1,
+"e": "Nanny led guerrilla resistance against the British in the early 1700s."
+},
+{
+"u": "2.4",
+"t": 2,
+"q": "Why did the Stono rebels march toward Florida?",
+"o": [
+"Florida was a British naval base",
+"Florida had gold mines",
+"Spanish Florida offered freedom to people escaping slavery in the British colonies",
+"Florida had no plantations"
+],
+"a": 2,
+"e": "Spain promised freedom to escapees who reached Florida; Fort Mose near St. Augustine was founded in 1738."
+},
+{
+"u": "2.4",
+"t": 2,
+"q": "How did the British respond to the Jamaican Maroons after years of fighting?",
+"o": [
+"They signed treaties in 1739–1740 recognizing Maroon freedom and land",
+"They destroyed all Maroon towns",
+"They gave Jamaica to Spain",
+"They abolished slavery in Jamaica"
+],
+"a": 0,
+"e": "Unable to defeat them, the British made treaties — though the treaties also required Maroons to return future runaways, a difficult compromise."
+},
+{
+"u": "2.4",
+"t": 2,
+"q": "Which is an example of everyday resistance?",
+"o": [
+"Founding Palmares",
+"Leading Tacky's War",
+"Signing a treaty with Britain",
+"Working slowly, breaking tools, or secretly keeping African traditions alive"
+],
+"a": 3,
+"e": "Daily acts of defiance were less dangerous than open revolt and were extremely common."
+},
+{
+"u": "2.4",
+"t": 2,
+"q": "When did most shipboard revolts happen, and why?",
+"o": [
+"In the middle of the ocean, when crews were tired",
+"Near the African coast, when captives were close to home and escape seemed possible",
+"After arrival in the Americas",
+"Only on Spanish ships"
+],
+"a": 1,
+"e": "Captives knew land was near and they might return home; crews were also busy loading and trading."
+},
+{
+"u": "2.4",
+"t": 2,
+"q": "How did South Carolina respond to the Stono Rebellion?",
+"o": [
+"It freed all enslaved people",
+"It joined Spanish Florida",
+"It passed the Negro Act of 1740, sharply restricting enslaved people's ability to gather, travel, grow food, and learn to read",
+"It ended the slave trade permanently"
+],
+"a": 2,
+"e": "Lawmakers tightened control, showing how afraid enslavers were of resistance."
+},
+{
+"u": "2.4",
+"t": 3,
+"q": "Why is the creation of African diaspora cultures — such as Gullah Geechee language, Candomblé, or capoeira — considered a form of resistance?",
+"o": [
+"Because enslavers encouraged them",
+"Because they kept African identities, languages, and beliefs alive inside a system designed to erase them",
+"Because they were only practiced in Africa",
+"Because they ended slavery immediately"
+],
+"a": 1,
+"e": "Preserving and reinventing culture asserted humanity and community against dehumanization."
+},
+{
+"u": "2.4",
+"t": 3,
+"q": "Which statement best evaluates the claim 'Enslaved people accepted their condition'?",
+"o": [
+"Supported — there were no revolts before 1800",
+"Supported — maroon communities were rare and short-lived",
+"Unsupported — resistance was rare because enslavers prevented all of it",
+"Unsupported — resistance occurred at every stage, from shipboard revolts and maroon communities like Palmares to the Stono Rebellion and everyday defiance"
+],
+"a": 3,
+"e": "The evidence of resistance is overwhelming, from Africa's coast to the Americas."
+},
+{
+"u": "2.4",
+"t": 3,
+"q": "What made the Haitian Revolution (beginning in 1791) different from earlier resistance movements?",
+"o": [
+"It ended the slave trade worldwide at once",
+"It took place in Brazil",
+"It led to the abolition of slavery in the colony and, in 1804, the first independent nation founded by formerly enslaved people",
+"It was led by European abolitionists"
+],
+"a": 2,
+"e": "Earlier revolts and maroon wars won local freedom; Haiti overturned the entire slave society and created a nation."
 }
 ];
 const TUTOR = "CLIO";
-const LS='whh_drill_stats', LS_SRS='whh_drill_srs', LS_U='whh_drill_units';
+const LS='whh_c11_drill_stats', LS_SRS='whh_c11_drill_srs', LS_U='whh_c11_drill_units';
 QB.forEach((q,i)=>q.id='q'+i+'_'+q.q.slice(0,20));
 let stats=lsGet(LS,{total:0,correct:0,best:0,sessions:0}), srs=lsGet(LS_SRS,{}), um=lsGet(LS_U,{});
 let mode='practice', tier='all', sel=new Set(Object.keys(UNIT_NAMES));
@@ -1316,7 +1147,7 @@ function finish(timeUp){
   const n = mode==='stamina'? idx+1 : (timeUp? idx+ (answered?1:0) : deck.length);
   const pct = n?Math.round(right/n*100):0;
   document.getElementById('r-mode').textContent= timeUp?'TIME EXPIRED':mode==='stamina'?`STAMINA RUN — ${right} IN A ROW`:'SESSION COMPLETE';
-  if(mode==='stamina'){ const k='whh_drill_stamina_best'; const b=Math.max(lsGet(k,0),right); lsSet(k,b); }
+  if(mode==='stamina'){ const k='whh_c11_drill_stamina_best'; const b=Math.max(lsGet(k,0),right); lsSet(k,b); }
   document.getElementById('r-score').innerHTML=`${right}<span>/${n}</span>`;
   const g=pct>=90?['Excellent','var(--teal)']:pct>=80?['Strong','var(--teal)']:pct>=70?['Solid','var(--amber)']:pct>=60?['Developing','var(--amber)']:['Needs review','var(--red)'];
   document.getElementById('r-grade').innerHTML=`<span style="color:${g[1]}">${g[0]}</span>`;

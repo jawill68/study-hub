@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World History Honors — Master Glossary</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
+  --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
+  --accent:#B87700;--accent-soft:rgba(229,148,0,.12);--accent-text:#efb44e;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(46,139,192,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(46,139,192,0.04) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:26px 20px 70px}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent-text);text-decoration:none;margin-bottom:14px;opacity:.9}
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--accent-text)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+.about-banner{background:linear-gradient(135deg,var(--accent-soft),rgba(29,158,117,.05));border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:12.5px;line-height:1.55}
+.about-banner a{color:var(--accent-text)}
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px;flex:1}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:14px}
+.sec-lbl{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.13em;color:var(--muted);margin-bottom:11px;text-transform:uppercase}
+.controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;flex-direction:column;gap:11px}
+.ctrl-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--muted);min-width:56px}
+.search-input{flex:1;min-width:200px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13.5px}
+.search-input:focus{outline:none;border-color:var(--accent)}
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--accent);color:var(--text)}
+.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn{border:none;border-radius:11px;padding:11px 20px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;transition:all .2s;color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-accent{background:var(--accent)}
+.btn-accent:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 22px rgba(0,0,0,.35)}
+.btn-ghost{background:var(--bg);border:1px solid var(--border);color:var(--text)}
+.btn-ghost:hover{border-color:var(--accent)}
+.btn-teal{background:#188663}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:6px;display:inline-block}
+.t-unit{background:var(--accent-soft);color:var(--accent-text);border:1px solid var(--border)}
+.empty{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px}
+.footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center;line-height:1.7}
+.overlay{position:fixed;inset:0;background:rgba(3,8,16,.82);backdrop-filter:blur(4px);z-index:500;display:none;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto}
+.overlay.open{display:flex}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;max-width:640px;width:100%}
+.opt{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:12px 15px;cursor:pointer;transition:all .16s;display:flex;align-items:flex-start;gap:11px;text-align:left;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);width:100%}
+.opt:hover:not(:disabled){border-color:var(--accent);background:var(--card2)}
+.opt:disabled{cursor:default}
+.opt-key{width:24px;height:24px;border-radius:7px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0;color:var(--muted)}
+.opt.correct{border-color:var(--teal);background:rgba(29,158,117,.11)}
+.opt.correct .opt-key{background:#188663;border-color:var(--teal);color:#fff}
+.opt.wrong{border-color:var(--red);background:rgba(231,76,60,.10)}
+.opt.wrong .opt-key{background:#D24536;border-color:var(--red);color:#fff}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+@media(max-width:640px){.page-title{font-size:1.55rem}.ctrl-label{min-width:auto}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+
+.alpha{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:14px}
+.alpha a{font-family:'DM Mono',monospace;font-size:11.5px;color:var(--muted);text-decoration:none;padding:4px 7px;border-radius:6px;border:1px solid transparent}
+.alpha a:hover{border-color:var(--border);color:#fff}
+.alpha a.off{opacity:.25;pointer-events:none}
+.letter{font-family:'DM Mono',monospace;font-size:13px;color:var(--accent-text);margin:20px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.term{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:14px 16px;margin-bottom:9px}
+.term-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.term-name{font-size:15.5px;font-weight:800;color:var(--white)}
+.term-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+.t-du{background:rgba(229,148,0,.12);color:#efb44e;border:1px solid rgba(229,148,0,.3)}
+.term-def{font-size:13.5px;line-height:1.6;margin-top:8px}
+.term-ex{font-size:12.5px;color:#a9c2dc;margin-top:7px;padding-left:10px;border-left:2px solid var(--accent)}
+.star{background:none;border:none;font-size:18px;cursor:pointer;color:var(--muted);line-height:1;padding:2px}
+.star.on{color:#efb44e}
+.tutor-toggle{margin-top:9px;background:none;border:none;color:var(--accent-text);font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;padding:0}
+.tutor{display:none;margin-top:10px;border-top:1px solid var(--border);padding-top:10px}
+.tutor.open{display:block}
+.chat{display:flex;flex-direction:column;gap:7px;max-height:240px;overflow-y:auto;margin-bottom:8px}
+.bub{font-size:13px;line-height:1.6}
+.bub.u{background:var(--accent-soft);padding:8px 11px;border-radius:9px;border-left:2px solid var(--accent)}
+.bub code{font-family:'DM Mono',monospace;font-size:12px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.chip{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:4px 10px;font-size:11.5px;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif}
+.chip:hover{border-color:var(--accent);color:#fff}
+.trow{display:flex;gap:7px}
+.tin{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:8px 11px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:12.5px}
+.tmode{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:6px}
+.fc{perspective:900px;margin:16px 0}
+.fc-inner{position:relative;min-height:210px;transition:transform .5s;transform-style:preserve-3d;cursor:pointer}
+.fc.flip .fc-inner{transform:rotateY(180deg)}
+.fc-face{position:absolute;inset:0;backface-visibility:hidden;background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:22px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.fc-back{transform:rotateY(180deg);font-size:14px;line-height:1.6}
+.fc-term{font-size:24px;font-weight:800;color:#fff}
+.fc-hint{font-size:11px;color:var(--muted);margin-top:10px;font-family:'DM Mono',monospace}
+.q-def{font-size:15px;color:#fff;font-weight:600;line-height:1.55;margin:14px 0 16px;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:16px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.mtop{display:flex;justify-content:space-between;align-items:center;font-family:'DM Mono',monospace;font-size:11.5px;color:var(--muted)}
+.fb{margin-top:12px;font-size:13px;line-height:1.55;display:none}
+.fb.show{display:block}
+
+</style>
+<script src="studyhub-tutor.js"></script>
+<script>window.STUDYHUB_GAME={course:'worldhistoryh'};</script>
+<script src="studyhub-game.js"></script>
+<script src="studyhub-sync.js"></script>
+</head>
+<body>
+<div class="app">
+  <a class="back" href="WHH10_StudyHub.html">← World History Honors · Ch. 10 Hub</a>
+  <div class="header">
+    <div>
+      <div class="series-label">World History Honors · Chapter 10 · Glossary</div>
+      <div class="page-title">Master <span>Glossary</span></div>
+      <div class="page-sub" id="page-sub"></div>
+    </div>
+    <div style="display:flex;gap:9px;align-items:center;flex-wrap:wrap">
+      <div data-game-hud></div>
+      <button class="btn btn-ghost" onclick="openCards()">🃏 Flip Cards</button>
+      <button class="btn btn-accent" onclick="openQuiz()">🧠 Quiz Me</button>
+    </div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-chip"><div class="stat-num" id="s-total">—</div><div class="stat-lbl">TERMS</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--amber)" id="s-star">0</div><div class="stat-lbl">STARRED</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--teal)" id="s-quiz">—</div><div class="stat-lbl">QUIZ ACCURACY</div></div>
+  </div>
+  <div class="controls">
+    <div class="ctrl-row"><span class="ctrl-label">SEARCH</span><input class="search-input" id="q" type="search" placeholder="Search terms, definitions, examples…" oninput="render()" aria-label="Search glossary"></div>
+    <div class="ctrl-row"><span class="ctrl-label">UNIT</span><button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button><button class="pill" data-unit="1.1" onclick="setUnit('1.1',this)">1.1</button><button class="pill" data-unit="1.2" onclick="setUnit('1.2',this)">1.2</button><button class="pill" data-unit="1.3" onclick="setUnit('1.3',this)">1.3</button><button class="pill" data-unit="1.4" onclick="setUnit('1.4',this)">1.4</button><button class="pill" data-unit="2.1" onclick="setUnit('2.1',this)">2.1</button><button class="pill" data-unit="2.2" onclick="setUnit('2.2',this)">2.2</button><button class="pill" data-unit="2.3" onclick="setUnit('2.3',this)">2.3</button><button class="pill" data-unit="3.1" onclick="setUnit('3.1',this)">3.1</button><button class="pill" data-unit="3.2" onclick="setUnit('3.2',this)">3.2</button><button class="pill" data-unit="3.3" onclick="setUnit('3.3',this)">3.3</button><button class="pill" data-unit="3.4" onclick="setUnit('3.4',this)">3.4</button></div>
+    <div class="ctrl-row"><span class="ctrl-label">SHOW</span><button class="pill active" data-show="all" onclick="setShow('all',this)">All terms</button><button class="pill" data-show="star" onclick="setShow('star',this)">⭐ Starred</button></div>
+  </div>
+  <div class="alpha" id="alpha"></div>
+  <div id="list"></div>
+  <div class="footer">World History Honors (2109320) · Unit 4 · Chapter 10: Age of Maritime Expansion · Florida NGSSS Social Studies SS.912.W.4 (exploration, Columbian Exchange, colonization)</div>
+</div>
+
+<div class="overlay" id="ov" onclick="if(event.target===this)closeOv()">
+  <div class="modal" role="dialog" aria-modal="true" id="modal"></div>
+</div>
+
+<script>
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function nl(s){ return esc(s).replace(/\n/g,'<br>'); }
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON.parse(v); }catch(e){ return d; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
+
+const UNIT_NAMES = {"1.1": "Voyages of Discovery", "1.2": "Conquests in the Americas", "1.3": "Explorer: Pardis Sabeti, Math Against Malaria", "1.4": "The Columbian Exchange", "2.1": "Portugal's Trade Empire", "2.2": "The Dutch East India Company", "2.3": "DBQ: Trade and Cross-Cultural Encounters", "3.1": "The Spanish Empire in the Americas", "3.2": "A Global Commodity: Silver", "3.3": "The Portuguese and Dutch in the Americas", "3.4": "The English Colonies and New France"};
+const DOMAINS = {};
+const TERMS = [
+{
+"t": "Zheng He",
+"u": "1.1",
+"d": "A Chinese Muslim admiral who led seven huge Ming dynasty fleets across the Indian Ocean between 1405 and 1433.",
+"ex": "His treasure ships reached East Africa decades before Europeans sailed there, but the Ming court ended the voyages — leaving the ocean open to later European entry."
+},
+{
+"t": "Henry the Navigator",
+"u": "1.1",
+"d": "A Portuguese prince (1394–1460) who sponsored voyages down the west coast of Africa and supported mapmakers, shipbuilders, and navigators.",
+"ex": "He rarely sailed himself; his role was as an organizer and funder of exploration."
+},
+{
+"t": "Caravel",
+"u": "1.1",
+"d": "A small, fast Portuguese ship that could sail in shallow coastal waters and, with triangular sails, sail closer into the wind.",
+"ex": "Two of Columbus's three ships in 1492, the Niña and the Pinta, were caravels."
+},
+{
+"t": "Astrolabe",
+"u": "1.1",
+"d": "A navigation instrument, improved by Muslim scholars, that measures the angle of the sun or stars above the horizon to find latitude.",
+"ex": "It let sailors far from land estimate how far north or south they were."
+},
+{
+"t": "Bartolomeu Dias",
+"u": "1.1",
+"d": "Portuguese captain who in 1488 sailed around the southern tip of Africa, proving a sea route from the Atlantic to the Indian Ocean was possible.",
+"ex": "The point he rounded became known as the Cape of Good Hope."
+},
+{
+"t": "Christopher Columbus",
+"u": "1.1",
+"d": "A Genoese navigator sailing for Spain who reached the Caribbean in 1492 while trying to find a western sea route to Asia.",
+"ex": "He landed in the Bahamas among the Taíno people and insisted until his death that he had reached Asia."
+},
+{
+"t": "Treaty of Tordesillas",
+"u": "1.1",
+"d": "A 1494 agreement between Spain and Portugal that drew an imaginary north-south line in the Atlantic: Spain could claim lands west of it, Portugal lands east of it.",
+"ex": "The line gave Portugal its claim to Brazil — and ignored the millions of people already living in those lands."
+},
+{
+"t": "Ferdinand Magellan",
+"u": "1.1",
+"d": "A Portuguese navigator sailing for Spain who led the first expedition to sail around the world (1519–1522).",
+"ex": "He was killed in the Philippines in 1521; only one ship, the Victoria, made it back to Spain."
+},
+{
+"t": "Conquistador",
+"u": "1.2",
+"d": "Spanish word for \"conqueror\" — a Spanish soldier-adventurer who led or joined the conquest of lands in the Americas.",
+"ex": "Cortés and Pizarro are the best-known conquistadors."
+},
+{
+"t": "Hernán Cortés",
+"u": "1.2",
+"d": "Spanish conquistador who landed in Mexico in 1519 and, with tens of thousands of Indigenous allies, defeated the Aztec (Mexica) Empire by 1521.",
+"ex": "He disobeyed the Spanish governor of Cuba to launch the expedition."
+},
+{
+"t": "Tenochtitlan",
+"u": "1.2",
+"d": "The Mexica (Aztec) capital, built on an island in Lake Texcoco and connected to land by causeways; one of the largest cities in the world in 1519.",
+"ex": "After a long siege in 1521 it fell, and Spaniards built Mexico City on its ruins."
+},
+{
+"t": "Moctezuma II",
+"u": "1.2",
+"d": "Ruler of the Mexica (Aztec) Empire when the Spanish arrived in 1519.",
+"ex": "He welcomed Cortés into Tenochtitlan, was taken captive, and died in 1520 under disputed circumstances."
+},
+{
+"t": "Malintzin",
+"u": "1.2",
+"d": "A Nahua woman, also called La Malinche or Doña Marina, who was given to the Spanish as an enslaved person and became Cortés's interpreter and adviser.",
+"ex": "Because she spoke Nahuatl and a Maya language, she made negotiations and alliances possible; Mexicans have debated her legacy ever since."
+},
+{
+"t": "Tlaxcala",
+"u": "1.2",
+"d": "An independent Nahua state that had resisted Mexica domination and allied with the Spanish against Tenochtitlan.",
+"ex": "Tlaxcalan warriors made up a large share of the army that besieged the Aztec capital."
+},
+{
+"t": "Francisco Pizarro",
+"u": "1.2",
+"d": "Spanish conquistador who invaded the Inca Empire, captured its ruler Atahualpa in 1532, and took the capital, Cusco, in 1533.",
+"ex": "He arrived just after a devastating Inca civil war and a smallpox epidemic."
+},
+{
+"t": "Atahualpa",
+"u": "1.2",
+"d": "Inca ruler who had just won a civil war against his half-brother Huáscar when Pizarro captured him at Cajamarca in 1532.",
+"ex": "He paid a room full of gold and silver as ransom, but the Spanish executed him anyway in 1533."
+},
+{
+"t": "Pardis Sabeti",
+"u": "1.3",
+"d": "An Iranian-American computational geneticist at Harvard and the Broad Institute who studies how human genes evolve in response to diseases.",
+"ex": "Her team sequenced Ebola virus genomes during the 2014 West Africa outbreak."
+},
+{
+"t": "Computational Biology",
+"u": "1.3",
+"d": "Using math, statistics, and computer programs to find patterns in huge sets of biological data such as DNA sequences.",
+"ex": "The \"math\" in \"Math Against Malaria\" — algorithms that search genomes for signs of past natural selection."
+},
+{
+"t": "Genome Sequencing",
+"u": "1.3",
+"d": "Reading the full genetic code (DNA or RNA) of an organism or virus, letter by letter.",
+"ex": "Sequencing Ebola samples in 2014 showed how the virus was spreading from person to person."
+},
+{
+"t": "Natural Selection",
+"u": "1.3",
+"d": "The process by which genetic traits that help people survive and have children become more common in a population over many generations.",
+"ex": "Deadly diseases like malaria have been powerful forces of natural selection on human populations."
+},
+{
+"t": "Malaria",
+"u": "1.3",
+"d": "A disease caused by a parasite spread by mosquitoes; it causes high fevers and has killed huge numbers of people throughout history.",
+"ex": "Malaria in tropical Africa killed many European newcomers and helped keep Europeans on the African coast for centuries."
+},
+{
+"t": "Sickle Cell Trait",
+"u": "1.3",
+"d": "Carrying one copy of the gene for sickle-shaped red blood cells, which gives partial protection against severe malaria.",
+"ex": "It is common in populations whose ancestors lived where malaria was widespread — a classic example of disease shaping human genes."
+},
+{
+"t": "Lassa Fever",
+"u": "1.3",
+"d": "A viral illness found in West Africa, spread mainly by contact with infected rodents; it can cause severe bleeding and death.",
+"ex": "Sabeti's research in Sierra Leone and Nigeria studies why some people resist Lassa better than others."
+},
+{
+"t": "Ebola Outbreak of 2014",
+"u": "1.3",
+"d": "The largest Ebola epidemic in history, centered in Guinea, Sierra Leone, and Liberia.",
+"ex": "Sabeti's team and West African partners sequenced virus samples and shared the data publicly so others could fight the outbreak; several of their Sierra Leonean colleagues died of Ebola."
+},
+{
+"t": "Columbian Exchange",
+"u": "1.4",
+"d": "The transfer of plants, animals, people, and diseases between the Eastern and Western Hemispheres after 1492.",
+"ex": "Historian Alfred Crosby named it; potatoes went east, horses came west, and smallpox devastated the Americas."
+},
+{
+"t": "Smallpox",
+"u": "1.4",
+"d": "A highly contagious viral disease brought to the Americas by Europeans; it killed a huge share of Indigenous people, who had no prior exposure.",
+"ex": "A smallpox epidemic struck Tenochtitlan in 1520, killing many defenders, including the Mexica ruler Cuitláhuac."
+},
+{
+"t": "Virgin-Soil Epidemic",
+"u": "1.4",
+"d": "An outbreak in a population that has never been exposed to a disease, so almost no one has immunity and death rates are extremely high.",
+"ex": "Measles, smallpox, and influenza became virgin-soil epidemics in the Americas."
+},
+{
+"t": "Maize",
+"u": "1.4",
+"d": "Corn, first domesticated by Indigenous people in Mexico thousands of years ago.",
+"ex": "After 1492 it spread to Africa, Europe, and Asia and became a major food crop for people and livestock."
+},
+{
+"t": "Potato",
+"u": "1.4",
+"d": "A starchy root crop domesticated in the Andes Mountains of South America.",
+"ex": "It produced lots of calories on small plots and helped fuel population growth in Europe."
+},
+{
+"t": "Cassava",
+"u": "1.4",
+"d": "A starchy root crop from South America, also called manioc, that grows in poor soil and tolerates drought.",
+"ex": "Portuguese traders carried it to Africa, where it became a staple food."
+},
+{
+"t": "Horses in the Americas",
+"u": "1.4",
+"d": "Horses were brought to the Americas by the Spanish; horses had died out there thousands of years earlier, so there were none when Europeans arrived.",
+"ex": "Plains nations such as the Comanche and Lakota later built powerful horse-based ways of life."
+},
+{
+"t": "Cinchona Bark",
+"u": "1.4",
+"d": "Bark from an Andean tree, used by Indigenous healers in Peru, that contains quinine and treats malaria fevers.",
+"ex": "Jesuits carried it to Europe in the 1600s; quinine later helped Europeans survive in malaria zones."
+},
+{
+"t": "Vasco da Gama",
+"u": "2.1",
+"d": "Portuguese captain whose fleet sailed around Africa and reached Calicut, India, in 1498 — the first all-sea voyage from Europe to India.",
+"ex": "Local rulers in Calicut were unimpressed by the cheap goods he brought, but the spices he carried home sold for huge profits."
+},
+{
+"t": "Calicut",
+"u": "2.1",
+"d": "A wealthy spice-trading port on India's southwest (Malabar) coast, ruled by a king called the Zamorin.",
+"ex": "Arab, Indian, and other merchants already traded pepper there when da Gama arrived."
+},
+{
+"t": "Afonso de Albuquerque",
+"u": "2.1",
+"d": "Portuguese commander and governor who seized key ports to control Indian Ocean trade, including Goa (1510), Malacca (1511), and Hormuz (1515).",
+"ex": "His strategy: control the chokepoints instead of conquering large territories."
+},
+{
+"t": "Goa",
+"u": "2.1",
+"d": "A port city on India's west coast captured by Portugal in 1510; it became the capital of Portugal's Asian trading empire.",
+"ex": "Goa remained under Portuguese rule until 1961."
+},
+{
+"t": "Malacca",
+"u": "2.1",
+"d": "A port on the strait between the Malay Peninsula and Sumatra that controlled shipping between the Indian Ocean and the South China Sea.",
+"ex": "Portugal captured it in 1511; the Dutch took it from Portugal in 1641."
+},
+{
+"t": "Cartaz",
+"u": "2.1",
+"d": "A pass that the Portuguese forced Asian merchant ships to buy to sail safely in waters Portugal claimed.",
+"ex": "Ships without a cartaz risked being attacked and having their cargo seized — a kind of protection racket backed by naval guns."
+},
+{
+"t": "Trading-Post Empire",
+"u": "2.1",
+"d": "An empire built on a network of fortified ports and trading posts rather than large conquered territories.",
+"ex": "Portugal's empire in Asia stretched from East Africa to Macau but held only small coastal footholds."
+},
+{
+"t": "Macau",
+"u": "2.1",
+"d": "A small port on China's southern coast where the Ming government allowed Portuguese traders to settle in the 1550s.",
+"ex": "Portuguese ships carried Chinese silk to Japan and Japanese silver back to China through Macau."
+},
+{
+"t": "Dutch East India Company (VOC)",
+"u": "2.2",
+"d": "A Dutch trading company founded in 1602 and given a monopoly on Dutch trade in Asia, along with the power to build forts, make treaties, and wage war.",
+"ex": "VOC stands for its Dutch name, Vereenigde Oostindische Compagnie."
+},
+{
+"t": "Joint-Stock Company",
+"u": "2.2",
+"d": "A business owned by many investors who buy shares; they split the profits and share the risk of loss.",
+"ex": "Investors could fund risky long voyages without any one person being ruined if a ship sank. The VOC and England's Virginia Company were joint-stock companies."
+},
+{
+"t": "Batavia",
+"u": "2.2",
+"d": "The VOC's headquarters in Asia, founded in 1619 on the island of Java at the site of today's Jakarta, Indonesia.",
+"ex": "From Batavia the company directed trade from Japan to the Persian Gulf."
+},
+{
+"t": "Jan Pieterszoon Coen",
+"u": "2.2",
+"d": "VOC governor-general who founded Batavia and used extreme violence to win the company a monopoly on spices.",
+"ex": "He led the 1621 conquest of the Banda Islands."
+},
+{
+"t": "Banda Islands",
+"u": "2.2",
+"d": "Small islands in eastern Indonesia that were the world's only source of nutmeg and mace.",
+"ex": "In 1621 the VOC killed, enslaved, or drove out most of the Bandanese people and replaced them with plantations worked by enslaved laborers."
+},
+{
+"t": "Spice Monopoly",
+"u": "2.2",
+"d": "Complete control over the supply of a spice, which lets the controller set high prices.",
+"ex": "The VOC restricted where nutmeg and cloves could be grown, even destroying trees elsewhere, to keep prices high."
+},
+{
+"t": "Cape Colony",
+"u": "2.2",
+"d": "A VOC supply station founded in 1652 at the Cape of Good Hope in southern Africa to resupply ships sailing to Asia.",
+"ex": "It grew into a settler colony that took land from the Khoekhoe people."
+},
+{
+"t": "Indian Ocean Trade Network",
+"u": "2.3",
+"d": "The web of sea routes linking East Africa, Arabia, Persia, India, Southeast Asia, and China, used for centuries before Europeans arrived.",
+"ex": "Pepper, textiles, porcelain, gold, and ideas such as Islam moved along it."
+},
+{
+"t": "Monsoon Winds",
+"u": "2.3",
+"d": "Seasonal winds over the Indian Ocean that blow from the southwest part of the year and from the northeast the other part.",
+"ex": "Sailors timed voyages to the monsoons — the \"engine\" of Indian Ocean trade."
+},
+{
+"t": "Swahili Coast",
+"u": "2.3",
+"d": "The East African coast with Muslim trading city-states such as Kilwa, Mombasa, and Malindi, where African, Arab, and Persian cultures blended.",
+"ex": "Da Gama found a pilot at Malindi to guide him across to India; Portugal later sacked Kilwa and Mombasa."
+},
+{
+"t": "Gujarati Merchants",
+"u": "2.3",
+"d": "Traders from Gujarat in northwest India who were among the most important merchants in the Indian Ocean.",
+"ex": "Gujarati cotton cloth was traded for spices in Southeast Asia and gold in East Africa."
+},
+{
+"t": "Cross-Cultural Encounter",
+"u": "2.3",
+"d": "A meeting between people of different cultures that leads to exchange, conflict, or both.",
+"ex": "Trade brought new goods, foods, words, and religions — and sometimes violence and misunderstanding."
+},
+{
+"t": "Dejima",
+"u": "2.3",
+"d": "A small artificial island in Nagasaki harbor where, from 1641, the Dutch were the only Europeans allowed to trade with Japan.",
+"ex": "Japan's shoguns controlled foreign contact tightly, showing that Asian states set the terms of trade."
+},
+{
+"t": "Sourcing (Point of View)",
+"u": "2.3",
+"d": "Asking who created a source, when, for what audience, and why — and how that shapes what it says.",
+"ex": "A VOC report on the Banda Islands and a Bandanese oral tradition would describe 1621 very differently."
+},
+{
+"t": "Viceroyalty",
+"u": "3.1",
+"d": "A large colonial province ruled by a viceroy, the king's personal representative.",
+"ex": "Spain's first two were New Spain (capital: Mexico City) and Peru (capital: Lima)."
+},
+{
+"t": "Encomienda",
+"u": "3.1",
+"d": "A Spanish grant giving a colonist the right to demand labor and tribute from Indigenous people in an area, in return for supposedly protecting them and teaching them Christianity.",
+"ex": "In practice it often meant forced labor, abuse, and death."
+},
+{
+"t": "Bartolomé de Las Casas",
+"u": "3.1",
+"d": "A Spanish settler who gave up his encomienda, became a Dominican friar, and spent his life denouncing Spanish abuse of Indigenous people.",
+"ex": "He wrote A Short Account of the Destruction of the Indies and debated Juan Ginés de Sepúlveda at Valladolid (1550–1551)."
+},
+{
+"t": "New Laws of 1542",
+"u": "3.1",
+"d": "Spanish royal laws that banned enslaving Indigenous people and limited the encomienda system.",
+"ex": "Colonists resisted so fiercely — Peru saw a revolt — that parts were softened, and abuses continued."
+},
+{
+"t": "Casta System",
+"u": "3.1",
+"d": "The social ranking in Spanish America based on birthplace and ancestry: Spanish-born at the top, then American-born Spaniards, people of mixed ancestry, and Indigenous and African people.",
+"ex": "Painted \"casta paintings\" tried to label every mixture — showing an obsession with ranking people that did not match how fluid colonial life really was."
+},
+{
+"t": "Peninsulares",
+"u": "3.1",
+"d": "People born in Spain (on the Iberian Peninsula) living in the colonies; they held the highest government and church positions.",
+"ex": "Their privileges angered American-born criollos."
+},
+{
+"t": "Criollos",
+"u": "3.1",
+"d": "People of Spanish ancestry born in the Americas; often wealthy, but usually shut out of the top offices.",
+"ex": "Their resentment later helped fuel Latin American independence movements."
+},
+{
+"t": "Mestizos",
+"u": "3.1",
+"d": "People of mixed Spanish and Indigenous ancestry.",
+"ex": "Over time they became a large share of the population of Mexico and other colonies."
+},
+{
+"t": "Potosí",
+"u": "3.2",
+"d": "A mining city high in the Andes (in present-day Bolivia) built around the Cerro Rico, a mountain with enormous silver deposits found in 1545.",
+"ex": "It grew into one of the largest cities in the Americas and the biggest single source of silver in the world."
+},
+{
+"t": "Mita",
+"u": "3.2",
+"d": "A forced labor draft, adapted by the Spanish from an Inca labor system, that required Indigenous villages to send men to work in mines like Potosí.",
+"ex": "Mine work was dangerous, and many workers died from accidents and mercury poisoning."
+},
+{
+"t": "Mercury Amalgamation",
+"u": "3.2",
+"d": "A process for separating silver from ore by mixing it with mercury.",
+"ex": "It let Spain profit from lower-grade ore, but mercury poisoned workers; much of it came from the Huancavelica mine in Peru."
+},
+{
+"t": "Manila Galleons",
+"u": "3.2",
+"d": "Spanish ships that sailed across the Pacific between Acapulco, Mexico, and Manila, the Philippines, from 1565 to 1815.",
+"ex": "They carried American silver west and Chinese silk and porcelain east — a direct link between the Americas and Asia."
+},
+{
+"t": "Spanish Dollar",
+"u": "3.2",
+"d": "A Spanish silver coin, also called a \"piece of eight,\" minted from American silver.",
+"ex": "It was used so widely, from China to North America, that it was arguably the first global currency."
+},
+{
+"t": "Single Whip Reform",
+"u": "3.2",
+"d": "A Ming China tax reform of the later 1500s that combined many taxes and labor duties into one payment, made in silver.",
+"ex": "It made China hungry for silver, pulling American and Japanese silver into China."
+},
+{
+"t": "Price Revolution",
+"u": "3.2",
+"d": "A long period of rising prices (inflation) in Europe during the 1500s and early 1600s.",
+"ex": "Historians link it partly to the flood of American silver and partly to population growth."
+},
+{
+"t": "Pedro Álvares Cabral",
+"u": "3.3",
+"d": "Portuguese commander whose fleet, sailing for India in 1500, swung far west and reached the coast of Brazil.",
+"ex": "Portugal claimed Brazil because it lay east of the Tordesillas line."
+},
+{
+"t": "Engenho",
+"u": "3.3",
+"d": "A Brazilian sugar mill and the plantation around it, where cane was crushed and boiled into sugar.",
+"ex": "Engenhos ran on the labor of enslaved Africans under brutal, dangerous conditions."
+},
+{
+"t": "Quilombo",
+"u": "3.3",
+"d": "A community of people who escaped slavery in Brazil and built free settlements in the interior.",
+"ex": "Quilombos were a powerful form of resistance to slavery."
+},
+{
+"t": "Palmares",
+"u": "3.3",
+"d": "The largest and longest-lasting quilombo in Brazil, which survived for most of the 1600s and held off repeated Dutch and Portuguese attacks.",
+"ex": "Its last leader, Zumbi, was killed in 1695; Brazil honors him on its Black Consciousness Day."
+},
+{
+"t": "Dutch West India Company",
+"u": "3.3",
+"d": "A Dutch joint-stock company founded in 1621 to trade and fight Spain and Portugal in the Atlantic world.",
+"ex": "It ran New Netherland, seized northeastern Brazil, and took part in the Atlantic slave trade."
+},
+{
+"t": "Dutch Brazil",
+"u": "3.3",
+"d": "The sugar-producing region of northeastern Brazil, centered on Recife, that the Dutch held from 1630 until they were driven out in 1654.",
+"ex": "Its governor Johan Maurits brought scientists and artists to record Brazil's people and nature."
+},
+{
+"t": "New Netherland",
+"u": "3.3",
+"d": "The Dutch colony along the Hudson River, centered on the fur trade with Native nations.",
+"ex": "Its capital was New Amsterdam; Fort Orange (today's Albany) was its fur-trade hub."
+},
+{
+"t": "New Amsterdam",
+"u": "3.3",
+"d": "The Dutch town at the southern tip of Manhattan, begun around 1625, known for its trade and mix of peoples and languages.",
+"ex": "The English seized it in 1664 and renamed it New York."
+},
+{
+"t": "Mercantilism",
+"u": "3.4",
+"d": "An economic theory that a nation grows strong by exporting more than it imports and piling up gold and silver; colonies exist to supply raw materials and buy the home country's goods.",
+"ex": "England's Navigation Acts required many colonial goods to be shipped only on English ships."
+},
+{
+"t": "Jamestown",
+"u": "3.4",
+"d": "The first permanent English settlement in North America, founded in Virginia in 1607 by the Virginia Company, a joint-stock company.",
+"ex": "It nearly collapsed during the \"starving time\" of 1609–1610 before tobacco made it profitable."
+},
+{
+"t": "Powhatan Confederacy",
+"u": "3.4",
+"d": "A powerful alliance of Algonquian-speaking peoples in the Chesapeake region, led by the paramount chief Powhatan when the English arrived.",
+"ex": "Its food trade kept Jamestown alive at first; conflict grew as tobacco farms took Native land."
+},
+{
+"t": "Tobacco",
+"u": "3.4",
+"d": "An American plant smoked for pleasure that became Virginia's cash crop after John Rolfe began growing a sweeter variety around 1612.",
+"ex": "Tobacco's hunger for land and labor drove expansion onto Powhatan lands and the growth of indentured and enslaved labor."
+},
+{
+"t": "Indentured Servant",
+"u": "3.4",
+"d": "A person who agreed to work for a master for a set number of years, often four to seven, in exchange for passage to the colonies.",
+"ex": "Many early Virginia workers were indentured servants from England; slavery later replaced indenture as the main labor system."
+},
+{
+"t": "Plymouth Colony",
+"u": "3.4",
+"d": "An English colony founded in 1620 in Massachusetts by the Pilgrims, religious Separatists who wanted to leave the Church of England.",
+"ex": "The Wampanoag, led by Massasoit, made an alliance with them; Tisquantum (Squanto) helped as interpreter."
+},
+{
+"t": "Mayflower Compact",
+"u": "3.4",
+"d": "An agreement signed in 1620 by male passengers of the Mayflower to form a government and obey its laws.",
+"ex": "It is an early example of colonists creating self-government by consent."
+},
+{
+"t": "New France",
+"u": "3.4",
+"d": "France's North American empire, centered on the St. Lawrence River and later stretching down the Mississippi.",
+"ex": "It had few settlers but a huge reach, thanks to trade and alliances with Native nations."
+},
+{
+"t": "Samuel de Champlain",
+"u": "3.4",
+"d": "French explorer and mapmaker who founded Quebec in 1608 and built alliances with the Huron-Wendat and Algonquin peoples.",
+"ex": "He is often called the \"Father of New France.\""
+},
+{
+"t": "Fur Trade",
+"u": "3.4",
+"d": "The exchange of European goods such as metal tools, cloth, and guns for animal furs, especially beaver pelts, gathered by Native hunters.",
+"ex": "Beaver fur was used to make fashionable felt hats in Europe."
+},
+{
+"t": "Coureurs des Bois",
+"u": "3.4",
+"d": "French \"runners of the woods\" — independent fur traders who traveled into the interior, learned Native languages, and often married into Native communities.",
+"ex": "They show that French-Native relations depended on partnership more than conquest."
+}
+].sort((a,b)=>a.t.localeCompare(b.t));
+const TUTOR_NAME = "CLIO";
+const LS_STAR='whh_c10_glossary_starred', LS_QS='whh_c10_glossary_quizscore', LS_SRS='whh_c10_glossary_srs', LS_QT='whh_c10_glossary_quiztotals';
+let starred = new Set(lsGet(LS_STAR,[]));
+let srs = lsGet(LS_SRS,{});
+let qt = lsGet(LS_QT,{c:0,t:0});
+let curUnit='all', curShow='all';
+function setUnit(u,b){ curUnit=u; document.querySelectorAll('.pill[data-unit]').forEach(x=>x.classList.toggle('active',x===b)); render(); }
+function setShow(s,b){ curShow=s; document.querySelectorAll('.pill[data-show]').forEach(x=>x.classList.toggle('active',x===b)); render(); }
+function idOf(t){ return t.t.replace(/[^a-zA-Z0-9]/g,'_'); }
+function toggleStar(i){ const k=TERMS[i].t; starred.has(k)?starred.delete(k):starred.add(k); lsSet(LS_STAR,[...starred]); render(); }
+function filtered(){
+  const q=document.getElementById('q').value.trim().toLowerCase();
+  return TERMS.map((t,i)=>({t,i})).filter(({t})=>{
+    if(curUnit!=='all'&&t.u!==curUnit) return false;
+    if(curShow==='star'&&!starred.has(t.t)) return false;
+    if(curShow==='du'&&!t.du) return false;
+    if(q&&!(t.t+' '+t.d+' '+(t.ex||'')).toLowerCase().includes(q)) return false;
+    return true;
+  });
+}
+const openTutors = new Set();
+function render(){
+  const list=filtered();
+  document.getElementById('s-star').textContent=starred.size;
+  const letters=new Set(list.map(x=>x.t.t[0].toUpperCase()));
+  document.getElementById('alpha').innerHTML='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(l=>`<a href="#L-${l}" class="${letters.has(l)?'':'off'}">${l}</a>`).join('');
+  if(!list.length){ document.getElementById('list').innerHTML='<div class="empty">No terms match. Try a different search or filter.</div>'; return; }
+  let html='', last='';
+  list.forEach(({t,i})=>{
+    const L=t.t[0].toUpperCase();
+    if(L!==last){ html+=`<div class="letter" id="L-${L}">${L}</div>`; last=L; }
+    const id=idOf(t), on=starred.has(t.t);
+    html+=`<div class="term">
+      <div class="term-top"><div><div class="term-name">${esc(t.t)}</div>
+        <div class="term-tags"><span class="tag t-unit">${t.u} · ${esc(UNIT_NAMES[t.u])}</span>${t.du&&DOMAINS[t.du]?`<span class="tag t-du">🦆 DU · ${esc(DOMAINS[t.du].name)}</span>`:''}</div></div>
+        <button class="star ${on?'on':''}" onclick="toggleStar(${i})" aria-label="${on?'Unstar':'Star'} ${esc(t.t)}" aria-pressed="${on}">${on?'★':'☆'}</button></div>
+      <div class="term-def">${esc(t.d)}</div>
+      ${t.ex?`<div class="term-ex">${esc(t.ex)}</div>`:''}
+      <button class="tutor-toggle" onclick="toggleTutor(${i})">💬 Ask ${TUTOR_NAME} about this</button>
+      <div class="tutor ${openTutors.has(i)?'open':''}" id="tu-${i}">
+        <div class="chat" id="ch-${i}"></div>
+        <div class="chips"><button class="chip" onclick="askT(${i},'Give me an example')">Example</button><button class="chip" onclick="askT(${i},'Explain it a simpler way')">Simpler</button><button class="chip" onclick="askT(${i},'What do students mix this up with?')">Common mix-up</button></div>
+        <div class="trow"><input class="tin" id="ti-${i}" placeholder="Ask your own question…" onkeydown="if(event.key==='Enter')askT(${i})"><button class="btn btn-accent" style="padding:8px 14px" onclick="askT(${i})">Ask</button></div>
+        <div class="tmode">${esc(StudyHubTutor.modeLabel())}</div>
+      </div>
+    </div>`;
+  });
+  document.getElementById('list').innerHTML=html;
+  openTutors.forEach(i=>restoreChat(i));
+}
+// ── Tutor ──
+const chats={};
+function toggleTutor(i){ openTutors.has(i)?openTutors.delete(i):openTutors.add(i); document.getElementById('tu-'+i).classList.toggle('open'); }
+function restoreChat(i){ const c=document.getElementById('ch-'+i); if(!c||!chats[i]) return; c.innerHTML=chats[i].ui.map(([r,t])=>`<div class="bub ${r}">${fmt(t)}</div>`).join(''); }
+function fmt(t){ return esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/`([^`]+)`/g,'<code>$1</code>').replace(/\n/g,'<br>'); }
+function related(t){ return TERMS.filter(x=>x!==t&&x.u===t.u).slice(0,40).filter(x=>{ const w=t.t.toLowerCase().split(/[^a-z]+/).filter(s=>s.length>4); return w.some(s=>x.d.toLowerCase().includes(s)); }).map(x=>x.t).slice(0,3); }
+async function askT(i,preset){
+  const t=TERMS[i]; const inp=document.getElementById('ti-'+i);
+  const msg=(preset||inp.value).trim(); if(!msg) return; inp.value='';
+  const c = chats[i] = chats[i] || {hist:[{role:'user',content:`TERM: ${t.t} | Unit: ${UNIT_NAMES[t.u]}\nDefinition: ${t.d}\n${t.ex?'Example: '+t.ex:''}`},{role:'assistant',content:'Ready.'}], ui:[]};
+  c.ui.push(['u',msg]); c.hist.push({role:'user',content:msg}); restoreChat(i);
+  const res = await StudyHubTutor.ask({
+    system:`You are ${TUTOR_NAME}, a World History Honors tutor inside a glossary. Keep replies to 2-4 sentences, plain text, high-school friendly. Add a new angle, a Florida or wildlife example, or a common misconception; never just repeat the definition. Redirect off-topic questions warmly.`,
+    messages:c.hist, context:{term:t.t, def:t.d, example:t.ex, unit:UNIT_NAMES[t.u], related:related(t)}, message:msg });
+  c.ui.push(['a',res.text]); c.hist.push({role:'assistant',content:res.text}); if(c.hist.length>14) c.hist.splice(2,2);
+  restoreChat(i);
+}
+// ── SRS helpers ──
+function w(t){ const r=srs[t.t]; if(!r||!r.seen) return 3; return Math.max(1,1+(r.miss/r.seen)*6) * (starred.has(t.t)?1.5:1); }
+function srsUp(t,ok){ const r=srs[t.t]||{seen:0,miss:0}; r.seen++; if(!ok) r.miss++; srs[t.t]=r; lsSet(LS_SRS,srs); }
+function pickWeighted(pool,n){ const p=pool.map(t=>({t,w:w(t)})), out=[]; while(out.length<n&&p.length){ const tot=p.reduce((s,x)=>s+x.w,0); let r=Math.random()*tot,k=0; for(;k<p.length;k++){ r-=p[k].w; if(r<=0) break; } out.push(p.splice(Math.min(k,p.length-1),1)[0].t); } return out; }
+function pool(){ const f=filtered().map(x=>x.t); return f.length>=4?f:TERMS; }
+function closeOv(){ document.getElementById('ov').classList.remove('open'); render(); }
+// ── Flip cards ──
+let deck=[], di=0;
+function openCards(){ deck=pickWeighted(pool(),Math.min(20,pool().length)); di=0; document.getElementById('ov').classList.add('open'); renderCard(); }
+function renderCard(){
+  const m=document.getElementById('modal');
+  if(di>=deck.length){ m.innerHTML=`<div style="text-align:center;padding:20px"><div class="sec-lbl">DECK DONE</div><div style="font-size:15px;margin:8px 0 16px">Cards you marked "Again" will come up more often next time.</div><button class="btn btn-accent" onclick="openCards()">New deck</button> <button class="btn btn-ghost" onclick="closeOv()">Close</button></div>`; return; }
+  const t=deck[di];
+  m.innerHTML=`<div class="mtop"><span>CARD ${di+1} / ${deck.length}</span><button class="pill" onclick="closeOv()">✕ Close</button></div>
+   <div class="fc" id="fc" onclick="this.classList.toggle('flip')" role="button" tabindex="0" aria-label="Flip card" onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();this.classList.toggle('flip')}"><div class="fc-inner">
+     <div class="fc-face"><div class="fc-term">${esc(t.t)}</div><div class="fc-hint">Say the definition out loud, then tap to flip</div></div>
+     <div class="fc-face fc-back"><div>${esc(t.d)}${t.ex?`<div class="term-ex" style="text-align:left;margin-top:10px">${esc(t.ex)}</div>`:''}</div></div>
+   </div></div>
+   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><button class="btn btn-ghost" onclick="rate(false)">↺ Again</button><button class="btn btn-teal" onclick="rate(true)">✓ Got it</button></div>`;
+}
+function rate(ok){ srsUp(deck[di],ok); game().event('flashcard'); di++; renderCard(); }
+// ── Quiz ──
+let qz=null;
+function openQuiz(){ const p=pool(); qz={items:pickWeighted(p,Math.min(10,p.length)),i:0,right:0,ans:false,p}; document.getElementById('ov').classList.add('open'); renderQ(); }
+function renderQ(){
+  const m=document.getElementById('modal');
+  if(qz.i>=qz.items.length){
+    const pct=Math.round(qz.right/qz.items.length*100); localStorage.setItem(LS_QS, pct+'%');
+    document.getElementById('s-quiz').textContent = qt.t?Math.round(qt.c/qt.t*100)+'%':'—';
+    m.innerHTML=`<div style="text-align:center;padding:20px"><div class="sec-lbl">QUIZ COMPLETE</div><div style="font-size:40px;font-weight:800;font-family:'DM Mono',monospace;color:#fff">${qz.right}/${qz.items.length}</div><div style="color:var(--muted);margin:6px 0 16px">Missed terms are weighted to show up again sooner.</div><button class="btn btn-accent" onclick="openQuiz()">Another round</button> <button class="btn btn-ghost" onclick="closeOv()">Close</button></div>`; return;
+  }
+  const t=qz.items[qz.i]; qz.ans=false;
+  const others=shuffle(TERMS.filter(x=>x!==t&&(x.u===t.u||Math.random()<.3))).slice(0,3);
+  qz.opts=shuffle([t,...others]);
+  m.innerHTML=`<div class="mtop"><span>QUESTION ${qz.i+1} / ${qz.items.length}</span><span>${qz.right} correct</span><button class="pill" onclick="closeOv()">✕</button></div>
+    <div class="q-def">${esc(t.d)}</div>
+    <div class="opts">${qz.opts.map((o,k)=>`<button class="opt" id="qo-${k}" onclick="pickQ(${k})"><span class="opt-key">${'ABCD'[k]}</span><span>${esc(o.t)}</span></button>`).join('')}</div>
+    <div class="fb" id="qfb"></div>`;
+}
+function pickQ(k){
+  if(qz.ans) return; qz.ans=true;
+  const t=qz.items[qz.i], ok=qz.opts[k]===t;
+  if(ok) qz.right++; qt.t++; if(ok) qt.c++; lsSet(LS_QT,qt);
+  srsUp(t,ok); game().answer(ok,1);
+  qz.opts.forEach((o,j)=>{ const b=document.getElementById('qo-'+j); b.disabled=true; if(o===t) b.classList.add('correct'); else if(j===k) b.classList.add('wrong'); });
+  const fb=document.getElementById('qfb'); fb.classList.add('show');
+  fb.innerHTML=`<b style="color:${ok?'#4fd1a5':'#f08579'}">${ok?'✓ Correct':'✗ It was '+esc(t.t)}</b>${t.ex?' — '+esc(t.ex):''}<div style="margin-top:12px"><button class="btn btn-accent" onclick="qz.i++;renderQ()">Next →</button></div>`;
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&document.getElementById('ov').classList.contains('open')) closeOv(); });
+(function init(){
+  document.getElementById('s-total').textContent=TERMS.length;
+  if(qt.t) document.getElementById('s-quiz').textContent=Math.round(qt.c/qt.t*100)+'%';
+  const units=new Set(TERMS.map(t=>t.u)).size, du=TERMS.filter(t=>t.du).length;
+  document.getElementById('page-sub').textContent=`${TERMS.length} terms · ${units} units${du?` · ${du} tagged for the DU certification`:''} · flip cards, spaced-repetition quiz, ${TUTOR_NAME} tutor`;
+  const p=new URLSearchParams(location.search);
+  const qu=p.get('unit'); const b=qu&&(document.querySelector('.pill[data-unit="'+qu+'"]')||document.querySelector('.pill[data-unit="U'+qu+'"]'));
+  if(p.get('show')==='du'){ const d=document.querySelector('.pill[data-show="du"]'); if(d){ curShow='du'; document.querySelectorAll('.pill[data-show]').forEach(x=>x.classList.toggle('active',x===d)); } }
+  if(b) setUnit(b.dataset.unit,b); else render();
+})();
+</script>
+</body>
+</html>

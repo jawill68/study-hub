@@ -105,9 +105,9 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 </head>
 <body>
 <div class="app">
-  <a class="back" href="WHH_StudyHub.html">← World History Honors · Ch. 8 Hub</a>
+  <a class="back" href="WHH9_StudyHub.html">← World History Honors · Ch. 9 Hub</a>
   <div class="header">
-    <div><div class="series-label">World History Honors · Chapter 8 · Mistakes Autopsy</div><div class="page-title">Mistakes <span>Autopsy</span></div><div class="page-sub" id="page-sub"></div></div>
+    <div><div class="series-label">World History Honors · Chapter 9 · Mistakes Autopsy</div><div class="page-title">Mistakes <span>Autopsy</span></div><div class="page-sub" id="page-sub"></div></div>
     <div style="display:flex;gap:9px;align-items:center;flex-wrap:wrap"><div data-game-hud></div><button class="btn btn-accent" onclick="openFM()">🔍 Find My Mistake</button></div>
   </div>
   <div class="about-banner">🔬 Each card dissects a high-frequency mistake: the scenario, the wrong thinking, the right thinking, <b>why</b> students fall for it, and a Memory Lock to make it stick. Open a card, read it, then <b>Mark mastered</b> once you could explain it to a friend. <b>Find My Mistake</b> tests whether you can spot the right thinking under pressure.</div>
@@ -117,11 +117,11 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     <div class="stat-chip"><div class="stat-num" style="color:var(--amber)" id="s-fm">—</div><div class="stat-lbl">LAST DIAGNOSTIC</div></div>
   </div>
   <div class="controls">
-    <div class="ctrl-row"><span class="ctrl-label">UNIT</span><button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button><button class="pill" data-unit="1.2" onclick="setUnit('1.2',this)">1.2</button><button class="pill" data-unit="2.1" onclick="setUnit('2.1',this)">2.1</button><button class="pill" data-unit="2.4" onclick="setUnit('2.4',this)">2.4</button><button class="pill" data-unit="3.1" onclick="setUnit('3.1',this)">3.1</button><button class="pill" data-unit="3.2" onclick="setUnit('3.2',this)">3.2</button><button class="pill" data-unit="4.1" onclick="setUnit('4.1',this)">4.1</button><button class="pill" data-unit="4.2" onclick="setUnit('4.2',this)">4.2</button><button class="pill" data-unit="4.3" onclick="setUnit('4.3',this)">4.3</button></div>
+    <div class="ctrl-row"><span class="ctrl-label">UNIT</span><button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button><button class="pill" data-unit="1.2" onclick="setUnit('1.2',this)">1.2</button><button class="pill" data-unit="1.3" onclick="setUnit('1.3',this)">1.3</button><button class="pill" data-unit="1.4" onclick="setUnit('1.4',this)">1.4</button><button class="pill" data-unit="2.2" onclick="setUnit('2.2',this)">2.2</button><button class="pill" data-unit="2.3" onclick="setUnit('2.3',this)">2.3</button><button class="pill" data-unit="2.4" onclick="setUnit('2.4',this)">2.4</button><button class="pill" data-unit="2.5" onclick="setUnit('2.5',this)">2.5</button><button class="pill" data-unit="3.2" onclick="setUnit('3.2',this)">3.2</button><button class="pill" data-unit="3.3" onclick="setUnit('3.3',this)">3.3</button></div>
     <div class="ctrl-row"><span class="ctrl-label">SHOW</span><button class="pill active" data-st="all" onclick="setSt('all',this)">All</button><button class="pill" data-st="high" onclick="setSt('high',this)">🔥 High frequency</button><button class="pill" data-st="todo" onclick="setSt('todo',this)">Not mastered</button><button class="pill" data-st="done" onclick="setSt('done',this)">Mastered</button></div>
   </div>
   <div id="list"></div>
-  <div class="footer">World History Honors (2109320) · Unit 4 · Chapter 8: Renaissance and Reformation · Florida NGSSS Social Studies SS.912.W.4 (Renaissance, Reformation)</div>
+  <div class="footer">World History Honors (2109320) · Unit 4 · Chapter 9: Land-Based Empires of Eurasia · Florida NGSSS Social Studies, World History (SS.912.W)</div>
 </div>
 <div class="overlay" id="ov" onclick="if(event.target===this)closeFM()"><div class="modal" role="dialog" aria-modal="true" id="modal"></div></div>
 <script>
@@ -132,140 +132,110 @@ function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON
 function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
 function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
 
-const UNIT_NAMES={"1.1": "The Rise of Italian City-States", "1.2": "A Cultural Rebirth", "1.3": "Renaissance Arts", "1.4": "Explorer: Finding a Lost Leonardo", "2.1": "Renaissance Humanism", "2.2": "Raphael's School of Athens", "2.3": "DBQ: Humanist Writings", "2.4": "Renaissances Around the World", "3.1": "Martin Luther and the Protestant Reformation", "3.2": "Reforms Across Europe", "4.1": "Challenges to Habsburg Dominance", "4.2": "The Catholic Reformation", "4.3": "Global Christianities"};
+const UNIT_NAMES={"1.1": "Traveler: Evliya Çelebi, Tales from 40 Years of Travel", "1.2": "Süleyman and Ottoman Power", "1.3": "Safavid Rise and Fall", "1.4": "Ottoman Persistence", "2.1": "Mughal India", "2.2": "Preserving Cultural Heritage: The Taj Mahal", "2.3": "Ming Decline to Qing Power", "2.4": "DBQ: Voltaire Writes About Qianlong", "2.5": "Japan's Tokugawa Shogunate", "3.1": "Control of the Steppes", "3.2": "The Romanov Dynasty", "3.3": "Jewish, Tatar, and Armenian Diasporas"};
 const MK=[
 {
 "u": "1.2",
 "freq": "high",
-"title": "Thinking the Renaissance rejected religion",
-"setup": "\"Renaissance people stopped believing in God and only cared about science.\"",
-"wrong": "Equating humanism and secularism with atheism.",
-"right": "Most Renaissance figures remained Christian. Humanism added interest in classical learning and human potential, and much great Renaissance art is religious, such as the Sistine Chapel.",
-"why": "\"Secular\" and \"humanism\" sound anti-religious today.",
-"lock": "More human focus, not less faith."
+"title": "Thinking gunpowder alone built these empires",
+"setup": "\"The Ottomans, Safavids, and Mughals won because they had guns and nobody else did.\"",
+"wrong": "Treating firearms as the only cause of imperial success.",
+"right": "Their rivals often had firearms too. These empires lasted because of institutions: loyal slave-soldier corps (janissaries, ghulams), law codes (kanun), revenue systems (mansabdari), and policies for ruling diverse peoples (millet system, sulh-i kul).",
+"why": "The label \"gunpowder empires\" makes weapons sound like the whole story.",
+"lock": "Guns win battles; institutions keep empires."
 },
 {
 "u": "1.2",
-"freq": "high",
-"title": "Saying the Renaissance was a sudden break from the Middle Ages",
-"setup": "\"In 1350 everything changed overnight.\"",
-"wrong": "Treating historical periods as switches.",
-"right": "The Renaissance grew gradually from medieval foundations — universities, trade, and preserved classical texts — and spread unevenly over three centuries.",
-"why": "Textbook period labels make change look instant.",
-"lock": "Periods blend; they don't flip."
-},
-{
-"u": "2.1",
 "freq": "med",
-"title": "Crediting the printing press to Italy",
-"setup": "\"The Italian Renaissance invented the printing press.\"",
-"wrong": "Mixing up Renaissance locations.",
-"right": "Gutenberg developed movable-type printing in Mainz, Germany, around 1450. Printing then helped spread Italian ideas north and Northern ideas everywhere.",
-"why": "The Renaissance is linked to Italy, so every invention gets placed there.",
-"lock": "Gutenberg = Germany."
+"title": "Thinking janissaries were powerless slaves",
+"setup": "\"Janissaries were just slaves, so they had no power or status.\"",
+"wrong": "Assuming the devshirme produced only low-status servants.",
+"right": "Recruits lost their families and freedom, which was a real harm, but they also received training, salaries, and paths to high office; some became grand viziers. Over time janissaries became a powerful political force that could even overthrow sultans.",
+"why": "Modern ideas of slavery don't map neatly onto Ottoman military slavery.",
+"lock": "Taken by force — but trained for power."
 },
 {
-"u": "2.1",
-"freq": "high",
-"title": "Thinking Erasmus left the Catholic Church",
-"setup": "\"Erasmus and Luther started Protestantism together.\"",
-"wrong": "Assuming every critic of the Church became Protestant.",
-"right": "Erasmus criticized abuses but remained Catholic and opposed splitting the Church. Luther broke away.",
-"why": "Both attacked Church corruption.",
-"lock": "Critic is not the same as convert."
+"u": "1.3",
+"freq": "med",
+"title": "Thinking the Sunni–Shia split is ethnic",
+"setup": "\"Shia are Persians and Sunnis are Turks and Arabs.\"",
+"wrong": "Confusing a religious division with ethnic or national identity.",
+"right": "Sunni and Shia are branches of Islam that differ over leadership after Muhammad. Iran was mostly Sunni before 1501; the Safavids converted it. There are Shia Arabs (in Iraq) and Sunni Persians and Kurds.",
+"why": "Today Iran is the largest Shia country, so the two get merged.",
+"lock": "Branch of faith, not a bloodline."
 },
 {
-"u": "3.1",
+"u": "1.4",
 "freq": "high",
-"title": "Saying Luther wanted to start a new church",
-"setup": "\"In 1517 Luther set out to create Protestantism.\"",
-"wrong": "Reading the outcome back into his original goal.",
-"right": "Luther first wanted to reform abuses within the Catholic Church and debate indulgences. The split came as the conflict escalated, through excommunication and the Diet of Worms.",
-"why": "We know how it ended.",
-"lock": "Reform first; split later."
+"title": "Thinking the Ottomans simply declined after Süleyman",
+"setup": "\"After Süleyman died, the Ottoman Empire just got weaker and weaker until it collapsed.\"",
+"wrong": "Accepting the old \"decline thesis\" without evidence of recovery and reform.",
+"right": "The empire lost wars (Vienna 1683, Karlowitz 1699) but also recovered under the Köprülü viziers, adopted printing (1727), rebuilt its army after 1826, and launched the Tanzimat in 1839. It lasted until 1922 — over 350 years after Süleyman.",
+"why": "European writers in the 1800s called it \"the sick man of Europe,\" and textbooks repeated it.",
+"lock": "350 more years is not a collapse."
 },
 {
-"u": "3.1",
+"u": "2.2",
 "freq": "high",
-"title": "Explaining the Reformation as only about religion",
-"setup": "\"Princes supported Luther purely because of faith.\"",
-"wrong": "Ignoring political and economic motives.",
-"right": "Princes gained independence from the emperor and pope, Church lands and taxes, and local control. Religion, politics, and money were intertwined.",
-"why": "It's called a religious movement.",
-"lock": "Faith + power + money."
+"title": "Thinking the Taj Mahal is a palace",
+"setup": "\"The Taj Mahal was the emperor's palace where he lived.\"",
+"wrong": "Mistaking a tomb for a residence.",
+"right": "The Taj Mahal is a mausoleum Shah Jahan built for Mumtaz Mahal after her death in 1631. Mughal emperors lived in forts like the Red Fort in Agra and Delhi; Shah Jahan was buried in the Taj beside her.",
+"why": "Its grandeur and the word \"Mahal\" (\"palace\") suggest a royal home.",
+"lock": "A palace for the dead, not the living."
+},
+{
+"u": "2.3",
+"freq": "high",
+"title": "Thinking the Qing were just another Han Chinese dynasty",
+"setup": "\"The Qing dynasty was Chinese, like the Ming.\"",
+"wrong": "Missing that the Qing were Manchu conquerors.",
+"right": "The Manchus came from northeast of the Great Wall and conquered China in 1644. They kept Confucian exams and Ming institutions but imposed the queue, kept their own banner army, and ruled as a minority.",
+"why": "The Qing ruled China so long and so successfully that they seem simply \"Chinese.\"",
+"lock": "Qing ruled China — but came from Manchuria."
+},
+{
+"u": "2.4",
+"freq": "med",
+"title": "Thinking Voltaire was an expert on China",
+"setup": "\"Voltaire knew China well, so his description of Qianlong proves China was a perfect Enlightenment state.\"",
+"wrong": "Treating an outsider's admiring description as accurate evidence.",
+"right": "Voltaire never visited China. He relied on Jesuit reports and translations and used China to criticize the French Church and monarchy. Qianlong was a scholar-ruler, but also an expansionist conqueror whose government censored books.",
+"why": "Famous authors seem authoritative on whatever they write about.",
+"lock": "Voltaire's China is a mirror held up to France."
+},
+{
+"u": "2.5",
+"freq": "high",
+"title": "Thinking Japan was totally sealed off",
+"setup": "\"During sakoku, Japan had no contact with the outside world.\"",
+"wrong": "Treating controlled contact as total isolation.",
+"right": "Japan traded with the Dutch and Chinese at Nagasaki, with Korea through Tsushima, with the Ryukyu Kingdom through Satsuma, and with the Ainu through Matsumae. Scholars studied European science through rangaku.",
+"why": "\"Closed country\" sounds absolute.",
+"lock": "Closed doors, but four guarded gates."
 },
 {
 "u": "3.2",
 "freq": "med",
-"title": "Mixing up Henry VIII's motives",
-"setup": "\"Henry VIII became Protestant because he agreed with Luther.\"",
-"wrong": "Assuming the English Reformation was driven by theology.",
-"right": "Henry had earlier written against Luther. He broke with Rome when the pope refused his annulment, and kept much Catholic practice. Protestant theology grew under Edward VI and Elizabeth I.",
-"why": "All reformations get lumped together.",
-"lock": "A king's marriage, not a monk's theology."
+"title": "Thinking westernization made Russia freer",
+"setup": "\"Peter the Great westernized Russia, so Russians got more rights like people in the West.\"",
+"wrong": "Equating Western technology and fashion with political freedom.",
+"right": "Peter adopted Western ships, schools, clothing, and bureaucracy to strengthen the tsar's power. Serfdom deepened, conscription grew, and thousands died building St. Petersburg. Catherine likewise strengthened nobles' control over serfs.",
+"why": "\"Western\" today suggests democracy and rights.",
+"lock": "Western tools, Russian autocracy."
 },
 {
-"u": "4.1",
-"freq": "med",
-"title": "Thinking the Peace of Augsburg created religious freedom",
-"setup": "\"After 1555 every German could choose their religion.\"",
-"wrong": "Confusing a ruler's choice with individual freedom.",
-"right": "Each PRINCE chose Catholic or Lutheran for his territory, and subjects had to conform or move. Calvinists weren't included.",
-"why": "\"Peace\" and \"choice\" sound like freedom.",
-"lock": "The prince chose, not the people."
-},
-{
-"u": "4.2",
+"u": "3.3",
 "freq": "high",
-"title": "Treating the Catholic Reformation as only a reaction",
-"setup": "\"The Catholic Church did nothing until Luther forced it.\"",
-"wrong": "Seeing Catholic reform as purely defensive.",
-"right": "Reform movements existed before 1517, and the Catholic Reformation also renewed spirituality, education (Jesuits), and missionary work worldwide — not just opposition to Protestants.",
-"why": "The name \"Counter-Reformation\" emphasizes reaction.",
-"lock": "Reaction AND renewal."
-},
-{
-"u": "4.1",
-"freq": "med",
-"title": "Confusing the Edict of Nantes with the Peace of Westphalia",
-"setup": "\"The Edict of Nantes ended the Thirty Years' War.\"",
-"wrong": "Mixing up two settlements.",
-"right": "Nantes (1598) gave French Huguenots toleration. Westphalia (1648) ended the Thirty Years' War in Central Europe.",
-"why": "Both are religious settlements with French connections.",
-"lock": "Nantes = France 1598. Westphalia = Europe 1648."
-},
-{
-"u": "2.4",
-"freq": "high",
-"title": "Thinking only Europe had a \"renaissance\"",
-"setup": "\"While Europe was having its Renaissance, the rest of the world was standing still.\"",
-"wrong": "Treating Europe as the only center of cultural achievement.",
-"right": "Many societies experienced flowerings of art, science, and learning — Timurid Samarkand, the Ottoman court, Ming China, and others — often linked by trade with Europe.",
-"why": "The word \"Renaissance\" is usually taught only about Europe.",
-"lock": "Many renaissances, one connected world."
-},
-{
-"u": "4.1",
-"freq": "med",
-"title": "Assuming the most powerful ruler could simply crush the Reformation",
-"setup": "\"Charles V ruled half of Europe, so he could have stopped Luther easily.\"",
-"wrong": "Ignoring the competing demands on Habsburg power.",
-"right": "Charles faced France, the Ottomans (Siege of Vienna, 1529), and independent German princes at once. Spreading his power thin forced compromises like the Peace of Augsburg.",
-"why": "A huge empire sounds unbeatable.",
-"lock": "Big empire, many fronts."
-},
-{
-"u": "4.3",
-"freq": "med",
-"title": "Thinking Christianity outside Europe began with European missionaries",
-"setup": "\"Before the 1500s there were no Christians in Africa or Asia.\"",
-"wrong": "Overlooking ancient non-European Christian communities.",
-"right": "Ethiopian and other eastern Christian churches date back to the early centuries C.E. The 1500s brought new Catholic and Protestant missions alongside them.",
-"why": "The era's missionary story gets most of the attention.",
-"lock": "Christianity was already global before the missionaries."
+"title": "Thinking Jews chose to live in the Pale of Settlement",
+"setup": "\"Most Russian Jews lived in the west because that's where they wanted to live.\"",
+"wrong": "Missing that residence was legally restricted.",
+"right": "From 1791 Russian law confined most Jews to the Pale of Settlement, mostly former Polish lands, and barred them from cities like Moscow and St. Petersburg except by special permission. Communities there still built rich religious and cultural lives in shtetls and towns.",
+"why": "Jewish communities were already living in those Polish lands, so the restriction is easy to miss.",
+"lock": "A boundary drawn by law, not by choice."
 }
 ];
-const LS_M='whh_autopsy_mastered', LS_F='whh_autopsy_fmm';
+const LS_M='whh_c9_autopsy_mastered', LS_F='whh_c9_autopsy_fmm';
 let mastered=new Set(lsGet(LS_M,[])), openSet=new Set(), curU='all', curS='all';
 function setUnit(u,b){ curU=u; document.querySelectorAll('.pill[data-unit]').forEach(x=>x.classList.toggle('active',x===b)); render(); }
 function setSt(s,b){ curS=s; document.querySelectorAll('.pill[data-st]').forEach(x=>x.classList.toggle('active',x===b)); render(); }

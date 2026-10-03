@@ -105,9 +105,9 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 </head>
 <body>
 <div class="app">
-  <a class="back" href="WHH_StudyHub.html">← World History Honors · Ch. 8 Hub</a>
+  <a class="back" href="WHH11_StudyHub.html">← World History Honors · Ch. 11 Hub</a>
   <div class="header">
-    <div><div class="series-label">World History Honors · Chapter 8 · Mistakes Autopsy</div><div class="page-title">Mistakes <span>Autopsy</span></div><div class="page-sub" id="page-sub"></div></div>
+    <div><div class="series-label">World History Honors · Chapter 11 · Mistakes Autopsy</div><div class="page-title">Mistakes <span>Autopsy</span></div><div class="page-sub" id="page-sub"></div></div>
     <div style="display:flex;gap:9px;align-items:center;flex-wrap:wrap"><div data-game-hud></div><button class="btn btn-accent" onclick="openFM()">🔍 Find My Mistake</button></div>
   </div>
   <div class="about-banner">🔬 Each card dissects a high-frequency mistake: the scenario, the wrong thinking, the right thinking, <b>why</b> students fall for it, and a Memory Lock to make it stick. Open a card, read it, then <b>Mark mastered</b> once you could explain it to a friend. <b>Find My Mistake</b> tests whether you can spot the right thinking under pressure.</div>
@@ -117,11 +117,11 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     <div class="stat-chip"><div class="stat-num" style="color:var(--amber)" id="s-fm">—</div><div class="stat-lbl">LAST DIAGNOSTIC</div></div>
   </div>
   <div class="controls">
-    <div class="ctrl-row"><span class="ctrl-label">UNIT</span><button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button><button class="pill" data-unit="1.2" onclick="setUnit('1.2',this)">1.2</button><button class="pill" data-unit="2.1" onclick="setUnit('2.1',this)">2.1</button><button class="pill" data-unit="2.4" onclick="setUnit('2.4',this)">2.4</button><button class="pill" data-unit="3.1" onclick="setUnit('3.1',this)">3.1</button><button class="pill" data-unit="3.2" onclick="setUnit('3.2',this)">3.2</button><button class="pill" data-unit="4.1" onclick="setUnit('4.1',this)">4.1</button><button class="pill" data-unit="4.2" onclick="setUnit('4.2',this)">4.2</button><button class="pill" data-unit="4.3" onclick="setUnit('4.3',this)">4.3</button></div>
+    <div class="ctrl-row"><span class="ctrl-label">UNIT</span><button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button><button class="pill" data-unit="1.1" onclick="setUnit('1.1',this)">1.1</button><button class="pill" data-unit="1.2" onclick="setUnit('1.2',this)">1.2</button><button class="pill" data-unit="1.3" onclick="setUnit('1.3',this)">1.3</button><button class="pill" data-unit="2.1" onclick="setUnit('2.1',this)">2.1</button><button class="pill" data-unit="2.2" onclick="setUnit('2.2',this)">2.2</button><button class="pill" data-unit="2.3" onclick="setUnit('2.3',this)">2.3</button><button class="pill" data-unit="2.4" onclick="setUnit('2.4',this)">2.4</button></div>
     <div class="ctrl-row"><span class="ctrl-label">SHOW</span><button class="pill active" data-st="all" onclick="setSt('all',this)">All</button><button class="pill" data-st="high" onclick="setSt('high',this)">🔥 High frequency</button><button class="pill" data-st="todo" onclick="setSt('todo',this)">Not mastered</button><button class="pill" data-st="done" onclick="setSt('done',this)">Mastered</button></div>
   </div>
   <div id="list"></div>
-  <div class="footer">World History Honors (2109320) · Unit 4 · Chapter 8: Renaissance and Reformation · Florida NGSSS Social Studies SS.912.W.4 (Renaissance, Reformation)</div>
+  <div class="footer">World History Honors (2109320) · Unit 4 · Chapter 11: Africans in the Atlantic World · Florida NGSSS Social Studies SS.912.W.3 & W.4 (African kingdoms, Atlantic slave trade, resistance)</div>
 </div>
 <div class="overlay" id="ov" onclick="if(event.target===this)closeFM()"><div class="modal" role="dialog" aria-modal="true" id="modal"></div></div>
 <script>
@@ -132,140 +132,110 @@ function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON
 function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
 function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
 
-const UNIT_NAMES={"1.1": "The Rise of Italian City-States", "1.2": "A Cultural Rebirth", "1.3": "Renaissance Arts", "1.4": "Explorer: Finding a Lost Leonardo", "2.1": "Renaissance Humanism", "2.2": "Raphael's School of Athens", "2.3": "DBQ: Humanist Writings", "2.4": "Renaissances Around the World", "3.1": "Martin Luther and the Protestant Reformation", "3.2": "Reforms Across Europe", "4.1": "Challenges to Habsburg Dominance", "4.2": "The Catholic Reformation", "4.3": "Global Christianities"};
+const UNIT_NAMES={"1.1": "African History: 1500s to 1700s", "1.2": "The Songhai Empire", "1.3": "Preserving Cultural Heritage: Timbuktu", "2.1": "Traveler: Olaudah Equiano, an African Voice", "2.2": "The Middle Passage", "2.3": "A Global Commodity: Sugar", "2.4": "Resistance to Slavery"};
 const MK=[
 {
-"u": "1.2",
+"u": "1.1",
 "freq": "high",
-"title": "Thinking the Renaissance rejected religion",
-"setup": "\"Renaissance people stopped believing in God and only cared about science.\"",
-"wrong": "Equating humanism and secularism with atheism.",
-"right": "Most Renaissance figures remained Christian. Humanism added interest in classical learning and human potential, and much great Renaissance art is religious, such as the Sistine Chapel.",
-"why": "\"Secular\" and \"humanism\" sound anti-religious today.",
-"lock": "More human focus, not less faith."
+"title": "Thinking Africa had no history or states before Europeans arrived",
+"setup": "\"Before the Europeans came, Africa was just small villages.\"",
+"wrong": "Ignoring centuries of African kingdoms, cities, and trade.",
+"right": "Songhai, Kongo, Benin, Ethiopia, the Swahili city-states, and many others had governments, armies, cities, art, and long-distance trade before and during the Atlantic era.",
+"why": "Older textbooks often started African history with European contact.",
+"lock": "Africa had empires, not emptiness."
+},
+{
+"u": "1.1",
+"freq": "high",
+"title": "Believing Europeans captured most enslaved people themselves",
+"setup": "\"European sailors went into the jungle and caught people.\"",
+"wrong": "Misunderstanding how captives were obtained.",
+"right": "Most captives were taken in wars, raids, and kidnappings inside Africa and sold at coastal ports. Europeans mostly stayed on the coast and traded. The demand that drove the system came from American plantations.",
+"why": "Movies often show Europeans doing the capturing.",
+"lock": "Taken inland, sold on the coast, demanded in the Americas."
+},
+{
+"u": "1.1",
+"freq": "med",
+"title": "Assuming all African rulers welcomed the slave trade",
+"setup": "\"African kings all wanted to sell people.\"",
+"wrong": "Treating many different states as having one attitude.",
+"right": "Responses varied: Afonso I protested to Portugal in 1526, Benin limited sales at times, and Nzinga fought Portuguese expansion, while others like Dahomey profited heavily.",
+"why": "It's easy to overgeneralize about a whole continent.",
+"lock": "Many states, many choices."
 },
 {
 "u": "1.2",
+"freq": "med",
+"title": "Mixing up Mansa Musa and Askia Muhammad",
+"setup": "\"Mansa Musa was the great king of Songhai.\"",
+"wrong": "Confusing Mali with Songhai.",
+"right": "Mansa Musa ruled Mali and made his famous hajj in 1324. Askia Muhammad ruled Songhai (1493–1528) and made his hajj in 1496–1497.",
+"why": "Both were Muslim West African rulers famous for pilgrimages to Mecca.",
+"lock": "Mansa = Mali. Askia = Songhai."
+},
+{
+"u": "1.3",
 "freq": "high",
-"title": "Saying the Renaissance was a sudden break from the Middle Ages",
-"setup": "\"In 1350 everything changed overnight.\"",
-"wrong": "Treating historical periods as switches.",
-"right": "The Renaissance grew gradually from medieval foundations — universities, trade, and preserved classical texts — and spread unevenly over three centuries.",
-"why": "Textbook period labels make change look instant.",
-"lock": "Periods blend; they don't flip."
+"title": "Believing African history was only oral",
+"setup": "\"Africans didn't write, so we only know their history from stories.\"",
+"wrong": "Ignoring African written traditions.",
+"right": "Timbuktu's hundreds of thousands of manuscripts, Ethiopian texts in Ge'ez, and Ajami writing show deep written traditions. Oral traditions are also valuable historical sources.",
+"why": "Europeans long dismissed African sources.",
+"lock": "Timbuktu wrote it down."
 },
 {
 "u": "2.1",
 "freq": "med",
-"title": "Crediting the printing press to Italy",
-"setup": "\"The Italian Renaissance invented the printing press.\"",
-"wrong": "Mixing up Renaissance locations.",
-"right": "Gutenberg developed movable-type printing in Mainz, Germany, around 1450. Printing then helped spread Italian ideas north and Northern ideas everywhere.",
-"why": "The Renaissance is linked to Italy, so every invention gets placed there.",
-"lock": "Gutenberg = Germany."
+"title": "Treating the Equiano debate as either 'he lied' or 'case closed'",
+"setup": "\"Equiano's book is fake.\"",
+"wrong": "Jumping to an extreme conclusion from disputed evidence.",
+"right": "Records list South Carolina as his birthplace, but his African chapters may be true or based on others' memories. Most of his Narrative is confirmed by other sources. Historians still debate the question.",
+"why": "People want simple answers.",
+"lock": "Debated is not the same as debunked."
 },
 {
-"u": "2.1",
+"u": "2.2",
 "freq": "high",
-"title": "Thinking Erasmus left the Catholic Church",
-"setup": "\"Erasmus and Luther started Protestantism together.\"",
-"wrong": "Assuming every critic of the Church became Protestant.",
-"right": "Erasmus criticized abuses but remained Catholic and opposed splitting the Church. Luther broke away.",
-"why": "Both attacked Church corruption.",
-"lock": "Critic is not the same as convert."
+"title": "Thinking most enslaved Africans were taken to the United States",
+"setup": "\"The slave trade mainly brought people to America's South.\"",
+"wrong": "Centering the trade on U.S. history.",
+"right": "Brazil and the Caribbean received the vast majority. Mainland North America received fewer than 400,000 of about 10.7 million arrivals.",
+"why": "U.S. students learn mostly about U.S. slavery.",
+"lock": "Brazil and the Caribbean first."
 },
 {
-"u": "3.1",
-"freq": "high",
-"title": "Saying Luther wanted to start a new church",
-"setup": "\"In 1517 Luther set out to create Protestantism.\"",
-"wrong": "Reading the outcome back into his original goal.",
-"right": "Luther first wanted to reform abuses within the Catholic Church and debate indulgences. The split came as the conflict escalated, through excommunication and the Diet of Worms.",
-"why": "We know how it ended.",
-"lock": "Reform first; split later."
-},
-{
-"u": "3.1",
-"freq": "high",
-"title": "Explaining the Reformation as only about religion",
-"setup": "\"Princes supported Luther purely because of faith.\"",
-"wrong": "Ignoring political and economic motives.",
-"right": "Princes gained independence from the emperor and pope, Church lands and taxes, and local control. Religion, politics, and money were intertwined.",
-"why": "It's called a religious movement.",
-"lock": "Faith + power + money."
-},
-{
-"u": "3.2",
+"u": "2.2",
 "freq": "med",
-"title": "Mixing up Henry VIII's motives",
-"setup": "\"Henry VIII became Protestant because he agreed with Luther.\"",
-"wrong": "Assuming the English Reformation was driven by theology.",
-"right": "Henry had earlier written against Luther. He broke with Rome when the pope refused his annulment, and kept much Catholic practice. Protestant theology grew under Edward VI and Elizabeth I.",
-"why": "All reformations get lumped together.",
-"lock": "A king's marriage, not a monk's theology."
+"title": "Taking the triangular trade as an exact route",
+"setup": "\"Every slave ship sailed a perfect triangle.\"",
+"wrong": "Treating a model as a literal map.",
+"right": "Many routes were direct, like Brazil to Angola and back. The triangle is a simplified model of how goods and people moved.",
+"why": "Diagrams make it look neat.",
+"lock": "A model, not a map."
 },
 {
-"u": "4.1",
+"u": "2.3",
 "freq": "med",
-"title": "Thinking the Peace of Augsburg created religious freedom",
-"setup": "\"After 1555 every German could choose their religion.\"",
-"wrong": "Confusing a ruler's choice with individual freedom.",
-"right": "Each PRINCE chose Catholic or Lutheran for his territory, and subjects had to conform or move. Calvinists weren't included.",
-"why": "\"Peace\" and \"choice\" sound like freedom.",
-"lock": "The prince chose, not the people."
-},
-{
-"u": "4.2",
-"freq": "high",
-"title": "Treating the Catholic Reformation as only a reaction",
-"setup": "\"The Catholic Church did nothing until Luther forced it.\"",
-"wrong": "Seeing Catholic reform as purely defensive.",
-"right": "Reform movements existed before 1517, and the Catholic Reformation also renewed spirituality, education (Jesuits), and missionary work worldwide — not just opposition to Protestants.",
-"why": "The name \"Counter-Reformation\" emphasizes reaction.",
-"lock": "Reaction AND renewal."
-},
-{
-"u": "4.1",
-"freq": "med",
-"title": "Confusing the Edict of Nantes with the Peace of Westphalia",
-"setup": "\"The Edict of Nantes ended the Thirty Years' War.\"",
-"wrong": "Mixing up two settlements.",
-"right": "Nantes (1598) gave French Huguenots toleration. Westphalia (1648) ended the Thirty Years' War in Central Europe.",
-"why": "Both are religious settlements with French connections.",
-"lock": "Nantes = France 1598. Westphalia = Europe 1648."
+"title": "Treating sugar as a harmless luxury story",
+"setup": "\"Sugar was just a popular food that made Europe sweeter.\"",
+"wrong": "Separating a commodity from the labor that produced it.",
+"right": "Sugar's spread depended on brutal plantation labor by enslaved Africans; sugar colonies had some of the highest death rates of enslaved people anywhere, which drove more slave imports.",
+"why": "Commodities seem disconnected from the people who made them.",
+"lock": "Sugar's sweetness was built on enslaved labor."
 },
 {
 "u": "2.4",
 "freq": "high",
-"title": "Thinking only Europe had a \"renaissance\"",
-"setup": "\"While Europe was having its Renaissance, the rest of the world was standing still.\"",
-"wrong": "Treating Europe as the only center of cultural achievement.",
-"right": "Many societies experienced flowerings of art, science, and learning — Timurid Samarkand, the Ottoman court, Ming China, and others — often linked by trade with Europe.",
-"why": "The word \"Renaissance\" is usually taught only about Europe.",
-"lock": "Many renaissances, one connected world."
-},
-{
-"u": "4.1",
-"freq": "med",
-"title": "Assuming the most powerful ruler could simply crush the Reformation",
-"setup": "\"Charles V ruled half of Europe, so he could have stopped Luther easily.\"",
-"wrong": "Ignoring the competing demands on Habsburg power.",
-"right": "Charles faced France, the Ottomans (Siege of Vienna, 1529), and independent German princes at once. Spreading his power thin forced compromises like the Peace of Augsburg.",
-"why": "A huge empire sounds unbeatable.",
-"lock": "Big empire, many fronts."
-},
-{
-"u": "4.3",
-"freq": "med",
-"title": "Thinking Christianity outside Europe began with European missionaries",
-"setup": "\"Before the 1500s there were no Christians in Africa or Asia.\"",
-"wrong": "Overlooking ancient non-European Christian communities.",
-"right": "Ethiopian and other eastern Christian churches date back to the early centuries C.E. The 1500s brought new Catholic and Protestant missions alongside them.",
-"why": "The era's missionary story gets most of the attention.",
-"lock": "Christianity was already global before the missionaries."
+"title": "Believing enslaved people did not resist",
+"setup": "\"Enslaved people just accepted their situation.\"",
+"wrong": "Erasing African agency and resistance.",
+"right": "Resistance happened everywhere: shipboard revolts, maroon communities like Palmares and the Jamaican Maroons, the Stono Rebellion, Tacky's War, the Haitian Revolution, and daily defiance.",
+"why": "Sources written by enslavers downplayed resistance.",
+"lock": "Resistance at every step."
 }
 ];
-const LS_M='whh_autopsy_mastered', LS_F='whh_autopsy_fmm';
+const LS_M='whh_c11_autopsy_mastered', LS_F='whh_c11_autopsy_fmm';
 let mastered=new Set(lsGet(LS_M,[])), openSet=new Set(), curU='all', curS='all';
 function setUnit(u,b){ curU=u; document.querySelectorAll('.pill[data-unit]').forEach(x=>x.classList.toggle('active',x===b)); render(); }
 function setSt(s,b){ curS=s; document.querySelectorAll('.pill[data-st]').forEach(x=>x.classList.toggle('active',x===b)); render(); }

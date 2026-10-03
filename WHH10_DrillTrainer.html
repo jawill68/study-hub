@@ -126,10 +126,10 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 </head>
 <body>
 <div class="app">
-  <a class="back" href="WHH_StudyHub.html">← World History Honors · Ch. 8 Hub</a>
+  <a class="back" href="WHH10_StudyHub.html">← World History Honors · Ch. 10 Hub</a>
   <div class="header">
     <div>
-      <div class="series-label">World History Honors · Chapter 8 · Drill Trainer</div>
+      <div class="series-label">World History Honors · Chapter 10 · Drill Trainer</div>
       <div class="page-title">Drill <span>Trainer</span></div>
       <div class="page-sub" id="page-sub"></div>
     </div>
@@ -179,7 +179,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
       <div class="actions" style="margin-top:16px"><button class="btn btn-ghost" onclick="goSetup()">← Setup</button><button class="btn btn-teal" onclick="start(true)">Retry same</button><button class="btn btn-accent" id="btn-missed" onclick="retryMissed()">Drill missed only</button></div></div>
     <div class="card" id="r-missed-card"><div class="sec-lbl">Review what you missed</div><div id="r-missed"></div></div>
   </div>
-  <div class="footer">World History Honors (2109320) · Unit 4 · Chapter 8: Renaissance and Reformation · Florida NGSSS Social Studies SS.912.W.4 (Renaissance, Reformation)</div>
+  <div class="footer">World History Honors (2109320) · Unit 4 · Chapter 10: Age of Maritime Expansion · Florida NGSSS Social Studies SS.912.W.4 (exploration, Columbian Exchange, colonization)</div>
 </div>
 <script>
 function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -189,1038 +189,1012 @@ function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON
 function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
 function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
 
-const UNIT_NAMES = {"1.1": "The Rise of Italian City-States", "1.2": "A Cultural Rebirth", "1.3": "Renaissance Arts", "1.4": "Explorer: Finding a Lost Leonardo", "2.1": "Renaissance Humanism", "2.2": "Raphael's School of Athens", "2.3": "DBQ: Humanist Writings", "2.4": "Renaissances Around the World", "3.1": "Martin Luther and the Protestant Reformation", "3.2": "Reforms Across Europe", "4.1": "Challenges to Habsburg Dominance", "4.2": "The Catholic Reformation", "4.3": "Global Christianities"};
+const UNIT_NAMES = {"1.1": "Voyages of Discovery", "1.2": "Conquests in the Americas", "1.3": "Explorer: Pardis Sabeti, Math Against Malaria", "1.4": "The Columbian Exchange", "2.1": "Portugal's Trade Empire", "2.2": "The Dutch East India Company", "2.3": "DBQ: Trade and Cross-Cultural Encounters", "3.1": "The Spanish Empire in the Americas", "3.2": "A Global Commodity: Silver", "3.3": "The Portuguese and Dutch in the Americas", "3.4": "The English Colonies and New France"};
 const QB = [
 {
-"u": "1.2",
+"u": "1.1",
 "t": 1,
-"q": "The word \"Renaissance\" means:",
+"q": "Which Chinese admiral led seven great fleets across the Indian Ocean between 1405 and 1433?",
 "o": [
-"Rebirth",
-"Reform",
-"Rebellion",
-"Revolution"
+"Zheng He",
+"Kublai Khan",
+"Ibn Battuta",
+"Hongwu"
 ],
 "a": 0,
-"e": "Renaissance is French for rebirth — a revival of classical Greek and Roman learning and art."
+"e": "Zheng He's Ming treasure fleets reached Arabia and East Africa decades before Portuguese ships entered the Indian Ocean."
 },
 {
 "u": "1.1",
 "t": 1,
-"q": "Where did the Renaissance begin?",
+"q": "What did the Treaty of Tordesillas (1494) do?",
 "o": [
-"The city-states of northern Italy",
-"England",
-"The Ottoman Empire",
-"Spain"
+"Ended a war between England and Spain",
+"Divided newly claimed lands outside Europe between Spain and Portugal",
+"Gave the pope control of all new colonies",
+"Opened China to European trade"
 ],
-"a": 0,
-"e": "Wealthy northern Italian city-states such as Florence and Venice had money, urban culture, and Roman ruins close at hand."
+"a": 1,
+"e": "Spain and Portugal agreed on a line in the Atlantic: Spain claimed lands to the west, Portugal lands to the east."
 },
 {
 "u": "1.1",
 "t": 2,
-"q": "Which factor BEST explains why the Renaissance began in Italy rather than elsewhere?",
+"q": "Why was the astrolabe useful to sailors on the open ocean?",
 "o": [
-"Italy had no contact with other cultures",
-"Wealth from trade and banking, crowded cities, reminders of ancient Rome, and patrons willing to fund art",
-"Italy was ruled by a single powerful king",
-"The printing press was invented in Italy"
-],
-"a": 1,
-"e": "Trade wealth created rich patrons; cities concentrated talent; Roman heritage was all around. The printing press came from Germany, and Italy was divided into city-states, not one kingdom."
-},
-{
-"u": "2.1",
-"t": 2,
-"q": "Humanists focused mainly on:",
-"o": [
-"Only theology",
-"Classical texts and subjects such as history, poetry, rhetoric, and moral philosophy",
-"Rejecting all religion",
-"Military strategy"
-],
-"a": 1,
-"e": "Humanism studied the humanities through classical sources. Most humanists remained Christian; they added a focus on human achievement."
-},
-{
-"u": "1.2",
-"t": 2,
-"q": "How did the Fall of Constantinople in 1453 contribute to the Renaissance?",
-"o": [
-"It ended trade with Asia",
-"Byzantine scholars fled to Italy carrying classical Greek manuscripts",
-"It destroyed Italian city-states",
-"It caused the Reformation directly"
-],
-"a": 1,
-"e": "Greek scholars and texts arriving in Italy deepened the study of Plato and other Greek thinkers."
-},
-{
-"u": "1.1",
-"t": 1,
-"q": "Which family ruled Florence and became famous patrons of Renaissance art?",
-"o": [
-"The Tudors",
-"The Medici",
-"The Habsburgs",
-"The Bourbons"
-],
-"a": 1,
-"e": "The Medici banking fortune supported artists and scholars such as Botticelli and young Michelangelo."
-},
-{
-"u": "1.3",
-"t": 2,
-"q": "A painting shows a merchant family in their home with realistic faces and a window revealing a landscape behind them. Which Renaissance values does it reflect?",
-"o": [
-"Secularism and individualism, plus realism",
-"Only medieval religious symbolism",
-"The ideas of the Council of Trent",
-"Calvinist predestination"
-],
-"a": 0,
-"e": "Worldly subjects (secular), specific people celebrated (individualism), and realistic depth (perspective) are Renaissance hallmarks."
-},
-{
-"u": "2.3",
-"t": 3,
-"q": "Machiavelli's The Prince was controversial because it argued that rulers should:",
-"o": [
-"Always act morally, even if they lose power",
-"Judge actions by their results in keeping power and the state secure, even if that means being feared or deceptive",
-"Let the pope choose all rulers",
-"Give power to the common people"
-],
-"a": 1,
-"e": "Machiavelli described politics as it actually worked, not as it ideally should. That realism is why \"Machiavellian\" now means cunning and ruthless."
-},
-{
-"u": "1.3",
-"t": 1,
-"q": "Which artist painted the Mona Lisa and filled notebooks with inventions and anatomy?",
-"o": [
-"Michelangelo",
-"Raphael",
-"Leonardo da Vinci",
-"Dürer"
+"It measured the ship's speed",
+"It predicted storms",
+"It helped find latitude by measuring the angle of the sun or stars",
+"It pointed to magnetic north"
 ],
 "a": 2,
-"e": "Leonardo da Vinci is the classic Renaissance man — artist, engineer, and scientist."
+"e": "By measuring a star's or the sun's height above the horizon, sailors could estimate how far north or south they were."
 },
 {
-"u": "1.3",
+"u": "1.1",
 "t": 2,
-"q": "Linear perspective helped Renaissance artists:",
+"q": "Why did Portugal look for a sea route around Africa to Asia?",
 "o": [
-"Use only gold backgrounds",
-"Create the illusion of three-dimensional depth on a flat surface",
-"Paint faster",
-"Avoid painting people"
+"Portugal had no coastline on the Atlantic",
+"The pope ordered Portugal to convert China",
+"Portugal wanted to colonize the Arctic",
+"Buying Asian spices directly would cut out Venetian and Muslim middlemen who raised prices"
 ],
-"a": 1,
-"e": "Lines converge at a vanishing point, making flat paintings look deep and realistic."
+"a": 3,
+"e": "Spices reached Europe through many hands, each adding cost; a direct sea route promised huge profits."
 },
 {
-"u": "1.2",
-"t": 3,
-"q": "Writers like Dante and Petrarch writing in Italian rather than Latin mattered because:",
-"o": [
-"Latin was illegal",
-"Vernacular writing reached a wider audience beyond the clergy and educated elite",
-"It ended the use of Latin entirely",
-"It was required by the pope"
-],
-"a": 1,
-"e": "The vernacular made literature accessible to ordinary readers, and printing later multiplied that effect."
-},
-{
-"u": "2.1",
+"u": "1.1",
 "t": 2,
-"q": "Castiglione's The Book of the Courtier described the ideal noble as:",
+"q": "What did Bartolomeu Dias's voyage of 1488 prove?",
 "o": [
-"Uneducated but strong",
-"Well-educated, graceful, skilled in many areas — a \"Renaissance man\"",
-"A monk who avoids society",
-"A merchant only"
-],
-"a": 1,
-"e": "The courtier should be skilled in arms, letters, music, and conversation — the well-rounded ideal."
-},
-{
-"u": "2.1",
-"t": 1,
-"q": "Who developed the printing press with movable metal type in Europe around 1450?",
-"o": [
-"Martin Luther",
-"Johannes Gutenberg",
-"Erasmus",
-"Leonardo da Vinci"
-],
-"a": 1,
-"e": "Gutenberg's press in Mainz made books much faster and cheaper to produce."
-},
-{
-"u": "2.1",
-"t": 2,
-"q": "What was the MOST important effect of the printing press?",
-"o": [
-"Books became more expensive",
-"Ideas, including Renaissance and Reformation ideas, spread faster and to more people, and literacy rose",
-"It ended the use of the vernacular",
-"It stopped the Reformation"
-],
-"a": 1,
-"e": "Cheap print spread humanist scholarship, Bibles, and Luther's pamphlets across Europe within weeks."
-},
-{
-"u": "2.1",
-"t": 2,
-"q": "How did the Northern Renaissance differ from the Italian Renaissance?",
-"o": [
-"It had no artists",
-"It placed greater emphasis on religious reform and Christian humanism",
-"It happened before the Italian Renaissance",
-"It rejected printing"
-],
-"a": 1,
-"e": "Northern humanists like Erasmus applied humanist scholarship to reforming the Church and Christian life."
-},
-{
-"u": "2.1",
-"t": 2,
-"q": "Erasmus's The Praise of Folly criticized:",
-"o": [
-"The printing press",
-"Corrupt clergy and empty religious rituals",
-"Italian artists",
-"The Ottoman Empire"
-],
-"a": 1,
-"e": "Erasmus used satire to mock Church abuses, but he wanted reform from within, not a break with Rome."
-},
-{
-"u": "2.3",
-"t": 1,
-"q": "Thomas More's Utopia describes:",
-"o": [
-"A real English town",
-"An imaginary ideal society",
-"A war with France",
-"A new church"
-],
-"a": 1,
-"e": "Utopia uses an imaginary island to criticize real problems in European society."
-},
-{
-"u": "1.3",
-"t": 2,
-"q": "Flemish painters like Jan van Eyck are known for:",
-"o": [
-"Abstract art",
-"Detailed, realistic oil paintings",
-"Frescoes on ceilings",
-"Mosaics"
-],
-"a": 1,
-"e": "Oil paint allowed fine detail and glowing color; the technique spread from Flanders to Italy."
-},
-{
-"u": "2.1",
-"t": 3,
-"q": "Historians say \"Erasmus laid the egg that Luther hatched.\" What does this mean?",
-"o": [
-"Erasmus and Luther were relatives",
-"Erasmus's criticism of Church abuses prepared the ground for Luther's break with the Church, even though Erasmus himself stayed Catholic",
-"Luther wrote The Praise of Folly",
-"Erasmus started the Thirty Years' War"
-],
-"a": 1,
-"e": "Christian humanist critiques spread doubts about Church practices. Luther took the next step — open rejection of papal authority."
-},
-{
-"u": "2.1",
-"t": 1,
-"q": "Which English playwright wrote Hamlet and Romeo and Juliet?",
-"o": [
-"Thomas More",
-"William Shakespeare",
-"Petrarch",
-"Castiglione"
-],
-"a": 1,
-"e": "Shakespeare's plays in English reflect Renaissance interest in human nature and the vernacular."
-},
-{
-"u": "3.1",
-"t": 3,
-"q": "Without the printing press, the Reformation would most likely have:",
-"o": [
-"Spread just as fast",
-"Spread more slowly and been easier for authorities to suppress, as earlier reformers like Hus were",
-"Never involved Germany",
-"Begun in Italy"
-],
-"a": 1,
-"e": "Earlier critics such as Wycliffe and Hus were contained. Printing let Luther's ideas reach thousands before they could be stopped."
-},
-{
-"u": "1.3",
-"t": 2,
-"q": "Albrecht Dürer helped spread Renaissance artistic ideas north mainly through:",
-"o": [
-"Stained glass",
-"Woodcuts and engravings that could be printed and sold widely",
-"Sculpture",
-"Architecture"
-],
-"a": 1,
-"e": "Prints were cheaper than paintings, so his work reached a broad audience."
-},
-{
-"u": "2.1",
-"t": 2,
-"q": "Why did literacy rise after the invention of the printing press?",
-"o": [
-"Schools became illegal",
-"Books became cheaper and more available, and people wanted to read the Bible and other works for themselves",
-"Latin disappeared",
-"Kings required it by law everywhere"
-],
-"a": 1,
-"e": "Affordable books — especially vernacular Bibles — gave ordinary people a reason and a way to read."
-},
-{
-"u": "3.1",
-"t": 1,
-"q": "In what year did Martin Luther write the Ninety-five Theses?",
-"o": [
-"1453",
-"1517",
-"1555",
-"1648"
-],
-"a": 1,
-"e": "1517 is the traditional start date of the Protestant Reformation."
-},
-{
-"u": "3.1",
-"t": 1,
-"q": "Luther's Ninety-five Theses mainly attacked:",
-"o": [
-"The printing press",
-"The sale of indulgences",
-"The Ottoman Empire",
-"Italian art"
-],
-"a": 1,
-"e": "Luther objected to the claim that buying a pardon could reduce punishment for sin."
-},
-{
-"u": "3.1",
-"t": 2,
-"q": "Which belief is central to Luther's teaching?",
-"o": [
-"Salvation comes through good works and indulgences",
-"Salvation comes through faith in God's grace alone, and the Bible is the only authority",
-"The pope cannot make mistakes",
-"Only priests may read the Bible"
-],
-"a": 1,
-"e": "\"Faith alone\" and \"Scripture alone\" were Luther's core challenges to Church authority."
-},
-{
-"u": "3.1",
-"t": 2,
-"q": "At the Diet of Worms in 1521, Luther:",
-"o": [
-"Accepted the pope's authority",
-"Refused to recant and was declared an outlaw by Emperor Charles V",
-"Became pope",
-"Wrote the Ninety-five Theses"
-],
-"a": 1,
-"e": "Luther refused to take back his writings. Frederick the Wise of Saxony then protected him."
-},
-{
-"u": "3.1",
-"t": 3,
-"q": "Why did many German princes support Luther?",
-"o": [
-"They all agreed on theology",
-"Breaking with Rome let them gain independence from the emperor and pope and take Church lands and wealth",
-"Luther paid them",
-"The pope asked them to"
-],
-"a": 1,
-"e": "Religion and politics were intertwined. Princes saw political and economic advantages in Lutheranism."
-},
-{
-"u": "4.1",
-"t": 2,
-"q": "The Peace of Augsburg (1555) established that:",
-"o": [
-"All Germans must be Catholic",
-"Each German prince could choose whether his territory would be Catholic or Lutheran",
-"Calvinism was legal everywhere",
-"The Thirty Years' War was over"
-],
-"a": 1,
-"e": "\"Whose realm, his religion\": the ruler chose, and subjects were expected to follow or move. Calvinism was not included until 1648."
-},
-{
-"u": "3.2",
-"t": 1,
-"q": "Which reformer taught predestination and led the city of Geneva?",
-"o": [
-"Martin Luther",
-"John Calvin",
-"Henry VIII",
-"Erasmus"
-],
-"a": 1,
-"e": "Calvin's Geneva became a model Protestant community with strict moral rules."
-},
-{
-"u": "3.2",
-"t": 2,
-"q": "Henry VIII broke with the Roman Catholic Church mainly because:",
-"o": [
-"He disagreed with Luther",
-"The pope refused to annul his marriage to Catherine of Aragon",
-"He wanted to become pope",
-"He supported the Jesuits"
-],
-"a": 1,
-"e": "Henry wanted a male heir. The break was political and personal at first; Protestant theology grew stronger later."
-},
-{
-"u": "3.2",
-"t": 2,
-"q": "The Act of Supremacy (1534) made:",
-"o": [
-"The pope head of England",
-"The English monarch the supreme head of the Church of England",
-"Calvin ruler of England",
-"Catholicism England's only legal religion"
-],
-"a": 1,
-"e": "This created the Church of England (Anglican Church) under royal control."
-},
-{
-"u": "3.2",
-"t": 3,
-"q": "How was the English Reformation DIFFERENT from Luther's Reformation in Germany?",
-"o": [
-"England's began mainly for political and dynastic reasons, led by the king, while Germany's began with religious protest by a monk",
-"There was no difference",
-"England's began with the Ninety-five Theses",
-"Germany's was led by a queen"
+"Ships could sail from the Atlantic into the Indian Ocean around Africa",
+"The Americas were a separate continent",
+"The world was round",
+"Ships could reach China by sailing west"
 ],
 "a": 0,
-"e": "Luther's was theology-first, from below. Henry's was a royal decision driven by succession and power."
+"e": "Dias rounded the southern tip of Africa, opening the way for da Gama's voyage to India ten years later."
 },
 {
-"u": "3.1",
+"u": "1.1",
 "t": 3,
-"q": "Wycliffe and Hus are sometimes called forerunners of the Reformation because they:",
+"q": "The Ming court ended Zheng He's voyages after 1433. What is the best way to explain why this matters for world history?",
 "o": [
-"Invented printing",
-"Criticized Church wealth and authority and promoted the Bible's authority more than a century before Luther",
-"Founded the Jesuits",
-"Fought in the Thirty Years' War"
+"It proves China lacked ship technology",
+"China withdrew from long-distance state voyages, so no powerful Chinese navy was in the Indian Ocean when the Portuguese arrived",
+"It caused the collapse of Indian Ocean trade",
+"It forced Chinese merchants to stop trading overseas"
 ],
 "a": 1,
-"e": "Their ideas anticipated Luther, but without the printing press they were easier to suppress — Hus was executed in 1415."
+"e": "China had the ability but chose to focus elsewhere; private Asian trade continued, but no great state navy patrolled the ocean when the Portuguese arrived."
 },
 {
-"u": "3.2",
-"t": 2,
-"q": "Anabaptists were persecuted by both Catholics and other Protestants mainly because they:",
-"o": [
-"Supported the pope",
-"Rejected infant baptism and favored separating church and state",
-"Wanted to restore indulgences",
-"Were Ottoman allies"
-],
-"a": 1,
-"e": "Their views challenged both religious and political order of the time."
-},
-{
-"u": "4.2",
-"t": 1,
-"q": "The Catholic Church's response to the Protestant Reformation is called the:",
-"o": [
-"Renaissance",
-"Catholic Reformation (Counter-Reformation)",
-"Enlightenment",
-"Peace of Augsburg"
-],
-"a": 1,
-"e": "The Church reformed abuses and reaffirmed its doctrines to stop Protestantism's spread."
-},
-{
-"u": "4.2",
-"t": 2,
-"q": "The Council of Trent:",
-"o": [
-"Accepted Luther's faith-alone teaching",
-"Reaffirmed Catholic doctrine, ended the sale of indulgences, and required better-educated priests",
-"Created the Church of England",
-"Ended the Thirty Years' War"
-],
-"a": 1,
-"e": "Trent clarified doctrine (faith AND works, seven sacraments) while fixing abuses Protestants had criticized."
-},
-{
-"u": "4.2",
-"t": 1,
-"q": "Who founded the Jesuits?",
-"o": [
-"Ignatius of Loyola",
-"John Calvin",
-"Johann Tetzel",
-"Henry IV"
-],
-"a": 0,
-"e": "Loyola founded the Society of Jesus in 1540."
-},
-{
-"u": "4.2",
-"t": 2,
-"q": "The Jesuits strengthened the Catholic Church mainly through:",
-"o": [
-"Selling indulgences",
-"Education, founding schools, and missionary work around the world",
-"Writing the Ninety-five Theses",
-"Supporting Calvin"
-],
-"a": 1,
-"e": "Jesuit schools trained leaders, and missionaries spread Catholicism to Asia, Africa, and the Americas."
-},
-{
-"u": "4.2",
-"t": 2,
-"q": "The Index of Forbidden Books was created to:",
-"o": [
-"Promote Protestant books",
-"Prevent Catholics from reading works judged dangerous to faith",
-"Catalog Renaissance art",
-"List banned weapons"
-],
-"a": 1,
-"e": "Censorship was one tool of the Catholic Reformation, alongside the Inquisition."
-},
-{
-"u": "4.1",
-"t": 2,
-"q": "The Edict of Nantes (1598) granted religious toleration to:",
-"o": [
-"English Catholics",
-"French Huguenots",
-"German Lutherans",
-"Spanish Jews"
-],
-"a": 1,
-"e": "Henry IV ended the French Wars of Religion by granting Protestants rights while keeping France officially Catholic."
-},
-{
-"u": "4.1",
-"t": 1,
-"q": "The Thirty Years' War lasted from:",
-"o": [
-"1517–1547",
-"1618–1648",
-"1453–1483",
-"1555–1585"
-],
-"a": 1,
-"e": "It began in Bohemia in 1618 and ended with the Peace of Westphalia in 1648."
-},
-{
-"u": "4.1",
+"u": "1.1",
 "t": 3,
-"q": "Why is the Peace of Westphalia (1648) considered a turning point?",
+"q": "Which statement about Magellan's expedition (1519–1522) is most accurate?",
 "o": [
-"It reunited all Christians",
-"It ended large-scale religious wars in Central Europe, recognized Calvinism, and strengthened independent, sovereign states over the pope and emperor",
-"It started the Renaissance",
-"It created the Church of England"
-],
-"a": 1,
-"e": "After Westphalia, states — not religious authorities — became the main actors in European politics."
-},
-{
-"u": "4.1",
-"t": 3,
-"q": "The St. Bartholomew's Day Massacre (1572) shows that the Reformation:",
-"o": [
-"Was entirely peaceful",
-"Produced violent conflict, as French Catholics killed thousands of Huguenots",
-"Ended in France immediately",
-"Was supported by all French nobles"
-],
-"a": 1,
-"e": "Religious division turned into civil war in France until the Edict of Nantes."
-},
-{
-"u": "4.3",
-"t": 3,
-"q": "Which statement BEST describes a long-term effect of the Reformation?",
-"o": [
-"Europe became permanently religiously divided, monarchs and states gained power over churches, and education and literacy expanded",
-"Europe became entirely Protestant",
-"The pope gained control over all kings",
-"Printing was banned"
-],
-"a": 0,
-"e": "Christian unity in Western Europe ended; secular rulers gained authority; both sides founded schools to teach their faith."
-},
-{
-"u": "4.2",
-"t": 2,
-"q": "Which was NOT a goal of the Catholic Reformation?",
-"o": [
-"End abuses such as the sale of indulgences",
-"Reaffirm Catholic teaching",
-"Accept salvation by faith alone",
-"Win back people who had become Protestant"
+"Magellan sailed his own ship back to Spain in triumph",
+"The expedition proved Earth was flat in the south",
+"It showed the true size of the Pacific and was completed by survivors after Magellan died in the Philippines",
+"It was sponsored by Portugal to claim the Americas"
 ],
 "a": 2,
-"e": "The Council of Trent rejected faith alone and taught that faith and good works both matter."
-},
-{
-"u": "4.2",
-"t": 2,
-"q": "The Inquisition was used during the Catholic Reformation to:",
-"o": [
-"Print Bibles",
-"Investigate and punish heresy",
-"Found universities",
-"Make peace with Protestants"
-],
-"a": 1,
-"e": "Church courts enforced orthodoxy, sometimes harshly."
-},
-{
-"u": "1.1",
-"t": 2,
-"q": "Venice became wealthy mainly because it:",
-"o": [
-"Controlled sea trade between Europe and the eastern Mediterranean",
-"Had the largest army in Europe",
-"Was the seat of the pope",
-"Mined gold in the Alps"
-],
-"a": 0,
-"e": "Venice's fleets and merchants carried spices, silk, and other goods between Europe, Ottoman lands, and Asian trade routes."
-},
-{
-"u": "1.1",
-"t": 2,
-"q": "Italian city-states often hired condottieri because:",
-"o": [
-"They had no money",
-"Wealthy merchant states preferred to pay professional mercenary captains rather than raise citizen armies",
-"The pope required it",
-"They were forbidden to own weapons"
-],
-"a": 1,
-"e": "Rich city-states bought military protection. Some condottieri, like Francesco Sforza of Milan, seized power for themselves."
-},
-{
-"u": "1.1",
-"t": 3,
-"q": "Why did banking families like the Medici become powerful in politics as well as art?",
-"o": [
-"They were elected kings",
-"Their wealth let them lend to rulers and popes, reward supporters, and fund buildings and art that displayed their status",
-"They controlled the army by law",
-"They owned all the land in Italy"
-],
-"a": 1,
-"e": "Money brought influence: loans created obligations, patronage built loyalty, and art projected power. The Medici even produced popes."
+"e": "Magellan was killed at Mactan in 1521 by forces led by Lapu-Lapu; Juan Sebastián Elcano brought the Victoria home in 1522."
 },
 {
 "u": "1.2",
 "t": 1,
-"q": "Which describes the Renaissance view of the individual?",
+"q": "What was the capital of the Mexica (Aztec) Empire?",
 "o": [
-"Individuals were unimportant",
-"Individual talent and achievement deserved recognition and fame",
-"Only kings could achieve greatness",
-"Individuals should avoid education"
+"Cusco",
+"Cajamarca",
+"Tlaxcala",
+"Tenochtitlan"
+],
+"a": 3,
+"e": "Tenochtitlan stood on an island in Lake Texcoco; Mexico City was built on its ruins."
+},
+{
+"u": "1.2",
+"t": 1,
+"q": "Which conquistador captured the Inca ruler Atahualpa in 1532?",
+"o": [
+"Francisco Pizarro",
+"Hernán Cortés",
+"Vasco Núñez de Balboa",
+"Juan Ponce de León"
+],
+"a": 0,
+"e": "Pizarro seized Atahualpa at Cajamarca, collected a huge ransom, and then had him executed in 1533."
+},
+{
+"u": "1.2",
+"t": 2,
+"q": "Why was Malintzin so important to Cortés's success?",
+"o": [
+"She led the Spanish cavalry",
+"She interpreted languages and explained local politics, helping Cortés form alliances",
+"She was Moctezuma's daughter",
+"She gave the Spanish a map of the Inca roads"
 ],
 "a": 1,
-"e": "Individualism prized personal achievement — artists signed works and writers celebrated human potential."
+"e": "Speaking Nahuatl and a Maya language, she made communication and diplomacy possible — a key reason the alliances worked."
+},
+{
+"u": "1.2",
+"t": 2,
+"q": "Why did many Tlaxcalans fight alongside the Spanish against Tenochtitlan?",
+"o": [
+"They were Spanish settlers",
+"Cortés paid them in silver",
+"They had long resisted Mexica domination and saw a chance to defeat their enemy",
+"They had converted to Christianity before 1519"
+],
+"a": 2,
+"e": "Indigenous peoples made their own political choices; for Tlaxcala, the Spanish were useful allies against an old rival."
+},
+{
+"u": "1.2",
+"t": 2,
+"q": "How did the Inca civil war help Pizarro?",
+"o": [
+"It moved the Inca capital to the coast",
+"It ended all Inca use of roads",
+"It made the Inca destroy their own gold",
+"It left the empire divided and weakened just as the Spanish arrived"
+],
+"a": 3,
+"e": "Atahualpa had just defeated his half-brother Huáscar; the divisions made it easier for a small Spanish force to exploit the situation."
+},
+{
+"u": "1.2",
+"t": 2,
+"q": "What happened to Tenochtitlan in 1520–1521 that greatly weakened its defenders?",
+"o": [
+"A smallpox epidemic killed many people, including the new ruler Cuitláhuac",
+"A volcano erupted",
+"The lake dried up",
+"The Inca invaded from the south"
+],
+"a": 0,
+"e": "Smallpox swept the city in 1520, months before the final siege — disease and Indigenous allies were as decisive as Spanish weapons."
+},
+{
+"u": "1.2",
+"t": 3,
+"q": "A student claims, \"A few hundred Spaniards conquered the Aztec Empire with guns and horses.\" Which evidence best challenges this claim?",
+"o": [
+"Spaniards had better armor than Aztec warriors",
+"Tens of thousands of Indigenous allies and a smallpox epidemic were central to Tenochtitlan's fall",
+"Cortés had permission from the king",
+"The Aztec had no army"
+],
+"a": 1,
+"e": "The \"few hundred\" story erases Indigenous agency and disease; Tlaxcalan and other allies supplied most of the soldiers."
+},
+{
+"u": "1.2",
+"t": 3,
+"q": "Which factor was shared by BOTH the fall of the Aztec and the fall of the Inca?",
+"o": [
+"A Spanish victory at sea",
+"An alliance with Portugal",
+"Epidemic disease that struck before or during the conquest",
+"The conquistador was the same person"
+],
+"a": 2,
+"e": "Smallpox hit Tenochtitlan in 1520 and spread through the Andes before Pizarro arrived, weakening both empires."
 },
 {
 "u": "1.3",
 "t": 1,
-"q": "Who designed the dome of Florence Cathedral?",
+"q": "Pardis Sabeti is best described as a —",
 "o": [
-"Michelangelo",
-"Filippo Brunelleschi",
-"Raphael",
-"Vasari"
+"marine archaeologist",
+"Spanish historian",
+"volcano researcher",
+"computational geneticist who studies how disease shapes human genes"
 ],
-"a": 1,
-"e": "Brunelleschi engineered the dome (completed 1436) using innovative techniques, including a double shell and herringbone brickwork."
+"a": 3,
+"e": "She uses computer and statistical methods to find genetic changes that helped humans survive diseases."
+},
+{
+"u": "1.3",
+"t": 1,
+"q": "How is malaria spread?",
+"o": [
+"By mosquitoes carrying a parasite",
+"By contaminated water only",
+"By rodents",
+"By coughing and sneezing"
+],
+"a": 0,
+"e": "Malaria is caused by a parasite transmitted by mosquito bites."
 },
 {
 "u": "1.3",
 "t": 2,
-"q": "Michelangelo's David became a symbol of Florence because it represented:",
+"q": "Why is the sickle cell trait a classic example of natural selection?",
 "o": [
-"The pope's power",
-"A small, determined republic standing up to stronger enemies",
-"The Ottoman Empire",
-"Northern Renaissance art"
+"It appeared after 1492",
+"It gives partial protection against malaria, so it became common where malaria was widespread",
+"It protects against smallpox",
+"It was spread by European explorers"
 ],
 "a": 1,
-"e": "The biblical David defeated Goliath; Florentines identified with the underdog defending its liberty."
+"e": "People with the trait were more likely to survive malaria and have children, so the gene became more common in malaria regions."
+},
+{
+"u": "1.3",
+"t": 2,
+"q": "During the 2014 Ebola outbreak, how did Sabeti's team help?",
+"o": [
+"They discovered the Ebola vaccine",
+"They closed West African borders",
+"They sequenced virus genomes and shared the data openly to track how it spread",
+"They treated patients in Europe"
+],
+"a": 2,
+"e": "Genome data showed the virus spreading between people; sharing it publicly helped researchers worldwide respond faster."
+},
+{
+"u": "1.3",
+"t": 2,
+"q": "How did malaria and other tropical diseases shape European colonization of Africa before 1800?",
+"o": [
+"They had no effect",
+"They made Europeans settle Africa's interior quickly",
+"They wiped out African populations",
+"They killed many Europeans and helped keep European activity mostly on the coast"
+],
+"a": 3,
+"e": "High death rates among newcomers limited Europeans largely to coastal forts and trading posts for centuries."
+},
+{
+"u": "1.3",
+"t": 3,
+"q": "Which statement best connects Sabeti's research to the history of exploration?",
+"o": [
+"Disease has shaped both human genes and the outcome of encounters, such as smallpox in the Americas and malaria in Africa",
+"Genetics proves Europeans were naturally stronger",
+"Diseases only mattered in the modern era",
+"Explorers carried no diseases"
+],
+"a": 0,
+"e": "Who had immunity — built over generations of exposure — helped decide who survived encounters; no group was \"naturally stronger.\""
+},
+{
+"u": "1.4",
+"t": 1,
+"q": "Which crop was domesticated in the Andes and later boosted Europe's population?",
+"o": [
+"Wheat",
+"Potato",
+"Rice",
+"Sugarcane"
+],
+"a": 1,
+"e": "The potato produced many calories on small plots and spread across Europe after the 1500s."
+},
+{
+"u": "1.4",
+"t": 1,
+"q": "Which animal did the Spanish bring to the Americas, where none had lived for thousands of years before 1492?",
+"o": [
+"Llama",
+"Turkey",
+"Horse",
+"Guinea pig"
+],
+"a": 2,
+"e": "Llamas, turkeys, and guinea pigs were native American animals; horses came with Europeans."
 },
 {
 "u": "1.4",
 "t": 2,
-"q": "What was Maurizio Seracini trying to find in Florence's Palazzo Vecchio?",
+"q": "Why were Old World diseases so deadly in the Americas?",
 "o": [
-"Michelangelo's lost sculpture",
-"Traces of Leonardo's unfinished mural, The Battle of Anghiari",
-"The Medici treasury",
-"A Roman temple"
+"Indigenous Americans had poor diets",
+"Europeans spread them on purpose everywhere",
+"The climate made diseases stronger",
+"Indigenous peoples had no prior exposure and so no immunity"
 ],
-"a": 1,
-"e": "Seracini used scientific imaging to search for Leonardo's lost mural, which some believe may survive behind a later painting by Vasari."
+"a": 3,
+"e": "These were virgin-soil epidemics: with no inherited or acquired immunity, whole communities fell sick at once."
 },
 {
 "u": "1.4",
 "t": 2,
-"q": "Art diagnostics uses which tools to study paintings without destroying them?",
+"q": "How did cassava and maize affect Africa after the Columbian Exchange?",
 "o": [
-"Only a magnifying glass",
-"Infrared, X-ray, and other imaging plus chemical analysis",
-"Repainting the surface",
-"Carbon dating every brushstroke"
+"They became important staple crops that could grow in difficult conditions",
+"They were banned by African rulers",
+"They caused famines",
+"They only grew in Egypt"
+],
+"a": 0,
+"e": "Portuguese traders carried American crops to Africa, where they became major food sources."
+},
+{
+"u": "1.4",
+"t": 2,
+"q": "Which is an example of the Columbian Exchange moving from the Americas to the rest of the world?",
+"o": [
+"Sugarcane to Brazil",
+"Tomatoes and chili peppers to Europe and Asia",
+"Cattle to Mexico",
+"Wheat to Peru"
 ],
 "a": 1,
-"e": "Imaging can reveal hidden sketches and earlier layers, and tiny samples can identify pigments."
+"e": "Tomatoes, chili peppers, maize, potatoes, and cacao were American crops that transformed foods across the world."
 },
 {
 "u": "1.4",
 "t": 3,
-"q": "Why did the search for The Battle of Anghiari stir debate?",
+"q": "Which statement is the best evaluation of the Columbian Exchange?",
 "o": [
-"Everyone agreed it should be done",
-"Searching could damage Vasari's existing masterpiece, so researchers weighed discovery against preservation",
-"It was in another country",
-"Leonardo never existed"
+"It benefited everyone equally",
+"It only affected Europe",
+"It enriched diets worldwide but brought catastrophic population loss to the Americas and fueled the Atlantic slave trade",
+"It had little long-term effect"
+],
+"a": 2,
+"e": "Its effects were deeply unequal: new foods helped populations grow elsewhere while the Americas suffered enormous loss and Africans were forcibly transported."
+},
+{
+"u": "1.4",
+"t": 3,
+"q": "How did the arrival of horses change life for some Indigenous nations of the Great Plains?",
+"o": [
+"They abandoned hunting",
+"Horses made them dependent on Spain",
+"Horses had no effect",
+"They built powerful mobile societies based on horseback hunting and warfare"
+],
+"a": 3,
+"e": "Nations such as the Comanche used horses to hunt bison and became regional powers — Indigenous people adapting the exchange to their own goals."
+},
+{
+"u": "2.1",
+"t": 1,
+"q": "Which Portuguese captain reached Calicut, India, by sea in 1498?",
+"o": [
+"Vasco da Gama",
+"Bartolomeu Dias",
+"Pedro Álvares Cabral",
+"Afonso de Albuquerque"
+],
+"a": 0,
+"e": "Da Gama's fleet sailed around Africa and across the Indian Ocean to India's Malabar Coast."
+},
+{
+"u": "2.1",
+"t": 1,
+"q": "Which city became the capital of Portugal's Asian empire after 1510?",
+"o": [
+"Malacca",
+"Goa",
+"Macau",
+"Hormuz"
 ],
 "a": 1,
-"e": "Drilling small probes behind a historic fresco raised conservation and ethical concerns — a real tension in historical research."
+"e": "Albuquerque captured Goa in 1510 and made it the center of Portuguese power in Asia."
+},
+{
+"u": "2.1",
+"t": 2,
+"q": "What was the main strategy of Afonso de Albuquerque?",
+"o": [
+"Conquer all of India",
+"Convert the Mughal emperor",
+"Seize key ports and chokepoints to control sea trade",
+"Build farms across Southeast Asia"
+],
+"a": 2,
+"e": "By holding places like Goa, Malacca, and Hormuz, Portugal could tax and control shipping without ruling large territories."
+},
+{
+"u": "2.1",
+"t": 2,
+"q": "What was a cartaz?",
+"o": [
+"A Portuguese warship",
+"A spice",
+"A Swahili city",
+"A pass Asian ships had to buy from Portugal to trade safely"
+],
+"a": 3,
+"e": "Ships without one risked attack — the Portuguese used naval guns to tax a trade system they had not built."
+},
+{
+"u": "2.1",
+"t": 2,
+"q": "Why was Malacca so valuable to whoever controlled it?",
+"o": [
+"It sat on the strait linking the Indian Ocean and the South China Sea",
+"It had the world's largest gold mine",
+"It was the only source of nutmeg",
+"It was the capital of the Ming dynasty"
+],
+"a": 0,
+"e": "Almost all shipping between India and China passed through the Strait of Malacca."
+},
+{
+"u": "2.1",
+"t": 3,
+"q": "Which statement best describes Portugal's power in the Indian Ocean in the 1500s?",
+"o": [
+"Portugal controlled all trade from Africa to Japan",
+"Portugal was powerful at sea in key places but carried only part of the region's trade, and Asian merchants kept trading",
+"Portugal ruled most of India",
+"Portugal had no warships in Asia"
+],
+"a": 1,
+"e": "Portugal's cannons let it seize ports and tax ships, but most Indian Ocean trade remained in Asian and African hands."
+},
+{
+"u": "2.1",
+"t": 3,
+"q": "Why were rulers in Calicut unimpressed with the goods da Gama brought in 1498?",
+"o": [
+"They did not use money",
+"They only wanted silver from Peru",
+"Cloth, hats, and similar goods were cheap compared to what Indian Ocean merchants already traded",
+"They refused to trade with anyone"
+],
+"a": 2,
+"e": "Europe produced little that Asian markets wanted; this is why Europeans later relied on force and American silver."
 },
 {
 "u": "2.2",
 "t": 1,
-"q": "Who painted The School of Athens?",
+"q": "In what year was the Dutch East India Company (VOC) founded?",
 "o": [
-"Leonardo da Vinci",
-"Michelangelo",
-"Raphael",
-"Botticelli"
+"1498",
+"1571",
+"1652",
+"1602"
 ],
-"a": 2,
-"e": "Raphael painted it in the Vatican around 1509–1511 for Pope Julius II."
+"a": 3,
+"e": "The VOC was chartered in 1602, two years after England's East India Company."
 },
 {
 "u": "2.2",
-"t": 2,
-"q": "In The School of Athens, Plato points upward while Aristotle holds his hand out level, palm down. What does this contrast represent?",
+"t": 1,
+"q": "Where did the VOC set up its Asian headquarters in 1619?",
 "o": [
-"They are arguing about the weather",
-"Plato's focus on ideal, unseen forms versus Aristotle's focus on the observable world",
-"Plato is older",
-"Aristotle is praying"
-],
-"a": 1,
-"e": "The gestures summarize their philosophies — a clever way to show ideas in paint."
-},
-{
-"u": "2.2",
-"t": 3,
-"q": "Why does The School of Athens hang in the Vatican, a Christian space?",
-"o": [
-"It was stolen",
-"Renaissance humanists saw classical philosophy and Christian faith as compatible; the room pairs it with a fresco on theology",
-"The pope disliked it",
-"It was painted for a mosque"
-],
-"a": 1,
-"e": "Humanism blended classical learning with Christianity rather than rejecting religion."
-},
-{
-"u": "2.2",
-"t": 2,
-"q": "The grand arches and perspective in The School of Athens show Raphael's use of:",
-"o": [
-"Medieval flat backgrounds",
-"Classical architecture and linear perspective to create depth",
-"Abstract shapes",
-"Oil painting on canvas"
-],
-"a": 1,
-"e": "The vanishing point draws your eye to Plato and Aristotle at the center."
-},
-{
-"u": "2.3",
-"t": 2,
-"q": "Cassandra Fedele is significant because she:",
-"o": [
-"Painted the Sistine Chapel",
-"Was a celebrated female humanist scholar who publicly praised the value of learning",
-"Founded the Jesuits",
-"Invented the printing press"
-],
-"a": 1,
-"e": "Her fame shows humanist education reached some elite women, though most women were excluded from formal learning."
-},
-{
-"u": "2.3",
-"t": 3,
-"q": "When analyzing Machiavelli's The Prince as a source, why does it matter that he wrote it hoping to win favor with the Medici?",
-"o": [
-"It doesn't matter",
-"His purpose and audience may have shaped his advice — sourcing helps judge a document's perspective and reliability",
-"It proves the book is false",
-"It means he was a Medici"
-],
-"a": 1,
-"e": "Considering purpose and audience (sourcing) is essential to any DBQ."
-},
-{
-"u": "2.3",
-"t": 2,
-"q": "More's Utopia and Machiavelli's The Prince take different approaches because:",
-"o": [
-"Utopia describes an imagined ideal society to criticize real problems, while The Prince describes how power actually works",
-"They are the same book",
-"Both describe real countries",
-"Both are religious texts"
+"Batavia, on Java",
+"Goa, in India",
+"Manila, in the Philippines",
+"Calicut, in India"
 ],
 "a": 0,
-"e": "One is idealistic satire; the other is political realism — both are humanist responses to their world."
+"e": "Batavia, today's Jakarta, was founded by Jan Pieterszoon Coen."
 },
 {
-"u": "2.4",
+"u": "2.2",
 "t": 2,
-"q": "Why do historians speak of \"renaissances\" in other parts of the world?",
+"q": "Why did a joint-stock company make long-distance trade easier to fund?",
 "o": [
-"Europe copied all of them",
-"Many societies had periods of great achievement in art, science, and learning — Europe's was one of several",
-"Only Europe had culture",
-"The word is only used for Italy"
+"The government paid every cost",
+"Many investors shared the risk and the profits",
+"Ships were guaranteed not to sink",
+"Only one rich person had to pay"
 ],
 "a": 1,
-"e": "A global view shows cultural flowerings across Eurasia and beyond, often connected through trade and exchange."
+"e": "Spreading risk across many shareholders meant one lost ship did not ruin anyone, so more money flowed into voyages."
 },
 {
-"u": "2.4",
+"u": "2.2",
 "t": 2,
-"q": "Ulugh Beg is known for:",
+"q": "What made the VOC more than an ordinary business?",
 "o": [
-"Painting the Mona Lisa",
-"Building an observatory in Samarkand and producing an accurate star catalog",
-"Leading the Reformation",
-"Discovering America"
+"It was run by the Catholic Church",
+"It had no investors",
+"The Dutch government let it build forts, sign treaties, and wage war",
+"It traded only in Europe"
 ],
-"a": 1,
-"e": "The Timurid ruler's observatory made Samarkand a center of astronomy in the 1400s."
+"a": 2,
+"e": "The VOC acted almost like a state in Asia, using military force to win trade advantages."
 },
 {
-"u": "2.4",
+"u": "2.2",
 "t": 2,
-"q": "The Ottoman architect Sinan is comparable to Brunelleschi because both:",
+"q": "What happened in the Banda Islands in 1621?",
 "o": [
-"Were popes",
-"Designed monumental domed buildings that symbolized the power and culture of their societies",
-"Wrote The Prince",
-"Led armies"
+"The Bandanese defeated the Dutch",
+"The Portuguese built a cathedral there",
+"The islands joined the Ming Empire",
+"VOC forces killed, enslaved, or expelled most of the Bandanese to control nutmeg"
+],
+"a": 3,
+"e": "Coen's conquest destroyed Banda's society; the land was given to Dutch planters using enslaved labor."
+},
+{
+"u": "2.2",
+"t": 3,
+"q": "How did the VOC's approach differ from Portugal's in Asia?",
+"o": [
+"The VOC used greater capital and organization to pursue monopolies on specific spices, controlling production itself",
+"The VOC avoided using force",
+"The VOC focused on converting people to Catholicism",
+"The VOC traded only with Europeans"
+],
+"a": 0,
+"e": "Both used force, but the VOC's huge investment base let it control where spices were grown, not just which ports ships used."
+},
+{
+"u": "2.2",
+"t": 3,
+"q": "Why did the VOC establish the Cape Colony in 1652?",
+"o": [
+"To mine gold in South Africa",
+"To resupply ships making the long voyage between Europe and Asia",
+"To fight the Ottoman Empire",
+"To grow nutmeg"
 ],
 "a": 1,
-"e": "Sinan's Süleymaniye Mosque and Brunelleschi's dome were both engineering triumphs and civic statements."
+"e": "It began as a supply station, but settlers expanded onto Khoekhoe lands — a trade outpost turning into a settler colony."
+},
+{
+"u": "2.3",
+"t": 1,
+"q": "What natural force made sailing schedules in the Indian Ocean predictable?",
+"o": [
+"Ocean currents near Antarctica",
+"Tides",
+"Monsoon winds",
+"Volcanic activity"
+],
+"a": 2,
+"e": "Monsoon winds reverse direction seasonally, so sailors could plan voyages out and back."
+},
+{
+"u": "2.3",
+"t": 2,
+"q": "From 1641, which Europeans were the only ones allowed to trade with Japan, at Dejima?",
+"o": [
+"The Portuguese",
+"The English",
+"The Spanish",
+"The Dutch"
+],
+"a": 3,
+"e": "Japan's Tokugawa shoguns expelled the Portuguese and limited contact to a Dutch post on a small island in Nagasaki harbor."
+},
+{
+"u": "2.3",
+"t": 2,
+"q": "What does Japan's control over the Dutch at Dejima show about trade encounters?",
+"o": [
+"Asian states often set the terms on which Europeans could trade",
+"Europeans controlled Japan",
+"Japan refused all foreign trade",
+"The Dutch conquered Nagasaki"
+],
+"a": 0,
+"e": "Europeans did not dominate everywhere; powerful Asian states limited and regulated them."
+},
+{
+"u": "2.3",
+"t": 2,
+"q": "Which group was among the most important merchants in the Indian Ocean before and after Europeans arrived?",
+"o": [
+"Viking traders",
+"Gujarati merchants",
+"Inca merchants",
+"Hanseatic merchants"
+],
+"a": 1,
+"e": "Gujarati traders carried Indian cloth to East Africa and Southeast Asia for centuries."
+},
+{
+"u": "2.3",
+"t": 3,
+"q": "A historian reads a Portuguese captain's account of a battle with Indian ships. What is the best first sourcing question?",
+"o": [
+"How long is the document?",
+"Was it written in ink?",
+"What did the captain have to gain by describing the battle a certain way to his readers?",
+"Is the captain famous today?"
+],
+"a": 2,
+"e": "Sourcing asks about purpose and audience — a captain writing to his king may exaggerate enemy threats or his own success."
+},
+{
+"u": "2.3",
+"t": 3,
+"q": "Which pair of sources would give the most balanced view of the Portuguese arrival in East Africa?",
+"o": [
+"Two Portuguese ship logs",
+"Two later European histories",
+"A Portuguese royal decree and a Lisbon merchant's letter",
+"A Portuguese account and a chronicle from a Swahili city such as Kilwa"
+],
+"a": 3,
+"e": "Balanced history compares perspectives from both sides of an encounter."
+},
+{
+"u": "3.1",
+"t": 1,
+"q": "In the Spanish colonies, people born in Spain were called —",
+"o": [
+"peninsulares",
+"criollos",
+"mestizos",
+"encomenderos"
+],
+"a": 0,
+"e": "Peninsulares came from the Iberian Peninsula and held the top offices."
+},
+{
+"u": "3.1",
+"t": 1,
+"q": "Who was the Dominican friar who wrote against Spanish cruelty toward Indigenous people?",
+"o": [
+"Juan Ginés de Sepúlveda",
+"Bartolomé de Las Casas",
+"Francisco de Toledo",
+"Hernán Cortés"
+],
+"a": 1,
+"e": "Las Casas, once an encomienda holder himself, became the most famous critic of Spanish abuses."
 },
 {
 "u": "3.1",
 "t": 2,
-"q": "The German Peasants' War (1524–1525) showed that:",
+"q": "What was the encomienda system supposed to do, and what did it actually do?",
 "o": [
-"Luther supported all rebellions",
-"Some people used Reformation ideas to challenge social order, but Luther sided with the princes, who crushed the revolt",
-"Peasants won their demands",
-"The pope led the peasants"
+"Give land to Indigenous people; it did",
+"Free enslaved Africans; it did",
+"Grant colonists Indigenous labor in exchange for protection and religious teaching; in practice it often meant forced labor and abuse",
+"Tax Spanish merchants; it ended trade"
+],
+"a": 2,
+"e": "The legal promises of protection were rarely kept; the system enriched colonists at Indigenous expense."
+},
+{
+"u": "3.1",
+"t": 2,
+"q": "Why did criollos often resent peninsulares?",
+"o": [
+"Criollos were not allowed to own land",
+"Criollos had to pay the mita",
+"Criollos were forbidden to speak Spanish",
+"Peninsulares held the top government and church offices, even though criollos were often wealthy"
+],
+"a": 3,
+"e": "Being born in the Americas kept criollos from the highest positions — a grievance that later fed independence movements."
+},
+{
+"u": "3.1",
+"t": 2,
+"q": "What were the New Laws of 1542 meant to do?",
+"o": [
+"Ban the enslavement of Indigenous people and limit the encomienda",
+"Create the casta system",
+"Open the colonies to Dutch trade",
+"Close all missions"
+],
+"a": 0,
+"e": "Influenced by reformers like Las Casas, the crown tried to curb abuses; colonists fought back and enforcement was weak."
+},
+{
+"u": "3.1",
+"t": 3,
+"q": "What was the central question of the Valladolid debate (1550–1551) between Las Casas and Sepúlveda?",
+"o": [
+"Whether Spain should trade with China",
+"Whether Indigenous Americans were fully rational people with rights, or could justly be conquered and forced to serve",
+"Whether to move the capital to Lima",
+"Whether to use caravels or galleons"
 ],
 "a": 1,
-"e": "Luther wanted religious reform, not social revolution; his support for the princes kept them on his side."
+"e": "Sepúlveda argued conquest was justified; Las Casas argued Indigenous people had full humanity and rights. No clear winner was declared."
+},
+{
+"u": "3.1",
+"t": 3,
+"q": "Las Casas early in his career suggested bringing enslaved Africans to replace Indigenous laborers, a view he later regretted. What does this show?",
+"o": [
+"Las Casas supported slavery all his life",
+"Africans were not enslaved in the Americas",
+"Even reformers of the time could hold views that harmed other groups, and their ideas could change",
+"The Spanish crown banned African slavery"
+],
+"a": 2,
+"e": "Historical figures are complex; Las Casas later condemned African slavery too, but the trade had grown enormously."
 },
 {
 "u": "3.2",
 "t": 1,
-"q": "Huldrych Zwingli led the Reformation in which city?",
+"q": "Where was the massive silver mountain found in 1545?",
 "o": [
-"Geneva",
-"Zurich",
-"Wittenberg",
-"Rome"
+"Zacatecas",
+"Acapulco",
+"Manila",
+"Potosí"
 ],
-"a": 1,
-"e": "Zwingli led reform in Zurich; Calvin later led Geneva."
+"a": 3,
+"e": "Potosí's Cerro Rico in the Andes became the largest single source of silver in the world."
 },
 {
-"u": "4.1",
-"t": 2,
-"q": "Charles V struggled to stop the Reformation mainly because he:",
-"o": [
-"Agreed with Luther",
-"Was fighting France and the Ottomans at the same time and needed the support of German princes",
-"Had no army",
-"Lived in England"
-],
-"a": 1,
-"e": "Ruling a huge, scattered empire meant constant wars on several fronts, which gave Lutheran princes room to grow."
-},
-{
-"u": "4.1",
-"t": 2,
-"q": "The Dutch Revolt against Spain was caused by:",
-"o": [
-"Only trade disputes",
-"A mix of Protestant faith, heavy Spanish taxes, and defense of local rights against Philip II",
-"A volcanic eruption",
-"Ottoman invasion"
-],
-"a": 1,
-"e": "Religion, money, and self-government combined. The northern provinces became the Dutch Republic."
-},
-{
-"u": "4.1",
-"t": 2,
-"q": "What was the result of the Spanish Armada in 1588?",
-"o": [
-"Spain conquered England",
-"The Armada was defeated by English ships and storms, a blow to Spanish prestige",
-"England became Catholic",
-"France joined Spain"
-],
-"a": 1,
-"e": "The defeat protected Protestant England and showed the limits of Habsburg power."
-},
-{
-"u": "4.1",
-"t": 3,
-"q": "How did the Ottoman Empire indirectly help Protestantism survive?",
-"o": [
-"It converted to Protestantism",
-"Ottoman pressure, such as the 1529 Siege of Vienna, forced Charles V to focus on the east and compromise with German princes",
-"It funded Luther",
-"It banned Catholicism"
-],
-"a": 1,
-"e": "Habsburg resources were stretched thin; defending against the Ottomans took priority over crushing Lutherans."
-},
-{
-"u": "4.1",
+"u": "3.2",
 "t": 1,
-"q": "Which event sparked the Thirty Years' War in 1618?",
+"q": "Which route did the Manila galleons sail?",
 "o": [
-"The Defenestration of Prague",
-"The Diet of Worms",
-"The Spanish Armada",
-"The Council of Trent"
+"Across the Pacific between Acapulco and Manila",
+"Across the Atlantic between Seville and Veracruz",
+"Around Africa to India",
+"From Brazil to Angola"
 ],
 "a": 0,
-"e": "Protestant nobles threw Habsburg officials out of a window in Prague, triggering war in the Holy Roman Empire."
+"e": "From 1565 to 1815, galleons carried American silver west to Manila and Asian goods east to Mexico."
 },
 {
-"u": "4.1",
+"u": "3.2",
 "t": 2,
-"q": "The Habsburgs controlled such a large empire mainly through:",
+"q": "Why did China have such a large demand for silver in the late 1500s?",
 "o": [
-"Conquest of China",
-"Strategic marriages and inheritance",
-"Elections by the people",
-"Purchasing land from the pope"
+"China used silver to build ships",
+"The Ming government required many taxes to be paid in silver",
+"China had no metal of its own",
+"Silver was used as medicine"
 ],
 "a": 1,
-"e": "Marriage alliances brought Austria, Spain, the Netherlands, and more under one family."
+"e": "The Single Whip reform combined taxes into one silver payment, so China pulled in silver from the Americas and Japan."
 },
 {
-"u": "4.3",
+"u": "3.2",
 "t": 2,
-"q": "Matteo Ricci gained acceptance in Ming China partly by:",
+"q": "What was the mita?",
 "o": [
-"Forcing conversions",
-"Learning Chinese, sharing European science and maps, and adapting Christian teaching to Chinese culture",
-"Leading an army",
-"Banning Confucianism"
+"A Spanish coin",
+"A tax on spices",
+"A forced labor draft requiring Indigenous men to work in mines",
+"A Catholic mission"
 ],
-"a": 1,
-"e": "His accommodation approach respected Chinese learning — and later stirred debate within the Church."
+"a": 2,
+"e": "Adapted from an Inca labor system, the colonial mita sent workers to Potosí, where many died."
 },
 {
-"u": "4.3",
+"u": "3.2",
 "t": 2,
-"q": "King Afonso I of Kongo is significant because he:",
+"q": "Why were silver workers at Potosí at risk of mercury poisoning?",
 "o": [
-"Opposed Christianity",
-"Adopted Catholicism and built ties with Portugal while protesting the harm of the slave trade",
-"Founded the Jesuits",
-"Conquered Portugal"
+"Mercury was in the drinking water naturally",
+"Mercury was added to food",
+"Mercury was used for coins",
+"Mercury was used to separate silver from ore"
 ],
-"a": 1,
-"e": "His letters show an African ruler engaging with Christianity and Europe on his own terms — and the costs of that relationship."
+"a": 3,
+"e": "Mercury amalgamation made mining more profitable but exposed workers to toxic fumes and contact."
 },
 {
-"u": "4.3",
+"u": "3.2",
 "t": 3,
-"q": "Which statement BEST describes Christianity's global spread in this era?",
+"q": "Historians call silver the first truly global commodity. Which evidence best supports this?",
 "o": [
-"It spread only through peaceful choice",
-"It spread through missionaries, trade, and colonial conquest, and often blended with local traditions",
-"It stayed only in Europe",
-"It disappeared outside Europe"
-],
-"a": 1,
-"e": "Missions, empires, and local adaptation (syncretism) all shaped global Christianities — and so did coercion."
-},
-{
-"u": "4.3",
-"t": 1,
-"q": "Francis Xavier was a missionary who reached which country in 1549?",
-"o": [
-"Japan",
-"Brazil",
-"Ethiopia",
-"Russia"
+"Silver mined in the Andes paid for goods in Europe, crossed the Pacific to Manila, and ended up in China",
+"Silver was only used in Spain",
+"Silver was mined in many places in Europe",
+"Silver was lighter than gold"
 ],
 "a": 0,
-"e": "Xavier, a founding Jesuit, preached in India and Southeast Asia before arriving in Japan."
+"e": "Silver linked the trade of the Americas, Europe, Africa, and Asia, connecting Andean mines to Chinese markets."
 },
 {
-"u": "4.3",
-"t": 2,
-"q": "The Ethiopian Orthodox Church shows that:",
+"u": "3.2",
+"t": 3,
+"q": "Why didn't the flood of American silver make Spain permanently rich?",
 "o": [
-"Christianity arrived in Africa only with Europeans",
-"African Christianity is ancient, dating to the 300s C.E.",
-"Ethiopia was Protestant",
-"Christianity began in Ethiopia"
+"The silver was all stolen by pirates",
+"Spain spent heavily on wars and imports, and the silver flowed out to other countries and to Asia, while inflation rose",
+"Spain refused to use the silver",
+"Silver lost all value in 1600"
 ],
 "a": 1,
-"e": "Christianity had deep roots in Africa and Asia long before the Reformation."
+"e": "Silver passed through Spain to pay debts and buy goods; it helped fuel the Price Revolution rather than lasting Spanish prosperity."
+},
+{
+"u": "3.3",
+"t": 1,
+"q": "Who led the Portuguese fleet that reached Brazil in 1500?",
+"o": [
+"Ferdinand Magellan",
+"Vasco da Gama",
+"Pedro Álvares Cabral",
+"Bartolomeu Dias"
+],
+"a": 2,
+"e": "Cabral was sailing to India when his fleet swung far west and reached Brazil's coast."
+},
+{
+"u": "3.3",
+"t": 1,
+"q": "What was a quilombo?",
+"o": [
+"A sugar mill",
+"A Dutch fort",
+"A Portuguese tax",
+"A community of people who had escaped slavery"
+],
+"a": 3,
+"e": "Quilombos like Palmares were free communities built by people resisting slavery."
+},
+{
+"u": "3.3",
+"t": 2,
+"q": "Why was Portugal able to claim Brazil under the Treaty of Tordesillas?",
+"o": [
+"Brazil's coast lay east of the treaty line",
+"Cabral bought it from Spain",
+"Brazil was empty land",
+"The pope gave Brazil to England"
+],
+"a": 0,
+"e": "The line ran through South America, placing the eastern bulge of Brazil on Portugal's side."
+},
+{
+"u": "3.3",
+"t": 2,
+"q": "What made sugar production in Brazil so deadly for enslaved Africans?",
+"o": [
+"Sugar was grown in cold climates",
+"Engenhos demanded brutal, dangerous labor around the clock during harvest",
+"Sugar was poisonous",
+"Workers had to sail to Europe"
+],
+"a": 1,
+"e": "Cutting cane and boiling it in mills was exhausting and dangerous; planters worked enslaved people to death and bought more."
+},
+{
+"u": "3.3",
+"t": 2,
+"q": "What happened to New Amsterdam in 1664?",
+"o": [
+"It became the capital of New France",
+"It was destroyed by fire",
+"The English seized it and renamed it New York",
+"The Dutch moved it to Brazil"
+],
+"a": 2,
+"e": "English forces took the colony from the Dutch; New Amsterdam became New York."
+},
+{
+"u": "3.3",
+"t": 2,
+"q": "What was the main economic focus of New Netherland?",
+"o": [
+"Silver mining",
+"Sugar plantations",
+"Cotton farming",
+"The fur trade with Native nations"
+],
+"a": 3,
+"e": "Fort Orange (Albany) and New Amsterdam were trading hubs for beaver pelts gathered by Native hunters."
+},
+{
+"u": "3.3",
+"t": 3,
+"q": "How does Palmares challenge the idea that enslaved people were passive victims?",
+"o": [
+"Its people built a self-governing community that resisted Dutch and Portuguese attacks for decades",
+"It shows slavery ended early in Brazil",
+"It was founded by Portuguese settlers",
+"It traded peacefully with Spain"
+],
+"a": 0,
+"e": "Palmares lasted most of the 1600s; its leaders, including Zumbi, are remembered as symbols of resistance."
+},
+{
+"u": "3.3",
+"t": 3,
+"q": "What is one long-term effect of the Dutch being driven out of Brazil in 1654?",
+"o": [
+"Brazil became a Dutch colony again",
+"Dutch and other planters spread sugar-plantation methods to the Caribbean",
+"Sugar production ended worldwide",
+"Portugal lost control of Brazil"
+],
+"a": 1,
+"e": "Sugar knowledge and capital moved to the Caribbean, where sugar and slavery expanded rapidly."
+},
+{
+"u": "3.4",
+"t": 1,
+"q": "In what year was Jamestown founded?",
+"o": [
+"1565",
+"1620",
+"1607",
+"1608"
+],
+"a": 2,
+"e": "The Virginia Company founded Jamestown in 1607; Quebec followed in 1608 and Plymouth in 1620."
+},
+{
+"u": "3.4",
+"t": 1,
+"q": "Who founded Quebec in 1608?",
+"o": [
+"Jacques Cartier",
+"Henry Hudson",
+"John Smith",
+"Samuel de Champlain"
+],
+"a": 3,
+"e": "Champlain founded Quebec and built alliances with the Huron-Wendat and Algonquin peoples."
+},
+{
+"u": "3.4",
+"t": 2,
+"q": "According to mercantilism, what was the main purpose of colonies?",
+"o": [
+"To enrich the home country by supplying raw materials and buying its finished goods",
+"To become independent nations quickly",
+"To trade freely with any country",
+"To spread democracy"
+],
+"a": 0,
+"e": "Mercantilists believed wealth was limited, so colonies should serve the home country's trade balance."
+},
+{
+"u": "3.4",
+"t": 2,
+"q": "Which crop saved Jamestown financially?",
+"o": [
+"Sugar",
+"Tobacco",
+"Cotton",
+"Rice"
+],
+"a": 1,
+"e": "After John Rolfe grew a marketable tobacco around 1612, Virginia's economy boomed — and its demand for land and labor grew."
+},
+{
+"u": "3.4",
+"t": 2,
+"q": "Why did the Pilgrims found Plymouth Colony?",
+"o": [
+"To mine gold",
+"To trade furs with China",
+"To practice their faith as Separatists from the Church of England",
+"To serve as a Spanish mission"
+],
+"a": 2,
+"e": "Plymouth was a religious colony built around families and farming, unlike profit-driven early Jamestown."
+},
+{
+"u": "3.4",
+"t": 3,
+"q": "Why did New France have far fewer settlers than the English colonies but still extend across a huge area?",
+"o": [
+"France banned all settlers",
+"The French conquered every Native nation",
+"French settlers lived only in cities",
+"Its economy relied on the fur trade and alliances with Native nations rather than large farming settlements"
+],
+"a": 3,
+"e": "Fur traders, missionaries, and Native partners stretched French influence along rivers far from the few towns."
+},
+{
+"u": "3.4",
+"t": 3,
+"q": "Which comparison of Jamestown and Plymouth is most accurate?",
+"o": [
+"Jamestown was founded mainly for profit by a joint-stock company; Plymouth mainly for religious reasons by Separatist families",
+"Both were founded by France",
+"Plymouth grew tobacco; Jamestown fished only",
+"Jamestown was founded after Plymouth"
+],
+"a": 0,
+"e": "Both depended on Native help at first, but Jamestown's purpose was commercial while Plymouth's was religious."
 }
 ];
 const TUTOR = "CLIO";
-const LS='whh_drill_stats', LS_SRS='whh_drill_srs', LS_U='whh_drill_units';
+const LS='whh_c10_drill_stats', LS_SRS='whh_c10_drill_srs', LS_U='whh_c10_drill_units';
 QB.forEach((q,i)=>q.id='q'+i+'_'+q.q.slice(0,20));
 let stats=lsGet(LS,{total:0,correct:0,best:0,sessions:0}), srs=lsGet(LS_SRS,{}), um=lsGet(LS_U,{});
 let mode='practice', tier='all', sel=new Set(Object.keys(UNIT_NAMES));
@@ -1316,7 +1290,7 @@ function finish(timeUp){
   const n = mode==='stamina'? idx+1 : (timeUp? idx+ (answered?1:0) : deck.length);
   const pct = n?Math.round(right/n*100):0;
   document.getElementById('r-mode').textContent= timeUp?'TIME EXPIRED':mode==='stamina'?`STAMINA RUN — ${right} IN A ROW`:'SESSION COMPLETE';
-  if(mode==='stamina'){ const k='whh_drill_stamina_best'; const b=Math.max(lsGet(k,0),right); lsSet(k,b); }
+  if(mode==='stamina'){ const k='whh_c10_drill_stamina_best'; const b=Math.max(lsGet(k,0),right); lsSet(k,b); }
   document.getElementById('r-score').innerHTML=`${right}<span>/${n}</span>`;
   const g=pct>=90?['Excellent','var(--teal)']:pct>=80?['Strong','var(--teal)']:pct>=70?['Solid','var(--amber)']:pct>=60?['Developing','var(--amber)']:['Needs review','var(--red)'];
   document.getElementById('r-grade').innerHTML=`<span style="color:${g[1]}">${g[0]}</span>`;
