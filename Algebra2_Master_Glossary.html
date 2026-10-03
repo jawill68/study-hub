@@ -193,6 +193,9 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 </style>
+<script src="studyhub-tutor.js"></script>
+<script>window.STUDYHUB_GAME={course:'algebra2'};</script>
+<script src="studyhub-game.js"></script>
 </head>
 <body>
 <div class="app">
@@ -206,7 +209,7 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 <div class="page-title">Master <span>Glossary</span></div>
 <div class="page-sub" id="page-sub">200 essential terms · All 10 units · A-Z with formulas and examples</div>
 </div>
-<button class="quiz-launch-btn" onclick="launchQuiz()">🧠 Flashcard Quiz</button>
+<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><div data-game-hud></div><button class="quiz-launch-btn" onclick="launchQuiz()">🧠 Flashcard Quiz</button></div>
 </div>
 
 <!-- STATS -->
@@ -535,6 +538,9 @@ document.getElementById('page-sub').textContent = TERMS.length + ' essential ter
 buildAlphaBar();
 applyFilters();
 updateStats();
+// Deep link from the Study Hub unit navigator: ?unit=3 opens filtered to U3
+const qu = new URLSearchParams(location.search).get('unit');
+if(qu){ const b=[...document.querySelectorAll('.pill-u')].find(x=>x.textContent.trim()==='U'+qu); if(b) setUnit('U'+qu,b); }
 }
 
 function save(){
@@ -825,6 +831,7 @@ if(quizAnswered) return;
 quizAnswered = true;
 quizSessionTotal++;
 srsUpdate(t.term, correct);
+if(window.StudyHubGame){ StudyHubGame.event('flashcard'); StudyHubGame.answer(correct,1); }
 
 document.querySelectorAll('.quiz-opt').forEach(b=>b.disabled=true);
 if(correct){
@@ -889,7 +896,7 @@ ${t.example ? 'Example: '+t.example : ''}`;
 history.push({role:'user', content: systemCtx + '\n\nStudent just opened the tutor for this term. Give a one-sentence acknowledgment that invites a question. Do NOT re-read the definition back.'});
 
 // Fire-and-forget opening — show a canned opener, skip API call to save quota
-const opener = `"${t.term}" is one of the core concepts in ${t.unit}. What part would you like me to unpack?`;
+const opener = `"${t.term}" is one of the core concepts in ${t.unit}. Ask me for an example, the steps, or the common trap.${StudyHubTutor.isLive()?"":" (Offline Coach mode)"}`;
 glossAppendBubble(key, 'a', opener);
 history.push({role:'assistant', content: opener});
 }
@@ -919,13 +926,9 @@ btn.disabled = true;
 const thinkEl = glossAppendBubble(key, 'a', null, true);
 
 try{
-const resp = await fetch('https://api.anthropic.com/v1/messages',{
-method:'POST',
-headers:{'Content-Type':'application/json'},
-body: JSON.stringify({
-model:'claude-sonnet-4-6',
-max_tokens:1000,
-system:`You are ALEPH, an Algebra 2 AI tutor embedded in a glossary. A student is looking at a specific term and asking a question about it.
+const t = TERMS.find(x=>x.term===termName) || {};
+const res = await StudyHubTutor.ask({
+system: `You are ALEPH, an Algebra 2 AI tutor embedded in a glossary. A student is looking at a specific term and asking a question about it.
 
 RULES:
 - Keep responses short — 2-4 sentences unless the student asks for a deeper explanation.
@@ -933,18 +936,17 @@ RULES:
 - Use plain text. No markdown headers. Inline code with backticks for math is fine.
 - Never open with filler like "Great question!" Jump straight in.
 - If asked something unrelated to Algebra 2, redirect warmly.`,
-messages: history
-})
+messages: history,
+context: {term:t.term, def:t.def, example:t.example, formula:t.formula, unit:t.unit},
+message: msg
 });
-const data = await resp.json();
-const reply = data.content?.[0]?.text || 'Sorry — couldn\'t generate a response. Try again.';
 thinkEl.remove();
-glossAppendBubble(key, 'a', reply);
-history.push({role:'assistant', content: reply});
+glossAppendBubble(key, 'a', res.text);
+history.push({role:'assistant', content: res.text});
 if(history.length > 14) glossTutorHistories[termName] = history.slice(history.length-12);
 } catch(e){
 thinkEl.remove();
-glossAppendBubble(key, 'a', 'Connection issue. Check your network and try again.');
+glossAppendBubble(key, 'a', 'Something went wrong. Try asking again.');
 }
 
 btn.disabled = false;

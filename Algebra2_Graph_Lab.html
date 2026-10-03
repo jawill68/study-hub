@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Algebra 2 — Graph Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
+  --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
+  --accent:#2E8BC0;--accent-soft:rgba(46,139,192,.12);--accent-text:#7cc0e6;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(46,139,192,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(46,139,192,0.04) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:26px 20px 70px}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent-text);text-decoration:none;margin-bottom:14px;opacity:.9}
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--accent-text)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+.about-banner{background:linear-gradient(135deg,var(--accent-soft),rgba(29,158,117,.05));border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:12.5px;line-height:1.55}
+.about-banner a{color:var(--accent-text)}
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px;flex:1}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:14px}
+.sec-lbl{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.13em;color:var(--muted);margin-bottom:11px;text-transform:uppercase}
+.controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;flex-direction:column;gap:11px}
+.ctrl-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--muted);min-width:56px}
+.search-input{flex:1;min-width:200px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13.5px}
+.search-input:focus{outline:none;border-color:var(--accent)}
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--accent);color:var(--text)}
+.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn{border:none;border-radius:11px;padding:11px 20px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;transition:all .2s;color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-accent{background:var(--accent)}
+.btn-accent:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 22px rgba(0,0,0,.35)}
+.btn-ghost{background:var(--bg);border:1px solid var(--border);color:var(--text)}
+.btn-ghost:hover{border-color:var(--accent)}
+.btn-teal{background:#188663}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:6px;display:inline-block}
+.t-unit{background:var(--accent-soft);color:var(--accent-text);border:1px solid var(--border)}
+.empty{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px}
+.footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center;line-height:1.7}
+.overlay{position:fixed;inset:0;background:rgba(3,8,16,.82);backdrop-filter:blur(4px);z-index:500;display:none;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto}
+.overlay.open{display:flex}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;max-width:640px;width:100%}
+.opt{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:12px 15px;cursor:pointer;transition:all .16s;display:flex;align-items:flex-start;gap:11px;text-align:left;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);width:100%}
+.opt:hover:not(:disabled){border-color:var(--accent);background:var(--card2)}
+.opt:disabled{cursor:default}
+.opt-key{width:24px;height:24px;border-radius:7px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0;color:var(--muted)}
+.opt.correct{border-color:var(--teal);background:rgba(29,158,117,.11)}
+.opt.correct .opt-key{background:#188663;border-color:var(--teal);color:#fff}
+.opt.wrong{border-color:var(--red);background:rgba(231,76,60,.10)}
+.opt.wrong .opt-key{background:#D24536;border-color:var(--red);color:#fff}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+@media(max-width:640px){.page-title{font-size:1.55rem}.ctrl-label{min-width:auto}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+
+.layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:16px;align-items:start}
+@media(max-width:860px){.layout{grid-template-columns:1fr}}
+.mode-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.mode-tab{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:10px 16px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif}
+.mode-tab.active{background:var(--accent-soft);border-color:var(--accent);color:#fff}
+.graph-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:12px;position:relative}
+canvas{width:100%;aspect-ratio:1/1;display:block;border-radius:10px;background:#071425;touch-action:none}
+.readout{position:absolute;left:22px;top:20px;font-family:'DM Mono',monospace;font-size:11.5px;color:#a9c2dc;background:rgba(6,14,26,.8);border:1px solid var(--border);border-radius:8px;padding:4px 8px;pointer-events:none;display:none}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:12px;color:var(--muted)}
+.lg{display:inline-flex;align-items:center;gap:6px}
+.sw{width:18px;height:3px;border-radius:2px;display:inline-block}
+.fam-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+@media(max-width:500px){.fam-grid{grid-template-columns:repeat(2,1fr)}}
+.fam{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:8px 6px;font-size:11.5px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;text-align:center;line-height:1.25}
+.fam .fx{display:block;font-family:'DM Mono',monospace;font-size:10.5px;font-weight:500;margin-top:2px;opacity:.85}
+.fam.active{border-color:var(--accent);color:#fff;background:var(--accent-soft)}
+.fam.seen::after{content:' ✓';color:#4fd1a5}
+.eq{font-family:'DM Mono',monospace;font-size:19px;color:#fff;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:12px 14px;text-align:center;margin-bottom:12px;overflow-x:auto;white-space:nowrap}
+.eq .p{color:var(--accent-text)}
+.slider{margin-bottom:12px}
+.slider-top{display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px;margin-bottom:4px}
+.slider-name{font-weight:700;color:var(--white)}
+.slider-name small{font-weight:500;color:var(--muted);margin-left:6px}
+.slider-val{font-family:'DM Mono',monospace;color:var(--accent-text);font-weight:600}
+input[type=range]{width:100%;accent-color:var(--accent);height:22px}
+.feat{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:12.5px}
+.feat dt{color:var(--muted);font-weight:700;font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding-top:1px}
+.feat dd{font-family:'DM Mono',monospace;color:#dbe8f5}
+.moves{margin-top:12px;display:flex;flex-direction:column;gap:6px}
+.move{font-size:12.5px;background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:7px 10px}
+.match-head{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.stars{font-size:18px;letter-spacing:2px}
+.lvl-row{display:flex;gap:6px;flex-wrap:wrap}
+.result{margin-top:10px;font-size:13px;line-height:1.55;display:none;border-radius:10px;padding:10px 12px}
+.result.show{display:block}
+.result.ok{background:rgba(29,158,117,.1);border:1px solid rgba(29,158,117,.35)}
+.result.no{background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.3)}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.how{font-size:12.5px;color:var(--muted);line-height:1.6}
+.how b{color:var(--text)}
+
+</style>
+
+<script>window.STUDYHUB_GAME={course:'algebra2'};</script>
+<script src="studyhub-game.js"></script>
+</head>
+<body>
+<div class="app">
+  <a class="back" href="Algebra2_StudyHub.html">← Algebra 2 Study Hub</a>
+  <div class="header">
+    <div>
+      <div class="series-label">Algebra 2 · Study Resource Series · Build 6</div>
+      <div class="page-title">Graph <span>Lab</span></div>
+      <div class="page-sub">Drag the sliders and watch the graph move. Explore all 8 function families, then beat the Match challenge.</div>
+    </div>
+    <div data-game-hud></div>
+  </div>
+
+  <div class="mode-tabs" role="tablist">
+    <button class="mode-tab active" id="tab-explore" onclick="setMode('explore')" role="tab">🔬 Explore</button>
+    <button class="mode-tab" id="tab-match" onclick="setMode('match')" role="tab">🎯 Match the Graph</button>
+  </div>
+
+  <div class="layout">
+    <div>
+      <div class="graph-card">
+        <canvas id="cv" aria-label="Graph of the current function"></canvas>
+        <div class="readout" id="readout"></div>
+        <div class="legend" id="legend"></div>
+      </div>
+      <div class="card" style="margin-top:14px" id="how-card">
+        <div class="sec-lbl">How to read it</div>
+        <div class="how"><b>h</b> moves the graph left/right — opposite the sign you see: (x − 3) moves RIGHT 3. <b>k</b> moves it up/down. <b>a</b> stretches it; a negative <b>a</b> flips it over the x-axis. Watch the dashed parent graph to see exactly what each slider does.</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card" id="family-card">
+        <div class="sec-lbl">Function family</div>
+        <div class="fam-grid" id="fam-grid"></div>
+      </div>
+
+      <div class="card" id="match-card" style="display:none">
+        <div class="match-head">
+          <div>
+            <div class="sec-lbl" style="margin-bottom:4px">Match challenge</div>
+            <div style="font-size:13px;color:var(--muted)" id="match-status"></div>
+          </div>
+          <div class="stars" id="stars" aria-label="Round score"></div>
+        </div>
+        <div class="lvl-row" id="lvl-row">
+          <button class="pill active" data-lvl="1" onclick="setLevel(1,this)">Level 1 · shifts</button>
+          <button class="pill" data-lvl="2" onclick="setLevel(2,this)">Level 2 · + stretch</button>
+          <button class="pill" data-lvl="3" onclick="setLevel(3,this)">Level 3 · everything</button>
+        </div>
+        <div class="how" style="margin-top:10px">Move your <b style="color:#7cc0e6">blue</b> graph until it sits exactly on the <b style="color:#efb44e">gold</b> target. Fewer checks earns more stars.</div>
+      </div>
+
+      <div class="card">
+        <div class="eq" id="eq" aria-live="polite"></div>
+        <div id="sliders"></div>
+        <div class="btn-row" id="explore-btns">
+          <button class="btn btn-ghost" onclick="resetParams()">↺ Reset to parent</button>
+          <button class="btn btn-ghost" onclick="randomize()">🎲 Random</button>
+        </div>
+        <div class="btn-row" id="match-btns" style="display:none">
+          <button class="btn btn-accent" onclick="checkMatch()">✓ Lock it in</button>
+          <button class="btn btn-ghost" onclick="hint()">💡 Hint</button>
+          <button class="btn btn-ghost" onclick="newTarget()">Skip ↷</button>
+        </div>
+        <div class="result" id="result" role="status"></div>
+      </div>
+
+      <div class="card" id="features-card">
+        <div class="sec-lbl">Key features</div>
+        <dl class="feat" id="feat"></dl>
+        <div class="moves" id="moves"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Algebra 2 (1200330) · Graph Lab · Florida B.E.S.T. MA.912.F.2 (transformations) · CCSS F-BF.B.3 · F-IF.C.7</div>
+</div>
+
+<script>
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function nl(s){ return esc(s).replace(/\n/g,'<br>'); }
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON.parse(v); }catch(e){ return d; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
+
+// ═══════════════ FUNCTION FAMILIES ═══════════════
+// Each family: f(x; a,h,k,b). 'b' is the base (exp/log) or frequency (sine).
+const FAM = {
+  quad: {name:'Quadratic', fx:'x²', params:['a','h','k'],
+    f:(x,p)=>p.a*(x-p.h)**2+p.k, parent:{a:1,h:0,k:0}},
+  abs:  {name:'Absolute', fx:'|x|', params:['a','h','k'],
+    f:(x,p)=>p.a*Math.abs(x-p.h)+p.k, parent:{a:1,h:0,k:0}},
+  sqrt: {name:'Square root', fx:'√x', params:['a','h','k'],
+    f:(x,p)=>x-p.h<0?NaN:p.a*Math.sqrt(x-p.h)+p.k, parent:{a:1,h:0,k:0}},
+  cubic:{name:'Cubic', fx:'x³', params:['a','h','k'],
+    f:(x,p)=>p.a*(x-p.h)**3+p.k, parent:{a:1,h:0,k:0}},
+  exp:  {name:'Exponential', fx:'bˣ', params:['a','b','h','k'],
+    f:(x,p)=>p.a*Math.pow(p.b,x-p.h)+p.k, parent:{a:1,b:2,h:0,k:0}},
+  log:  {name:'Logarithmic', fx:'log_b x', params:['a','b','h','k'],
+    f:(x,p)=>x-p.h<=0?NaN:p.a*Math.log(x-p.h)/Math.log(p.b)+p.k, parent:{a:1,b:2,h:0,k:0}},
+  rat:  {name:'Rational', fx:'1/x', params:['a','h','k'],
+    f:(x,p)=>Math.abs(x-p.h)<1e-9?NaN:p.a/(x-p.h)+p.k, parent:{a:1,h:0,k:0}},
+  sine: {name:'Sine', fx:'sin x', params:['a','b','h','k'],
+    f:(x,p)=>p.a*Math.sin(p.b*(x-p.h))+p.k, parent:{a:1,b:1,h:0,k:0}}
+};
+const ORDER = ['quad','abs','sqrt','cubic','exp','log','rat','sine'];
+const RANGES = {
+  a:{min:-4,max:4,step:0.5,label:'a',hint:'stretch / reflect'},
+  h:{min:-6,max:6,step:0.5,label:'h',hint:'horizontal shift'},
+  k:{min:-6,max:6,step:0.5,label:'k',hint:'vertical shift'},
+  bExp:{min:0.25,max:4,step:0.25,label:'b',hint:'base'},
+  bSin:{min:0.5,max:4,step:0.5,label:'b',hint:'frequency (period = 2π/b)'}
+};
+function rangeFor(fam,key){ if(key!=='b') return RANGES[key]; return fam==='sine'?RANGES.bSin:RANGES.bExp; }
+
+let mode='explore', fam='quad', P={...FAM.quad.parent};
+let seen = new Set(lsGet('a2_graphlab_seen',[]));
+let touchedThisFamily=false;
+
+// ═══════════════ FORMATTING ═══════════════
+function num(v){ const r=Math.round(v*100)/100; return (Object.is(r,-0)?0:r).toString().replace('-','−'); }
+function frac(v){ // pretty halves/quarters
+  const map={0.25:'¼',0.5:'½',0.75:'¾'}; const s=v<0?'−':''; const a=Math.abs(v); const w=Math.floor(a), f=+(a-w).toFixed(2);
+  if(f===0) return s+w; if(map[f]) return s+(w?w:'')+map[f]; return s+num(a);
+}
+function coef(a){ if(a===1) return ''; if(a===-1) return '−'; return frac(a); }
+function inner(h){ if(h===0) return 'x'; return h>0?`(x − ${frac(h)})`:`(x + ${frac(-h)})`; }
+function tail(k){ if(k===0) return ''; return k>0?` + ${frac(k)}`:` − ${frac(-k)}`; }
+function eqHTML(f,p){
+  const P=(s)=>`<span class="p">${s}</span>`;
+  const A=coef(p.a), X=inner(p.h), K=tail(p.k);
+  switch(f){
+    case 'quad': return `y = ${P(A)}${p.h===0?'x':X}²${P(K)}`;
+    case 'abs':  return `y = ${P(A)}|${p.h===0?'x':X.replace(/^\(|\)$/g,'')}|${P(K)}`;
+    case 'sqrt': return `y = ${P(A)}√${p.h===0?'x':X}${P(K)}`;
+    case 'cubic':return `y = ${P(A)}${p.h===0?'x':X}³${P(K)}`;
+    case 'exp':  return `y = ${P(A)}${A&&A!=='−'?'·':''}${P(frac(p.b))}<sup>${p.h===0?'x':X.replace(/^\(|\)$/g,'')}</sup>${P(K)}`;
+    case 'log':  return `y = ${P(A)}log<sub>${P(frac(p.b))}</sub>${p.h===0?'(x)':X}${P(K)}`;
+    case 'rat':  return `y = ${P(p.a===1?'1':p.a===-1?'−1':frac(p.a))} / ${p.h===0?'x':X}${P(K)}`;
+    case 'sine': return `y = ${P(A)}sin(${p.b===1?'':P(frac(p.b))}${p.h===0?'x':X})${P(K)}`;
+  }
+}
+
+// ═══════════════ CANVAS ═══════════════
+const cv=document.getElementById('cv'), ctx=cv.getContext('2d');
+const W=10; // window is [−W, W] on both axes
+let S=0;
+function fit(){
+  const dpr=window.devicePixelRatio||1, w=cv.clientWidth;
+  cv.width=w*dpr; cv.height=w*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); S=w; draw();
+}
+const X=x=>(x+W)/(2*W)*S, Y=y=>(W-y)/(2*W)*S, IX=px=>px/S*2*W-W;
+function grid(){
+  ctx.clearRect(0,0,S,S);
+  ctx.lineWidth=1;
+  for(let i=-W;i<=W;i++){
+    ctx.strokeStyle= i===0?'rgba(200,223,240,.55)':(i%5===0?'rgba(46,139,192,.22)':'rgba(46,139,192,.09)');
+    ctx.beginPath(); ctx.moveTo(X(i),0); ctx.lineTo(X(i),S); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0,Y(i)); ctx.lineTo(S,Y(i)); ctx.stroke();
+  }
+  ctx.fillStyle='rgba(169,194,220,.6)'; ctx.font='10px DM Mono, monospace';
+  for(let i=-W+2;i<=W-2;i+=2){ if(i===0) continue;
+    ctx.fillText(i, X(i)-(i<0?7:3), Y(0)+12);
+    ctx.fillText(i, X(0)+4, Y(i)+3);
+  }
+}
+function plot(f,p,color,width,dash){
+  ctx.strokeStyle=color; ctx.lineWidth=width; ctx.setLineDash(dash||[]);
+  ctx.beginPath(); let pen=false, prev=null;
+  const N=Math.max(600,S*2);
+  for(let i=0;i<=N;i++){
+    const x=-W+2*W*i/N, y=FAM[f].f(x,p);
+    if(!isFinite(y) || Math.abs(y)>60){ pen=false; prev=null; continue; }
+    if(prev!==null && Math.abs(y-prev)>8){ pen=false; } // break across asymptotes
+    if(!pen){ ctx.moveTo(X(x),Y(y)); pen=true; } else ctx.lineTo(X(x),Y(y));
+    prev=y;
+  }
+  ctx.stroke(); ctx.setLineDash([]);
+}
+function asymptotes(f,p,color){
+  ctx.strokeStyle=color; ctx.lineWidth=1.2; ctx.setLineDash([5,5]);
+  const v=x=>{ctx.beginPath();ctx.moveTo(X(x),0);ctx.lineTo(X(x),S);ctx.stroke();};
+  const h=y=>{ctx.beginPath();ctx.moveTo(0,Y(y));ctx.lineTo(S,Y(y));ctx.stroke();};
+  if(f==='exp') h(p.k);
+  if(f==='log') v(p.h);
+  if(f==='rat'){ v(p.h); h(p.k); }
+  if(f==='sine'){ ctx.strokeStyle='rgba(229,148,0,.35)'; h(p.k); }
+  ctx.setLineDash([]);
+}
+function dot(x,y,color){ if(!isFinite(y)||Math.abs(x)>W||Math.abs(y)>W) return; ctx.fillStyle=color; ctx.beginPath(); ctx.arc(X(x),Y(y),5,0,7); ctx.fill(); ctx.strokeStyle='#060e1a'; ctx.lineWidth=2; ctx.stroke(); }
+
+let target=null; // {fam,p}
+function draw(){
+  if(!S) return;
+  grid();
+  if(mode==='explore'){
+    plot(fam,FAM[fam].parent,'rgba(169,194,220,.45)',1.6,[6,6]);
+  }
+  if(mode==='match' && target){
+    asymptotes(target.fam,target.p,'rgba(229,148,0,.45)');
+    plot(target.fam,target.p,'#E59400',4.5);
+  }
+  if(mode==='explore') asymptotes(fam,P,'rgba(231,76,60,.6)');
+  plot(fam,P,'#2E8BC0',3);
+  const kp=keyPoint(fam,P); if(kp) dot(kp[0],kp[1],'#4fd1a5');
+  legend();
+}
+function legend(){
+  const L=document.getElementById('legend');
+  L.innerHTML = mode==='explore'
+    ? `<span class="lg"><span class="sw" style="background:#2E8BC0"></span>Your function</span><span class="lg"><span class="sw" style="background:repeating-linear-gradient(90deg,#a9c2dc 0 5px,transparent 5px 9px)"></span>Parent ${FAM[fam].fx}</span><span class="lg"><span class="sw" style="background:#4fd1a5;height:8px;width:8px;border-radius:50%"></span>Key point</span>${['exp','log','rat'].includes(fam)?'<span class="lg"><span class="sw" style="background:repeating-linear-gradient(90deg,#E74C3C 0 5px,transparent 5px 9px)"></span>Asymptote</span>':''}`
+    : `<span class="lg"><span class="sw" style="background:#E59400;height:4px"></span>Target</span><span class="lg"><span class="sw" style="background:#2E8BC0"></span>Your graph</span>`;
+}
+
+// ═══════════════ FEATURES ═══════════════
+function keyPoint(f,p){
+  switch(f){
+    case 'quad': case 'abs': case 'sqrt': case 'cubic': return [p.h,p.k];
+    case 'exp': return [p.h, p.a+p.k];
+    case 'log': return [p.h+1, p.k];
+    case 'rat': return null;
+    case 'sine': return [p.h, p.k];
+  }
+}
+function yInt(f,p){ const y=FAM[f].f(0,p); return isFinite(y)?num(y):'none'; }
+function features(f,p){
+  const r=[]; const up=p.a>0;
+  switch(f){
+    case 'quad': r.push(['Vertex',`(${num(p.h)}, ${num(p.k)})`],['Opens',up?'up':'down'],['Axis',`x = ${num(p.h)}`],['Domain','all reals'],['Range',up?`y ≥ ${num(p.k)}`:`y ≤ ${num(p.k)}`]); break;
+    case 'abs': r.push(['Vertex',`(${num(p.h)}, ${num(p.k)})`],['Opens',up?'up':'down'],['Slopes',`±${num(Math.abs(p.a))}`],['Domain','all reals'],['Range',up?`y ≥ ${num(p.k)}`:`y ≤ ${num(p.k)}`]); break;
+    case 'sqrt': r.push(['Start point',`(${num(p.h)}, ${num(p.k)})`],['Domain',`x ≥ ${num(p.h)}`],['Range',up?`y ≥ ${num(p.k)}`:`y ≤ ${num(p.k)}`]); break;
+    case 'cubic': r.push(['Inflection',`(${num(p.h)}, ${num(p.k)})`],['End behavior',up?'↙ down-left, ↗ up-right':'↖ up-left, ↘ down-right'],['Domain','all reals'],['Range','all reals']); break;
+    case 'exp': r.push(['Asymptote',`y = ${num(p.k)}`],['Behavior',(p.b>1)===(p.a>0)?'increasing':'decreasing'],['Type',p.b>1?`growth (b = ${num(p.b)} > 1)`:`decay (0 < b = ${num(p.b)} < 1)`],['Domain','all reals'],['Range',up?`y > ${num(p.k)}`:`y < ${num(p.k)}`]); break;
+    case 'log': r.push(['Asymptote',`x = ${num(p.h)}`],['x-int of parent',`(${num(p.h+1)}, ${num(p.k)}) ← parent's (1, 0)`],['Domain',`x > ${num(p.h)}`],['Range','all reals']); break;
+    case 'rat': r.push(['Vertical asym.',`x = ${num(p.h)}`],['Horizontal asym.',`y = ${num(p.k)}`],['Branches',up?'Q I & Q III (relative to center)':'Q II & Q IV (relative to center)'],['Domain',`x ≠ ${num(p.h)}`],['Range',`y ≠ ${num(p.k)}`]); break;
+    case 'sine': r.push(['Amplitude',num(Math.abs(p.a))],['Period',`2π/${num(p.b)} ≈ ${num(2*Math.PI/p.b)}`],['Phase shift',p.h===0?'none':`${num(Math.abs(p.h))} ${p.h>0?'right':'left'}`],['Midline',`y = ${num(p.k)}`],['Max / Min',`${num(p.k+Math.abs(p.a))} / ${num(p.k-Math.abs(p.a))}`]); break;
+  }
+  r.push(['y-intercept', yInt(f,p)]);
+  return r;
+}
+function moves(f,p){
+  const m=[], par=FAM[f].parent;
+  if(p.h!==0) m.push(`Shift ${p.h>0?'RIGHT':'LEFT'} ${num(Math.abs(p.h))}  —  (x ${p.h>0?'−':'+'} ${num(Math.abs(p.h))}) moves opposite its sign`);
+  if(p.k!==0) m.push(`Shift ${p.k>0?'UP':'DOWN'} ${num(Math.abs(p.k))}`);
+  if(Math.abs(p.a)!==1) m.push(Math.abs(p.a)>1?`Vertical stretch × ${num(Math.abs(p.a))} (steeper)`:`Vertical compression × ${num(Math.abs(p.a))} (flatter)`);
+  if(p.a<0) m.push('Reflect over the x-axis (a is negative)');
+  if(f==='sine' && p.b!==1) m.push(p.b>1?`Horizontal squeeze — period shrinks to 2π/${num(p.b)}`:`Horizontal stretch — period grows to 2π/${num(p.b)}`);
+  if((f==='exp'||f==='log') && p.b!==par.b) m.push(`Base changed to ${num(p.b)}${f==='exp'?(p.b<1?' — now decay':' — growth'):''}`);
+  if(!m.length) m.push('This is the parent function. Move a slider to transform it.');
+  return m;
+}
+function renderInfo(){
+  document.getElementById('eq').innerHTML = eqHTML(fam,P);
+  const fc=document.getElementById('features-card');
+  if(mode==='match'){ fc.style.display='none'; return; }
+  fc.style.display='';
+  document.getElementById('feat').innerHTML = features(fam,P).map(([k,v])=>`<dt>${k}</dt><dd>${esc(v)}</dd>`).join('');
+  document.getElementById('moves').innerHTML = moves(fam,P).map(x=>`<div class="move">${esc(x)}</div>`).join('');
+}
+
+// ═══════════════ CONTROLS ═══════════════
+function renderFamilies(){
+  document.getElementById('fam-grid').innerHTML = ORDER.map(k=>`<button class="fam ${k===fam?'active':''} ${seen.has(k)?'seen':''}" onclick="setFamily('${k}')">${FAM[k].name}<span class="fx">${FAM[k].fx}</span></button>`).join('');
+}
+function renderSliders(locked){
+  const keys = FAM[fam].params;
+  document.getElementById('sliders').innerHTML = keys.map(key=>{
+    const r=rangeFor(fam,key);
+    return `<div class="slider"><div class="slider-top"><label class="slider-name" for="s-${key}">${r.label}<small>${r.hint}</small></label><span class="slider-val" id="v-${key}">${num(P[key])}</span></div>
+      <input type="range" id="s-${key}" min="${r.min}" max="${r.max}" step="${r.step}" value="${P[key]}" oninput="onSlide('${key}',this.value)" ${locked&&locked.includes(key)?'disabled':''}></div>`;
+  }).join('');
+}
+function onSlide(key,val){
+  let v=parseFloat(val);
+  if(key==='a' && v===0) v = P.a>0?-0.5:0.5;          // a = 0 isn't a function of this family
+  if(key==='b' && (fam==='exp'||fam==='log') && v===1) v = P.b>1?0.75:1.25; // base 1 is a flat line / undefined log
+  P[key]=v; document.getElementById('s-'+key).value=v; document.getElementById('v-'+key).textContent=num(v);
+  if(mode==='explore' && !touchedThisFamily){
+    touchedThisFamily=true;
+    if(!seen.has(fam)){ seen.add(fam); lsSet('a2_graphlab_seen',[...seen]); renderFamilies(); }
+    game().event('explore',{family:fam});
+  }
+  draw(); renderInfo();
+}
+function setFamily(k){ fam=k; P={...FAM[k].parent}; touchedThisFamily=false; renderFamilies(); renderSliders(); draw(); renderInfo(); }
+function resetParams(){ P={...FAM[fam].parent}; renderSliders(); draw(); renderInfo(); }
+function randStep(r){ const n=Math.round((r.max-r.min)/r.step); return r.min+r.step*Math.floor(Math.random()*(n+1)); }
+function randomize(){
+  FAM[fam].params.forEach(k=>{ const r=rangeFor(fam,k); let v; do{ v=randStep(r); }while((k==='a'&&v===0)||(k==='b'&&(fam==='exp'||fam==='log')&&v===1)); P[k]=v; });
+  renderSliders(); draw(); renderInfo();
+}
+
+// ═══════════════ MATCH MODE ═══════════════
+let level=1, round=null;
+const ROUND_LEN=5;
+function setLevel(l,btn){ level=l; document.querySelectorAll('.pill[data-lvl]').forEach(b=>b.classList.toggle('active',b===btn)); startRound(); }
+function setMode(m){
+  mode=m;
+  document.getElementById('tab-explore').classList.toggle('active',m==='explore');
+  document.getElementById('tab-match').classList.toggle('active',m==='match');
+  document.getElementById('family-card').style.display = m==='explore'?'':'none';
+  document.getElementById('how-card').style.display = m==='explore'?'':'none';
+  document.getElementById('match-card').style.display = m==='match'?'':'none';
+  document.getElementById('explore-btns').style.display = m==='explore'?'':'none';
+  document.getElementById('match-btns').style.display = m==='match'?'':'none';
+  document.getElementById('result').className='result';
+  if(m==='match') startRound(); else { target=null; setFamily(fam); }
+}
+function startRound(){ round={n:0, stars:[], tries:0}; document.getElementById('match-btns').style.display=''; newTarget(); }
+function pickTarget(){
+  const pool = level===1?['quad','abs','sqrt','cubic','rat']:level===2?['quad','abs','sqrt','cubic','rat','exp']:ORDER;
+  const f = pool[Math.floor(Math.random()*pool.length)];
+  const p = {...FAM[f].parent};
+  const ints=(lo,hi)=>lo+Math.floor(Math.random()*(hi-lo+1));
+  p.h = ints(-5,5); p.k = ints(-5,5);
+  if(level>=2){ const as=[2,3,0.5,-1]; p.a = as[Math.floor(Math.random()*as.length)]; if(level===2 && p.a<0) p.a=2; }
+  if(level===3){ const as=[-2,-1,-0.5,0.5,2,3]; p.a = as[Math.floor(Math.random()*as.length)];
+    if(f==='sine') p.b=[1,2,0.5][Math.floor(Math.random()*3)];
+    if(f==='exp'||f==='log') p.b=[2,3,0.5][Math.floor(Math.random()*3)]; }
+  if(f==='sine'){ p.h = ints(-3,3); p.k = ints(-4,4); }
+  if(f==='exp'){ p.h = ints(-3,3); p.k = ints(-4,4); }
+  if(p.h===0 && p.k===0) p.k = 2;
+  return {fam:f,p};
+}
+function newTarget(){
+  if(round && round.n>=ROUND_LEN){ return finishRound(); }
+  target = pickTarget(); fam = target.fam; P = {...FAM[fam].parent};
+  round.tries = 0;
+  const locked = level===1?['a','b']:level===2?['b']:[];
+  renderSliders(locked); draw(); renderInfo();
+  document.getElementById('result').className='result';
+  document.getElementById('match-status').textContent = `Target ${round.n+1} of ${ROUND_LEN} · ${FAM[fam].name} family`;
+  document.getElementById('stars').textContent = round.stars.map(s=>'★'.repeat(s)+'☆'.repeat(3-s)).join(' ');
+}
+function sameGraph(f,p,q){
+  // Compare graphs, not parameters: equivalent forms (e.g. shifted sine waves) still count.
+  let compared=0;
+  for(let i=0;i<=400;i++){
+    const x=-W+2*W*i/400, y1=FAM[f].f(x,p), y2=FAM[f].f(x,q);
+    const d1=isFinite(y1)&&Math.abs(y1)<=W*3, d2=isFinite(y2)&&Math.abs(y2)<=W*3;
+    if(isFinite(y1)!==isFinite(y2)) return false;
+    if(d1&&d2){ compared++; if(Math.abs(y1-y2)>0.05) return false; }
+  }
+  return compared>20;
+}
+function checkMatch(){
+  round.tries++;
+  const res=document.getElementById('result');
+  if(sameGraph(fam,P,target.p)){
+    const stars = round.tries===1?3:round.tries<=3?2:1;
+    round.stars.push(stars); round.n++;
+    game().event('graph'); game().answer(true, level);
+    res.className='result show ok';
+    res.innerHTML = `<b style="color:#4fd1a5">${'★'.repeat(stars)} Locked on!</b> The target was <span style="font-family:'DM Mono',monospace">${eqHTML(target.fam,target.p).replace(/<[^>]+>/g,'')}</span>.<div class="btn-row"><button class="btn btn-accent" onclick="newTarget()">${round.n>=ROUND_LEN?'See results →':'Next target →'}</button></div>`;
+    document.getElementById('stars').textContent = round.stars.map(s=>'★'.repeat(s)+'☆'.repeat(3-s)).join(' ');
+  } else {
+    game().resetCombo && game().resetCombo();
+    res.className='result show no';
+    res.innerHTML = `<b style="color:#f08579">Not yet.</b> ${diffHint()}`;
+  }
+}
+function diffHint(){
+  const p=P, t=target.p, tips=[];
+  if(fam!=='sine'){
+    if(p.h!==t.h) tips.push(p.h<t.h?'Your graph is too far LEFT.':'Your graph is too far RIGHT.');
+    if(p.k!==t.k) tips.push(p.k<t.k?'Your graph is too LOW.':'Your graph is too HIGH.');
+  } else {
+    if(p.k!==t.k) tips.push(p.k<t.k?'Your midline is too LOW.':'Your midline is too HIGH.');
+    if(p.b!==t.b) tips.push('Count the waves — the period is off.');
+  }
+  if(p.a!==t.a && Math.sign(p.a)!==Math.sign(t.a)) tips.push('One graph is flipped compared to the other.');
+  else if(p.a!==t.a) tips.push(Math.abs(p.a)<Math.abs(t.a)?'Your graph is too FLAT.':'Your graph is too STEEP.');
+  if((fam==='exp'||fam==='log') && p.b!==t.b) tips.push('Check the base b.');
+  return tips[0] || 'Close — check the key point and the asymptotes.';
+}
+function hint(){
+  round.tries++;
+  const t=target.p, k = (FAM[fam].params.find(k=>P[k]!==t[k] && !(level===1&&(k==='a'||k==='b')) && !(level===2&&k==='b')));
+  if(!k){ return checkMatch(); }
+  P[k]=t[k]; renderSliders(level===1?['a','b']:level===2?['b']:[]); draw(); renderInfo();
+  const res=document.getElementById('result'); res.className='result show no';
+  res.innerHTML = `💡 I set <b>${k}</b> for you (counts as a check). Find the rest.`;
+}
+function finishRound(){
+  const total = round.stars.reduce((a,b)=>a+b,0), max=ROUND_LEN*3;
+  const best = Math.max(lsGet('a2_graphlab_best_'+level,0), total); lsSet('a2_graphlab_best_'+level,best);
+  target=null; draw();
+  document.getElementById('match-btns').style.display='none';
+  const res=document.getElementById('result'); res.className='result show ok';
+  res.innerHTML = `<div style="font-size:20px;font-weight:800;color:#fff">${total} / ${max} stars</div>
+    <div style="color:var(--muted);margin:4px 0 8px">Level ${level} best: ${best} / ${max}. ${total>=13?'Ready for the next level.':'Run it again — aim for first-try matches.'}</div>
+    <div class="btn-row"><button class="btn btn-accent" onclick="startRound()">Play again</button>${level<3?`<button class="btn btn-ghost" onclick="setLevel(${level+1},document.querySelector('.pill[data-lvl=\\'${level+1}\\']'))">Level ${level+1} →</button>`:''}</div>`;
+  document.getElementById('match-status').textContent='Round complete';
+}
+
+// ═══════════════ POINTER READOUT ═══════════════
+function readout(e){
+  const r=cv.getBoundingClientRect(); const px=(e.touches?e.touches[0].clientX:e.clientX)-r.left;
+  const x=IX(px/r.width*S); const y=FAM[fam].f(x,P);
+  const ro=document.getElementById('readout');
+  if(!isFinite(y)){ ro.style.display='none'; return; }
+  ro.style.display='block'; ro.textContent=`x = ${num(x)}   y = ${num(y)}`;
+  draw(); dot(x,y,'#fff');
+}
+cv.addEventListener('pointermove',readout);
+cv.addEventListener('pointerleave',()=>{ document.getElementById('readout').style.display='none'; draw(); });
+window.addEventListener('resize',fit);
+renderFamilies(); renderSliders(); renderInfo(); fit();
+const qf = new URLSearchParams(location.search).get('family'); if(qf && FAM[qf]) setFamily(qf);
+if(new URLSearchParams(location.search).get('mode')==='match') setMode('match');
+</script>
+</body>
+</html>

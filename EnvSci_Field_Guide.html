@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Environmental Science — Waterfowl Field Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
+  --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
+  --accent:#1D9E75;--accent-soft:rgba(29,158,117,.12);--accent-text:#4fd1a5;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(46,139,192,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(46,139,192,0.04) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:26px 20px 70px}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent-text);text-decoration:none;margin-bottom:14px;opacity:.9}
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--accent-text)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+.about-banner{background:linear-gradient(135deg,var(--accent-soft),rgba(29,158,117,.05));border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:12.5px;line-height:1.55}
+.about-banner a{color:var(--accent-text)}
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px;flex:1}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:14px}
+.sec-lbl{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.13em;color:var(--muted);margin-bottom:11px;text-transform:uppercase}
+.controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;flex-direction:column;gap:11px}
+.ctrl-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--muted);min-width:56px}
+.search-input{flex:1;min-width:200px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13.5px}
+.search-input:focus{outline:none;border-color:var(--accent)}
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--accent);color:var(--text)}
+.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn{border:none;border-radius:11px;padding:11px 20px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;transition:all .2s;color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-accent{background:var(--accent)}
+.btn-accent:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 22px rgba(0,0,0,.35)}
+.btn-ghost{background:var(--bg);border:1px solid var(--border);color:var(--text)}
+.btn-ghost:hover{border-color:var(--accent)}
+.btn-teal{background:#188663}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:6px;display:inline-block}
+.t-unit{background:var(--accent-soft);color:var(--accent-text);border:1px solid var(--border)}
+.empty{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px}
+.footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center;line-height:1.7}
+.overlay{position:fixed;inset:0;background:rgba(3,8,16,.82);backdrop-filter:blur(4px);z-index:500;display:none;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto}
+.overlay.open{display:flex}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;max-width:640px;width:100%}
+.opt{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:12px 15px;cursor:pointer;transition:all .16s;display:flex;align-items:flex-start;gap:11px;text-align:left;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);width:100%}
+.opt:hover:not(:disabled){border-color:var(--accent);background:var(--card2)}
+.opt:disabled{cursor:default}
+.opt-key{width:24px;height:24px;border-radius:7px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0;color:var(--muted)}
+.opt.correct{border-color:var(--teal);background:rgba(29,158,117,.11)}
+.opt.correct .opt-key{background:#188663;border-color:var(--teal);color:#fff}
+.opt.wrong{border-color:var(--red);background:rgba(231,76,60,.10)}
+.opt.wrong .opt-key{background:#D24536;border-color:var(--red);color:#fff}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+@media(max-width:640px){.page-title{font-size:1.55rem}.ctrl-label{min-width:auto}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+
+.mode-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.mode-tab{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:10px 16px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif}
+.mode-tab.active{background:var(--accent-soft);border-color:var(--accent);color:#fff}
+.view{display:none}.view.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.sp{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:16px;position:relative}
+.sp.got{border-color:rgba(229,148,0,.45)}
+.sp-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.sp-name{font-size:16px;font-weight:800;color:#fff}
+.sp-grp{font-size:11px;color:var(--muted);margin-top:2px}
+.stamp{font-size:10px;font-weight:800;letter-spacing:.08em;padding:3px 8px;border-radius:6px;background:rgba(229,148,0,.15);color:#efb44e;white-space:nowrap}
+.stamp.no{background:var(--bg);color:var(--muted)}
+.row{font-size:12.5px;line-height:1.55;margin-top:8px}
+.row b{display:block;font-size:9.5px;letter-spacing:.1em;color:var(--accent-text);font-weight:800;margin-bottom:2px}
+.fl{background:rgba(46,139,192,.08);border-left:2px solid var(--sky);border-radius:8px;padding:7px 10px;font-size:12px;margin-top:9px}
+.fact{font-size:12px;color:#c9b8fb;margin-top:8px}
+.more{background:none;border:none;color:var(--accent-text);font-weight:700;font-size:12px;cursor:pointer;margin-top:8px;padding:0;font-family:'DM Sans',sans-serif}
+.extra{display:none}.sp.open .extra{display:block}
+.game{max-width:720px;margin:0 auto}
+.clues{display:flex;flex-direction:column;gap:8px;margin:12px 0 16px}
+.clue{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:11px 14px;font-size:13.5px;line-height:1.55}
+.clue b{font-size:9.5px;letter-spacing:.1em;color:var(--accent-text);display:block;margin-bottom:3px}
+.clue.locked{color:var(--muted);font-style:italic;border-style:dashed}
+.pts{font-family:'DM Mono',monospace;font-size:12px;color:#efb44e}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:560px){.opts{grid-template-columns:1fr}}
+.fb{margin-top:12px;font-size:13px;line-height:1.55;display:none;border-radius:11px;padding:11px 13px}
+.fb.show{display:block}.fb.ok{background:rgba(29,158,117,.09);border:1px solid rgba(29,158,117,.3)}.fb.no{background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.3)}
+.mtop{display:flex;justify-content:space-between;align-items:center;font-family:'DM Mono',monospace;font-size:11.5px;color:var(--muted);flex-wrap:wrap;gap:8px}
+.sort-name{font-size:24px;font-weight:800;color:#fff;text-align:center;margin:20px 0 6px}
+.sort-sub{text-align:center;color:var(--muted);font-size:13px;margin-bottom:18px;min-height:20px}
+.sort-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.timer-bar{height:4px;background:var(--bg);border-radius:99px;overflow:hidden;margin-top:10px}
+.timer-fill{height:100%;background:var(--amber);transition:width .1s linear}
+.journal{height:10px;background:var(--bg);border-radius:99px;overflow:hidden;margin-top:6px}
+.journal i{display:block;height:100%;background:linear-gradient(90deg,var(--amber),var(--teal))}
+
+</style>
+
+<script>window.STUDYHUB_GAME={course:'envsci'};</script>
+<script src="studyhub-game.js"></script>
+</head>
+<body>
+<div class="app">
+  <a class="back" href="EnvSci_StudyHub.html">← Environmental Science Study Hub</a>
+  <div class="header">
+    <div><div class="series-label">Environmental Science Honors · DU Certification Track · Species ID</div><div class="page-title">Waterfowl <span>Field Guide</span></div><div class="page-sub" id="page-sub"></div></div>
+    <div data-game-hud></div>
+  </div>
+  <div class="about-banner">🦆 Species identification is <b>10% of the Ducks Unlimited certification exam</b>, and it's the part that makes you useful in the field. Study the cards, then play. Identify a species correctly <b>twice</b> to stamp it into your Field Journal. Collect them all.</div>
+  <div class="card" style="padding:14px 18px">
+    <div style="display:flex;justify-content:space-between;font-size:12.5px"><b style="color:#fff">📓 Field Journal</b><span class="pts" id="j-count"></span></div>
+    <div class="journal"><i id="j-bar" style="width:0"></i></div>
+  </div>
+  <div class="mode-row" role="tablist">
+    <button class="mode-tab active" data-v="guide" onclick="setView('guide',this)">📖 Field Guide</button>
+    <button class="mode-tab" data-v="clues" onclick="setView('clues',this)">🔎 Name That Bird</button>
+    <button class="mode-tab" data-v="sort" onclick="setView('sort',this)">⚡ Dabbler or Diver?</button>
+  </div>
+
+  <div class="view active" id="v-guide">
+    <div class="controls"><div class="ctrl-row"><span class="ctrl-label">GROUP</span>
+      <button class="pill active" data-g="all" onclick="setG('all',this)">All</button>
+      <button class="pill" data-g="dabbler" onclick="setG('dabbler',this)">Dabblers</button>
+      <button class="pill" data-g="divers" onclick="setG('divers',this)">Divers</button>
+      <button class="pill" data-g="geese" onclick="setG('geese',this)">Geese &amp; swans</button>
+      <button class="pill" data-g="fl" onclick="setG('fl',this)">🌴 Florida regulars</button>
+      <button class="pill" data-g="todo" onclick="setG('todo',this)">Not yet stamped</button></div></div>
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <div class="view" id="v-clues"><div class="card game" id="clue-game"></div></div>
+  <div class="view" id="v-sort"><div class="card game" id="sort-game"></div></div>
+
+  <div class="footer">Ducks Unlimited Ecology Conservation &amp; Management Certification · Domain: Species Identification (10%) · Original study material — not affiliated with or endorsed by Ducks Unlimited or iCEV</div>
+</div>
+<script>
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function nl(s){ return esc(s).replace(/\n/g,'<br>'); }
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON.parse(v); }catch(e){ return d; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
+
+const SP=[
+{
+"id": "mall",
+"n": "Mallard",
+"g": "dabbler",
+"sz": "Large dabbler",
+"drake": "Glossy green head, thin white neck ring, chestnut breast, gray body, curled black tail feathers, yellow bill.",
+"hen": "Mottled brown with an orange bill marked by a dark saddle.",
+"spec": "Blue-purple speculum bordered in white on both edges.",
+"hab": "Almost any freshwater wetland, flooded fields, parks.",
+"food": "Seeds, grain, aquatic plants, invertebrates.",
+"fl": "Winters in Florida in modest numbers. Released and feral mallards are a problem because they hybridize with native mottled ducks.",
+"fact": "The most abundant and widespread duck in North America and the ancestor of most domestic ducks."
+},
+{
+"id": "mott",
+"n": "Mottled Duck",
+"g": "dabbler",
+"sz": "Large dabbler",
+"drake": "Sexes look alike: dark mottled-brown body, plain buffy head and neck with no streaks, bright yellow bill.",
+"hen": "Like the drake but with a duller olive-orange bill.",
+"spec": "Blue-green speculum with little or no white border.",
+"hab": "Freshwater and brackish marshes, wet prairies, and ditches of peninsular Florida and the Gulf Coast.",
+"food": "Seeds, aquatic plants, snails, insects.",
+"fl": "Florida's year-round resident duck. It doesn't migrate and nests in Florida. Hybridization with mallards threatens the population.",
+"fact": "Unlike the mallard hen, it lacks the bright white speculum borders and has a darker body that contrasts with its pale head."
+},
+{
+"id": "blck",
+"n": "American Black Duck",
+"g": "dabbler",
+"sz": "Large dabbler",
+"drake": "Very dark sooty-brown body with a paler gray-brown head and a yellow-olive bill.",
+"hen": "Similar but with a duller, olive-green bill.",
+"spec": "Violet-blue speculum with black borders and little or no white.",
+"hab": "Eastern salt marshes, beaver ponds, and wooded wetlands.",
+"food": "Invertebrates, seeds, aquatic plants.",
+"fl": "Rare in Florida; mainly a bird of the northern Atlantic Flyway.",
+"fact": "In flight, its white underwings flash against its dark body."
+},
+{
+"id": "pint",
+"n": "Northern Pintail",
+"g": "dabbler",
+"sz": "Large, slender dabbler",
+"drake": "Chocolate-brown head with a white stripe running up the side of the neck, white breast, gray body, long needle-like central tail feathers.",
+"hen": "Slim, long-necked, mottled brown, with a gray bill.",
+"spec": "Bronze-green speculum with a white trailing edge.",
+"hab": "Open shallow wetlands, flooded fields, and prairie ponds.",
+"food": "Seeds, waste grain, invertebrates.",
+"fl": "An uncommon winter visitor to Florida.",
+"fact": "Pintails nest very early, often in cropland stubble where farm machinery destroys nests. That's one reason their numbers have declined."
+},
+{
+"id": "wige",
+"n": "American Wigeon",
+"g": "dabbler",
+"sz": "Medium dabbler",
+"drake": "White forehead and crown (nicknamed 'baldpate'), broad green stripe behind the eye, pinkish-brown body, small blue-gray bill with a black tip.",
+"hen": "Gray-brown head with rusty sides and the same small blue-gray bill.",
+"spec": "Green speculum; large white shoulder patch shows in flight.",
+"hab": "Shallow lakes, marshes, and grassy shorelines.",
+"food": "Aquatic plants, grazes on grass on land.",
+"fl": "A regular winter visitor to Florida lakes and marshes.",
+"fact": "It often steals plants that diving ducks and coots bring up from the bottom."
+},
+{
+"id": "gadw",
+"n": "Gadwall",
+"g": "dabbler",
+"sz": "Medium dabbler",
+"drake": "Finely patterned gray-brown body with a black rear end and a dark bill. Elegant but plain.",
+"hen": "Like a mallard hen, but with an orange-edged bill and a steeper forehead.",
+"spec": "White speculum — the only dabbler with one.",
+"hab": "Marshes and ponds with plenty of submerged plants.",
+"food": "Mostly submerged aquatic plants.",
+"fl": "An uncommon winter visitor to Florida.",
+"fact": "Look for the small white square on the trailing edge of the wing — it identifies a gadwall of either sex."
+},
+{
+"id": "gwte",
+"n": "Green-winged Teal",
+"g": "dabbler",
+"sz": "Smallest dabbler",
+"drake": "Chestnut head with a green patch behind the eye, a vertical white bar on the side of the breast, gray body.",
+"hen": "Small, mottled brown, with a dark line through the eye.",
+"spec": "Iridescent green speculum.",
+"hab": "Mudflats, shallow marshes, and flooded fields.",
+"food": "Small seeds and invertebrates sifted from mud.",
+"fl": "A common winter visitor to Florida.",
+"fact": "Flies in tight, fast, twisting flocks like shorebirds."
+},
+{
+"id": "bwte",
+"n": "Blue-winged Teal",
+"g": "dabbler",
+"sz": "Small dabbler",
+"drake": "Blue-gray head with a bold white crescent in front of the eye, tan body with dark spots.",
+"hen": "Small, mottled brown, with a pale spot at the base of the bill.",
+"spec": "Green speculum; large powder-blue shoulder patch in flight.",
+"hab": "Shallow marshes and ponds.",
+"food": "Seeds and invertebrates.",
+"fl": "An early fall migrant through Florida. Many continue to Central and South America. Florida holds a special September teal season.",
+"fact": "One of the first ducks to migrate south in late summer and among the last to return in spring."
+},
+{
+"id": "shov",
+"n": "Northern Shoveler",
+"g": "dabbler",
+"sz": "Medium dabbler",
+"drake": "Huge spoon-shaped bill, green head, yellow eye, white breast, chestnut sides.",
+"hen": "Mottled brown, with the same oversized bill edged in orange.",
+"spec": "Green speculum; powder-blue shoulder patch in flight.",
+"hab": "Shallow, nutrient-rich ponds and marshes.",
+"food": "Filters tiny invertebrates and seeds through comb-like edges on its bill.",
+"fl": "A common winter visitor to Florida.",
+"fact": "Flocks sometimes swim in tight circles to stir up food from the water."
+},
+{
+"id": "wood",
+"n": "Wood Duck",
+"g": "dabbler",
+"sz": "Medium dabbler",
+"drake": "Crested, glossy green-and-purple head with bold white lines, red eye and bill base, chestnut breast.",
+"hen": "Gray-brown with a crest and a bold white teardrop-shaped eye ring.",
+"spec": "Blue speculum with a white trailing edge.",
+"hab": "Wooded swamps, beaver ponds, and bottomland forests.",
+"food": "Acorns, seeds, fruits, insects.",
+"fl": "Breeds in Florida and is common year-round in swamps and along rivers.",
+"fact": "It nests in tree cavities and nest boxes. Day-old ducklings leap from the nest to the ground below. Nest boxes helped bring the species back from severe declines."
+},
+{
+"id": "bbwd",
+"n": "Black-bellied Whistling-Duck",
+"g": "whistling",
+"sz": "Long-legged, upright",
+"drake": "Sexes alike: bright coral-pink bill, gray face with a white eye ring, black belly, long pink legs.",
+"hen": "Same as the drake.",
+"spec": "Bold white wing stripe in flight.",
+"hab": "Freshwater marshes, ponds, and farm fields; often perches in trees.",
+"food": "Seeds and grain, often feeding at night.",
+"fl": "Rapidly increasing in Florida, where it now breeds widely.",
+"fact": "It gets its name from its loud, squealing whistled call. It also nests in cavities and nest boxes."
+},
+{
+"id": "canv",
+"n": "Canvasback",
+"g": "diver",
+"sz": "Large diver",
+"drake": "Chestnut-red head with a long, sloping, wedge-shaped profile and a black bill, red eye, very pale whitish-gray back, black breast.",
+"hen": "Pale brown-gray, with the same sloping head profile.",
+"spec": "Plain grayish wing with no bright speculum.",
+"hab": "Large lakes, bays, and estuaries.",
+"food": "Dives for wild celery tubers, clams, and other invertebrates.",
+"fl": "An uncommon winter visitor to Florida.",
+"fact": "Its scientific name, Aythya valisineria, comes from its favorite food, wild celery (Vallisneria)."
+},
+{
+"id": "redh",
+"n": "Redhead",
+"g": "diver",
+"sz": "Medium diver",
+"drake": "Round chestnut-red head with a steep forehead, blue-gray bill with a black tip, yellow eye, gray back.",
+"hen": "Plain warm brown with a blue-gray bill.",
+"spec": "Gray speculum.",
+"hab": "Prairie marshes in summer; seagrass bays in winter.",
+"food": "Seagrass, aquatic plants, invertebrates.",
+"fl": "Winters in large rafts on Florida's Gulf Coast seagrass beds.",
+"fact": "Tell it from a canvasback by its rounded head (not wedge-shaped) and darker gray back."
+},
+{
+"id": "lesc",
+"n": "Lesser Scaup",
+"g": "diver",
+"sz": "Medium diver",
+"drake": "Dark head with a purple gloss and a peaked crown, black breast, finely barred gray back, white sides, pale blue bill.",
+"hen": "Brown with a crisp white patch at the base of the bill.",
+"spec": "White stripe on the secondaries that fades on the outer wing.",
+"hab": "Breeds in boreal and prairie wetlands; winters on lakes and bays.",
+"food": "Snails, clams, insects, plants.",
+"fl": "One of Florida's most abundant wintering ducks, forming huge rafts in bays and lagoons.",
+"fact": "Hunters call it 'bluebill.' Its breeding population declined for decades, which researchers continue to study."
+},
+{
+"id": "rndu",
+"n": "Ring-necked Duck",
+"g": "diver",
+"sz": "Medium diver",
+"drake": "Black back and breast, peaked head, white vertical crescent on the side in front of the wing, gray bill with a bold white ring near the tip.",
+"hen": "Brown with a gray face, white eye ring, and white ring on the bill.",
+"spec": "Gray speculum.",
+"hab": "Freshwater lakes, ponds, and marshes — often smaller and shallower waters than other divers.",
+"food": "Aquatic plants, seeds, invertebrates.",
+"fl": "A very common winter duck on Florida lakes and marshes.",
+"fact": "The chestnut neck ring that gives it its name is almost impossible to see in the field. The ring on the bill is the real field mark."
+},
+{
+"id": "buff",
+"n": "Bufflehead",
+"g": "sea",
+"sz": "Smallest diver",
+"drake": "Tiny; a large white patch wraps the back of a dark, iridescent head; white body with a black back.",
+"hen": "Gray-brown with a small oval white cheek patch.",
+"spec": "Large white wing patches in flight.",
+"hab": "Breeds in boreal forest ponds; winters on bays and lakes.",
+"food": "Aquatic insects, snails, crustaceans.",
+"fl": "A winter visitor to Florida's coastal bays and lakes.",
+"fact": "It nests in old northern flicker woodpecker holes — small enough that larger ducks can't use them."
+},
+{
+"id": "cgol",
+"n": "Common Goldeneye",
+"g": "sea",
+"sz": "Medium diver",
+"drake": "Glossy greenish-black puffy head with a round white spot between the eye and bill, golden-yellow eye, mostly white body.",
+"hen": "Chocolate-brown head, gray body, yellow eye.",
+"spec": "Large white wing patches.",
+"hab": "Northern lakes and rivers; cold coastal waters in winter.",
+"food": "Crustaceans, insects, mollusks.",
+"fl": "Rare in Florida.",
+"fact": "Called 'whistler' because its wings make a loud whistling sound in flight."
+},
+{
+"id": "hmer",
+"n": "Hooded Merganser",
+"g": "merganser",
+"sz": "Small merganser",
+"drake": "Fan-shaped crest — white bordered in black — that can be raised or lowered; black back; white breast with black bars; rusty sides.",
+"hen": "Gray-brown with a shaggy cinnamon crest.",
+"spec": "Small white patch on the inner wing.",
+"hab": "Wooded ponds, swamps, and streams.",
+"food": "Small fish, crayfish, aquatic insects.",
+"fl": "A common winter visitor to Florida; it nests in a few northern Florida swamps.",
+"fact": "Its thin, serrated 'sawbill' grips slippery prey. Like the wood duck, it nests in tree cavities."
+},
+{
+"id": "rudd",
+"n": "Ruddy Duck",
+"g": "stifftail",
+"sz": "Small, compact diver",
+"drake": "Breeding: rich chestnut body, white cheek, black cap, bright sky-blue bill. Winter: gray-brown with white cheeks.",
+"hen": "Brown with a pale cheek crossed by one dark line.",
+"spec": "Plain dark wing.",
+"hab": "Marshes for nesting; lakes and bays in winter.",
+"food": "Aquatic insect larvae, plants.",
+"fl": "A common winter visitor to Florida lakes and coastal impoundments.",
+"fact": "Its stiff tail is often cocked straight up. It lays eggs very large for its body size."
+},
+{
+"id": "cago",
+"n": "Canada Goose",
+"g": "goose",
+"sz": "Large goose",
+"drake": "Sexes alike: black head and long black neck with a white 'chinstrap' patch, brown-gray body.",
+"hen": "Same as the gander.",
+"spec": "Not applicable.",
+"hab": "Lakes, fields, parks, and golf courses.",
+"food": "Grasses, grain, aquatic plants.",
+"fl": "Mostly resident birds in north Florida.",
+"fact": "Males are ganders and young are goslings. Nonmigratory 'resident' Canada geese have boomed in suburbs."
+},
+{
+"id": "snow",
+"n": "Snow Goose",
+"g": "goose",
+"sz": "Medium goose",
+"drake": "White body with black wingtips and a pink bill with a dark 'grin patch'. A dark 'blue' form also occurs.",
+"hen": "Same as the gander.",
+"spec": "Not applicable.",
+"hab": "Arctic tundra in summer; coastal marshes and farm fields in winter.",
+"food": "Roots, shoots, waste grain.",
+"fl": "Uncommon in Florida.",
+"fact": "Light goose populations grew so large they damaged Arctic coastal habitat, prompting special harvest measures."
+},
+{
+"id": "tusw",
+"n": "Tundra Swan",
+"g": "swan",
+"sz": "Very large",
+"drake": "All white with a black bill that usually shows a small yellow spot in front of the eye.",
+"hen": "Same as the cob.",
+"spec": "Not applicable.",
+"hab": "Arctic tundra in summer; large lakes, estuaries, and fields in winter.",
+"food": "Aquatic plants, tubers, waste grain.",
+"fl": "Rare in Florida.",
+"fact": "Male swans are cobs, females are pens, and young are cygnets."
+},
+{
+"id": "amco",
+"n": "American Coot",
+"g": "lookalike",
+"sz": "Duck-sized rail",
+"drake": "Sooty gray-black body, thick white bill with a small red forehead patch, red eye.",
+"hen": "Same as the male.",
+"spec": "Not applicable — it isn't a duck.",
+"hab": "Ponds, lakes, marshes, and golf course ponds.",
+"food": "Aquatic plants, insects.",
+"fl": "Extremely common in winter on Florida lakes.",
+"fact": "Not a duck at all. It's a rail, with lobed (not webbed) toes, and it pumps its head while swimming."
+}
+];
+const GROUP={"dabbler": "Dabbling duck", "diver": "Diving duck (bay duck)", "sea": "Diving duck (sea duck)", "merganser": "Merganser (fish-eating diver)", "stifftail": "Stiff-tailed diving duck", "whistling": "Whistling-duck", "goose": "Goose", "swan": "Swan", "lookalike": "Not a duck (rail)"};
+const LS='envsci_fieldguide';
+let J=lsGet(LS,{});
+const DIVERS=['diver','sea','merganser','stifftail'];
+const FL_REG=['mott','wood','bbwd','lesc','rndu','hmer','rudd','gwte','bwte','shov','wige','amco','buff','redh'];
+function stamped(s){ return (J[s.id]&&J[s.id].c>=2); }
+function bump(s,ok){ J[s.id]=J[s.id]||{c:0,t:0}; J[s.id].t++; const before=stamped(s); if(ok) J[s.id].c++; lsSet(LS,J); if(!before&&stamped(s)) setTimeout(()=>alertStamp(s),300); journal(); game().event('species',{correct:ok}); game().event('du'); }
+function alertStamp(s){ const t=document.createElement('div'); t.className='shg-toast level'; t.textContent=`📓 ${s.n} stamped into your Field Journal!`; const box=document.querySelector('.shg-toasts'); if(box) box.appendChild(t); setTimeout(()=>t.remove(),2600); }
+function journal(){ const n=SP.filter(stamped).length; document.getElementById('j-count').textContent=`${n} / ${SP.length} species stamped`; document.getElementById('j-bar').style.width=(n/SP.length*100)+'%'; }
+function setView(v,b){ document.querySelectorAll('.mode-tab').forEach(x=>x.classList.toggle('active',x===b)); document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id==='v-'+v)); if(v==='clues') newClue(); if(v==='sort') startSort(); if(v==='guide') renderGrid(); }
+let curG='all'; const openCards=new Set();
+function setG(g,b){ curG=g; document.querySelectorAll('.pill[data-g]').forEach(x=>x.classList.toggle('active',x===b)); renderGrid(); }
+function renderGrid(){
+  const list=SP.filter(s=>curG==='all'||(curG==='dabbler'&&s.g==='dabbler')||(curG==='divers'&&DIVERS.includes(s.g))||(curG==='geese'&&(s.g==='goose'||s.g==='swan'))||(curG==='fl'&&FL_REG.includes(s.id))||(curG==='todo'&&!stamped(s)));
+  document.getElementById('grid').innerHTML=list.map(s=>`<div class="sp ${stamped(s)?'got':''} ${openCards.has(s.id)?'open':''}">
+    <div class="sp-top"><div><div class="sp-name">${esc(s.n)}</div><div class="sp-grp">${esc(GROUP[s.g])} · ${esc(s.sz)}</div></div><span class="stamp ${stamped(s)?'':'no'}">${stamped(s)?'📓 STAMPED':(J[s.id]?.c||0)+'/2'}</span></div>
+    <div class="row"><b>${s.g==='goose'||s.g==='swan'||s.g==='lookalike'||s.g==='whistling'?'APPEARANCE':'DRAKE'}</b>${esc(s.drake)}</div>
+    <div class="extra">
+      ${s.hen.startsWith('Same')?'':`<div class="row"><b>HEN</b>${esc(s.hen)}</div>`}
+      <div class="row"><b>WING / SPECULUM</b>${esc(s.spec)}</div>
+      <div class="row"><b>HABITAT</b>${esc(s.hab)}</div>
+      <div class="row"><b>FOOD</b>${esc(s.food)}</div>
+      <div class="fl">🌴 ${esc(s.fl)}</div>
+      <div class="fact">★ ${esc(s.fact)}</div>
+    </div>
+    <button class="more" onclick="openCards.has('${s.id}')?openCards.delete('${s.id}'):openCards.add('${s.id}');renderGrid()">${openCards.has(s.id)?'Show less ▴':'Hen, wing, habitat, Florida notes ▾'}</button>
+  </div>`).join('') || '<div class="empty">Every species in this group is stamped. Nice work.</div>';
+}
+// ── Name That Bird (progressive clues) ──
+let cg={round:0,score:0,total:0};
+function clueSet(s){
+  const c=[];
+  c.push(['HABITAT & FOOD', s.hab+' Eats: '+s.food.toLowerCase()]);
+  if(!s.hen.startsWith('Same')) c.push(['HEN', s.hen]); else c.push(['WING', s.spec]);
+  c.push(['FIELD MARKS', s.drake]);
+  return c;
+}
+function newClue(){
+  const pool=shuffle(SP.filter(s=>!stamped(s))).concat(shuffle(SP));
+  const s=pool[0];
+  const sameGroup=SP.filter(x=>x!==s&&(x.g===s.g||(DIVERS.includes(x.g)&&DIVERS.includes(s.g))));
+  const opts=shuffle([s,...shuffle(sameGroup).slice(0,2),...shuffle(SP.filter(x=>x!==s&&!sameGroup.includes(x))).slice(0,1)]);
+  cg.cur={s,opts,shown:1,ans:false}; renderClue();
+}
+function renderClue(){
+  const {s,opts,shown}=cg.cur, clues=clueSet(s), pts=[30,20,10][shown-1];
+  document.getElementById('clue-game').innerHTML=`<div class="mtop"><span>ROUND ${cg.round+1}</span><span class="pts">Score ${cg.score} · this bird worth ${cg.cur.ans?'—':pts} pts</span></div>
+    <div class="clues">${clues.map((c,i)=>i<shown||cg.cur.ans?`<div class="clue"><b>CLUE ${i+1} · ${c[0]}</b>${esc(c[1])}</div>`:`<div class="clue locked">Clue ${i+1} locked — reveal it if you need it (worth fewer points)</div>`).join('')}</div>
+    <div class="opts">${opts.map((o,k)=>`<button class="opt" id="co-${k}" onclick="pickClue(${k})" ${cg.cur.ans?'disabled':''}><span class="opt-key">${'ABCD'[k]}</span><span>${esc(o.n)}</span></button>`).join('')}</div>
+    <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">${!cg.cur.ans&&shown<3?`<button class="btn btn-ghost" onclick="cg.cur.shown++;renderClue()">Reveal next clue (−10)</button>`:''}</div>
+    <div class="fb" id="cfb"></div>`;
+}
+function pickClue(k){
+  const c=cg.cur; if(c.ans) return; c.ans=true; const ok=c.opts[k]===c.s; const pts=[30,20,10][c.shown-1];
+  cg.round++; cg.total++; if(ok) cg.score+=pts; bump(c.s,ok); game().answer(ok, c.shown===1?3:c.shown===2?2:1);
+  renderClue();
+  c.opts.forEach((o,j)=>{ const b=document.getElementById('co-'+j); if(o===c.s) b.classList.add('correct'); else if(j===k) b.classList.add('wrong'); });
+  const fb=document.getElementById('cfb'); fb.className='fb show '+(ok?'ok':'no');
+  fb.innerHTML=`<b style="color:${ok?'#4fd1a5':'#f08579'}">${ok?`✓ ${c.s.n}! +${pts}`:`✗ It was the ${c.s.n}.`}</b> ${esc(c.s.fact)}<div style="margin-top:10px"><button class="btn btn-accent" onclick="newClue()">Next bird →</button></div>`;
+}
+// ── Dabbler or Diver ──
+let so=null, tick=null; const SORT_SECS=6;
+function bucket(s){ return s.g==='dabbler'?'dabbler':DIVERS.includes(s.g)?'diver':'neither'; }
+function startSort(){ so={deck:shuffle(SP).slice(0,12),i:0,right:0,ans:false}; renderSort(); }
+function renderSort(){
+  clearInterval(tick); const box=document.getElementById('sort-game');
+  if(so.i>=so.deck.length){ const best=Math.max(lsGet('envsci_sort_best',0),so.right); lsSet('envsci_sort_best',best);
+    box.innerHTML=`<div style="text-align:center;padding:20px"><div class="sec-lbl">ROUND COMPLETE</div><div style="font-size:40px;font-weight:800;font-family:'DM Mono',monospace;color:#fff">${so.right}/${so.deck.length}</div><div style="color:var(--muted);margin:6px 0 16px">Best: ${best}/12. Remember: dabblers jump into flight, divers run across the water.</div><button class="btn btn-accent" onclick="startSort()">Play again</button></div>`; return; }
+  const s=so.deck[so.i]; so.ans=false;
+  box.innerHTML=`<div class="mtop"><span>BIRD ${so.i+1} / ${so.deck.length}</span><span class="pts">${so.right} correct</span></div>
+    <div class="timer-bar"><div class="timer-fill" id="st"></div></div>
+    <div class="sort-name">${esc(s.n)}</div><div class="sort-sub">Which group? (keys 1 · 2 · 3)</div>
+    <div class="sort-btns"><button class="opt" id="sb-dabbler" onclick="pickSort('dabbler')"><span class="opt-key">1</span><span>Dabbler</span></button><button class="opt" id="sb-diver" onclick="pickSort('diver')"><span class="opt-key">2</span><span>Diver</span></button><button class="opt" id="sb-neither" onclick="pickSort('neither')"><span class="opt-key">3</span><span>Neither</span></button></div>
+    <div class="fb" id="sfb"></div>`;
+  let left=SORT_SECS*10; const bar=document.getElementById('st'); bar.style.width='100%';
+  tick=setInterval(()=>{ left--; bar.style.width=(left/(SORT_SECS*10)*100)+'%'; if(left<=0){ clearInterval(tick); pickSort(null); } },100);
+}
+function pickSort(g){
+  if(so.ans) return; so.ans=true; clearInterval(tick); const s=so.deck[so.i], b=bucket(s), ok=g===b;
+  if(ok) so.right++; bump(s,ok); game().answer(ok,1);
+  ['dabbler','diver','neither'].forEach(x=>{ const el=document.getElementById('sb-'+x); el.disabled=true; if(x===b) el.classList.add('correct'); else if(x===g) el.classList.add('wrong'); });
+  const fb=document.getElementById('sfb'); fb.className='fb show '+(ok?'ok':'no');
+  fb.innerHTML=`<b style="color:${ok?'#4fd1a5':'#f08579'}">${g===null?'⏱ Time.':ok?'✓ Right.':'✗ Not quite.'}</b> ${esc(s.n)}: ${esc(GROUP[s.g])}. <div style="margin-top:10px"><button class="btn btn-accent" onclick="so.i++;renderSort()">Next →</button></div>`;
+}
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('v-sort').classList.contains('active')||!so) return;
+  if(!so.ans&&['1','2','3'].includes(e.key)) pickSort(['dabbler','diver','neither'][+e.key-1]);
+  else if(so.ans&&e.key==='Enter'){ so.i++; renderSort(); }
+});
+(function init(){
+  document.getElementById('page-sub').textContent=`${SP.length} species · drake, hen, speculum, habitat, and Florida notes · 2 ID games`;
+  journal(); renderGrid();
+  const v=new URLSearchParams(location.search).get('play'); if(v){ const b=document.querySelector('.mode-tab[data-v="'+v+'"]'); if(b) setView(v,b); }
+})();
+</script>
+</body>
+</html>

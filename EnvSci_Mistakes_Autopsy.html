@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Environmental Science Honors — Mistakes Autopsy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
+  --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
+  --accent:#1D9E75;--accent-soft:rgba(29,158,117,.12);--accent-text:#4fd1a5;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(46,139,192,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(46,139,192,0.04) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:26px 20px 70px}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent-text);text-decoration:none;margin-bottom:14px;opacity:.9}
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--accent-text)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+.about-banner{background:linear-gradient(135deg,var(--accent-soft),rgba(29,158,117,.05));border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:12.5px;line-height:1.55}
+.about-banner a{color:var(--accent-text)}
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px;flex:1}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:14px}
+.sec-lbl{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.13em;color:var(--muted);margin-bottom:11px;text-transform:uppercase}
+.controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;flex-direction:column;gap:11px}
+.ctrl-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--muted);min-width:56px}
+.search-input{flex:1;min-width:200px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13.5px}
+.search-input:focus{outline:none;border-color:var(--accent)}
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--accent);color:var(--text)}
+.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn{border:none;border-radius:11px;padding:11px 20px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;transition:all .2s;color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-accent{background:var(--accent)}
+.btn-accent:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 22px rgba(0,0,0,.35)}
+.btn-ghost{background:var(--bg);border:1px solid var(--border);color:var(--text)}
+.btn-ghost:hover{border-color:var(--accent)}
+.btn-teal{background:#188663}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:6px;display:inline-block}
+.t-unit{background:var(--accent-soft);color:var(--accent-text);border:1px solid var(--border)}
+.empty{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px}
+.footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center;line-height:1.7}
+.overlay{position:fixed;inset:0;background:rgba(3,8,16,.82);backdrop-filter:blur(4px);z-index:500;display:none;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto}
+.overlay.open{display:flex}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;max-width:640px;width:100%}
+.opt{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:12px 15px;cursor:pointer;transition:all .16s;display:flex;align-items:flex-start;gap:11px;text-align:left;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);width:100%}
+.opt:hover:not(:disabled){border-color:var(--accent);background:var(--card2)}
+.opt:disabled{cursor:default}
+.opt-key{width:24px;height:24px;border-radius:7px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0;color:var(--muted)}
+.opt.correct{border-color:var(--teal);background:rgba(29,158,117,.11)}
+.opt.correct .opt-key{background:#188663;border-color:var(--teal);color:#fff}
+.opt.wrong{border-color:var(--red);background:rgba(231,76,60,.10)}
+.opt.wrong .opt-key{background:#D24536;border-color:var(--red);color:#fff}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+@media(max-width:640px){.page-title{font-size:1.55rem}.ctrl-label{min-width:auto}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+
+.mk{background:var(--card);border:1px solid var(--border);border-radius:15px;margin-bottom:11px;overflow:hidden}
+.mk.m{border-left:3px solid var(--teal)}
+.mk-head{display:flex;gap:12px;align-items:flex-start;padding:15px 18px;cursor:pointer}
+.mk-head:hover{background:var(--card2)}
+.mk-ttl{font-size:15px;font-weight:800;color:#fff;line-height:1.35}
+.mk-tags{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+.t-high{background:rgba(231,76,60,.14);color:#f08579;border:1px solid rgba(231,76,60,.3)}
+.t-med{background:rgba(229,148,0,.12);color:#efb44e;border:1px solid rgba(229,148,0,.3)}
+.mk-arrow{margin-left:auto;color:var(--muted);transition:transform .2s;flex-shrink:0}
+.mk.open .mk-arrow{transform:rotate(180deg)}
+.mk-body{display:none;padding:0 18px 16px}
+.mk.open .mk-body{display:block}
+.setup{font-size:13.5px;font-style:italic;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:11px 13px;margin-bottom:10px}
+.wr{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+@media(max-width:600px){.wr{grid-template-columns:1fr}}
+.wrong,.right{border-radius:10px;padding:11px 13px;font-size:13px;line-height:1.55}
+.wrong{background:rgba(231,76,60,.07);border:1px solid rgba(231,76,60,.3)}
+.right{background:rgba(29,158,117,.07);border:1px solid rgba(29,158,117,.3)}
+.lbl{font-size:9.5px;font-weight:800;letter-spacing:.11em;display:block;margin-bottom:5px}
+.why{font-size:12.5px;color:var(--muted);margin-bottom:10px}
+.why b{color:var(--text)}
+.lock{background:rgba(139,92,246,.08);border-left:2px solid var(--purple);border-radius:9px;padding:10px 13px;font-size:13px;font-weight:700;color:#d4c8fb;margin-bottom:10px}
+.mbtn{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif}
+.mbtn.on{background:rgba(29,158,117,.15);border-color:var(--teal);color:#4fd1a5}
+.fm-setup{font-size:15px;color:#fff;line-height:1.55;margin:12px 0 4px;font-style:italic}
+.fm-q{font-size:12.5px;color:var(--muted);margin-bottom:12px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.fb{margin-top:12px;font-size:13px;line-height:1.55;display:none}.fb.show{display:block}
+.mtop{display:flex;justify-content:space-between;align-items:center;font-family:'DM Mono',monospace;font-size:11.5px;color:var(--muted)}
+
+</style>
+
+<script>window.STUDYHUB_GAME={course:'envsci'};</script>
+<script src="studyhub-game.js"></script>
+</head>
+<body>
+<div class="app">
+  <a class="back" href="EnvSci_StudyHub.html">← Environmental Science Study Hub</a>
+  <div class="header">
+    <div><div class="series-label">Environmental Science Honors · Study Resource Series · Build 4</div><div class="page-title">Mistakes <span>Autopsy</span></div><div class="page-sub" id="page-sub"></div></div>
+    <div style="display:flex;gap:9px;align-items:center;flex-wrap:wrap"><div data-game-hud></div><button class="btn btn-accent" onclick="openFM()">🔍 Find My Mistake</button></div>
+  </div>
+  <div class="about-banner">🔬 Each card dissects a high-frequency mistake: the scenario, the wrong thinking, the right thinking, <b>why</b> students fall for it, and a Memory Lock to make it stick. Open a card, read it, then <b>Mark mastered</b> once you could explain it to a friend. <b>Find My Mistake</b> tests whether you can spot the right thinking under pressure.</div>
+  <div class="stats-row">
+    <div class="stat-chip"><div class="stat-num" id="s-total">—</div><div class="stat-lbl">MISTAKES</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--teal)" id="s-m">0</div><div class="stat-lbl">MASTERED</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--amber)" id="s-fm">—</div><div class="stat-lbl">LAST DIAGNOSTIC</div></div>
+  </div>
+  <div class="controls">
+    <div class="ctrl-row"><span class="ctrl-label">UNIT</span><button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button><button class="pill" data-unit="U1" onclick="setUnit('U1',this)">U1</button><button class="pill" data-unit="U2" onclick="setUnit('U2',this)">U2</button><button class="pill" data-unit="U3" onclick="setUnit('U3',this)">U3</button><button class="pill" data-unit="U4" onclick="setUnit('U4',this)">U4</button><button class="pill" data-unit="U5" onclick="setUnit('U5',this)">U5</button><button class="pill" data-unit="U6" onclick="setUnit('U6',this)">U6</button><button class="pill" data-unit="U7" onclick="setUnit('U7',this)">U7</button><button class="pill" data-unit="U8" onclick="setUnit('U8',this)">U8</button><button class="pill" data-unit="U9" onclick="setUnit('U9',this)">U9</button><button class="pill" data-unit="U10" onclick="setUnit('U10',this)">U10</button></div>
+    <div class="ctrl-row"><span class="ctrl-label">SHOW</span><button class="pill active" data-st="all" onclick="setSt('all',this)">All</button><button class="pill" data-st="high" onclick="setSt('high',this)">🔥 High frequency</button><button class="pill" data-st="todo" onclick="setSt('todo',this)">Not mastered</button><button class="pill" data-st="done" onclick="setSt('done',this)">Mastered</button></div>
+  </div>
+  <div id="list"></div>
+  <div class="footer">Environmental Science Honors (2001341) · Florida NGSSS Science Standards · Mistakes Autopsy</div>
+</div>
+<div class="overlay" id="ov" onclick="if(event.target===this)closeFM()"><div class="modal" role="dialog" aria-modal="true" id="modal"></div></div>
+<script>
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function nl(s){ return esc(s).replace(/\n/g,'<br>'); }
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON.parse(v); }catch(e){ return d; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
+
+const UNIT_NAMES={"U1": "Intro to Env Science & Inquiry", "U2": "Earth Systems & Ecology", "U3": "Biodiversity & Populations", "U4": "Biomes, Wetlands & Aquatic Systems", "U5": "Conservation & Wildlife Management", "U6": "Soil, Agriculture & Food", "U7": "Water Resources", "U8": "Energy Resources", "U9": "Global Change & Environmental Health", "U10": "Air, Land & Waste"};
+const MK=[
+{
+"u": "U2",
+"freq": "high",
+"title": "Thinking energy recycles through an ecosystem",
+"setup": "A student writes: \"Decomposers recycle energy back to plants so the cycle continues.\"",
+"wrong": "Treating energy like matter — as if it loops back around.",
+"right": "Matter (nutrients) cycles. Energy flows one way: sunlight → producers → consumers → heat. Decomposers recycle nutrients, not energy.",
+"why": "Diagrams draw both as arrows, and decomposers really do return 'stuff' to plants.",
+"lock": "Nutrients go round and round. Energy goes in and out."
+},
+{
+"u": "U2",
+"freq": "high",
+"title": "Mixing up the 10% rule direction",
+"setup": "Producers have 50,000 kcal. A student says secondary consumers get 5,000 kcal.",
+"wrong": "Applying the 10% cut only once.",
+"right": "Primary consumers get 5,000 kcal and secondary consumers get 500 kcal. Apply the cut at every step up.",
+"why": "Students count trophic levels instead of the transfers between them.",
+"lock": "Count the arrows, not the levels."
+},
+{
+"u": "U2",
+"freq": "med",
+"title": "Calling nitrogen fixation and denitrification the same thing",
+"setup": "\"Wetland bacteria fix nitrogen, removing it from the water.\"",
+"wrong": "Using 'fix' to mean 'remove.'",
+"right": "Fixation adds usable nitrogen from N₂ gas. Denitrification removes nitrate by turning it back into N₂ gas, and wetlands are known for denitrification.",
+"why": "'Fix' sounds like 'repair' or 'deal with.'",
+"lock": "Fixation puts N in. Denitrification lets N out."
+},
+{
+"u": "U3",
+"freq": "high",
+"title": "Confusing habitat with niche",
+"setup": "Asked for the wood duck's niche, a student writes: \"Wooded swamps.\"",
+"wrong": "Giving a location when the question asks for a role.",
+"right": "Niche = role: eats acorns and invertebrates, nests in tree cavities, disperses seeds, and is prey for some predators. Wooded swamps are its habitat.",
+"why": "Both describe 'where it fits' in nature.",
+"lock": "Habitat is the address. Niche is the job."
+},
+{
+"u": "U3",
+"freq": "high",
+"title": "Assuming populations grow forever",
+"setup": "A student predicts a duck population growing 20% per year will double every 4 years indefinitely.",
+"wrong": "Applying exponential growth with no limiting factors.",
+"right": "Limiting factors — ponds, nesting cover, food, disease — slow growth as the population nears carrying capacity, producing an S-curve.",
+"why": "Short-term data often looks exponential.",
+"lock": "Every J eventually bends into an S."
+},
+{
+"u": "U3",
+"freq": "med",
+"title": "Weather as a density-dependent factor",
+"setup": "\"A drought is density-dependent because it affects big populations more.\"",
+"wrong": "Confusing total impact with density dependence.",
+"right": "A drought affects each individual similarly regardless of crowding, so it's density-independent. More individuals affected isn't the same as a higher per-individual effect.",
+"why": "Big populations lose more individuals in total.",
+"lock": "Ask whether crowding changes the odds for each individual."
+},
+{
+"u": "U3",
+"freq": "med",
+"title": "Saying individuals adapt or evolve",
+"setup": "\"The duck evolved longer legs because it needed to dive deeper.\"",
+"wrong": "Treating evolution as an individual changing on purpose.",
+"right": "Populations evolve. Individuals with heritable traits suited to the environment leave more offspring, so those traits become more common over generations.",
+"why": "Everyday language uses 'adapt' to mean 'adjust.'",
+"lock": "Individuals are selected. Populations evolve."
+},
+{
+"u": "U4",
+"freq": "high",
+"title": "Calling any wet area a wetland",
+"setup": "A puddle in a parking lot after rain is called a wetland.",
+"wrong": "Using surface water alone as the definition.",
+"right": "A wetland needs all three: wetland hydrology (saturated long enough during the growing season), hydric soils, and hydrophytic plants.",
+"why": "The word sounds like 'wet land.'",
+"lock": "Water, soil, AND plants — all three."
+},
+{
+"u": "U4",
+"freq": "med",
+"title": "Assuming temporary wetlands are worthless",
+"setup": "\"That pond dries up by July, so draining it won't hurt ducks.\"",
+"wrong": "Judging value by permanence.",
+"right": "Seasonal ponds warm early and produce invertebrates that laying hens need. Many pairs depend on them, and they're the easiest wetlands to drain.",
+"why": "People see dry ground in summer and assume no value.",
+"lock": "Small and temporary can be the most productive."
+},
+{
+"u": "U5",
+"freq": "high",
+"title": "Thinking hunting is what threatens duck populations most",
+"setup": "\"Ducks declined in the 1980s because hunters shot too many.\"",
+"wrong": "Ignoring habitat as the main driver.",
+"right": "Modern regulated harvest is set by monitoring data. Duck numbers track breeding habitat — ponds and grassland — most strongly. Drought and habitat loss caused major declines.",
+"why": "Harvest is visible; habitat loss happens slowly and out of sight.",
+"lock": "Ducks follow the water and the grass."
+},
+{
+"u": "U5",
+"freq": "high",
+"title": "Mixing up the Duck Stamp and Pittman-Robertson",
+"setup": "\"Pittman-Robertson is the stamp hunters buy to fund refuges.\"",
+"wrong": "Swapping the two funding programs.",
+"right": "The Federal Duck Stamp (1934) buys refuge habitat. Pittman-Robertson (1937) is an excise tax on firearms and ammunition distributed to state agencies.",
+"why": "Both are hunter-funded and from the 1930s.",
+"lock": "Stamp buys land. P-R funds the states."
+},
+{
+"u": "U5",
+"freq": "med",
+"title": "Believing wildlife belongs to the landowner",
+"setup": "\"The ducks on my pond are mine.\"",
+"wrong": "Treating wildlife as private property.",
+"right": "Under the Public Trust Doctrine, wildlife is held in trust by government for all citizens. Landowners control access to their land, not ownership of the ducks.",
+"why": "Owning the land seems to include what's on it.",
+"lock": "You own the land; we all own the ducks."
+},
+{
+"u": "U5",
+"freq": "med",
+"title": "Assuming more water is always better",
+"setup": "A manager keeps an impoundment deep year-round so ducks always have water.",
+"wrong": "Equating depth and permanence with habitat quality.",
+"right": "Dabblers feed in water roughly 18 inches deep or less, and seed plants need drawdowns to germinate. Wet-dry cycles and shallow flooding produce more food.",
+"why": "Ducks need water, so more seems better.",
+"lock": "Shallow and cycling beats deep and static."
+},
+{
+"u": "U5",
+"freq": "med",
+"title": "Releasing pen-raised mallards to 'help' Florida ducks",
+"setup": "A club releases farm mallards to boost local duck numbers.",
+"wrong": "Assuming any added duck helps.",
+"right": "Feral mallards hybridize with Florida's native mottled duck, threatening its genetic integrity. Florida discourages releases.",
+"why": "It looks like a kind, helpful act.",
+"lock": "Wrong duck, wrong place — it hurts the native duck."
+},
+{
+"u": "U6",
+"freq": "med",
+"title": "Thinking pesticides make individual insects resistant",
+"setup": "\"The insects got used to the spray.\"",
+"wrong": "Treating resistance as tolerance an individual builds up.",
+"right": "A few insects already carried resistance genes. They survived, reproduced, and the population evolved resistance.",
+"why": "It sounds like building tolerance.",
+"lock": "The spray selects; it doesn't teach."
+},
+{
+"u": "U7",
+"freq": "high",
+"title": "Blaming the algae itself for fish kills",
+"setup": "\"The algae blocked the fish's gills.\"",
+"wrong": "Skipping the decomposition step.",
+"right": "Algae die, then decomposers consume dissolved oxygen as they break them down, and low DO kills fish. Some blooms are also toxic, but oxygen crash is the classic mechanism.",
+"why": "The visible bloom gets the blame.",
+"lock": "Bloom → die-off → decomposers → no oxygen."
+},
+{
+"u": "U7",
+"freq": "med",
+"title": "Calling runoff from a whole neighborhood point source",
+"setup": "Storm drains empty into a canal through one big pipe, so a student calls it point source.",
+"wrong": "Focusing on the outlet, not the origin.",
+"right": "The pollution originates from countless lawns and streets — nonpoint sources — even if it exits through a shared drain.",
+"why": "There's literally a pipe at the end.",
+"lock": "Trace it upstream: one origin or many?"
+},
+{
+"u": "U7",
+"freq": "med",
+"title": "Assuming warm water holds more oxygen",
+"setup": "\"Summer water is more active, so it has more oxygen.\"",
+"wrong": "Reversing the temperature–oxygen relationship.",
+"right": "Gas solubility falls as temperature rises, and organisms use more oxygen when it's warm. That's why fish kills peak in summer.",
+"why": "Warm feels active and alive.",
+"lock": "Warm water, weak oxygen."
+},
+{
+"u": "U8",
+"freq": "med",
+"title": "Calling renewable energy impact-free",
+"setup": "\"Wind and hydro are renewable, so they have no environmental effects.\"",
+"wrong": "Equating renewable with zero impact.",
+"right": "Dams block fish and flood habitat. Turbines can kill birds and bats if poorly sited. Every energy source has tradeoffs to manage.",
+"why": "'Renewable' sounds purely positive.",
+"lock": "Renewable means it lasts, not that it's harmless."
+},
+{
+"u": "U9",
+"freq": "high",
+"title": "Mixing up the ozone hole and global warming",
+"setup": "\"The ozone hole lets heat in, causing global warming.\"",
+"wrong": "Merging two separate problems.",
+"right": "Ozone depletion lets in more UV radiation and was caused by CFCs. Warming comes from greenhouse gases trapping infrared heat. Different causes, different solutions.",
+"why": "Both involve the atmosphere and both are 'bad.'",
+"lock": "Ozone = UV shield. Greenhouse = heat blanket."
+},
+{
+"u": "U9",
+"freq": "high",
+"title": "Swapping bioaccumulation and biomagnification",
+"setup": "\"DDT bioaccumulated from plankton up to eagles.\"",
+"wrong": "Using bioaccumulation for movement across trophic levels.",
+"right": "Bioaccumulation is buildup within one organism over time. Biomagnification is increasing concentration up the food chain. DDT did both.",
+"why": "The words are similar.",
+"lock": "Accumulate in me; magnify up the chain."
+},
+{
+"u": "U10",
+"freq": "med",
+"title": "Calling ground-level ozone a primary pollutant",
+"setup": "\"Cars emit ozone.\"",
+"wrong": "Assuming everything in smog comes out of the tailpipe.",
+"right": "Cars emit NOₓ and VOCs, which are primary pollutants. Sunlight then drives reactions that form ozone, a secondary pollutant.",
+"why": "Ozone shows up wherever there's traffic.",
+"lock": "The tailpipe makes the ingredients; the sun cooks the ozone."
+},
+{
+"u": "U10",
+"freq": "med",
+"title": "Recycling first instead of reducing",
+"setup": "\"The best way to cut waste is to recycle more.\"",
+"wrong": "Skipping the top of the waste hierarchy.",
+"right": "Reduce, then reuse, then recycle. Recycling still takes energy and many materials degrade. Not creating waste saves the most.",
+"why": "Recycling is the most visible green habit.",
+"lock": "Reduce beats reuse beats recycle."
+},
+{
+"u": "U1",
+"freq": "high",
+"title": "Saying an experiment 'proved' a hypothesis",
+"setup": "\"Our data proved fertilizer causes algae growth.\"",
+"wrong": "Treating supporting data as proof.",
+"right": "Data support or fail to support a hypothesis. Science stays open to new evidence; repeated, replicated results build confidence.",
+"why": "'Prove' is common in everyday speech.",
+"lock": "Support, don't prove."
+}
+];
+const LS_M='envsci_autopsy_mastered', LS_F='envsci_autopsy_fmm';
+let mastered=new Set(lsGet(LS_M,[])), openSet=new Set(), curU='all', curS='all';
+function setUnit(u,b){ curU=u; document.querySelectorAll('.pill[data-unit]').forEach(x=>x.classList.toggle('active',x===b)); render(); }
+function setSt(s,b){ curS=s; document.querySelectorAll('.pill[data-st]').forEach(x=>x.classList.toggle('active',x===b)); render(); }
+function tog(i){ openSet.has(i)?openSet.delete(i):openSet.add(i); render(); }
+function master(i,e){ e.stopPropagation(); const k=MK[i].title; if(mastered.has(k)) mastered.delete(k); else { mastered.add(k); game().event('autopsy'); } lsSet(LS_M,[...mastered]); render(); }
+function render(){
+  document.getElementById('s-m').textContent=MK.filter(m=>mastered.has(m.title)).length;
+  const list=MK.map((m,i)=>({m,i})).filter(({m})=>(curU==='all'||m.u===curU)&&(curS==='all'||(curS==='high'&&m.freq==='high')||(curS==='todo'&&!mastered.has(m.title))||(curS==='done'&&mastered.has(m.title))));
+  const box=document.getElementById('list');
+  if(!list.length){ box.innerHTML='<div class="empty">Nothing here with these filters.</div>'; return; }
+  box.innerHTML=list.map(({m,i})=>{ const ms=mastered.has(m.title), op=openSet.has(i);
+    return `<div class="mk ${ms?'m':''} ${op?'open':''}"><div class="mk-head" onclick="tog(${i})" role="button" tabindex="0" aria-expanded="${op}" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(${i})}">
+      <div><div class="mk-ttl">${esc(m.title)}</div><div class="mk-tags"><span class="tag t-unit">${m.u} · ${esc(UNIT_NAMES[m.u])}</span><span class="tag ${m.freq==='high'?'t-high':'t-med'}">${m.freq==='high'?'🔥 High frequency':'Common'}</span>${ms?'<span class="tag" style="background:rgba(29,158,117,.15);color:#4fd1a5">✓ Mastered</span>':''}</div></div>
+      <span class="mk-arrow">▾</span></div>
+      <div class="mk-body"><div class="setup">${esc(m.setup)}</div>
+        <div class="wr"><div class="wrong"><span class="lbl" style="color:#f08579">✗ THE MISTAKE</span>${esc(m.wrong)}</div><div class="right"><span class="lbl" style="color:#4fd1a5">✓ THE RIGHT THINKING</span>${esc(m.right)}</div></div>
+        <div class="why"><b>Why it happens:</b> ${esc(m.why)}</div>
+        <div class="lock">🔒 Memory Lock: ${esc(m.lock)}</div>
+        <button class="mbtn ${ms?'on':''}" onclick="master(${i},event)">${ms?'✓ Mastered':'Mark mastered'}</button></div></div>`; }).join('');
+}
+// ── Find My Mistake ──
+let fm=null;
+function openFM(){
+  const pool=curU==='all'?MK:MK.filter(m=>m.u===curU);
+  fm={items:shuffle(pool).slice(0,Math.min(8,pool.length)),i:0,right:0,ans:false};
+  document.getElementById('ov').classList.add('open'); renderFM();
+}
+function closeFM(){ document.getElementById('ov').classList.remove('open'); render(); }
+function renderFM(){
+  const md=document.getElementById('modal');
+  if(fm.i>=fm.items.length){ const s=`${fm.right}/${fm.items.length}`; localStorage.setItem(LS_F,s); document.getElementById('s-fm').textContent=s; game().event('fmm');
+    md.innerHTML=`<div style="text-align:center;padding:20px"><div class="sec-lbl">DIAGNOSTIC COMPLETE</div><div style="font-size:40px;font-weight:800;font-family:'DM Mono',monospace;color:#fff">${s}</div><div style="color:var(--muted);margin:6px 0 16px">Open the cards you missed and read the Memory Lock.</div><button class="btn btn-accent" onclick="openFM()">Run again</button> <button class="btn btn-ghost" onclick="closeFM()">Close</button></div>`; return; }
+  const m=fm.items[fm.i]; fm.ans=false;
+  const other=shuffle(MK.filter(x=>x!==m))[0];
+  fm.opts=shuffle([{t:m.right,ok:true},{t:m.wrong,ok:false},{t:other.right,ok:false,off:true}]);
+  md.innerHTML=`<div class="mtop"><span>CASE ${fm.i+1} / ${fm.items.length}</span><span>${fm.right} correct</span><button class="pill" onclick="closeFM()">✕</button></div>
+    <div class="fm-setup">${esc(m.setup)}</div><div class="fm-q">Which statement shows the RIGHT thinking for this situation?</div>
+    <div class="opts">${fm.opts.map((o,k)=>`<button class="opt" id="fo-${k}" onclick="pickFM(${k})"><span class="opt-key">${'ABC'[k]}</span><span>${esc(o.t)}</span></button>`).join('')}</div><div class="fb" id="ffb"></div>`;
+}
+function pickFM(k){
+  if(fm.ans) return; fm.ans=true; const m=fm.items[fm.i], o=fm.opts[k];
+  if(o.ok) fm.right++; game().answer(o.ok,2);
+  fm.opts.forEach((x,j)=>{ const b=document.getElementById('fo-'+j); b.disabled=true; if(x.ok) b.classList.add('correct'); else if(j===k) b.classList.add('wrong'); });
+  const fb=document.getElementById('ffb'); fb.classList.add('show');
+  fb.innerHTML=`<b style="color:${o.ok?'#4fd1a5':'#f08579'}">${o.ok?'✓ Correct.':o.off?'✗ True statement, wrong situation.':'✗ That\'s the mistake itself.'}</b> 🔒 ${esc(m.lock)}<div style="margin-top:12px"><button class="btn btn-accent" onclick="fm.i++;renderFM()">Next →</button></div>`;
+}
+(function init(){
+  document.getElementById('s-total').textContent=MK.length;
+  const f=localStorage.getItem(LS_F); if(f) document.getElementById('s-fm').textContent=f;
+  document.getElementById('page-sub').textContent=`${MK.length} high-frequency mistakes · ${MK.filter(m=>m.freq==='high').length} flagged high frequency · Find My Mistake diagnostic`;
+  const qu=new URLSearchParams(location.search).get('unit'); const b=qu&&document.querySelector('.pill[data-unit="'+(qu.startsWith('U')?qu:'U'+qu)+'"]');
+  if(b) setUnit(b.dataset.unit,b); else render();
+})();
+</script>
+</body>
+</html>

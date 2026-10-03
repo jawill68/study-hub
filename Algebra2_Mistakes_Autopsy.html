@@ -106,6 +106,8 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .btn-fmm-next{background:linear-gradient(135deg,#8558EC,#6d3fd4);color:#fff;border:none;padding:11px 26px;font-weight:800;border-radius:12px;cursor:pointer;font-family:'DM Sans',sans-serif}
 .btn-fmm-exit{background:var(--bg);border:1px solid var(--border);color:var(--muted);padding:11px 18px;border-radius:12px;cursor:pointer;font-family:'DM Sans',sans-serif}
 </style>
+<script>window.STUDYHUB_GAME={course:'algebra2'};</script>
+<script src="studyhub-game.js"></script>
 </head>
 <body>
 <div class="app">
@@ -118,6 +120,7 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 <div class="page-title">Mistakes <span>Autopsy</span></div>
 </div>
 <div class="header-actions">
+<div data-game-hud></div>
 <button class="launch-fmm" onclick="launchFMM()">🔍 Find My Mistake</button>
 </div>
 </div>
@@ -633,7 +636,7 @@ function setUnit(u,btn){ curUnit=u; document.querySelectorAll('.pill[data-u]').f
 function setStatus(s,btn){ curStatus=s; document.querySelectorAll('.pill[data-s]').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); render(); }
 function setView(v){ curView=v; document.getElementById('listBtn').classList.toggle('active', v==='list'); document.getElementById('compactBtn').classList.toggle('active', v==='compact'); document.getElementById('container').classList.toggle('compact', v==='compact'); }
 function toggleOpen(id,ev){ if(ev) ev.stopPropagation(); if(openSet.has(id)) openSet.delete(id); else openSet.add(id); render(); }
-function toggleMastered(id,ev){ ev.stopPropagation(); if(mastered.has(id)) mastered.delete(id); else mastered.add(id); saveMastered(); render(); }
+function toggleMastered(id,ev){ ev.stopPropagation(); if(mastered.has(id)) mastered.delete(id); else { mastered.add(id); if(window.StudyHubGame) StudyHubGame.event('autopsy'); } saveMastered(); render(); }
 
 function getFiltered(){
   const q = document.getElementById('search-input').value.trim().toLowerCase();
@@ -697,6 +700,7 @@ function launchFMM(){
 function closeFMM(){ document.getElementById('fmm-overlay').classList.remove('open'); }
 function renderFMM(){
   if(fmmIdx >= fmmDeck.length){
+    if(window.StudyHubGame) StudyHubGame.event('fmm');
     document.getElementById('fmm-card').innerHTML = `<div style="text-align:center;padding:20px 0"><div style="font-size:11px;color:var(--muted);letter-spacing:.1em;margin-bottom:10px">SESSION COMPLETE</div><div style="font-size:32px;font-weight:800;color:var(--white)">${fmmRight}/${fmmDeck.length}</div></div>`;
     document.getElementById('fmm-next-btn').style.display='none';
     return;
@@ -729,6 +733,14 @@ function fmmAnswer(i, btn){
 function fmmNext(){ fmmIdx++; renderFMM(); }
 
 document.addEventListener('DOMContentLoaded', render);
+
+// Deep link from the Study Hub unit navigator: ?unit=3 opens filtered to U3
+(function(){
+  const qu = new URLSearchParams(location.search).get('unit');
+  if(!qu) return;
+  const b = document.querySelector('.pill[data-u="U'+qu+'"]');
+  if(b) setUnit('U'+qu,b);
+})();
 </script>
 </body>
 </html>

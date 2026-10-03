@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Algebra 2 — Common Confusions</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
+  --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
+  --accent:#2E8BC0;--accent-soft:rgba(46,139,192,.12);--accent-text:#7cc0e6;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(46,139,192,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(46,139,192,0.04) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:26px 20px 70px}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent-text);text-decoration:none;margin-bottom:14px;opacity:.9}
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--accent-text)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+.about-banner{background:linear-gradient(135deg,var(--accent-soft),rgba(29,158,117,.05));border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:12.5px;line-height:1.55}
+.about-banner a{color:var(--accent-text)}
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px;flex:1}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:14px}
+.sec-lbl{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.13em;color:var(--muted);margin-bottom:11px;text-transform:uppercase}
+.controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;flex-direction:column;gap:11px}
+.ctrl-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--muted);min-width:56px}
+.search-input{flex:1;min-width:200px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13.5px}
+.search-input:focus{outline:none;border-color:var(--accent)}
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--accent);color:var(--text)}
+.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn{border:none;border-radius:11px;padding:11px 20px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;transition:all .2s;color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-accent{background:var(--accent)}
+.btn-accent:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 22px rgba(0,0,0,.35)}
+.btn-ghost{background:var(--bg);border:1px solid var(--border);color:var(--text)}
+.btn-ghost:hover{border-color:var(--accent)}
+.btn-teal{background:#188663}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:6px;display:inline-block}
+.t-unit{background:var(--accent-soft);color:var(--accent-text);border:1px solid var(--border)}
+.empty{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px}
+.footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center;line-height:1.7}
+.overlay{position:fixed;inset:0;background:rgba(3,8,16,.82);backdrop-filter:blur(4px);z-index:500;display:none;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto}
+.overlay.open{display:flex}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;max-width:640px;width:100%}
+.opt{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:12px 15px;cursor:pointer;transition:all .16s;display:flex;align-items:flex-start;gap:11px;text-align:left;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);width:100%}
+.opt:hover:not(:disabled){border-color:var(--accent);background:var(--card2)}
+.opt:disabled{cursor:default}
+.opt-key{width:24px;height:24px;border-radius:7px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0;color:var(--muted)}
+.opt.correct{border-color:var(--teal);background:rgba(29,158,117,.11)}
+.opt.correct .opt-key{background:#188663;border-color:var(--teal);color:#fff}
+.opt.wrong{border-color:var(--red);background:rgba(231,76,60,.10)}
+.opt.wrong .opt-key{background:#D24536;border-color:var(--red);color:#fff}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+@media(max-width:640px){.page-title{font-size:1.55rem}.ctrl-label{min-width:auto}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+
+.pair-card{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:18px 20px;margin-bottom:12px;transition:border-color .18s}
+.pair-card:hover{border-color:var(--accent)}
+.pair-card.got{border-left:3px solid var(--teal)}
+.pair-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.vs-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:start;margin-bottom:12px}
+@media(max-width:600px){.vs-grid{grid-template-columns:1fr}.vs-divider{display:none}}
+.vs-box{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:13px 15px}
+.vs-term{font-size:15.5px;font-weight:800;color:var(--white);margin-bottom:6px}
+.vs-def{font-size:13px;opacity:.92;line-height:1.5}
+.vs-ex{font-family:'DM Mono',monospace;font-size:12px;color:#c4b2f7;margin-top:8px}
+.vs-divider{display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;font-weight:700;padding-top:20px}
+.distinguisher{background:rgba(229,148,0,.07);border-left:2px solid var(--amber);border-radius:9px;padding:11px 14px;font-size:13px;margin-bottom:9px}
+.dist-lbl{font-size:9px;font-weight:700;letter-spacing:.11em;color:#efb44e;display:block;margin-bottom:5px}
+.hook{background:rgba(29,158,117,.07);border-left:2px solid var(--teal);border-radius:9px;padding:11px 14px;font-size:13px;font-weight:600}
+.hook-lbl{font-size:9px;font-weight:700;letter-spacing:.11em;color:#4fd1a5;display:block;margin-bottom:5px}
+.got-btn{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:5px 12px;font-size:11.5px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif}
+.got-btn.on{background:rgba(29,158,117,.15);border-color:var(--teal);color:#4fd1a5}
+.sort-def{font-size:16px;font-weight:600;color:var(--white);line-height:1.5;margin:14px 0 18px;padding:16px;background:var(--bg);border:1px solid var(--border);border-radius:12px}
+.sort-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sort-fb{margin-top:14px;font-size:13px;line-height:1.55;display:none}
+.sort-fb.show{display:block}
+.sort-top{display:flex;justify-content:space-between;align-items:center;font-family:'DM Mono',monospace;font-size:11.5px;color:var(--muted)}
+.timer-bar{height:4px;background:var(--bg);border-radius:99px;overflow:hidden;margin-top:10px}
+.timer-fill{height:100%;background:var(--amber);transition:width .1s linear}
+
+</style>
+
+<script>window.STUDYHUB_GAME={course:'algebra2'};</script>
+<script src="studyhub-game.js"></script>
+</head>
+<body>
+<div class="app">
+  <a class="back" href="Algebra2_StudyHub.html">← Algebra 2 Study Hub</a>
+  <div class="header">
+    <div>
+      <div class="series-label">Algebra 2 · Study Resource Series · Build 4</div>
+      <div class="page-title">Common <span>Confusions</span></div>
+      <div class="page-sub" id="page-sub"></div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <div data-game-hud></div>
+      <button class="btn btn-accent" onclick="openSort()">⚡ Speed Sort</button>
+    </div>
+  </div>
+
+  <div class="about-banner">📎 Look-alike ideas, side by side: the one line that tells them apart, plus a memory hook. Tap <b>Got it</b> when a pair clicks. Then try <b>⚡ Speed Sort</b>: you see a definition and have 8 seconds to name the right term. For <i>why</i> students mix things up, see the <a href="Algebra2_Mistakes_Autopsy.html">Mistakes Autopsy</a>.</div>
+
+  <div class="stats-row">
+    <div class="stat-chip"><div class="stat-num" id="s-total">—</div><div class="stat-lbl">TERM PAIRS</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--teal)" id="s-got">0</div><div class="stat-lbl">GOT IT</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--amber)" id="s-best">—</div><div class="stat-lbl">BEST SPEED SORT</div></div>
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-row"><span class="ctrl-label">SEARCH</span><input class="search-input" id="q" type="search" placeholder="Search either term, definition, or hook…" oninput="render()" aria-label="Search pairs"></div>
+    <div class="ctrl-row"><span class="ctrl-label">UNIT</span><button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button><button class="pill" data-unit="U1" onclick="setUnit('U1',this)">U1</button><button class="pill" data-unit="U2" onclick="setUnit('U2',this)">U2</button><button class="pill" data-unit="U3" onclick="setUnit('U3',this)">U3</button><button class="pill" data-unit="U4" onclick="setUnit('U4',this)">U4</button><button class="pill" data-unit="U5" onclick="setUnit('U5',this)">U5</button><button class="pill" data-unit="U6" onclick="setUnit('U6',this)">U6</button><button class="pill" data-unit="U7" onclick="setUnit('U7',this)">U7</button><button class="pill" data-unit="U8" onclick="setUnit('U8',this)">U8</button><button class="pill" data-unit="U9" onclick="setUnit('U9',this)">U9</button><button class="pill" data-unit="U10" onclick="setUnit('U10',this)">U10</button></div>
+    <div class="ctrl-row"><span class="ctrl-label">SHOW</span>
+      <button class="pill active" data-show="all" onclick="setShow('all',this)">All</button>
+      <button class="pill" data-show="todo" onclick="setShow('todo',this)">Still learning</button>
+      <button class="pill" data-show="got" onclick="setShow('got',this)">Got it</button>
+    </div>
+  </div>
+  <div id="list"></div>
+
+  <div class="footer">Algebra 2 (1200330) · Florida B.E.S.T. · CCSS · Common Confusions</div>
+</div>
+
+<div class="overlay" id="sort-ov" onclick="if(event.target===this)closeSort()">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Speed Sort">
+    <div class="sort-top"><span id="sort-count"></span><span id="sort-score"></span><button class="pill" onclick="closeSort()">✕ Close</button></div>
+    <div class="timer-bar"><div class="timer-fill" id="sort-timer"></div></div>
+    <div id="sort-body"></div>
+  </div>
+</div>
+
+<script>
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function nl(s){ return esc(s).replace(/\n/g,'<br>'); }
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON.parse(v); }catch(e){ return d; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
+
+const UNIT_NAMES = {"U1": "Functions & Transformations", "U2": "Polynomial Functions", "U3": "Quadratics & Complex Numbers", "U4": "Rational Functions", "U5": "Radical Functions", "U6": "Exponential & Logarithmic", "U7": "Sequences & Series", "U8": "Probability & Statistics", "U9": "Conic Sections", "U10": "Trigonometry"};
+const PAIRS = [
+{
+"u": "U1",
+"a": "f(x + 2)",
+"da": "Shifts the graph LEFT 2. The change is inside the function, so it acts on x.",
+"ea": "(x + 2)² → vertex moves to x = −2",
+"b": "f(x) + 2",
+"db": "Shifts the graph UP 2. The change is outside the function, so it acts on y.",
+"eb": "x² + 2 → vertex moves to y = 2",
+"dist": "Inside changes move the graph horizontally and run opposite to the sign. Outside changes move it vertically and follow the sign.",
+"hook": "Inside lies, outside tells the truth."
+},
+{
+"u": "U1",
+"a": "Domain",
+"da": "Every input (x-value) the function accepts.",
+"ea": "√x → domain x ≥ 0",
+"b": "Range",
+"db": "Every output (y-value) the function actually produces.",
+"eb": "√x → range y ≥ 0",
+"dist": "Domain is about what you're allowed to plug in. Range is about what comes out. Read domain left to right on a graph and range bottom to top.",
+"hook": "D before R, x before y — input, then output."
+},
+{
+"u": "U1",
+"a": "f⁻¹(x)  (inverse)",
+"da": "The function that undoes f: it swaps inputs and outputs, and its graph reflects f across y = x.",
+"ea": "f(x) = 2x + 1 → f⁻¹(x) = (x − 1)/2",
+"b": "1 / f(x)  (reciprocal)",
+"db": "One divided by the output of f.",
+"eb": "f(x) = 2x + 1 → 1/(2x + 1)",
+"dist": "The −1 in f⁻¹ is notation for \"undo,\" not an exponent. To find an inverse, swap x and y and solve. A reciprocal is just a fraction.",
+"hook": "The ⁻¹ on f means undo, not flip."
+},
+{
+"u": "U1",
+"a": "Even function",
+"da": "f(−x) = f(x). Symmetric across the y-axis.",
+"ea": "x², |x|, cos x",
+"b": "Odd function",
+"db": "f(−x) = −f(x). Symmetric about the origin (180° rotation).",
+"eb": "x³, x, sin x",
+"dist": "Plug in −x. If you get the original back, it's even. If you get the negative of the original, it's odd. If neither, it's neither — most functions are.",
+"hook": "Even = mirror. Odd = spin."
+},
+{
+"u": "U1",
+"a": "(f ∘ g)(x) = f(g(x))",
+"da": "Composition: put g(x) into f.",
+"ea": "f(x)=x², g(x)=x+1 → (x+1)²",
+"b": "(f · g)(x) = f(x)·g(x)",
+"db": "Product: multiply the two outputs.",
+"eb": "f(x)=x², g(x)=x+1 → x²(x+1)",
+"dist": "The small circle ∘ means one function goes inside the other. A dot means multiply. Composition also isn't commutative: f(g(x)) usually differs from g(f(x)).",
+"hook": "Circle = nest it. Dot = multiply it."
+},
+{
+"u": "U2",
+"a": "Zero (root)",
+"da": "An x-value that makes the polynomial equal 0.",
+"ea": "x = 3",
+"b": "Factor",
+"db": "An expression that divides the polynomial evenly.",
+"eb": "(x − 3)",
+"dist": "A zero is a number. A factor is an expression. They come in pairs: if 3 is a zero, then (x − 3) is a factor. The sign flips between them.",
+"hook": "Zero x = 3 ↔ factor (x − 3): the sign flips."
+},
+{
+"u": "U2",
+"a": "Even multiplicity",
+"da": "The factor appears an even number of times. The graph touches the x-axis and bounces off.",
+"ea": "(x − 2)² → bounce at 2",
+"b": "Odd multiplicity",
+"db": "The factor appears an odd number of times. The graph crosses the x-axis.",
+"eb": "(x − 2)³ → crosses at 2, flattening as it goes through",
+"dist": "Look at the exponent on each factor. Even means the sign of y doesn't change at that zero, so the graph bounces. Odd means it changes, so the graph crosses.",
+"hook": "Even bounces. Odd goes through."
+},
+{
+"u": "U2",
+"a": "Remainder Theorem",
+"da": "Dividing p(x) by (x − c) leaves a remainder equal to p(c).",
+"ea": "p(x) ÷ (x − 2) → remainder = p(2)",
+"b": "Factor Theorem",
+"db": "(x − c) is a factor of p(x) exactly when p(c) = 0.",
+"eb": "p(2) = 0 → (x − 2) is a factor",
+"dist": "The Factor Theorem is the special case of the Remainder Theorem where the remainder is 0.",
+"hook": "Remainder 0 means factor."
+},
+{
+"u": "U3",
+"a": "Vertex form",
+"da": "y = a(x − h)² + k. The vertex (h, k) is visible right away.",
+"ea": "y = 2(x − 3)² + 1 → vertex (3, 1)",
+"b": "Standard form",
+"db": "y = ax² + bx + c. The y-intercept c is visible; the vertex x is −b/(2a).",
+"eb": "y = 2x² − 12x + 19",
+"dist": "Both describe the same parabola. Vertex form shows the turning point. Standard form shows the y-intercept and is ready for the quadratic formula. Complete the square to convert standard to vertex form.",
+"hook": "Vertex form shows the turn. Standard form shows the start."
+},
+{
+"u": "U3",
+"a": "Complex conjugate",
+"da": "Same real part, opposite imaginary part.",
+"ea": "3 + 4i → 3 − 4i",
+"b": "Opposite (additive inverse)",
+"db": "Both parts change sign.",
+"eb": "3 + 4i → −3 − 4i",
+"dist": "Multiplying a number by its conjugate gives a real number: (3 + 4i)(3 − 4i) = 9 + 16 = 25. That's why conjugates are used to divide complex numbers.",
+"hook": "Conjugate flips only the i."
+},
+{
+"u": "U3",
+"a": "Discriminant = 0",
+"da": "b² − 4ac = 0: exactly one real solution (a double root). The vertex sits on the x-axis.",
+"b": "Discriminant < 0",
+"db": "b² − 4ac < 0: no real solutions; two complex conjugate solutions. The parabola never touches the x-axis.",
+"dist": "The discriminant is the part under the square root in the quadratic formula. Zero leaves ± nothing to do. Negative forces an imaginary number.",
+"hook": "Zero: one touch. Negative: no touch, two complex roots."
+},
+{
+"u": "U4",
+"a": "Hole",
+"da": "A missing point where a factor cancels from both numerator and denominator.",
+"ea": "(x−1)(x+2)/(x−1) → hole at x = 1",
+"b": "Vertical asymptote",
+"db": "A vertical line the graph approaches but never touches, where a denominator factor does NOT cancel.",
+"eb": "(x+2)/(x−1) → VA at x = 1",
+"dist": "Factor top and bottom first. A factor that cancels makes a hole. A factor left in the denominator makes an asymptote.",
+"hook": "Cancel = hole. Survive = asymptote."
+},
+{
+"u": "U4",
+"a": "Horizontal asymptote",
+"da": "Appears when the numerator's degree is less than or equal to the denominator's.",
+"ea": "(3x² + 1)/(x² − 4) → y = 3",
+"b": "Slant (oblique) asymptote",
+"db": "Appears when the numerator's degree is exactly one more than the denominator's. Find it with long division.",
+"eb": "(x² + 1)/(x − 1) → y = x + 1",
+"dist": "Compare degrees. Top smaller: y = 0. Equal: ratio of leading coefficients. Top bigger by exactly 1: slant line. A rational function can't have both a horizontal and a slant asymptote.",
+"hook": "Bigger by one? Divide to find the slant."
+},
+{
+"u": "U5",
+"a": "√16",
+"da": "The principal (non-negative) square root. Exactly one answer.",
+"ea": "√16 = 4",
+"b": "x² = 16",
+"db": "An equation with two solutions.",
+"eb": "x = ±4",
+"dist": "The radical symbol always returns the non-negative root. The ± appears only when YOU take a square root to solve an equation.",
+"hook": "The symbol gives one answer. Solving gives two."
+},
+{
+"u": "U5",
+"a": "Extraneous solution",
+"da": "A value produced by squaring both sides that fails the original equation. Throw it out.",
+"ea": "√(x+7) = x+1 → x = −3 fails",
+"b": "No solution",
+"db": "The equation has no value that works at all.",
+"eb": "√x = −5",
+"dist": "An extraneous solution looks real until you check it. Always substitute back into the ORIGINAL equation after squaring.",
+"hook": "Square it? Check it."
+},
+{
+"u": "U6",
+"a": "Exponential growth",
+"da": "y = a(1 + r)ᵗ with base > 1. The rise gets steeper over time.",
+"ea": "Grows 5% per year → base 1.05",
+"b": "Exponential decay",
+"db": "y = a(1 − r)ᵗ with 0 < base < 1. It falls fast, then levels off toward 0.",
+"eb": "Loses 5% per year → base 0.95",
+"dist": "Check the base, not the rate. A 5% loss is 1 − 0.05 = 0.95, not 0.05.",
+"hook": "Grow: 1 plus. Decay: 1 minus."
+},
+{
+"u": "U6",
+"a": "log(xy)",
+"da": "Can be split: log x + log y (Product Rule).",
+"b": "log(x + y)",
+"db": "Cannot be split. There is no rule for the log of a sum.",
+"dist": "Log rules work on products, quotients, and powers inside the log — never on sums or differences.",
+"hook": "Logs split products, not sums."
+},
+{
+"u": "U6",
+"a": "log x",
+"da": "Common log, base 10.",
+"ea": "log 1000 = 3",
+"b": "ln x",
+"db": "Natural log, base e ≈ 2.718.",
+"eb": "ln e² = 2",
+"dist": "Both follow the same rules; only the base differs. ln pairs with e (continuous growth, A = Peʳᵗ). log pairs with 10.",
+"hook": "ln goes with e. log goes with 10."
+},
+{
+"u": "U7",
+"a": "Arithmetic sequence",
+"da": "Add the same difference d every time.",
+"ea": "3, 7, 11, 15 (d = 4)",
+"b": "Geometric sequence",
+"db": "Multiply by the same ratio r every time.",
+"eb": "3, 6, 12, 24 (r = 2)",
+"dist": "Subtract consecutive terms. If the differences are constant, it's arithmetic. If dividing gives a constant ratio, it's geometric. Test before choosing a formula.",
+"hook": "Arithmetic adds. Geometric multiplies."
+},
+{
+"u": "U7",
+"a": "Sequence",
+"da": "An ordered LIST of terms.",
+"ea": "2, 4, 6, 8",
+"b": "Series",
+"db": "The SUM of the terms.",
+"eb": "2 + 4 + 6 + 8 = 20",
+"dist": "If the question says \"sum\" or uses Σ, it's a series. A sequence keeps the terms separate.",
+"hook": "Sequence lists. Series sums."
+},
+{
+"u": "U7",
+"a": "Explicit formula",
+"da": "Gives any term directly from n.",
+"ea": "aₙ = 3 + 4(n − 1)",
+"b": "Recursive formula",
+"db": "Gives each term from the term before it, plus a starting value.",
+"eb": "a₁ = 3,  aₙ = aₙ₋₁ + 4",
+"dist": "Explicit lets you jump straight to the 100th term. Recursive makes you walk there one term at a time.",
+"hook": "Explicit jumps. Recursive walks."
+},
+{
+"u": "U8",
+"a": "Permutation",
+"da": "An arrangement where ORDER MATTERS.",
+"ea": "President, VP, Secretary from 10: P(10,3) = 720",
+"b": "Combination",
+"db": "A selection where ORDER DOESN'T MATTER.",
+"eb": "A 3-person committee from 10: C(10,3) = 120",
+"dist": "Ask: if I swap two people, is it a different outcome? If yes, use a permutation. A combination equals the permutation divided by r!.",
+"hook": "Permutation = Position. Combination = Committee."
+},
+{
+"u": "U8",
+"a": "Independent events",
+"da": "One event doesn't change the probability of the other. P(A and B) = P(A)·P(B).",
+"ea": "Flipping a coin twice",
+"b": "Mutually exclusive events",
+"db": "The events can't both happen. P(A and B) = 0, so P(A or B) = P(A) + P(B).",
+"eb": "Rolling a 2 and a 5 on one die",
+"dist": "These are close to opposites. If two events with nonzero probability are mutually exclusive, they can't be independent: knowing A happened tells you B didn't.",
+"hook": "Independent: no influence. Exclusive: no overlap."
+},
+{
+"u": "U9",
+"a": "Ellipse: c² = a² − b²",
+"da": "The foci are inside the curve, so c is smaller than a.",
+"ea": "x²/25 + y²/9 = 1 → c = 4",
+"b": "Hyperbola: c² = a² + b²",
+"db": "The foci are beyond the vertices, so c is larger than a.",
+"eb": "x²/16 − y²/9 = 1 → c = 5",
+"dist": "The sign in the equation predicts the sign in the c-formula. A plus between the terms (ellipse) means subtract. A minus (hyperbola) means add.",
+"hook": "The equation and the c-formula use opposite signs."
+},
+{
+"u": "U9",
+"a": "Focus",
+"da": "A fixed POINT inside the parabola's curve.",
+"b": "Directrix",
+"db": "A fixed LINE outside the curve, on the opposite side from the focus.",
+"dist": "Every point on a parabola is the same distance from the focus as from the directrix. The vertex sits exactly halfway between them.",
+"hook": "Focus is a point inside. Directrix is a line outside."
+},
+{
+"u": "U10",
+"a": "Amplitude |A|",
+"da": "Distance from the midline to a peak. Always positive.",
+"ea": "y = 3sin x + 2 → amplitude 3",
+"b": "Vertical shift D",
+"db": "Where the midline sits.",
+"eb": "y = 3sin x + 2 → midline y = 2",
+"dist": "Max = D + |A| and min = D − |A|. The amplitude is measured from the midline, not from 0.",
+"hook": "A is the swing. D is the center."
+},
+{
+"u": "U10",
+"a": "Period",
+"da": "The horizontal length of one full cycle: 2π / |B|.",
+"ea": "y = sin(2x) → period π",
+"b": "B",
+"db": "The number of cycles that fit in 2π.",
+"eb": "y = sin(2x) → B = 2",
+"dist": "B and the period move in opposite directions. Bigger B squeezes the graph, which shortens the period.",
+"hook": "Bigger B, shorter wave."
+},
+{
+"u": "U10",
+"a": "Radians",
+"da": "Angle measured by arc length on the unit circle. A full turn is 2π.",
+"ea": "π/2 = a quarter turn",
+"b": "Degrees",
+"db": "A full turn is 360°.",
+"eb": "90° = a quarter turn",
+"dist": "Convert with π/180 (degrees to radians) or 180/π (radians to degrees). Calculators default to one mode — check it before every trig problem.",
+"hook": "π radians = 180°. Check the calculator mode."
+}
+];
+const LS_GOT = 'a2_confusions_got';
+const LS_BEST = 'a2_confusions_best';
+let got = new Set(lsGet(LS_GOT, []));
+let curUnit = 'all', curShow = 'all';
+function key(p){ return p.a + ' | ' + p.b; }
+
+function setUnit(u,btn){ curUnit=u; document.querySelectorAll('.pill[data-unit]').forEach(b=>b.classList.toggle('active',b===btn)); render(); }
+function setShow(s,btn){ curShow=s; document.querySelectorAll('.pill[data-show]').forEach(b=>b.classList.toggle('active',b===btn)); render(); }
+function toggleGot(i){
+  const k = key(PAIRS[i]);
+  if(got.has(k)) got.delete(k); else { got.add(k); game().event('confusion'); }
+  lsSet(LS_GOT,[...got]); render();
+}
+function render(){
+  const q = document.getElementById('q').value.trim().toLowerCase();
+  const list = PAIRS.map((p,i)=>({p,i})).filter(({p})=>{
+    if(curUnit!=='all' && p.u!==curUnit) return false;
+    if(curShow==='got' && !got.has(key(p))) return false;
+    if(curShow==='todo' && got.has(key(p))) return false;
+    if(q && !(p.a+' '+p.b+' '+p.da+' '+p.db+' '+p.dist+' '+p.hook).toLowerCase().includes(q)) return false;
+    return true;
+  });
+  document.getElementById('s-got').textContent = PAIRS.filter(p=>got.has(key(p))).length;
+  const box = document.getElementById('list');
+  if(!list.length){ box.innerHTML = '<div class="empty">No pairs match. Clear the search or pick a different filter.</div>'; return; }
+  box.innerHTML = list.map(({p,i})=>{
+    const g = got.has(key(p));
+    return `<div class="pair-card ${g?'got':''}">
+      <div class="pair-top"><span class="tag t-unit">${p.u} · ${esc(UNIT_NAMES[p.u])}</span>
+        <button class="got-btn ${g?'on':''}" onclick="toggleGot(${i})" aria-pressed="${g}">${g?'✓ Got it':'Got it?'}</button></div>
+      <div class="vs-grid">
+        <div class="vs-box"><div class="vs-term">${esc(p.a)}</div><div class="vs-def">${esc(p.da)}</div>${p.ea?`<div class="vs-ex">${esc(p.ea)}</div>`:''}</div>
+        <div class="vs-divider">VS</div>
+        <div class="vs-box"><div class="vs-term">${esc(p.b)}</div><div class="vs-def">${esc(p.db)}</div>${p.eb?`<div class="vs-ex">${esc(p.eb)}</div>`:''}</div>
+      </div>
+      <div class="distinguisher"><span class="dist-lbl">THE KEY DIFFERENCE</span>${esc(p.dist)}</div>
+      <div class="hook"><span class="hook-lbl">MEMORY HOOK</span>${esc(p.hook)}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── Speed Sort ──
+let sort = null, tick = null;
+const SORT_LEN = 10, SORT_SECS = 8;
+function openSort(){
+  const pool = (curUnit==='all'?PAIRS:PAIRS.filter(p=>p.u===curUnit));
+  const rounds = shuffle(pool).slice(0, SORT_LEN).map(p=>{ const side = Math.random()<.5?'a':'b'; return {p, side}; });
+  sort = {rounds, idx:0, right:0, answered:false};
+  document.getElementById('sort-ov').classList.add('open');
+  renderSort();
+}
+function closeSort(){ clearInterval(tick); document.getElementById('sort-ov').classList.remove('open'); }
+function renderSort(){
+  clearInterval(tick);
+  const body = document.getElementById('sort-body');
+  if(sort.idx >= sort.rounds.length){
+    const pct = Math.round(sort.right/sort.rounds.length*100);
+    const best = Math.max(lsGet(LS_BEST,0), pct); lsSet(LS_BEST,best);
+    document.getElementById('s-best').textContent = best+'%';
+    document.getElementById('sort-timer').style.width='0%';
+    body.innerHTML = `<div style="text-align:center;padding:26px 0">
+      <div class="sec-lbl">ROUND COMPLETE</div>
+      <div style="font-size:42px;font-weight:800;font-family:'DM Mono',monospace;color:#fff">${sort.right}/${sort.rounds.length}</div>
+      <div style="color:var(--muted);font-size:13px;margin:6px 0 18px">${pct>=90?'Locked in. These pairs won\'t fool you on a test.':pct>=70?'Solid. Review the ones you missed, then run it again.':'Read through the pairs you missed, then try another round.'}</div>
+      <button class="btn btn-accent" onclick="openSort()">Play again</button></div>`;
+    return;
+  }
+  const r = sort.rounds[sort.idx]; sort.answered=false;
+  const defn = r.side==='a'? r.p.da : r.p.db;
+  const opts = shuffle([r.p.a, r.p.b]);
+  document.getElementById('sort-count').textContent = `ROUND ${sort.idx+1} / ${sort.rounds.length}`;
+  document.getElementById('sort-score').textContent = `${sort.right} correct`;
+  body.innerHTML = `<div class="sort-def">${esc(defn)}</div>
+    <div class="sort-btns">${opts.map((o,i)=>`<button class="opt" id="so-${i}" onclick="pickSort(${i})"><span class="opt-key">${'AB'[i]}</span><span>${esc(o)}</span></button>`).join('')}</div>
+    <div class="sort-fb" id="sort-fb"></div>`;
+  sort.opts = opts;
+  let left = SORT_SECS*10;
+  const bar = document.getElementById('sort-timer'); bar.style.width='100%';
+  tick = setInterval(()=>{ left--; bar.style.width = (left/(SORT_SECS*10)*100)+'%'; if(left<=0){ clearInterval(tick); pickSort(-1); } },100);
+}
+function pickSort(i){
+  if(sort.answered) return; sort.answered=true; clearInterval(tick);
+  const r = sort.rounds[sort.idx];
+  const answer = r.side==='a'? r.p.a : r.p.b;
+  const ok = i>=0 && sort.opts[i]===answer;
+  if(ok) sort.right++;
+  game().answer(ok, 2);
+  sort.opts.forEach((o,j)=>{ const b=document.getElementById('so-'+j); b.disabled=true; if(o===answer) b.classList.add('correct'); else if(j===i) b.classList.add('wrong'); });
+  const fb = document.getElementById('sort-fb');
+  fb.innerHTML = `<b style="color:${ok?'#4fd1a5':'#f08579'}">${i<0?'⏱ Time\'s up.':ok?'✓ Correct.':'✗ Not quite.'}</b> ${esc(r.p.hook)}
+    <div style="margin-top:12px"><button class="btn btn-accent" onclick="sort.idx++;renderSort()">${sort.idx+1>=sort.rounds.length?'See score →':'Next →'}</button></div>`;
+  fb.classList.add('show');
+}
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('sort-ov').classList.contains('open')) return;
+  if(e.key==='Escape') closeSort();
+  if((e.key==='1'||e.key.toLowerCase()==='a')&&sort&&!sort.answered) pickSort(0);
+  if((e.key==='2'||e.key.toLowerCase()==='b')&&sort&&!sort.answered) pickSort(1);
+});
+(function init(){
+  const units = new Set(PAIRS.map(p=>p.u)).size;
+  document.getElementById('s-total').textContent = PAIRS.length;
+  const best = lsGet(LS_BEST,null); if(best!=null) document.getElementById('s-best').textContent = best+'%';
+  document.getElementById('page-sub').textContent = `${PAIRS.length} look-alike pairs · ${units} units · side-by-side with memory hooks`;
+  const qu = new URLSearchParams(location.search).get('unit');
+  const b = qu && document.querySelector('.pill[data-unit="U'+qu+'"]'); if(b) setUnit('U'+qu,b); else render();
+})();
+</script>
+</body>
+</html>

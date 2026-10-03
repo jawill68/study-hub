@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Environmental Science Honors — Common Confusions</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
+  --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
+  --accent:#1D9E75;--accent-soft:rgba(29,158,117,.12);--accent-text:#4fd1a5;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(46,139,192,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(46,139,192,0.04) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:26px 20px 70px}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent-text);text-decoration:none;margin-bottom:14px;opacity:.9}
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--accent-text)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+.about-banner{background:linear-gradient(135deg,var(--accent-soft),rgba(29,158,117,.05));border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:12.5px;line-height:1.55}
+.about-banner a{color:var(--accent-text)}
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px;flex:1}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:14px}
+.sec-lbl{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.13em;color:var(--muted);margin-bottom:11px;text-transform:uppercase}
+.controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;flex-direction:column;gap:11px}
+.ctrl-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--muted);min-width:56px}
+.search-input{flex:1;min-width:200px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13.5px}
+.search-input:focus{outline:none;border-color:var(--accent)}
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--accent);color:var(--text)}
+.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn{border:none;border-radius:11px;padding:11px 20px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;transition:all .2s;color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-accent{background:var(--accent)}
+.btn-accent:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 22px rgba(0,0,0,.35)}
+.btn-ghost{background:var(--bg);border:1px solid var(--border);color:var(--text)}
+.btn-ghost:hover{border-color:var(--accent)}
+.btn-teal{background:#188663}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:6px;display:inline-block}
+.t-unit{background:var(--accent-soft);color:var(--accent-text);border:1px solid var(--border)}
+.empty{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px}
+.footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center;line-height:1.7}
+.overlay{position:fixed;inset:0;background:rgba(3,8,16,.82);backdrop-filter:blur(4px);z-index:500;display:none;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto}
+.overlay.open{display:flex}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;max-width:640px;width:100%}
+.opt{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:12px 15px;cursor:pointer;transition:all .16s;display:flex;align-items:flex-start;gap:11px;text-align:left;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);width:100%}
+.opt:hover:not(:disabled){border-color:var(--accent);background:var(--card2)}
+.opt:disabled{cursor:default}
+.opt-key{width:24px;height:24px;border-radius:7px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0;color:var(--muted)}
+.opt.correct{border-color:var(--teal);background:rgba(29,158,117,.11)}
+.opt.correct .opt-key{background:#188663;border-color:var(--teal);color:#fff}
+.opt.wrong{border-color:var(--red);background:rgba(231,76,60,.10)}
+.opt.wrong .opt-key{background:#D24536;border-color:var(--red);color:#fff}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+@media(max-width:640px){.page-title{font-size:1.55rem}.ctrl-label{min-width:auto}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+
+.pair-card{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:18px 20px;margin-bottom:12px;transition:border-color .18s}
+.pair-card:hover{border-color:var(--accent)}
+.pair-card.got{border-left:3px solid var(--teal)}
+.pair-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.vs-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:start;margin-bottom:12px}
+@media(max-width:600px){.vs-grid{grid-template-columns:1fr}.vs-divider{display:none}}
+.vs-box{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:13px 15px}
+.vs-term{font-size:15.5px;font-weight:800;color:var(--white);margin-bottom:6px}
+.vs-def{font-size:13px;opacity:.92;line-height:1.5}
+.vs-ex{font-family:'DM Mono',monospace;font-size:12px;color:#c4b2f7;margin-top:8px}
+.vs-divider{display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;font-weight:700;padding-top:20px}
+.distinguisher{background:rgba(229,148,0,.07);border-left:2px solid var(--amber);border-radius:9px;padding:11px 14px;font-size:13px;margin-bottom:9px}
+.dist-lbl{font-size:9px;font-weight:700;letter-spacing:.11em;color:#efb44e;display:block;margin-bottom:5px}
+.hook{background:rgba(29,158,117,.07);border-left:2px solid var(--teal);border-radius:9px;padding:11px 14px;font-size:13px;font-weight:600}
+.hook-lbl{font-size:9px;font-weight:700;letter-spacing:.11em;color:#4fd1a5;display:block;margin-bottom:5px}
+.got-btn{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:5px 12px;font-size:11.5px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif}
+.got-btn.on{background:rgba(29,158,117,.15);border-color:var(--teal);color:#4fd1a5}
+.sort-def{font-size:16px;font-weight:600;color:var(--white);line-height:1.5;margin:14px 0 18px;padding:16px;background:var(--bg);border:1px solid var(--border);border-radius:12px}
+.sort-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sort-fb{margin-top:14px;font-size:13px;line-height:1.55;display:none}
+.sort-fb.show{display:block}
+.sort-top{display:flex;justify-content:space-between;align-items:center;font-family:'DM Mono',monospace;font-size:11.5px;color:var(--muted)}
+.timer-bar{height:4px;background:var(--bg);border-radius:99px;overflow:hidden;margin-top:10px}
+.timer-fill{height:100%;background:var(--amber);transition:width .1s linear}
+
+</style>
+
+<script>window.STUDYHUB_GAME={course:'envsci'};</script>
+<script src="studyhub-game.js"></script>
+</head>
+<body>
+<div class="app">
+  <a class="back" href="EnvSci_StudyHub.html">← Environmental Science Study Hub</a>
+  <div class="header">
+    <div>
+      <div class="series-label">Environmental Science Honors · Study Resource Series · Build 3</div>
+      <div class="page-title">Common <span>Confusions</span></div>
+      <div class="page-sub" id="page-sub"></div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <div data-game-hud></div>
+      <button class="btn btn-accent" onclick="openSort()">⚡ Speed Sort</button>
+    </div>
+  </div>
+
+  <div class="about-banner">📎 Look-alike ideas, side by side: the one line that tells them apart, plus a memory hook. Tap <b>Got it</b> when a pair clicks. Then try <b>⚡ Speed Sort</b>: you see a definition and have 8 seconds to name the right term. For <i>why</i> students mix things up, see the <a href="EnvSci_Mistakes_Autopsy.html">Mistakes Autopsy</a>.</div>
+
+  <div class="stats-row">
+    <div class="stat-chip"><div class="stat-num" id="s-total">—</div><div class="stat-lbl">TERM PAIRS</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--teal)" id="s-got">0</div><div class="stat-lbl">GOT IT</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--amber)" id="s-best">—</div><div class="stat-lbl">BEST SPEED SORT</div></div>
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-row"><span class="ctrl-label">SEARCH</span><input class="search-input" id="q" type="search" placeholder="Search either term, definition, or hook…" oninput="render()" aria-label="Search pairs"></div>
+    <div class="ctrl-row"><span class="ctrl-label">UNIT</span><button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button><button class="pill" data-unit="U1" onclick="setUnit('U1',this)">U1</button><button class="pill" data-unit="U2" onclick="setUnit('U2',this)">U2</button><button class="pill" data-unit="U3" onclick="setUnit('U3',this)">U3</button><button class="pill" data-unit="U4" onclick="setUnit('U4',this)">U4</button><button class="pill" data-unit="U5" onclick="setUnit('U5',this)">U5</button><button class="pill" data-unit="U6" onclick="setUnit('U6',this)">U6</button><button class="pill" data-unit="U7" onclick="setUnit('U7',this)">U7</button><button class="pill" data-unit="U8" onclick="setUnit('U8',this)">U8</button><button class="pill" data-unit="U9" onclick="setUnit('U9',this)">U9</button><button class="pill" data-unit="U10" onclick="setUnit('U10',this)">U10</button></div>
+    <div class="ctrl-row"><span class="ctrl-label">SHOW</span>
+      <button class="pill active" data-show="all" onclick="setShow('all',this)">All</button>
+      <button class="pill" data-show="todo" onclick="setShow('todo',this)">Still learning</button>
+      <button class="pill" data-show="got" onclick="setShow('got',this)">Got it</button>
+    </div>
+  </div>
+  <div id="list"></div>
+
+  <div class="footer">Environmental Science Honors (2001341) · Florida NGSSS Science Standards · Common Confusions</div>
+</div>
+
+<div class="overlay" id="sort-ov" onclick="if(event.target===this)closeSort()">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Speed Sort">
+    <div class="sort-top"><span id="sort-count"></span><span id="sort-score"></span><button class="pill" onclick="closeSort()">✕ Close</button></div>
+    <div class="timer-bar"><div class="timer-fill" id="sort-timer"></div></div>
+    <div id="sort-body"></div>
+  </div>
+</div>
+
+<script>
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function nl(s){ return esc(s).replace(/\n/g,'<br>'); }
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON.parse(v); }catch(e){ return d; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
+
+const UNIT_NAMES = {"U1": "Intro to Env Science & Inquiry", "U2": "Earth Systems & Ecology", "U3": "Biodiversity & Populations", "U4": "Biomes, Wetlands & Aquatic Systems", "U5": "Conservation & Wildlife Management", "U6": "Soil, Agriculture & Food", "U7": "Water Resources", "U8": "Energy Resources", "U9": "Global Change & Environmental Health", "U10": "Air, Land & Waste"};
+const PAIRS = [
+{
+"u": "U1",
+"a": "Renewable resource",
+"da": "Replenished by nature on a human timescale, if it isn't overused.",
+"ea": "Forests, fresh water, wind",
+"b": "Nonrenewable resource",
+"db": "Forms over millions of years, so supplies are finite on a human timescale.",
+"eb": "Coal, oil, uranium",
+"dist": "Renewable doesn't mean unlimited. A forest cut faster than it regrows is being used unsustainably even though it's renewable.",
+"hook": "Renewable comes back if you're patient. Nonrenewable is gone for good."
+},
+{
+"u": "U1",
+"a": "Correlation",
+"da": "Two variables change together.",
+"b": "Causation",
+"db": "A change in one variable actually produces the change in the other.",
+"dist": "Only a controlled experiment, or strong evidence of a mechanism, shows causation. A third factor often drives both correlated variables.",
+"hook": "Moving together isn't the same as one pushing the other."
+},
+{
+"u": "U1",
+"a": "Conservation",
+"da": "Wise, sustainable use of resources.",
+"ea": "Regulated duck hunting; managed forests",
+"b": "Preservation",
+"db": "Protecting nature from use, leaving it as untouched as possible.",
+"eb": "Designated wilderness areas",
+"dist": "Conservation manages use; preservation limits use. The North American Model of wildlife management is a conservation approach.",
+"hook": "Conserve = use wisely. Preserve = leave alone."
+},
+{
+"u": "U2",
+"a": "Biotic",
+"da": "Living or once-living parts of an ecosystem.",
+"ea": "Cattails, snails, bacteria, fallen leaves",
+"b": "Abiotic",
+"db": "Nonliving physical and chemical factors.",
+"eb": "Temperature, salinity, sunlight, water depth",
+"dist": "'A-' means 'not.' If it's alive, or was alive, it's biotic.",
+"hook": "Bio = life. A-bio = no life."
+},
+{
+"u": "U2",
+"a": "Decomposer",
+"da": "Breaks down dead matter chemically, absorbing nutrients.",
+"ea": "Bacteria, fungi",
+"b": "Detritivore",
+"db": "An animal that eats dead organic matter.",
+"eb": "Earthworms, crayfish, millipedes",
+"dist": "Both recycle nutrients. Detritivores ingest detritus; decomposers digest it externally with enzymes.",
+"hook": "Detritivores chew it. Decomposers dissolve it."
+},
+{
+"u": "U2",
+"a": "Nitrogen fixation",
+"da": "Converts N₂ gas into ammonia or nitrate that plants can use.",
+"ea": "Bacteria in legume root nodules",
+"b": "Denitrification",
+"db": "Converts nitrate back into N₂ gas, removing it from soil and water.",
+"eb": "Bacteria in waterlogged wetland soils",
+"dist": "They run in opposite directions. Fixation brings nitrogen into the living system; denitrification returns it to the air.",
+"hook": "Fixation fixes it in. Denitrification lets it out."
+},
+{
+"u": "U2",
+"a": "Photosynthesis",
+"da": "Uses CO₂, water, and light to make glucose and O₂.",
+"b": "Cellular respiration",
+"db": "Uses glucose and O₂ to release energy, CO₂, and water.",
+"dist": "They mirror each other in the carbon cycle. Producers do both; consumers only respire.",
+"hook": "Photosynthesis stores energy. Respiration spends it."
+},
+{
+"u": "U3",
+"a": "Habitat",
+"da": "Where an organism lives.",
+"b": "Niche",
+"db": "The organism's role — what it eats, when and how it feeds, and how it interacts.",
+"dist": "Many species can share a habitat, but two species can't hold exactly the same niche for long without one outcompeting the other.",
+"hook": "Habitat is the address. Niche is the job."
+},
+{
+"u": "U3",
+"a": "Keystone species",
+"da": "Has an outsized effect on its community relative to its numbers.",
+"ea": "Alligators, beavers",
+"b": "Indicator species",
+"db": "Signals the health of an ecosystem.",
+"eb": "Frogs, mayflies",
+"dist": "Keystone species shape the ecosystem; indicator species report on it.",
+"hook": "Keystone holds it up. Indicator tells you how it's doing."
+},
+{
+"u": "U3",
+"a": "Density-dependent factor",
+"da": "Its effect grows as the population gets more crowded.",
+"ea": "Disease, competition, predation",
+"b": "Density-independent factor",
+"db": "Affects a population regardless of crowding.",
+"eb": "Hurricanes, freezes, droughts",
+"dist": "Ask whether more crowding would make it worse. If yes, it's density-dependent.",
+"hook": "Crowding matters? Dependent. Weather? Independent."
+},
+{
+"u": "U3",
+"a": "Exponential growth",
+"da": "Constant-rate growth with unlimited resources — a J-shaped curve.",
+"b": "Logistic growth",
+"db": "Growth that slows near carrying capacity — an S-shaped curve.",
+"dist": "Real populations may grow exponentially for a while, but limiting factors eventually bend the curve into an S.",
+"hook": "J keeps jumping. S settles."
+},
+{
+"u": "U3",
+"a": "Primary succession",
+"da": "Starts on bare rock with no soil.",
+"ea": "New volcanic island",
+"b": "Secondary succession",
+"db": "Starts where soil remains after a disturbance.",
+"eb": "Field after a fire or abandoned farm",
+"dist": "Check for soil. Secondary succession is faster because soil, seeds, and roots remain.",
+"hook": "Primary = no soil. Secondary = soil survived."
+},
+{
+"u": "U3",
+"a": "Commensalism",
+"da": "One species benefits; the other is unaffected.",
+"b": "Mutualism",
+"db": "Both species benefit.",
+"dist": "Parasitism is the third type: one benefits, the other is harmed. Name the result for each partner.",
+"hook": "Mutualism: win-win. Commensalism: win-neutral. Parasitism: win-lose."
+},
+{
+"u": "U4",
+"a": "Marsh",
+"da": "A wetland dominated by soft-stemmed plants such as grasses, sedges, and cattails.",
+"b": "Swamp",
+"db": "A wetland dominated by trees or shrubs.",
+"dist": "Look up. If you see a forest canopy, it's a swamp.",
+"hook": "Marsh = grass. Swamp = trees."
+},
+{
+"u": "U4",
+"a": "Bog",
+"da": "Acidic, nutrient-poor, rain-fed, and builds up peat.",
+"b": "Marsh",
+"db": "Fed by surface or groundwater, nutrient-rich, and dominated by emergent plants.",
+"dist": "The water source drives the difference. Rain-fed bogs get few nutrients; marshes receive nutrient-carrying runoff.",
+"hook": "Bog is starved and sour. Marsh is fed and fertile."
+},
+{
+"u": "U4",
+"a": "Estuary",
+"da": "Where river fresh water mixes with ocean salt water.",
+"b": "Freshwater wetland",
+"db": "An inland wetland with no tidal salt water.",
+"dist": "Salinity and tides define estuaries, and they shape which plants and animals can live there.",
+"hook": "Estuary = salt meets fresh."
+},
+{
+"u": "U5",
+"a": "Endangered",
+"da": "In danger of extinction now, throughout all or much of its range.",
+"b": "Threatened",
+"db": "Likely to become endangered in the foreseeable future.",
+"dist": "Threatened is one step below endangered, and both receive Endangered Species Act protection.",
+"hook": "Threatened is the warning. Endangered is the emergency."
+},
+{
+"u": "U5",
+"a": "Dabbling duck",
+"da": "Feeds at the surface by tipping up; legs centered; springs straight into flight.",
+"ea": "Mallard, teal, wood duck",
+"b": "Diving duck",
+"db": "Dives to feed; legs set far back; runs across the water to take off.",
+"eb": "Canvasback, scaup, ring-neck",
+"dist": "Watch the takeoff: a straight-up leap means dabbler, a running start means diver.",
+"hook": "Dabblers jump. Divers run."
+},
+{
+"u": "U5",
+"a": "Federal Duck Stamp (1934)",
+"da": "Required of waterfowl hunters 16 and older; buys wetland habitat for refuges.",
+"b": "Pittman-Robertson Act (1937)",
+"db": "An excise tax on firearms and ammunition that funds state wildlife agencies.",
+"dist": "The Duck Stamp funds federal refuge habitat directly. Pittman-Robertson money flows to states for restoration, research, and hunter education.",
+"hook": "Stamp buys refuge land. P-R funds the states."
+},
+{
+"u": "U5",
+"a": "Bag limit",
+"da": "How many birds one hunter may take per day.",
+"b": "Possession limit",
+"db": "How many birds a hunter may have in total, often several days' worth.",
+"dist": "Both are harvest regulations. The daily bag controls each day; the possession limit caps the total kept.",
+"hook": "Bag = per day. Possession = total on hand."
+},
+{
+"u": "U5",
+"a": "Conservation easement",
+"da": "The landowner keeps the land but permanently gives up development rights.",
+"b": "Land acquisition",
+"db": "An agency or organization buys the land outright.",
+"dist": "Easements protect habitat on private working land at a lower cost and keep land on the tax rolls.",
+"hook": "An easement keeps the farmer and the habitat."
+},
+{
+"u": "U6",
+"a": "Topsoil (A horizon)",
+"da": "Rich in humus, roots, and life; most fertile.",
+"b": "Subsoil (B horizon)",
+"db": "Collects minerals leached from above; less organic matter.",
+"dist": "Erosion strips the A horizon first, and it can take centuries to rebuild.",
+"hook": "A is alive. B is beneath."
+},
+{
+"u": "U7",
+"a": "Point source pollution",
+"da": "Comes from one identifiable source.",
+"ea": "A factory pipe",
+"b": "Nonpoint source pollution",
+"db": "Comes from many diffuse sources carried by runoff.",
+"eb": "Lawn and farm fertilizer runoff",
+"dist": "If you can point to the single pipe, it's point source. Nonpoint is harder to regulate and is the bigger problem today.",
+"hook": "Point = one pipe. Nonpoint = everywhere."
+},
+{
+"u": "U7",
+"a": "Groundwater",
+"da": "Water stored underground in aquifers.",
+"b": "Surface water",
+"db": "Water in rivers, lakes, and wetlands.",
+"dist": "They're connected. Wetlands can recharge groundwater, and overpumping groundwater can dry up surface wetlands.",
+"hook": "Same water, different address."
+},
+{
+"u": "U8",
+"a": "Energy efficiency",
+"da": "Getting the same work done with less energy (technology).",
+"ea": "LED bulbs",
+"b": "Energy conservation",
+"db": "Using less energy by changing behavior.",
+"eb": "Turning lights off",
+"dist": "Efficiency changes the device; conservation changes the habit. Both cut demand.",
+"hook": "Efficiency = better device. Conservation = better habit."
+},
+{
+"u": "U9",
+"a": "Bioaccumulation",
+"da": "A toxin builds up inside ONE organism over its life.",
+"b": "Biomagnification",
+"db": "Toxin concentration increases UP the food chain, from level to level.",
+"dist": "Bioaccumulation is within one body over time. Biomagnification is across trophic levels.",
+"hook": "Accumulate in me. Magnify up the food chain."
+},
+{
+"u": "U9",
+"a": "Greenhouse effect",
+"da": "Natural trapping of heat by gases; keeps Earth livable.",
+"b": "Ozone depletion",
+"db": "Thinning of the stratospheric ozone layer that blocks UV radiation.",
+"dist": "These are different problems with different causes and fixes. CFCs thinned ozone (fixed by the Montreal Protocol); CO₂ drives warming.",
+"hook": "Greenhouse is about heat. Ozone is about UV."
+},
+{
+"u": "U10",
+"a": "Primary pollutant",
+"da": "Emitted directly from a source.",
+"ea": "Carbon monoxide, soot",
+"b": "Secondary pollutant",
+"db": "Formed in the air by chemical reactions.",
+"eb": "Ground-level ozone, acid rain",
+"dist": "Ask whether it came out of the tailpipe as-is, or formed afterward in sunlight or moisture.",
+"hook": "Primary is direct. Secondary is made in the air."
+}
+];
+const LS_GOT = 'envsci_confusions_got';
+const LS_BEST = 'envsci_confusions_best';
+let got = new Set(lsGet(LS_GOT, []));
+let curUnit = 'all', curShow = 'all';
+function key(p){ return p.a + ' | ' + p.b; }
+
+function setUnit(u,btn){ curUnit=u; document.querySelectorAll('.pill[data-unit]').forEach(b=>b.classList.toggle('active',b===btn)); render(); }
+function setShow(s,btn){ curShow=s; document.querySelectorAll('.pill[data-show]').forEach(b=>b.classList.toggle('active',b===btn)); render(); }
+function toggleGot(i){
+  const k = key(PAIRS[i]);
+  if(got.has(k)) got.delete(k); else { got.add(k); game().event('confusion'); }
+  lsSet(LS_GOT,[...got]); render();
+}
+function render(){
+  const q = document.getElementById('q').value.trim().toLowerCase();
+  const list = PAIRS.map((p,i)=>({p,i})).filter(({p})=>{
+    if(curUnit!=='all' && p.u!==curUnit) return false;
+    if(curShow==='got' && !got.has(key(p))) return false;
+    if(curShow==='todo' && got.has(key(p))) return false;
+    if(q && !(p.a+' '+p.b+' '+p.da+' '+p.db+' '+p.dist+' '+p.hook).toLowerCase().includes(q)) return false;
+    return true;
+  });
+  document.getElementById('s-got').textContent = PAIRS.filter(p=>got.has(key(p))).length;
+  const box = document.getElementById('list');
+  if(!list.length){ box.innerHTML = '<div class="empty">No pairs match. Clear the search or pick a different filter.</div>'; return; }
+  box.innerHTML = list.map(({p,i})=>{
+    const g = got.has(key(p));
+    return `<div class="pair-card ${g?'got':''}">
+      <div class="pair-top"><span class="tag t-unit">${p.u} · ${esc(UNIT_NAMES[p.u])}</span>
+        <button class="got-btn ${g?'on':''}" onclick="toggleGot(${i})" aria-pressed="${g}">${g?'✓ Got it':'Got it?'}</button></div>
+      <div class="vs-grid">
+        <div class="vs-box"><div class="vs-term">${esc(p.a)}</div><div class="vs-def">${esc(p.da)}</div>${p.ea?`<div class="vs-ex">${esc(p.ea)}</div>`:''}</div>
+        <div class="vs-divider">VS</div>
+        <div class="vs-box"><div class="vs-term">${esc(p.b)}</div><div class="vs-def">${esc(p.db)}</div>${p.eb?`<div class="vs-ex">${esc(p.eb)}</div>`:''}</div>
+      </div>
+      <div class="distinguisher"><span class="dist-lbl">THE KEY DIFFERENCE</span>${esc(p.dist)}</div>
+      <div class="hook"><span class="hook-lbl">MEMORY HOOK</span>${esc(p.hook)}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── Speed Sort ──
+let sort = null, tick = null;
+const SORT_LEN = 10, SORT_SECS = 8;
+function openSort(){
+  const pool = (curUnit==='all'?PAIRS:PAIRS.filter(p=>p.u===curUnit));
+  const rounds = shuffle(pool).slice(0, SORT_LEN).map(p=>{ const side = Math.random()<.5?'a':'b'; return {p, side}; });
+  sort = {rounds, idx:0, right:0, answered:false};
+  document.getElementById('sort-ov').classList.add('open');
+  renderSort();
+}
+function closeSort(){ clearInterval(tick); document.getElementById('sort-ov').classList.remove('open'); }
+function renderSort(){
+  clearInterval(tick);
+  const body = document.getElementById('sort-body');
+  if(sort.idx >= sort.rounds.length){
+    const pct = Math.round(sort.right/sort.rounds.length*100);
+    const best = Math.max(lsGet(LS_BEST,0), pct); lsSet(LS_BEST,best);
+    document.getElementById('s-best').textContent = best+'%';
+    document.getElementById('sort-timer').style.width='0%';
+    body.innerHTML = `<div style="text-align:center;padding:26px 0">
+      <div class="sec-lbl">ROUND COMPLETE</div>
+      <div style="font-size:42px;font-weight:800;font-family:'DM Mono',monospace;color:#fff">${sort.right}/${sort.rounds.length}</div>
+      <div style="color:var(--muted);font-size:13px;margin:6px 0 18px">${pct>=90?'Locked in. These pairs won\'t fool you on a test.':pct>=70?'Solid. Review the ones you missed, then run it again.':'Read through the pairs you missed, then try another round.'}</div>
+      <button class="btn btn-accent" onclick="openSort()">Play again</button></div>`;
+    return;
+  }
+  const r = sort.rounds[sort.idx]; sort.answered=false;
+  const defn = r.side==='a'? r.p.da : r.p.db;
+  const opts = shuffle([r.p.a, r.p.b]);
+  document.getElementById('sort-count').textContent = `ROUND ${sort.idx+1} / ${sort.rounds.length}`;
+  document.getElementById('sort-score').textContent = `${sort.right} correct`;
+  body.innerHTML = `<div class="sort-def">${esc(defn)}</div>
+    <div class="sort-btns">${opts.map((o,i)=>`<button class="opt" id="so-${i}" onclick="pickSort(${i})"><span class="opt-key">${'AB'[i]}</span><span>${esc(o)}</span></button>`).join('')}</div>
+    <div class="sort-fb" id="sort-fb"></div>`;
+  sort.opts = opts;
+  let left = SORT_SECS*10;
+  const bar = document.getElementById('sort-timer'); bar.style.width='100%';
+  tick = setInterval(()=>{ left--; bar.style.width = (left/(SORT_SECS*10)*100)+'%'; if(left<=0){ clearInterval(tick); pickSort(-1); } },100);
+}
+function pickSort(i){
+  if(sort.answered) return; sort.answered=true; clearInterval(tick);
+  const r = sort.rounds[sort.idx];
+  const answer = r.side==='a'? r.p.a : r.p.b;
+  const ok = i>=0 && sort.opts[i]===answer;
+  if(ok) sort.right++;
+  game().answer(ok, 2);
+  sort.opts.forEach((o,j)=>{ const b=document.getElementById('so-'+j); b.disabled=true; if(o===answer) b.classList.add('correct'); else if(j===i) b.classList.add('wrong'); });
+  const fb = document.getElementById('sort-fb');
+  fb.innerHTML = `<b style="color:${ok?'#4fd1a5':'#f08579'}">${i<0?'⏱ Time\'s up.':ok?'✓ Correct.':'✗ Not quite.'}</b> ${esc(r.p.hook)}
+    <div style="margin-top:12px"><button class="btn btn-accent" onclick="sort.idx++;renderSort()">${sort.idx+1>=sort.rounds.length?'See score →':'Next →'}</button></div>`;
+  fb.classList.add('show');
+}
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('sort-ov').classList.contains('open')) return;
+  if(e.key==='Escape') closeSort();
+  if((e.key==='1'||e.key.toLowerCase()==='a')&&sort&&!sort.answered) pickSort(0);
+  if((e.key==='2'||e.key.toLowerCase()==='b')&&sort&&!sort.answered) pickSort(1);
+});
+(function init(){
+  const units = new Set(PAIRS.map(p=>p.u)).size;
+  document.getElementById('s-total').textContent = PAIRS.length;
+  const best = lsGet(LS_BEST,null); if(best!=null) document.getElementById('s-best').textContent = best+'%';
+  document.getElementById('page-sub').textContent = `${PAIRS.length} look-alike pairs · ${units} units · side-by-side with memory hooks`;
+  const qu = new URLSearchParams(location.search).get('unit');
+  const b = qu && document.querySelector('.pill[data-unit="U'+qu+'"]'); if(b) setUnit('U'+qu,b); else render();
+})();
+</script>
+</body>
+</html>

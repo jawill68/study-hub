@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Study Hub — Course Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -50,6 +52,14 @@ h1{text-align:center;font-size:2.2rem;color:var(--white);margin-bottom:12px}
 .course-desc{font-size:0.87rem;color:var(--muted);line-height:1.6;position:relative;z-index:1}
 .course-meta{display:flex;gap:14px;font-size:0.72rem;color:var(--muted);font-family:'DM Mono',monospace;position:relative;z-index:1}
 .course-cta{font-size:0.78rem;font-weight:700;margin-top:4px;display:flex;align-items:center;gap:6px;position:relative;z-index:1}
+.cc-green{border-color:rgba(52,199,123,.35)}
+.cc-green::before{background:linear-gradient(135deg,rgba(52,199,123,.10),transparent)}
+.cc-green:hover{border-color:rgba(52,199,123,.6);box-shadow:0 16px 44px rgba(52,199,123,.18)}
+.ic-green{background:rgba(52,199,123,.14);border:1px solid rgba(52,199,123,.3)}
+.cta-green{color:#6ee7a8}
+.new-tag{display:inline-block;margin-left:8px;font-size:9.5px;font-weight:800;letter-spacing:.1em;padding:2px 7px;border-radius:6px;background:rgba(229,148,0,.18);color:#efb44e;vertical-align:middle;font-family:'DM Sans',sans-serif}
+.course-meta{flex-wrap:wrap}
+a.course-card:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
 .cta-sky{color:var(--sky)} .cta-wine{color:#D8656F} .cta-teal{color:#4fd1a5} .cta-purple{color:#b39bf5} .cta-amber{color:#efb44e}
 .course-card:hover .arrow{transform:translateX(5px)}
 .arrow{transition:transform .25s}
@@ -66,9 +76,9 @@ h1{text-align:center;font-size:2.2rem;color:var(--white);margin-bottom:12px}
   <div class="course-grid">
     <a class="course-card cc-sky" href="Algebra2_StudyHub.html">
       <div class="course-icon ic-sky">📐</div>
-      <div class="course-name">Algebra 2</div>
-      <div class="course-desc">Master Glossary, Drill Trainer, Mistakes Autopsy, and the full Study Hub — with the ALEPH AI tutor built into the Glossary and Drill Trainer.</div>
-      <div class="course-meta"><span>4 resources</span><span>144 terms</span><span>102 questions</span></div>
+      <div class="course-name">Algebra 2<span class="new-tag">UPDATED</span></div>
+      <div class="course-desc">Graph Lab with a Match-the-Graph game, Master Glossary, Drill Trainer, Mistakes Autopsy, Common Confusions, and Self-Grader. The ALEPH tutor is built in, and you earn XP and ranks as you study.</div>
+      <div class="course-meta"><span>7 resources</span><span>144 terms</span><span>128 questions</span></div>
       <div class="course-cta cta-sky">Open Algebra 2 Hub <span class="arrow">→</span></div>
     </a>
 
@@ -77,7 +87,7 @@ h1{text-align:center;font-size:2.2rem;color:var(--white);margin-bottom:12px}
       <div class="course-name">AICE General Paper 8021</div>
       <div class="course-desc">Course Guide, Essential 50 &amp; Complete Glossary, Common Confusions, Question Bank, Mistakes Autopsy, and the Self-Grader tool.</div>
       <div class="course-meta"><span>8 resources</span><span>150 terms</span><span>40 questions</span></div>
-      <div class="course-cta cta-wine">Open General Paper Hub <span class="arrow">→</span></div>
+      <div class="course-cta cta-wine">Open AICE General Paper Hub <span class="arrow">→</span></div>
     </a>
 
     <a class="course-card cc-teal" href="PhysicalScience_StudyHub.html">
@@ -92,8 +102,8 @@ h1{text-align:center;font-size:2.2rem;color:var(--white);margin-bottom:12px}
       <div class="course-icon ic-purple">🎮</div>
       <div class="course-name">Game &amp; Simulation Foundations</div>
       <div class="course-desc">Master Glossary, Drill Trainer, Common Confusions, Mistakes Autopsy, and a code-writing Self-Grader — built on Unity Certified User: Programmer objectives, with a reserved Artist certification track.</div>
-      <div class="course-meta"><span>6 resources</span><span>79 terms</span><span>42 questions</span></div>
-      <div class="course-cta cta-purple">Open Game Design Hub <span class="arrow">→</span></div>
+      <div class="course-meta"><span>6 resources</span><span>79 terms</span><span>82 questions</span></div>
+      <div class="course-cta cta-purple">Open Game &amp; Simulation Hub <span class="arrow">→</span></div>
     </a>
 
     <a class="course-card cc-amber" href="WorldHistory_StudyHub.html">
@@ -103,9 +113,17 @@ h1{text-align:center;font-size:2.2rem;color:var(--white);margin-bottom:12px}
       <div class="course-meta"><span>6 resources</span><span>106 terms</span><span>58 questions</span></div>
       <div class="course-cta cta-amber">Open World History Hub <span class="arrow">→</span></div>
     </a>
+
+    <a class="course-card cc-green" href="EnvSci_StudyHub.html">
+      <div class="course-icon ic-green">🌿</div>
+      <div class="course-name">Environmental Science Honors<span class="new-tag">NEW</span></div>
+      <div class="course-desc">Ecology, wetlands, water, energy, and conservation across 10 units, plus a full Ducks Unlimited certification track: weighted mock exams, a readiness meter, and a waterfowl Field Guide. Florida NGSSS aligned.</div>
+      <div class="course-meta"><span>8 resources</span><span>195 terms</span><span>151 questions</span><span>130 DU items</span></div>
+      <div class="course-cta cta-green">Open Environmental Science Hub <span class="arrow">→</span></div>
+    </a>
   </div>
 
-  <div class="footer">5 courses live · Engineering and JROTC in development</div>
+  <div class="footer">6 courses live · Engineering and JROTC in development</div>
 </div>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Algebra 2 — Teacher Dashboard</title>
+<title>Environmental Science Honors — Teacher Dashboard</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -67,12 +67,12 @@ tbody tr:hover{background:rgba(29,158,117,.04)}
 <body>
 <div class="app">
 
-  <a href="Algebra2_StudyHub.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--sky);text-decoration:none;margin-bottom:14px;opacity:.85">← Algebra 2 Study Hub</a>
+  <a href="EnvSci_StudyHub.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--sky);text-decoration:none;margin-bottom:14px;opacity:.85">← Environmental Science Study Hub</a>
 
   <div class="header">
-    <div class="series-label">Algebra 2 · Teacher View · Prototype</div>
+    <div class="series-label">Environmental Science Honors · Teacher View · Prototype</div>
     <div class="page-title">Teacher <span>Dashboard</span></div>
-    <div class="page-sub">Class-wide progress across every student who has chosen to share it from their own Study Hub. Note: this course tracks cumulative drill totals and best streak (not session counts), and has no Self-Grader or Find My Mistake tool — the table reflects what actually exists here.</div>
+    <div class="page-sub">Class-wide progress across every student who has chosen to share it from their own Study Hub.</div>
   </div>
 
   <div class="limitation-banner">⚠ <b>No login on this page.</b> This is a prototype — there's no authentication here or on the student side, so this view isn't restricted to you specifically; anyone with this link and the project's public config could open it. Data shown is limited to a first name + last initial and progress percentages, nothing more sensitive. If this proves useful, the next step is adding real authentication (Google Sign-In restricted to the school domain is the natural fit) before relying on this for anything beyond a working prototype.</div>
@@ -112,7 +112,7 @@ const firebaseConfig = {
   appId: "1:34403837526:web:94fd2507d8943ddb45bdf7"
 };
 
-const COURSE_ID = 'algebra2';
+const COURSE_ID = 'envScience';
 let app, db;
 let students = [];
 
@@ -194,11 +194,11 @@ window.renderTable = function(){
     <tr>
       <td class="student-name">${esc(s.displayName || s.id)}</td>
       <td><span class="pct-badge ${pctClass(s.overallPct||0)}">${s.overallPct||0}%</span></td>
-      <td class="cell-muted">${s.glossaryStarred||0} starred${s.glossaryQuizScore?' · '+esc(s.glossaryQuizScore):''}</td>
-      <td class="cell-muted">${s.drillTotalAnswered||0} answered${s.drillAccuracyPct!=null?' · '+s.drillAccuracyPct+'%':''}${s.drillBestStreak?' · best streak '+s.drillBestStreak:''}</td>
-      <td class="cell-muted">${s.autopsyMasteredCount||0}/25</td>
-      <td class="cell-muted">${s.confusionsGot||0}/28 · SG ${s.selfGraderMasteredCount||0}/12 · 📈 ${s.graphLabFamilies||0}/8</td>
       <td class="cell-muted">${esc(s.rank||'—')}${s.level?' · Lv '+s.level:''}${s.streak?' · 🔥'+s.streak:''}</td>
+      <td class="cell-muted">${s.drillSessions||0} session${s.drillSessions===1?'':'s'}${s.drillAccuracyPct!=null?' · '+s.drillAccuracyPct+'%':''}</td>
+      <td class="cell-muted">${s.duReadinessPct!=null?s.duReadinessPct+'%':'—'}</td>
+      <td class="cell-muted">${s.speciesStamped||0}/23</td>
+      <td class="cell-muted">${s.autopsyMasteredCount||0}/24 · SG ${s.selfGraderMasteredCount||0}/12</td>
       <td class="timestamp">${formatTimestamp(s.lastUpdated)}</td>
     </tr>`).join('');
 
@@ -209,11 +209,11 @@ window.renderTable = function(){
           <tr>
             <th>Student</th>
             <th>Overall</th>
-            <th>Glossary</th>
-            <th>Drill Trainer</th>
-            <th>Autopsy</th>
-            <th>Confusions · Self-Grader · Graph Lab</th>
             <th>Rank</th>
+            <th>Drill Trainer</th>
+            <th>DU Readiness</th>
+            <th>Species</th>
+            <th>Autopsy · Self-Grader</th>
             <th>Last Active</th>
           </tr>
         </thead>

@@ -90,7 +90,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   <a href="WorldHistory_StudyHub.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--amber);text-decoration:none;margin-bottom:14px;opacity:.85">← World History Study Hub</a>
 
   <div class="header">
-    <div class="series-label">Pre-AP World History &amp; Geography · Study Resource Series · Build 6</div>
+    <div class="series-label">Pre-AP World History &amp; Geography · Study Resource Series · Build 5</div>
     <div class="page-title">Self-<span>Grader</span></div>
     <div class="page-sub" id="page-sub">Loading…</div>
   </div>
@@ -232,6 +232,18 @@ function render(){
   document.getElementById('s-total').textContent=total;
   document.getElementById('page-sub').textContent=`${total} free-response prompts · ${explain} explain · ${compare} compare · ${argument} short argument · self-scored rubrics`;
   render();
+})();
+
+// Keep whatever the student typed when the list re-renders (revealing a model
+// answer or ticking a rubric box used to wipe every answer box on the page).
+(function(){
+  const drafts = {};
+  const base = render;
+  render = function(){
+    document.querySelectorAll('.answer-area').forEach(t=>{ drafts[t.id] = t.value; });
+    base();
+    document.querySelectorAll('.answer-area').forEach(t=>{ if(drafts[t.id]) t.value = drafts[t.id]; });
+  };
 })();
 </script>
 </body>

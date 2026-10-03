@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Environmental Science Honors — Self-Grader</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
+  --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
+  --accent:#1D9E75;--accent-soft:rgba(29,158,117,.12);--accent-text:#4fd1a5;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(46,139,192,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(46,139,192,0.04) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:26px 20px 70px}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent-text);text-decoration:none;margin-bottom:14px;opacity:.9}
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--accent-text)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+.about-banner{background:linear-gradient(135deg,var(--accent-soft),rgba(29,158,117,.05));border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:12.5px;line-height:1.55}
+.about-banner a{color:var(--accent-text)}
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px;flex:1}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:14px}
+.sec-lbl{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.13em;color:var(--muted);margin-bottom:11px;text-transform:uppercase}
+.controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;flex-direction:column;gap:11px}
+.ctrl-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--muted);min-width:56px}
+.search-input{flex:1;min-width:200px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13.5px}
+.search-input:focus{outline:none;border-color:var(--accent)}
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--accent);color:var(--text)}
+.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn{border:none;border-radius:11px;padding:11px 20px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;transition:all .2s;color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-accent{background:var(--accent)}
+.btn-accent:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 22px rgba(0,0,0,.35)}
+.btn-ghost{background:var(--bg);border:1px solid var(--border);color:var(--text)}
+.btn-ghost:hover{border-color:var(--accent)}
+.btn-teal{background:#188663}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:6px;display:inline-block}
+.t-unit{background:var(--accent-soft);color:var(--accent-text);border:1px solid var(--border)}
+.empty{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px}
+.footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center;line-height:1.7}
+.overlay{position:fixed;inset:0;background:rgba(3,8,16,.82);backdrop-filter:blur(4px);z-index:500;display:none;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto}
+.overlay.open{display:flex}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;max-width:640px;width:100%}
+.opt{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:12px 15px;cursor:pointer;transition:all .16s;display:flex;align-items:flex-start;gap:11px;text-align:left;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);width:100%}
+.opt:hover:not(:disabled){border-color:var(--accent);background:var(--card2)}
+.opt:disabled{cursor:default}
+.opt-key{width:24px;height:24px;border-radius:7px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0;color:var(--muted)}
+.opt.correct{border-color:var(--teal);background:rgba(29,158,117,.11)}
+.opt.correct .opt-key{background:#188663;border-color:var(--teal);color:#fff}
+.opt.wrong{border-color:var(--red);background:rgba(231,76,60,.10)}
+.opt.wrong .opt-key{background:#D24536;border-color:var(--red);color:#fff}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+@media(max-width:640px){.page-title{font-size:1.55rem}.ctrl-label{min-width:auto}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+
+.prompt-card{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:18px 20px;margin-bottom:14px}
+.prompt-card.mastered{border-left:3px solid var(--teal)}
+.prompt-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.prompt-tags{display:flex;gap:6px;flex-wrap:wrap}
+.t-calc{background:rgba(139,92,246,.15);color:#b39bf5;border:1px solid rgba(139,92,246,.3)}
+.t-concept{background:rgba(229,148,0,.12);color:#efb44e;border:1px solid rgba(229,148,0,.3)}
+.t-data{background:rgba(46,139,192,.14);color:#7cc0e6;border:1px solid rgba(46,139,192,.3)}
+.prompt-text{font-size:15px;font-weight:600;color:var(--white);line-height:1.5;margin-bottom:12px;white-space:pre-line}
+.answer-area{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:12px 14px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13.5px;line-height:1.55;resize:vertical}
+.answer-area:focus{outline:none;border-color:var(--accent)}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.model-box{display:none;margin-top:14px;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:15px 16px}
+.model-box.show{display:block}
+.model-lbl,.rubric-lbl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;color:#4fd1a5;margin-bottom:8px}
+.model-answer{font-family:'DM Mono',monospace;font-size:12.5px;line-height:1.7;color:#d6e4f2;white-space:pre-wrap;margin-bottom:16px}
+.rubric-item{display:flex;gap:10px;align-items:flex-start;padding:7px 0;cursor:pointer}
+.rubric-check{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;color:#fff}
+.rubric-check.on{background:#188663;border-color:var(--teal)}
+.rubric-text{font-size:13px;line-height:1.5}
+.rubric-score{margin-top:10px;font-family:'DM Mono',monospace;font-size:12.5px;color:var(--muted)}
+.rubric-score b{color:var(--white)}
+.score-msg{margin-top:6px;font-size:12.5px}
+.btn-m{background:var(--bg);border:1px solid var(--border);color:var(--muted)}
+.btn-m.on{background:rgba(29,158,117,.15);border-color:var(--teal);color:#4fd1a5}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+
+</style>
+
+<script>window.STUDYHUB_GAME={course:'envsci'};</script>
+<script src="studyhub-game.js"></script>
+</head>
+<body>
+<div class="app">
+  <a class="back" href="EnvSci_StudyHub.html">← Environmental Science Study Hub</a>
+  <div class="header">
+    <div>
+      <div class="series-label">Environmental Science Honors · Study Resource Series · Build 5</div>
+      <div class="page-title">Self-<span>Grader</span></div>
+      <div class="page-sub" id="page-sub"></div>
+    </div>
+    <div data-game-hud></div>
+  </div>
+  <div class="about-banner">✍️ Free-response practice that multiple choice can't give you. <b>Write your full answer first</b>, on paper or in the box. Then reveal the model answer and check off each rubric point you actually hit. Be honest — the rubric is how you find the gap. Your typed answers stay on this page while it's open; they aren't saved or sent anywhere.</div>
+  <div class="stats-row">
+    <div class="stat-chip"><div class="stat-num" id="s-total">—</div><div class="stat-lbl">PROMPTS</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--teal)" id="s-mastered">0</div><div class="stat-lbl">MASTERED</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--amber)" id="s-avg">—</div><div class="stat-lbl">AVG SELF-SCORE</div></div>
+  </div>
+  <div class="controls">
+    <div class="ctrl-row"><span class="ctrl-label">UNIT</span><button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button><button class="pill" data-unit="U2" onclick="setUnit('U2',this)">U2</button><button class="pill" data-unit="U3" onclick="setUnit('U3',this)">U3</button><button class="pill" data-unit="U4" onclick="setUnit('U4',this)">U4</button><button class="pill" data-unit="U5" onclick="setUnit('U5',this)">U5</button><button class="pill" data-unit="U7" onclick="setUnit('U7',this)">U7</button><button class="pill" data-unit="U9" onclick="setUnit('U9',this)">U9</button><button class="pill" data-unit="U10" onclick="setUnit('U10',this)">U10</button></div>
+    <div class="ctrl-row"><span class="ctrl-label">TYPE</span><button class="pill active" data-type="all" onclick="setType('all',this)">All</button><button class="pill" data-type="concept" onclick="setType('concept',this)">💬 Conceptual</button><button class="pill" data-type="data" onclick="setType('data',this)">📊 Data & CER</button><button class="pill" data-type="calc" onclick="setType('calc',this)">🧮 Calculation</button></div>
+  </div>
+  <div id="list"></div>
+  <div class="footer">Environmental Science Honors (2001341) · Florida NGSSS Science Standards · Self-Grader</div>
+</div>
+<script>
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function nl(s){ return esc(s).replace(/\n/g,'<br>'); }
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON.parse(v); }catch(e){ return d; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
+
+const UNIT_NAMES = {"U1": "Intro to Env Science & Inquiry", "U2": "Earth Systems & Ecology", "U3": "Biodiversity & Populations", "U4": "Biomes, Wetlands & Aquatic Systems", "U5": "Conservation & Wildlife Management", "U6": "Soil, Agriculture & Food", "U7": "Water Resources", "U8": "Energy Resources", "U9": "Global Change & Environmental Health", "U10": "Air, Land & Waste"};
+const TYPE_LABEL = {"concept": "💬 Conceptual", "data": "📊 Data & CER", "calc": "🧮 Calculation"};
+const PROMPTS = [
+{
+"u": "U2",
+"type": "calc",
+"prompt": "A marsh's producers capture 80,000 kcal per square meter per year. Using the 10% rule, how much energy reaches (a) primary consumers, (b) secondary consumers, and (c) tertiary consumers? Explain where the 'missing' energy goes.",
+"model": "(a) 80,000 × 0.10 = 8,000 kcal\n(b) 8,000 × 0.10 = 800 kcal\n(c) 800 × 0.10 = 80 kcal\n\nAt each step about 90% of the energy is not passed on. Most is lost as heat from cellular respiration; some is in parts that aren't eaten or digested, which go to decomposers. Energy flows one way and is not recycled.",
+"rubric": [
+"Primary = 8,000 kcal",
+"Secondary = 800 kcal",
+"Tertiary = 80 kcal",
+"Explained the loss as heat from respiration (plus uneaten or undigested material)",
+"Stated that energy flows and is not recycled"
+]
+},
+{
+"u": "U2",
+"type": "concept",
+"prompt": "Explain how a wetland removes nitrogen from farm runoff. Name the process, the organisms involved, and why wetland soils are ideal for it.",
+"model": "Process: denitrification.\nWho: denitrifying bacteria in wetland soils.\nHow: in saturated, low-oxygen soils, these bacteria use nitrate (NO₃⁻) instead of oxygen for respiration and convert it to nitrogen gas (N₂), which escapes to the atmosphere.\nWhy wetlands: waterlogged soils are low in oxygen and rich in organic carbon, which the bacteria use as fuel. Wetland plants also take up nitrate directly.\nResult: less nitrogen reaches lakes and estuaries, reducing eutrophication.",
+"rubric": [
+"Named denitrification",
+"Identified bacteria as the organisms",
+"Explained that low-oxygen, saturated soils are required",
+"Stated that nitrate becomes N₂ gas",
+"Connected it to reducing eutrophication"
+]
+},
+{
+"u": "U3",
+"type": "data",
+"prompt": "Breeding duck counts (millions) on a prairie study area: 2016: 4.2 · 2017: 4.8 · 2018: 3.6 · 2019: 3.1 · 2020: 4.5. Pond counts (thousands): 2016: 210 · 2017: 260 · 2018: 170 · 2019: 140 · 2020: 240.\nMake a claim about the relationship, support it with evidence, and explain the ecological reasoning (CER).",
+"model": "Claim: Breeding duck numbers rise and fall with the number of ponds — more ponds, more ducks.\n\nEvidence: The two highest pond years (2017: 260k; 2020: 240k) had the highest duck counts (4.8M; 4.5M). The lowest pond year (2019: 140k) had the lowest count (3.1M). Both series fall from 2017 to 2019 and rebound in 2020.\n\nReasoning: Ponds act as a limiting factor. More wetlands give pairs territories and supply the invertebrates hens need to lay eggs, so more birds settle and breed. In dry years, ducks overfly the area or skip breeding. Correlation alone doesn't prove causation, but the mechanism supports it.",
+"rubric": [
+"Clear claim linking pond counts and duck numbers",
+"Cited at least two specific data points",
+"Described the parallel trend (both drop, then rebound)",
+"Explained ponds as a limiting factor (territory and invertebrate food)",
+"Noted that correlation is supported by a mechanism"
+]
+},
+{
+"u": "U3",
+"type": "concept",
+"prompt": "Compare r-selected and K-selected strategies. Use ducks and swans as examples, and explain why duck populations can rebound faster after a drought.",
+"model": "r-selected: many offspring, little parental investment per offspring, early maturity, short lifespan, high juvenile mortality.\nK-selected: few offspring, heavy parental care, late maturity, long lifespan.\n\nDucks lean r-selected: clutches of 8–12 eggs, breeding at about 1 year old, high duckling mortality. Swans lean K-selected: smaller clutches, years to maturity, long-term pair bonds, long lives.\n\nWhen ponds return after a drought, ducks can quickly produce large clutches and renest, so populations grow fast. Swans take years to replace losses.",
+"rubric": [
+"Correct traits of r-selection",
+"Correct traits of K-selection",
+"Placed ducks toward r and swans toward K with evidence",
+"Explained faster rebound through large clutches and early breeding"
+]
+},
+{
+"u": "U4",
+"type": "concept",
+"prompt": "A developer says a field 'isn't a wetland — it's dry in August.' Describe the three criteria biologists use to identify a wetland and what evidence you'd look for in each.",
+"model": "1. Hydrology: evidence the site is flooded or saturated long enough during the growing season — water marks on trees, drift lines, saturated soil in spring, aerial photos from wet seasons.\n2. Hydric soils: soils formed under saturated, low-oxygen conditions — gray (gleyed) colors, mottles, sulfur smell, thick organic layers.\n3. Hydrophytic vegetation: a dominance of plants adapted to wet soils, such as rushes, sedges, cattails, or cypress.\n\nBeing dry in August doesn't disqualify a site. Many wetlands are seasonal, and the soils and plants record its wet history.",
+"rubric": [
+"Hydrology with evidence examples",
+"Hydric soils with evidence examples",
+"Hydrophytic vegetation with examples",
+"Explained why being dry in summer doesn't rule out a wetland"
+]
+},
+{
+"u": "U5",
+"type": "concept",
+"prompt": "Explain how the North American Model of Wildlife Conservation is funded. Name at least two funding mechanisms and explain the 'user pays, public benefits' idea.",
+"model": "Funding mechanisms:\n• State hunting and fishing license fees.\n• The Federal Duck Stamp (1934): proceeds buy and lease refuge habitat.\n• The Pittman-Robertson Act (1937): excise taxes on firearms and ammunition distributed to state wildlife agencies.\n• (Also Dingell-Johnson/Wallop-Breaux for fishing equipment.)\n\nUser pays, public benefits: hunters and anglers pay most of the cost, but conserved wetlands and refuges also benefit non-game species, birdwatchers, water quality, and flood control for everyone.",
+"rubric": [
+"Named license fees and/or the Duck Stamp correctly",
+"Named Pittman-Robertson and its excise tax",
+"Explained where the money goes",
+"Explained 'user pays, public benefits' with non-game or public examples"
+]
+},
+{
+"u": "U5",
+"type": "concept",
+"prompt": "A wildlife manager has a 200-acre impoundment with a water control structure. Describe a year-round moist-soil management plan for migrating and wintering ducks, and explain the ecology behind each step.",
+"model": "Spring/early summer: slow drawdown over several weeks, exposing mudflats. Ecology: native annuals such as smartweed, millet, and sedges germinate on moist soil; a slow drawdown concentrates invertebrates for migrating shorebirds and teal.\nSummer: keep soils moist but not flooded; control woody plants and invasives by mowing, disking, or spot herbicide.\nLate summer to fall: flood shallowly in stages (2–12 inches) beginning around the teal migration, so seeds and invertebrates become available to each wave of migrants.\nWinter: maintain shallow water; some units can stay deeper for divers or roosting.\nEvery few years: disturb (disk or burn) to set back succession and perennial dominance.\nWhy: this mimics natural wet-dry cycles that drive wetland productivity.",
+"rubric": [
+"Spring drawdown to expose mudflats and explained germination",
+"Summer management of competing vegetation",
+"Fall staged, shallow flooding timed to migration",
+"Noted depth suited to dabblers (about 18 inches or less)",
+"Linked the plan to natural wet-dry cycles and succession"
+]
+},
+{
+"u": "U5",
+"type": "data",
+"prompt": "Banding data: 1,000 wood ducks banded in Georgia. Recoveries reported by hunters in the first season: Georgia 46, Florida 22, South Carolina 18, Alabama 9, other 5.\n(a) What percent of banded birds were reported recovered? (b) What do the data suggest about wood duck movement? (c) Why might the true harvest rate be higher than (a)?",
+"model": "(a) 46 + 22 + 18 + 9 + 5 = 100 recoveries. 100/1,000 = 10% reported recovery rate.\n(b) Most recoveries were in Georgia (46%), with the rest nearby in the Southeast (FL, SC, AL). This suggests wood ducks banded in Georgia mostly stay regional rather than migrating long distances.\n(c) Not every hunter who recovers a band reports it, and some banded birds die of other causes or are crippled and not recovered. Managers adjust using reporting-rate studies, so the true harvest rate is higher than the raw recovery rate.",
+"rubric": [
+"Calculated 100 recoveries = 10%",
+"Described a mostly regional (Southeast) movement pattern",
+"Explained band-reporting rate below 100%",
+"Showed clear work and units"
+]
+},
+{
+"u": "U7",
+"type": "concept",
+"prompt": "Trace phosphorus from a Central Florida citrus grove to a fish kill in a downstream lake. Include every step of eutrophication and identify the point where oxygen is actually lost.",
+"model": "1. Fertilizer is applied to the grove; rain washes phosphorus off as nonpoint runoff.\n2. Runoff travels through ditches and canals in the watershed to the lake.\n3. Phosphorus, often the limiting nutrient, fuels a rapid algal or cyanobacteria bloom.\n4. The bloom blocks light, so submerged plants die.\n5. Algae die in large numbers.\n6. DECOMPOSERS (bacteria) break down the dead algae and consume dissolved oxygen. This is where the oxygen is lost.\n7. DO drops below about 2 mg/L (hypoxia), especially on warm nights.\n8. Fish suffocate, causing a fish kill.\nSolutions: buffer strips, fertilizer timing, constructed wetlands.",
+"rubric": [
+"Identified nonpoint runoff as the source",
+"Linked phosphorus to the algal bloom",
+"Included algae dying",
+"Identified decomposers using oxygen as the cause of DO loss",
+"Ended with hypoxia and a fish kill (bonus: a solution)"
+]
+},
+{
+"u": "U9",
+"type": "concept",
+"prompt": "Explain how DDT caused declines in bald eagles and brown pelicans. Use the terms bioaccumulation and biomagnification correctly, and describe the outcome after DDT was banned.",
+"model": "DDT is persistent and fat-soluble, so organisms can't easily excrete it.\nBioaccumulation: each organism (plankton, small fish) builds up DDT in its fat over its lifetime.\nBiomagnification: each predator eats many contaminated prey, so the concentration multiplies at each trophic level — highest in eagles and pelicans.\nEffect: DDT breakdown products interfered with calcium deposition, causing thin eggshells that cracked during incubation, so reproduction collapsed.\nOutcome: after the 1972 U.S. ban (plus Endangered Species Act protection), both species recovered, and the brown pelican and bald eagle were later removed from the endangered list.",
+"rubric": [
+"Correct definition and use of bioaccumulation",
+"Correct definition and use of biomagnification",
+"Explained the eggshell-thinning mechanism",
+"Described recovery after the 1972 ban"
+]
+},
+{
+"u": "U9",
+"type": "concept",
+"prompt": "Why is conserving wetlands also a climate strategy? Discuss carbon storage, what happens when wetlands are drained, and one way wetlands help communities adapt.",
+"model": "Carbon storage: waterlogged, low-oxygen soils slow decomposition, so dead plant material builds up as peat and organic soil that stores large amounts of carbon.\nDrainage: oxygen enters the soil, decomposition speeds up, and stored carbon is released as CO₂ — turning a carbon sink into a source.\nAdaptation: wetlands absorb floodwater and storm surge (coastal marshes, mangroves), protecting communities from more intense storms and flooding. They also recharge aquifers during droughts.",
+"rubric": [
+"Explained carbon storage in saturated soils",
+"Explained CO₂ release when drained",
+"Gave at least one adaptation benefit (flood or surge protection, drought resilience)"
+]
+},
+{
+"u": "U10",
+"type": "concept",
+"prompt": "Explain why nontoxic shot has been required for U.S. waterfowl hunting since 1991. Describe how ducks were exposed, the effect on them, and why this is an example of science-based regulation.",
+"model": "Exposure: spent lead pellets settled on wetland bottoms. Ducks feeding there swallowed them along with seeds or as grit for their gizzards.\nEffect: the gizzard ground the pellets down and lead entered the bloodstream, causing lead poisoning — weakness, paralysis, and death. Large numbers of waterfowl died each year, and predators such as eagles that ate poisoned ducks were also affected.\nScience-based regulation: studies documented pellet ingestion and lead levels in ducks. Nontoxic alternatives (steel, bismuth, tungsten) were phased in, and lead poisoning declined. Data drove the policy.",
+"rubric": [
+"Described pellet ingestion while feeding",
+"Explained the lead poisoning effects",
+"Mentioned secondary poisoning of predators (bonus)",
+"Connected evidence to the 1991 regulation as science-based management"
+]
+}
+];
+const LS_M = 'envsci_selfgrader_mastered';
+const LS_S = 'envsci_selfgrader_scores';
+let mastered = new Set(lsGet(LS_M, []));
+let scores = lsGet(LS_S, {});
+let revealed = new Set(), checks = {}, drafts = {}, graded = new Set();
+let curUnit='all', curType='all';
+function pid(i){ return 'p'+i+'_'+PROMPTS[i].prompt.slice(0,24); }
+function setUnit(u,b){ curUnit=u; document.querySelectorAll('.pill[data-unit]').forEach(x=>x.classList.toggle('active',x===b)); render(); }
+function setType(t,b){ curType=t; document.querySelectorAll('.pill[data-type]').forEach(x=>x.classList.toggle('active',x===b)); render(); }
+function reveal(i){
+  const d = (drafts[i]||'').trim();
+  if(d.length < 15 && !confirm('You haven\'t written much yet. Revealing the model answer first makes this practice far less useful. Reveal anyway?')) return;
+  revealed.add(i); if(!checks[i]) checks[i]=new Set(); render();
+}
+function toggleCheck(i,j){
+  if(!checks[i]) checks[i]=new Set();
+  checks[i].has(j)?checks[i].delete(j):checks[i].add(j);
+  const pct = Math.round(checks[i].size/PROMPTS[i].rubric.length*100);
+  scores[pid(i)] = pct; lsSet(LS_S, scores);
+  if(!graded.has(i) && checks[i].size>0){ graded.add(i); game().event('selfgrade'); }
+  render();
+}
+function toggleMastered(i){
+  const k = pid(i);
+  if(mastered.has(k)) mastered.delete(k); else mastered.add(k);
+  lsSet(LS_M,[...mastered]); render();
+}
+function render(){
+  document.querySelectorAll('.answer-area').forEach(t=>{ drafts[t.dataset.i]=t.value; });
+  const list = PROMPTS.map((p,i)=>({p,i})).filter(({p})=>(curUnit==='all'||p.u===curUnit)&&(curType==='all'||p.type===curType));
+  document.getElementById('s-mastered').textContent = PROMPTS.filter((p,i)=>mastered.has(pid(i))).length;
+  const vals = Object.values(scores); document.getElementById('s-avg').textContent = vals.length? Math.round(vals.reduce((a,b)=>a+b,0)/vals.length)+'%':'—';
+  const box = document.getElementById('list');
+  if(!list.length){ box.innerHTML='<div class="empty">No prompts match these filters.</div>'; return; }
+  box.innerHTML = list.map(({p,i})=>{
+    const isM = mastered.has(pid(i)), isR = revealed.has(i), cs = checks[i]||new Set();
+    const pct = Math.round(cs.size/p.rubric.length*100);
+    const msg = !cs.size?'':pct===100?'<span style="color:#4fd1a5">Full marks. Mark it mastered and move on.</span>':pct>=75?'<span style="color:#efb44e">Close. Rewrite just the missing piece from memory, then check again.</span>':'<span style="color:#f08579">Study the model answer, close it, and try again tomorrow. That second attempt is where it sticks.</span>';
+    return `<div class="prompt-card ${isM?'mastered':''}">
+      <div class="prompt-top"><div class="prompt-tags"><span class="tag t-unit">${p.u} · ${esc(UNIT_NAMES[p.u])}</span><span class="tag t-${p.type}">${esc(TYPE_LABEL[p.type]||p.type)}</span></div>${isM?'<span class="tag" style="background:rgba(29,158,117,.15);color:#4fd1a5">✓ Mastered</span>':''}</div>
+      <div class="prompt-text">${esc(p.prompt)}</div>
+      <textarea class="answer-area" data-i="${i}" placeholder="Write your full answer here — show every step." aria-label="Your answer"></textarea>
+      <div class="btn-row">
+        <button class="btn btn-accent" onclick="reveal(${i})">${isR?'Model answer shown':'Reveal model answer &amp; rubric'}</button>
+        <button class="btn btn-m ${isM?'on':''}" onclick="toggleMastered(${i})">${isM?'✓ Mastered':'Mark mastered'}</button>
+      </div>
+      <div class="model-box ${isR?'show':''}">
+        <div class="model-lbl">MODEL ANSWER</div>
+        <div class="model-answer">${esc(p.model)}</div>
+        <div class="rubric-lbl">SELF-CHECK — tick only what YOUR answer actually included</div>
+        ${p.rubric.map((r,j)=>`<div class="rubric-item" onclick="toggleCheck(${i},${j})" role="checkbox" aria-checked="${cs.has(j)}" tabindex="0" onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();toggleCheck(${i},${j})}"><div class="rubric-check ${cs.has(j)?'on':''}">${cs.has(j)?'✓':''}</div><div class="rubric-text">${esc(r)}</div></div>`).join('')}
+        <div class="rubric-score">Self-score: <b>${cs.size} / ${p.rubric.length}</b>${cs.size?` · ${pct}%`:''}</div>
+        <div class="score-msg">${msg}</div>
+      </div>
+    </div>`;
+  }).join('');
+  document.querySelectorAll('.answer-area').forEach(t=>{ if(drafts[t.dataset.i]) t.value = drafts[t.dataset.i]; t.addEventListener('input',()=>{ drafts[t.dataset.i]=t.value; }); });
+}
+(function init(){
+  document.getElementById('s-total').textContent = PROMPTS.length;
+  const counts = Object.keys(TYPE_LABEL).map(k=>PROMPTS.filter(p=>p.type===k).length+' '+TYPE_LABEL[k].replace(/^\S+\s/,'').toLowerCase()).join(' · ');
+  document.getElementById('page-sub').textContent = `${PROMPTS.length} free-response prompts · ${counts} · self-scored rubrics`;
+  render();
+})();
+</script>
+</body>
+</html>

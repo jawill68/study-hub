@@ -292,6 +292,9 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .exam-config input{background:var(--card);border:1px solid var(--border);border-radius:7px;padding:5px 8px;color:var(--text);font-family:'DM Mono',monospace;font-size:13px;width:60px;outline:none}
 .exam-config input:focus{border-color:var(--amber)}
 </style>
+<script src="studyhub-tutor.js"></script>
+<script>window.STUDYHUB_GAME={course:'algebra2'};</script>
+<script src="studyhub-game.js"></script>
 </head>
 <body>
 <div class="app">
@@ -301,10 +304,11 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
   <!-- HEADER -->
   <div class="header">
     <div class="header-left">
-      <div class="series-label">Algebra 2 · Study Resource Series · Build 5</div>
+      <div class="series-label">Algebra 2 · Study Resource Series · Build 2</div>
       <div class="page-title">Drill <span>Trainer</span></div>
     </div>
     <div class="header-actions">
+      <div data-game-hud></div>
       <button class="pill pill-navy" onclick="openSettings()">⚙ Settings</button>
       <button class="pill pill-sky" onclick="showScreen('setup')" id="btn-back-setup" style="display:none">← Setup</button>
     </div>
@@ -590,7 +594,7 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 // QUESTION BANK — 94 DOCX + 8 JSX supplements
 // ════════════════════════════════════════════
 const QB = [
-  {id:"d1",unit:"U1",tier:1,topic:"Function Definition",stem:"Which of the following represents a function?",choices:["{ (1,2), (2,3), (3,4) }","{ (1,2), (1,3), (2,4) }","A circle with equation x² + y² = 9","A vertical line x = 5"],ans:0,hint:"A function assigns exactly one output to each input. Check for repeated x-values.",exp:"Choice A has no repeated x-values, so each input maps to exactly one output — that is the definition of a function. Choices B, C, and D all fail the vertical line test or have repeated inputs.",std:"MAFS.912.F-IF.1.1 | F-IF.A.1"},
+  {id:"d1",unit:"U1",tier:1,topic:"Function Definition",stem:"Which of the following represents a function?",choices:["{ (1,2), (2,3), (3,4) }","{ (1,2), (1,3), (2,4) }","A circle with equation x² + y² = 9","A vertical line x = 5"],ans:0,hint:"A function assigns exactly one output to each input. Check for repeated x-values.",exp:"The set { (1,2), (2,3), (3,4) } has no repeated x-values, so each input maps to exactly one output — that is the definition of a function. The other set repeats x = 1, and both the circle and the vertical line x = 5 fail the vertical line test.",std:"MAFS.912.F-IF.1.1 | F-IF.A.1"},
   {id:"d2",unit:"U1",tier:1,topic:"Range",stem:"What is the range of f(x) = x² + 3?",choices:["All real numbers","y ≥ 0","y ≥ 3","y ≤ 3"],ans:2,hint:"The smallest possible output of x² is 0 (when x = 0). Then add 3.",exp:"Since x² is always ≥ 0, the minimum value of x² + 3 is 0 + 3 = 3. The parabola opens upward with vertex at (0, 3), so the range is y ≥ 3.",std:"MAFS.912.F-IF.1.1 | F-IF.A.1"},
   {id:"d3",unit:"U1",tier:1,topic:"Function Notation",stem:"Evaluate f(3) for f(x) = 2x² − 5x + 1.",choices:["4","2","34","10"],ans:0,hint:"Substitute x = 3 into the function: 2(3)² − 5(3) + 1.",exp:"f(3) = 2(9) − 15 + 1 = 18 − 15 + 1 = 4.",std:"MAFS.912.F-IF.1.2 | F-IF.A.2"},
   {id:"d4",unit:"U1",tier:1,topic:"Transformations",stem:"Which transformation shifts the graph of f(x) = x² three units to the right and two units down?",choices:["f(x) = (x + 3)² − 2","f(x) = (x − 3)² − 2","f(x) = (x − 3)² + 2","f(x) = (x + 3)² + 2"],ans:1,hint:"Horizontal shifts: (x − h) moves RIGHT h units. Vertical: +k moves UP, −k moves DOWN.",exp:"Right 3 means replace x with (x − 3). Down 2 means subtract 2 outside. Result: f(x) = (x − 3)² − 2.",std:"MAFS.912.F-BF.2.3 | F-BF.B.3"},
@@ -693,6 +697,32 @@ const QB = [
   {id:"j6",unit:"U7",tier:3,topic:"Real-World Series",stem:"Ball dropped 10 ft, bounces 60% each time. Total vertical distance traveled?",choices:["40 ft","50 ft","25 ft","35 ft"],ans:0,hint:"Initial: 10 ft. Bounces (up+down): a₁=12, r=0.6. Use infinite geometric sum, then add initial drop.",exp:"Initial drop: 10 ft. Bounces: a₁ = 2×6 = 12, r = 0.6. Sum = 12/0.4 = 30. Total = 10+30 = 40 ft.",std:null},
   {id:"j7",unit:"U8",tier:2,topic:"Permutations vs Combinations",stem:"Committee of 4 chosen from 10 people — how many ways? Order does NOT matter.",choices:["5040","210","720","3628800"],ans:1,hint:"Order doesn't matter → combination. C(n,r) = n!/[r!(n−r)!]",exp:"C(10,4) = 10!/(4!·6!) = (10×9×8×7)/(4×3×2×1) = 5040/24 = 210.",std:null},
   {id:"j8",unit:"U10",tier:2,topic:"Transformations",stem:"What transformations map y = |x| onto f(x) = 2|x − 3| + 1?",choices:["Right 3, stretch ×2, up 1","Left 3, compress, up 1","Right 3, compress, down 1","Left 3, stretch ×2, down 1"],ans:0,hint:"Match each component: |x−3| is horizontal, the 2 is vertical scale, +1 is vertical shift.",exp:"|x−3| shifts right 3. ×2: vertical stretch. +1: shifts up 1. Combined: right 3, stretched by 2, up 1.",std:null},
+  {id:"x1",unit:"U4",tier:2,topic:"Simplifying Rational Expressions",stem:"Simplify (x² − 9) / (x² + 5x + 6).",choices:["(x − 3)/(x + 2)","(x + 3)/(x + 2)","−9/(5x + 6)","(x − 3)/(x + 3)"],ans:0,hint:"Factor the top and the bottom completely before canceling anything.",exp:"Top: x² − 9 = (x − 3)(x + 3). Bottom: x² + 5x + 6 = (x + 2)(x + 3). Cancel the common factor (x + 3) to get (x − 3)/(x + 2), with x ≠ −3 and x ≠ −2. You can only cancel factors, never individual terms like the x².",std:"CCSS A-APR.D.6"},
+  {id:"x2",unit:"U4",tier:3,topic:"Asymptotes",stem:"Which describes the asymptotes of f(x) = (2x² + 1)/(x² − 4)?",choices:["VA: x = 2 and x = −2;  HA: y = 2","VA: x = 2 only;  HA: y = 0","VA: x = 2 and x = −2;  HA: y = 0","VA: x = 4 and x = −4;  HA: y = 2"],ans:0,hint:"Vertical asymptotes: zeros of the denominator that don't cancel. Horizontal: compare the degrees.",exp:"x² − 4 = 0 gives x = ±2, and neither cancels with the numerator, so both are vertical asymptotes. The degrees are equal (2 and 2), so the horizontal asymptote is the ratio of leading coefficients: y = 2/1 = 2.",std:"CCSS F-IF.C.7d"},
+  {id:"x3",unit:"U5",tier:1,topic:"Simplifying Radicals",stem:"Simplify √72.",choices:["6√2","2√18","36√2","8√9"],ans:0,hint:"Find the largest perfect square that divides 72.",exp:"72 = 36 · 2, and 36 is the largest perfect-square factor. √72 = √36 · √2 = 6√2. The choice 2√18 is equivalent, but it isn't simplified because 18 still contains the perfect square 9.",std:"CCSS N-RN.A.2"},
+  {id:"x4",unit:"U5",tier:2,topic:"Radical Equations",stem:"Solve √(x + 7) = x + 1.",choices:["x = 2 only","x = −3 only","x = 2 and x = −3","No solution"],ans:0,hint:"Square both sides, solve the quadratic, then check every answer in the ORIGINAL equation.",exp:"Squaring gives x + 7 = x² + 2x + 1, so x² + x − 6 = 0, which factors as (x + 3)(x − 2) = 0. Check x = 2: √9 = 3 and 2 + 1 = 3 ✓. Check x = −3: √4 = 2 but −3 + 1 = −2 ✗. So x = −3 is extraneous and the only solution is x = 2.",std:"CCSS A-REI.A.2"},
+  {id:"x5",unit:"U5",tier:2,topic:"Rational Exponents",stem:"Evaluate 8^(2/3).",choices:["4","16/3","64","2"],ans:0,hint:"The denominator is the root; the numerator is the power. Take the root first.",exp:"8^(2/3) = (∛8)² = 2² = 4. Taking the cube root first keeps the numbers small.",std:"CCSS N-RN.A.1"},
+  {id:"x6",unit:"U5",tier:3,topic:"Domain of Radical Functions",stem:"What is the domain of f(x) = √(6 − 2x)?",choices:["x ≤ 3","x ≥ 3","x ≤ −3","All real numbers"],ans:0,hint:"For an even root, the radicand must be ≥ 0. Watch what happens when you divide by a negative.",exp:"Set 6 − 2x ≥ 0, so −2x ≥ −6. Dividing by −2 flips the inequality: x ≤ 3. Forgetting to flip the sign gives x ≥ 3, which is the most common wrong answer.",std:"CCSS F-IF.B.5"},
+  {id:"x7",unit:"U6",tier:2,topic:"Solving Log Equations",stem:"Solve log₂(x) + log₂(x − 2) = 3.",choices:["x = 4 only","x = −2 only","x = 4 and x = −2","x = 5"],ans:0,hint:"Combine with the product rule, rewrite in exponential form, then check the domain.",exp:"log₂[x(x − 2)] = 3, so x(x − 2) = 2³ = 8. Then x² − 2x − 8 = 0 → (x − 4)(x + 2) = 0. x = −2 is rejected because you can't take the log of a negative number. Only x = 4 works.",std:"CCSS F-LE.A.4"},
+  {id:"x8",unit:"U6",tier:2,topic:"Exponential Equations",stem:"Solve 3^(2x) = 81.",choices:["x = 2","x = 4","x = 27","x = 1/2"],ans:0,hint:"Write 81 as a power of 3, then set the exponents equal.",exp:"81 = 3⁴, so 3^(2x) = 3⁴. With the same base, the exponents must match: 2x = 4, so x = 2.",std:"CCSS F-LE.A.4"},
+  {id:"x9",unit:"U7",tier:1,topic:"Arithmetic Sequences",stem:"Find the 10th term of the sequence 4, 7, 10, 13, …",choices:["31","34","30","40"],ans:0,hint:"aₙ = a₁ + (n − 1)d. Find d first.",exp:"d = 3 and a₁ = 4. a₁₀ = 4 + (10 − 1)(3) = 4 + 27 = 31. Using n instead of (n − 1) gives 34, a classic off-by-one error.",std:"CCSS F-BF.A.2"},
+  {id:"x10",unit:"U7",tier:2,topic:"Arithmetic Series",stem:"Find the sum of the first 20 terms of 2, 5, 8, 11, …",choices:["610","590","1220","61"],ans:0,hint:"Find a₂₀ first, then use Sₙ = n/2 · (a₁ + aₙ).",exp:"a₂₀ = 2 + 19(3) = 59. S₂₀ = 20/2 · (2 + 59) = 10 · 61 = 610.",std:"CCSS A-SSE.B.4"},
+  {id:"x11",unit:"U7",tier:3,topic:"Infinite Geometric Series",stem:"Find the sum of the infinite series 12 + 6 + 3 + 1.5 + …",choices:["24","18","∞ — it diverges","22.5"],ans:0,hint:"Find r. If |r| < 1, use S = a₁/(1 − r).",exp:"r = 6/12 = 1/2, and |r| < 1, so the series converges. S = 12/(1 − 1/2) = 12/(1/2) = 24.",std:"CCSS A-SSE.B.4"},
+  {id:"x12",unit:"U8",tier:1,topic:"Combinations",stem:"How many ways can a teacher choose 3 students from a class of 10 to form a committee?",choices:["120","720","30","1000"],ans:0,hint:"Does order matter on a committee?",exp:"Order doesn't matter, so use combinations: C(10,3) = 10!/(3!·7!) = (10·9·8)/(3·2·1) = 720/6 = 120. 720 would be the permutation count, which treats each ordering as different.",std:"CCSS S-CP.B.9"},
+  {id:"x13",unit:"U8",tier:2,topic:"Permutations",stem:"Eight runners are in a race. How many different ways can 1st, 2nd, and 3rd place be awarded?",choices:["336","56","512","24"],ans:0,hint:"Here order matters — gold is different from silver.",exp:"P(8,3) = 8 · 7 · 6 = 336. 56 is C(8,3), which ignores order, so it would be wrong here.",std:"CCSS S-CP.B.9"},
+  {id:"x14",unit:"U8",tier:2,topic:"Normal Distribution",stem:"Test scores are normally distributed with mean 70 and standard deviation 5. About what percent of scores fall between 60 and 80?",choices:["95%","68%","99.7%","50%"],ans:0,hint:"How many standard deviations from the mean are 60 and 80?",exp:"60 and 80 are each 2 standard deviations from 70 (10 ÷ 5 = 2). By the Empirical Rule, about 95% of data falls within 2 standard deviations of the mean.",std:"CCSS S-ID.A.4"},
+  {id:"x15",unit:"U8",tier:3,topic:"Probability",stem:"Two fair six-sided dice are rolled. What is the probability that the sum is 7?",choices:["1/6","7/36","1/12","1/11"],ans:0,hint:"List the outcomes that add to 7 out of all 36 outcomes.",exp:"The pairs (1,6), (2,5), (3,4), (4,3), (5,2), (6,1) give 6 favorable outcomes out of 36 equally likely ones. 6/36 = 1/6. Counting sums (2 through 12) as 11 equally likely results is the trap — they aren't equally likely.",std:"CCSS S-CP.A.1"},
+  {id:"x16",unit:"U9",tier:1,topic:"Circles",stem:"What are the center and radius of (x − 2)² + (y + 5)² = 49?",choices:["Center (2, −5), radius 7","Center (−2, 5), radius 7","Center (2, −5), radius 49","Center (2, 5), radius 7"],ans:0,hint:"Standard form is (x − h)² + (y − k)² = r². Watch the signs.",exp:"(x − 2) means h = 2. (y + 5) = (y − (−5)) means k = −5. r² = 49, so r = 7.",std:"CCSS G-GPE.A.1"},
+  {id:"x17",unit:"U9",tier:2,topic:"Completing the Square (Circles)",stem:"Find the center and radius of x² + y² − 6x + 4y − 3 = 0.",choices:["Center (3, −2), radius 4","Center (−3, 2), radius 4","Center (3, −2), radius 16","Center (3, −2), radius √3"],ans:0,hint:"Group x terms and y terms, complete the square for each, and add the same amounts to both sides.",exp:"(x² − 6x + 9) + (y² + 4y + 4) = 3 + 9 + 4, so (x − 3)² + (y + 2)² = 16. Center (3, −2), radius √16 = 4.",std:"CCSS G-GPE.A.1"},
+  {id:"x18",unit:"U9",tier:2,topic:"Parabolas",stem:"Where is the focus of the parabola y² = 12x?",choices:["(3, 0)","(0, 3)","(12, 0)","(−3, 0)"],ans:0,hint:"Compare to y² = 4px. Which way does it open?",exp:"y² = 4px with 4p = 12 gives p = 3. Since y is squared and p > 0, the parabola opens right, with the focus at (p, 0) = (3, 0) and directrix x = −3.",std:"CCSS G-GPE.A.2"},
+  {id:"x19",unit:"U9",tier:2,topic:"Ellipses",stem:"Where are the foci of the ellipse x²/25 + y²/9 = 1?",choices:["(±4, 0)","(0, ±4)","(±5, 0)","(±√34, 0)"],ans:0,hint:"For an ellipse, c² = a² − b².",exp:"a² = 25 and b² = 9, with the larger denominator under x, so the major axis is horizontal. c² = 25 − 9 = 16, so c = 4 and the foci are at (±4, 0). Adding instead of subtracting (giving √34) is the hyperbola rule.",std:"CCSS G-GPE.A.3"},
+  {id:"x20",unit:"U9",tier:3,topic:"Classifying Conics",stem:"Which conic section is 4x² − 9y² = 36?",choices:["Hyperbola","Ellipse","Circle","Parabola"],ans:0,hint:"Look at the signs of the x² and y² terms.",exp:"The squared terms have opposite signs, which always means a hyperbola. Dividing by 36 gives x²/9 − y²/4 = 1. Same signs with different coefficients would be an ellipse; only one squared term would be a parabola.",std:"CCSS G-GPE.A.3"},
+  {id:"x21",unit:"U9",tier:1,topic:"Classifying Conics",stem:"Which conic section is x² + y² = 25?",choices:["Circle with radius 5","Circle with radius 25","Ellipse","Hyperbola"],ans:0,hint:"Both squared terms have the same coefficient and the same sign.",exp:"x² + y² = r² is a circle centered at the origin. r² = 25, so r = 5.",std:"CCSS G-GPE.A.1"},
+  {id:"x22",unit:"U10",tier:1,topic:"Radian Measure",stem:"Convert 150° to radians.",choices:["5π/6","3π/4","5π/3","150π"],ans:0,hint:"Multiply by π/180, then simplify.",exp:"150 · π/180 = 15π/18 = 5π/6.",std:"CCSS F-TF.A.1"},
+  {id:"x23",unit:"U10",tier:2,topic:"Period",stem:"What is the period of y = 3 sin(4x)?",choices:["π/2","4","2π","8π"],ans:0,hint:"Period = 2π / |B|.",exp:"B = 4, so the period is 2π/4 = π/2. The 3 is the amplitude and doesn't affect the period.",std:"CCSS F-TF.B.5"},
+  {id:"x24",unit:"U10",tier:2,topic:"Unit Circle",stem:"What is sin(π/6)?",choices:["1/2","√3/2","√2/2","1"],ans:0,hint:"π/6 is 30°. Picture the 30-60-90 triangle on the unit circle.",exp:"At π/6 (30°), the unit-circle point is (√3/2, 1/2). Sine is the y-coordinate, so sin(π/6) = 1/2. √3/2 is the cosine.",std:"CCSS F-TF.A.2"},
+  {id:"x25",unit:"U10",tier:2,topic:"Unit Circle",stem:"What point on the unit circle corresponds to 3π/4?",choices:["(−√2/2, √2/2)","(√2/2, −√2/2)","(−1/2, √3/2)","(−√2/2, −√2/2)"],ans:0,hint:"3π/4 = 135°, which is in Quadrant II. Which coordinate is negative there?",exp:"3π/4 has reference angle π/4, so both coordinates have magnitude √2/2. In Quadrant II, x is negative and y is positive: (−√2/2, √2/2).",std:"CCSS F-TF.A.2"},
+  {id:"x26",unit:"U10",tier:3,topic:"Amplitude & Midline",stem:"For y = −2cos(x) + 5, what are the amplitude and the midline?",choices:["Amplitude 2, midline y = 5","Amplitude −2, midline y = 5","Amplitude 2, midline y = 0","Amplitude 7, midline y = 3"],ans:0,hint:"Amplitude is |A|. The midline is y = D.",exp:"Amplitude is |−2| = 2. It's a distance, so it's never negative; the negative sign only reflects the graph. The +5 shifts the midline to y = 5, so the graph oscillates between 3 and 7.",std:"CCSS F-IF.C.7e"}
 ];
 
 // ═══════════════════════════════
@@ -1090,10 +1120,13 @@ function renderQuestion(){
   // Choices
   const cc = document.getElementById('choices-container');
   cc.innerHTML = '';
-  q.choices.forEach((ch,i)=>{
+  // Shuffle answer order every time a question is shown, so the position of the
+  // correct answer can't be memorized (the bank was written with most answers in A/B).
+  session.order = shuffle(q.choices.map((_,i)=>i));
+  session.order.forEach((orig,i)=>{
     const btn = document.createElement('button');
     btn.className = 'choice-btn';
-    btn.innerHTML = `<span class="choice-letter">${LETTERS[i]}</span><span class="choice-text">${ch}</span>`;
+    btn.innerHTML = `<span class="choice-letter">${LETTERS[i]}</span><span class="choice-text">${q.choices[orig]}</span>`;
     btn.onclick = () => selectChoice(i, btn);
     cc.appendChild(btn);
   });
@@ -1171,9 +1204,10 @@ function toggleHint(){
 }
 
 function skipQuestion(){
+  if(session.answered){ nextQuestion(); return; }
   session.wrong++;
   session.streak = 0;
-  updateMastery(false);
+  updateMastery(false, session.queue[session.idx]);
   nextQuestion();
 }
 
@@ -1193,14 +1227,16 @@ function checkAnswer(){
 
   session.answered = true;
   const q = session.queue[session.idx];
-  const correct = session.selectedChoice === q.ans;
+  const correctPos = session.order ? session.order.indexOf(q.ans) : q.ans;
+  const correct = session.selectedChoice === correctPos;
   if(state.type === 'drill') srsUpdate(q.id, correct);
+  if(window.StudyHubGame) StudyHubGame.answer(correct, q.tier);
 
   // Mark choices
   const btns = document.querySelectorAll('.choice-btn');
   btns.forEach((b,i)=>{
     b.disabled = true;
-    if(i === q.ans) b.classList.add('correct');
+    if(i === correctPos) b.classList.add('correct');
     else if(i === session.selectedChoice && !correct) b.classList.add('wrong');
   });
 
@@ -1528,6 +1564,7 @@ function confirmReset(){
 // AI TUTOR — ALEPH
 // ═══════════════════════════════
 let tutorHistory = [];
+let tutorCtx = {};
 let tutorOpen = false;
 
 function openTutor(){
@@ -1537,14 +1574,17 @@ function openTutor(){
 
   // Auto-trigger an opening message contextualised to the question result
   const q = session.queue[session.idx];
-  const wasCorrect = session.answered && (session.selectedChoice === q.ans);
-  const chosenText = session.selectedChoice >= 0 ? q.choices[session.selectedChoice] : null;
+  const origChoice = (session.selectedChoice >= 0 && session.order) ? session.order[session.selectedChoice] : session.selectedChoice;
+  const wasCorrect = session.answered && (origChoice === q.ans);
+  const chosenText = origChoice >= 0 ? q.choices[origChoice] : null;
+  tutorCtx = {term:q.topic, unit:q.unit, explanation:q.exp, hint:q.hint, chosen:chosenText, correct:q.choices[q.ans]};
 
   const context = buildTutorContext(q, wasCorrect, chosenText);
   const opener = wasCorrect
     ? `Great work getting that right. I'm here if you want to go deeper or if anything in the explanation wasn't clear.`
     : `Let me walk you through why that one was tricky. ${q.exp}`;
 
+  setTutorStatus(StudyHubTutor.modeLabel());
   appendTutorMsg('assistant', opener);
   tutorHistory.push({role:'user', content: context});
   tutorHistory.push({role:'assistant', content: opener});
@@ -1593,36 +1633,22 @@ async function sendTutorMessage(){
   const thinkingEl = appendTutorMsg('assistant', null, true);
 
   try{
-    const messages = tutorHistory.slice();
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({
-        model:'claude-sonnet-4-6',
-        max_tokens:1000,
-        system: buildTutorSystemPrompt(),
-        messages: messages
-      })
+    const res = await StudyHubTutor.ask({
+      system: buildTutorSystemPrompt(),
+      messages: tutorHistory.slice(),
+      context: tutorCtx,
+      message: msg
     });
-
-    const data = await response.json();
-    const reply = data.content && data.content[0] && data.content[0].text
-      ? data.content[0].text
-      : 'Sorry, I couldn\'t generate a response. Try again.';
-
     thinkingEl.remove();
-    appendTutorMsg('assistant', reply);
-    tutorHistory.push({role:'assistant', content: reply});
-
-    // Keep history from bloating — trim to last 10 turns
+    appendTutorMsg('assistant', res.text);
+    tutorHistory.push({role:'assistant', content: res.text});
     if(tutorHistory.length > 12) tutorHistory = tutorHistory.slice(tutorHistory.length - 12);
-
   } catch(err){
     thinkingEl.remove();
-    appendTutorMsg('assistant', 'Connection issue. Check your network and try again.');
+    appendTutorMsg('assistant', 'Something went wrong. Try asking again.');
   }
 
-  setTutorStatus('Ready');
+  setTutorStatus(StudyHubTutor.modeLabel());
   document.getElementById('tutor-send').disabled = false;
 
   // Scroll body to bottom

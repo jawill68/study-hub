@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Environmental Science — DU Certification Prep</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
+  --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
+  --accent:#1D9E75;--accent-soft:rgba(29,158,117,.12);--accent-text:#4fd1a5;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(46,139,192,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(46,139,192,0.04) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:26px 20px 70px}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent-text);text-decoration:none;margin-bottom:14px;opacity:.9}
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--accent-text)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+.about-banner{background:linear-gradient(135deg,var(--accent-soft),rgba(29,158,117,.05));border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:12.5px;line-height:1.55}
+.about-banner a{color:var(--accent-text)}
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px;flex:1}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:14px}
+.sec-lbl{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.13em;color:var(--muted);margin-bottom:11px;text-transform:uppercase}
+.controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;flex-direction:column;gap:11px}
+.ctrl-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--muted);min-width:56px}
+.search-input{flex:1;min-width:200px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13.5px}
+.search-input:focus{outline:none;border-color:var(--accent)}
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--accent);color:var(--text)}
+.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn{border:none;border-radius:11px;padding:11px 20px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;transition:all .2s;color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-accent{background:var(--accent)}
+.btn-accent:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 22px rgba(0,0,0,.35)}
+.btn-ghost{background:var(--bg);border:1px solid var(--border);color:var(--text)}
+.btn-ghost:hover{border-color:var(--accent)}
+.btn-teal{background:#188663}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:6px;display:inline-block}
+.t-unit{background:var(--accent-soft);color:var(--accent-text);border:1px solid var(--border)}
+.empty{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px}
+.footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center;line-height:1.7}
+.overlay{position:fixed;inset:0;background:rgba(3,8,16,.82);backdrop-filter:blur(4px);z-index:500;display:none;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto}
+.overlay.open{display:flex}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;max-width:640px;width:100%}
+.opt{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:12px 15px;cursor:pointer;transition:all .16s;display:flex;align-items:flex-start;gap:11px;text-align:left;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);width:100%}
+.opt:hover:not(:disabled){border-color:var(--accent);background:var(--card2)}
+.opt:disabled{cursor:default}
+.opt-key{width:24px;height:24px;border-radius:7px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0;color:var(--muted)}
+.opt.correct{border-color:var(--teal);background:rgba(29,158,117,.11)}
+.opt.correct .opt-key{background:#188663;border-color:var(--teal);color:#fff}
+.opt.wrong{border-color:var(--red);background:rgba(231,76,60,.10)}
+.opt.wrong .opt-key{background:#D24536;border-color:var(--red);color:#fff}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+@media(max-width:640px){.page-title{font-size:1.55rem}.ctrl-label{min-width:auto}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+
+.hero2{background:linear-gradient(135deg,#0d2a22 0%,#12335a 60%,#0a1e38 100%);border:1px solid var(--border);border-radius:20px;padding:26px 26px;margin-bottom:18px;position:relative;overflow:hidden}
+.hero2::after{content:'🦆';position:absolute;right:20px;bottom:-24px;font-size:130px;opacity:.07}
+.hero2 h2{font-size:1.5rem;color:#fff;font-weight:800;margin-bottom:8px}
+.hero2 p{font-size:13.5px;color:#b9d0e6;line-height:1.65;max-width:680px}
+.facts{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.fact{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 13px;font-size:12px;font-weight:700;color:#d6e6f3}
+.ready{display:grid;grid-template-columns:200px 1fr;gap:20px;align-items:center}
+@media(max-width:640px){.ready{grid-template-columns:1fr}}
+.gauge{width:180px;height:180px;margin:0 auto;position:relative}
+.gauge svg{width:100%;height:100%;transform:rotate(-90deg)}
+.gauge-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.gauge-num b{font-size:38px;color:#fff;font-family:'DM Mono',monospace;font-weight:800}
+.gauge-num span{font-size:10px;letter-spacing:.1em;color:var(--muted);font-weight:700}
+.dom{margin-bottom:12px}
+.dom-top{display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:5px}
+.dom-top b{color:#fff}
+.dom-top span{font-family:'DM Mono',monospace;color:var(--muted)}
+.dom-bar{height:9px;background:var(--bg);border-radius:99px;overflow:hidden;position:relative}
+.dom-bar i{display:block;height:100%;border-radius:99px}
+.dom-bar .goal{position:absolute;top:-2px;bottom:-2px;left:80%;width:2px;background:rgba(255,255,255,.4)}
+.launch{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:720px){.launch{grid-template-columns:1fr}}
+.lcard{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.lcard h3{font-size:16px;color:#fff;font-weight:800}
+.lcard p{font-size:12.5px;color:var(--muted);line-height:1.55;flex:1}
+.guide-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:720px){.guide-grid{grid-template-columns:1fr}}
+.guide{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:16px 18px}
+.guide h4{font-size:14.5px;color:#fff;font-weight:800;display:flex;justify-content:space-between;align-items:center}
+.guide h4 span{font-family:'DM Mono',monospace;font-size:12px;color:#efb44e}
+.guide ul{margin:10px 0 0 18px;font-size:12.8px;line-height:1.6}
+.guide li{margin-bottom:5px}
+.hist{display:flex;gap:6px;align-items:flex-end;height:80px;margin-top:8px}
+.hist div{flex:1;max-width:64px;background:var(--accent);border-radius:5px 5px 0 0;min-width:10px;position:relative}
+.hist div span{position:absolute;top:-16px;left:0;right:0;text-align:center;font-size:10px;font-family:'DM Mono',monospace;color:var(--muted)}
+.screen{display:none}.screen.active{display:block}
+.q-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;font-family:'DM Mono',monospace;font-size:11.5px;color:var(--muted)}
+.t-dom{background:rgba(229,148,0,.12);color:#efb44e;border:1px solid rgba(229,148,0,.3)}
+.pbar{height:5px;background:var(--bg);border-radius:99px;overflow:hidden;margin-bottom:16px}.pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--amber));transition:width .3s}
+.qtext{font-size:17px;font-weight:600;color:#fff;line-height:1.5;margin-bottom:16px}
+.opts{display:flex;flex-direction:column;gap:9px;margin-bottom:14px}
+.fb{border-radius:12px;padding:13px 15px;margin-bottom:12px;display:none;font-size:13.5px;line-height:1.6}.fb.show{display:block}
+.fb.ok{background:rgba(29,158,117,.09);border:1px solid rgba(29,158,117,.3)}.fb.no{background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.3)}
+.res-score{font-size:3rem;font-weight:800;font-family:'DM Mono',monospace;color:#fff;text-align:center;line-height:1}.res-score span{font-size:1.4rem;color:var(--muted)}
+.miss{background:var(--bg);border:1px solid var(--border);border-left:2px solid var(--red);border-radius:9px;padding:10px 13px;margin-bottom:8px;font-size:12.5px}.miss b{color:#4fd1a5}
+.sel{background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:8px 10px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px}
+
+</style>
+
+<script>window.STUDYHUB_GAME={course:'envsci'};</script>
+<script src="studyhub-game.js"></script>
+</head>
+<body>
+<div class="app">
+  <a class="back" href="EnvSci_StudyHub.html">← Environmental Science Study Hub</a>
+  <div class="header">
+    <div><div class="series-label">Environmental Science Honors · Industry Certification Track</div><div class="page-title">DU Certification <span>Prep</span></div><div class="page-sub">Ducks Unlimited Ecology Conservation &amp; Management Certification</div></div>
+    <div data-game-hud></div>
+  </div>
+
+  <div class="screen active" id="s-home">
+  <div class="hero2">
+    <h2>Earn an industry certification while you're in high school.</h2>
+    <p>The Ducks Unlimited Ecology Conservation &amp; Management Certification is a 100-question exam on the iCEV Testing Platform. It's on Florida's CAPE industry certification funding list, so passing earns acceleration points. Everything here is original practice organized by the exam's four weighted standards. Use it alongside your class curriculum, not instead of it.</p>
+    <div class="facts"><span class="fact">📝 100 questions</span><span class="fact">🌿 Ecological Principles 20%</span><span class="fact">🦆 Species ID 10%</span><span class="fact">🪶 Wildlife Mgmt 30%</span><span class="fact">🌾 Habitat Mgmt 40%</span></div>
+  </div>
+
+  <div class="card">
+    <div class="sec-lbl">Your certification readiness</div>
+    <div class="ready">
+      <div class="gauge"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="#0d1e32" stroke-width="12"/><circle id="g-arc" cx="60" cy="60" r="52" fill="none" stroke="#1D9E75" stroke-width="12" stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="326.7"/></svg>
+        <div class="gauge-num"><b id="g-num">—</b><span>WEIGHTED READINESS</span></div></div>
+      <div>
+        <div id="doms"></div>
+        <div style="font-size:11.5px;color:var(--muted);margin-top:4px">Readiness weights your accuracy in each domain by its share of the exam. The white tick marks an 80% target — a personal goal, not the official passing score.</div>
+      </div>
+    </div>
+    <div id="hist-wrap" style="display:none;margin-top:18px"><div class="sec-lbl" style="margin-bottom:22px">Mock exam history</div><div class="hist" id="hist"></div></div>
+  </div>
+
+  <div class="sec-lbl" style="margin-top:22px">Practice</div>
+  <div class="launch">
+    <div class="lcard"><h3>🎯 Domain Drill</h3><p>Pick one standard and drill it with instant feedback and explanations. Best for building weak areas.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><select class="sel" id="dsel" aria-label="Domain"></select><select class="sel" id="nsel" aria-label="Number of questions"><option value="10">10 Qs</option><option value="20" selected>20 Qs</option></select></div>
+      <button class="btn btn-accent" onclick="startDomain()">Start drill</button></div>
+    <div class="lcard"><h3>⚡ Quick 25</h3><p>A 25-question mini exam weighted like the real thing (5 · 3 · 7 · 10), with feedback after each answer. About 20 minutes.</p><button class="btn btn-accent" onclick="startMock(25,true)">Start Quick 25</button></div>
+    <div class="lcard"><h3>🪪 Full Mock Exam</h3><p>100 questions weighted 20 · 10 · 30 · 40, with no feedback until the end, just like test day. Results break down by domain.</p>
+      <label style="font-size:12px;color:var(--muted);display:flex;gap:6px;align-items:center"><input type="checkbox" id="timed"> Timed (90 min, self-imposed)</label>
+      <button class="btn btn-accent" onclick="startMock(100,false)">Start full mock</button></div>
+  </div>
+
+  <div class="sec-lbl" style="margin-top:22px">Domain study guides — the big ideas</div>
+  <div class="guide-grid" id="guides"></div>
+  <div class="card" style="margin-top:14px;font-size:13px;line-height:1.6">📚 <b>Keep going:</b> <a style="color:var(--accent-text)" href="EnvSci_Master_Glossary.html?show=du">DU vocabulary in the Glossary</a> · <a style="color:var(--accent-text)" href="EnvSci_Field_Guide.html">Waterfowl Field Guide</a> (Species ID) · <a style="color:var(--accent-text)" href="EnvSci_DrillTrainer.html?unit=U5">Unit 5 drills</a> (Conservation &amp; Wildlife Management)</div>
+  </div>
+
+  <div class="screen" id="s-q"><div class="card">
+    <div class="q-top"><span id="q-count"></span><span id="q-dom"></span><span id="q-timer"></span><button class="pill" onclick="if(confirm('Leave this session? Progress in this session will be lost.'))home()">✕ Exit</button></div>
+    <div class="pbar"><i id="pfill"></i></div>
+    <div class="qtext" id="qtext"></div><div class="opts" id="opts"></div><div class="fb" id="fb" role="status"></div>
+    <div style="display:flex;justify-content:flex-end"><button class="btn btn-accent" id="btn-next" onclick="nextQ()" style="display:none">Next →</button></div>
+  </div></div>
+
+  <div class="screen" id="s-res">
+    <div class="card"><div class="sec-lbl" id="r-title">RESULTS</div><div class="res-score" id="r-score"></div><div style="text-align:center;color:var(--muted);font-size:13px;margin:8px 0 18px" id="r-sub"></div><div id="r-doms"></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px"><button class="btn btn-ghost" onclick="home()">← Back to prep</button><button class="btn btn-accent" id="r-missed-btn" onclick="drillMissed()">Drill what I missed</button></div></div>
+    <div class="card" id="r-missed-card"><div class="sec-lbl">Review</div><div id="r-missed"></div></div>
+  </div>
+
+  <div class="footer">Original practice items aligned to the published weighted standards of the Ducks Unlimited Ecology Conservation &amp; Management Certification (iCEV). Not affiliated with or endorsed by Ducks Unlimited or iCEV. Official exam details: icevonline.com/ducksunlimited</div>
+</div>
+<script>
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function nl(s){ return esc(s).replace(/\n/g,'<br>'); }
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON.parse(v); }catch(e){ return d; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
+
+const DOM={"D1": {"name": "Ecological Principles", "weight": 20, "icon": "🌿"}, "D2": {"name": "Species Identification", "weight": 10, "icon": "🦆"}, "D3": {"name": "Wildlife Conservation & Management", "weight": 30, "icon": "🪶"}, "D4": {"name": "Habitat Conservation & Management", "weight": 40, "icon": "🌾"}};
+const GUIDES={"D1": ["Energy flows one way (sun → producers → consumers → heat). Only about 10% passes to each higher trophic level.", "Matter cycles: water, carbon, nitrogen, phosphorus. Wetlands denitrify (remove nitrate) and store carbon in saturated soils.", "Populations grow toward carrying capacity (K). Limiting factors can be density-dependent (disease, competition) or density-independent (drought, freezes).", "Ducks lean r-selected (large clutches, fast rebound); geese and swans lean K-selected.", "Niche ≠ habitat. Resource partitioning lets dabblers and divers share one wetland.", "Succession changes communities over time; managers use disturbance (fire, drawdown, grazing) to reset it.", "Laying hens and ducklings need protein-rich invertebrates; seeds and grain are high-energy fall and winter fuel."], "D2": ["Dabblers: legs centered, tip up to feed, spring straight into flight, most show a colored speculum.", "Divers: legs set far back, dive for food, patter across the water to take off.", "Use the speculum to separate look-alike hens: mallard = blue with white borders; gadwall = white; green-winged teal = green.", "Drake vs. hen; eclipse plumage after breeding; flightless during the wing molt.", "Florida specialties: mottled duck (year-round resident), wood duck, black-bellied whistling-duck; big winter rafts of lesser scaup and ring-necked ducks.", "Not a duck: the American coot has lobed toes and a white bill."], "D3": ["North American Model: wildlife held in public trust, managed by science, harvest regulated by law, funded by hunters and anglers.", "Key laws: Lacey Act (1900), Migratory Bird Treaty Act (1918), Duck Stamp (1934), Pittman-Robertson (1937), NAWMP (1986), NAWCA (1989).", "Four flyways (Atlantic, Mississippi, Central, Pacific) coordinate regulations. Florida is in the Atlantic Flyway.", "Tools: banding, breeding population surveys (since 1955), wing surveys for age ratios, adaptive harvest management.", "Population drivers: nest success, brood survival, adult survival, recruitment. Habitat is the biggest lever.", "Disease and contaminants: avian botulism, avian influenza, lead poisoning (nontoxic shot required since 1991).", "Nest structures (wood duck boxes, hen houses) and predator management where data show predators limit nest success."], "D4": ["Wetland = hydrology + hydric soils + hydrophytic vegetation. Cowardin systems: marine, estuarine, riverine, lacustrine, palustrine.", "Prairie Pothole Region = the 'duck factory.' Wetland complexes plus grassland nesting cover.", "Most U.S. wetlands are privately owned and more than half the original wetlands are gone, mostly drained for agriculture.", "Management tools: water control structures, moist-soil drawdowns, shallow staged flooding (dabblers feed in about 18 inches or less), prescribed fire, grazing, invasive control.", "Hemi-marsh: roughly 50:50 open water to emergent cover with good interspersion.", "Programs: conservation easements, CRP, Swampbuster, Clean Water Act §404, ACEP wetland easements, joint ventures.", "Wintering habitat: bottomland hardwoods and green-tree reservoirs, flooded rice, Gulf Coast marsh. Florida: Everglades restoration (CERP), stormwater treatment areas."]};
+const BANK=[
+{
+"d": "D1",
+"q": "Which organism is a producer in a freshwater marsh?",
+"o": [
+"Snail",
+"Duckweed",
+"Mallard",
+"Muskrat"
+],
+"a": 1,
+"e": "Producers make their own food through photosynthesis. Duckweed is a tiny floating plant; snails, mallards, and muskrats are consumers."
+},
+{
+"d": "D1",
+"q": "About what percentage of the energy at one trophic level is passed to the next?",
+"o": [
+"90%",
+"50%",
+"10%",
+"1%"
+],
+"a": 2,
+"e": "Roughly 10% passes upward; most of the rest is lost as heat through respiration. That limits how many trophic levels an ecosystem can support."
+},
+{
+"d": "D1",
+"q": "A mallard eating seeds is a primary consumer. A mallard eating snails that ate algae is a:",
+"o": [
+"Producer",
+"Primary consumer",
+"Secondary consumer",
+"Decomposer"
+],
+"a": 2,
+"e": "Algae are producers, snails are primary consumers, and the duck eating snails is a secondary consumer. Omnivores can occupy more than one trophic level."
+},
+{
+"d": "D1",
+"q": "The maximum population size an environment can sustain over time is its:",
+"o": [
+"Biotic potential",
+"Carrying capacity",
+"Recruitment",
+"Mortality rate"
+],
+"a": 1,
+"e": "Carrying capacity depends on limiting resources such as food, water, cover, and space."
+},
+{
+"d": "D1",
+"q": "Which is a density-independent factor affecting a duck population?",
+"o": [
+"Disease spreading through a crowded wintering flock",
+"Competition for nest sites",
+"A late-spring blizzard that destroys nests",
+"Predators focusing on dense nesting areas"
+],
+"a": 2,
+"e": "Weather events affect populations no matter how crowded they are. Disease, competition, and predator focus intensify with density."
+},
+{
+"d": "D1",
+"q": "Wetland bacteria convert nitrate into nitrogen gas in saturated, low-oxygen soils. This process is:",
+"o": [
+"Nitrogen fixation",
+"Denitrification",
+"Photosynthesis",
+"Transpiration"
+],
+"a": 1,
+"e": "Denitrification removes excess nitrogen from water, one of the water-quality services wetlands provide."
+},
+{
+"d": "D1",
+"q": "Pairs of breeding ducks space themselves across many small prairie ponds rather than crowding one large lake. The best ecological explanation is:",
+"o": [
+"Ducks dislike large lakes",
+"Small, scattered ponds give each pair isolated space and abundant invertebrate food",
+"Small ponds have no predators",
+"Large lakes are too cold"
+],
+"a": 1,
+"e": "Breeding pairs are territorial and need protein-rich invertebrates. Many small, shallow wetlands provide both, which is why pond density predicts duck production."
+},
+{
+"d": "D1",
+"q": "Which group of foods is most important for egg-laying hens and young ducklings?",
+"o": [
+"Seeds and grains",
+"Aquatic invertebrates such as insects and snails",
+"Tree bark",
+"Algae only"
+],
+"a": 1,
+"e": "Producing eggs and growing feathers takes a lot of protein. Invertebrates supply it; seeds are mainly high-energy fall and winter foods."
+},
+{
+"d": "D1",
+"q": "An organism's role in its ecosystem, including what it eats and how it interacts, is its:",
+"o": [
+"Habitat",
+"Niche",
+"Range",
+"Flyway"
+],
+"a": 1,
+"e": "Habitat is where it lives. Niche is how it lives — its job in the community."
+},
+{
+"d": "D1",
+"q": "Canvasbacks and mallards use the same lake: one dives for tubers, the other dabbles near shore. This reduces:",
+"o": [
+"Mutualism",
+"Interspecific competition, through resource partitioning",
+"Predation",
+"Carrying capacity"
+],
+"a": 1,
+"e": "Using different foods and depths lets similar species coexist with less competition."
+},
+{
+"d": "D1",
+"q": "A shallow pond gradually fills with sediment and plants, becoming a wet meadow and eventually a forest. This is:",
+"o": [
+"Eutrophication only",
+"Ecological succession",
+"Migration",
+"Biomagnification"
+],
+"a": 1,
+"e": "Succession is directional change in community composition over time. Managers often use disturbance — fire, drawdown, grazing — to set succession back and keep wetlands open and productive."
+},
+{
+"d": "D1",
+"q": "Which relationship is mutualism?",
+"o": [
+"A leech feeding on a duck",
+"Ducks dispersing plant seeds that pass through their gut, while getting food from the plant",
+"A fox eating eggs",
+"Two ducks competing for food"
+],
+"a": 1,
+"e": "Both partners benefit: ducks get food, and plants get their seeds carried to new wetlands."
+},
+{
+"d": "D1",
+"q": "Why do wetlands with alternating wet and dry periods often produce more food than permanently flooded ones?",
+"o": [
+"Dry periods kill all life",
+"Drying oxidizes and recycles nutrients and lets seed plants germinate, so reflooding triggers a boom in plants and invertebrates",
+"Water never matters",
+"Permanent water is too warm"
+],
+"a": 1,
+"e": "Natural wet-dry cycles drive wetland productivity. Managers mimic them with drawdowns and moist-soil management."
+},
+{
+"d": "D1",
+"q": "Population growth that slows as it approaches carrying capacity forms which curve?",
+"o": [
+"J-shaped",
+"S-shaped (logistic)",
+"Straight line",
+"Bell curve"
+],
+"a": 1,
+"e": "Logistic growth starts fast, then slows as resources become limiting, leveling off near K."
+},
+{
+"d": "D1",
+"q": "Which is an abiotic factor that strongly affects duck production on the prairies?",
+"o": [
+"Number of predators",
+"Spring pond counts determined by snow and rainfall",
+"Insect abundance",
+"Grass species"
+],
+"a": 1,
+"e": "Water conditions are abiotic and set the stage for everything else. Wet springs mean more ponds and more breeding ducks."
+},
+{
+"d": "D1",
+"q": "Decomposers in a marsh are important because they:",
+"o": [
+"Capture sunlight",
+"Recycle nutrients from dead plants and animals back into the system",
+"Hunt ducks",
+"Produce oxygen at night"
+],
+"a": 1,
+"e": "Detritus-based food webs are central in wetlands. Decomposition also feeds the invertebrates ducks eat."
+},
+{
+"d": "D1",
+"q": "An estuary has higher productivity than the open ocean mainly because of:",
+"o": [
+"Colder water",
+"Nutrient inputs from rivers plus shallow, sunlit water",
+"Greater depth",
+"Lack of plants"
+],
+"a": 1,
+"e": "Nutrients plus light fuel abundant plant growth, supporting rich food webs."
+},
+{
+"d": "D1",
+"q": "Which describes an r-selected strategy common in ducks?",
+"o": [
+"One offspring with years of care",
+"Large clutches, early breeding, and high juvenile mortality",
+"Long lifespan with little reproduction",
+"No migration"
+],
+"a": 1,
+"e": "Large clutches let ducks rebound quickly after droughts. Long-lived geese and swans lean more toward K-selected traits."
+},
+{
+"d": "D1",
+"q": "Biodiversity at the ecosystem level refers to:",
+"o": [
+"Variety of genes in a population",
+"Variety of habitats and ecological communities across a landscape",
+"Number of individuals",
+"Number of ducks shot"
+],
+"a": 1,
+"e": "A landscape with prairie, marshes, forests, and rivers has high ecosystem diversity, which supports more species overall."
+},
+{
+"d": "D1",
+"q": "Which change would most likely increase the carrying capacity of a wintering area for ducks?",
+"o": [
+"Draining shallow wetlands",
+"Flooding harvested rice fields and managing moist-soil units to increase food",
+"Removing all vegetation",
+"Building houses nearby"
+],
+"a": 1,
+"e": "Winter carrying capacity is largely limited by food energy. Adding high-energy food in shallow water raises how many ducks the area can support."
+},
+{
+"d": "D1",
+"q": "Lead pellets ingested by ducks are an example of a factor that acts:",
+"o": [
+"Through biomagnification only",
+"As a toxic contaminant that raised mortality until lead shot was banned for waterfowl",
+"As a nutrient",
+"As a beneficial grit"
+],
+"a": 1,
+"e": "Ducks swallowed pellets as grit and suffered lead poisoning. The 1991 nationwide nontoxic shot rule greatly reduced these deaths."
+},
+{
+"d": "D1",
+"q": "A keystone species is one whose:",
+"o": [
+"Population is largest",
+"Effect on the community is far greater than its abundance suggests",
+"Range is smallest",
+"Color is brightest"
+],
+"a": 1,
+"e": "Removing a keystone species triggers large changes. Beavers are a classic example: their dams create wetlands used by many species."
+},
+{
+"d": "D1",
+"q": "Beaver dams benefit waterfowl mainly by:",
+"o": [
+"Removing trees for nesting",
+"Creating and maintaining ponds and wetlands",
+"Eating duck eggs",
+"Lowering water tables"
+],
+"a": 1,
+"e": "Beavers are ecosystem engineers. Their ponds create wetland habitat across forested landscapes."
+},
+{
+"d": "D1",
+"q": "Which describes the water cycle's role in wetlands?",
+"o": [
+"Wetlands are separate from the water cycle",
+"Precipitation, runoff, groundwater, evaporation, and transpiration together determine a wetland's hydrology",
+"Only rivers feed wetlands",
+"Water never leaves a wetland"
+],
+"a": 1,
+"e": "A wetland's water budget — inputs and outputs — determines how long it holds water and what plants and animals it supports."
+},
+{
+"d": "D1",
+"q": "A food web differs from a food chain because it:",
+"o": [
+"Has only one path",
+"Shows many interconnected feeding relationships",
+"Excludes producers",
+"Only shows predators"
+],
+"a": 1,
+"e": "Real ecosystems are webs. Most species eat and are eaten by several others, which adds stability."
+},
+{
+"d": "D1",
+"q": "Which nutrient most often limits plant growth in freshwater wetlands and lakes?",
+"o": [
+"Oxygen",
+"Phosphorus",
+"Carbon",
+"Argon"
+],
+"a": 1,
+"e": "Phosphorus has no significant gas phase and cycles slowly, so small additions from runoff can trigger algal blooms."
+},
+{
+"d": "D1",
+"q": "Natural selection would most likely favor which trait in a diving duck?",
+"o": [
+"Legs centered under the body",
+"Legs set far back for underwater propulsion",
+"Very short neck",
+"Floating eggs"
+],
+"a": 1,
+"e": "Rear-set legs make divers powerful swimmers underwater, though awkward walkers on land — a classic adaptation tradeoff."
+},
+{
+"d": "D1",
+"q": "An ecotone is:",
+"o": [
+"A wetland plant",
+"A transition zone between two ecosystems, such as marsh edge to upland",
+"A type of duck",
+"A water control structure"
+],
+"a": 1,
+"e": "Ecotones often have high diversity because species from both habitats overlap there."
+},
+{
+"d": "D1",
+"q": "Which best describes a wetland's 'hydroperiod'?",
+"o": [
+"Its depth only",
+"The seasonal pattern of when, how long, and how deep it holds water",
+"Its temperature",
+"Its salinity"
+],
+"a": 1,
+"e": "The hydroperiod drives which plants grow and which wildlife can use a wetland. Temporary spring ponds and permanent marshes support different communities."
+},
+{
+"d": "D1",
+"q": "Biomagnification of a persistent toxin is greatest in:",
+"o": [
+"Producers",
+"Primary consumers",
+"Top predators",
+"Decomposers"
+],
+"a": 2,
+"e": "Concentration increases at each trophic level, so apex predators such as eagles receive the highest doses."
+},
+{
+"d": "D2",
+"q": "Which feature separates dabbling ducks from diving ducks?",
+"o": [
+"Dabblers dive deep for food; divers tip up",
+"Dabblers have legs centered and spring straight up to fly; divers have rear-set legs and run across the water to take off",
+"Only divers migrate",
+"Only dabblers have bills"
+],
+"a": 1,
+"e": "Leg placement drives behavior. Dabblers feed at the surface and leap into flight; divers run along the water."
+},
+{
+"d": "D2",
+"q": "The iridescent patch on the secondary wing feathers of many ducks is the:",
+"o": [
+"Primary",
+"Speculum",
+"Crest",
+"Nail"
+],
+"a": 1,
+"e": "Speculum color and borders are key field marks, especially for identifying hens."
+},
+{
+"d": "D2",
+"q": "After nesting, many drakes temporarily look dull and hen-like. This plumage is called:",
+"o": [
+"Juvenile plumage",
+"Eclipse plumage",
+"Alternate plumage",
+"Down"
+],
+"a": 1,
+"e": "Eclipse plumage camouflages drakes during the wing molt, when they can't fly."
+},
+{
+"d": "D2",
+"q": "Which bird is often mistaken for a duck but is actually a rail with lobed (not webbed) toes?",
+"o": [
+"American coot",
+"Bufflehead",
+"Ruddy duck",
+"Gadwall"
+],
+"a": 0,
+"e": "Coots have a white bill and lobed toes and pump their heads while swimming. They often feed alongside ducks."
+},
+{
+"d": "D2",
+"q": "A male duck is called a drake. A female is called a:",
+"o": [
+"Gander",
+"Hen",
+"Cob",
+"Pen"
+],
+"a": 1,
+"e": "Ganders are male geese; cobs and pens are male and female swans."
+},
+{
+"d": "D2",
+"q": "Which description fits a diving duck taking flight?",
+"o": [
+"Leaps straight up from the water",
+"Patters across the surface for several feet before getting airborne",
+"Can't fly",
+"Takes off backwards"
+],
+"a": 1,
+"e": "Rear-set legs and smaller wings relative to body weight mean divers need a running start."
+},
+{
+"d": "D2",
+"q": "Hens of many dabbling species look similar — mottled brown. Which is often the most reliable mark?",
+"o": [
+"Body size",
+"Speculum color and its borders, plus bill color",
+"Tail length",
+"Eye color"
+],
+"a": 1,
+"e": "Speculum color (blue, green, white, bronze) and bill pattern help separate look-alike hens."
+},
+{
+"d": "D2",
+"q": "Mergansers differ from most other ducks because they have:",
+"o": [
+"Spoon-shaped bills",
+"Thin, serrated bills for catching fish",
+"No webbing",
+"Long legs"
+],
+"a": 1,
+"e": "The serrated 'sawbill' grips slippery fish and crayfish."
+},
+{
+"d": "D3",
+"q": "Under the North American Model of Wildlife Conservation, wildlife is:",
+"o": [
+"Owned by landowners",
+"Held in trust by government for all citizens",
+"Owned by hunting clubs",
+"Sold commercially without limits"
+],
+"a": 1,
+"e": "The Public Trust Doctrine is the foundation of the Model. Wildlife belongs to everyone and is managed for the public good."
+},
+{
+"d": "D3",
+"q": "Which tenet of the North American Model ended unregulated commercial killing that nearly wiped out many species in the late 1800s?",
+"o": [
+"Elimination of markets for game",
+"Unlimited harvest",
+"Private ownership of wildlife",
+"No hunting laws"
+],
+"a": 0,
+"e": "Market hunting drove waterfowl and other species to steep declines. Banning the sale of wild game was a turning point."
+},
+{
+"d": "D3",
+"q": "The Migratory Bird Treaty Act of 1918:",
+"o": [
+"Allowed market hunting of ducks",
+"Protected migratory birds and gave the federal government authority to regulate their harvest",
+"Created Ducks Unlimited",
+"Banned all hunting"
+],
+"a": 1,
+"e": "Because migratory birds cross state and national borders, a treaty-based federal framework was needed to manage them."
+},
+{
+"d": "D3",
+"q": "Waterfowl hunting regulations in the U.S. are coordinated by:",
+"o": [
+"Each county independently",
+"The U.S. Fish and Wildlife Service working with states through four flyway councils",
+"Private landowners",
+"Ducks Unlimited"
+],
+"a": 1,
+"e": "Federal frameworks set outer limits on season length and bag limits. States choose seasons within them, coordinated by flyway."
+},
+{
+"d": "D3",
+"q": "Which are the four North American flyways?",
+"o": [
+"Northern, Southern, Eastern, Western",
+"Atlantic, Mississippi, Central, Pacific",
+"Arctic, Gulf, Plains, Rocky",
+"Canadian, U.S., Mexican, Caribbean"
+],
+"a": 1,
+"e": "The flyways reflect broad migration routes and serve as administrative units for waterfowl management."
+},
+{
+"d": "D3",
+"q": "Banding studies give managers information about:",
+"o": [
+"Feather color",
+"Movements, survival, and harvest rates",
+"Egg size only",
+"Plant growth"
+],
+"a": 1,
+"e": "Each band has a unique number. Reports from hunters and researchers reveal where birds traveled, how long they lived, and how many were harvested."
+},
+{
+"d": "D3",
+"q": "The annual Waterfowl Breeding Population and Habitat Survey, conducted since 1955, counts:",
+"o": [
+"Hunters",
+"Breeding ducks and ponds across key breeding areas",
+"Wintering geese only",
+"Fish"
+],
+"a": 1,
+"e": "Aerial crews and ground teams survey vast breeding regions. Those data feed directly into harvest regulation decisions."
+},
+{
+"d": "D3",
+"q": "Adaptive harvest management means:",
+"o": [
+"Regulations never change",
+"Setting regulations each year from monitoring data and models, then learning from the results",
+"Hunters decide limits themselves",
+"Seasons are set by tradition"
+],
+"a": 1,
+"e": "It is 'learning by doing.' Predictions are compared with outcomes to improve future decisions."
+},
+{
+"d": "D3",
+"q": "Federal Duck Stamp revenue is used primarily to:",
+"o": [
+"Pay wildlife officers' salaries",
+"Acquire and lease wetland and grassland habitat for the National Wildlife Refuge System",
+"Print hunting guides",
+"Build boat ramps only"
+],
+"a": 1,
+"e": "Duck Stamps have been one of the most successful conservation funding tools since 1934."
+},
+{
+"d": "D3",
+"q": "The Pittman-Robertson Act (1937) is funded by:",
+"o": [
+"State income taxes",
+"Federal excise taxes on firearms and ammunition",
+"Ducks Unlimited donations",
+"Fishing license sales only"
+],
+"a": 1,
+"e": "Funds are apportioned to state wildlife agencies for restoration, research, land acquisition, and hunter education. This 'user pays, public benefits' system is uniquely North American."
+},
+{
+"d": "D3",
+"q": "The North American Waterfowl Management Plan (1986) focuses on:",
+"o": [
+"Building zoos",
+"Restoring waterfowl populations by conserving habitat through partnerships among the U.S., Canada, and Mexico",
+"Banning hunting",
+"Stocking ducks from farms"
+],
+"a": 1,
+"e": "NAWMP created regional joint ventures — partnerships of agencies, NGOs, and landowners — to deliver habitat conservation."
+},
+{
+"d": "D3",
+"q": "Ducks Unlimited was founded in 1937 primarily to:",
+"o": [
+"Regulate hunting seasons",
+"Conserve and restore wetlands and associated habitats for waterfowl",
+"Run waterfowl farms",
+"Sell duck stamps"
+],
+"a": 1,
+"e": "DU formed during the Dust Bowl, when drought and drainage had devastated breeding habitat. Habitat conservation remains its core mission."
+},
+{
+"d": "D3",
+"q": "Why are Canadian breeding grounds important to U.S. waterfowl conservation?",
+"o": [
+"They aren't",
+"Many ducks harvested and seen in the U.S. are produced on Canadian prairies and boreal forest",
+"Canada has no wetlands",
+"Ducks don't cross borders"
+],
+"a": 1,
+"e": "Migratory birds are a shared resource. Conserving U.S. birds requires investing in breeding habitat across the border."
+},
+{
+"d": "D3",
+"q": "Wood duck populations recovered in the 1900s largely because of:",
+"o": [
+"Increased market hunting",
+"Hunting regulations plus nest box programs and protection of bottomland habitat",
+"Introduction from Europe",
+"Feeding stations"
+],
+"a": 1,
+"e": "Wood ducks were heavily depleted by market hunting and logging. Regulation, nest boxes, and habitat recovery restored them."
+},
+{
+"d": "D3",
+"q": "Nest success is the percentage of nests that:",
+"o": [
+"Are built",
+"Hatch at least one egg",
+"Contain 10 eggs",
+"Are found by researchers"
+],
+"a": 1,
+"e": "Nest success is one of the most important vital rates for duck populations, and it is often limited by predators and nesting cover."
+},
+{
+"d": "D3",
+"q": "Which tool directly increases nest success in areas with heavy predation?",
+"o": [
+"Removing all grass",
+"Elevated nest structures such as hen houses, plus predator-resistant nesting cover",
+"Draining wetlands",
+"Increasing bag limits"
+],
+"a": 1,
+"e": "Over-water nest cylinders keep land predators away from hens and eggs, and dense cover hides ground nests."
+},
+{
+"d": "D3",
+"q": "A bag limit is:",
+"o": [
+"The total number of hunters allowed",
+"The maximum number of a species one hunter may legally take per day",
+"The size of a hunting bag",
+"A tax"
+],
+"a": 1,
+"e": "Bag limits, along with season length, help keep harvest within sustainable levels."
+},
+{
+"d": "D3",
+"q": "Why do managers often set more restrictive limits for species like the northern pintail in years when its population is low?",
+"o": [
+"Pintails are invasive",
+"To keep harvest from adding to declines while populations are below objectives",
+"Pintails taste bad",
+"Limits are random"
+],
+"a": 1,
+"e": "Species-specific regulations tie harvest to population status, a core principle of science-based management."
+},
+{
+"d": "D3",
+"q": "Avian botulism outbreaks are typically managed by:",
+"o": [
+"Adding more birds",
+"Quickly collecting and disposing of carcasses and managing water levels",
+"Hunting more",
+"Adding fertilizer"
+],
+"a": 1,
+"e": "Carcass removal breaks the cycle of maggots concentrating toxin, and water management reduces the warm, stagnant conditions that favor the bacteria."
+},
+{
+"d": "D3",
+"q": "Which agency has primary federal responsibility for managing migratory birds in the U.S.?",
+"o": [
+"EPA",
+"U.S. Fish and Wildlife Service",
+"NASA",
+"U.S. Forest Service"
+],
+"a": 1,
+"e": "The USFWS administers the Migratory Bird Treaty Act, sets federal frameworks, and manages the National Wildlife Refuge System."
+},
+{
+"d": "D3",
+"q": "Hunter education programs contribute to conservation by:",
+"o": [
+"Increasing illegal harvest",
+"Teaching safety, ethics, wildlife identification, and the role of hunting in conservation",
+"Eliminating hunting",
+"Selling ammunition"
+],
+"a": 1,
+"e": "Pittman-Robertson funds support hunter education, producing safer, more ethical hunters who also fund and support conservation."
+},
+{
+"d": "D3",
+"q": "Light geese (snow and Ross's geese) became so abundant that they damaged Arctic coastal tundra. Managers responded with:",
+"o": [
+"Feeding programs",
+"Special conservation measures that increased allowable harvest",
+"Banning all goose hunting",
+"Moving geese to Florida"
+],
+"a": 1,
+"e": "Overabundant geese grubbed out tundra plants faster than they could recover, degrading habitat for many species. Expanded harvest was used to reduce numbers."
+},
+{
+"d": "D3",
+"q": "Mottled ducks in Florida face a genetic threat from:",
+"o": [
+"Drought only",
+"Hybridization with released or feral mallards",
+"Hunting by alligators",
+"Cold weather"
+],
+"a": 1,
+"e": "Feral mallards interbreed with mottled ducks, diluting the native population's genetic distinctiveness. Florida discourages releasing mallards for this reason."
+},
+{
+"d": "D3",
+"q": "Which data would best help managers estimate annual duck recruitment?",
+"o": [
+"Number of duck calls sold",
+"Age ratios of harvested birds (young per adult) from wing surveys",
+"Weather forecasts only",
+"Number of hunting dogs"
+],
+"a": 1,
+"e": "Hunters mail in wings from harvested ducks, and biologists determine age and sex. Young-to-adult ratios estimate that year's production."
+},
+{
+"d": "D3",
+"q": "Why is wildlife management based on 'sound science' rather than opinion alone?",
+"o": [
+"Science is faster",
+"Decisions grounded in data and testing are more likely to sustain populations and earn public trust",
+"Opinion is illegal",
+"Science never changes"
+],
+"a": 1,
+"e": "Science-based management is a core tenet of the North American Model. It lets managers adjust as new evidence comes in."
+},
+{
+"d": "D3",
+"q": "The North American Wetlands Conservation Act (NAWCA) primarily:",
+"o": [
+"Bans wetland drainage",
+"Provides matching grants for wetland conservation projects carried out by partners",
+"Sets hunting seasons",
+"Regulates water quality"
+],
+"a": 1,
+"e": "NAWCA grants require partner matching funds, multiplying conservation dollars for wetlands and the birds that depend on them."
+},
+{
+"d": "D3",
+"q": "Why did market hunting in the late 1800s and early 1900s cause severe waterfowl declines?",
+"o": [
+"It was limited",
+"Unregulated commercial killing for meat and feathers took birds faster than populations could replace them",
+"It targeted only predators",
+"It helped habitat"
+],
+"a": 1,
+"e": "Without limits, profit drove overharvest. Laws such as the Lacey Act (1900) and the MBTA (1918) ended it."
+},
+{
+"d": "D3",
+"q": "The Lacey Act (1900) helped wildlife by:",
+"o": [
+"Creating flyways",
+"Prohibiting interstate trade in wildlife taken illegally",
+"Banning all hunting",
+"Funding refuges"
+],
+"a": 1,
+"e": "It was the first federal wildlife protection law. It made it illegal to ship game taken in violation of state law across state lines."
+},
+{
+"d": "D3",
+"q": "Who funds most state-level wildlife conservation in the U.S.?",
+"o": [
+"General tax revenue only",
+"Hunters and anglers, through license fees and excise taxes",
+"Zoos",
+"Private developers"
+],
+"a": 1,
+"e": "This 'user-pay' system funds work that benefits game and non-game species alike."
+},
+{
+"d": "D3",
+"q": "A predator management program for duck nests is most likely to be effective and justified when:",
+"o": [
+"Predators are rare",
+"Monitoring shows predation is the main factor keeping nest success below the level needed for population stability",
+"It's done everywhere",
+"Habitat is ideal and nest success is high"
+],
+"a": 1,
+"e": "Management should target the limiting factor identified by data. Where habitat is fragmented, predators can push nest success very low."
+},
+{
+"d": "D3",
+"q": "Which practice would most directly reduce lead poisoning in waterfowl?",
+"o": [
+"Using lead sinkers",
+"Requiring nontoxic shot for waterfowl hunting",
+"Increasing bag limits",
+"Draining wetlands"
+],
+"a": 1,
+"e": "Since 1991, nontoxic shot has been required nationwide for waterfowl, sharply reducing lead ingestion."
+},
+{
+"d": "D3",
+"q": "What is the main purpose of a wildlife 'refuge' within the National Wildlife Refuge System?",
+"o": [
+"Commercial logging",
+"Conserving fish, wildlife, plants, and their habitats, with compatible public uses",
+"Housing development",
+"Mining"
+],
+"a": 1,
+"e": "Many refuges were established specifically for migratory waterfowl and allow compatible uses such as wildlife observation, fishing, and hunting."
+},
+{
+"d": "D3",
+"q": "A waterfowl population objective in NAWMP is:",
+"o": [
+"A random number",
+"A target population level used to guide habitat goals and measure progress",
+"The number of hunters",
+"A bag limit"
+],
+"a": 1,
+"e": "Population objectives connect continental goals to on-the-ground habitat work done by joint ventures."
+},
+{
+"d": "D3",
+"q": "Highly pathogenic avian influenza is monitored in wild ducks because:",
+"o": [
+"Ducks are immune",
+"Waterfowl can carry and spread viruses along flyways, threatening poultry and other wildlife",
+"It only affects fish",
+"It is harmless"
+],
+"a": 1,
+"e": "Surveillance gives early warning and helps protect agriculture and wildlife."
+},
+{
+"d": "D3",
+"q": "Which is an example of a non-game species that benefits from waterfowl habitat conservation?",
+"o": [
+"Mallards",
+"Wading birds such as herons and egrets, plus amphibians",
+"Canada geese",
+"Pintails"
+],
+"a": 1,
+"e": "Wetlands conserved for ducks support hundreds of other species, a key argument for waterfowl conservation funding."
+},
+{
+"d": "D3",
+"q": "Why do biologists conduct mid-winter waterfowl surveys?",
+"o": [
+"To count nests",
+"To track wintering distribution and trends, especially for species poorly covered by breeding surveys",
+"To band ducklings",
+"To measure snow"
+],
+"a": 1,
+"e": "Winter counts complement breeding surveys and show how birds use wintering habitat."
+},
+{
+"d": "D3",
+"q": "Most U.S. wetlands occur on:",
+"o": [
+"Federal land",
+"Private land",
+"Military bases",
+"City parks"
+],
+"a": 1,
+"e": "Because most wetlands are privately owned, voluntary partnerships, easements, and incentive programs with landowners are essential."
+},
+{
+"d": "D3",
+"q": "Banding data show a mallard banded in Saskatchewan was harvested in Arkansas. This illustrates:",
+"o": [
+"A local population",
+"Migration along the Mississippi Flyway, linking breeding and wintering areas",
+"Hybridization",
+"Molt"
+],
+"a": 1,
+"e": "Band recoveries map connections between regions and show why conservation must span whole flyways."
+},
+{
+"d": "D3",
+"q": "When a duck population falls well below its objective for several years, managers would most likely:",
+"o": [
+"Lengthen the season",
+"Adopt more restrictive regulations and target habitat work in key breeding areas",
+"Ignore it",
+"Stock farm ducks"
+],
+"a": 1,
+"e": "Reducing harvest while improving habitat addresses both survival and recruitment."
+},
+{
+"d": "D3",
+"q": "Which is the best definition of 'recruitment'?",
+"o": [
+"Hiring biologists",
+"Young produced that survive to join the breeding population",
+"Adult survival",
+"Hunter numbers"
+],
+"a": 1,
+"e": "Population change depends on recruitment versus mortality. For ducks, recruitment varies hugely with habitat conditions."
+},
+{
+"d": "D4",
+"q": "Which three characteristics define a wetland for regulatory purposes?",
+"o": [
+"Trees, fish, birds",
+"Wetland hydrology, hydric soils, and hydrophytic vegetation",
+"Depth, color, salinity",
+"Rainfall, wind, temperature"
+],
+"a": 1,
+"e": "All three indicators normally must be present to delineate a jurisdictional wetland."
+},
+{
+"d": "D4",
+"q": "A wetland dominated by cattails, bulrushes, and sedges is a:",
+"o": [
+"Swamp",
+"Marsh",
+"Bog",
+"Fen forest"
+],
+"a": 1,
+"e": "Marshes are dominated by herbaceous (non-woody) emergent plants. Swamps are dominated by trees or shrubs."
+},
+{
+"d": "D4",
+"q": "Why is the Prairie Pothole Region especially important for breeding ducks?",
+"o": [
+"It is warm year-round",
+"Dense clusters of shallow wetlands surrounded by grassland provide food, isolation, and nesting cover",
+"It has no predators",
+"It's in South America"
+],
+"a": 1,
+"e": "The combination of many wetlands plus upland nesting cover makes it the continent's most important duck breeding area, earning it the name 'duck factory.'"
+},
+{
+"d": "D4",
+"q": "Which is the largest single cause of historical wetland loss in the United States?",
+"o": [
+"Volcanoes",
+"Drainage for agriculture",
+"Beavers",
+"Hurricanes"
+],
+"a": 1,
+"e": "More than half of the original wetlands in the lower 48 states have been lost, mostly drained for farming. Some states have lost the vast majority of theirs."
+},
+{
+"d": "D4",
+"q": "Moist-soil management produces waterfowl food by:",
+"o": [
+"Keeping water deep year-round",
+"Slowly drawing water down in the growing season so native seed plants germinate on mudflats, then flooding them in fall",
+"Planting turfgrass",
+"Spraying all plants"
+],
+"a": 1,
+"e": "Native annuals such as smartweed, millet, and sedges produce abundant, nutritious seeds that ducks reach when the unit is reflooded."
+},
+{
+"d": "D4",
+"q": "A flashboard riser or stoplog structure lets managers:",
+"o": [
+"Measure rainfall",
+"Control water depth by adding or removing boards",
+"Count ducks",
+"Filter sediment only"
+],
+"a": 1,
+"e": "Water control structures are the basic tool of managed wetlands, letting managers time drawdowns and floods."
+},
+{
+"d": "D4",
+"q": "Which management practice best maintains a marsh's productivity by resetting succession?",
+"o": [
+"Leaving it completely untouched for 100 years",
+"Periodic disturbance such as drawdowns, prescribed fire, or grazing",
+"Paving the edges",
+"Constant deep flooding"
+],
+"a": 1,
+"e": "Without disturbance, marshes can become choked with dense vegetation or fill in. Managed disturbance mimics natural cycles and keeps them productive."
+},
+{
+"d": "D4",
+"q": "Ideal waterfowl marshes often have about a 50:50 ratio of:",
+"o": [
+"Fish to frogs",
+"Open water to emergent vegetation, arranged in a mix",
+"Trees to grass",
+"Salt to fresh water"
+],
+"a": 1,
+"e": "A 'hemi-marsh' interspersion offers cover, nesting sites, food, and open water for loafing and feeding, and it supports more birds than solid vegetation or open water alone."
+},
+{
+"d": "D4",
+"q": "Conservation easements protect habitat by:",
+"o": [
+"Buying land for development",
+"Permanently restricting development rights while the landowner keeps ownership",
+"Converting land to cropland",
+"Opening land to the public"
+],
+"a": 1,
+"e": "Easements are one of DU's main tools for protecting grasslands and wetlands on private working lands."
+},
+{
+"d": "D4",
+"q": "Why is upland grassland around prairie wetlands important for ducks?",
+"o": [
+"Ducks eat grass only",
+"Many dabbling ducks nest in grassland near water, and more cover means higher nest success",
+"Grass prevents rain",
+"It isn't important"
+],
+"a": 1,
+"e": "Wetlands and the grasslands around them work as a unit. Plowing the grass lowers duck production even if the wetlands remain."
+},
+{
+"d": "D4",
+"q": "Prescribed fire benefits grasslands and some wetlands by:",
+"o": [
+"Killing all wildlife",
+"Removing woody plants and dead litter, recycling nutrients, and stimulating new growth",
+"Adding pollution",
+"Lowering diversity"
+],
+"a": 1,
+"e": "Many grassland and marsh ecosystems evolved with fire. Without it, woody plants invade and quality declines."
+},
+{
+"d": "D4",
+"q": "Which invasive plant forms dense floating mats that clog Florida waterways and shade out native plants?",
+"o": [
+"Water hyacinth",
+"Wild celery",
+"Smartweed",
+"Sawgrass"
+],
+"a": 0,
+"e": "Water hyacinth spreads explosively, blocks light and oxygen exchange, and degrades waterfowl habitat. It is controlled mechanically, chemically, and biologically."
+},
+{
+"d": "D4",
+"q": "Wild celery (Vallisneria) beds are important because:",
+"o": [
+"They're invasive",
+"Their tubers and leaves are a preferred food of canvasbacks and other diving ducks",
+"They poison ducks",
+"They grow only on land"
+],
+"a": 1,
+"e": "Declines in submerged plants such as wild celery have been linked to declines in diving duck use of some areas."
+},
+{
+"d": "D4",
+"q": "Submerged aquatic vegetation declines most when water becomes:",
+"o": [
+"Clearer",
+"Turbid from sediment or algae, blocking sunlight",
+"Colder",
+"Fresher"
+],
+"a": 1,
+"e": "Submerged plants need light. Runoff, erosion, and algal blooms cloud the water and starve them."
+},
+{
+"d": "D4",
+"q": "Restoring the hydrology of a drained wetland usually means:",
+"o": [
+"Adding drain tile",
+"Plugging ditches, breaking tile lines, or building low dikes so water returns",
+"Planting corn",
+"Removing all soil"
+],
+"a": 1,
+"e": "Bringing water back is the critical first step. Plants and wildlife often recolonize quickly once hydrology is restored."
+},
+{
+"d": "D4",
+"q": "The Conservation Reserve Program has benefited ducks primarily by:",
+"o": [
+"Creating cities",
+"Establishing millions of acres of grass cover on former cropland, improving nesting habitat",
+"Draining wetlands",
+"Increasing pesticide use"
+],
+"a": 1,
+"e": "Studies in the prairie region linked CRP grasslands to substantial increases in duck production."
+},
+{
+"d": "D4",
+"q": "Which Farm Bill provision discourages draining wetlands for crop production?",
+"o": [
+"Sodbuster",
+"Swampbuster",
+"Clean Air Act",
+"Lacey Act"
+],
+"a": 1,
+"e": "Swampbuster ties eligibility for many USDA programs to wetland conservation. Sodbuster addresses plowing highly erodible land."
+},
+{
+"d": "D4",
+"q": "Section 404 of the Clean Water Act requires a permit to:",
+"o": [
+"Hunt ducks",
+"Discharge dredged or fill material into U.S. waters, including many wetlands",
+"Fish in lakes",
+"Build a nest box"
+],
+"a": 1,
+"e": "The U.S. Army Corps of Engineers administers 404 permits, with EPA oversight."
+},
+{
+"d": "D4",
+"q": "Bottomland hardwood forests along Southern rivers are critical winter habitat for:",
+"o": [
+"Arctic terns",
+"Wood ducks and mallards that feed on acorns in flooded timber",
+"Penguins",
+"Desert quail"
+],
+"a": 1,
+"e": "Winter flooding makes acorns and invertebrates available. Many of these forests were cleared for agriculture, making restoration a priority."
+},
+{
+"d": "D4",
+"q": "A 'green-tree reservoir' is:",
+"o": [
+"A tree nursery",
+"A bottomland hardwood forest deliberately flooded during the dormant season to provide waterfowl habitat",
+"An algae pond",
+"A city park"
+],
+"a": 1,
+"e": "Flooding only while trees are dormant avoids damaging them. Flooding too long or too early can stress and kill oaks."
+},
+{
+"d": "D4",
+"q": "Why do managers flood harvested rice fields in winter?",
+"o": [
+"To grow more rice",
+"To provide shallow water and waste grain for wintering ducks while helping decompose stubble",
+"To drown pests only",
+"To raise fish"
+],
+"a": 1,
+"e": "Working farmland can supply significant winter food energy. Rice country is especially important in Arkansas, Louisiana, Texas, and California."
+},
+{
+"d": "D4",
+"q": "Coastal marshes in Louisiana are being lost rapidly mainly because of:",
+"o": [
+"Too much sediment",
+"Subsidence, sea level rise, canals, and levees that cut off river sediment",
+"Too many trees",
+"Cold weather"
+],
+"a": 1,
+"e": "The Mississippi River once built and nourished these marshes with sediment. Levees and canals disrupted that, and saltwater intrusion kills freshwater marsh plants."
+},
+{
+"d": "D4",
+"q": "Which describes a seasonal (temporary) wetland's value to breeding ducks?",
+"o": [
+"No value because it dries",
+"It warms quickly in spring and produces abundant invertebrates that laying hens need",
+"It only provides drinking water",
+"It's too deep"
+],
+"a": 1,
+"e": "Small, shallow, temporary wetlands are often the most productive per acre for early-season invertebrates, and also the easiest to drain."
+},
+{
+"d": "D4",
+"q": "A riparian buffer along a stream helps habitat by:",
+"o": [
+"Increasing runoff",
+"Filtering sediment and nutrients, stabilizing banks, and providing cover",
+"Raising water temperature",
+"Removing shade"
+],
+"a": 1,
+"e": "Buffers improve water quality downstream and provide travel corridors for wildlife."
+},
+{
+"d": "D4",
+"q": "Why can planting a mix of native grasses and forbs be better nesting cover than a single non-native grass?",
+"o": [
+"It's cheaper",
+"Diverse native plantings provide sturdier structure, insects for broods, and resilience to drought",
+"Native plants don't grow",
+"Ducks dislike grass"
+],
+"a": 1,
+"e": "Native mixes offer varied height and density, support pollinators and invertebrates, and persist under local conditions."
+},
+{
+"d": "D4",
+"q": "Which habitat change would most likely reduce winter food for diving ducks in an estuary?",
+"o": [
+"Improved water clarity",
+"Loss of seagrass and clam beds from pollution and turbidity",
+"More submerged plants",
+"Reduced runoff"
+],
+"a": 1,
+"e": "Divers depend on submerged plants and bottom invertebrates. Water quality is habitat quality."
+},
+{
+"d": "D4",
+"q": "Which is a major benefit of wetlands to human communities?",
+"o": [
+"Increasing flood damage",
+"Storing floodwater, filtering pollutants, and recharging groundwater",
+"Producing smog",
+"Lowering property values everywhere"
+],
+"a": 1,
+"e": "These ecosystem services carry real economic value and are a key argument for wetland conservation beyond wildlife."
+},
+{
+"d": "D4",
+"q": "A manager notices a marsh has become solid cattail with almost no open water and few ducks. A good first step is:",
+"o": [
+"Add more cattails",
+"Open up the stand with a drawdown plus burning, mowing, or targeted herbicide to restore interspersion",
+"Fill it with dirt",
+"Do nothing"
+],
+"a": 1,
+"e": "Dense monotypic cattail lowers habitat value. Creating openings restores the cover-to-water mix that ducks use."
+},
+{
+"d": "D4",
+"q": "Which describes the role of the boreal forest for waterfowl?",
+"o": [
+"It has no wetlands",
+"Its millions of lakes, bogs, and rivers support huge numbers of breeding ducks, especially scaup and other divers",
+"It's a wintering area",
+"It's a desert"
+],
+"a": 1,
+"e": "The boreal is a vast, relatively intact breeding region — a key conservation priority before development expands."
+},
+{
+"d": "D4",
+"q": "Converting native grassland to cropland affects duck production by:",
+"o": [
+"Increasing nest success",
+"Removing nesting cover and often leading to wetland drainage",
+"Adding wetlands",
+"Having no effect"
+],
+"a": 1,
+"e": "Grassland conversion is a major threat in the Prairie Pothole Region. Once plowed, native prairie is extremely hard to restore."
+},
+{
+"d": "D4",
+"q": "Why do waterfowl managers care about the timing of fall flooding in managed wetlands?",
+"o": [
+"Ducks prefer dry fields",
+"Water should be available when migrants arrive; flooding gradually exposes food over time",
+"Timing doesn't matter",
+"Flooding should happen in July"
+],
+"a": 1,
+"e": "Staggered, shallow flooding during migration keeps food accessible across the season and supports more birds."
+},
+{
+"d": "D4",
+"q": "Which water depth is most usable by dabbling ducks?",
+"o": [
+"About 18 inches or less",
+"More than 10 feet",
+"Exactly 6 feet",
+"Dry ground only"
+],
+"a": 0,
+"e": "Dabblers feed by tipping up and reach roughly 18 inches or less. Shallow water (often 2–12 inches) is ideal; deep water favors divers."
+},
+{
+"d": "D4",
+"q": "Wetland 'interspersion' refers to:",
+"o": [
+"Water quality testing",
+"The mixing and arrangement of open water, emergent plants, and edges within a wetland or landscape",
+"The number of ducks",
+"Soil type"
+],
+"a": 1,
+"e": "Good interspersion creates more edge, cover, and diverse feeding sites close together."
+},
+{
+"d": "D4",
+"q": "Which Florida restoration effort aims to restore natural water flow across South Florida's wetlands?",
+"o": [
+"Interstate Highway Program",
+"The Comprehensive Everglades Restoration Plan (CERP)",
+"Dust Bowl Act",
+"Lacey Act"
+],
+"a": 1,
+"e": "CERP is one of the largest ecosystem restoration efforts in the world. It aims to restore the quantity, quality, timing, and distribution of water."
+},
+{
+"d": "D4",
+"q": "Why are wetland complexes (many wetlands of different types close together) more valuable than a single isolated wetland?",
+"o": [
+"They're easier to drain",
+"Ducks need different wetland types across the breeding cycle — pairs, laying hens, broods, and molting birds use different sites",
+"They're cheaper",
+"They have fewer plants"
+],
+"a": 1,
+"e": "Temporary ponds feed early laying hens, semi-permanent marshes support broods, and large lakes provide molting sites. Complexes meet all of those needs."
+},
+{
+"d": "D4",
+"q": "Which practice in managed impoundments helps reduce avian botulism risk?",
+"o": [
+"Keeping water stagnant and hot",
+"Avoiding prolonged warm, shallow stagnant conditions and promptly removing carcasses",
+"Adding dead fish",
+"Lowering oxygen"
+],
+"a": 1,
+"e": "Botulism toxin builds up in warm, decaying, low-oxygen conditions. Water management and carcass removal reduce outbreaks."
+},
+{
+"d": "D4",
+"q": "What is 'habitat fragmentation' and why does it matter for nesting ducks?",
+"o": [
+"Wetlands merging together",
+"Breaking habitat into small isolated pieces, which concentrates predators and lowers nest success",
+"Planting more grass",
+"Increasing wetlands"
+],
+"a": 1,
+"e": "Small, scattered patches let predators search efficiently. Larger blocks of grassland support higher nest success."
+},
+{
+"d": "D4",
+"q": "Sea level rise threatens coastal marsh habitat most where:",
+"o": [
+"Marshes can move inland",
+"Development and seawalls block marshes from migrating upslope",
+"Sediment supply is high",
+"Marshes are freshwater only"
+],
+"a": 1,
+"e": "Protecting space for marshes to migrate inland is a key climate adaptation strategy."
+},
+{
+"d": "D4",
+"q": "The Wetland Reserve Easements portion of USDA's ACEP program:",
+"o": [
+"Pays to drain wetlands",
+"Helps landowners restore and protect wetlands through easements and technical assistance",
+"Funds highways",
+"Regulates air"
+],
+"a": 1,
+"e": "The program, formerly the Wetlands Reserve Program, has restored many acres of wetlands on private land, especially in the Mississippi Alluvial Valley."
+},
+{
+"d": "D4",
+"q": "Which characteristic makes a pond good brood habitat for ducklings?",
+"o": [
+"Steep, bare banks",
+"Shallow edges with emergent cover and abundant invertebrates",
+"Deep water with no plants",
+"Fast-flowing current"
+],
+"a": 1,
+"e": "Ducklings need protein-rich insects and cover from predators. Shallow, vegetated edges provide both."
+},
+{
+"d": "D4",
+"q": "Why is phosphorus runoff a habitat problem for wetlands?",
+"o": [
+"It cools water",
+"It fuels algal blooms and invasive cattail growth, degrading water clarity and plant diversity",
+"It adds oxygen",
+"It's harmless"
+],
+"a": 1,
+"e": "In the Everglades, phosphorus runoff converted sawgrass marsh to dense cattail. Stormwater treatment areas now filter phosphorus before water enters the marsh."
+},
+{
+"d": "D4",
+"q": "Which describes a 'joint venture' under NAWMP?",
+"o": [
+"A hunting club",
+"A regional partnership of agencies, NGOs, and landowners that plans and delivers habitat conservation",
+"A business merger",
+"A single landowner"
+],
+"a": 1,
+"e": "Joint ventures turn continental population goals into regional habitat objectives and projects."
+},
+{
+"d": "D4",
+"q": "Wetlands in an agricultural landscape that receive runoff can improve water quality by trapping:",
+"o": [
+"Oxygen",
+"Sediment and nutrients such as nitrogen and phosphorus",
+"Sunlight",
+"Heat"
+],
+"a": 1,
+"e": "Slowing water lets sediment settle, plants take up nutrients, and bacteria remove nitrogen. Strategically placed wetlands are a cost-effective water treatment."
+},
+{
+"d": "D4",
+"q": "A manager wants to provide food for early fall migrants such as blue-winged teal. Which strategy fits best?",
+"o": [
+"Flood everything in January",
+"Shallowly flood a portion of moist-soil units in late August and September",
+"Keep all units dry until spring",
+"Deep-flood in June"
+],
+"a": 1,
+"e": "Teal migrate early. Staggering flooding starting in late summer meets the needs of each wave of migrants."
+},
+{
+"d": "D4",
+"q": "Which is a major threat to wintering waterfowl habitat along the Gulf Coast?",
+"o": [
+"Glaciers",
+"Coastal marsh loss from subsidence, erosion, and saltwater intrusion",
+"Too much freshwater",
+"Overabundant seagrass"
+],
+"a": 1,
+"e": "The Gulf Coast winters millions of ducks and geese, and its marshes are disappearing quickly. Restoration is a top priority."
+},
+{
+"d": "D4",
+"q": "Grazing can be a useful habitat tool when:",
+"o": [
+"Livestock are allowed to graze year-round without limits",
+"Grazing is planned with appropriate timing and intensity to maintain grassland structure and diversity",
+"It removes all vegetation",
+"It's done only in wetlands"
+],
+"a": 1,
+"e": "Managed grazing mimics bison disturbance and can improve habitat. Overgrazing degrades it."
+},
+{
+"d": "D4",
+"q": "Why does DU emphasize 'working lands' partnerships with farmers and ranchers?",
+"o": [
+"Farmers own little land",
+"Most habitat is on private agricultural land, and conservation that fits farm and ranch operations can protect it at a large scale",
+"Working lands have no wildlife",
+"To buy all farms"
+],
+"a": 1,
+"e": "Practices such as winter-flooded rice, cover crops, grazing systems, and easements let productive land support wildlife."
+},
+{
+"d": "D4",
+"q": "Hydrophytic vegetation refers to plants that:",
+"o": [
+"Grow only in deserts",
+"Are adapted to grow in water or saturated, low-oxygen soils",
+"Are always trees",
+"Are invasive"
+],
+"a": 1,
+"e": "Hydrophytes have adaptations such as air-filled tissues (aerenchyma) that move oxygen to their roots."
+},
+{
+"d": "D4",
+"q": "Which pair of actions best addresses habitat for both breeding and wintering waterfowl?",
+"o": [
+"Protecting prairie potholes and grassland in the north; restoring bottomland hardwoods, rice-field partnerships, and coastal marsh in the south",
+"Draining northern wetlands; flooding southern cities",
+"Only building nest boxes",
+"Only setting bag limits"
+],
+"a": 0,
+"e": "Waterfowl conservation spans the full annual cycle. Breeding, migration, and wintering habitats all need protection."
+},
+{
+"d": "D4",
+"q": "What is the purpose of a stormwater treatment area in Everglades restoration?",
+"o": [
+"Store drinking water",
+"Use constructed wetlands to remove phosphorus from agricultural runoff before it enters the Everglades",
+"Raise cattle",
+"Generate electricity"
+],
+"a": 1,
+"e": "These large constructed marshes let plants and sediments capture phosphorus, protecting the low-nutrient Everglades ecosystem."
+},
+{
+"d": "D4",
+"q": "A survey finds a prairie landscape has lost 70% of its small, temporary wetlands. The most likely effect on breeding ducks is:",
+"o": [
+"More ducks",
+"Fewer breeding pairs and lower production, because early-season food and pair-space wetlands are gone",
+"No change",
+"Earlier migration only"
+],
+"a": 1,
+"e": "Small temporary wetlands are often overlooked, but pairs and laying hens depend on them. Losing them reduces how many pairs a landscape can support."
+},
+{
+"d": "D4",
+"q": "Which evidence would best show a wetland restoration was successful?",
+"o": [
+"The sign installed",
+"Monitoring data showing restored hydrology, native wetland plants, and increased use by waterfowl and other wildlife",
+"A press release",
+"Higher land prices"
+],
+"a": 1,
+"e": "Restoration success is measured against objectives with before-and-after monitoring of water, vegetation, and wildlife."
+}
+];
+const SP=[{"id": "mall", "n": "Mallard", "g": "dabbler", "sz": "Large dabbler", "drake": "Glossy green head, thin white neck ring, chestnut breast, gray body, curled black tail feathers, yellow bill.", "hen": "Mottled brown with an orange bill marked by a dark saddle.", "spec": "Blue-purple speculum bordered in white on both edges.", "hab": "Almost any freshwater wetland, flooded fields, parks.", "food": "Seeds, grain, aquatic plants, invertebrates.", "fl": "Winters in Florida in modest numbers. Released and feral mallards are a problem because they hybridize with native mottled ducks.", "fact": "The most abundant and widespread duck in North America and the ancestor of most domestic ducks."}, {"id": "mott", "n": "Mottled Duck", "g": "dabbler", "sz": "Large dabbler", "drake": "Sexes look alike: dark mottled-brown body, plain buffy head and neck with no streaks, bright yellow bill.", "hen": "Like the drake but with a duller olive-orange bill.", "spec": "Blue-green speculum with little or no white border.", "hab": "Freshwater and brackish marshes, wet prairies, and ditches of peninsular Florida and the Gulf Coast.", "food": "Seeds, aquatic plants, snails, insects.", "fl": "Florida's year-round resident duck. It doesn't migrate and nests in Florida. Hybridization with mallards threatens the population.", "fact": "Unlike the mallard hen, it lacks the bright white speculum borders and has a darker body that contrasts with its pale head."}, {"id": "blck", "n": "American Black Duck", "g": "dabbler", "sz": "Large dabbler", "drake": "Very dark sooty-brown body with a paler gray-brown head and a yellow-olive bill.", "hen": "Similar but with a duller, olive-green bill.", "spec": "Violet-blue speculum with black borders and little or no white.", "hab": "Eastern salt marshes, beaver ponds, and wooded wetlands.", "food": "Invertebrates, seeds, aquatic plants.", "fl": "Rare in Florida; mainly a bird of the northern Atlantic Flyway.", "fact": "In flight, its white underwings flash against its dark body."}, {"id": "pint", "n": "Northern Pintail", "g": "dabbler", "sz": "Large, slender dabbler", "drake": "Chocolate-brown head with a white stripe running up the side of the neck, white breast, gray body, long needle-like central tail feathers.", "hen": "Slim, long-necked, mottled brown, with a gray bill.", "spec": "Bronze-green speculum with a white trailing edge.", "hab": "Open shallow wetlands, flooded fields, and prairie ponds.", "food": "Seeds, waste grain, invertebrates.", "fl": "An uncommon winter visitor to Florida.", "fact": "Pintails nest very early, often in cropland stubble where farm machinery destroys nests. That's one reason their numbers have declined."}, {"id": "wige", "n": "American Wigeon", "g": "dabbler", "sz": "Medium dabbler", "drake": "White forehead and crown (nicknamed 'baldpate'), broad green stripe behind the eye, pinkish-brown body, small blue-gray bill with a black tip.", "hen": "Gray-brown head with rusty sides and the same small blue-gray bill.", "spec": "Green speculum; large white shoulder patch shows in flight.", "hab": "Shallow lakes, marshes, and grassy shorelines.", "food": "Aquatic plants, grazes on grass on land.", "fl": "A regular winter visitor to Florida lakes and marshes.", "fact": "It often steals plants that diving ducks and coots bring up from the bottom."}, {"id": "gadw", "n": "Gadwall", "g": "dabbler", "sz": "Medium dabbler", "drake": "Finely patterned gray-brown body with a black rear end and a dark bill. Elegant but plain.", "hen": "Like a mallard hen, but with an orange-edged bill and a steeper forehead.", "spec": "White speculum — the only dabbler with one.", "hab": "Marshes and ponds with plenty of submerged plants.", "food": "Mostly submerged aquatic plants.", "fl": "An uncommon winter visitor to Florida.", "fact": "Look for the small white square on the trailing edge of the wing — it identifies a gadwall of either sex."}, {"id": "gwte", "n": "Green-winged Teal", "g": "dabbler", "sz": "Smallest dabbler", "drake": "Chestnut head with a green patch behind the eye, a vertical white bar on the side of the breast, gray body.", "hen": "Small, mottled brown, with a dark line through the eye.", "spec": "Iridescent green speculum.", "hab": "Mudflats, shallow marshes, and flooded fields.", "food": "Small seeds and invertebrates sifted from mud.", "fl": "A common winter visitor to Florida.", "fact": "Flies in tight, fast, twisting flocks like shorebirds."}, {"id": "bwte", "n": "Blue-winged Teal", "g": "dabbler", "sz": "Small dabbler", "drake": "Blue-gray head with a bold white crescent in front of the eye, tan body with dark spots.", "hen": "Small, mottled brown, with a pale spot at the base of the bill.", "spec": "Green speculum; large powder-blue shoulder patch in flight.", "hab": "Shallow marshes and ponds.", "food": "Seeds and invertebrates.", "fl": "An early fall migrant through Florida. Many continue to Central and South America. Florida holds a special September teal season.", "fact": "One of the first ducks to migrate south in late summer and among the last to return in spring."}, {"id": "shov", "n": "Northern Shoveler", "g": "dabbler", "sz": "Medium dabbler", "drake": "Huge spoon-shaped bill, green head, yellow eye, white breast, chestnut sides.", "hen": "Mottled brown, with the same oversized bill edged in orange.", "spec": "Green speculum; powder-blue shoulder patch in flight.", "hab": "Shallow, nutrient-rich ponds and marshes.", "food": "Filters tiny invertebrates and seeds through comb-like edges on its bill.", "fl": "A common winter visitor to Florida.", "fact": "Flocks sometimes swim in tight circles to stir up food from the water."}, {"id": "wood", "n": "Wood Duck", "g": "dabbler", "sz": "Medium dabbler", "drake": "Crested, glossy green-and-purple head with bold white lines, red eye and bill base, chestnut breast.", "hen": "Gray-brown with a crest and a bold white teardrop-shaped eye ring.", "spec": "Blue speculum with a white trailing edge.", "hab": "Wooded swamps, beaver ponds, and bottomland forests.", "food": "Acorns, seeds, fruits, insects.", "fl": "Breeds in Florida and is common year-round in swamps and along rivers.", "fact": "It nests in tree cavities and nest boxes. Day-old ducklings leap from the nest to the ground below. Nest boxes helped bring the species back from severe declines."}, {"id": "bbwd", "n": "Black-bellied Whistling-Duck", "g": "whistling", "sz": "Long-legged, upright", "drake": "Sexes alike: bright coral-pink bill, gray face with a white eye ring, black belly, long pink legs.", "hen": "Same as the drake.", "spec": "Bold white wing stripe in flight.", "hab": "Freshwater marshes, ponds, and farm fields; often perches in trees.", "food": "Seeds and grain, often feeding at night.", "fl": "Rapidly increasing in Florida, where it now breeds widely.", "fact": "It gets its name from its loud, squealing whistled call. It also nests in cavities and nest boxes."}, {"id": "canv", "n": "Canvasback", "g": "diver", "sz": "Large diver", "drake": "Chestnut-red head with a long, sloping, wedge-shaped profile and a black bill, red eye, very pale whitish-gray back, black breast.", "hen": "Pale brown-gray, with the same sloping head profile.", "spec": "Plain grayish wing with no bright speculum.", "hab": "Large lakes, bays, and estuaries.", "food": "Dives for wild celery tubers, clams, and other invertebrates.", "fl": "An uncommon winter visitor to Florida.", "fact": "Its scientific name, Aythya valisineria, comes from its favorite food, wild celery (Vallisneria)."}, {"id": "redh", "n": "Redhead", "g": "diver", "sz": "Medium diver", "drake": "Round chestnut-red head with a steep forehead, blue-gray bill with a black tip, yellow eye, gray back.", "hen": "Plain warm brown with a blue-gray bill.", "spec": "Gray speculum.", "hab": "Prairie marshes in summer; seagrass bays in winter.", "food": "Seagrass, aquatic plants, invertebrates.", "fl": "Winters in large rafts on Florida's Gulf Coast seagrass beds.", "fact": "Tell it from a canvasback by its rounded head (not wedge-shaped) and darker gray back."}, {"id": "lesc", "n": "Lesser Scaup", "g": "diver", "sz": "Medium diver", "drake": "Dark head with a purple gloss and a peaked crown, black breast, finely barred gray back, white sides, pale blue bill.", "hen": "Brown with a crisp white patch at the base of the bill.", "spec": "White stripe on the secondaries that fades on the outer wing.", "hab": "Breeds in boreal and prairie wetlands; winters on lakes and bays.", "food": "Snails, clams, insects, plants.", "fl": "One of Florida's most abundant wintering ducks, forming huge rafts in bays and lagoons.", "fact": "Hunters call it 'bluebill.' Its breeding population declined for decades, which researchers continue to study."}, {"id": "rndu", "n": "Ring-necked Duck", "g": "diver", "sz": "Medium diver", "drake": "Black back and breast, peaked head, white vertical crescent on the side in front of the wing, gray bill with a bold white ring near the tip.", "hen": "Brown with a gray face, white eye ring, and white ring on the bill.", "spec": "Gray speculum.", "hab": "Freshwater lakes, ponds, and marshes — often smaller and shallower waters than other divers.", "food": "Aquatic plants, seeds, invertebrates.", "fl": "A very common winter duck on Florida lakes and marshes.", "fact": "The chestnut neck ring that gives it its name is almost impossible to see in the field. The ring on the bill is the real field mark."}, {"id": "buff", "n": "Bufflehead", "g": "sea", "sz": "Smallest diver", "drake": "Tiny; a large white patch wraps the back of a dark, iridescent head; white body with a black back.", "hen": "Gray-brown with a small oval white cheek patch.", "spec": "Large white wing patches in flight.", "hab": "Breeds in boreal forest ponds; winters on bays and lakes.", "food": "Aquatic insects, snails, crustaceans.", "fl": "A winter visitor to Florida's coastal bays and lakes.", "fact": "It nests in old northern flicker woodpecker holes — small enough that larger ducks can't use them."}, {"id": "cgol", "n": "Common Goldeneye", "g": "sea", "sz": "Medium diver", "drake": "Glossy greenish-black puffy head with a round white spot between the eye and bill, golden-yellow eye, mostly white body.", "hen": "Chocolate-brown head, gray body, yellow eye.", "spec": "Large white wing patches.", "hab": "Northern lakes and rivers; cold coastal waters in winter.", "food": "Crustaceans, insects, mollusks.", "fl": "Rare in Florida.", "fact": "Called 'whistler' because its wings make a loud whistling sound in flight."}, {"id": "hmer", "n": "Hooded Merganser", "g": "merganser", "sz": "Small merganser", "drake": "Fan-shaped crest — white bordered in black — that can be raised or lowered; black back; white breast with black bars; rusty sides.", "hen": "Gray-brown with a shaggy cinnamon crest.", "spec": "Small white patch on the inner wing.", "hab": "Wooded ponds, swamps, and streams.", "food": "Small fish, crayfish, aquatic insects.", "fl": "A common winter visitor to Florida; it nests in a few northern Florida swamps.", "fact": "Its thin, serrated 'sawbill' grips slippery prey. Like the wood duck, it nests in tree cavities."}, {"id": "rudd", "n": "Ruddy Duck", "g": "stifftail", "sz": "Small, compact diver", "drake": "Breeding: rich chestnut body, white cheek, black cap, bright sky-blue bill. Winter: gray-brown with white cheeks.", "hen": "Brown with a pale cheek crossed by one dark line.", "spec": "Plain dark wing.", "hab": "Marshes for nesting; lakes and bays in winter.", "food": "Aquatic insect larvae, plants.", "fl": "A common winter visitor to Florida lakes and coastal impoundments.", "fact": "Its stiff tail is often cocked straight up. It lays eggs very large for its body size."}, {"id": "cago", "n": "Canada Goose", "g": "goose", "sz": "Large goose", "drake": "Sexes alike: black head and long black neck with a white 'chinstrap' patch, brown-gray body.", "hen": "Same as the gander.", "spec": "Not applicable.", "hab": "Lakes, fields, parks, and golf courses.", "food": "Grasses, grain, aquatic plants.", "fl": "Mostly resident birds in north Florida.", "fact": "Males are ganders and young are goslings. Nonmigratory 'resident' Canada geese have boomed in suburbs."}, {"id": "snow", "n": "Snow Goose", "g": "goose", "sz": "Medium goose", "drake": "White body with black wingtips and a pink bill with a dark 'grin patch'. A dark 'blue' form also occurs.", "hen": "Same as the gander.", "spec": "Not applicable.", "hab": "Arctic tundra in summer; coastal marshes and farm fields in winter.", "food": "Roots, shoots, waste grain.", "fl": "Uncommon in Florida.", "fact": "Light goose populations grew so large they damaged Arctic coastal habitat, prompting special harvest measures."}, {"id": "tusw", "n": "Tundra Swan", "g": "swan", "sz": "Very large", "drake": "All white with a black bill that usually shows a small yellow spot in front of the eye.", "hen": "Same as the cob.", "spec": "Not applicable.", "hab": "Arctic tundra in summer; large lakes, estuaries, and fields in winter.", "food": "Aquatic plants, tubers, waste grain.", "fl": "Rare in Florida.", "fact": "Male swans are cobs, females are pens, and young are cygnets."}, {"id": "amco", "n": "American Coot", "g": "lookalike", "sz": "Duck-sized rail", "drake": "Sooty gray-black body, thick white bill with a small red forehead patch, red eye.", "hen": "Same as the male.", "spec": "Not applicable — it isn't a duck.", "hab": "Ponds, lakes, marshes, and golf course ponds.", "food": "Aquatic plants, insects.", "fl": "Extremely common in winter on Florida lakes.", "fact": "Not a duck at all. It's a rail, with lobed (not webbed) toes, and it pumps its head while swimming."}];
+const GROUP={"dabbler": "Dabbling duck", "diver": "Diving duck (bay duck)", "sea": "Diving duck (sea duck)", "merganser": "Merganser (fish-eating diver)", "stifftail": "Stiff-tailed diving duck", "whistling": "Whistling-duck", "goose": "Goose", "swan": "Swan", "lookalike": "Not a duck (rail)"};
+const LS='envsci_du_stats', LS_H='envsci_du_mocks';
+let st=lsGet(LS,{D1:{c:0,t:0},D2:{c:0,t:0},D3:{c:0,t:0},D4:{c:0,t:0}});
+BANK.forEach((q,i)=>q.id='du'+i);
+// ── Species ID items generated from the Field Guide ──
+function genSI(n){
+  const ducks=SP.filter(s=>!['goose','swan','lookalike'].includes(s.g)), out=[];
+  const makers=[
+    ()=>{ const s=pick(ducks); const o=[s,...shuffle(ducks.filter(x=>x!==s)).slice(0,3)]; return {d:'D2',q:`Which species matches these field marks? "${s.drake}"`,o:o.map(x=>x.n),a:0,e:`${s.n}. ${s.fact}`}; },
+    ()=>{ const s=pick(ducks.filter(x=>!x.hen.startsWith('Same'))); const o=[s,...shuffle(ducks.filter(x=>x!==s&&x.g===s.g)).concat(shuffle(ducks.filter(x=>x!==s))).filter((v,i,a)=>a.indexOf(v)===i).slice(0,3)]; return {d:'D2',q:`A HEN: "${s.hen}" Wing: "${s.spec}" Which species?`,o:o.map(x=>x.n),a:0,e:`${s.n} hen. Speculum and bill details separate look-alike hens.`}; },
+    ()=>{ const s=pick(SP); const correct=GROUP[s.g]; const o=[correct,...shuffle(Object.values(GROUP).filter(x=>x!==correct)).slice(0,3)]; return {d:'D2',q:`The ${s.n} is best classified as a:`,o,a:0,e:`${s.n}: ${correct}. ${s.fact}`}; },
+    ()=>{ const s=pick(ducks); const o=[s.spec,...[...new Set(shuffle(ducks.filter(x=>x!==s&&x.spec!==s.spec)).map(x=>x.spec))].slice(0,3)]; return {d:'D2',q:`Which wing/speculum description fits the ${s.n}?`,o,a:0,e:`${s.n}: ${s.spec}`}; },
+  ];
+  for(let i=0;i<n;i++) out.push({...makers[i%makers.length](),id:'si'+Math.random()});
+  return out;
+}
+function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
+function bankFor(d){ return BANK.filter(q=>q.d===d); }
+function draw(d,n){ if(d==='D2'){ const w=shuffle(bankFor('D2')).slice(0,Math.ceil(n/3)); return shuffle(w.concat(genSI(n-w.length))); } return shuffle(bankFor(d)).slice(0,n); }
+// ── Home ──
+function acc(d){ const x=st[d]; return x&&x.t>=5?Math.round(x.c/x.t*100):null; }
+function renderHome(){
+  const parts=Object.keys(DOM).map(d=>[d,acc(d)]);
+  const known=parts.filter(p=>p[1]!=null);
+  const ready = known.length===4 ? Math.round(parts.reduce((s,[d,a])=>s+a*DOM[d].weight/100,0)) : null;
+  document.getElementById('g-num').textContent = ready==null? '—' : ready+'%';
+  const arc=document.getElementById('g-arc'); arc.style.strokeDashoffset = 326.7*(1-(ready||0)/100); arc.setAttribute('stroke', ready==null?'#1D9E75':ready>=80?'#1D9E75':ready>=65?'#E59400':'#E74C3C');
+  document.getElementById('doms').innerHTML=parts.map(([d,a])=>{ const c=a==null?'var(--border)':a>=80?'var(--teal)':a>=65?'var(--amber)':'var(--red)';
+    return `<div class="dom"><div class="dom-top"><b>${DOM[d].icon} ${DOM[d].name} <span style="color:#efb44e">· ${DOM[d].weight}%</span></b><span>${a==null?(st[d].t?st[d].t+' answered — need 5':'not started'):a+'% of '+st[d].t}</span></div><div class="dom-bar"><i style="width:${a||0}%;background:${c}"></i><div class="goal"></div></div></div>`; }).join('')
+    + (ready==null?'<div style="font-size:12px;color:#efb44e;margin:4px 0 8px">Answer at least 5 questions in every domain to unlock your readiness score. A Quick 25 does it in one go.</div>':'');
+  const h=lsGet(LS_H,[]); document.getElementById('hist-wrap').style.display=h.length?'':'none';
+  document.getElementById('hist').innerHTML=h.map(x=>`<div style="height:${Math.max(8,x.pct)}%" title="${x.date}: ${x.pct}%"><span>${x.pct}</span></div>`).join('');
+  document.getElementById('dsel').innerHTML=Object.keys(DOM).map(d=>`<option value="${d}">${DOM[d].icon} ${DOM[d].name}</option>`).join('');
+  document.getElementById('guides').innerHTML=Object.keys(DOM).map(d=>`<div class="guide"><h4>${DOM[d].icon} ${DOM[d].name} <span>${DOM[d].weight}% of exam</span></h4><ul>${GUIDES[d].map(g=>`<li>${esc(g)}</li>`).join('')}</ul><button class="btn btn-ghost" style="margin-top:8px;padding:8px 14px" onclick="document.getElementById('dsel').value='${d}';startDomain()">Drill this domain →</button></div>`).join('');
+}
+function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===id)); window.scrollTo({top:0}); }
+function home(){ clearInterval(S&&S.timer); renderHome(); show('s-home'); }
+// ── Session ──
+let S=null;
+function startDomain(){ const d=document.getElementById('dsel').value, n=+document.getElementById('nsel').value; run(draw(d,n),{feedback:true,label:DOM[d].name}); }
+function startMock(n,fb){
+  const k = n===100?{D1:20,D2:10,D3:30,D4:40}:{D1:5,D2:3,D3:7,D4:10};
+  const deck=shuffle([].concat(...Object.keys(k).map(d=>draw(d,k[d]))));
+  run(deck,{feedback:fb,mock:n===100,label:n===100?'Full Mock Exam':'Quick 25',timed:n===100&&document.getElementById('timed').checked});
+}
+function run(deck,opts){
+  S={deck,i:0,right:0,ans:false,missed:[],by:{},opts,timer:null,left:90*60};
+  show('s-q'); renderQ();
+  const T=document.getElementById('q-timer'); T.textContent='';
+  if(opts.timed) S.timer=setInterval(()=>{ S.left--; T.textContent=`⏱ ${Math.floor(S.left/60)}:${String(S.left%60).padStart(2,'0')}`; if(S.left<=0){ clearInterval(S.timer); finish(); } },1000);
+}
+function renderQ(){
+  const q=S.deck[S.i]; S.ans=false;
+  document.getElementById('q-count').textContent=`${S.opts.label.toUpperCase()} · ${S.i+1} / ${S.deck.length}`;
+  document.getElementById('q-dom').innerHTML=`<span class="tag t-dom">${DOM[q.d].icon} ${DOM[q.d].name}</span>`;
+  document.getElementById('pfill').style.width=(S.i/S.deck.length*100)+'%';
+  document.getElementById('qtext').textContent=q.q;
+  S.order=shuffle(q.o.map((_,i)=>i));
+  document.getElementById('opts').innerHTML=S.order.map((o,i)=>`<button class="opt" id="o-${i}" onclick="pickQ(${i})"><span class="opt-key">${'ABCD'[i]}</span><span>${esc(q.o[o])}</span></button>`).join('');
+  document.getElementById('fb').className='fb'; document.getElementById('btn-next').style.display='none';
+}
+function pickQ(i){
+  if(S.ans) return; S.ans=true; const q=S.deck[S.i], ok=S.order[i]===q.a;
+  st[q.d].t++; if(ok) st[q.d].c++; lsSet(LS,st);
+  S.by[q.d]=S.by[q.d]||{c:0,t:0}; S.by[q.d].t++; if(ok){ S.by[q.d].c++; S.right++; } else S.missed.push({q,chose:q.o[S.order[i]]});
+  game().answer(ok,2); game().event('du');
+  if(S.opts.feedback){
+    document.querySelectorAll('.opt').forEach((b,j)=>{ b.disabled=true; if(S.order[j]===q.a) b.classList.add('correct'); else if(j===i) b.classList.add('wrong'); });
+    const fb=document.getElementById('fb'); fb.className='fb show '+(ok?'ok':'no');
+    fb.innerHTML=`<b style="color:${ok?'#4fd1a5':'#f08579'};display:block;margin-bottom:4px">${ok?'✓ Correct':'✗ Answer: '+esc(q.o[q.a])}</b>${esc(q.e)}`;
+    const nb=document.getElementById('btn-next'); nb.style.display=''; nb.textContent=S.i>=S.deck.length-1?'See results →':'Next →';
+  } else { document.querySelectorAll('.opt').forEach((b,j)=>{ b.disabled=true; if(j===i) b.style.borderColor='var(--accent)'; }); setTimeout(nextQ,250); }
+}
+function nextQ(){ S.i++; if(S.i>=S.deck.length) return finish(); renderQ(); }
+function finish(){
+  clearInterval(S.timer);
+  const n=S.i>=S.deck.length?S.deck.length:S.i+(S.ans?1:0), pct=n?Math.round(S.right/n*100):0;
+  if(S.opts.mock||S.deck.length===25){ const h=lsGet(LS_H,[]); h.push({date:new Date().toLocaleDateString(),pct,n}); lsSet(LS_H,h.slice(-12)); }
+  if(S.opts.mock) game().event('mock',{pct});
+  document.getElementById('r-title').textContent=S.opts.label.toUpperCase()+' · RESULTS';
+  document.getElementById('r-score').innerHTML=`${S.right}<span>/${n}</span>`;
+  document.getElementById('r-sub').textContent=`${pct}% overall${pct>=80?' · strong — keep it there':pct>=65?' · close — target your weakest domain':' · build up the domains below, then retest'}`;
+  document.getElementById('r-doms').innerHTML=Object.keys(DOM).filter(d=>S.by[d]).map(d=>{ const x=S.by[d], p=Math.round(x.c/x.t*100), c=p>=80?'var(--teal)':p>=65?'var(--amber)':'var(--red)';
+    return `<div class="dom"><div class="dom-top"><b>${DOM[d].icon} ${DOM[d].name}</b><span>${x.c}/${x.t} · ${p}%</span></div><div class="dom-bar"><i style="width:${p}%;background:${c}"></i><div class="goal"></div></div></div>`; }).join('');
+  document.getElementById('r-missed-card').style.display=S.missed.length?'':'none';
+  document.getElementById('r-missed-btn').style.display=S.missed.length?'':'none';
+  document.getElementById('r-missed').innerHTML=S.missed.map(m=>`<div class="miss"><div style="color:#fff;font-weight:600;margin-bottom:4px">${esc(m.q.q)}</div>You chose: ${esc(m.chose)} · Correct: <b>${esc(m.q.o[m.q.a])}</b><div style="color:var(--muted);margin-top:4px">${esc(m.q.e)}</div></div>`).join('');
+  show('s-res');
+}
+function drillMissed(){ run(shuffle(S.missed.map(m=>m.q)),{feedback:true,label:'Missed review'}); }
+renderHome();
+const p=new URLSearchParams(location.search).get('start'); if(p==='quick') startMock(25,true);
+</script>
+</body>
+</html>

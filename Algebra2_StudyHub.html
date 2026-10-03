@@ -6,6 +6,8 @@
 <title>Algebra 2 — Interactive Study Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.STUDYHUB_GAME={course:'algebra2'};</script>
+<script src="studyhub-game.js"></script>
 <style>
 :root{
   --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
@@ -179,6 +181,51 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .mini-progress-fill{height:100%;border-radius:2px;transition:width .4s ease}
 .mini-progress-label{font-size:10px;color:var(--muted);margin-top:4px}
 
+/* ── PLAYER CARD ── */
+.player{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:14px;margin-bottom:32px}
+@media(max-width:760px){.player{grid-template-columns:1fr}}
+.pc{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:20px}
+.rank-row{display:flex;align-items:center;gap:14px}
+.rank-badge{width:64px;height:64px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:800;color:#efb44e;background:radial-gradient(circle at 30% 30%,rgba(229,148,0,.28),rgba(229,148,0,.06));border:1px solid rgba(229,148,0,.45);flex-shrink:0}
+.rank-name{font-size:22px;font-weight:800;color:#fff;line-height:1.1}
+.rank-sub{font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;margin-top:3px}
+.xp-track{height:10px;background:var(--bg);border-radius:99px;overflow:hidden;margin:14px 0 6px}
+.xp-fill{height:100%;background:linear-gradient(90deg,var(--amber),var(--teal));border-radius:99px;transition:width .6s}
+.xp-label{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);font-family:'DM Mono',monospace}
+.pc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.pc-stat{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:10px;text-align:center}
+.pc-stat b{display:block;font-size:18px;color:#fff;font-family:'DM Mono',monospace}
+.pc-stat span{font-size:9.5px;font-weight:700;letter-spacing:.08em;color:var(--muted)}
+.mission{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid rgba(30,58,92,.5)}
+.mission:last-child{border-bottom:none}
+.m-check{width:22px;height:22px;border-radius:7px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
+.m-check.on{background:#188663;border-color:var(--teal);color:#fff}
+.m-body{flex:1;font-size:12.5px}
+.m-bar{height:4px;background:var(--bg);border-radius:99px;overflow:hidden;margin-top:5px}
+.m-fill{height:100%;background:var(--sky)}
+.m-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)}
+.badges{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.bdg{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg);border:1px solid var(--border);filter:grayscale(1);opacity:.35;cursor:help}
+.bdg.on{filter:none;opacity:1;border-color:rgba(229,148,0,.5);background:rgba(229,148,0,.08)}
+.focus-box{margin-top:14px;background:linear-gradient(135deg,rgba(46,139,192,.12),rgba(29,158,117,.06));border:1px solid rgba(46,139,192,.3);border-radius:12px;padding:12px 14px;font-size:12.5px;line-height:1.55}
+.focus-box a{color:#7cc0e6;font-weight:700}
+.mastery{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:32px}
+@media(max-width:600px){.mastery{grid-template-columns:repeat(2,1fr)}}
+.mu{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:8px 10px;font-size:11px}
+.mu-top{display:flex;justify-content:space-between;font-family:'DM Mono',monospace;color:var(--muted)}
+.mu-bar{height:5px;background:var(--bg);border-radius:99px;overflow:hidden;margin-top:6px}
+.mu-fill{height:100%;border-radius:99px}
+.build-card.bc-purple{border-color:rgba(139,92,246,.25)}
+.build-card.bc-purple::before{background:linear-gradient(135deg,rgba(139,92,246,.08),transparent)}
+.build-card.bc-purple:hover{border-color:rgba(139,92,246,.5);box-shadow:0 12px 40px rgba(139,92,246,.16)}
+.bi-purple{background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.3)}
+.eyebrow-purple{color:#b39bf5}
+.bt-purple{background:rgba(139,92,246,.12);color:#b39bf5}
+.build-card.featured{grid-column:1 / -1}
+.new-pill{display:inline-block;margin-left:8px;font-size:9px;font-weight:800;letter-spacing:.1em;padding:2px 7px;border-radius:6px;background:rgba(229,148,0,.18);color:#efb44e;vertical-align:middle}
+.ul-purple{background:rgba(139,92,246,.1);color:#b39bf5;border-color:rgba(139,92,246,.3)}
+.ul-purple:hover{background:rgba(139,92,246,.2)}
+
 /* Teacher-sync name banner */
 .sync-banner{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 18px;margin-bottom:16px;display:none;align-items:center;gap:12px;flex-wrap:wrap}
 .sync-banner.show{display:flex}
@@ -206,92 +253,161 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 
   <!-- ── HERO ── -->
   <div class="hero">
-    <div class="hero-eyebrow">Algebra 2 · Study Resource Series · All Builds Complete</div>
+    <div class="hero-eyebrow">Algebra 2 · Study Resource Series · 6 Builds</div>
     <div class="hero-title">Interactive<br><span>Study Hub</span></div>
-    <div class="hero-sub">Your command center for all four interactive builds. Navigate by unit, study key formulas, and follow a structured path to mastery.</div>
+    <div class="hero-sub">Your command center for Algebra 2: learn the vocabulary, drill it, see the graphs move, catch your own mistakes, and write it out. Every study session earns XP toward your next rank.</div>
     <div class="hero-chips">
       <span class="hero-chip chip-teal">📖 144 Glossary Terms</span>
-      <span class="hero-chip chip-sky">✏️ 102 Drill Questions</span>
+      <span class="hero-chip chip-sky">✏️ 128 Drill Questions</span>
       <span class="hero-chip chip-red">🔬 25 Mistake Autopsies</span>
-      <span class="hero-chip chip-amber">🎓 Built-In Exam Mode</span>
+      <span class="hero-chip chip-sky">📎 28 Common Confusions</span>
+      <span class="hero-chip chip-teal">✍️ 12 Self-Grader Prompts</span>
+      <span class="hero-chip chip-amber">📈 8 Graph Lab Families</span>
     </div>
   </div>
+
+  <!-- ── PLAYER CARD ── -->
+  <div class="sec-label">Your Progress</div>
+  <div class="player">
+    <div class="pc">
+      <div class="rank-row">
+        <div class="rank-badge" id="pc-icon">𝑥</div>
+        <div>
+          <div class="rank-name" id="pc-rank">Variable</div>
+          <div class="rank-sub" id="pc-sub">Level 1</div>
+        </div>
+      </div>
+      <div class="xp-track"><div class="xp-fill" id="pc-xp" style="width:0%"></div></div>
+      <div class="xp-label"><span id="pc-xp-l"></span><span id="pc-xp-r"></span></div>
+      <div class="pc-stats">
+        <div class="pc-stat"><b id="pc-streak">0</b><span>DAY STREAK 🔥</span></div>
+        <div class="pc-stat"><b id="pc-acc">—</b><span>DRILL ACCURACY</span></div>
+        <div class="pc-stat"><b id="pc-badges">0</b><span>BADGES</span></div>
+      </div>
+      <div class="badges" id="pc-badge-list"></div>
+    </div>
+    <div class="pc">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <div style="font-size:13px;font-weight:800;color:#fff">📦 Today's Missions</div>
+        <div class="m-num" id="pc-mdone"></div>
+      </div>
+      <div id="pc-missions"></div>
+      <div class="focus-box" id="pc-focus"></div>
+    </div>
+  </div>
+
+  <div class="sec-label">Unit Mastery · from your Drill Trainer results</div>
+  <div class="mastery" id="mastery"></div>
 
   <!-- ── BUILD CARDS ── -->
   <div class="sec-label">Your Study Builds</div>
   <div class="builds-grid">
 
-    <!-- Build 1: Glossary -->
+    <a class="build-card bc-purple" href="Algebra2_Graph_Lab.html">
+      <div class="build-header">
+        <div class="build-icon bi-purple">📈</div>
+        <div class="build-info">
+          <div class="build-eyebrow eyebrow-purple">BUILD 6 · INTERACTIVE<span class="new-pill">NEW</span></div>
+          <div class="build-name">Graph Lab</div>
+        </div>
+      </div>
+      <div class="build-desc">Drag sliders and watch quadratics, absolute value, radicals, cubics, exponentials, logs, rationals, and sine waves transform live, with the parent graph, asymptotes, and key features updating as you go. Then play <b style="color:#fff">Match the Graph</b>: three levels, five targets a round, stars for first-try matches.</div>
+      <div class="build-tags">
+        <span class="build-tag bt-purple">8 Families</span>
+        <span class="build-tag bt-muted">Live Sliders</span>
+        <span class="build-tag bt-muted">Match Game</span>
+        <span class="build-tag bt-muted">3 Levels</span>
+      </div>
+      <div class="build-cta"><span class="cta-label eyebrow-purple">Open Graph Lab</span><span class="cta-arrow">→</span></div>
+    </a>
+
     <a class="build-card bc-teal" href="Algebra2_Master_Glossary.html">
       <div class="build-header">
         <div class="build-icon bi-teal">📖</div>
         <div class="build-info">
-          <div class="build-eyebrow eyebrow-teal">BUILD 1 · INTERACTIVE HTML</div>
+          <div class="build-eyebrow eyebrow-teal">BUILD 1 · VOCABULARY</div>
           <div class="build-name">Master Glossary</div>
         </div>
       </div>
-      <div class="build-desc">144 essential terms, A–Z, across all 10 units. Plain-language definitions, key formulas, worked examples, ⭐ star system, and built-in flashcard quiz.</div>
+      <div class="build-desc">144 essential terms, A–Z, across all 10 units. Plain-language definitions, formulas, worked examples, ⭐ stars, a spaced-repetition flashcard quiz, and the ALEPH tutor on every term.</div>
       <div class="build-tags">
         <span class="build-tag bt-teal">144 Terms</span>
-        <span class="build-tag bt-muted">A–Z Index</span>
         <span class="build-tag bt-muted">Flashcard Quiz</span>
-        <span class="build-tag bt-muted">All 10 Units</span>
+        <span class="build-tag bt-muted">ALEPH Tutor</span>
       </div>
-      <div class="build-cta">
-        <span class="cta-label eyebrow-teal">Open Glossary</span>
-        <span class="cta-arrow">→</span>
-      </div>
+      <div class="build-cta"><span class="cta-label eyebrow-teal">Open Glossary</span><span class="cta-arrow">→</span></div>
     </a>
 
-    <!-- Build 2: Drill Trainer -->
     <a class="build-card bc-sky" href="Algebra2_DrillTrainer.html">
       <div class="build-header">
         <div class="build-icon bi-sky">⚡</div>
         <div class="build-info">
-          <div class="build-eyebrow eyebrow-sky">BUILD 2 · INTERACTIVE HTML</div>
+          <div class="build-eyebrow eyebrow-sky">BUILD 2 · PRACTICE</div>
           <div class="build-name">Drill Trainer</div>
         </div>
       </div>
-      <div class="build-desc">102 scaffolded questions — Tier 1 Recall, Tier 2 Apply, Tier 3 Analyze — with hints, full explanations, Show-Work mode, Stamina Mode, Exam Mode, and sequential mastery gating.</div>
+      <div class="build-desc">128 scaffolded questions (Tier 1 Recall, Tier 2 Apply, Tier 3 Analyze), with at least 12 per unit. Hints, full explanations, Show-Work, Speed, Stamina, and Exam modes. Answer order shuffles every time.</div>
       <div class="build-tags">
-        <span class="build-tag bt-sky">102 Questions</span>
+        <span class="build-tag bt-sky">128 Questions</span>
         <span class="build-tag bt-muted">3 Tiers</span>
-        <span class="build-tag bt-muted">3 Drill Types</span>
-        <span class="build-tag bt-muted">B.E.S.T. + CCSS</span>
+        <span class="build-tag bt-muted">Exam Mode</span>
       </div>
-      <div class="build-cta">
-        <span class="cta-label eyebrow-sky">Open Drill Trainer</span>
-        <span class="cta-arrow">→</span>
-      </div>
+      <div class="build-cta"><span class="cta-label eyebrow-sky">Open Drill Trainer</span><span class="cta-arrow">→</span></div>
     </a>
 
-    <!-- Build 3: Autopsy -->
     <a class="build-card bc-red" href="Algebra2_Mistakes_Autopsy.html">
       <div class="build-header">
         <div class="build-icon bi-red">🔬</div>
         <div class="build-info">
-          <div class="build-eyebrow eyebrow-red">BUILD 3 · INTERACTIVE HTML</div>
+          <div class="build-eyebrow eyebrow-red">BUILD 3 · ERROR REVIEW</div>
           <div class="build-name">Mistakes Autopsy</div>
         </div>
       </div>
-      <div class="build-desc">25 high-frequency errors dissected. Wrong vs. correct approach, Memory Lock mnemonics, Watch Out For warnings, mastery tracking, and a Find My Mistake interactive quiz.</div>
+      <div class="build-desc">25 high-frequency errors dissected: the wrong approach next to the right one, Memory Lock mnemonics, mastery tracking, and the Find My Mistake diagnostic.</div>
       <div class="build-tags">
         <span class="build-tag bt-red">25 Errors</span>
-        <span class="build-tag bt-muted">Wrong vs. Right</span>
         <span class="build-tag bt-muted">Memory Locks</span>
         <span class="build-tag bt-muted">Find My Mistake</span>
       </div>
-      <div class="build-cta">
-        <span class="cta-label eyebrow-red">Open Autopsy</span>
-        <span class="cta-arrow">→</span>
-      </div>
+      <div class="build-cta"><span class="cta-label eyebrow-red">Open Autopsy</span><span class="cta-arrow">→</span></div>
     </a>
 
+    <a class="build-card bc-sky" href="Algebra2_Common_Confusions.html">
+      <div class="build-header">
+        <div class="build-icon bi-sky">📎</div>
+        <div class="build-info">
+          <div class="build-eyebrow eyebrow-sky">BUILD 4 · QUICK REFERENCE<span class="new-pill">NEW</span></div>
+          <div class="build-name">Common Confusions</div>
+        </div>
+      </div>
+      <div class="build-desc">28 look-alike pairs side by side, like f(x+2) vs f(x)+2, hole vs asymptote, and permutation vs combination. Each has the one line that separates them and a memory hook. Includes ⚡ Speed Sort: 8 seconds per call.</div>
+      <div class="build-tags">
+        <span class="build-tag bt-sky">28 Pairs</span>
+        <span class="build-tag bt-muted">Speed Sort</span>
+      </div>
+      <div class="build-cta"><span class="cta-label eyebrow-sky">Open Common Confusions</span><span class="cta-arrow">→</span></div>
+    </a>
 
+    <a class="build-card bc-teal" href="Algebra2_Self_Grader.html">
+      <div class="build-header">
+        <div class="build-icon bi-teal">✍️</div>
+        <div class="build-info">
+          <div class="build-eyebrow eyebrow-teal">BUILD 5 · FREE RESPONSE<span class="new-pill">NEW</span></div>
+          <div class="build-name">Self-Grader</div>
+        </div>
+      </div>
+      <div class="build-desc">12 show-your-work problems that multiple choice can't test: transformations, inverses, synthetic division, extraneous roots, growth models, conics, and trig graphs. Write it, reveal the worked solution, and score yourself against a rubric.</div>
+      <div class="build-tags">
+        <span class="build-tag bt-teal">12 Prompts</span>
+        <span class="build-tag bt-muted">Worked Solutions</span>
+        <span class="build-tag bt-muted">Rubrics</span>
+      </div>
+      <div class="build-cta"><span class="cta-label eyebrow-teal">Open Self-Grader</span><span class="cta-arrow">→</span></div>
+    </a>
   </div>
 
   <!-- ── UNIT NAVIGATOR ── -->
-  <div class="sec-label">Unit Navigator</div>
+  <div class="sec-label">Unit Navigator · tap a unit</div>
   <div class="unit-grid" id="unit-grid">
     <div class="unit-card" style="--uc:var(--sky)" onclick="openUnit(1)"><div class="unit-num">U1</div><div class="unit-name">Functions & Transformations</div></div>
     <div class="unit-card" style="--uc:var(--sky)" onclick="openUnit(2)"><div class="unit-num">U2</div><div class="unit-name">Polynomial Functions</div></div>
@@ -404,7 +520,7 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
     <div class="strategy-card">
       <div class="strategy-icon">⚠️</div>
       <div class="strategy-title">Error-First Studying</div>
-      <div class="strategy-text">Read the Mistakes Autopsy (Build 3) before attempting Tier 3 questions. Know the traps before you walk into them. Memory Locks first.</div>
+      <div class="strategy-text">Read the Mistakes Autopsy and Common Confusions before attempting Tier 3 questions. Know the traps before you walk into them. Memory Locks first.</div>
     </div>
     <div class="strategy-card">
       <div class="strategy-icon">⏱️</div>
@@ -419,7 +535,7 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
     <div class="strategy-card">
       <div class="strategy-icon">🔗</div>
       <div class="strategy-title">Use the Sequence</div>
-      <div class="strategy-text">Glossary → Drill Trainer → Autopsy → Exam Mode is the designed flow. Each build makes the next one more effective. Don't skip to the end.</div>
+      <div class="strategy-text">Glossary → Graph Lab → Drill Trainer → Autopsy &amp; Confusions → Self-Grader → Exam Mode. Each build makes the next one more effective. Don't skip to the end.</div>
     </div>
   </div>
 
@@ -429,7 +545,7 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
     <div class="week-card wk1">
       <div class="week-label">WEEK 1</div>
       <div class="week-focus">Master Glossary — U1 through U5</div>
-      <div class="week-detail">Read definitions, study formulas, and use the Flashcard Quiz to self-test. Star every term you miss. Daily: 20–30 min in the Glossary.</div>
+      <div class="week-detail">Read definitions and use the Flashcard Quiz to self-test. Open the Graph Lab for every function family you meet. Daily: 20–30 minutes.</div>
       <span class="week-build-tag bt-teal">📖 Build 1</span>
     </div>
     <div class="week-card wk2">
@@ -441,22 +557,22 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
     <div class="week-card wk3">
       <div class="week-label">WEEK 3</div>
       <div class="week-focus">Glossary U6–U10, All Autopsies, Tier 3</div>
-      <div class="week-detail">Complete the Glossary for remaining units. Read all 25 Mistake Autopsies. Memorize every Memory Lock. Attempt Tier 3 questions.</div>
+      <div class="week-detail">Finish the Glossary. Work the Autopsies and run Speed Sort in Common Confusions until you hit 90%. Then attempt Tier 3 questions.</div>
       <span class="week-build-tag bt-red">🔬 Build 3</span>
     </div>
     <div class="week-card wk4">
       <div class="week-label">WEEK 4</div>
       <div class="week-focus">Exam Mode — Daily, Target 80%+</div>
-      <div class="week-detail">Run Exam Mode daily in the Drill Trainer. Check per-unit breakdown after each session. Re-study flagged units before each retry.</div>
+      <div class="week-detail">Run Exam Mode daily and do 2 Self-Grader prompts on paper. Re-study any unit below 70% on the mastery bars before each retry.</div>
       <span class="week-build-tag bt-amber">🎓 Build 2 Exam Mode</span>
     </div>
   </div>
 
   <!-- ── FOOTER ── -->
   <div class="footer">
-    <div>Algebra 2 Study Resource Series — All Builds Complete</div>
+    <div>Algebra 2 Study Resource Series — 6 Builds</div>
     <div style="margin-top:4px">Florida B.E.S.T. Standards · Common Core State Standards (CCSS) · SAT / ACT Aligned</div>
-    <div style="margin-top:4px;opacity:.6">Master Glossary · Drill Trainer (with built-in Exam Mode) · Mistakes Autopsy · Hub: Study Navigator</div>
+    <div style="margin-top:4px;opacity:.6">Master Glossary · Drill Trainer (with Exam Mode) · Mistakes Autopsy · Common Confusions · Self-Grader · Graph Lab</div>
   </div>
 
 </div>
@@ -574,8 +690,9 @@ function openUnit(n){
   const u = UNITS[n];
   const panel = document.getElementById('unit-panel');
   const drillURL = `Algebra2_DrillTrainer.html?unit=${n}`;
-  const glossaryURL = `Algebra2_Master_Glossary.html`;
-  const autopsyURL = `Algebra2_Mistakes_Autopsy.html`;
+  const glossaryURL = `Algebra2_Master_Glossary.html?unit=${n}`;
+  const autopsyURL = `Algebra2_Mistakes_Autopsy.html?unit=${n}`;
+  const GRAPH_FAMILY = {1:'quad',2:'cubic',3:'quad',4:'rat',5:'sqrt',6:'exp',10:'sine'};
 
   panel.innerHTML = `
     <div class="unit-panel-header">
@@ -600,6 +717,8 @@ function openUnit(n){
       <a class="unit-link ul-sky" href="${drillURL}">⚡ Drill U${n} Questions</a>
       <a class="unit-link ul-teal" href="${glossaryURL}">📖 Glossary U${n}</a>
       <a class="unit-link ul-red" href="${autopsyURL}">🔬 U${n} Autopsies</a>
+      <a class="unit-link ul-amber" href="Algebra2_Common_Confusions.html?unit=${n}">📎 U${n} Confusions</a>
+      ${GRAPH_FAMILY[n]?`<a class="unit-link ul-purple" href="Algebra2_Graph_Lab.html?family=${GRAPH_FAMILY[n]}">📈 Graph it</a>`:''}
     </div>`;
 
   panel.classList.add('show');
@@ -612,10 +731,8 @@ function openUnit(n){
 // this course tracks cumulative totals and best streak, not sessions; it has
 // no Self-Grader and no Find My Mistake feature, unlike the other courses).
 function buildAndSyncProgress(){
-  if(typeof window.syncStudentProgress !== 'function') return;
-
   const summary = {};
-  let signals = 0, total = 3;
+  let signals = 0, total = 6;
 
   let gl = {starred:[], qc:0, qt:0};
   try{ const raw = localStorage.getItem('a2gl_v1'); if(raw) gl = {...gl, ...JSON.parse(raw)}; }catch(e){}
@@ -635,9 +752,65 @@ function buildAndSyncProgress(){
   if(maMastered.length) signals++;
   summary.autopsyMasteredCount = maMastered.length;
 
+  let conf = []; try{ conf = JSON.parse(localStorage.getItem('a2_confusions_got')||'[]'); }catch(e){}
+  if(conf.length) signals++;
+  summary.confusionsGot = conf.length;
+
+  let sg = []; try{ sg = JSON.parse(localStorage.getItem('a2_selfgrader_mastered')||'[]'); }catch(e){}
+  if(sg.length) signals++;
+  summary.selfGraderMasteredCount = sg.length;
+
+  let seen = []; try{ seen = JSON.parse(localStorage.getItem('a2_graphlab_seen')||'[]'); }catch(e){}
+  if(seen.length) signals++;
+  summary.graphLabFamilies = seen.length;
+
+  if(window.StudyHubGame) Object.assign(summary, StudyHubGame.summary());
   summary.overallPct = Math.round((signals/total)*100);
-  window.syncStudentProgress(summary);
+  if(typeof window.syncStudentProgress === 'function' && signals > 0) window.syncStudentProgress(summary);
+  return {dt};
 }
+
+// ── Player card + mastery bars ──
+function renderPlayer(){
+  if(!window.StudyHubGame) return;
+  const st = StudyHubGame.state();
+  document.getElementById('pc-icon').textContent = st.rank.icon;
+  document.getElementById('pc-rank').textContent = st.rank.name;
+  document.getElementById('pc-sub').textContent = `Level ${st.level} · ${st.xp.toLocaleString()} XP` + (st.nextRank?` · next rank: ${st.nextRank.name} at Lv ${st.nextRank.lvl}`:' · top rank');
+  document.getElementById('pc-xp').style.width = st.levelPct+'%';
+  document.getElementById('pc-xp-l').textContent = `Lv ${st.level}`;
+  document.getElementById('pc-xp-r').textContent = `${st.toNext} XP to Lv ${st.level+1}`;
+  document.getElementById('pc-streak').textContent = st.streak + (st.shields?` 🛡️${st.shields}`:'');
+  const earned = st.badges.filter(b=>b.earned).length;
+  document.getElementById('pc-badges').textContent = `${earned}/${st.badges.length}`;
+  document.getElementById('pc-badge-list').innerHTML = st.badges.map(b=>`<div class="bdg ${b.earned?'on':''}" title="${b.name} — ${b.desc}${b.earned?' ✓':''}" aria-label="${b.name}${b.earned?' (earned)':' (locked)'}">${b.icon}</div>`).join('');
+  document.getElementById('pc-missions').innerHTML = st.missions.map(m=>{
+    const done = m.progress>=m.target;
+    return `<div class="mission"><div class="m-check ${done?'on':''}">${done?'✓':''}</div><div class="m-body">${m.label}<div class="m-bar"><div class="m-fill" style="width:${Math.round(m.progress/m.target*100)}%"></div></div></div><div class="m-num">${m.progress}/${m.target}</div></div>`;
+  }).join('');
+  document.getElementById('pc-mdone').textContent = st.missionsDone ? 'Complete · +50 XP earned' : 'Bonus +50 XP';
+
+  let dt = {totalAnswered:0,totalCorrect:0,unitMastery:{}};
+  try{ const raw = localStorage.getItem('a2dt_v1'); if(raw) dt = {...dt, ...JSON.parse(raw)}; }catch(e){}
+  document.getElementById('pc-acc').textContent = dt.totalAnswered? Math.round(dt.totalCorrect/dt.totalAnswered*100)+'%' : '—';
+  const um = dt.unitMastery||{};
+  let weakest=null;
+  document.getElementById('mastery').innerHTML = Object.keys(UNITS).map(n=>{
+    const m = um['U'+n]; const pct = m&&m.total? Math.round(m.correct/m.total*100):null;
+    if(pct!==null && m.total>=3 && (weakest===null || pct<weakest.pct)) weakest={n,pct};
+    const col = pct===null?'var(--border)':pct>=80?'var(--teal)':pct>=60?'var(--amber)':'var(--red)';
+    return `<div class="mu" title="${UNITS[n].name}"><div class="mu-top"><span>U${n}</span><span>${pct===null?'—':pct+'%'}</span></div><div class="mu-bar"><div class="mu-fill" style="width:${pct||0}%;background:${col}"></div></div></div>`;
+  }).join('');
+  const f = document.getElementById('pc-focus');
+  if(weakest && weakest.pct < 80){
+    f.innerHTML = `🎯 <b>Today's focus: U${weakest.n} · ${UNITS[weakest.n].name}</b> (${weakest.pct}%). <a href="Algebra2_Mistakes_Autopsy.html?unit=${weakest.n}">Review its autopsies</a>, then <a href="Algebra2_DrillTrainer.html?unit=${weakest.n}">re-drill U${weakest.n}</a>.`;
+  } else if(dt.totalAnswered===0){
+    f.innerHTML = `🎯 <b>Start here:</b> open the <a href="Algebra2_Graph_Lab.html">Graph Lab</a> and move the sliders on a quadratic, then try 10 questions in the <a href="Algebra2_DrillTrainer.html?unit=1">Drill Trainer</a>.`;
+  } else {
+    f.innerHTML = `🎯 <b>Every unit you've drilled is at 80% or higher.</b> Push it: run a timed <a href="Algebra2_DrillTrainer.html">Exam Mode</a> or a Level 3 round of <a href="Algebra2_Graph_Lab.html?mode=match">Match the Graph</a>.`;
+  }
+}
+renderPlayer();
 window.buildAndSyncProgress = buildAndSyncProgress;
 </script>
 

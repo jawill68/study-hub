@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Environmental Science Honors — Master Glossary</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
+  --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
+  --accent:#1D9E75;--accent-soft:rgba(29,158,117,.12);--accent-text:#4fd1a5;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(46,139,192,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(46,139,192,0.04) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:26px 20px 70px}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent-text);text-decoration:none;margin-bottom:14px;opacity:.9}
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--accent-text)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+.about-banner{background:linear-gradient(135deg,var(--accent-soft),rgba(29,158,117,.05));border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:12.5px;line-height:1.55}
+.about-banner a{color:var(--accent-text)}
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px;flex:1}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:14px}
+.sec-lbl{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.13em;color:var(--muted);margin-bottom:11px;text-transform:uppercase}
+.controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;flex-direction:column;gap:11px}
+.ctrl-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--muted);min-width:56px}
+.search-input{flex:1;min-width:200px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13.5px}
+.search-input:focus{outline:none;border-color:var(--accent)}
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--accent);color:var(--text)}
+.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn{border:none;border-radius:11px;padding:11px 20px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;transition:all .2s;color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-accent{background:var(--accent)}
+.btn-accent:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 22px rgba(0,0,0,.35)}
+.btn-ghost{background:var(--bg);border:1px solid var(--border);color:var(--text)}
+.btn-ghost:hover{border-color:var(--accent)}
+.btn-teal{background:#188663}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:6px;display:inline-block}
+.t-unit{background:var(--accent-soft);color:var(--accent-text);border:1px solid var(--border)}
+.empty{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px}
+.footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center;line-height:1.7}
+.overlay{position:fixed;inset:0;background:rgba(3,8,16,.82);backdrop-filter:blur(4px);z-index:500;display:none;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto}
+.overlay.open{display:flex}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;max-width:640px;width:100%}
+.opt{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:12px 15px;cursor:pointer;transition:all .16s;display:flex;align-items:flex-start;gap:11px;text-align:left;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);width:100%}
+.opt:hover:not(:disabled){border-color:var(--accent);background:var(--card2)}
+.opt:disabled{cursor:default}
+.opt-key{width:24px;height:24px;border-radius:7px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0;color:var(--muted)}
+.opt.correct{border-color:var(--teal);background:rgba(29,158,117,.11)}
+.opt.correct .opt-key{background:#188663;border-color:var(--teal);color:#fff}
+.opt.wrong{border-color:var(--red);background:rgba(231,76,60,.10)}
+.opt.wrong .opt-key{background:#D24536;border-color:var(--red);color:#fff}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+@media(max-width:640px){.page-title{font-size:1.55rem}.ctrl-label{min-width:auto}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+
+.alpha{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:14px}
+.alpha a{font-family:'DM Mono',monospace;font-size:11.5px;color:var(--muted);text-decoration:none;padding:4px 7px;border-radius:6px;border:1px solid transparent}
+.alpha a:hover{border-color:var(--border);color:#fff}
+.alpha a.off{opacity:.25;pointer-events:none}
+.letter{font-family:'DM Mono',monospace;font-size:13px;color:var(--accent-text);margin:20px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.term{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:14px 16px;margin-bottom:9px}
+.term-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.term-name{font-size:15.5px;font-weight:800;color:var(--white)}
+.term-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+.t-du{background:rgba(229,148,0,.12);color:#efb44e;border:1px solid rgba(229,148,0,.3)}
+.term-def{font-size:13.5px;line-height:1.6;margin-top:8px}
+.term-ex{font-size:12.5px;color:#a9c2dc;margin-top:7px;padding-left:10px;border-left:2px solid var(--accent)}
+.star{background:none;border:none;font-size:18px;cursor:pointer;color:var(--muted);line-height:1;padding:2px}
+.star.on{color:#efb44e}
+.tutor-toggle{margin-top:9px;background:none;border:none;color:var(--accent-text);font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;padding:0}
+.tutor{display:none;margin-top:10px;border-top:1px solid var(--border);padding-top:10px}
+.tutor.open{display:block}
+.chat{display:flex;flex-direction:column;gap:7px;max-height:240px;overflow-y:auto;margin-bottom:8px}
+.bub{font-size:13px;line-height:1.6}
+.bub.u{background:var(--accent-soft);padding:8px 11px;border-radius:9px;border-left:2px solid var(--accent)}
+.bub code{font-family:'DM Mono',monospace;font-size:12px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.chip{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:4px 10px;font-size:11.5px;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif}
+.chip:hover{border-color:var(--accent);color:#fff}
+.trow{display:flex;gap:7px}
+.tin{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:8px 11px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:12.5px}
+.tmode{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:6px}
+.fc{perspective:900px;margin:16px 0}
+.fc-inner{position:relative;min-height:210px;transition:transform .5s;transform-style:preserve-3d;cursor:pointer}
+.fc.flip .fc-inner{transform:rotateY(180deg)}
+.fc-face{position:absolute;inset:0;backface-visibility:hidden;background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:22px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.fc-back{transform:rotateY(180deg);font-size:14px;line-height:1.6}
+.fc-term{font-size:24px;font-weight:800;color:#fff}
+.fc-hint{font-size:11px;color:var(--muted);margin-top:10px;font-family:'DM Mono',monospace}
+.q-def{font-size:15px;color:#fff;font-weight:600;line-height:1.55;margin:14px 0 16px;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:16px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.mtop{display:flex;justify-content:space-between;align-items:center;font-family:'DM Mono',monospace;font-size:11.5px;color:var(--muted)}
+.fb{margin-top:12px;font-size:13px;line-height:1.55;display:none}
+.fb.show{display:block}
+
+</style>
+<script src="studyhub-tutor.js"></script>
+<script>window.STUDYHUB_GAME={course:'envsci'};</script>
+<script src="studyhub-game.js"></script>
+</head>
+<body>
+<div class="app">
+  <a class="back" href="EnvSci_StudyHub.html">← Environmental Science Study Hub</a>
+  <div class="header">
+    <div>
+      <div class="series-label">Environmental Science Honors · Study Resource Series · Build 1</div>
+      <div class="page-title">Master <span>Glossary</span></div>
+      <div class="page-sub" id="page-sub"></div>
+    </div>
+    <div style="display:flex;gap:9px;align-items:center;flex-wrap:wrap">
+      <div data-game-hud></div>
+      <button class="btn btn-ghost" onclick="openCards()">🃏 Flip Cards</button>
+      <button class="btn btn-accent" onclick="openQuiz()">🧠 Quiz Me</button>
+    </div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-chip"><div class="stat-num" id="s-total">—</div><div class="stat-lbl">TERMS</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--amber)" id="s-star">0</div><div class="stat-lbl">STARRED</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--teal)" id="s-quiz">—</div><div class="stat-lbl">QUIZ ACCURACY</div></div>
+  </div>
+  <div class="controls">
+    <div class="ctrl-row"><span class="ctrl-label">SEARCH</span><input class="search-input" id="q" type="search" placeholder="Search terms, definitions, examples…" oninput="render()" aria-label="Search glossary"></div>
+    <div class="ctrl-row"><span class="ctrl-label">UNIT</span><button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button><button class="pill" data-unit="U1" onclick="setUnit('U1',this)">U1</button><button class="pill" data-unit="U2" onclick="setUnit('U2',this)">U2</button><button class="pill" data-unit="U3" onclick="setUnit('U3',this)">U3</button><button class="pill" data-unit="U4" onclick="setUnit('U4',this)">U4</button><button class="pill" data-unit="U5" onclick="setUnit('U5',this)">U5</button><button class="pill" data-unit="U6" onclick="setUnit('U6',this)">U6</button><button class="pill" data-unit="U7" onclick="setUnit('U7',this)">U7</button><button class="pill" data-unit="U8" onclick="setUnit('U8',this)">U8</button><button class="pill" data-unit="U9" onclick="setUnit('U9',this)">U9</button><button class="pill" data-unit="U10" onclick="setUnit('U10',this)">U10</button></div>
+    <div class="ctrl-row"><span class="ctrl-label">SHOW</span><button class="pill active" data-show="all" onclick="setShow('all',this)">All terms</button><button class="pill" data-show="star" onclick="setShow('star',this)">⭐ Starred</button><button class="pill" data-show="du" onclick="setShow('du',this)">🦆 DU certification terms</button></div>
+  </div>
+  <div class="alpha" id="alpha"></div>
+  <div id="list"></div>
+  <div class="footer">Environmental Science Honors (2001341) · Florida NGSSS Science Standards · Master Glossary</div>
+</div>
+
+<div class="overlay" id="ov" onclick="if(event.target===this)closeOv()">
+  <div class="modal" role="dialog" aria-modal="true" id="modal"></div>
+</div>
+
+<script>
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function nl(s){ return esc(s).replace(/\n/g,'<br>'); }
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON.parse(v); }catch(e){ return d; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
+
+const UNIT_NAMES = {"U1": "Intro to Env Science & Inquiry", "U2": "Earth Systems & Ecology", "U3": "Biodiversity & Populations", "U4": "Biomes, Wetlands & Aquatic Systems", "U5": "Conservation & Wildlife Management", "U6": "Soil, Agriculture & Food", "U7": "Water Resources", "U8": "Energy Resources", "U9": "Global Change & Environmental Health", "U10": "Air, Land & Waste"};
+const DOMAINS = {"D1": {"name": "Ecological Principles", "weight": 20, "icon": "🌿"}, "D2": {"name": "Species Identification", "weight": 10, "icon": "🦆"}, "D3": {"name": "Wildlife Conservation & Management", "weight": 30, "icon": "🪶"}, "D4": {"name": "Habitat Conservation & Management", "weight": 40, "icon": "🌾"}};
+const TERMS = [
+{
+"t": "Environmental Science",
+"u": "U1",
+"d": "The interdisciplinary study of how humans interact with the natural world — drawing on biology, chemistry, geology, economics, and policy.",
+"ex": "Studying how fertilizer runoff from farms affects Lake Okeechobee combines chemistry, ecology, and agricultural policy."
+},
+{
+"t": "Sustainability",
+"u": "U1",
+"d": "Meeting the needs of people today without reducing the ability of future generations to meet their own needs.",
+"ex": "Harvesting fish no faster than the population can replace itself."
+},
+{
+"t": "Ecological Footprint",
+"u": "U1",
+"d": "The area of land and water needed to supply the resources a person or population uses and absorb the waste it produces.",
+"ex": "The average U.S. footprint is several times larger than the global average."
+},
+{
+"t": "Tragedy of the Commons",
+"u": "U1",
+"d": "When individuals acting in their own short-term interest overuse a shared resource until it is degraded for everyone.",
+"ex": "Overfishing in open ocean waters that no single nation controls."
+},
+{
+"t": "Natural Resource",
+"u": "U1",
+"d": "Any material or energy from the environment that humans use — air, water, soil, minerals, wildlife, fuels."
+},
+{
+"t": "Renewable Resource",
+"u": "U1",
+"d": "A resource that is replenished by natural processes on a human timescale, if it is not overused.",
+"ex": "Sunlight, wind, forests, fresh water."
+},
+{
+"t": "Nonrenewable Resource",
+"u": "U1",
+"d": "A resource that forms far more slowly than we use it, so supplies are effectively finite.",
+"ex": "Coal, oil, natural gas, and uranium."
+},
+{
+"t": "Hypothesis",
+"u": "U1",
+"d": "A testable, falsifiable explanation or prediction, often written in if/then form.",
+"ex": "If nitrate levels increase, then algae growth in the pond will increase."
+},
+{
+"t": "Independent Variable",
+"u": "U1",
+"d": "The factor the investigator deliberately changes in an experiment.",
+"ex": "The amount of fertilizer added to each test plot."
+},
+{
+"t": "Dependent Variable",
+"u": "U1",
+"d": "The factor that is measured to see how it responds to the independent variable.",
+"ex": "The amount of algae that grows in each tank."
+},
+{
+"t": "Control Group",
+"u": "U1",
+"d": "The group that does not receive the experimental treatment; it gives a baseline for comparison."
+},
+{
+"t": "Correlation",
+"u": "U1",
+"d": "A pattern in which two variables change together. A correlation alone does not prove that one causes the other.",
+"ex": "Ice cream sales and drownings both rise in summer — heat drives both."
+},
+{
+"t": "Peer Review",
+"u": "U1",
+"d": "Evaluation of a scientific study by independent experts before it is published, to check its methods and conclusions."
+},
+{
+"t": "Precautionary Principle",
+"u": "U1",
+"d": "When an action may cause serious harm, take protective measures even before the cause-and-effect relationship is fully proven."
+},
+{
+"t": "Environmental Justice",
+"u": "U1",
+"d": "The fair treatment of all people in environmental decisions, so no group bears a disproportionate share of pollution or is excluded from decisions."
+},
+{
+"t": "Ecosystem",
+"u": "U2",
+"d": "All the organisms in an area plus the nonliving environment they interact with.",
+"ex": "A cypress dome: cypress trees, frogs, wading birds, water, soil, and sunlight.",
+"du": "D1"
+},
+{
+"t": "Biotic Factor",
+"u": "U2",
+"d": "A living or once-living part of an ecosystem.",
+"ex": "Plants, animals, fungi, bacteria, fallen leaves.",
+"du": "D1"
+},
+{
+"t": "Abiotic Factor",
+"u": "U2",
+"d": "A nonliving physical or chemical part of an ecosystem.",
+"ex": "Temperature, sunlight, water depth, salinity, soil pH.",
+"du": "D1"
+},
+{
+"t": "Producer (Autotroph)",
+"u": "U2",
+"d": "An organism that makes its own food, usually by photosynthesis, forming the base of the food chain.",
+"ex": "Pondweed, algae, and wild rice in a marsh.",
+"du": "D1"
+},
+{
+"t": "Consumer (Heterotroph)",
+"u": "U2",
+"d": "An organism that gets energy by eating other organisms. Primary consumers eat producers; secondary and tertiary consumers eat other consumers.",
+"du": "D1"
+},
+{
+"t": "Decomposer",
+"u": "U2",
+"d": "An organism, mostly bacteria and fungi, that breaks down dead material and returns nutrients to the soil and water.",
+"du": "D1"
+},
+{
+"t": "Detritivore",
+"u": "U2",
+"d": "An animal that feeds on dead organic matter (detritus).",
+"ex": "Earthworms, crayfish, and many aquatic insect larvae.",
+"du": "D1"
+},
+{
+"t": "Trophic Level",
+"u": "U2",
+"d": "An organism's feeding position in a food chain — producer, primary consumer, secondary consumer, and so on.",
+"du": "D1"
+},
+{
+"t": "Food Web",
+"u": "U2",
+"d": "The network of interconnected food chains in an ecosystem, showing that most organisms eat and are eaten by several others.",
+"du": "D1"
+},
+{
+"t": "10% Rule",
+"u": "U2",
+"d": "On average only about 10% of the energy at one trophic level is passed to the next; the rest is lost mostly as heat from respiration.",
+"ex": "10,000 kcal of plants supports about 1,000 kcal of herbivores and about 100 kcal of predators.",
+"du": "D1"
+},
+{
+"t": "Biomass",
+"u": "U2",
+"d": "The total mass of living organic matter in an area or trophic level.",
+"du": "D1"
+},
+{
+"t": "Net Primary Productivity (NPP)",
+"u": "U2",
+"d": "The rate at which producers store energy as biomass after subtracting the energy they use for their own respiration.",
+"ex": "Wetlands and estuaries have some of the highest NPP on Earth.",
+"du": "D1"
+},
+{
+"t": "Photosynthesis",
+"u": "U2",
+"d": "The process producers use to convert light energy, CO₂, and water into glucose and oxygen.",
+"ex": "6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂"
+},
+{
+"t": "Cellular Respiration",
+"u": "U2",
+"d": "The process organisms use to release energy from glucose, producing CO₂ and water."
+},
+{
+"t": "Biogeochemical Cycle",
+"u": "U2",
+"d": "The movement of a chemical element (carbon, nitrogen, phosphorus, water) through living things and the nonliving environment.",
+"du": "D1"
+},
+{
+"t": "Carbon Cycle",
+"u": "U2",
+"d": "The movement of carbon among the atmosphere, oceans, organisms, soil, and rock through photosynthesis, respiration, decomposition, and combustion.",
+"du": "D1"
+},
+{
+"t": "Nitrogen Fixation",
+"u": "U2",
+"d": "Conversion of unusable nitrogen gas (N₂) into ammonia or nitrate that plants can absorb, done by certain bacteria and by lightning.",
+"ex": "Bacteria in the root nodules of legumes such as clover and soybeans.",
+"du": "D1"
+},
+{
+"t": "Denitrification",
+"u": "U2",
+"d": "Conversion of nitrates back into N₂ gas by bacteria in low-oxygen soils. Wetlands are major sites of denitrification, which removes excess nitrogen from water.",
+"du": "D1"
+},
+{
+"t": "Phosphorus Cycle",
+"u": "U2",
+"d": "The slow cycling of phosphorus between rock, soil, water, and organisms. It has no significant atmospheric phase, so phosphorus is often a limiting nutrient.",
+"du": "D1"
+},
+{
+"t": "Water (Hydrologic) Cycle",
+"u": "U2",
+"d": "The continuous movement of water through evaporation, transpiration, condensation, precipitation, infiltration, and runoff.",
+"du": "D1"
+},
+{
+"t": "Transpiration",
+"u": "U2",
+"d": "Release of water vapor from plant leaves into the atmosphere.",
+"du": "D1"
+},
+{
+"t": "Biodiversity",
+"u": "U3",
+"d": "The variety of life at three levels: genetic diversity, species diversity, and ecosystem diversity.",
+"du": "D1"
+},
+{
+"t": "Species Richness",
+"u": "U3",
+"d": "The number of different species in an area.",
+"du": "D1"
+},
+{
+"t": "Species Evenness",
+"u": "U3",
+"d": "How evenly individuals are distributed among the species present.",
+"ex": "A pond with 25 mallards, 25 teal, 25 wigeon, and 25 pintails is more even than one with 97 mallards and one of each other species.",
+"du": "D1"
+},
+{
+"t": "Genetic Diversity",
+"u": "U3",
+"d": "The variety of genes within a population or species. Higher genetic diversity helps a population survive disease and environmental change.",
+"du": "D1"
+},
+{
+"t": "Population",
+"u": "U3",
+"d": "All the individuals of one species living in the same area at the same time.",
+"du": "D1"
+},
+{
+"t": "Community",
+"u": "U3",
+"d": "All the populations of different species living and interacting in an area.",
+"du": "D1"
+},
+{
+"t": "Habitat",
+"u": "U3",
+"d": "The place where an organism lives that provides the food, water, cover, and space it needs.",
+"ex": "A mottled duck's habitat includes freshwater marshes and flooded prairies of peninsular Florida.",
+"du": "D1"
+},
+{
+"t": "Niche",
+"u": "U3",
+"d": "An organism's role in its ecosystem — what it eats, where and when it feeds, and how it interacts with other species.",
+"ex": "Dabbling ducks and diving ducks share a lake but occupy different feeding niches.",
+"du": "D1"
+},
+{
+"t": "Keystone Species",
+"u": "U3",
+"d": "A species whose impact on its ecosystem is far larger than its abundance would suggest; removing it changes the whole community.",
+"ex": "The American alligator digs 'gator holes' that hold water through the Everglades dry season.",
+"du": "D1"
+},
+{
+"t": "Indicator Species",
+"u": "U3",
+"d": "A species whose presence, absence, or health reveals the condition of an ecosystem.",
+"ex": "Amphibians, because their permeable skin absorbs pollutants.",
+"du": "D1"
+},
+{
+"t": "Predation",
+"u": "U3",
+"d": "An interaction in which one organism kills and eats another.",
+"du": "D1"
+},
+{
+"t": "Competition",
+"u": "U3",
+"d": "Interaction in which organisms seek the same limited resource. It can occur within a species (intraspecific) or between species (interspecific).",
+"du": "D1"
+},
+{
+"t": "Mutualism",
+"u": "U3",
+"d": "A symbiotic relationship in which both species benefit.",
+"ex": "Pollinators and flowering plants.",
+"du": "D1"
+},
+{
+"t": "Commensalism",
+"u": "U3",
+"d": "A symbiotic relationship in which one species benefits and the other is neither helped nor harmed.",
+"ex": "Cattle egrets eating insects stirred up by grazing cattle.",
+"du": "D1"
+},
+{
+"t": "Parasitism",
+"u": "U3",
+"d": "A symbiotic relationship in which one species benefits at the expense of the host, usually without killing it quickly.",
+"du": "D1"
+},
+{
+"t": "Carrying Capacity (K)",
+"u": "U3",
+"d": "The largest population an environment can support over time with its available resources.",
+"ex": "The number of wintering ducks a marsh can feed is limited by its seed and invertebrate supply.",
+"du": "D1"
+},
+{
+"t": "Limiting Factor",
+"u": "U3",
+"d": "Any resource or condition that restricts population growth when it is in short supply.",
+"ex": "Nesting cover often limits duck production in heavily farmed prairie.",
+"du": "D1"
+},
+{
+"t": "Exponential Growth",
+"u": "U3",
+"d": "Population growth at a constant rate when resources are unlimited, producing a J-shaped curve.",
+"du": "D1"
+},
+{
+"t": "Logistic Growth",
+"u": "U3",
+"d": "Growth that slows as a population nears carrying capacity, producing an S-shaped curve.",
+"du": "D1"
+},
+{
+"t": "Density-Dependent Factor",
+"u": "U3",
+"d": "A limiting factor whose effect grows stronger as the population gets more crowded.",
+"ex": "Disease spread, competition for food, predation.",
+"du": "D1"
+},
+{
+"t": "Density-Independent Factor",
+"u": "U3",
+"d": "A limiting factor that affects a population regardless of its density.",
+"ex": "Hurricanes, droughts, and freezes.",
+"du": "D1"
+},
+{
+"t": "r-Selected Species",
+"u": "U3",
+"d": "Species that produce many offspring with little parental care and short lifespans, and recover quickly after population crashes.",
+"ex": "Insects, many fish, weeds.",
+"du": "D1"
+},
+{
+"t": "K-Selected Species",
+"u": "U3",
+"d": "Species that produce few offspring with lots of parental care and long lifespans; slow to recover from declines.",
+"ex": "Elephants, whales, eagles.",
+"du": "D1"
+},
+{
+"t": "Ecological Succession",
+"u": "U3",
+"d": "The gradual, predictable change in the species that make up a community over time. Primary succession starts on bare rock; secondary starts where soil remains after a disturbance.",
+"ex": "A ponded wetland slowly filling in and becoming a wet meadow, then a forest.",
+"du": "D1"
+},
+{
+"t": "Pioneer Species",
+"u": "U3",
+"d": "The first species to colonize bare or disturbed ground, such as lichens and mosses, beginning soil formation.",
+"du": "D1"
+},
+{
+"t": "Natural Selection",
+"u": "U3",
+"d": "The process by which individuals with traits better suited to their environment survive and reproduce more, so those traits become more common.",
+"du": "D1"
+},
+{
+"t": "Adaptation",
+"u": "U3",
+"d": "An inherited trait that increases an organism's chance of surviving and reproducing in its environment.",
+"ex": "A diving duck's legs set far back on its body for powerful underwater swimming.",
+"du": "D1"
+},
+{
+"t": "Biome",
+"u": "U4",
+"d": "A large region defined by its climate (mainly temperature and precipitation) and its dominant vegetation.",
+"ex": "Tundra, taiga, temperate deciduous forest, grassland, desert, tropical rainforest."
+},
+{
+"t": "Tropical Rainforest",
+"u": "U4",
+"d": "A warm, very wet biome near the equator with the highest biodiversity on land but nutrient-poor soils."
+},
+{
+"t": "Temperate Grassland",
+"u": "U4",
+"d": "A biome with hot summers, cold winters, moderate rainfall, deep fertile soils, and few trees; maintained by fire and grazing.",
+"ex": "The North American prairie, which includes the Prairie Pothole Region.",
+"du": "D4"
+},
+{
+"t": "Taiga (Boreal Forest)",
+"u": "U4",
+"d": "A cold, coniferous-forest biome across Canada, Alaska, and northern Eurasia; its countless lakes and bogs are major waterfowl breeding grounds.",
+"du": "D4"
+},
+{
+"t": "Tundra",
+"u": "U4",
+"d": "A cold, treeless biome with permafrost, short summers, and low-growing plants; important nesting habitat for many geese.",
+"du": "D4"
+},
+{
+"t": "Wetland",
+"u": "U4",
+"d": "Land that is saturated or flooded long enough to support plants adapted to wet soils. Identified by three criteria: hydrology, hydric soils, and hydrophytic vegetation.",
+"du": "D4"
+},
+{
+"t": "Hydric Soil",
+"u": "U4",
+"d": "Soil that formed under saturated, low-oxygen conditions, often gray or mottled and smelling of sulfur.",
+"du": "D4"
+},
+{
+"t": "Hydrophyte",
+"u": "U4",
+"d": "A plant adapted to grow in water or saturated soil.",
+"ex": "Cattail, bulrush, cypress, pickerelweed.",
+"du": "D4"
+},
+{
+"t": "Marsh",
+"u": "U4",
+"d": "A wetland dominated by soft-stemmed, nonwoody plants such as grasses, sedges, and cattails.",
+"du": "D4"
+},
+{
+"t": "Swamp",
+"u": "U4",
+"d": "A wetland dominated by trees or shrubs.",
+"ex": "Florida's cypress swamps; Southern bottomland hardwood swamps.",
+"du": "D4"
+},
+{
+"t": "Bog",
+"u": "U4",
+"d": "An acidic, low-nutrient wetland fed mainly by rain, with accumulated peat and sphagnum moss.",
+"du": "D4"
+},
+{
+"t": "Estuary",
+"u": "U4",
+"d": "A partially enclosed coastal area where fresh river water mixes with salt water, creating brackish, highly productive habitat.",
+"ex": "Tampa Bay, Charlotte Harbor, and Indian River Lagoon.",
+"du": "D4"
+},
+{
+"t": "Mangrove Swamp",
+"u": "U4",
+"d": "A tropical coastal wetland of salt-tolerant trees whose roots stabilize shorelines and shelter juvenile fish.",
+"du": "D4"
+},
+{
+"t": "Prairie Pothole Region",
+"u": "U4",
+"d": "Millions of small, glacially formed wetlands across the northern Great Plains of the U.S. and Canada. Called North America's \"duck factory\" because it produces a large share of the continent's ducks.",
+"du": "D4"
+},
+{
+"t": "Bottomland Hardwood Forest",
+"u": "U4",
+"d": "Forested floodplain wetlands along Southern rivers that flood seasonally. Acorns provide key winter food for wood ducks and mallards.",
+"du": "D4"
+},
+{
+"t": "Everglades",
+"u": "U4",
+"d": "A vast, slow-moving \"river of grass\" wetland in South Florida whose flow has been heavily altered by drainage and canals, now the focus of a major restoration effort.",
+"du": "D4"
+},
+{
+"t": "Littoral Zone",
+"u": "U4",
+"d": "The shallow, near-shore zone of a lake or pond where light reaches the bottom and rooted plants grow.",
+"du": "D4"
+},
+{
+"t": "Coral Reef",
+"u": "U4",
+"d": "A marine ecosystem built by colonies of coral animals living in symbiosis with algae; highly diverse and sensitive to warming and acidification."
+},
+{
+"t": "Cowardin Classification",
+"u": "U4",
+"d": "The U.S. wetland classification system, which groups wetlands into five systems: marine, estuarine, riverine, lacustrine, and palustrine.",
+"du": "D4"
+},
+{
+"t": "Palustrine Wetland",
+"u": "U4",
+"d": "An inland, non-tidal wetland dominated by plants — marshes, swamps, bogs, and prairie potholes. It is the most common wetland type in the U.S.",
+"du": "D4"
+},
+{
+"t": "Conservation",
+"u": "U5",
+"d": "Wise, sustainable use and management of natural resources so they remain available long term.",
+"du": "D3"
+},
+{
+"t": "Preservation",
+"u": "U5",
+"d": "Protecting nature from human use, setting areas aside to remain as undisturbed as possible.",
+"du": "D3"
+},
+{
+"t": "Wildlife Management",
+"u": "U5",
+"d": "Applying science to manage wildlife populations and habitats to meet conservation goals, including regulating harvest.",
+"du": "D3"
+},
+{
+"t": "North American Model of Wildlife Conservation",
+"u": "U5",
+"d": "The principles behind U.S. and Canadian wildlife policy: wildlife is held in public trust, managed with science, protected by law, and largely funded by hunters and anglers.",
+"du": "D3"
+},
+{
+"t": "Public Trust Doctrine",
+"u": "U5",
+"d": "The principle that wildlife belongs to all citizens and is managed by government on their behalf, not owned by individuals.",
+"du": "D3"
+},
+{
+"t": "Migratory Bird Treaty Act (1918)",
+"u": "U5",
+"d": "U.S. law implementing a treaty with Great Britain (for Canada) that protects migratory birds and gives the federal government authority to regulate their harvest.",
+"du": "D3"
+},
+{
+"t": "Federal Duck Stamp",
+"u": "U5",
+"d": "A stamp required of waterfowl hunters 16 and older since 1934. Almost all of its proceeds buy or lease wetland habitat for the National Wildlife Refuge System.",
+"du": "D3"
+},
+{
+"t": "Pittman-Robertson Act (1937)",
+"u": "U5",
+"d": "Federal law that places an excise tax on firearms and ammunition and distributes the money to state wildlife agencies for restoration, research, and hunter education.",
+"du": "D3"
+},
+{
+"t": "North American Waterfowl Management Plan (NAWMP)",
+"u": "U5",
+"d": "A 1986 international plan, first between the U.S. and Canada and later joined by Mexico, to restore waterfowl populations by conserving habitat through partnerships.",
+"du": "D3"
+},
+{
+"t": "NAWCA (1989)",
+"u": "U5",
+"d": "The North American Wetlands Conservation Act, which provides matching grants to partners for projects that protect, restore, and enhance wetlands for waterfowl and other birds.",
+"du": "D3"
+},
+{
+"t": "Flyway",
+"u": "U5",
+"d": "A broad migration route between breeding and wintering areas. North America has four: Atlantic, Mississippi, Central, and Pacific. Waterfowl harvest regulations are set flyway by flyway.",
+"ex": "Florida is in the Atlantic Flyway.",
+"du": "D3"
+},
+{
+"t": "Bird Banding",
+"u": "U5",
+"d": "Attaching a numbered metal leg band to a bird so that recoveries reveal its movements, survival, and harvest rates.",
+"du": "D3"
+},
+{
+"t": "Bag Limit",
+"u": "U5",
+"d": "The maximum number of a species one hunter may legally take per day.",
+"du": "D3"
+},
+{
+"t": "Adaptive Harvest Management",
+"u": "U5",
+"d": "The process of setting duck seasons and bag limits each year from population and habitat survey data, then learning from the results to improve future decisions.",
+"du": "D3"
+},
+{
+"t": "Breeding Population Survey",
+"u": "U5",
+"d": "The annual aerial and ground survey of North American breeding ducks and pond counts, conducted since 1955 and used to set harvest regulations.",
+"du": "D3"
+},
+{
+"t": "Recruitment",
+"u": "U5",
+"d": "The addition of new individuals to a population through reproduction — for ducks, how many young survive to fly.",
+"du": "D3"
+},
+{
+"t": "Nest Success",
+"u": "U5",
+"d": "The percentage of nests that hatch at least one egg; a key driver of duck population growth.",
+"du": "D3"
+},
+{
+"t": "Predator Management",
+"u": "U5",
+"d": "Actions that reduce predator impacts on nesting birds, such as predator-proof nest structures or targeted removal, used where predators sharply limit nest success.",
+"du": "D3"
+},
+{
+"t": "Nest Structure",
+"u": "U5",
+"d": "An artificial nesting site such as a wood duck box or an elevated mallard 'hen house' that raises nest success by limiting predator access.",
+"du": "D3"
+},
+{
+"t": "Endangered Species",
+"u": "U5",
+"d": "A species in danger of extinction throughout all or a significant part of its range.",
+"du": "D3"
+},
+{
+"t": "Threatened Species",
+"u": "U5",
+"d": "A species likely to become endangered in the foreseeable future.",
+"du": "D3"
+},
+{
+"t": "Endangered Species Act (1973)",
+"u": "U5",
+"d": "U.S. law that protects listed species and their critical habitat from being harmed or 'taken.'",
+"du": "D3"
+},
+{
+"t": "HIPPCO",
+"u": "U5",
+"d": "A memory aid for the major causes of biodiversity loss: Habitat loss, Invasive species, Population growth, Pollution, Climate change, Overharvesting.",
+"du": "D3"
+},
+{
+"t": "Habitat Fragmentation",
+"u": "U5",
+"d": "Breaking large, continuous habitat into smaller, isolated patches, often by roads, farms, or development.",
+"du": "D4"
+},
+{
+"t": "Edge Effect",
+"u": "U5",
+"d": "Changes in conditions and species at the boundary between two habitats. In fragmented grasslands, nest predators often hunt along edges.",
+"du": "D4"
+},
+{
+"t": "Wildlife Corridor",
+"u": "U5",
+"d": "A strip of habitat connecting isolated patches so animals can move, find mates, and maintain genetic diversity.",
+"du": "D4"
+},
+{
+"t": "Ecosystem Services",
+"u": "U5",
+"d": "Benefits people receive from ecosystems, such as flood control, water filtration, pollination, and recreation.",
+"ex": "A single acre of wetland can store a large volume of floodwater.",
+"du": "D4"
+},
+{
+"t": "Restoration Ecology",
+"u": "U5",
+"d": "The science of repairing degraded ecosystems toward their natural structure and function.",
+"ex": "Plugging drainage ditches to bring back a drained wetland.",
+"du": "D4"
+},
+{
+"t": "National Wildlife Refuge System",
+"u": "U5",
+"d": "A federal network of lands and waters managed by the U.S. Fish and Wildlife Service primarily for wildlife conservation. Many refuges were bought with Duck Stamp dollars.",
+"du": "D4"
+},
+{
+"t": "Conservation Easement",
+"u": "U5",
+"d": "A voluntary legal agreement in which a landowner permanently limits development on their land to protect its habitat, while keeping ownership.",
+"du": "D4"
+},
+{
+"t": "Moist-Soil Management",
+"u": "U5",
+"d": "Drawing water down slowly in spring or summer so native seed-producing plants such as smartweed and millet sprout on wet mud, then reflooding in fall to provide waterfowl food.",
+"du": "D4"
+},
+{
+"t": "Water Control Structure",
+"u": "U5",
+"d": "A device such as a flashboard riser or stoplog structure that lets managers raise or lower water levels in a wetland impoundment.",
+"du": "D4"
+},
+{
+"t": "Drawdown",
+"u": "U5",
+"d": "Deliberately lowering water levels in a wetland to expose mudflats, stimulate plant germination, or concentrate food for birds.",
+"du": "D4"
+},
+{
+"t": "Prescribed Fire",
+"u": "U5",
+"d": "A planned, controlled burn used to reduce woody plants, recycle nutrients, and renew grasslands and wetlands.",
+"du": "D4"
+},
+{
+"t": "Dense Nesting Cover",
+"u": "U5",
+"d": "Tall, thick grass and forb plantings that hide duck nests from predators and raise nest success in upland areas near wetlands.",
+"du": "D4"
+},
+{
+"t": "Invasive Species",
+"u": "U5",
+"d": "A non-native species that spreads aggressively and causes ecological or economic harm.",
+"ex": "Hydrilla, water hyacinth, melaleuca, and Burmese pythons in Florida.",
+"du": "D4"
+},
+{
+"t": "Dabbling Duck",
+"u": "U5",
+"d": "A duck that feeds at the surface or by tipping tail-up in shallow water, has legs centered under its body, and springs straight up into flight. Most show a colored speculum.",
+"ex": "Mallard, pintail, wigeon, teal, shoveler, wood duck.",
+"du": "D2"
+},
+{
+"t": "Diving Duck",
+"u": "U5",
+"d": "A duck that dives underwater to feed, has legs set far back, and must run across the water to take off.",
+"ex": "Canvasback, redhead, scaup, ring-necked duck, bufflehead.",
+"du": "D2"
+},
+{
+"t": "Speculum",
+"u": "U5",
+"d": "A patch of often iridescent color on the secondary wing feathers of many ducks; a key identification mark.",
+"ex": "Blue bordered in white on a mallard; green on a green-winged teal.",
+"du": "D2"
+},
+{
+"t": "Eclipse Plumage",
+"u": "U5",
+"d": "The dull, hen-like plumage many male ducks wear briefly after breeding, while they molt their flight feathers.",
+"du": "D2"
+},
+{
+"t": "Molt",
+"u": "U5",
+"d": "The periodic shedding and replacement of feathers. Ducks lose all their flight feathers at once and are flightless for several weeks.",
+"du": "D2"
+},
+{
+"t": "Drake / Hen",
+"u": "U5",
+"d": "A male duck (drake) and a female duck (hen). In most species the drake is brightly colored and the hen is mottled brown for camouflage on the nest.",
+"du": "D2"
+},
+{
+"t": "Soil Horizon",
+"u": "U6",
+"d": "A distinct layer of soil: O (organic litter), A (topsoil), B (subsoil), C (weathered parent material), and R (bedrock)."
+},
+{
+"t": "Humus",
+"u": "U6",
+"d": "Dark, partly decomposed organic matter in topsoil that holds water and nutrients."
+},
+{
+"t": "Soil Erosion",
+"u": "U6",
+"d": "Removal of soil by wind or water, often accelerated by plowing, overgrazing, and deforestation.",
+"du": "D4"
+},
+{
+"t": "Desertification",
+"u": "U6",
+"d": "Degradation of drylands into desert-like conditions, caused by overgrazing, drought, and poor land use."
+},
+{
+"t": "Monoculture",
+"u": "U6",
+"d": "Planting a single crop over a large area — efficient to harvest but vulnerable to pests and low in habitat value."
+},
+{
+"t": "Crop Rotation",
+"u": "U6",
+"d": "Planting different crops on the same field in successive seasons to restore nutrients and break pest cycles."
+},
+{
+"t": "No-Till Farming",
+"u": "U6",
+"d": "Planting directly into the previous crop's residue without plowing, which reduces erosion and keeps more cover for wildlife.",
+"du": "D4"
+},
+{
+"t": "Integrated Pest Management (IPM)",
+"u": "U6",
+"d": "Controlling pests by combining biological, cultural, and mechanical methods, using chemical pesticides only as a last resort."
+},
+{
+"t": "Pesticide Resistance",
+"u": "U6",
+"d": "The evolution of pest populations that are no longer killed by a pesticide, because survivors pass on resistance genes."
+},
+{
+"t": "Genetically Modified Organism (GMO)",
+"u": "U6",
+"d": "An organism whose DNA has been altered with genetic engineering, for example to resist pests or tolerate herbicides."
+},
+{
+"t": "Green Revolution",
+"u": "U6",
+"d": "The mid-1900s boom in crop yields from high-yield varieties, synthetic fertilizer, irrigation, and pesticides — with environmental costs."
+},
+{
+"t": "Sustainable Agriculture",
+"u": "U6",
+"d": "Farming that produces food while protecting soil, water, and biodiversity for the long term."
+},
+{
+"t": "Conservation Reserve Program (CRP)",
+"u": "U6",
+"d": "A USDA program that pays farmers to take erosion-prone cropland out of production and plant long-term cover — which also provides valuable duck nesting habitat.",
+"du": "D4"
+},
+{
+"t": "Swampbuster",
+"u": "U6",
+"d": "A provision of the 1985 Farm Bill that denies certain USDA farm benefits to producers who drain wetlands to grow crops.",
+"du": "D4"
+},
+{
+"t": "Overgrazing",
+"u": "U6",
+"d": "Livestock eating plants faster than they can regrow, leading to bare soil, erosion, and lost nesting cover.",
+"du": "D4"
+},
+{
+"t": "Aquaculture",
+"u": "U6",
+"d": "Raising fish, shellfish, or aquatic plants in controlled environments for food."
+},
+{
+"t": "Watershed",
+"u": "U7",
+"d": "All the land area that drains into a particular river, lake, or estuary.",
+"ex": "The Kissimmee–Okeechobee–Everglades watershed.",
+"du": "D4"
+},
+{
+"t": "Aquifer",
+"u": "U7",
+"d": "An underground layer of porous rock or sediment that holds and transmits groundwater.",
+"ex": "The Floridan Aquifer supplies most of Florida's drinking water."
+},
+{
+"t": "Groundwater",
+"u": "U7",
+"d": "Water stored underground in soil pores and rock fractures."
+},
+{
+"t": "Groundwater Recharge",
+"u": "U7",
+"d": "Water soaking down from the surface to refill an aquifer. Many wetlands slowly recharge groundwater.",
+"du": "D4"
+},
+{
+"t": "Saltwater Intrusion",
+"u": "U7",
+"d": "Seawater moving into a coastal freshwater aquifer when too much fresh water is pumped out or sea level rises."
+},
+{
+"t": "Point Source Pollution",
+"u": "U7",
+"d": "Pollution from a single, identifiable source.",
+"ex": "A discharge pipe from a factory or sewage plant."
+},
+{
+"t": "Nonpoint Source Pollution",
+"u": "U7",
+"d": "Pollution from many diffuse sources, carried by runoff — the leading cause of U.S. water-quality problems.",
+"ex": "Fertilizer from lawns and farms washing into canals after rain.",
+"du": "D4"
+},
+{
+"t": "Eutrophication",
+"u": "U7",
+"d": "Nutrient enrichment of water (mainly nitrogen and phosphorus) that triggers algal blooms; when the algae die, decomposers use up dissolved oxygen.",
+"du": "D4"
+},
+{
+"t": "Harmful Algal Bloom",
+"u": "U7",
+"d": "An overgrowth of algae or cyanobacteria that produces toxins or depletes oxygen.",
+"ex": "Blue-green algae on Lake Okeechobee; red tide along Florida's Gulf coast."
+},
+{
+"t": "Dissolved Oxygen (DO)",
+"u": "U7",
+"d": "The amount of oxygen gas dissolved in water — a key indicator of water quality. Below about 2 mg/L is hypoxic and stresses most aquatic life.",
+"du": "D4"
+},
+{
+"t": "Dead Zone",
+"u": "U7",
+"d": "A hypoxic area of water where most animals cannot survive, often caused by nutrient runoff.",
+"ex": "The Gulf dead zone at the mouth of the Mississippi River."
+},
+{
+"t": "Clean Water Act (1972)",
+"u": "U7",
+"d": "The main U.S. law regulating pollutant discharges into waters. Section 404 requires permits to dredge or fill wetlands.",
+"du": "D4"
+},
+{
+"t": "Riparian Buffer",
+"u": "U7",
+"d": "A strip of trees, shrubs, or grasses along a waterway that filters runoff, stabilizes banks, and shades the water.",
+"du": "D4"
+},
+{
+"t": "Wastewater Treatment",
+"u": "U7",
+"d": "Processing sewage through primary (settling), secondary (bacterial breakdown), and sometimes tertiary (nutrient removal) steps before discharge."
+},
+{
+"t": "Fossil Fuel",
+"u": "U8",
+"d": "A fuel formed over millions of years from buried ancient organisms — coal, oil, and natural gas. Burning it releases CO₂."
+},
+{
+"t": "Coal",
+"u": "U8",
+"d": "A solid fossil fuel from ancient swamp plants; the most carbon-intensive fuel per unit of energy."
+},
+{
+"t": "Natural Gas",
+"u": "U8",
+"d": "A fossil fuel made mostly of methane that burns cleaner than coal but can leak methane, a potent greenhouse gas."
+},
+{
+"t": "Hydraulic Fracturing",
+"u": "U8",
+"d": "Injecting water, sand, and chemicals at high pressure to crack shale rock and release oil and gas."
+},
+{
+"t": "Nuclear Fission",
+"u": "U8",
+"d": "Splitting uranium nuclei to release heat that makes steam for electricity — low in carbon emissions, but it produces long-lived radioactive waste."
+},
+{
+"t": "Photovoltaic (Solar) Cell",
+"u": "U8",
+"d": "A device that converts sunlight directly into electricity."
+},
+{
+"t": "Wind Energy",
+"u": "U8",
+"d": "Electricity generated by wind turbines; renewable and emission-free during operation, but turbines must be sited carefully to reduce bird and bat deaths."
+},
+{
+"t": "Hydroelectric Power",
+"u": "U8",
+"d": "Electricity from water flowing through dam turbines. Renewable, but dams block fish migration and flood habitat."
+},
+{
+"t": "Geothermal Energy",
+"u": "U8",
+"d": "Heat from Earth's interior used for electricity or heating."
+},
+{
+"t": "Biomass Fuel",
+"u": "U8",
+"d": "Energy from organic material such as wood, crop waste, or ethanol. Renewable if regrown, but it releases CO₂ when burned."
+},
+{
+"t": "Energy Efficiency",
+"u": "U8",
+"d": "Getting the same useful work from less energy.",
+"ex": "An LED bulb uses far less electricity than an incandescent bulb for the same light."
+},
+{
+"t": "Energy Conservation",
+"u": "U8",
+"d": "Using less energy by changing behavior.",
+"ex": "Turning off lights, carpooling, raising the thermostat in summer."
+},
+{
+"t": "Greenhouse Effect",
+"u": "U9",
+"d": "The natural warming of Earth's surface as greenhouse gases absorb and re-emit infrared heat. Without it, Earth would be far too cold for life."
+},
+{
+"t": "Greenhouse Gas",
+"u": "U9",
+"d": "A gas that absorbs infrared radiation.",
+"ex": "Carbon dioxide, methane, nitrous oxide, water vapor."
+},
+{
+"t": "Climate Change",
+"u": "U9",
+"d": "Long-term shifts in global temperature and weather patterns. Current change is driven mainly by greenhouse gases from burning fossil fuels.",
+"du": "D4"
+},
+{
+"t": "Sea Level Rise",
+"u": "U9",
+"d": "An increase in average ocean height from melting land ice and the expansion of warming seawater; it threatens coastal marshes and Florida's low-lying coast.",
+"du": "D4"
+},
+{
+"t": "Ocean Acidification",
+"u": "U9",
+"d": "Falling ocean pH as seawater absorbs CO₂, making it harder for corals and shellfish to build shells."
+},
+{
+"t": "Ozone Depletion",
+"u": "U9",
+"d": "Thinning of the protective stratospheric ozone layer, mainly by CFCs, which lets more UV radiation reach Earth."
+},
+{
+"t": "Montreal Protocol (1987)",
+"u": "U9",
+"d": "An international treaty phasing out CFCs and other ozone-depleting chemicals; widely considered the most successful environmental treaty."
+},
+{
+"t": "Bioaccumulation",
+"u": "U9",
+"d": "Buildup of a persistent toxin inside one organism over its lifetime, because it is absorbed faster than it is excreted.",
+"du": "D3"
+},
+{
+"t": "Biomagnification",
+"u": "U9",
+"d": "Increase in the concentration of a persistent toxin at each higher trophic level of a food chain.",
+"ex": "DDT thinned eagle and pelican eggshells.",
+"du": "D3"
+},
+{
+"t": "LD50",
+"u": "U9",
+"d": "The dose of a substance that kills 50% of a test population; a lower LD50 means a more toxic substance."
+},
+{
+"t": "Dose-Response Curve",
+"u": "U9",
+"d": "A graph showing how the effect of a substance changes as the dose increases."
+},
+{
+"t": "Zoonotic Disease",
+"u": "U9",
+"d": "A disease that can pass between animals and people.",
+"ex": "Avian influenza, West Nile virus, rabies."
+},
+{
+"t": "Avian Influenza (HPAI)",
+"u": "U9",
+"d": "Highly pathogenic avian influenza — a contagious viral disease spread by wild waterfowl that can kill poultry and some wild birds. It is monitored through surveillance of wild birds.",
+"du": "D3"
+},
+{
+"t": "Avian Botulism",
+"u": "U9",
+"d": "Paralysis caused by a bacterial toxin that builds up in warm, shallow, stagnant wetlands; it can kill thousands of waterbirds. Also called 'limberneck.'",
+"du": "D3"
+},
+{
+"t": "Primary Pollutant",
+"u": "U10",
+"d": "A pollutant released directly from a source.",
+"ex": "Carbon monoxide, sulfur dioxide, soot."
+},
+{
+"t": "Secondary Pollutant",
+"u": "U10",
+"d": "A pollutant formed in the atmosphere when primary pollutants react.",
+"ex": "Ground-level ozone, acid rain."
+},
+{
+"t": "Particulate Matter (PM2.5)",
+"u": "U10",
+"d": "Tiny solid or liquid particles in air; those under 2.5 micrometers penetrate deep into the lungs."
+},
+{
+"t": "Photochemical Smog",
+"u": "U10",
+"d": "Brown haze formed when sunlight drives reactions between nitrogen oxides and volatile organic compounds, producing ground-level ozone."
+},
+{
+"t": "Acid Deposition",
+"u": "U10",
+"d": "Rain, snow, or dry particles made acidic by sulfur and nitrogen oxides; it lowers the pH of lakes and soils."
+},
+{
+"t": "Temperature Inversion",
+"u": "U10",
+"d": "A warm air layer sitting above cooler air near the ground, trapping pollutants close to the surface."
+},
+{
+"t": "Clean Air Act",
+"u": "U10",
+"d": "The main U.S. law setting air-quality standards and limiting emissions."
+},
+{
+"t": "Radon",
+"u": "U10",
+"d": "A colorless, odorless radioactive gas that seeps from soil into buildings; a leading cause of lung cancer in nonsmokers."
+},
+{
+"t": "Sanitary Landfill",
+"u": "U10",
+"d": "A lined, engineered disposal site where waste is compacted and covered daily, with systems to collect leachate and methane."
+},
+{
+"t": "Leachate",
+"u": "U10",
+"d": "Contaminated liquid that forms as water seeps through waste and can pollute groundwater if not collected."
+},
+{
+"t": "Composting",
+"u": "U10",
+"d": "Letting organic waste decompose aerobically into nutrient-rich soil conditioner."
+},
+{
+"t": "Hazardous Waste",
+"u": "U10",
+"d": "Waste that is toxic, flammable, corrosive, or reactive, and must be handled under special rules."
+},
+{
+"t": "Superfund",
+"u": "U10",
+"d": "The federal program (CERCLA, 1980) that funds cleanup of the nation's most contaminated sites."
+},
+{
+"t": "Nontoxic Shot",
+"u": "U10",
+"d": "Steel, bismuth, or tungsten shot required for U.S. waterfowl hunting since 1991, because ducks ate spent lead pellets from wetland bottoms and died of lead poisoning.",
+"du": "D3"
+}
+].sort((a,b)=>a.t.localeCompare(b.t));
+const TUTOR_NAME = "TEAL";
+const LS_STAR='envsci_glossary_starred', LS_QS='envsci_glossary_quizscore', LS_SRS='envsci_glossary_srs', LS_QT='envsci_glossary_quiztotals';
+let starred = new Set(lsGet(LS_STAR,[]));
+let srs = lsGet(LS_SRS,{});
+let qt = lsGet(LS_QT,{c:0,t:0});
+let curUnit='all', curShow='all';
+function setUnit(u,b){ curUnit=u; document.querySelectorAll('.pill[data-unit]').forEach(x=>x.classList.toggle('active',x===b)); render(); }
+function setShow(s,b){ curShow=s; document.querySelectorAll('.pill[data-show]').forEach(x=>x.classList.toggle('active',x===b)); render(); }
+function idOf(t){ return t.t.replace(/[^a-zA-Z0-9]/g,'_'); }
+function toggleStar(i){ const k=TERMS[i].t; starred.has(k)?starred.delete(k):starred.add(k); lsSet(LS_STAR,[...starred]); render(); }
+function filtered(){
+  const q=document.getElementById('q').value.trim().toLowerCase();
+  return TERMS.map((t,i)=>({t,i})).filter(({t})=>{
+    if(curUnit!=='all'&&t.u!==curUnit) return false;
+    if(curShow==='star'&&!starred.has(t.t)) return false;
+    if(curShow==='du'&&!t.du) return false;
+    if(q&&!(t.t+' '+t.d+' '+(t.ex||'')).toLowerCase().includes(q)) return false;
+    return true;
+  });
+}
+const openTutors = new Set();
+function render(){
+  const list=filtered();
+  document.getElementById('s-star').textContent=starred.size;
+  const letters=new Set(list.map(x=>x.t.t[0].toUpperCase()));
+  document.getElementById('alpha').innerHTML='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(l=>`<a href="#L-${l}" class="${letters.has(l)?'':'off'}">${l}</a>`).join('');
+  if(!list.length){ document.getElementById('list').innerHTML='<div class="empty">No terms match. Try a different search or filter.</div>'; return; }
+  let html='', last='';
+  list.forEach(({t,i})=>{
+    const L=t.t[0].toUpperCase();
+    if(L!==last){ html+=`<div class="letter" id="L-${L}">${L}</div>`; last=L; }
+    const id=idOf(t), on=starred.has(t.t);
+    html+=`<div class="term">
+      <div class="term-top"><div><div class="term-name">${esc(t.t)}</div>
+        <div class="term-tags"><span class="tag t-unit">${t.u} · ${esc(UNIT_NAMES[t.u])}</span>${t.du&&DOMAINS[t.du]?`<span class="tag t-du">🦆 DU · ${esc(DOMAINS[t.du].name)}</span>`:''}</div></div>
+        <button class="star ${on?'on':''}" onclick="toggleStar(${i})" aria-label="${on?'Unstar':'Star'} ${esc(t.t)}" aria-pressed="${on}">${on?'★':'☆'}</button></div>
+      <div class="term-def">${esc(t.d)}</div>
+      ${t.ex?`<div class="term-ex">${esc(t.ex)}</div>`:''}
+      <button class="tutor-toggle" onclick="toggleTutor(${i})">💬 Ask ${TUTOR_NAME} about this</button>
+      <div class="tutor ${openTutors.has(i)?'open':''}" id="tu-${i}">
+        <div class="chat" id="ch-${i}"></div>
+        <div class="chips"><button class="chip" onclick="askT(${i},'Give me an example')">Example</button><button class="chip" onclick="askT(${i},'Explain it a simpler way')">Simpler</button><button class="chip" onclick="askT(${i},'What do students mix this up with?')">Common mix-up</button></div>
+        <div class="trow"><input class="tin" id="ti-${i}" placeholder="Ask your own question…" onkeydown="if(event.key==='Enter')askT(${i})"><button class="btn btn-accent" style="padding:8px 14px" onclick="askT(${i})">Ask</button></div>
+        <div class="tmode">${esc(StudyHubTutor.modeLabel())}</div>
+      </div>
+    </div>`;
+  });
+  document.getElementById('list').innerHTML=html;
+  openTutors.forEach(i=>restoreChat(i));
+}
+// ── Tutor ──
+const chats={};
+function toggleTutor(i){ openTutors.has(i)?openTutors.delete(i):openTutors.add(i); document.getElementById('tu-'+i).classList.toggle('open'); }
+function restoreChat(i){ const c=document.getElementById('ch-'+i); if(!c||!chats[i]) return; c.innerHTML=chats[i].ui.map(([r,t])=>`<div class="bub ${r}">${fmt(t)}</div>`).join(''); }
+function fmt(t){ return esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/`([^`]+)`/g,'<code>$1</code>').replace(/\n/g,'<br>'); }
+function related(t){ return TERMS.filter(x=>x!==t&&x.u===t.u).slice(0,40).filter(x=>{ const w=t.t.toLowerCase().split(/[^a-z]+/).filter(s=>s.length>4); return w.some(s=>x.d.toLowerCase().includes(s)); }).map(x=>x.t).slice(0,3); }
+async function askT(i,preset){
+  const t=TERMS[i]; const inp=document.getElementById('ti-'+i);
+  const msg=(preset||inp.value).trim(); if(!msg) return; inp.value='';
+  const c = chats[i] = chats[i] || {hist:[{role:'user',content:`TERM: ${t.t} | Unit: ${UNIT_NAMES[t.u]}\nDefinition: ${t.d}\n${t.ex?'Example: '+t.ex:''}`},{role:'assistant',content:'Ready.'}], ui:[]};
+  c.ui.push(['u',msg]); c.hist.push({role:'user',content:msg}); restoreChat(i);
+  const res = await StudyHubTutor.ask({
+    system:`You are ${TUTOR_NAME}, a Environmental Science Honors tutor inside a glossary. Keep replies to 2-4 sentences, plain text, high-school friendly. Add a new angle, a Florida or wildlife example, or a common misconception; never just repeat the definition. Redirect off-topic questions warmly.`,
+    messages:c.hist, context:{term:t.t, def:t.d, example:t.ex, unit:UNIT_NAMES[t.u], related:related(t)}, message:msg });
+  c.ui.push(['a',res.text]); c.hist.push({role:'assistant',content:res.text}); if(c.hist.length>14) c.hist.splice(2,2);
+  restoreChat(i);
+}
+// ── SRS helpers ──
+function w(t){ const r=srs[t.t]; if(!r||!r.seen) return 3; return Math.max(1,1+(r.miss/r.seen)*6) * (starred.has(t.t)?1.5:1); }
+function srsUp(t,ok){ const r=srs[t.t]||{seen:0,miss:0}; r.seen++; if(!ok) r.miss++; srs[t.t]=r; lsSet(LS_SRS,srs); }
+function pickWeighted(pool,n){ const p=pool.map(t=>({t,w:w(t)})), out=[]; while(out.length<n&&p.length){ const tot=p.reduce((s,x)=>s+x.w,0); let r=Math.random()*tot,k=0; for(;k<p.length;k++){ r-=p[k].w; if(r<=0) break; } out.push(p.splice(Math.min(k,p.length-1),1)[0].t); } return out; }
+function pool(){ const f=filtered().map(x=>x.t); return f.length>=4?f:TERMS; }
+function closeOv(){ document.getElementById('ov').classList.remove('open'); render(); }
+// ── Flip cards ──
+let deck=[], di=0;
+function openCards(){ deck=pickWeighted(pool(),Math.min(20,pool().length)); di=0; document.getElementById('ov').classList.add('open'); renderCard(); }
+function renderCard(){
+  const m=document.getElementById('modal');
+  if(di>=deck.length){ m.innerHTML=`<div style="text-align:center;padding:20px"><div class="sec-lbl">DECK DONE</div><div style="font-size:15px;margin:8px 0 16px">Cards you marked "Again" will come up more often next time.</div><button class="btn btn-accent" onclick="openCards()">New deck</button> <button class="btn btn-ghost" onclick="closeOv()">Close</button></div>`; return; }
+  const t=deck[di];
+  m.innerHTML=`<div class="mtop"><span>CARD ${di+1} / ${deck.length}</span><button class="pill" onclick="closeOv()">✕ Close</button></div>
+   <div class="fc" id="fc" onclick="this.classList.toggle('flip')" role="button" tabindex="0" aria-label="Flip card" onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();this.classList.toggle('flip')}"><div class="fc-inner">
+     <div class="fc-face"><div class="fc-term">${esc(t.t)}</div><div class="fc-hint">Say the definition out loud, then tap to flip</div></div>
+     <div class="fc-face fc-back"><div>${esc(t.d)}${t.ex?`<div class="term-ex" style="text-align:left;margin-top:10px">${esc(t.ex)}</div>`:''}</div></div>
+   </div></div>
+   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><button class="btn btn-ghost" onclick="rate(false)">↺ Again</button><button class="btn btn-teal" onclick="rate(true)">✓ Got it</button></div>`;
+}
+function rate(ok){ srsUp(deck[di],ok); game().event('flashcard'); di++; renderCard(); }
+// ── Quiz ──
+let qz=null;
+function openQuiz(){ const p=pool(); qz={items:pickWeighted(p,Math.min(10,p.length)),i:0,right:0,ans:false,p}; document.getElementById('ov').classList.add('open'); renderQ(); }
+function renderQ(){
+  const m=document.getElementById('modal');
+  if(qz.i>=qz.items.length){
+    const pct=Math.round(qz.right/qz.items.length*100); localStorage.setItem(LS_QS, pct+'%');
+    document.getElementById('s-quiz').textContent = qt.t?Math.round(qt.c/qt.t*100)+'%':'—';
+    m.innerHTML=`<div style="text-align:center;padding:20px"><div class="sec-lbl">QUIZ COMPLETE</div><div style="font-size:40px;font-weight:800;font-family:'DM Mono',monospace;color:#fff">${qz.right}/${qz.items.length}</div><div style="color:var(--muted);margin:6px 0 16px">Missed terms are weighted to show up again sooner.</div><button class="btn btn-accent" onclick="openQuiz()">Another round</button> <button class="btn btn-ghost" onclick="closeOv()">Close</button></div>`; return;
+  }
+  const t=qz.items[qz.i]; qz.ans=false;
+  const others=shuffle(TERMS.filter(x=>x!==t&&(x.u===t.u||Math.random()<.3))).slice(0,3);
+  qz.opts=shuffle([t,...others]);
+  m.innerHTML=`<div class="mtop"><span>QUESTION ${qz.i+1} / ${qz.items.length}</span><span>${qz.right} correct</span><button class="pill" onclick="closeOv()">✕</button></div>
+    <div class="q-def">${esc(t.d)}</div>
+    <div class="opts">${qz.opts.map((o,k)=>`<button class="opt" id="qo-${k}" onclick="pickQ(${k})"><span class="opt-key">${'ABCD'[k]}</span><span>${esc(o.t)}</span></button>`).join('')}</div>
+    <div class="fb" id="qfb"></div>`;
+}
+function pickQ(k){
+  if(qz.ans) return; qz.ans=true;
+  const t=qz.items[qz.i], ok=qz.opts[k]===t;
+  if(ok) qz.right++; qt.t++; if(ok) qt.c++; lsSet(LS_QT,qt);
+  srsUp(t,ok); game().answer(ok,1);
+  qz.opts.forEach((o,j)=>{ const b=document.getElementById('qo-'+j); b.disabled=true; if(o===t) b.classList.add('correct'); else if(j===k) b.classList.add('wrong'); });
+  const fb=document.getElementById('qfb'); fb.classList.add('show');
+  fb.innerHTML=`<b style="color:${ok?'#4fd1a5':'#f08579'}">${ok?'✓ Correct':'✗ It was '+esc(t.t)}</b>${t.ex?' — '+esc(t.ex):''}<div style="margin-top:12px"><button class="btn btn-accent" onclick="qz.i++;renderQ()">Next →</button></div>`;
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&document.getElementById('ov').classList.contains('open')) closeOv(); });
+(function init(){
+  document.getElementById('s-total').textContent=TERMS.length;
+  if(qt.t) document.getElementById('s-quiz').textContent=Math.round(qt.c/qt.t*100)+'%';
+  const units=new Set(TERMS.map(t=>t.u)).size, du=TERMS.filter(t=>t.du).length;
+  document.getElementById('page-sub').textContent=`${TERMS.length} terms · ${units} units${du?` · ${du} tagged for the DU certification`:''} · flip cards, spaced-repetition quiz, ${TUTOR_NAME} tutor`;
+  const p=new URLSearchParams(location.search);
+  const qu=p.get('unit'); const b=qu&&document.querySelector('.pill[data-unit="'+(qu.startsWith('U')?qu:'U'+qu)+'"]');
+  if(p.get('show')==='du'){ const d=document.querySelector('.pill[data-show="du"]'); if(d){ curShow='du'; document.querySelectorAll('.pill[data-show]').forEach(x=>x.classList.toggle('active',x===d)); } }
+  if(b) setUnit(b.dataset.unit,b); else render();
+})();
+</script>
+</body>
+</html>

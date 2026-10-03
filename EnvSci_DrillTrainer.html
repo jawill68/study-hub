@@ -1,0 +1,2306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Environmental Science Honors — Drill Trainer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
+  --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
+  --accent:#1D9E75;--accent-soft:rgba(29,158,117,.12);--accent-text:#4fd1a5;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(46,139,192,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(46,139,192,0.04) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:26px 20px 70px}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent-text);text-decoration:none;margin-bottom:14px;opacity:.9}
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--accent-text)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+.about-banner{background:linear-gradient(135deg,var(--accent-soft),rgba(29,158,117,.05));border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:12.5px;line-height:1.55}
+.about-banner a{color:var(--accent-text)}
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px;flex:1}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:14px}
+.sec-lbl{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.13em;color:var(--muted);margin-bottom:11px;text-transform:uppercase}
+.controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;flex-direction:column;gap:11px}
+.ctrl-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--muted);min-width:56px}
+.search-input{flex:1;min-width:200px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13.5px}
+.search-input:focus{outline:none;border-color:var(--accent)}
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--accent);color:var(--text)}
+.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn{border:none;border-radius:11px;padding:11px 20px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;transition:all .2s;color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-accent{background:var(--accent)}
+.btn-accent:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 22px rgba(0,0,0,.35)}
+.btn-ghost{background:var(--bg);border:1px solid var(--border);color:var(--text)}
+.btn-ghost:hover{border-color:var(--accent)}
+.btn-teal{background:#188663}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:6px;display:inline-block}
+.t-unit{background:var(--accent-soft);color:var(--accent-text);border:1px solid var(--border)}
+.empty{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px}
+.footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center;line-height:1.7}
+.overlay{position:fixed;inset:0;background:rgba(3,8,16,.82);backdrop-filter:blur(4px);z-index:500;display:none;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto}
+.overlay.open{display:flex}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;max-width:640px;width:100%}
+.opt{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:12px 15px;cursor:pointer;transition:all .16s;display:flex;align-items:flex-start;gap:11px;text-align:left;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);width:100%}
+.opt:hover:not(:disabled){border-color:var(--accent);background:var(--card2)}
+.opt:disabled{cursor:default}
+.opt-key{width:24px;height:24px;border-radius:7px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0;color:var(--muted)}
+.opt.correct{border-color:var(--teal);background:rgba(29,158,117,.11)}
+.opt.correct .opt-key{background:#188663;border-color:var(--teal);color:#fff}
+.opt.wrong{border-color:var(--red);background:rgba(231,76,60,.10)}
+.opt.wrong .opt-key{background:#D24536;border-color:var(--red);color:#fff}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+@media(max-width:640px){.page-title{font-size:1.55rem}.ctrl-label{min-width:auto}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+
+.screen{display:none}.screen.active{display:block}
+.mode-row{display:flex;gap:8px;flex-wrap:wrap}
+.mode-tab{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:10px 16px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif}
+.mode-tab.active{background:var(--accent-soft);border-color:var(--accent);color:#fff}
+.mode-desc{margin-top:10px;font-size:12.5px;color:var(--muted);line-height:1.6}
+.unit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
+.ubox{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:10px 12px;cursor:pointer;display:flex;gap:10px;align-items:center}
+.ubox.on{border-color:var(--accent);background:var(--accent-soft)}
+.uchk{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.ubox.on .uchk{background:var(--accent);border-color:var(--accent);color:#fff}
+.uname{font-size:12.5px;font-weight:700}
+.umeta{font-size:10.5px;color:var(--muted);font-family:'DM Mono',monospace;display:flex;gap:8px;align-items:center}
+.ubar{flex:1;height:4px;background:var(--card);border-radius:99px;overflow:hidden;min-width:40px}
+.ubar i{display:block;height:100%}
+.q-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.q-count{font-family:'DM Mono',monospace;font-size:11.5px;color:var(--muted);letter-spacing:.08em}
+.badges{display:flex;gap:6px;flex-wrap:wrap}
+.b-t1{background:rgba(29,158,117,.15);color:#4fd1a5}.b-t2{background:rgba(229,148,0,.14);color:#efb44e}.b-t3{background:rgba(231,76,60,.14);color:#f08579}
+.timer{font-family:'DM Mono',monospace;font-size:13px;color:var(--amber)}
+.combo{font-family:'DM Mono',monospace;font-size:12px;font-weight:700;color:#efb44e}
+.pbar{height:5px;background:var(--bg);border-radius:99px;overflow:hidden;margin-bottom:16px}
+.pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--amber));transition:width .3s}
+.qtext{font-size:17px;font-weight:600;color:#fff;line-height:1.5;margin-bottom:16px;white-space:pre-line}
+.opts{display:flex;flex-direction:column;gap:9px;margin-bottom:14px}
+.fb{border-radius:12px;padding:13px 15px;margin-bottom:12px;display:none;font-size:13.5px;line-height:1.6}
+.fb.show{display:block}
+.fb.ok{background:rgba(29,158,117,.09);border:1px solid rgba(29,158,117,.3)}
+.fb.no{background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.3)}
+.fb b{display:block;margin-bottom:5px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.tutor{display:none;border:1px solid var(--border);border-radius:12px;padding:12px;margin-bottom:12px;background:var(--bg)}
+.tutor.open{display:block}
+.tutor-head{display:flex;justify-content:space-between;font-size:12px;font-weight:800;color:var(--accent-text);margin-bottom:8px}
+.tutor-head span{font-family:'DM Mono',monospace;font-weight:500;color:var(--muted);font-size:10.5px}
+.chat{display:flex;flex-direction:column;gap:7px;max-height:220px;overflow-y:auto;margin-bottom:8px}
+.bub{font-size:13px;line-height:1.6}.bub.u{background:var(--accent-soft);padding:8px 11px;border-radius:9px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.chip{background:var(--card);border:1px solid var(--border);border-radius:999px;padding:4px 10px;font-size:11.5px;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif}
+.trow{display:flex;gap:7px}.tin{flex:1;background:var(--card);border:1px solid var(--border);border-radius:9px;padding:8px 11px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:12.5px}
+.res-score{font-size:3rem;font-weight:800;font-family:'DM Mono',monospace;color:#fff;text-align:center;line-height:1}
+.res-score span{font-size:1.4rem;color:var(--muted)}
+.res-grade{text-align:center;font-size:1.15rem;font-weight:800;margin:8px 0}
+.res-sub{text-align:center;font-size:13px;color:var(--muted);margin-bottom:18px}
+.brk{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:12.5px}
+.brk-n{min-width:170px;font-weight:700}
+.brk-b{flex:1;height:8px;background:var(--bg);border-radius:99px;overflow:hidden}.brk-b i{display:block;height:100%}
+.brk-v{font-family:'DM Mono',monospace;color:var(--muted);min-width:44px;text-align:right}
+.miss{background:var(--bg);border:1px solid var(--border);border-left:2px solid var(--red);border-radius:9px;padding:10px 13px;margin-bottom:8px;font-size:12.5px}
+.miss b{color:#4fd1a5}
+@media(max-width:600px){.brk-n{min-width:100px;font-size:11.5px}}
+
+</style>
+<script src="studyhub-tutor.js"></script>
+<script>window.STUDYHUB_GAME={course:'envsci'};</script>
+<script src="studyhub-game.js"></script>
+</head>
+<body>
+<div class="app">
+  <a class="back" href="EnvSci_StudyHub.html">← Environmental Science Study Hub</a>
+  <div class="header">
+    <div>
+      <div class="series-label">Environmental Science Honors · Study Resource Series · Build 2</div>
+      <div class="page-title">Drill <span>Trainer</span></div>
+      <div class="page-sub" id="page-sub"></div>
+    </div>
+    <div style="display:flex;gap:9px;align-items:center;flex-wrap:wrap"><div data-game-hud></div><button class="btn btn-ghost" id="btn-setup" onclick="goSetup()" style="display:none">← Setup</button></div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-chip"><div class="stat-num" id="g-total">0</div><div class="stat-lbl">TOTAL DRILLED</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--teal)" id="g-acc">—</div><div class="stat-lbl">ACCURACY</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--amber)" id="g-best">0</div><div class="stat-lbl">BEST STREAK</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--sky)" id="g-sess">0</div><div class="stat-lbl">SESSIONS</div></div>
+  </div>
+
+  <div class="screen active" id="s-setup">
+    <div class="card"><div class="sec-lbl">Mode</div>
+      <div class="mode-row">
+        <button class="mode-tab active" data-m="practice" onclick="setMode('practice',this)">📚 Practice</button>
+        <button class="mode-tab" data-m="exam" onclick="setMode('exam',this)">🎓 Exam</button>
+        <button class="mode-tab" data-m="stamina" onclick="setMode('stamina',this)">🔥 Stamina</button>
+        <button class="mode-tab" data-m="weak" onclick="setMode('weak',this)">🎯 Weak Spots</button>
+      </div>
+      <div class="mode-desc" id="mode-desc"></div></div>
+    <div class="card"><div class="sec-lbl">Units · <span id="pool-n" style="color:var(--accent-text)"></span></div>
+      <div class="unit-grid" id="ugrid"></div>
+      <div class="ctrl-row" style="margin-top:10px"><button class="pill" onclick="allUnits(true)">Select all</button><button class="pill" onclick="allUnits(false)">Clear</button></div></div>
+    <div class="card"><div class="sec-lbl">Difficulty</div>
+      <div class="ctrl-row"><button class="pill active" data-t="all" onclick="setTier('all',this)">All tiers</button><button class="pill" data-t="1" onclick="setTier(1,this)">① Foundational</button><button class="pill" data-t="2" onclick="setTier(2,this)">② Intermediate</button><button class="pill" data-t="3" onclick="setTier(3,this)">③ Challenge</button></div></div>
+    <button class="btn btn-accent" style="width:100%;padding:15px" id="btn-start" onclick="start()">Start</button>
+  </div>
+
+  <div class="screen" id="s-q"><div class="card">
+    <div class="q-top"><div class="q-count" id="q-count"></div><div class="badges" id="q-badges"></div><div class="combo" id="combo"></div><div class="timer" id="timer" style="display:none"></div></div>
+    <div class="pbar"><i id="pfill" style="width:0"></i></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="fb" id="fb" role="status"></div>
+    <div class="tutor" id="tutor"><div class="tutor-head">💬 TEAL · Field Coach <span id="tmode"></span></div>
+      <div class="chat" id="chat"></div>
+      <div class="chips"><button class="chip" onclick="ask('Why is my answer wrong?')">Why was I wrong?</button><button class="chip" onclick="ask('Give me a real-world example')">Real example</button><button class="chip" onclick="ask('Walk me through it step by step')">Step by step</button></div>
+      <div class="trow"><input class="tin" id="tin" placeholder="Ask a follow-up…" onkeydown="if(event.key==='Enter')ask()"><button class="btn btn-accent" style="padding:8px 14px" onclick="ask()">Ask</button></div></div>
+    <div class="actions"><button class="btn btn-ghost" id="btn-tutor" onclick="openTutor()" style="display:none">💬 Ask TEAL</button><button class="btn btn-accent" id="btn-next" onclick="next()" style="display:none;margin-left:auto">Next →</button></div>
+  </div></div>
+
+  <div class="screen" id="s-res">
+    <div class="card"><div class="sec-lbl" id="r-mode">SESSION COMPLETE</div>
+      <div class="res-score" id="r-score"></div><div class="res-grade" id="r-grade"></div><div class="res-sub" id="r-sub"></div>
+      <div class="sec-lbl">By unit</div><div id="r-brk"></div>
+      <div class="actions" style="margin-top:16px"><button class="btn btn-ghost" onclick="goSetup()">← Setup</button><button class="btn btn-teal" onclick="start(true)">Retry same</button><button class="btn btn-accent" id="btn-missed" onclick="retryMissed()">Drill missed only</button></div></div>
+    <div class="card" id="r-missed-card"><div class="sec-lbl">Review what you missed</div><div id="r-missed"></div></div>
+  </div>
+  <div class="footer">Environmental Science Honors (2001341) · Florida NGSSS Science Standards · Drill Trainer</div>
+</div>
+<script>
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function nl(s){ return esc(s).replace(/\n/g,'<br>'); }
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON.parse(v); }catch(e){ return d; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
+
+const UNIT_NAMES = {"U1": "Intro to Env Science & Inquiry", "U2": "Earth Systems & Ecology", "U3": "Biodiversity & Populations", "U4": "Biomes, Wetlands & Aquatic Systems", "U5": "Conservation & Wildlife Management", "U6": "Soil, Agriculture & Food", "U7": "Water Resources", "U8": "Energy Resources", "U9": "Global Change & Environmental Health", "U10": "Air, Land & Waste"};
+const QB = [
+{
+"u": "U1",
+"t": 1,
+"q": "Which of these is a renewable resource?",
+"o": [
+"Coal",
+"Uranium",
+"Fresh water, if it isn't overused",
+"Natural gas"
+],
+"a": 2,
+"e": "Fresh water is replenished by the water cycle, so it is renewable as long as it isn't used faster than it's recharged. Coal, natural gas, and uranium form over geologic time and are nonrenewable."
+},
+{
+"u": "U1",
+"t": 1,
+"q": "A student tests whether the amount of fertilizer affects algae growth. What is the dependent variable?",
+"o": [
+"The amount of fertilizer",
+"The amount of algae growth",
+"The size of the tanks",
+"The water temperature"
+],
+"a": 1,
+"e": "The dependent variable is what you measure in response. Algae growth depends on the fertilizer, which is the independent variable. Tank size and temperature should be held constant."
+},
+{
+"u": "U1",
+"t": 1,
+"q": "Which statement is a testable hypothesis?",
+"o": [
+"Wetlands are beautiful",
+"If a marsh is drained, then the number of duck species using it will decrease",
+"Why do ducks migrate?",
+"Pollution is bad"
+],
+"a": 1,
+"e": "A hypothesis must be testable and falsifiable. The if/then statement predicts a measurable result. Questions, opinions, and vague claims can't be tested."
+},
+{
+"u": "U1",
+"t": 2,
+"q": "Ranchers share a public pasture. Each adds more cattle to profit, and the grass is destroyed. This illustrates:",
+"o": [
+"The tragedy of the commons",
+"Biomagnification",
+"The precautionary principle",
+"Ecological succession"
+],
+"a": 0,
+"e": "The tragedy of the commons occurs when individuals act in their own short-term interest and overuse a shared resource until it is ruined for everyone."
+},
+{
+"u": "U1",
+"t": 2,
+"q": "Why does a well-designed experiment include a control group?",
+"o": [
+"To make the experiment take less time",
+"To provide a baseline that isolates the effect of the independent variable",
+"To increase the number of variables tested",
+"To prove the hypothesis is correct"
+],
+"a": 1,
+"e": "The control group gets no treatment, so any difference between it and the experimental group can be attributed to the independent variable. Experiments support or refute hypotheses; they don't 'prove' them."
+},
+{
+"u": "U1",
+"t": 2,
+"q": "Data show that cities with more trees have lower asthma rates. What is the best conclusion?",
+"o": [
+"Trees cure asthma",
+"Tree cover and asthma rates are correlated, but this alone doesn't prove trees cause the difference",
+"Asthma kills trees",
+"The data must be wrong"
+],
+"a": 1,
+"e": "Correlation isn't causation. Other factors, such as income, traffic, or industry, could drive both. A controlled study would be needed to test cause and effect."
+},
+{
+"u": "U1",
+"t": 2,
+"q": "An ecological footprint measures:",
+"o": [
+"The number of species in an area",
+"The land and water area needed to supply a person's resources and absorb their waste",
+"The weight of all organisms in an ecosystem",
+"The amount of rainfall in a region"
+],
+"a": 1,
+"e": "An ecological footprint converts resource use and waste, including carbon emissions, into the productive land and water area needed to sustain it."
+},
+{
+"u": "U1",
+"t": 1,
+"q": "Which best defines sustainability?",
+"o": [
+"Using resources as fast as possible to grow the economy",
+"Never using any natural resources",
+"Meeting present needs without compromising future generations' ability to meet theirs",
+"Recycling everything"
+],
+"a": 2,
+"e": "Sustainability balances current use with long-term availability. It doesn't mean using nothing — it means using resources at rates that can be maintained."
+},
+{
+"u": "U1",
+"t": 3,
+"q": "A study finds a new pesticide might harm bees, but the evidence is not yet conclusive. Regulators restrict it while more research is done. They are applying:",
+"o": [
+"The tragedy of the commons",
+"The precautionary principle",
+"Peer review",
+"Environmental justice"
+],
+"a": 1,
+"e": "The precautionary principle says to take protective action when there's a plausible risk of serious harm, even before cause and effect is fully proven."
+},
+{
+"u": "U1",
+"t": 2,
+"q": "Why is peer review important in science?",
+"o": [
+"It guarantees a study is correct",
+"Independent experts check methods and conclusions before publication",
+"It makes research free to read",
+"It replaces the need to repeat experiments"
+],
+"a": 1,
+"e": "Peer review catches flawed methods and unsupported conclusions. It doesn't guarantee correctness — replication by other scientists is still essential."
+},
+{
+"u": "U1",
+"t": 3,
+"q": "A power plant is sited in a low-income neighborhood that already has three polluting facilities. Residents were not consulted. This raises concerns about:",
+"o": [
+"Environmental justice",
+"Biodiversity",
+"Carrying capacity",
+"Succession"
+],
+"a": 0,
+"e": "Environmental justice is about the fair distribution of environmental burdens and meaningful participation in decisions. Repeatedly placing pollution in the same community violates both."
+},
+{
+"u": "U1",
+"t": 2,
+"q": "A researcher repeats a water-quality test three times and gets 6.1, 6.2, and 6.1 mg/L of dissolved oxygen. Why repeat trials?",
+"o": [
+"To make the data look larger",
+"To increase reliability and reveal measurement error",
+"To change the independent variable",
+"Repeating trials isn't useful"
+],
+"a": 1,
+"e": "Repeated trials show whether results are consistent. Averaging reduces the effect of random error and increases confidence in the data."
+},
+{
+"u": "U1",
+"t": 1,
+"q": "Which is a nonrenewable resource?",
+"o": [
+"Solar energy",
+"Timber",
+"Oil",
+"Wind"
+],
+"a": 2,
+"e": "Oil formed from ancient marine organisms over millions of years. We use it far faster than it forms."
+},
+{
+"u": "U1",
+"t": 3,
+"q": "A graph shows a lake's phosphorus levels rising from 2000 to 2020 while fish kills also rise. What additional evidence would best support a cause-and-effect link?",
+"o": [
+"A photo of a dead fish",
+"An experiment or data showing phosphorus triggers algal blooms that cut dissolved oxygen before fish kills",
+"A survey of how many people like the lake",
+"The lake's age"
+],
+"a": 1,
+"e": "Identifying the mechanism — phosphorus to algal bloom to decomposition to low oxygen to fish kill — plus timing data links the variables beyond simple correlation."
+},
+{
+"u": "U1",
+"t": 2,
+"q": "Environmental science is called interdisciplinary because it:",
+"o": [
+"Only uses biology",
+"Combines natural sciences with social sciences such as economics and policy",
+"Avoids math",
+"Studies only pollution"
+],
+"a": 1,
+"e": "Solving environmental problems requires ecology, chemistry, and geology plus economics, ethics, and law."
+},
+{
+"u": "U2",
+"t": 1,
+"q": "Which is an abiotic factor in a marsh?",
+"o": [
+"Cattails",
+"Water temperature",
+"Crayfish",
+"Bacteria"
+],
+"a": 1,
+"e": "Abiotic factors are nonliving: temperature, sunlight, salinity, and water depth. Cattails, crayfish, and bacteria are all biotic."
+},
+{
+"u": "U2",
+"t": 1,
+"q": "In a wetland food chain of algae → snail → duck → fox, the duck is a:",
+"o": [
+"Producer",
+"Primary consumer",
+"Secondary consumer",
+"Decomposer"
+],
+"a": 2,
+"e": "Algae are producers, the snail eating them is the primary consumer, and the duck eating the snail is the secondary consumer. The fox is a tertiary consumer."
+},
+{
+"u": "U2",
+"t": 2,
+"q": "Producers in a pond capture 20,000 kcal. Using the 10% rule, about how much energy reaches secondary consumers?",
+"o": [
+"2,000 kcal",
+"200 kcal",
+"20 kcal",
+"10,000 kcal"
+],
+"a": 1,
+"e": "Producers have 20,000 kcal, primary consumers get about 2,000 kcal, and secondary consumers get about 200 kcal. About 90% is lost at each step, mostly as heat from respiration."
+},
+{
+"u": "U2",
+"t": 2,
+"q": "Why are there usually fewer top predators than herbivores in an ecosystem?",
+"o": [
+"Predators reproduce more slowly by choice",
+"Energy decreases at each trophic level, so less is available to support organisms at the top",
+"Herbivores eat predators",
+"Predators need less food"
+],
+"a": 1,
+"e": "Because only about 10% of energy passes up each level, higher levels can support far less biomass. Energy pyramids are always widest at the base."
+},
+{
+"u": "U2",
+"t": 1,
+"q": "Which process removes CO₂ from the atmosphere?",
+"o": [
+"Cellular respiration",
+"Combustion",
+"Photosynthesis",
+"Decomposition"
+],
+"a": 2,
+"e": "Photosynthesis takes in CO₂ and stores the carbon in sugars. Respiration, combustion, and decomposition release CO₂."
+},
+{
+"u": "U2",
+"t": 2,
+"q": "Most organisms can't use N₂ gas directly. Which process converts it into a usable form?",
+"o": [
+"Denitrification",
+"Nitrogen fixation",
+"Transpiration",
+"Evaporation"
+],
+"a": 1,
+"e": "Nitrogen-fixing bacteria (some in legume root nodules) and lightning convert N₂ into ammonia or nitrate. Denitrification does the reverse, returning N₂ to the air."
+},
+{
+"u": "U2",
+"t": 3,
+"q": "Wetlands are often called nature's kidneys partly because their waterlogged, low-oxygen soils support bacteria that:",
+"o": [
+"Fix nitrogen from the air",
+"Convert excess nitrate into N₂ gas through denitrification",
+"Produce phosphorus",
+"Release methane only"
+],
+"a": 1,
+"e": "Denitrifying bacteria thrive in saturated, low-oxygen soils. They remove nitrate from runoff before it reaches lakes and estuaries, which helps prevent eutrophication."
+},
+{
+"u": "U2",
+"t": 2,
+"q": "Which biogeochemical cycle has no significant atmospheric component, which often makes its element a limiting nutrient?",
+"o": [
+"Carbon",
+"Nitrogen",
+"Water",
+"Phosphorus"
+],
+"a": 3,
+"e": "Phosphorus cycles slowly through rock weathering, soil, water, and organisms, with essentially no gas phase. Its scarcity often limits plant growth in fresh water."
+},
+{
+"u": "U2",
+"t": 1,
+"q": "What role do decomposers play?",
+"o": [
+"They capture sunlight",
+"They break down dead matter and return nutrients to the environment",
+"They are always top predators",
+"They produce oxygen"
+],
+"a": 1,
+"e": "Bacteria and fungi break down dead organisms and waste. Without them, nutrients would stay locked in dead material."
+},
+{
+"u": "U2",
+"t": 2,
+"q": "Release of water vapor from plant leaves is called:",
+"o": [
+"Infiltration",
+"Condensation",
+"Transpiration",
+"Precipitation"
+],
+"a": 2,
+"e": "Transpiration moves water from soil, through plants, and into the air. It is a major part of the water cycle in forests."
+},
+{
+"u": "U2",
+"t": 3,
+"q": "A food web shows ducks eating both aquatic insects and seeds. If insect populations crash from pesticide runoff, the most likely short-term effect on ducks is:",
+"o": [
+"Ducks immediately go extinct",
+"Ducks shift to eating more seeds, but nesting hens may struggle because they need protein-rich insects to produce eggs",
+"Nothing changes",
+"Ducks become producers"
+],
+"a": 1,
+"e": "Food webs give flexibility, but not every food is interchangeable. Laying hens and fast-growing ducklings rely heavily on protein-rich invertebrates, so an insect crash can still cut reproduction."
+},
+{
+"u": "U2",
+"t": 2,
+"q": "Net primary productivity (NPP) is:",
+"o": [
+"All the energy producers capture",
+"The energy producers store as biomass after their own respiration",
+"The energy consumers eat",
+"The number of producers"
+],
+"a": 1,
+"e": "NPP = gross primary productivity − plant respiration. It is the energy actually available to consumers."
+},
+{
+"u": "U2",
+"t": 3,
+"q": "Which ecosystem type has among the highest net primary productivity per square meter?",
+"o": [
+"Open ocean",
+"Desert",
+"Estuaries and wetlands",
+"Tundra"
+],
+"a": 2,
+"e": "Estuaries and wetlands combine abundant water, nutrients, and sunlight, giving them some of the highest NPP on Earth. The open ocean is huge but low in nutrients per square meter."
+},
+{
+"u": "U2",
+"t": 1,
+"q": "An ecosystem includes:",
+"o": [
+"Only living things",
+"Only nonliving things",
+"All the organisms in an area plus their physical environment",
+"One species"
+],
+"a": 2,
+"e": "An ecosystem combines biotic communities and abiotic conditions interacting as a system."
+},
+{
+"u": "U2",
+"t": 2,
+"q": "Burning fossil fuels affects the carbon cycle by:",
+"o": [
+"Moving carbon stored underground for millions of years into the atmosphere quickly",
+"Removing CO₂ from the air",
+"Creating new carbon",
+"Having no effect"
+],
+"a": 0,
+"e": "Fossil fuels are long-term carbon stores. Burning them releases that carbon as CO₂ far faster than natural processes can reabsorb it."
+},
+{
+"u": "U2",
+"t": 3,
+"q": "A detritivore differs from a decomposer because a detritivore:",
+"o": [
+"Is a producer",
+"Physically eats dead organic matter, while decomposers break it down chemically, often externally",
+"Only eats live plants",
+"Lives only in the ocean"
+],
+"a": 1,
+"e": "Detritivores such as earthworms and crayfish ingest detritus. Decomposers (bacteria and fungi) secrete enzymes and absorb nutrients. Both recycle nutrients."
+},
+{
+"u": "U3",
+"t": 1,
+"q": "An organism's niche is best described as its:",
+"o": [
+"Address only",
+"Role in the ecosystem — what it eats, where and when it feeds, and how it interacts",
+"Color",
+"Number of offspring"
+],
+"a": 1,
+"e": "Habitat is where an organism lives (its address). Niche is its role — its job — including diet, timing, and interactions."
+},
+{
+"u": "U3",
+"t": 1,
+"q": "A remora rides on a shark and eats its scraps. The shark is unaffected. This is:",
+"o": [
+"Mutualism",
+"Parasitism",
+"Commensalism",
+"Predation"
+],
+"a": 2,
+"e": "In commensalism one species benefits (the remora) and the other is neither helped nor harmed (the shark)."
+},
+{
+"u": "U3",
+"t": 2,
+"q": "A population levels off at about 500 individuals for many years. 500 is most likely the population's:",
+"o": [
+"Biotic potential",
+"Carrying capacity",
+"Birth rate",
+"Limiting factor"
+],
+"a": 1,
+"e": "Carrying capacity (K) is the maximum population the environment can support long term. Logistic growth levels off near K."
+},
+{
+"u": "U3",
+"t": 2,
+"q": "Which is a density-dependent limiting factor?",
+"o": [
+"A hurricane",
+"A sudden freeze",
+"Disease spreading faster in crowded populations",
+"A wildfire caused by lightning"
+],
+"a": 2,
+"e": "Density-dependent factors intensify as populations get denser: disease, competition, predation. Weather events affect populations regardless of density."
+},
+{
+"u": "U3",
+"t": 2,
+"q": "Alligators dig holes that hold water through the Everglades dry season, sheltering fish, turtles, and birds. Alligators are a:",
+"o": [
+"Pioneer species",
+"Keystone species",
+"Invasive species",
+"Indicator species"
+],
+"a": 1,
+"e": "A keystone species has an outsized effect on its community. Gator holes keep many other species alive through the dry season."
+},
+{
+"u": "U3",
+"t": 3,
+"q": "Two duck species feed in the same lake: one tips up in shallow water for seeds, the other dives to the bottom for clams. This illustrates:",
+"o": [
+"Competitive exclusion — one must go extinct",
+"Resource partitioning — dividing resources so similar species can coexist",
+"Parasitism",
+"Primary succession"
+],
+"a": 1,
+"e": "Different feeding depths and foods reduce competition, so dabblers and divers can share the same wetland. This is resource partitioning."
+},
+{
+"u": "U3",
+"t": 1,
+"q": "Which level of biodiversity refers to the variety of genes within a species?",
+"o": [
+"Ecosystem diversity",
+"Species diversity",
+"Genetic diversity",
+"Habitat diversity"
+],
+"a": 2,
+"e": "Genetic diversity is variation within a species. It helps populations adapt to disease and environmental change."
+},
+{
+"u": "U3",
+"t": 2,
+"q": "A J-shaped population curve indicates:",
+"o": [
+"Logistic growth",
+"Exponential growth with unlimited resources",
+"A population at carrying capacity",
+"Extinction"
+],
+"a": 1,
+"e": "Exponential growth produces a J-curve. It can't continue forever, because resources eventually become limiting."
+},
+{
+"u": "U3",
+"t": 2,
+"q": "Ducks lay 8–12 eggs per nest and many die in their first year; eagles raise 1–2 chicks with years of care. Compared with eagles, ducks are more:",
+"o": [
+"K-selected",
+"r-selected",
+"Endangered",
+"Invasive"
+],
+"a": 1,
+"e": "Large clutches, high early mortality, and fast maturity are r-selected traits. This is why duck populations can rebound quickly when wet years return, while eagles recover slowly."
+},
+{
+"u": "U3",
+"t": 3,
+"q": "After a fire burns a forest but leaves the soil intact, grasses appear first, then shrubs, then trees. This is:",
+"o": [
+"Primary succession",
+"Secondary succession",
+"Biomagnification",
+"Eutrophication"
+],
+"a": 1,
+"e": "Secondary succession happens where soil remains after a disturbance. Primary succession starts on bare rock with no soil."
+},
+{
+"u": "U3",
+"t": 1,
+"q": "Lichens colonizing bare volcanic rock are examples of:",
+"o": [
+"Climax species",
+"Pioneer species",
+"Keystone species",
+"Decomposers only"
+],
+"a": 1,
+"e": "Pioneer species such as lichens and mosses colonize bare surfaces first and begin breaking down rock into soil."
+},
+{
+"u": "U3",
+"t": 2,
+"q": "Frogs absorb chemicals through their skin, so declining frog populations can warn of pollution. Frogs are:",
+"o": [
+"Indicator species",
+"Keystone species",
+"Producers",
+"Invasive species"
+],
+"a": 0,
+"e": "Indicator species reflect ecosystem health. Amphibians are especially sensitive because of their permeable skin and two-stage life in water and on land."
+},
+{
+"u": "U3",
+"t": 3,
+"q": "A wetland survey finds 12 duck species, but 90% of the birds are one species. Compared with a site with 12 species in equal numbers, this site has:",
+"o": [
+"Higher species richness",
+"The same richness but lower evenness",
+"Lower richness and higher evenness",
+"Higher evenness"
+],
+"a": 1,
+"e": "Both sites have the same richness (12 species). Evenness measures how equally individuals are spread among species, and 90% one species is very uneven."
+},
+{
+"u": "U3",
+"t": 2,
+"q": "Through natural selection, which individuals contribute most to the next generation?",
+"o": [
+"The largest",
+"Those with heritable traits that help them survive and reproduce in that environment",
+"Those that try the hardest",
+"The oldest"
+],
+"a": 1,
+"e": "Natural selection acts on heritable variation. Individuals whose traits fit the environment leave more offspring, so those traits become more common."
+},
+{
+"u": "U3",
+"t": 3,
+"q": "A duck population grows 30% in a wet year with abundant ponds, then drops 20% in a drought year. Which factor most likely drove both changes?",
+"o": [
+"Bag limits only",
+"The number of breeding wetlands, which acts as a limiting factor on nesting and brood survival",
+"Predators going extinct",
+"Genetic mutation"
+],
+"a": 1,
+"e": "Pond counts are among the strongest predictors of duck production. Wet years give more nesting and brood habitat; droughts reduce it. That's why surveys count ponds as well as ducks."
+},
+{
+"u": "U4",
+"t": 1,
+"q": "Biomes are classified mainly by:",
+"o": [
+"Animal species",
+"Temperature and precipitation, which determine dominant vegetation",
+"Soil color",
+"Country borders"
+],
+"a": 1,
+"e": "Climate (temperature and rainfall) determines which plants can grow, and the plants define the biome."
+},
+{
+"u": "U4",
+"t": 1,
+"q": "A wetland dominated by trees such as cypress is a:",
+"o": [
+"Marsh",
+"Swamp",
+"Bog",
+"Prairie"
+],
+"a": 1,
+"e": "Swamps are wooded wetlands. Marshes are dominated by soft-stemmed plants such as grasses and cattails. Bogs are acidic peatlands."
+},
+{
+"u": "U4",
+"t": 2,
+"q": "Which three criteria are used to identify a wetland?",
+"o": [
+"Trees, birds, fish",
+"Wetland hydrology, hydric soils, and hydrophytic vegetation",
+"Salinity, depth, temperature",
+"Rainfall, wind, sunlight"
+],
+"a": 1,
+"e": "Wetland delineation requires evidence of water saturation (hydrology), soils formed under saturation (hydric soils), and water-adapted plants (hydrophytes)."
+},
+{
+"u": "U4",
+"t": 2,
+"q": "An estuary is especially productive because:",
+"o": [
+"It is always freshwater",
+"Rivers deliver nutrients that mix with tides in shallow, sunlit water",
+"It has no plants",
+"It is very deep"
+],
+"a": 1,
+"e": "Nutrient-rich river water, tidal mixing, and shallow sunlit areas fuel huge plant and plankton growth. That's why estuaries serve as nurseries for fish and shellfish."
+},
+{
+"u": "U4",
+"t": 2,
+"q": "Why is the Prairie Pothole Region called North America's 'duck factory'?",
+"o": [
+"It has the most duck hunters",
+"Its millions of small wetlands surrounded by grassland produce a large share of the continent's ducks",
+"Ducks are raised on farms there",
+"It is in the tropics"
+],
+"a": 1,
+"e": "The potholes provide pairs with isolated breeding ponds, abundant invertebrate food, and nearby grassland nesting cover. In good years the region produces a large share of North America's breeding ducks."
+},
+{
+"u": "U4",
+"t": 1,
+"q": "Mangrove forests help Florida's coast by:",
+"o": [
+"Increasing erosion",
+"Stabilizing shorelines, buffering storms, and sheltering juvenile fish",
+"Lowering biodiversity",
+"Producing oil"
+],
+"a": 1,
+"e": "Mangrove roots trap sediment, absorb wave energy, and create nursery habitat for many commercial and recreational fish."
+},
+{
+"u": "U4",
+"t": 3,
+"q": "Under the Cowardin system, a freshwater marsh in a farm field that isn't connected to a lake or river is classified as:",
+"o": [
+"Marine",
+"Estuarine",
+"Riverine",
+"Palustrine"
+],
+"a": 3,
+"e": "Palustrine wetlands are inland, non-tidal, plant-dominated wetlands — marshes, swamps, potholes, and bogs. They are the most common wetland type in the U.S."
+},
+{
+"u": "U4",
+"t": 2,
+"q": "Hydric soils often appear gray or mottled because:",
+"o": [
+"They contain lots of sand",
+"Saturated, low-oxygen conditions chemically change iron in the soil",
+"They are frozen",
+"They are polluted"
+],
+"a": 1,
+"e": "Without oxygen, iron is reduced and leaches away, leaving gray colors. Mottles form where iron re-oxidizes."
+},
+{
+"u": "U4",
+"t": 1,
+"q": "Which biome has permafrost and is important nesting habitat for many geese?",
+"o": [
+"Desert",
+"Tundra",
+"Tropical rainforest",
+"Temperate deciduous forest"
+],
+"a": 1,
+"e": "Arctic tundra has a short, intense summer with abundant insects and plant growth, attracting nesting geese, swans, and shorebirds."
+},
+{
+"u": "U4",
+"t": 2,
+"q": "The littoral zone of a lake is:",
+"o": [
+"The deepest, darkest water",
+"The shallow area near shore where light reaches the bottom and rooted plants grow",
+"The open surface water",
+"The lake bottom mud"
+],
+"a": 1,
+"e": "The littoral zone is the most productive part of a lake for plants, invertebrates, and dabbling ducks."
+},
+{
+"u": "U4",
+"t": 3,
+"q": "A climatograph shows 30 cm of annual rain and hot summers with cold winters. Grasses dominate and trees are rare. The biome is most likely:",
+"o": [
+"Temperate grassland",
+"Tropical rainforest",
+"Taiga",
+"Tundra"
+],
+"a": 0,
+"e": "Moderate rainfall too low for forests, plus seasonal temperature extremes and fire, favor grasses. These are temperate grasslands such as the prairie."
+},
+{
+"u": "U4",
+"t": 2,
+"q": "Bottomland hardwood forests are valuable to wintering wood ducks and mallards mainly because:",
+"o": [
+"They never flood",
+"Seasonal flooding makes acorns and invertebrates available in the shallow water",
+"They have no predators",
+"They are saltwater"
+],
+"a": 1,
+"e": "Winter floods spread over the forest floor, where ducks feed on high-energy acorns. Draining or clearing these forests has removed key wintering habitat."
+},
+{
+"u": "U4",
+"t": 3,
+"q": "Canals and levees reduced water flow into the Everglades. Which outcome would you predict?",
+"o": [
+"More wading birds",
+"Drier marshes, saltwater intrusion near the coast, and declines in wading bird nesting",
+"More freshwater reaching Florida Bay",
+"No change"
+],
+"a": 1,
+"e": "Less sheet flow dries the marsh and reduces fish prey for wading birds, letting salt water push inland. Everglades restoration aims to put water back in the right quantity, quality, timing, and distribution."
+},
+{
+"u": "U4",
+"t": 1,
+"q": "Coral reefs are threatened by warming water mainly because heat causes:",
+"o": [
+"Coral bleaching, when corals expel their symbiotic algae",
+"Faster coral growth",
+"More fish",
+"Deeper oceans"
+],
+"a": 0,
+"e": "Corals depend on algae living in their tissues for food. Under heat stress they expel the algae, turning white, and can starve if the stress lasts."
+},
+{
+"u": "U4",
+"t": 2,
+"q": "Bogs differ from marshes because bogs are:",
+"o": [
+"Fed by rivers and nutrient rich",
+"Acidic, low in nutrients, rain-fed, and build up peat",
+"Always saltwater",
+"Dominated by trees"
+],
+"a": 1,
+"e": "Bogs receive water mostly from precipitation, so they are nutrient-poor and acidic. Sphagnum moss and peat accumulate because decomposition is slow."
+},
+{
+"u": "U5",
+"t": 1,
+"q": "Which is the leading cause of biodiversity loss worldwide?",
+"o": [
+"Climate change",
+"Habitat loss",
+"Hunting",
+"Pollution"
+],
+"a": 1,
+"e": "Habitat destruction and fragmentation remain the biggest drivers of extinction risk. HIPPCO lists Habitat first for a reason."
+},
+{
+"u": "U5",
+"t": 2,
+"q": "How is the Federal Duck Stamp program connected to habitat?",
+"o": [
+"Its proceeds fund duck research only",
+"Nearly all proceeds buy or lease wetland habitat for the National Wildlife Refuge System",
+"It funds road building",
+"It pays hunters"
+],
+"a": 1,
+"e": "Since 1934, Duck Stamp sales have conserved millions of acres of wetlands and grasslands. Birdwatchers and collectors buy them too, to support habitat."
+},
+{
+"u": "U5",
+"t": 2,
+"q": "The Pittman-Robertson Act funds state wildlife agencies through:",
+"o": [
+"Income taxes",
+"An excise tax on firearms and ammunition",
+"Park entry fees",
+"Fines"
+],
+"a": 1,
+"e": "Since 1937, Pittman-Robertson has collected federal excise taxes on firearms and ammunition and distributed the money to states for wildlife restoration and hunter education. It is a cornerstone of the North American Model's user-pay funding."
+},
+{
+"u": "U5",
+"t": 1,
+"q": "How many waterfowl flyways are recognized in North America?",
+"o": [
+"Two",
+"Three",
+"Four",
+"Six"
+],
+"a": 2,
+"e": "There are four: Atlantic, Mississippi, Central, and Pacific. Regulations are coordinated within each flyway. Florida is in the Atlantic Flyway."
+},
+{
+"u": "U5",
+"t": 2,
+"q": "Under the Public Trust Doctrine, who owns wild ducks in the United States?",
+"o": [
+"The landowner where the duck lands",
+"Ducks Unlimited",
+"They are held in trust by government for all citizens",
+"Whoever bands them"
+],
+"a": 2,
+"e": "The North American Model treats wildlife as a public resource managed by government on behalf of everyone, not as private property."
+},
+{
+"u": "U5",
+"t": 2,
+"q": "A wildlife corridor helps fragmented populations by:",
+"o": [
+"Isolating them further",
+"Connecting habitat patches so animals can move, find mates, and maintain genetic diversity",
+"Feeding them",
+"Removing predators"
+],
+"a": 1,
+"e": "Isolated populations lose genetic diversity and can't recolonize patches after local die-offs. Corridors reconnect them."
+},
+{
+"u": "U5",
+"t": 3,
+"q": "Biologists band 1,000 mallards; hunters report 80 bands in the first season. What can managers estimate from this?",
+"o": [
+"Exact population size",
+"Harvest rate and movement patterns, after adjusting for unreported bands",
+"Number of eggs laid",
+"Food preferences"
+],
+"a": 1,
+"e": "Band recoveries show where birds go and roughly what fraction are harvested. Because not every recovered band is reported, managers adjust using reporting-rate studies."
+},
+{
+"u": "U5",
+"t": 2,
+"q": "Why do managers plant dense nesting cover near prairie wetlands?",
+"o": [
+"To feed cattle",
+"To hide duck nests from predators and raise nest success",
+"To block sunlight",
+"To lower water levels"
+],
+"a": 1,
+"e": "Most dabbling ducks nest in upland grass near water. Tall, dense cover makes nests harder for predators such as foxes and skunks to find."
+},
+{
+"u": "U5",
+"t": 3,
+"q": "In moist-soil management, a manager drains a wetland slowly in late spring and refloods it in fall. The purpose is to:",
+"o": [
+"Kill all plants",
+"Let native seed plants such as smartweed and millet grow on exposed mud, then flood them so waterfowl can reach the seeds in fall",
+"Raise fish",
+"Prevent migration"
+],
+"a": 1,
+"e": "Timed drawdowns mimic natural wet-dry cycles. Seed-producing annuals germinate on mudflats, and fall flooding makes the high-energy seeds available to migrating ducks."
+},
+{
+"u": "U5",
+"t": 1,
+"q": "Which is an invasive plant in Florida wetlands?",
+"o": [
+"Cypress",
+"Hydrilla",
+"Saw grass",
+"Pickerelweed"
+],
+"a": 1,
+"e": "Hydrilla, an Asian aquatic plant, grows into dense mats that clog waterways and crowd out native plants. Cypress, sawgrass, and pickerelweed are native."
+},
+{
+"u": "U5",
+"t": 2,
+"q": "A conservation easement:",
+"o": [
+"Transfers land to the government",
+"Lets a landowner keep ownership while permanently limiting development to protect habitat",
+"Allows unlimited development",
+"Is a type of hunting license"
+],
+"a": 1,
+"e": "Easements protect habitat on private land — where most wetlands are — while the family keeps farming or ranching. Ducks Unlimited and land trusts use them widely."
+},
+{
+"u": "U5",
+"t": 3,
+"q": "A species is likely to become endangered in the foreseeable future but isn't yet in danger of extinction. Under the ESA it would be listed as:",
+"o": [
+"Extinct",
+"Endangered",
+"Threatened",
+"Invasive"
+],
+"a": 2,
+"e": "Threatened is one step below endangered. Both listings bring legal protection."
+},
+{
+"u": "U5",
+"t": 2,
+"q": "Restoring a drained wetland often begins by:",
+"o": [
+"Adding more drainage tile",
+"Plugging ditches or breaking drain tiles so water returns",
+"Planting corn",
+"Paving it"
+],
+"a": 1,
+"e": "Most wetlands were lost to drainage. Restoring hydrology — getting water back — is usually the first and most important step."
+},
+{
+"u": "U5",
+"t": 1,
+"q": "Which statement best describes 'ecosystem services'?",
+"o": [
+"Jobs in the park service",
+"Benefits people get from nature, such as flood control, clean water, and pollination",
+"Cleaning crews in ecosystems",
+"Ecosystems that need repairs"
+],
+"a": 1,
+"e": "Wetlands store floodwater, filter pollutants, recharge aquifers, and support fisheries and recreation — services with real economic value."
+},
+{
+"u": "U5",
+"t": 3,
+"q": "Grassland fragmented into small patches surrounded by cropland often has lower duck nest success than large grassland blocks. The best explanation is:",
+"o": [
+"Small patches have more food",
+"Predators concentrate along edges and can search small patches efficiently",
+"Ducks prefer cropland",
+"Fragments have more water"
+],
+"a": 1,
+"e": "Edge effects and concentrated predators make small, isolated patches risky for ground nesters. Large, connected grasslands dilute predator searching."
+},
+{
+"u": "U6",
+"t": 1,
+"q": "The A horizon of soil is also called:",
+"o": [
+"Bedrock",
+"Subsoil",
+"Topsoil",
+"Leaf litter"
+],
+"a": 2,
+"e": "The A horizon (topsoil) is rich in humus and roots. O is the litter layer, B is subsoil, C is weathered parent material, and R is bedrock."
+},
+{
+"u": "U6",
+"t": 2,
+"q": "Which practice most directly reduces soil erosion on a farm?",
+"o": [
+"Plowing fields bare every fall",
+"No-till farming that leaves crop residue on the surface",
+"Monoculture",
+"Overgrazing"
+],
+"a": 1,
+"e": "Crop residue protects soil from wind and rain. No-till also builds organic matter and leaves cover for wildlife."
+},
+{
+"u": "U6",
+"t": 2,
+"q": "Integrated pest management uses chemical pesticides:",
+"o": [
+"On a fixed schedule whether pests are present or not",
+"As a last resort, after biological and cultural controls",
+"Never",
+"Only in organic farming"
+],
+"a": 1,
+"e": "IPM monitors pests and combines methods such as natural predators, crop rotation, and resistant varieties. Pesticides are used only when needed, which slows resistance and protects wildlife."
+},
+{
+"u": "U6",
+"t": 3,
+"q": "A farmer sprays the same insecticide every year. Within a few seasons it barely works. The best explanation is:",
+"o": [
+"The insects learned to avoid it",
+"Survivors with resistance genes reproduced, so the population evolved resistance",
+"The pesticide expired",
+"Rain washed it away"
+],
+"a": 1,
+"e": "This is natural selection in action. A few insects with resistance survive and pass on those genes until most of the population is resistant."
+},
+{
+"u": "U6",
+"t": 2,
+"q": "The Conservation Reserve Program benefits ducks by:",
+"o": [
+"Paying farmers to drain wetlands",
+"Paying farmers to convert erosion-prone cropland to long-term grass cover that provides nesting habitat",
+"Banning all farming",
+"Stocking ducks"
+],
+"a": 1,
+"e": "CRP grasslands in the prairie region have been linked to millions of additional ducks over the program's history, because the grass provides secure nesting cover."
+},
+{
+"u": "U6",
+"t": 1,
+"q": "Planting the same single crop over thousands of acres is called:",
+"o": [
+"Polyculture",
+"Crop rotation",
+"Monoculture",
+"Agroforestry"
+],
+"a": 2,
+"e": "Monocultures are efficient to harvest but vulnerable to pests and disease, and they offer little habitat diversity."
+},
+{
+"u": "U6",
+"t": 2,
+"q": "The 'Swampbuster' provision discourages:",
+"o": [
+"Hunting in swamps",
+"Farmers draining wetlands for crops, by denying them certain USDA benefits",
+"Building boat ramps",
+"Fishing"
+],
+"a": 1,
+"e": "Since the 1985 Farm Bill, Swampbuster has linked farm program benefits to wetland conservation, slowing agricultural wetland drainage."
+},
+{
+"u": "U6",
+"t": 2,
+"q": "Crop rotation with legumes such as soybeans helps soil because legumes:",
+"o": [
+"Remove all nitrogen",
+"Host nitrogen-fixing bacteria that add usable nitrogen to the soil",
+"Increase erosion",
+"Kill earthworms"
+],
+"a": 1,
+"e": "Root-nodule bacteria fix atmospheric N₂, naturally fertilizing the next crop and reducing synthetic fertilizer needs."
+},
+{
+"u": "U6",
+"t": 3,
+"q": "What was a major environmental tradeoff of the Green Revolution?",
+"o": [
+"Lower crop yields",
+"Higher yields but greater use of fertilizer, pesticides, and irrigation, which increased runoff and water depletion",
+"Less food produced",
+"Less use of machinery"
+],
+"a": 1,
+"e": "High-yield varieties fed billions of people but depended on chemical inputs and heavy irrigation, contributing to nutrient pollution and aquifer depletion."
+},
+{
+"u": "U6",
+"t": 1,
+"q": "Humus is:",
+"o": [
+"Bedrock",
+"Partly decomposed organic matter that improves soil fertility and water retention",
+"A type of clay",
+"An insect"
+],
+"a": 1,
+"e": "Humus gives topsoil its dark color, holds nutrients and moisture, and supports soil organisms."
+},
+{
+"u": "U6",
+"t": 2,
+"q": "Overgrazing affects grassland nesting birds by:",
+"o": [
+"Increasing cover",
+"Removing the tall grass cover that hides nests, which exposes nests and soil",
+"Adding nutrients only",
+"Having no effect"
+],
+"a": 1,
+"e": "Managed grazing can benefit grasslands, but overgrazing strips cover and compacts soil, cutting nest success and increasing erosion."
+},
+{
+"u": "U6",
+"t": 3,
+"q": "Rice fields in California and Louisiana, flooded after harvest, support millions of wintering waterfowl. This shows that:",
+"o": [
+"Agriculture always harms wildlife",
+"Working lands can provide habitat when managed with wildlife in mind",
+"Ducks prefer cities",
+"Rice is a native wetland plant"
+],
+"a": 1,
+"e": "Flooding harvested fields provides waste grain and shallow water for wintering ducks, and decomposes the stubble. Partnerships with farmers are central to modern waterfowl conservation."
+},
+{
+"u": "U6",
+"t": 2,
+"q": "GMO crops engineered to produce their own insecticide can reduce spraying. What is a key concern?",
+"o": [
+"They can't grow",
+"Pests may evolve resistance, and effects on non-target species must be monitored",
+"They taste bad",
+"They use more water"
+],
+"a": 1,
+"e": "Like any pest control, built-in insecticides apply selection pressure. Refuges of non-GMO plants are used to slow resistance."
+},
+{
+"u": "U6",
+"t": 1,
+"q": "Desertification is most often caused by:",
+"o": [
+"Heavy rainfall",
+"Overgrazing, deforestation, and drought degrading dry land",
+"Too many wetlands",
+"Glaciers"
+],
+"a": 1,
+"e": "Removing vegetation exposes dry soil to erosion and lowers water retention, turning productive drylands into desert-like land."
+},
+{
+"u": "U6",
+"t": 2,
+"q": "Aquaculture can reduce pressure on wild fish, but poorly managed fish farms may:",
+"o": [
+"Clean the water",
+"Release waste, antibiotics, and escaped non-native fish into surrounding waters",
+"Increase wild fish",
+"Remove nutrients"
+],
+"a": 1,
+"e": "Concentrated waste and escapes can pollute and spread disease. Well-designed systems reduce these impacts."
+},
+{
+"u": "U7",
+"t": 1,
+"q": "A watershed is:",
+"o": [
+"A building that stores water",
+"All the land that drains into a particular body of water",
+"An aquifer",
+"A water treatment plant"
+],
+"a": 1,
+"e": "Everything that happens on land in a watershed — farming, building, fertilizing — affects the water it drains into."
+},
+{
+"u": "U7",
+"t": 1,
+"q": "Most of Florida's drinking water comes from:",
+"o": [
+"Rainwater barrels",
+"The Floridan Aquifer and other groundwater",
+"Desalinated seawater only",
+"Lake Okeechobee only"
+],
+"a": 1,
+"e": "Groundwater from the Floridan Aquifer and other aquifers supplies the majority of Florida's drinking water. That's why protecting recharge areas matters."
+},
+{
+"u": "U7",
+"t": 2,
+"q": "Fertilizer washing off thousands of lawns into a canal after rain is an example of:",
+"o": [
+"Point source pollution",
+"Nonpoint source pollution",
+"Thermal pollution",
+"Noise pollution"
+],
+"a": 1,
+"e": "Nonpoint pollution comes from many scattered sources and is carried by runoff, which makes it much harder to regulate than a single pipe."
+},
+{
+"u": "U7",
+"t": 2,
+"q": "Put the steps of eutrophication in order: (1) algae die, (2) nutrients enter water, (3) decomposers use up oxygen, (4) algal bloom, (5) fish die.",
+"o": [
+"2 → 4 → 1 → 3 → 5",
+"4 → 2 → 3 → 1 → 5",
+"2 → 1 → 4 → 5 → 3",
+"1 → 2 → 3 → 4 → 5"
+],
+"a": 0,
+"e": "Nutrients cause a bloom. When the algae die, decomposers consume dissolved oxygen as they break them down, and low oxygen kills fish. Note that the bloom itself isn't what suffocates the fish — decomposition is."
+},
+{
+"u": "U7",
+"t": 2,
+"q": "Which dissolved oxygen level indicates hypoxic water that stresses most aquatic animals?",
+"o": [
+"About 9 mg/L",
+"About 7 mg/L",
+"Below about 2 mg/L",
+"About 12 mg/L"
+],
+"a": 2,
+"e": "Healthy warm-water systems usually have more than 5 mg/L. Below about 2 mg/L is hypoxic, and many fish and invertebrates die or leave."
+},
+{
+"u": "U7",
+"t": 3,
+"q": "Why does warm water hold less dissolved oxygen, making summer fish kills more likely?",
+"o": [
+"Warm water is denser",
+"Gas solubility decreases as water temperature rises, while organisms' oxygen demand increases",
+"Fish swim slower",
+"Algae stop growing"
+],
+"a": 1,
+"e": "Warm water holds less oxygen, and warm temperatures speed up respiration and decomposition. Supply falls while demand rises."
+},
+{
+"u": "U7",
+"t": 2,
+"q": "Section 404 of the Clean Water Act regulates:",
+"o": [
+"Air emissions",
+"Discharging dredged or fill material into waters, including wetlands",
+"Drinking water taste",
+"Ocean fishing"
+],
+"a": 1,
+"e": "Filling a wetland generally requires a permit from the U.S. Army Corps of Engineers under Section 404. It is a key legal protection for wetlands."
+},
+{
+"u": "U7",
+"t": 3,
+"q": "A coastal city pumps groundwater heavily during a drought. Nearby wells start tasting salty. What is happening?",
+"o": [
+"Acid rain",
+"Saltwater intrusion — lowered freshwater pressure lets seawater move into the aquifer",
+"Eutrophication",
+"Thermal pollution"
+],
+"a": 1,
+"e": "Fresh groundwater normally holds back seawater. Overpumping, and sea level rise, let salt water push inland into the aquifer."
+},
+{
+"u": "U7",
+"t": 1,
+"q": "A riparian buffer is:",
+"o": [
+"A dam",
+"A strip of vegetation along a waterway that filters runoff and stabilizes banks",
+"A water meter",
+"A fish ladder"
+],
+"a": 1,
+"e": "Buffers trap sediment and nutrients, shade the water to keep it cool, and provide wildlife corridors."
+},
+{
+"u": "U7",
+"t": 2,
+"q": "Which step of wastewater treatment uses bacteria to break down dissolved organic matter?",
+"o": [
+"Primary",
+"Secondary",
+"Screening",
+"Chlorination only"
+],
+"a": 1,
+"e": "Primary treatment settles out solids. Secondary treatment uses bacteria to digest organics. Tertiary treatment removes nutrients such as nitrogen and phosphorus."
+},
+{
+"u": "U7",
+"t": 3,
+"q": "A constructed wetland is built downstream of a farm. Over a year, nitrate in the outflow drops 60%. The most likely reasons are:",
+"o": [
+"Evaporation only",
+"Plant uptake and denitrifying bacteria in saturated soils",
+"The wetland adds nitrate",
+"Fish eat the nitrate"
+],
+"a": 1,
+"e": "Wetland plants absorb nutrients, and low-oxygen soils let bacteria convert nitrate to N₂ gas. This is why constructed wetlands are used for water treatment."
+},
+{
+"u": "U7",
+"t": 2,
+"q": "Harmful algal blooms on Lake Okeechobee are fed mainly by:",
+"o": [
+"Cold weather",
+"Excess phosphorus and nitrogen from runoff",
+"Too many fish",
+"Saltwater"
+],
+"a": 1,
+"e": "Agricultural and urban runoff loads the lake with nutrients. Warm, sunny conditions then trigger cyanobacteria blooms that can release toxins."
+},
+{
+"u": "U7",
+"t": 1,
+"q": "An aquifer is:",
+"o": [
+"A surface lake",
+"An underground layer of rock or sediment that holds and transmits groundwater",
+"A type of cloud",
+"A water bill"
+],
+"a": 1,
+"e": "Porous limestone, sand, or gravel stores groundwater. The Floridan Aquifer is limestone."
+},
+{
+"u": "U7",
+"t": 3,
+"q": "The Gulf of Mexico dead zone forms each summer mainly because of:",
+"o": [
+"Oil spills",
+"Nutrient runoff from the Mississippi River watershed fueling algae, followed by oxygen depletion",
+"Hurricanes",
+"Overfishing"
+],
+"a": 1,
+"e": "Fertilizer from millions of farm acres upstream reaches the Gulf. Wetland and buffer restoration across the watershed is part of the solution."
+},
+{
+"u": "U7",
+"t": 2,
+"q": "Wetlands reduce flooding downstream because they:",
+"o": [
+"Are always dry",
+"Store floodwater and release it slowly",
+"Speed water flow",
+"Block rain"
+],
+"a": 1,
+"e": "Like sponges, wetlands absorb water during storms and release it over time, lowering flood peaks."
+},
+{
+"u": "U8",
+"t": 1,
+"q": "Which energy source is renewable?",
+"o": [
+"Coal",
+"Natural gas",
+"Wind",
+"Oil"
+],
+"a": 2,
+"e": "Wind is continuously replenished by solar heating of the atmosphere. Coal, gas, and oil are fossil fuels."
+},
+{
+"u": "U8",
+"t": 1,
+"q": "Burning fossil fuels contributes to climate change mainly by releasing:",
+"o": [
+"Oxygen",
+"Carbon dioxide",
+"Nitrogen gas",
+"Water only"
+],
+"a": 1,
+"e": "Fossil fuel combustion releases CO₂ that was stored underground for millions of years, adding to atmospheric greenhouse gases."
+},
+{
+"u": "U8",
+"t": 2,
+"q": "A major environmental drawback of hydroelectric dams is that they:",
+"o": [
+"Emit large amounts of CO₂ while running",
+"Block fish migration and flood upstream habitat",
+"Use coal",
+"Cause acid rain"
+],
+"a": 1,
+"e": "Dams generate low-emission electricity but fragment rivers, flood valleys, and change water temperature and sediment flow downstream."
+},
+{
+"u": "U8",
+"t": 2,
+"q": "Nuclear power's main environmental advantage and disadvantage are:",
+"o": [
+"No waste; high CO₂",
+"Very low CO₂ during operation; long-lived radioactive waste",
+"High CO₂; no waste",
+"It's renewable; it causes smog"
+],
+"a": 1,
+"e": "Fission doesn't burn carbon, but spent fuel stays radioactive for thousands of years and needs secure long-term storage."
+},
+{
+"u": "U8",
+"t": 1,
+"q": "A device that converts sunlight directly into electricity is a:",
+"o": [
+"Turbine",
+"Photovoltaic cell",
+"Reactor",
+"Generator"
+],
+"a": 1,
+"e": "Photovoltaic (PV) cells use semiconductors to turn light energy into electric current."
+},
+{
+"u": "U8",
+"t": 2,
+"q": "Replacing incandescent bulbs with LEDs that give the same light using far less electricity is an example of:",
+"o": [
+"Energy conservation through behavior",
+"Energy efficiency",
+"Fossil fuel extraction",
+"Hydraulic fracturing"
+],
+"a": 1,
+"e": "Efficiency means the same output with less energy input. Conservation means using less by changing behavior, such as turning lights off."
+},
+{
+"u": "U8",
+"t": 3,
+"q": "A wind farm is proposed along a major waterfowl migration corridor. Which approach best balances clean energy and wildlife?",
+"o": [
+"Build anywhere, because wind is renewable",
+"Site turbines away from key migration routes and wetlands, and monitor collisions",
+"Ban wind energy",
+"Remove the wetlands"
+],
+"a": 1,
+"e": "Renewable energy still has impacts. Careful siting and monitoring reduce bird and bat deaths while keeping the climate benefits."
+},
+{
+"u": "U8",
+"t": 2,
+"q": "Hydraulic fracturing (fracking) is used to:",
+"o": [
+"Generate solar power",
+"Release oil and natural gas from shale rock",
+"Build dams",
+"Store nuclear waste"
+],
+"a": 1,
+"e": "High-pressure fluid cracks shale to release trapped gas and oil. Concerns include groundwater contamination, water use, and methane leaks."
+},
+{
+"u": "U8",
+"t": 1,
+"q": "Geothermal energy comes from:",
+"o": [
+"The Moon",
+"Heat from Earth's interior",
+"Burning trees",
+"Ocean salt"
+],
+"a": 1,
+"e": "Geothermal plants tap underground heat. It works best in volcanically active regions."
+},
+{
+"u": "U8",
+"t": 2,
+"q": "Why is natural gas sometimes called a 'bridge fuel'?",
+"o": [
+"It's renewable",
+"It emits less CO₂ than coal when burned, though methane leaks can cut into that benefit",
+"It has no emissions",
+"It's made from bridges"
+],
+"a": 1,
+"e": "Gas emits roughly half the CO₂ of coal per unit of electricity. However, methane is a powerful greenhouse gas, so leaks matter."
+},
+{
+"u": "U8",
+"t": 3,
+"q": "Corn ethanol is renewable, yet critics argue its environmental benefit is limited. Which is a valid concern?",
+"o": [
+"It can't burn",
+"Growing corn needs fertilizer, fuel, and land, which can drive runoff and the plowing of grasslands",
+"It is a fossil fuel",
+"It produces no energy"
+],
+"a": 1,
+"e": "Life-cycle analysis counts the energy and impacts of farming. High demand for corn has encouraged converting grassland, including duck nesting habitat, to cropland."
+},
+{
+"u": "U8",
+"t": 1,
+"q": "Which fuel is the most carbon-intensive per unit of energy?",
+"o": [
+"Natural gas",
+"Coal",
+"Wind",
+"Solar"
+],
+"a": 1,
+"e": "Coal releases the most CO₂ per unit of energy of the fossil fuels, plus sulfur and mercury."
+},
+{
+"u": "U8",
+"t": 2,
+"q": "Mercury from coal-fired power plants can reach fish because:",
+"o": [
+"Fish eat coal",
+"Mercury deposits into water, is converted to methylmercury, and biomagnifies up food chains",
+"Mercury is a nutrient",
+"It evaporates"
+],
+"a": 1,
+"e": "Bacteria convert mercury to methylmercury, which bioaccumulates and biomagnifies. This is why there are consumption advisories for large predatory fish."
+},
+{
+"u": "U8",
+"t": 3,
+"q": "A school wants to cut its carbon footprint the most for the least money. Which should it usually do first?",
+"o": [
+"Build a nuclear plant",
+"Improve efficiency — insulation, LED lighting, efficient HVAC — before adding new generation",
+"Buy more coal",
+"Install a dam"
+],
+"a": 1,
+"e": "Efficiency measures are usually the cheapest carbon reductions and they shrink the size of any renewable system needed later."
+},
+{
+"u": "U8",
+"t": 2,
+"q": "A disadvantage of solar and wind power is:",
+"o": [
+"They emit greenhouse gases while operating",
+"Their output varies with weather and time of day, so they need storage or backup",
+"They are nonrenewable",
+"They cause acid rain"
+],
+"a": 1,
+"e": "Intermittency is the main challenge. Batteries, grid connections, and diverse sources help smooth supply."
+},
+{
+"u": "U9",
+"t": 1,
+"q": "Without the natural greenhouse effect, Earth would be:",
+"o": [
+"Much hotter",
+"Much colder and largely frozen",
+"The same temperature",
+"Covered in jungle"
+],
+"a": 1,
+"e": "Greenhouse gases keep Earth habitable. The problem is that human emissions are intensifying the effect beyond natural levels."
+},
+{
+"u": "U9",
+"t": 2,
+"q": "Ocean acidification is caused by:",
+"o": [
+"Acid rain only",
+"The ocean absorbing atmospheric CO₂, which forms carbonic acid and lowers pH",
+"Oil spills",
+"Plastic"
+],
+"a": 1,
+"e": "About a quarter of emitted CO₂ dissolves into the ocean. That makes it harder for corals, oysters, and plankton to build calcium carbonate shells."
+},
+{
+"u": "U9",
+"t": 2,
+"q": "DDT caused bald eagle and brown pelican declines mainly through:",
+"o": [
+"Direct poisoning of adults",
+"Biomagnification that thinned eggshells, so eggs broke during incubation",
+"Habitat loss only",
+"Hunting"
+],
+"a": 1,
+"e": "DDT concentrated up the food chain. Top predators received the highest doses, which disrupted calcium deposition in eggshells. After DDT was banned in 1972, both species recovered."
+},
+{
+"u": "U9",
+"t": 1,
+"q": "The Montreal Protocol addressed:",
+"o": [
+"Climate change",
+"Ozone layer depletion by phasing out CFCs",
+"Water pollution",
+"Endangered species"
+],
+"a": 1,
+"e": "The 1987 treaty phased out ozone-depleting chemicals. The ozone layer is now slowly recovering."
+},
+{
+"u": "U9",
+"t": 2,
+"q": "A substance with an LD50 of 5 mg/kg compared with one of 500 mg/kg is:",
+"o": [
+"Less toxic",
+"More toxic",
+"Equally toxic",
+"Not toxic"
+],
+"a": 1,
+"e": "LD50 is the dose that kills half of a test population. A smaller lethal dose means the substance is more toxic."
+},
+{
+"u": "U9",
+"t": 3,
+"q": "Sea level rise threatens coastal marshes most when:",
+"o": [
+"Marshes can migrate inland freely",
+"Seawalls and development block marshes from moving upslope, squeezing them between rising water and hard barriers",
+"Sediment supply is high",
+"Water is cold"
+],
+"a": 1,
+"e": "This 'coastal squeeze' traps marshes between rising seas and hardened shorelines. Protecting room for marshes to migrate is a key adaptation strategy."
+},
+{
+"u": "U9",
+"t": 2,
+"q": "Avian botulism outbreaks in wetlands are most likely during:",
+"o": [
+"Cold, deep, flowing water",
+"Hot weather with shallow, stagnant water and decaying organic matter",
+"Snowstorms",
+"Spring floods only"
+],
+"a": 1,
+"e": "The bacterium produces toxin in warm, low-oxygen conditions. Maggots on carcasses spread it as birds eat them. Managers collect carcasses and manage water levels to break the cycle."
+},
+{
+"u": "U9",
+"t": 2,
+"q": "A zoonotic disease is one that:",
+"o": [
+"Only affects plants",
+"Can pass between animals and humans",
+"Comes from zoos",
+"Is caused by pollution"
+],
+"a": 1,
+"e": "Examples include avian influenza, West Nile virus, and rabies. That is why wildlife disease surveillance matters for public health."
+},
+{
+"u": "U9",
+"t": 3,
+"q": "Biologists sample hunter-harvested ducks for avian influenza each fall. Why are waterfowl useful for this surveillance?",
+"o": [
+"They're easy to catch",
+"Wild waterfowl are natural reservoirs of avian influenza viruses and travel long distances, so they can carry strains across regions",
+"They never get sick",
+"They live only in labs"
+],
+"a": 1,
+"e": "Ducks often carry low-pathogenic strains without symptoms and migrate across continents. Sampling them gives early warning before outbreaks reach poultry."
+},
+{
+"u": "U9",
+"t": 1,
+"q": "Which is a greenhouse gas?",
+"o": [
+"Nitrogen (N₂)",
+"Oxygen (O₂)",
+"Methane (CH₄)",
+"Argon"
+],
+"a": 2,
+"e": "Methane, CO₂, nitrous oxide, and water vapor absorb infrared heat. N₂, O₂, and argon don't."
+},
+{
+"u": "U9",
+"t": 2,
+"q": "Bioaccumulation differs from biomagnification because bioaccumulation describes:",
+"o": [
+"Concentration increasing across trophic levels",
+"Buildup of a toxin within one organism over its lifetime",
+"A nutrient cycle",
+"Population growth"
+],
+"a": 1,
+"e": "Bioaccumulation happens within one organism. Biomagnification is the increase in concentration across trophic levels. Persistent, fat-soluble toxins do both."
+},
+{
+"u": "U9",
+"t": 3,
+"q": "Wetlands store large amounts of carbon in their soils. If a peat wetland is drained, what happens to that carbon?",
+"o": [
+"It stays locked away",
+"Oxygen enters the soil, decomposition speeds up, and stored carbon is released as CO₂",
+"It becomes oil",
+"It turns into nitrogen"
+],
+"a": 1,
+"e": "Waterlogged soils slow decomposition, so peat builds up. Draining exposes the peat to oxygen and releases carbon — one reason wetland conservation is also climate policy."
+},
+{
+"u": "U9",
+"t": 1,
+"q": "A dose-response curve shows:",
+"o": [
+"How population size changes",
+"How the effect of a substance changes as the dose increases",
+"How energy flows",
+"How water cycles"
+],
+"a": 1,
+"e": "Toxicologists use dose-response data to set safe exposure limits. The dose makes the poison."
+},
+{
+"u": "U9",
+"t": 2,
+"q": "Warmer winters let some ducks winter farther north than before. This is an example of:",
+"o": [
+"Climate change shifting species' ranges and migration timing",
+"Evolution in one year",
+"Biomagnification",
+"Succession"
+],
+"a": 0,
+"e": "Many birds are shifting their wintering ranges and migration timing as temperatures change. That affects hunting seasons, habitat planning, and when birds arrive in the South."
+},
+{
+"u": "U9",
+"t": 3,
+"q": "Which statement correctly describes the current scientific consensus on climate change?",
+"o": [
+"The climate isn't changing",
+"The planet is warming, and human greenhouse gas emissions are the main cause of recent warming",
+"Warming is caused only by the Sun",
+"Scientists are evenly split"
+],
+"a": 1,
+"e": "Multiple independent lines of evidence — temperature records, ice cores, ocean heat, and isotopic signatures — support human-caused warming. Major scientific organizations agree."
+},
+{
+"u": "U10",
+"t": 1,
+"q": "Ground-level ozone in smog is a secondary pollutant because it:",
+"o": [
+"Comes directly from tailpipes",
+"Forms in the air when sunlight drives reactions between nitrogen oxides and VOCs",
+"Is natural and harmless",
+"Comes from volcanoes only"
+],
+"a": 1,
+"e": "Secondary pollutants aren't emitted directly; they form through chemical reactions in the atmosphere."
+},
+{
+"u": "U10",
+"t": 2,
+"q": "Acid deposition is caused mainly by:",
+"o": [
+"CO₂ alone",
+"Sulfur dioxide and nitrogen oxides from burning fossil fuels",
+"Ozone",
+"Radon"
+],
+"a": 1,
+"e": "SO₂ and NOₓ react with water to form sulfuric and nitric acids, which lower the pH of lakes and damage forests."
+},
+{
+"u": "U10",
+"t": 2,
+"q": "A temperature inversion worsens air pollution because:",
+"o": [
+"Warm air near the ground rises and carries pollution away",
+"A warm air layer above traps cooler, polluted air near the surface",
+"It causes rain",
+"It creates ozone"
+],
+"a": 1,
+"e": "Normally warm surface air rises and disperses pollutants. An inversion acts like a lid that holds pollution close to the ground."
+},
+{
+"u": "U10",
+"t": 1,
+"q": "Which is the leading cause of lung cancer among nonsmokers in the U.S.?",
+"o": [
+"Smog",
+"Radon",
+"Pollen",
+"Ozone"
+],
+"a": 1,
+"e": "Radon is a radioactive gas that seeps from soil into homes. Testing and ventilation reduce the risk."
+},
+{
+"u": "U10",
+"t": 2,
+"q": "A sanitary landfill differs from an open dump because it:",
+"o": [
+"Burns all waste",
+"Has liners, daily cover, and systems to collect leachate and methane",
+"Accepts only recyclables",
+"Is in the ocean"
+],
+"a": 1,
+"e": "Engineered landfills protect groundwater and control gases. Open dumps let contaminants and pests spread."
+},
+{
+"u": "U10",
+"t": 3,
+"q": "Why has nontoxic shot been required for U.S. waterfowl hunting since 1991?",
+"o": [
+"Steel is cheaper",
+"Ducks swallowed spent lead pellets while feeding on wetland bottoms and died of lead poisoning",
+"Lead shot doesn't work",
+"To protect fish only"
+],
+"a": 1,
+"e": "Dabbling and diving ducks pick up pellets as grit. Lead poisoning killed large numbers of waterfowl each year until the nationwide nontoxic shot requirement — a clear example of science-based regulation."
+},
+{
+"u": "U10",
+"t": 1,
+"q": "Leachate is:",
+"o": [
+"Recycled paper",
+"Contaminated liquid that forms as water passes through waste",
+"A type of compost",
+"Clean drinking water"
+],
+"a": 1,
+"e": "Leachate can carry heavy metals and chemicals into groundwater. Liners and collection systems prevent this."
+},
+{
+"u": "U10",
+"t": 2,
+"q": "Which waste-reduction step should come first, according to the waste hierarchy?",
+"o": [
+"Recycle",
+"Landfill",
+"Reduce",
+"Incinerate"
+],
+"a": 2,
+"e": "Reduce, then reuse, then recycle. Preventing waste in the first place saves the most resources and energy."
+},
+{
+"u": "U10",
+"t": 2,
+"q": "PM2.5 particles are especially harmful because they:",
+"o": [
+"Are visible",
+"Are small enough to penetrate deep into the lungs and bloodstream",
+"Smell bad",
+"Cause acid rain only"
+],
+"a": 1,
+"e": "Fine particles are linked to heart and lung disease. Sources include combustion, wildfires, and diesel engines."
+},
+{
+"u": "U10",
+"t": 3,
+"q": "Superfund (CERCLA) is designed to:",
+"o": [
+"Fund new landfills",
+"Clean up the nation's most contaminated hazardous waste sites, and make responsible parties pay when possible",
+"Build recycling centers",
+"Monitor air quality"
+],
+"a": 1,
+"e": "The 'polluter pays' principle drives Superfund. When no responsible party can pay, federal funds cover cleanup."
+},
+{
+"u": "U10",
+"t": 1,
+"q": "Composting turns food scraps and yard waste into:",
+"o": [
+"Plastic",
+"Nutrient-rich soil conditioner",
+"Methane only",
+"Toxic waste"
+],
+"a": 1,
+"e": "Aerobic decomposition produces compost. Composting also keeps organic waste out of landfills, where it would decompose without oxygen and produce methane."
+},
+{
+"u": "U10",
+"t": 2,
+"q": "E-waste requires special handling because old electronics can contain:",
+"o": [
+"Only plastic",
+"Lead, mercury, and other toxic metals",
+"Wood",
+"Compost"
+],
+"a": 1,
+"e": "Improper disposal lets heavy metals leach out. Certified recyclers recover valuable metals safely."
+},
+{
+"u": "U10",
+"t": 3,
+"q": "The Clean Air Act is credited with large drops in which pollutant after leaded gasoline was phased out?",
+"o": [
+"Airborne lead",
+"CO₂",
+"Water vapor",
+"Nitrogen gas"
+],
+"a": 0,
+"e": "Removing lead from gasoline led to dramatic declines in blood lead levels across the U.S. population."
+},
+{
+"u": "U10",
+"t": 2,
+"q": "Which is a primary pollutant?",
+"o": [
+"Ground-level ozone",
+"Acid rain",
+"Carbon monoxide from car exhaust",
+"Photochemical smog"
+],
+"a": 2,
+"e": "CO is emitted directly from incomplete combustion. Ozone, acid rain, and smog form through secondary reactions."
+},
+{
+"u": "U10",
+"t": 3,
+"q": "Plastic debris in wetlands and oceans harms waterbirds mainly through:",
+"o": [
+"Adding nutrients",
+"Ingestion and entanglement, plus breakdown into microplastics that enter food webs",
+"Increasing oxygen",
+"Cooling the water"
+],
+"a": 1,
+"e": "Birds mistake plastic for food or get tangled in fishing line and six-pack rings. Microplastics now show up throughout aquatic food webs."
+}
+];
+const TUTOR = "TEAL";
+const LS='envsci_drill_stats', LS_SRS='envsci_drill_srs', LS_U='envsci_drill_units';
+QB.forEach((q,i)=>q.id='q'+i+'_'+q.q.slice(0,20));
+let stats=lsGet(LS,{total:0,correct:0,best:0,sessions:0}), srs=lsGet(LS_SRS,{}), um=lsGet(LS_U,{});
+let mode='practice', tier='all', sel=new Set(Object.keys(UNIT_NAMES));
+let deck=[], idx=0, right=0, answered=false, missed=[], streak=0, timerId=null, left=0, order=[], tHist=[], tCtx={};
+const DESC={
+ practice:'<b style="color:#fff">Practice</b> — instant feedback and a full explanation after every answer. Questions you miss come back more often; ones you nail fade into review.',
+ exam:'<b style="color:#efb44e">Exam</b> — 25 timed questions (75 seconds each) sampled across your units. No feedback until the end, just like a real test.',
+ stamina:'<b style="color:#f08579">Stamina</b> — one wrong answer ends the run. How far can you go? Your best run is saved.',
+ weak:'<b style="color:#7cc0e6">Weak Spots</b> — pulls only questions you have missed before, hardest first. Clear them out.'
+};
+function save(){ lsSet(LS,stats); lsSet(LS_SRS,srs); lsSet(LS_U,um); }
+function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===id)); window.scrollTo({top:0,behavior:'smooth'}); }
+function setMode(m,b){ mode=m; document.querySelectorAll('.mode-tab').forEach(x=>x.classList.toggle('active',x===b)); document.getElementById('mode-desc').innerHTML=DESC[m]; upd(); }
+function setTier(t,b){ tier=t; document.querySelectorAll('.pill[data-t]').forEach(x=>x.classList.toggle('active',x===b)); upd(); }
+function tog(u){ sel.has(u)?sel.delete(u):sel.add(u); renderUnits(); upd(); }
+function allUnits(on){ sel=on?new Set(Object.keys(UNIT_NAMES)):new Set(); renderUnits(); upd(); }
+function renderUnits(){
+  document.getElementById('ugrid').innerHTML=Object.keys(UNIT_NAMES).map(u=>{
+    const n=QB.filter(q=>q.u===u).length, m=um[u], pct=m&&m.t?Math.round(m.c/m.t*100):null;
+    const col=pct==null?'transparent':pct>=80?'var(--teal)':pct>=60?'var(--amber)':'var(--red)';
+    return `<div class="ubox ${sel.has(u)?'on':''}" onclick="tog('${u}')" role="checkbox" aria-checked="${sel.has(u)}" tabindex="0" onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();tog('${u}')}"><div class="uchk">${sel.has(u)?'✓':''}</div><div style="flex:1;min-width:0"><div class="uname">${u} · ${esc(UNIT_NAMES[u])}</div><div class="umeta"><span>${n} Qs</span><span class="ubar"><i style="width:${pct||0}%;background:${col}"></i></span><span>${pct==null?'—':pct+'%'}</span></div></div></div>`;
+  }).join('');
+}
+function missRate(q){ const r=srs[q.id]; return r&&r.seen?r.miss/r.seen:0; }
+function pool(){
+  let p=QB.filter(q=>sel.has(q.u)&&(tier==='all'||q.t===tier));
+  if(mode==='weak') p=p.filter(q=>srs[q.id]&&srs[q.id].miss>0);
+  return p;
+}
+function upd(){
+  const n=pool().length, b=document.getElementById('btn-start');
+  document.getElementById('pool-n').textContent=`${n} question${n===1?'':'s'} available`;
+  b.disabled=n<1;
+  b.textContent= n<1 ? (mode==='weak'?'No missed questions yet — practice first':'No questions match — adjust filters') : `Start ${({practice:'Practice',exam:'Exam',stamina:'Stamina run',weak:'Weak Spots'})[mode]} (${mode==='exam'?Math.min(25,n):n})`;
+}
+function wSample(items){
+  const p=items.map(q=>{ const r=srs[q.id]; return {q,w: !r||!r.seen?3:Math.max(1,1+(r.miss/r.seen)*6)}; }), out=[];
+  while(p.length){ const tot=p.reduce((s,x)=>s+x.w,0); let r=Math.random()*tot,k=0; for(;k<p.length;k++){ r-=p[k].w; if(r<=0) break; } out.push(p.splice(Math.min(k,p.length-1),1)[0].q); }
+  return out;
+}
+let lastDeck=null;
+function start(again){
+  let p = again&&lastDeck ? lastDeck.slice() : pool();
+  if(!p.length) return;
+  if(mode==='practice') deck=wSample(p);
+  else if(mode==='weak') deck=p.sort((a,b)=>missRate(b)-missRate(a)).slice(0,30);
+  else if(mode==='exam'){ // balanced across units
+    const by={}; shuffle(p).forEach(q=>(by[q.u]=by[q.u]||[]).push(q)); deck=[]; const keys=Object.keys(by);
+    while(deck.length<Math.min(25,p.length)){ keys.forEach(k=>{ if(by[k].length&&deck.length<25) deck.push(by[k].pop()); }); }
+    deck=shuffle(deck);
+  } else deck=shuffle(p);
+  lastDeck=p.slice(); idx=0; right=0; missed=[]; streak=0;
+  document.getElementById('btn-setup').style.display='';
+  clearInterval(timerId);
+  const T=document.getElementById('timer');
+  if(mode==='exam'){ left=deck.length*75; T.style.display=''; timerId=setInterval(()=>{ left--; T.textContent=`⏱ ${Math.floor(left/60)}:${String(left%60).padStart(2,'0')}`; if(left<=0){ clearInterval(timerId); finish(true); } },1000); } else T.style.display='none';
+  show('s-q'); render();
+}
+function render(){
+  const q=deck[idx]; answered=false;
+  document.getElementById('q-count').textContent = mode==='stamina'?`RUN · ${idx+1}`:`QUESTION ${idx+1} OF ${deck.length}`;
+  document.getElementById('q-badges').innerHTML=`<span class="tag t-unit">${q.u} · ${esc(UNIT_NAMES[q.u])}</span><span class="tag b-t${q.t}">${['','① Foundational','② Intermediate','③ Challenge'][q.t]}</span>`;
+  document.getElementById('combo').textContent = streak>=3?`🔥 ${streak} streak`:'';
+  document.getElementById('pfill').style.width=(mode==='stamina'?Math.min(100,idx*4):idx/deck.length*100)+'%';
+  document.getElementById('qtext').textContent=q.q;
+  order=shuffle(q.o.map((_,i)=>i));
+  document.getElementById('opts').innerHTML=order.map((o,i)=>`<button class="opt" id="o-${i}" onclick="pick(${i})"><span class="opt-key">${'ABCD'[i]}</span><span>${esc(q.o[o])}</span></button>`).join('');
+  const fb=document.getElementById('fb'); fb.className='fb'; fb.innerHTML='';
+  document.getElementById('btn-next').style.display='none'; document.getElementById('btn-tutor').style.display='none';
+  document.getElementById('tutor').classList.remove('open'); document.getElementById('chat').innerHTML=''; tHist=[];
+}
+function pick(i){
+  if(answered) return; answered=true;
+  const q=deck[idx], ok=order[i]===q.a;
+  const r=srs[q.id]||{seen:0,miss:0}; r.seen++; if(!ok) r.miss++; srs[q.id]=r;
+  um[q.u]=um[q.u]||{c:0,t:0}; um[q.u].t++; if(ok) um[q.u].c++;
+  stats.total++; if(ok){ stats.correct++; right++; streak++; if(streak>stats.best) stats.best=streak; } else { streak=0; missed.push({q,chose:q.o[order[i]]}); }
+  save(); globals(); game().answer(ok,q.t);
+  document.querySelectorAll('.opt').forEach((b,j)=>{ b.disabled=true; if(order[j]===q.a) b.classList.add('correct'); else if(j===i) b.classList.add('wrong'); });
+  tCtx={term:UNIT_NAMES[q.u], explanation:q.e, chosen:q.o[order[i]], correct:q.o[q.a]};
+  if(mode==='stamina'&&!ok){ setTimeout(()=>finish(),900); return feedback(ok,q); }
+  if(mode!=='exam') feedback(ok,q);
+  const nb=document.getElementById('btn-next'); nb.style.display=''; nb.textContent=(mode!=='stamina'&&idx>=deck.length-1)?'See results →':'Next →';
+}
+function feedback(ok,q){
+  const fb=document.getElementById('fb'); fb.className='fb show '+(ok?'ok':'no');
+  fb.innerHTML=`<b style="color:${ok?'#4fd1a5':'#f08579'}">${ok?'✓ Correct':'✗ Not quite — the answer is: '+esc(q.o[q.a])}</b>${esc(q.e)}`;
+  document.getElementById('btn-tutor').style.display='';
+}
+function next(){ idx++; if(mode==='stamina'&&idx>=deck.length){ deck=deck.concat(shuffle(lastDeck)); } if(idx>=deck.length) return finish(); render(); }
+function finish(timeUp){
+  clearInterval(timerId); stats.sessions++; save(); globals();
+  const n = mode==='stamina'? idx+1 : (timeUp? idx+ (answered?1:0) : deck.length);
+  const pct = n?Math.round(right/n*100):0;
+  document.getElementById('r-mode').textContent= timeUp?'TIME EXPIRED':mode==='stamina'?`STAMINA RUN — ${right} IN A ROW`:'SESSION COMPLETE';
+  if(mode==='stamina'){ const k='envsci_drill_stamina_best'; const b=Math.max(lsGet(k,0),right); lsSet(k,b); }
+  document.getElementById('r-score').innerHTML=`${right}<span>/${n}</span>`;
+  const g=pct>=90?['Excellent','var(--teal)']:pct>=80?['Strong','var(--teal)']:pct>=70?['Solid','var(--amber)']:pct>=60?['Developing','var(--amber)']:['Needs review','var(--red)'];
+  document.getElementById('r-grade').innerHTML=`<span style="color:${g[1]}">${g[0]}</span>`;
+  document.getElementById('r-sub').textContent=`${pct}% correct · ${({practice:'Practice',exam:'Exam',stamina:'Stamina',weak:'Weak Spots'})[mode]}`;
+  const seen=deck.slice(0,n), by={};
+  seen.forEach(q=>{ by[q.u]=by[q.u]||{n:0,ok:0}; by[q.u].n++; if(!missed.some(m=>m.q===q)) by[q.u].ok++; });
+  document.getElementById('r-brk').innerHTML=Object.keys(by).sort((a,b)=>+a.slice(1)-+b.slice(1)).map(u=>{ const d=by[u], p=Math.round(d.ok/d.n*100), c=p>=80?'var(--teal)':p>=60?'var(--amber)':'var(--red)';
+    return `<div class="brk"><div class="brk-n">${u} ${esc(UNIT_NAMES[u])}</div><div class="brk-b"><i style="width:${p}%;background:${c}"></i></div><div class="brk-v">${d.ok}/${d.n}</div></div>`; }).join('');
+  document.getElementById('btn-missed').style.display=missed.length?'':'none';
+  document.getElementById('r-missed-card').style.display=missed.length?'':'none';
+  document.getElementById('r-missed').innerHTML=missed.map(m=>`<div class="miss"><div style="font-weight:600;color:#fff;margin-bottom:5px">${esc(m.q.q)}</div><div>You chose: ${esc(m.chose)} · Correct: <b>${esc(m.q.o[m.q.a])}</b></div><div style="margin-top:5px;color:var(--muted)">${esc(m.q.e)}</div></div>`).join('');
+  show('s-res');
+}
+function retryMissed(){ if(!missed.length) return; lastDeck=missed.map(m=>m.q); setMode('practice',document.querySelector('.mode-tab[data-m="practice"]')); start(true); }
+function goSetup(){ clearInterval(timerId); document.getElementById('btn-setup').style.display='none'; renderUnits(); upd(); show('s-setup'); }
+function globals(){
+  document.getElementById('g-total').textContent=stats.total;
+  document.getElementById('g-acc').textContent=stats.total?Math.round(stats.correct/stats.total*100)+'%':'—';
+  document.getElementById('g-best').textContent=stats.best; document.getElementById('g-sess').textContent=stats.sessions;
+}
+// ── Tutor ──
+function openTutor(){
+  const T=document.getElementById('tutor'); if(T.classList.contains('open')) return; T.classList.add('open');
+  document.getElementById('tmode').textContent=StudyHubTutor.modeLabel();
+  const q=deck[idx];
+  tHist=[{role:'user',content:`CONTEXT (don't repeat verbatim): Unit: ${UNIT_NAMES[q.u]}\nQuestion: ${q.q}\nChoices: ${q.o.join(' | ')}\nCorrect: ${q.o[q.a]}\nStudent chose: ${tCtx.chosen}\nExplanation: ${q.e}`},{role:'assistant',content:'Ready to help.'}];
+  bub('a', tCtx.chosen===tCtx.correct ? `Nice work. Want a real-world example or a harder follow-up on this idea?` : `Let's untangle it. You picked "${tCtx.chosen}". Tap a button below or ask me anything.`);
+}
+function bub(r,t){ const c=document.getElementById('chat'); const d=document.createElement('div'); d.className='bub '+r; d.innerHTML=esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\n/g,'<br>'); c.appendChild(d); c.scrollTop=c.scrollHeight; }
+async function ask(preset){
+  const inp=document.getElementById('tin'); const msg=(preset||inp.value).trim(); if(!msg) return; inp.value='';
+  bub('u',msg); tHist.push({role:'user',content:msg});
+  const res=await StudyHubTutor.ask({system:`You are ${TUTOR}, a friendly Environmental Science Honors field coach for high school students. 2-4 sentences, plain text. Add a new angle, a Florida or wildlife example, or a step — never just repeat the explanation. Redirect off-topic questions warmly.`, messages:tHist, context:tCtx, message:msg});
+  bub('a',res.text); tHist.push({role:'assistant',content:res.text}); if(tHist.length>14) tHist.splice(2,2);
+}
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('s-q').classList.contains('active')||e.target.tagName==='INPUT') return;
+  const k=e.key.toLowerCase(); const m={'1':0,'2':1,'3':2,'4':3,a:0,b:1,c:2,d:3};
+  if(k in m && !answered) pick(m[k]); else if(k==='enter'&&answered) next();
+});
+(function init(){
+  const calc=new Set(QB.map(q=>q.u)).size;
+  document.getElementById('page-sub').textContent=`${QB.length} questions · ${calc} units · 3 tiers · answer order shuffles every time · keys 1–4 to answer, Enter for next`;
+  document.getElementById('mode-desc').innerHTML=DESC.practice;
+  const p=new URLSearchParams(location.search);
+  const u=p.get('unit'); if(u){ const uu=u.startsWith('U')?u:'U'+u; if(UNIT_NAMES[uu]) sel=new Set([uu]); }
+  const m=p.get('mode'); if(m&&DESC[m]){ const b=document.querySelector('.mode-tab[data-m="'+m+'"]'); if(b) setMode(m,b); }
+  renderUnits(); upd(); globals();
+})();
+</script>
+</body>
+</html>
