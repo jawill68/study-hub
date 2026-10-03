@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environmental Science Honors - Drill Trainer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            border-bottom: 4px solid #764ba2;
+        }
+
+        header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .stat .number {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat .label {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .question-set {
+            margin-bottom: 40px;
+        }
+
+        .set-header {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        .set-header h3 {
+            color: #667eea;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .question-card {
+            background: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            padding: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .question-card:hover {
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+        }
+
+        .question-header {
+            background: white;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e0e0e0;
+            cursor: pointer;
+        }
+
+        .question-header:hover {
+            background: #f9f9f9;
+        }
+
+        .question-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 0.9em;
+        }
+
+        .question-text {
+            display: inline;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .tier-badge {
+            display: inline-block;
+            margin-left: 10px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+
+        .tier-1 { background: #d4edda; color: #155724; }
+        .tier-2 { background: #fff3cd; color: #856404; }
+        .tier-3 { background: #f8d7da; color: #721c24; }
+
+        .question-body {
+            padding: 20px;
+            background: white;
+            display: none;
+        }
+
+        .question-body.show {
+            display: block;
+        }
+
+        .options {
+            margin: 15px 0;
+        }
+
+        .option {
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option:hover {
+            background: #f0f0f0;
+            border-color: #667eea;
+        }
+
+        .option.correct {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+            font-weight: 600;
+        }
+
+        .hint {
+            background: #e7f3ff;
+            border-left: 4px solid #0066cc;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 4px;
+            color: #00397d;
+        }
+
+        .hint-label {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .explanation {
+            background: #f0f8f0;
+            border-left: 4px solid #28a745;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 4px;
+            color: #1e5631;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .explanation-label {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.6em;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .question-card {
+                padding: 0;
+            }
+
+            .content {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧪 Environmental Science Honors</h1>
+            <p>Drill Trainer - Multi-Tier Practice Questions</p>
+        </header>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="number">41</div>
+                <div class="label">Total Questions</div>
+            </div>
+            <div class="stat">
+                <div class="number">3</div>
+                <div class="label">Difficulty Tiers</div>
+            </div>
+            <div class="stat">
+                <div class="number">4</div>
+                <div class="label">Units</div>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <div class="question-set" id="U1">
+                <div class="set-header">
+                    <h3>Unit 1: Ecology & Ecosystems</h3>
+                    <p>15 questions</p>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d1')">
+                        <span class="question-number">1</span>
+                        <span class="question-text">What is ecology?</span>
+                        <span class="tier-badge tier-1">Tier 1: Vocabulary</span>
+                    </div>
+                    <div class="question-body" id="body-d1">
+                        <div class="options">
+                            <div class="option correct">The study of how organisms interact with each other and their physical environment</div>
+                            <div class="option ">The scientific study of environmental conservation and pollution</div>
+                            <div class="option ">The practice of protecting endangered species</div>
+                            <div class="option ">The study of how to reduce human impact on the environment</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>It's a science that examines relationships between living things and their surroundings.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Ecology is the scientific study of organism interactions with each other (biotic) and the physical environment (abiotic). It's objective science; environmentalism applies ecological knowledge to conservation goals.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d2')">
+                        <span class="question-number">2</span>
+                        <span class="question-text">Which of the following is an abiotic factor in an ecosystem?</span>
+                        <span class="tier-badge tier-1">Tier 1: Vocabulary</span>
+                    </div>
+                    <div class="question-body" id="body-d2">
+                        <div class="options">
+                            <div class="option ">Decomposing bacteria</div>
+                            <div class="option correct">Soil temperature and pH</div>
+                            <div class="option ">Predatory fish</div>
+                            <div class="option ">Photosynthetic algae</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Abiotic means non-living. Think about physical and chemical components.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Abiotic factors are non-living components: temperature, light, water, pH, soil, atmosphere. Biotic factors are organisms (bacteria, fish, algae). This ecosystem has both—they interact to create function.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d3')">
+                        <span class="question-number">3</span>
+                        <span class="question-text">What defines a population in ecology?</span>
+                        <span class="tier-badge tier-1">Tier 1: Vocabulary</span>
+                    </div>
+                    <div class="question-body" id="body-d3">
+                        <div class="options">
+                            <div class="option correct">A group of the same species living in the same area and interbreeding</div>
+                            <div class="option ">All organisms in an ecosystem</div>
+                            <div class="option ">A group of different species that live together</div>
+                            <div class="option ">The total number of organisms in a geographic region</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>It requires: same species, same area, ability to breed with each other.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>A population is interbreeding individuals of the same species in the same area. This defines potential gene flow. Separate populations can't interbreed, so they evolve independently.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d4')">
+                        <span class="question-number">4</span>
+                        <span class="question-text">How does a community differ from an ecosystem?</span>
+                        <span class="tier-badge tier-1">Tier 1: Vocabulary</span>
+                    </div>
+                    <div class="question-body" id="body-d4">
+                        <div class="options">
+                            <div class="option ">A community includes organisms only; an ecosystem includes organisms plus abiotic factors</div>
+                            <div class="option ">An ecosystem is larger; a community is smaller</div>
+                            <div class="option correct">A community is all organisms; an ecosystem is all organisms plus abiotic environment</div>
+                            <div class="option ">They're the same thing, just different names</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>A community = all living things. An ecosystem = community + physical environment.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Community: all populations of species in an area. Ecosystem: community + abiotic factors (water, temperature, soil). Both concepts are important—communities show biotic structure, ecosystems show function.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d5')">
+                        <span class="question-number">5</span>
+                        <span class="question-text">Which best describes a niche?</span>
+                        <span class="tier-badge tier-1">Tier 1: Vocabulary</span>
+                    </div>
+                    <div class="question-body" id="body-d5">
+                        <div class="options">
+                            <div class="option ">The physical place where an organism lives</div>
+                            <div class="option correct">The role and position of an organism in its environment, including how it obtains food</div>
+                            <div class="option ">A small protected area within a large ecosystem</div>
+                            <div class="option ">The population of a species in an area</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>A niche is a 'job description'—what an organism does and how it uses resources.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Habitat is an address (where you live); niche is a job (what you do there). Two species can share a habitat but have different niches. A roadrunner hunts ground reptiles by day; a kit fox hunts small mammals at night—same desert, different niches.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d6')">
+                        <span class="question-number">6</span>
+                        <span class="question-text">In a food chain (Grass → Grasshopper → Bird → Hawk), what happens to energy at each trophic level?</span>
+                        <span class="tier-badge tier-2">Tier 2: Application</span>
+                    </div>
+                    <div class="question-body" id="body-d6">
+                        <div class="options">
+                            <div class="option ">Energy doubles as it moves up the food chain</div>
+                            <div class="option correct">About 90% of energy is lost as heat; ~10% is captured by the next trophic level</div>
+                            <div class="option ">All energy is captured by consumers; none is lost</div>
+                            <div class="option ">Energy remains constant as it moves through the food chain</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Remember the 10% rule: each level captures ~10% of the energy from the level below.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Energy loss at each step is why food chains don't extend beyond 4-5 levels. Of 1,000 energy units in grass: grasshoppers get ~100, birds get ~10, hawks get ~1. The rest is lost as heat and used for metabolism.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d7')">
+                        <span class="question-number">7</span>
+                        <span class="question-text">A plant performs photosynthesis during the day and cellular respiration day and night. Why does the plant need both processes?</span>
+                        <span class="tier-badge tier-2">Tier 2: Application</span>
+                    </div>
+                    <div class="question-body" id="body-d7">
+                        <div class="options">
+                            <div class="option correct">Photosynthesis stores energy; respiration releases that energy for cellular work</div>
+                            <div class="option ">Photosynthesis is for growth; respiration is for protection</div>
+                            <div class="option ">Photosynthesis is waste removal; respiration is food absorption</div>
+                            <div class="option ">They serve the same purpose; plants only need one</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Photosynthesis makes food (glucose); respiration breaks down food for energy.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Photosynthesis captures solar energy in glucose. Respiration breaks down glucose to release that energy as ATP for cellular processes (growth, movement, metabolism). Both are continuous—photosynthesis during light, respiration constantly.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d8')">
+                        <span class="question-number">8</span>
+                        <span class="question-text">A farmer adds nitrogen fertilizer to crops and sees increased yield. Next year, the farmer adds more nitrogen but yield increases minimally. What's the most likely reason?</span>
+                        <span class="tier-badge tier-2">Tier 2: Application</span>
+                    </div>
+                    <div class="question-body" id="body-d8">
+                        <div class="options">
+                            <div class="option ">The crops are too large</div>
+                            <div class="option correct">Nitrogen was the limiting factor last year, but now another nutrient (like phosphorus) is limiting</div>
+                            <div class="option ">Nitrogen fertilizer becomes less effective over time</div>
+                            <div class="option ">The soil has become too acidic</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>The scarcest resource is the limiting factor. Once that's addressed, the next scarcest resource becomes limiting.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>In Year 1, nitrogen was limiting—adding it increased yield. In Year 2, nitrogen is sufficient, but another nutrient is now the limiting factor. Crop growth is limited by the scarcest resource, not the most abundant.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d9')">
+                        <span class="question-number">9</span>
+                        <span class="question-text">After a forest fire, fast-growing shrubs and small trees quickly colonize the burned area. Over decades, shade-tolerant, slower-growing trees grow beneath them and gradually replace the shrubs. What is this process called?</span>
+                        <span class="tier-badge tier-2">Tier 2: Application</span>
+                    </div>
+                    <div class="question-body" id="body-d9">
+                        <div class="options">
+                            <div class="option ">Primary succession</div>
+                            <div class="option correct">Secondary succession</div>
+                            <div class="option ">Ecological climax</div>
+                            <div class="option ">Habitat fragmentation</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>The burned area still has soil. Succession starts with pioneer species (fast, small) → shade-tolerant competitors (slow, large).</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Secondary succession occurs in disturbed areas with existing soil. Soil is already there, so faster-growing plants (pioneers) colonize first. They're eventually replaced by slower-growing shade-tolerant competitors. Primary succession would start from bare rock with no soil.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d10')">
+                        <span class="question-number">10</span>
+                        <span class="question-text">A pond is stocked with 100 fish. Initially, the population grows rapidly. After several years, population growth slows and stabilizes at ~50 fish. Why does the population level off?</span>
+                        <span class="tier-badge tier-2">Tier 2: Application</span>
+                    </div>
+                    <div class="question-body" id="body-d10">
+                        <div class="options">
+                            <div class="option ">Fish stop reproducing after a certain age</div>
+                            <div class="option correct">The pond reaches its carrying capacity—the maximum population the environment can sustain</div>
+                            <div class="option ">Temperature changes prevent further growth</div>
+                            <div class="option ">Fish migrate to other ponds</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Carrying capacity is the maximum population size a habitat can support indefinitely based on available resources.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Carrying capacity (~50 fish) is determined by available food, oxygen, and space. At 100 fish, these resources are insufficient, so starvation/disease increase and population drops. At 50, resources are sufficient to sustain the population indefinitely.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d11')">
+                        <span class="question-number">11</span>
+                        <span class="question-text">In a freshwater ecosystem, pollution removes most of the zooplankton (small aquatic animals). Based on food web dynamics, what would likely happen? (Assume zooplankton are primary consumers eating algae)</span>
+                        <span class="tier-badge tier-3">Tier 3: Analysis</span>
+                    </div>
+                    <div class="question-body" id="body-d11">
+                        <div class="options">
+                            <div class="option ">Algae population decreases due to less zooplankton to compete with</div>
+                            <div class="option correct">Small fish decline (their food source is gone) while algae initially increase (less herbivory pressure), but eventually algae decline as nutrient cycles break down</div>
+                            <div class="option ">The ecosystem remains stable due to ecological redundancy</div>
+                            <div class="option ">Only zooplankton populations are affected; other organisms are unaffected</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Trace the effect through the food web: Zooplankton ↓ → Small fish ↓ → but Algae initially ↑ → then nutrient depletion ↓</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Removing zooplankton has cascading effects. Immediately: small fish lose food, decline. Algae initially increases (less grazing). But zooplankton were decomposing algal waste and recycling nutrients. Without them, nutrients cycle poorly, algae eventually decline. Ecosystem function collapses despite apparent short-term algae increase.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d12')">
+                        <span class="question-number">12</span>
+                        <span class="question-text">A population of rabbits lives at high density in a small field. A disease spreads rapidly among them, killing 50% of the population. A hurricane then strikes, randomly killing another 30% of survivors. Which factor was density-dependent, and which was density-independent?</span>
+                        <span class="tier-badge tier-3">Tier 3: Analysis</span>
+                    </div>
+                    <div class="question-body" id="body-d12">
+                        <div class="options">
+                            <div class="option ">Disease is density-independent; hurricane is density-dependent</div>
+                            <div class="option correct">Disease is density-dependent; hurricane is density-independent</div>
+                            <div class="option ">Both are density-dependent</div>
+                            <div class="option ">Both are density-independent</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Density-dependent: effect increases with population density (disease spreads faster when animals are crowded). Density-independent: random effect regardless of density.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Disease is density-dependent—it spreads faster in crowded populations (50% killed). Hurricane is density-independent—it kills ~30% regardless of whether population is 1,000 or 10,000 (random damage). Density-dependent factors self-regulate populations; density-independent factors destabilize them.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d13')">
+                        <span class="question-number">13</span>
+                        <span class="question-text">A plant adapted to desert conditions (small leaves, deep roots, waxy cuticle) is introduced to a temperate rainforest (warm, wet year-round). Predict its likely outcome and explain why.</span>
+                        <span class="tier-badge tier-3">Tier 3: Analysis</span>
+                    </div>
+                    <div class="question-body" id="body-d13">
+                        <div class="options">
+                            <div class="option ">It will thrive because plants don't depend on specific environmental conditions</div>
+                            <div class="option correct">It will struggle and likely die because its adaptations reduce water uptake (waxy cuticle, small leaves) in a high-water environment, and it may experience fungal diseases in humid conditions</div>
+                            <div class="option ">It will gradually evolve to lose its desert adaptations within one generation</div>
+                            <div class="option ">It will compete equally with native plants and establish a stable population</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Desert adaptations minimize water loss (good for dry) but prevent efficient water uptake (bad for wet). High humidity promotes fungal growth.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Desert plant adaptations are specialized for low-water environments. In a wet rainforest: (1) Small leaves and waxy cuticle reduce water uptake, starving the plant. (2) Dense, humid conditions promote mold/fungal infection. (3) Competition from efficient rainforest plants is intense. The plant's adaptations are liabilities in a rainforest—it can't thrive.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d14')">
+                        <span class="question-number">14</span>
+                        <span class="question-text">Why do ecosystems with the same biotic diversity (species composition) but different energy inputs from the sun support different-sized populations of apex predators (top carnivores)?</span>
+                        <span class="tier-badge tier-3">Tier 3: Analysis</span>
+                    </div>
+                    <div class="question-body" id="body-d14">
+                        <div class="options">
+                            <div class="option ">Apex predators are smarter in some ecosystems and hunt more efficiently</div>
+                            <div class="option correct">Energy input determines total primary productivity, which limits energy available up the food chain; higher energy input supports larger apex predator populations</div>
+                            <div class="option ">Apex predators have different reproduction rates in different ecosystems</div>
+                            <div class="option ">Apex predator populations are unrelated to ecosystem energy input</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>More solar energy captured by producers → more food available throughout the food chain → larger populations at every level.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Energy constrains populations at all trophic levels. A tropical forest (high solar input, high photosynthesis) supports more biomass than a boreal forest (low solar input, lower photosynthesis). Even with identical species composition, the tropical forest's greater primary productivity supports larger apex predator populations because more energy is available as it flows up the food chain.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d15')">
+                        <span class="question-number">15</span>
+                        <span class="question-text">Two identical ponds are created in the same region. Pond A remains undisturbed. Pond B is drained and refilled every 2 years. After 10 years, why might Pond A have higher biodiversity than Pond B?</span>
+                        <span class="tier-badge tier-3">Tier 3: Analysis</span>
+                    </div>
+                    <div class="question-body" id="body-d15">
+                        <div class="options">
+                            <div class="option ">Disturbance prevents biodiversity; stable conditions favor pioneer species only</div>
+                            <div class="option correct">Disturbance resets succession, preventing climax community establishment; Pond B cycles through early succession repeatedly while Pond A reaches a diverse climax community</div>
+                            <div class="option ">Disturbance increases biodiversity; Pond B should have higher diversity</div>
+                            <div class="option ">Biodiversity is determined by climate, not disturbance</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Succession takes time. Frequent disturbance prevents the system from reaching a stable, diverse climax state.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Pond A undergoes succession undisturbed: early colonizers → competitors → climax community with maximum diversity. Pond B is reset every 2 years, restarting succession. It never reaches climax; it cycles through pioneer stages repeatedly. Repeated disturbance prevents diversity accumulation. Intermediate disturbance promotes diversity; severe/frequent disturbance prevents it.</div>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="question-set" id="U2">
+                <div class="set-header">
+                    <h3>Unit 2: Biodiversity</h3>
+                    <p>14 questions</p>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d16')">
+                        <span class="question-number">16</span>
+                        <span class="question-text">Biodiversity refers to:</span>
+                        <span class="tier-badge tier-1">Tier 1: Vocabulary</span>
+                    </div>
+                    <div class="question-body" id="body-d16">
+                        <div class="options">
+                            <div class="option ">The number of animals in an ecosystem</div>
+                            <div class="option correct">The variety of life at all levels—genetic, species, and ecosystem diversity</div>
+                            <div class="option ">Only the number of plant species in an area</div>
+                            <div class="option ">The total amount of biomass in an ecosystem</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Think about variation at three levels: within species (genetic), among species, and among ecosystems.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Biodiversity has three components: (1) Genetic diversity within species, (2) Species diversity (number of species), (3) Ecosystem diversity (variety of ecosystem types). High biodiversity means high variation at all three levels.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d17')">
+                        <span class="question-number">17</span>
+                        <span class="question-text">What does it mean for a species to be endemic?</span>
+                        <span class="tier-badge tier-1">Tier 1: Vocabulary</span>
+                    </div>
+                    <div class="question-body" id="body-d17">
+                        <div class="options">
+                            <div class="option ">It is found in many countries worldwide</div>
+                            <div class="option correct">It is found naturally in only one geographic location</div>
+                            <div class="option ">It is extinct in the wild but exists in zoos</div>
+                            <div class="option ">It was recently introduced by humans</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Endemic = one location only. If the species' habitat is destroyed, it goes globally extinct.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Endemic species exist nowhere else on Earth. Losing their habitat = global extinction. Island endemics (Galápagos tortoises, Hawaiian birds) are especially vulnerable—they have nowhere else to go.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d18')">
+                        <span class="question-number">18</span>
+                        <span class="question-text">An invasive species is best described as:</span>
+                        <span class="tier-badge tier-1">Tier 1: Vocabulary</span>
+                    </div>
+                    <div class="question-body" id="body-d18">
+                        <div class="options">
+                            <div class="option ">Any non-native species in an ecosystem</div>
+                            <div class="option correct">A non-native species that spreads rapidly and causes harm to the ecosystem or human interests</div>
+                            <div class="option ">A species that has lived in an area for less than 100 years</div>
+                            <div class="option ">A species that outcompetes native species through superior intelligence</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Invasive = non-native AND harmful. Not all non-natives are invasive; most coexist harmlessly.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Invasive species cause ecological or economic harm. They often lack natural predators, outcompete natives, introduce diseases, or alter habitats. Zebra mussels clog pipes; Asian carp displace native fish; invasive plants reduce fire intervals.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d19')">
+                        <span class="question-number">19</span>
+                        <span class="question-text">A keystone species is one that:</span>
+                        <span class="tier-badge tier-1">Tier 1: Vocabulary</span>
+                    </div>
+                    <div class="question-body" id="body-d19">
+                        <div class="options">
+                            <div class="option ">Is the most abundant species in an ecosystem</div>
+                            <div class="option correct">Has an ecological impact disproportionately large relative to its abundance</div>
+                            <div class="option ">Is the largest species in an ecosystem</div>
+                            <div class="option ">Provides food for all other species</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Keystone species are influential, not necessarily numerous. Removing them causes ecosystem collapse.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Sea otters are rare but keystone—they control sea urchin populations. Without otters, urchins overgraze kelp forests, and the ecosystem collapses. One species' removal cascades through the entire system.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d20')">
+                        <span class="question-number">20</span>
+                        <span class="question-text">What does genetic diversity measure?</span>
+                        <span class="tier-badge tier-1">Tier 1: Vocabulary</span>
+                    </div>
+                    <div class="question-body" id="body-d20">
+                        <div class="options">
+                            <div class="option ">The number of different species in an area</div>
+                            <div class="option correct">The variation in genetic material within a population or species</div>
+                            <div class="option ">The total number of genes in an ecosystem</div>
+                            <div class="option ">How different ecosystems are from each other</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Genetic diversity = variation within a species. Many variants = adaptable population.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Genetic diversity is variation in genes within a species or population. High genetic diversity means many allele variants, making populations adaptable to change. Low diversity means limited variation, increasing extinction risk from disease or environmental change.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d21')">
+                        <span class="question-number">21</span>
+                        <span class="question-text">A forest habitat of 10,000 acres is divided by roads into five 2,000-acre patches. Why might the species that lived in the continuous forest struggle in these fragmented patches?</span>
+                        <span class="tier-badge tier-2">Tier 2: Application</span>
+                    </div>
+                    <div class="question-body" id="body-d21">
+                        <div class="options">
+                            <div class="option ">Total habitat area is sufficient; fragmentation has no effect</div>
+                            <div class="option correct">Fragmented patches have smaller populations, reduced genetic diversity through drift, and isolation prevents recolonization; species are vulnerable to extinction</div>
+                            <div class="option ">Species are too small to survive in patches; they need more than 10,000 acres</div>
+                            <div class="option ">Fragmentation increases biodiversity by creating new niches</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Smaller populations = fewer breeding options = genetic isolation = reduced diversity = higher extinction risk.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Fragmentation harms species even if total area is unchanged. Each 2,000-acre patch has fewer individuals than the 10,000-acre continuous forest. Fewer individuals = genetic drift, inbreeding, reduced adaptation ability. Patches are isolated; if one local population goes extinct, the patch isn't recolonized. Fragmentation is nearly as harmful as habitat loss.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d22')">
+                        <span class="question-number">22</span>
+                        <span class="question-text">A species hunted to 30 individuals is protected and the population recovers to 3,000 today. Why might genetic analysis show unusually low genetic diversity despite population recovery?</span>
+                        <span class="tier-badge tier-2">Tier 2: Application</span>
+                    </div>
+                    <div class="question-body" id="body-d22">
+                        <div class="options">
+                            <div class="option ">Recovery is too recent; genetic diversity will eventually increase</div>
+                            <div class="option correct">The population bottleneck (reduction to 30) caused loss of genetic variants that can't be recovered; diversity is permanently reduced even if population size recovers</div>
+                            <div class="option ">Large population sizes automatically reduce genetic diversity</div>
+                            <div class="option ">Genetic diversity is unrelated to population size</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>When population shrinks, alleles are randomly lost. Once lost, they're gone forever—recovery in numbers doesn't restore lost variation.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>A genetic bottleneck causes permanent diversity loss. If only 30 individuals survive, alleles present only in the dead individuals are lost forever. The recovered population (3,000) all descend from those 30, so genetic variation can never return to pre-bottleneck levels. Northern elephant seals (bottlenecked to ~20) recovered numerically but remain genetically uniform.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d23')">
+                        <span class="question-number">23</span>
+                        <span class="question-text">Zebra mussels, a non-native species from Europe, were introduced to North American freshwater systems. They reproduce rapidly and clog water intake pipes. They also outcompete native mussels for food. What makes zebra mussels invasive rather than simply 'established'?</span>
+                        <span class="tier-badge tier-2">Tier 2: Application</span>
+                    </div>
+                    <div class="question-body" id="body-d23">
+                        <div class="options">
+                            <div class="option ">They breed with native species</div>
+                            <div class="option ">They are non-native species</div>
+                            <div class="option correct">They spread rapidly and cause economic/ecological harm to the system and native species</div>
+                            <div class="option ">They are larger than native species</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Invasive = non-native + harmful. Many non-natives don't cause harm; they're just 'introduced' species.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Invasive species cause documented harm. Zebra mussels cause economic damage (clogged pipes, millions in losses) and ecological damage (outcompete natives, alter ecosystems). They're invasive because of their harmful impact, not just because they're non-native.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d24')">
+                        <span class="question-number">24</span>
+                        <span class="question-text">Tropical rainforests cover ~2% of Earth's land but contain ~50% of Earth's species. Why should conservation efforts prioritize tropical rainforests?</span>
+                        <span class="tier-badge tier-2">Tier 2: Application</span>
+                    </div>
+                    <div class="question-body" id="body-d24">
+                        <div class="options">
+                            <div class="option ">Rainforests are easier to protect than other ecosystems</div>
+                            <div class="option correct">They contain disproportionate biodiversity; protecting rainforest hotspots efficiently conserves global species diversity</div>
+                            <div class="option ">Rainforests produce the most oxygen on Earth</div>
+                            <div class="option ">Rainforests prevent climate change</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Efficiency: protect a hotspot with 1,000 species; protect a temperate forest with 200 species. Where can you conserve more diversity with same resources?</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Hotspots (high-diversity, high-endemism areas) are conservation priorities because protecting them protects a huge proportion of global biodiversity. Many hotspot species are found nowhere else, so losing hotspots means losing species that can't be protected elsewhere.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d25')">
+                        <span class="question-number">25</span>
+                        <span class="question-text">Two populations of the same species are separated by an impassable mountain range. Over many generations, the populations diverge genetically despite no selection pressure. What genetic process explains this?</span>
+                        <span class="tier-badge tier-2">Tier 2: Application</span>
+                    </div>
+                    <div class="question-body" id="body-d25">
+                        <div class="options">
+                            <div class="option ">Gene flow homogenizes them</div>
+                            <div class="option correct">Genetic drift causes random changes in isolated populations; without gene flow to introduce variation, alleles are randomly lost in each population</div>
+                            <div class="option ">Mutation stops in isolated populations</div>
+                            <div class="option ">Selection pressures must be different; genetic change requires selection</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Isolation prevents gene flow. Without gene flow (migration), each population independently loses alleles by chance alone.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Genetic drift is strongest in small, isolated populations. No gene flow between populations means no new alleles arrive from the other population. Each population independently loses alleles randomly. After many generations, the populations diverge genetically even without selection pressure—just from random drift accumulation.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d26')">
+                        <span class="question-number">26</span>
+                        <span class="question-text">A rare orchid species with only 200 individuals remaining exists in one protected reserve. A conservation team proposes two strategies: (A) Establish second population by captive breeding and reintroduction to a new reserve, or (B) Increase genetic diversity of the original population by translocating orchids from botanic gardens that have descended from the wild population. Which strategy better addresses the species' main genetic threat, and why?</span>
+                        <span class="tier-badge tier-3">Tier 3: Analysis</span>
+                    </div>
+                    <div class="question-body" id="body-d26">
+                        <div class="options">
+                            <div class="option ">Strategy A; reintroduction creates redundancy so one catastrophe doesn't cause extinction</div>
+                            <div class="option correct">Strategy B; bringing seeds from botanic garden populations reintroduces alleles that were present in the wild but lost in the original population</div>
+                            <div class="option ">Both are equally effective</div>
+                            <div class="option ">Neither strategy addresses genetic concerns</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>The original population has low genetic diversity (small number). A bottleneck caused allele loss that can't be recovered by growing the original population. Botanic gardens preserve the genetic diversity from the original wild source.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>The core problem is genetic diversity loss due to the bottleneck (200 individuals). Growing the population from these 200 won't recover lost alleles—genetic drift only made them smaller. Strategy B is superior because botanic gardens preserve alleles from the original wild population that were lost in the 200-individual bottleneck. Reintroducing botanic garden individuals restores genetic diversity.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d27')">
+                        <span class="question-number">27</span>
+                        <span class="question-text">A non-native fish species introduced to a lake is thriving and reproducing, but native fish populations remain stable. Ecologists predict this coexistence might continue, or the non-native might eventually outcompete natives. What factors might determine whether the non-native remains coexistent or becomes invasive?</span>
+                        <span class="tier-badge tier-3">Tier 3: Analysis</span>
+                    </div>
+                    <div class="question-body" id="body-d27">
+                        <div class="options">
+                            <div class="option ">Non-natives can never coexist; it will eventually cause harm</div>
+                            <div class="option correct">Resource partitioning (occupying different niches), habitat heterogeneity, and natural predators/parasites of the non-native might prevent competitive exclusion; if these factors change, the non-native might become invasive</div>
+                            <div class="option ">Non-natives always coexist peacefully with natives</div>
+                            <div class="option ">Competitive ability is unchanging; coexistence outcome is predetermined</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Coexistence depends on specific conditions. If those conditions change (disease loss, habitat simplification, resource shift), the dynamics can flip to invasion.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Currently, coexistence is maintained by: (1) Resource partitioning (different niches), (2) Predators or parasites controlling non-native population, (3) Genetic variation in natives allowing some competitive edge. If a disease kills native-specific parasites, or if habitat changes favor the non-native, dynamics flip—the coexistent species becomes invasive.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d28')">
+                        <span class="question-number">28</span>
+                        <span class="question-text">Species A has 10,000 individuals in one population. Species B has 5,000 individuals in five populations of 1,000 each. If each species faces a 50% population decline from a random environmental event, which is more likely to go extinct, and why?</span>
+                        <span class="tier-badge tier-3">Tier 3: Analysis</span>
+                    </div>
+                    <div class="question-body" id="body-d28">
+                        <div class="options">
+                            <div class="option ">Species A; it has a larger total population to lose</div>
+                            <div class="option correct">Species B; even though total population is smaller, five isolated populations each drop to 500, all of which are below viable population size; even one small population's extinction might eliminate the species</div>
+                            <div class="option ">Both have equal extinction risk</div>
+                            <div class="option ">Neither is at risk; populations decline but recover</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>A viable population size is typically 500+ individuals. Five 500-person populations might all go extinct. Extinction risk depends on population structure, not just size.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Species A: 10,000 individuals → 5,000 survivors (still viable). Species B: Five populations of 1,000 → five populations of 500. Each population of 500 is at viability threshold; random drift might push any of them to extinction. Loss of one population means loss of the genetic diversity that population carried. Fragmented populations face higher extinction risk even if total population size is similar.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d29')">
+                        <span class="question-number">29</span>
+                        <span class="question-text">Region A has diverse ecosystems (rainforest, wetland, grassland, coral reef). Region B has only one ecosystem type (grassland). If climate change shifts temperature and precipitation, which region is more likely to maintain food security for its human population, and why?</span>
+                        <span class="tier-badge tier-3">Tier 3: Analysis</span>
+                    </div>
+                    <div class="question-body" id="body-d29">
+                        <div class="options">
+                            <div class="option ">Region B; grassland can adapt faster than diverse systems</div>
+                            <div class="option correct">Region A; ecosystem diversity provides backup systems; if one ecosystem becomes unsuitable for crops/livestock, others might remain productive; lost crops can shift to different ecosystems</div>
+                            <div class="option ">Both regions are equally affected</div>
+                            <div class="option ">Region B; monoculture systems produce more food</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Diversity = resilience. Multiple ecosystems = multiple options if one fails.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Ecosystem diversity provides insurance. If climate shift makes Region A's grassland unsuitable for wheat, the region can shift production to wetland rice or rainforest crops. Region B depends entirely on grassland productivity—if grassland becomes unsuitable (drought, unsuitable temperatures), the region has no backup. Diverse regions are more resilient to environmental change.</div>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="question-set" id="U3">
+                <div class="set-header">
+                    <h3>Unit 3: Sustaining Biodiversity</h3>
+                    <p>12 questions</p>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d30')">
+                        <span class="question-number">30</span>
+                        <span class="question-text">Protected areas are primarily designed to:</span>
+                        <span class="tier-badge tier-1">Tier 1: Vocabulary</span>
+                    </div>
+                    <div class="question-body" id="body-d30">
+                        <div class="options">
+                            <div class="option ">Restrict all human access to nature</div>
+                            <div class="option correct">Manage land/water primarily to conserve biodiversity and ecosystem functions</div>
+                            <div class="option ">Provide recreation only</div>
+                            <div class="option ">Extract resources sustainably</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Protected areas come in many types with different use restrictions. Common goal: conserve biodiversity.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Protected areas vary (parks allow recreation, reserves restrict access, marine protection areas ban fishing). Despite differences, primary purpose is conserving biodiversity and ecosystem function. Resource extraction is minimized.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d31')">
+                        <span class="question-number">31</span>
+                        <span class="question-text">In situ conservation protects species through which approach?</span>
+                        <span class="tier-badge tier-1">Tier 1: Vocabulary</span>
+                    </div>
+                    <div class="question-body" id="body-d31">
+                        <div class="options">
+                            <div class="option ">Breeding endangered species in zoos</div>
+                            <div class="option ">Storing genetic material in cryogenic banks</div>
+                            <div class="option correct">Protecting species in their natural habitats and ecosystems</div>
+                            <div class="option ">Creating seed banks for plant preservation</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>In situ = in place (habitat protection). Ex situ = outside place (zoos, banks).</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>In situ conservation protects species in nature by protecting their habitats. It's preferred because it protects entire ecosystems. Ex situ (zoos, seed banks) is backup insurance when in situ fails.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d32')">
+                        <span class="question-number">32</span>
+                        <span class="question-text">CITES is an international agreement that primarily aims to:</span>
+                        <span class="tier-badge tier-1">Tier 1: Vocabulary</span>
+                    </div>
+                    <div class="question-body" id="body-d32">
+                        <div class="options">
+                            <div class="option ">Protect marine ecosystems from pollution</div>
+                            <div class="option correct">Regulate trade in endangered species to prevent overexploitation from trade</div>
+                            <div class="option ">Establish hunting seasons for game animals</div>
+                            <div class="option ">Manage agricultural pesticide use</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>CITES = Convention on International Trade in Endangered Species. Focuses on trade regulation.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>CITES restricts or bans trade in endangered species (rhinos, elephants, pangolins) and their products. Reducing trade demand reduces poaching pressure. International agreement allows collective enforcement against illegal wildlife trade.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d33')">
+                        <span class="question-number">33</span>
+                        <span class="question-text">Sustainable use of a resource means:</span>
+                        <span class="tier-badge tier-1">Tier 1: Vocabulary</span>
+                    </div>
+                    <div class="question-body" id="body-d33">
+                        <div class="options">
+                            <div class="option ">Using as much of a resource as possible</div>
+                            <div class="option ">Never using a resource</div>
+                            <div class="option correct">Using a resource at a rate that allows population/ecosystem recovery and indefinite continued use</div>
+                            <div class="option ">Using only non-renewable resources</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Sustainable = can continue indefinitely. Harvest ≤ growth rate = sustainability.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Sustainable harvest is at equilibrium with population growth. Fish populations can be harvested indefinitely if harvest = population growth. Overfishing (harvest > growth) causes collapse.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d34')">
+                        <span class="question-number">34</span>
+                        <span class="question-text">A wetland was drained for agriculture 50 years ago. Conservationists restore it by removing levees and replanting native vegetation. Over the next 5 years, fish populations return to 40% of pre-drainage levels. Why might restoration take so long even after habitat is physically restored?</span>
+                        <span class="tier-badge tier-2">Tier 2: Application</span>
+                    </div>
+                    <div class="question-body" id="body-d34">
+                        <div class="options">
+                            <div class="option ">Fish populations don't migrate back to restored areas</div>
+                            <div class="option ">Invasive plant species prevent ecosystem function</div>
+                            <div class="option correct">Soil structure, nutrient cycling, and predator-prey dynamics must re-establish; ecological relationships take years to develop</div>
+                            <div class="option ">Restored wetlands can never match original conditions</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Physical restoration is step one. Ecological function—populations, food webs, nutrient cycling—takes longer to re-establish.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Draining altered soil structure, soil nutrient content, and microbial communities. Restoration fixes the physical habitat but not the biological relationships. Species must recolonize, predators and prey must find each other, competing species must sort out coexistence. Ecosystem recovery takes years/decades even after habitat restoration.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d35')">
+                        <span class="question-number">35</span>
+                        <span class="question-text">A captive breeding program for an endangered bird aims to maximize genetic diversity while increasing population size. Which practice best maintains genetic diversity?</span>
+                        <span class="tier-badge tier-2">Tier 2: Application</span>
+                    </div>
+                    <div class="question-body" id="body-d35">
+                        <div class="options">
+                            <div class="option ">Breeding the largest birds together (assuming larger = healthier)</div>
+                            <div class="option correct">Randomly pairing birds to minimize inbreeding while tracking all pedigrees</div>
+                            <div class="option ">Breeding all birds with the most captive-born offspring</div>
+                            <div class="option ">Breeding birds that are genetically most similar to increase adapted traits</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Random pairing with pedigree tracking prevents inbreeding. Carefully managed, random pairings maintain genetic diversity while growing population.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Genetic diversity in captive populations is lost through drift and inbreeding. Randomized pairings prevent accidentally mating relatives. Pedigree tracking allows managers to calculate relatedness and guide matings toward less-related individuals, maintaining diversity as population grows.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d36')">
+                        <span class="question-number">36</span>
+                        <span class="question-text">Wolves reintroduced to Yellowstone (extinct there since 1920s) initially had high mortality rates from collisions with vehicles and conflicts with ranchers. Which aspect of reintroduction was most challenging?</span>
+                        <span class="tier-badge tier-2">Tier 2: Application</span>
+                    </div>
+                    <div class="question-body" id="body-d36">
+                        <div class="options">
+                            <div class="option ">Wolves couldn't find food in Yellowstone</div>
+                            <div class="option ">Genetic problems from captive breeding</div>
+                            <div class="option correct">Human-wildlife conflict; reintroduced animals must navigate habitats altered by 70 years of human settlement and management changes</div>
+                            <div class="option ">Ecological competition from other predators</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Physical reintroduction is easy. Behavioral and social reintegration into altered ecosystems is hard—roads didn't exist historically, ranching is new, humans have different tolerance.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Reintroduction success requires: (1) Restored habitat, (2) Released individuals that survive in wild (behavioral challenges), (3) Tolerance from human communities. Yellowstone wolves faced vehicle mortality (modern roads) and rancher conflicts (livestock vulnerable). Over time, wolves adapted behavior, ranchers adapted management—success took years, not months.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d37')">
+                        <span class="question-number">37</span>
+                        <span class="question-text">A Central African country protects a rainforest partly through ecotourism revenues that fund rangers and support local communities. How does ecotourism support conservation?</span>
+                        <span class="tier-badge tier-2">Tier 2: Application</span>
+                    </div>
+                    <div class="question-body" id="body-d37">
+                        <div class="options">
+                            <div class="option ">Tourists consume forest resources, directly protecting it</div>
+                            <div class="option correct">Economic incentives align conservation with local interests; communities profit from forest preservation, supporting conservation efforts and enforcement</div>
+                            <div class="option ">Ecotourism prevents habitat destruction through tourism</div>
+                            <div class="option ">Ecotourism has no conservation benefit</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Conservation works best when aligned with human interests. If people profit from forest preservation, they'll protect it.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Ecotourism revenue funds rangers (enforcement), supports local communities (incentivizing protection), and generates national revenue (government support for parks). When communities benefit economically from conservation, they become conservation partners rather than opponents.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d38')">
+                        <span class="question-number">38</span>
+                        <span class="question-text">A country designs a national protected area network with two options: (A) One large 100,000-hectare park, or (B) Ten parks of 10,000 hectares each, connected by wildlife corridors. Which design better conserves a large predator species requiring ~20,000 hectares per individual, and why?</span>
+                        <span class="tier-badge tier-3">Tier 3: Analysis</span>
+                    </div>
+                    <div class="question-body" id="body-d38">
+                        <div class="options">
+                            <div class="option ">Option A; one large park is simpler to manage</div>
+                            <div class="option correct">Option B (connected) is superior because multiple populations reduce extinction risk from localized catastrophe, though each isolated patch (10,000 ha) is below viable size, corridors allow gene flow and migration, maintaining genetic/demographic connectivity</div>
+                            <div class="option ">Both designs are equally effective</div>
+                            <div class="option ">Option B with no corridors, allowing predators to compete</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Individual parks (10,000 ha) are too small for viable predator populations (~20,000 ha needed). But corridors allow movement between patches, creating functional population of ~200,000 ha.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Option A: One large park holds ~5 individuals (viable for short term but vulnerable to single catastrophe). Option B: Individual patches are too small (~half-size populations), but corridors allow movement, breeding, gene flow. Functionally, it's equivalent to larger population spread across landscape. Corridors reduce extinction risk while allowing local persistence.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d39')">
+                        <span class="question-number">39</span>
+                        <span class="question-text">A species with 100 wild individuals and 500 in zoos faces habitat destruction. A team proposes: (A) Invest entirely in habitat protection (in situ focus), or (B) Accelerate captive breeding, prepare for reintroduction, in case wild population goes extinct (ex situ focus). What are the risks of each approach?</span>
+                        <span class="tier-badge tier-3">Tier 3: Analysis</span>
+                    </div>
+                    <div class="question-body" id="body-d39">
+                        <div class="options">
+                            <div class="option correct">In situ focus risks extinction if habitat loss accelerates faster than protection; ex situ focus risks captive adaptation making reintroduction difficult</div>
+                            <div class="option ">In situ is risk-free; ex situ always fails</div>
+                            <div class="option ">Both approaches are equally risky</div>
+                            <div class="option ">Habitat protection always succeeds</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>In situ is ideal but risky if habitat loss accelerates. Ex situ is insurance but animals might 'domesticate' to captivity, making wild survival difficult.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>In situ (habitat protection) is preferred long-term but may fail if habitat loss accelerates beyond protection capacity—species could go extinct before habitat is saved. Ex situ (captive breeding) provides insurance but risks: animals adapt to captivity (lose wild behaviors), genetic diversity loss, cost. Best strategy: both in parallel—fund habitat protection AND maintain zoo backup.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d40')">
+                        <span class="question-number">40</span>
+                        <span class="question-text">A country bans elephant poaching with severe penalties, but poaching continues because poachers earn $10,000 per elephant (ivory sale) while rangers earn $1,000/year. What structural problem limits enforcement effectiveness?</span>
+                        <span class="tier-badge tier-3">Tier 3: Analysis</span>
+                    </div>
+                    <div class="question-body" id="body-d40">
+                        <div class="options">
+                            <div class="option ">Penalties are insufficient</div>
+                            <div class="option correct">Economic incentives overwhelmingly favor poaching; a poacher earns 10-fold a ranger's annual salary per elephant; enforcement alone can't succeed without addressing the income disparity</div>
+                            <div class="option ">Elephants breed too slowly to recover</div>
+                            <div class="option ">International demand elimination is impossible</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Enforcement deters crime only if risk-adjusted reward is less than alternative income. When poaching profits >> ranger salary, enforcement is undermanned and under-resourced. Without economic alternatives, poachers will continue risking arrest.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Enforcement is limited by resources and incentives. A ranger earning $1,000/year can't compete with poachers earning $10,000/elephant. Increasing ranger pay or reducing demand (making ivory less valuable) changes the economics. Enforcement alone is insufficient when illegal activity is more profitable than legal work.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion('d41')">
+                        <span class="question-number">41</span>
+                        <span class="question-text">A conservation organization has funding to protect habitat for either (A) a common species that's becoming uncommon due to habitat loss, or (B) a rare endemic species with fewer than 100 individuals. Which should they prioritize, and why?</span>
+                        <span class="tier-badge tier-3">Tier 3: Analysis</span>
+                    </div>
+                    <div class="question-body" id="body-d41">
+                        <div class="options">
+                            <div class="option ">The common species; rare species are already near extinction</div>
+                            <div class="option correct">The endemic species; saving a rare species prevents unique genetic diversity loss; many endemic species are found nowhere else</div>
+                            <div class="option ">They should split resources equally</div>
+                            <div class="option ">Common species are easier to conserve</div>
+
+                        </div>
+                        <div class="hint">
+                            <div class="hint-label">💡 Hint:</div>
+                            <div>Endemics are unique global diversity. Losing endemic species loses genetic diversity found nowhere else. Common species might be found elsewhere; endemics are irreplaceable.</div>
+                        </div>
+                        <div class="explanation">
+                            <div class="explanation-label">📝 Explanation:</div>
+                            <div>Conservation prioritizes species whose loss is irreplaceable. An endemic is found nowhere else—its loss reduces global diversity permanently. A common species losing habitat might still exist elsewhere. However, practical conservation also considers recovery likelihood. A rare endemic with <100 individuals is difficult to recover; an uncommon but widespread species might recover with habitat protection (faster success). Prioritization depends on endemic status, current trajectory, and recovery likelihood.</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <footer>
+            <p>Environmental Science Honors - Cascade Phase 2: Drill Trainer</p>
+            <p>Generated: 2026-10-03</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleQuestion(id) {
+            const body = document.getElementById('body-' + id);
+            if (body) {
+                body.classList.toggle('show');
+            }
+        }
+    </script>
+</body>
+</html>
