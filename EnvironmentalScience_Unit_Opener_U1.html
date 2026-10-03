@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environmental Science: Ecology & Ecosystems</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .unit-header {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .unit-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+
+        .unit-header h1 {
+            color: #667eea;
+            font-size: 2.2em;
+            margin-bottom: 15px;
+        }
+
+        .unit-overview {
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .unit-context {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .objectives-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .objectives-list li {
+            padding: 12px 0 12px 40px;
+            position: relative;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .objectives-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .term-badge {
+            background: linear-gradient(135deg, #f093fb 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .prerequisites {
+            background: #fff3e0;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .prerequisites strong {
+            color: #d68910;
+        }
+
+        .common-mistakes {
+            background: #ffe6e6;
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        .common-mistakes strong {
+            color: #c0392b;
+        }
+
+        .mistakes-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 10px;
+        }
+
+        .mistakes-list li {
+            padding: 5px 0 5px 20px;
+            position: relative;
+            color: #555;
+        }
+
+        .mistakes-list li:before {
+            content: "⚠";
+            position: absolute;
+            left: 0;
+        }
+
+        .drill-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .drill-stat {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .drill-stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .drill-stat-label {
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+
+        .nav-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .nav-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-3px);
+        }
+
+        footer {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            color: #999;
+            margin-top: 30px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .unit-header h1 {
+                font-size: 1.5em;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .terms-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="unit-header">
+            <div class="unit-badge">U1</div>
+            <h1>📚 Ecology & Ecosystems</h1>
+            <p class="unit-overview">Explore how organisms interact with each other and their physical environment. This unit builds the foundation for understanding energy flow, population dynamics, and community structure—the building blocks of all ecological systems.</p>
+            <div class="unit-context">From a single cell to entire rainforests, every living system operates on principles of energy transfer and resource exchange. Understanding ecology helps us explain why deserts support fewer species than rainforests, why food chains rarely exceed five levels, and how removing one species can collapse an entire ecosystem.</div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">🎯 Learning Objectives</h2>
+            <ul class="objectives-list">
+                <li>Explain how biotic and abiotic factors interact to define an ecosystem</li>
+                <li>Trace energy flow through food chains and food webs using the 10% rule</li>
+                <li>Analyze how carrying capacity and limiting factors regulate population growth</li>
+                <li>Compare primary and secondary succession and predict ecosystem development</li>
+                <li>Model the effect of removing a species on ecosystem structure and function</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">📖 Key Vocabulary (23 terms)</h2>
+            <div class="terms-grid">
+                <div class="term-badge">Ecology</div>
+                <div class="term-badge">Ecosystem</div>
+                <div class="term-badge">Biotic and Abiotic Factors</div>
+                <div class="term-badge">Population</div>
+                <div class="term-badge">Community</div>
+                <div class="term-badge">Habitat</div>
+                <div class="term-badge">Niche</div>
+                <div class="term-badge">Producers</div>
+                <div class="term-badge">Consumers</div>
+                <div class="term-badge">Decomposers</div>
+                <div class="term-badge">Photosynthesis</div>
+                <div class="term-badge">Respiration</div>
+                <div class="term-badge">Food Chain</div>
+                <div class="term-badge">Food Web</div>
+                <div class="term-badge">Energy Flow</div>
+                <div class="term-badge">Carrying Capacity</div>
+                <div class="term-badge">Limiting Factors</div>
+                <div class="term-badge">Density-Dependent Factors</div>
+                <div class="term-badge">Density-Independent Factors</div>
+                <div class="term-badge">Primary Succession</div>
+                <div class="term-badge">Secondary Succession</div>
+                <div class="term-badge">Pioneer Species</div>
+                <div class="term-badge">Climax Community</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">📋 Before You Begin</h2>
+            <div class="prerequisites">
+                <strong>📍 Prerequisites:</strong>
+                <div style="margin-top: 8px;">Basic cell biology (cells, metabolism, basic chemistry)</div>
+                <div style="margin-top: 8px;">Understanding of species and evolution (helpful but not required)</div>
+            </div>
+            <div class="common-mistakes" style="margin-top: 15px;">
+                <strong>⚠️ Common Mistakes to Avoid:</strong>
+                <ul class="mistakes-list">
+                    <li>m1: Ecology vs Environmentalism</li>
+                    <li>m2: Biotic vs Abiotic Factors</li>
+                    <li>m3: Energy Loss in Food Chains</li>
+                    <li>m4: Only Plants Are Producers</li>
+                    <li>m5: Succession Always Increases Biodiversity</li>
+                    <li>m6: Carrying Capacity Is Fixed</li>
+                    <li>m7: Limiting Factors Are Most Abundant</li>
+                    <li>m8: Succession Requires Bare Rock</li>
+                    <li>m9: Photosynthesis Only Happens in Sunlight</li>
+                    <li>m10: All Density-Dependent Factors Are Biotic</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">💪 Practice Questions</h2>
+            <p style="color: #666; margin-bottom: 15px;">This unit includes 15 practice questions across three difficulty levels:</p>
+            <div class="drill-stats">
+                <div class="drill-stat">
+                    <div class="drill-stat-number">5</div>
+                    <div class="drill-stat-label">Tier 1: Vocabulary</div>
+                </div>
+                <div class="drill-stat">
+                    <div class="drill-stat-number">5</div>
+                    <div class="drill-stat-label">Tier 2: Application</div>
+                </div>
+                <div class="drill-stat">
+                    <div class="drill-stat-number">5</div>
+                    <div class="drill-stat-label">Tier 3: Analysis</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">🔗 Cascade Resources</h2>
+            <div class="nav-links">
+                <a href="EnvironmentalScience_Master_Glossary.html" class="nav-link">📚 Master Glossary</a>
+                <a href="EnvironmentalScience_Drill_Trainer.html" class="nav-link">💪 Drill Trainer</a>
+                <a href="EnvironmentalScience_Mistakes_Autopsy.html" class="nav-link">⚠️ Mistakes Autopsy</a>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>About This Unit Opener:</strong></p>
+            <p>This page provides an overview of the unit's concepts, learning objectives, and key vocabulary. Use it to prepare for the unit, then move to the Drill Trainer to practice and the Mistakes Autopsy to avoid common misconceptions.</p>
+            <p style="margin-top: 10px; font-size: 0.85em;">Environmental Science Cascade Phase 4 | Generated 2026-10-03</p>
+        </footer>
+    </div>
+</body>
+</html>

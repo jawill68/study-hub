@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environmental Science: Environmental Quality</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .unit-header {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .unit-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+
+        .unit-header h1 {
+            color: #667eea;
+            font-size: 2.2em;
+            margin-bottom: 15px;
+        }
+
+        .unit-overview {
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .unit-context {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .objectives-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .objectives-list li {
+            padding: 12px 0 12px 40px;
+            position: relative;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .objectives-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .term-badge {
+            background: linear-gradient(135deg, #f093fb 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .prerequisites {
+            background: #fff3e0;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .prerequisites strong {
+            color: #d68910;
+        }
+
+        .common-mistakes {
+            background: #ffe6e6;
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        .common-mistakes strong {
+            color: #c0392b;
+        }
+
+        .mistakes-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 10px;
+        }
+
+        .mistakes-list li {
+            padding: 5px 0 5px 20px;
+            position: relative;
+            color: #555;
+        }
+
+        .mistakes-list li:before {
+            content: "⚠";
+            position: absolute;
+            left: 0;
+        }
+
+        .drill-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .drill-stat {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .drill-stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .drill-stat-label {
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+
+        .nav-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .nav-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-3px);
+        }
+
+        footer {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            color: #999;
+            margin-top: 30px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .unit-header h1 {
+                font-size: 1.5em;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .terms-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="unit-header">
+            <div class="unit-badge">U4</div>
+            <h1>📚 Environmental Quality</h1>
+            <p class="unit-overview">Examine the impacts of human activity on air, water, and soil quality. This unit explores pollution pathways, bioaccumulation, climate change, and solutions—from personal choices to global agreements.</p>
+            <div class="unit-context">Atmospheric CO₂ has risen 50% since the industrial revolution. Dead zones cover 130,000 km² of ocean. But renewable energy is the fastest-growing energy source, and the Montreal Protocol has begun healing the ozone hole. This unit connects human behavior to environmental consequences and explores solutions at every scale.</div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">🎯 Learning Objectives</h2>
+            <ul class="objectives-list">
+                <li>Trace pollution pathways from source to human exposure and predict health impacts</li>
+                <li>Analyze how bioaccumulation and biomagnification concentrate toxins in food chains</li>
+                <li>Distinguish between ozone depletion and global warming and evaluate solutions</li>
+                <li>Design a mitigation and adaptation strategy for climate change impacts</li>
+                <li>Calculate carbon footprints and evaluate renewable vs nonrenewable energy tradeoffs</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">📖 Key Vocabulary (21 terms)</h2>
+            <div class="terms-grid">
+                <div class="term-badge">Air Pollution</div>
+                <div class="term-badge">Water Pollution</div>
+                <div class="term-badge">Soil Pollution</div>
+                <div class="term-badge">Bioaccumulation</div>
+                <div class="term-badge">Biomagnification</div>
+                <div class="term-badge">Eutrophication</div>
+                <div class="term-badge">Dead Zone</div>
+                <div class="term-badge">Acid Rain</div>
+                <div class="term-badge">pH</div>
+                <div class="term-badge">Ozone Depletion</div>
+                <div class="term-badge">CFC</div>
+                <div class="term-badge">Stratosphere</div>
+                <div class="term-badge">Greenhouse Gas</div>
+                <div class="term-badge">Global Warming</div>
+                <div class="term-badge">Climate Change</div>
+                <div class="term-badge">Mitigation</div>
+                <div class="term-badge">Adaptation</div>
+                <div class="term-badge">Carbon Footprint</div>
+                <div class="term-badge">Renewable Energy</div>
+                <div class="term-badge">Nonrenewable Resources</div>
+                <div class="term-badge">Sustainable Energy</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">📋 Before You Begin</h2>
+            <div class="prerequisites">
+                <strong>📍 Prerequisites:</strong>
+                <div style="margin-top: 8px;">Unit 1: Ecology & Ecosystems (food chains, energy flow, populations)</div>
+                <div style="margin-top: 8px;">Unit 2: Biodiversity (species, ecosystem function)</div>
+                <div style="margin-top: 8px;">Basic chemistry (pH, reactions, chemical properties)</div>
+            </div>
+            <div class="common-mistakes" style="margin-top: 15px;">
+                <strong>⚠️ Common Mistakes to Avoid:</strong>
+                <ul class="mistakes-list">
+                    <li>m25: Bioaccumulation and Biomagnification Are the Same</li>
+                    <li>m26: All Algae Growth Is Eutrophication</li>
+                    <li>m27: Acid Rain Is Only From Sulfur Dioxide</li>
+                    <li>m28: Ozone Depletion and Global Warming Are the Same</li>
+                    <li>m29: Climate Change Is Just Temperature Rising</li>
+                    <li>m30: Mitigation and Adaptation Are Interchangeable</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">💪 Practice Questions</h2>
+            <p style="color: #666; margin-bottom: 15px;">This unit includes 0 practice questions across three difficulty levels:</p>
+            <div class="drill-stats">
+                <div class="drill-stat">
+                    <div class="drill-stat-number">0</div>
+                    <div class="drill-stat-label">Tier 1: Vocabulary</div>
+                </div>
+                <div class="drill-stat">
+                    <div class="drill-stat-number">0</div>
+                    <div class="drill-stat-label">Tier 2: Application</div>
+                </div>
+                <div class="drill-stat">
+                    <div class="drill-stat-number">0</div>
+                    <div class="drill-stat-label">Tier 3: Analysis</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">🔗 Cascade Resources</h2>
+            <div class="nav-links">
+                <a href="EnvironmentalScience_Master_Glossary.html" class="nav-link">📚 Master Glossary</a>
+                <a href="EnvironmentalScience_Drill_Trainer.html" class="nav-link">💪 Drill Trainer</a>
+                <a href="EnvironmentalScience_Mistakes_Autopsy.html" class="nav-link">⚠️ Mistakes Autopsy</a>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>About This Unit Opener:</strong></p>
+            <p>This page provides an overview of the unit's concepts, learning objectives, and key vocabulary. Use it to prepare for the unit, then move to the Drill Trainer to practice and the Mistakes Autopsy to avoid common misconceptions.</p>
+            <p style="margin-top: 10px; font-size: 0.85em;">Environmental Science Cascade Phase 4 | Generated 2026-10-03</p>
+        </footer>
+    </div>
+</body>
+</html>
