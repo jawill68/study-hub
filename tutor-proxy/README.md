@@ -1,29 +1,37 @@
-# Turning on the live AI tutor (ALEPH / TEAL)
+# Turning on the live AI tutor
 
-The tutors work right now in **Offline Coach** mode — they answer from the
-definitions, examples, hints, and explanations already in each page.
+The tutors (ALEPH, TEAL, CLIO) work right now in **Offline Coach** mode. They
+answer from the definitions, examples, and explanations already in each page.
 
-To give them the live AI, the site needs a small proxy that holds your
-Anthropic API key **on a server**. The key must never go in this public repo.
+The live AI needs a small proxy that holds the Anthropic API key **on a
+server**. The key must never go in this public repo. A family passcode keeps
+anyone else who finds the site from using (and spending) the live tutor.
 
-## Setup (about 10 minutes, free tier is enough)
+## Setup (about 15 minutes)
 
-1. Get an API key at https://console.anthropic.com (Settings → API Keys).
-   Set a monthly spend limit there while you're at it.
-2. Create a free Cloudflare account → **Workers & Pages → Create → Worker**.
-3. Name it `studyhub-tutor`, click **Deploy**, then **Edit code**.
-   Replace everything with the contents of `worker.js` in this folder → **Deploy**.
-4. In the Worker: **Settings → Variables and Secrets → Add**
-   - Type: **Secret**, Name: `ANTHROPIC_API_KEY`, Value: your key.
-5. Copy the Worker's URL (looks like `https://studyhub-tutor.<you>.workers.dev`).
-6. In `studyhub-tutor.js` (repo root), set:
+1. **Anthropic account** at https://console.anthropic.com
+   - Billing: add a small prepaid credit ($5–10 is plenty to start).
+   - Limits: set a monthly spend limit (for example, $10).
+   - API Keys → Create Key → name it `studyhub-tutor` → copy it somewhere safe.
+2. **Cloudflare account** (free) at https://dash.cloudflare.com
+   → **Workers & Pages → Create → Worker** → name it `studyhub-tutor` → **Deploy**.
+3. **Edit code** → delete everything → paste all of `worker.js` from this folder → **Deploy**.
+4. Worker → **Settings → Variables and Secrets → Add** (twice, both type **Secret**):
+   - `ANTHROPIC_API_KEY` = the key from step 1
+   - `TUTOR_PASSCODE` = a family passcode you choose
+5. Copy the Worker URL (`https://studyhub-tutor.<you>.workers.dev`).
+6. Set it in `studyhub-tutor.js` (repo root):
    ```js
    const TUTOR_ENDPOINT = 'https://studyhub-tutor.<you>.workers.dev';
    ```
    Commit. Every tutor on the site switches to live AI.
+7. On each device, the first live question asks for the passcode once; it is
+   remembered on that device afterward. Cancel keeps Offline Coach.
 
-## Safety built into the proxy
+## Safety built in
 - Only accepts requests from `https://jawill68.github.io`.
-- Caps reply length, history length, and message size.
-- Uses Claude Haiku 4.5 (fast and low-cost). Change `MODEL` in `worker.js` if you want a larger model.
-- If the proxy is down, pages automatically fall back to Offline Coach.
+- Requires the family passcode (`X-Tutor-Pass` header) on every request.
+- Caps reply length (600 tokens), history (14 messages), and message size.
+- Uses Claude Haiku 4.5 (fast, lowest cost). Change `MODEL` in `worker.js` for a larger model.
+- Wrong passcode, a down proxy, or an empty balance → pages fall back to Offline Coach.
+- To shut it off instantly: change `TUTOR_PASSCODE` in Cloudflare, or delete the Worker.

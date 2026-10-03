@@ -21,6 +21,17 @@
   const TUTOR_ENDPOINT = '';
 
   const LIVE_TIMEOUT_MS = 20000;
+  const PASS_KEY = 'studyhub_tutor_pass';      // saved on this device after the first correct entry
+  const SKIP_KEY = 'studyhub_tutor_skip';      // "not now" for this browser session
+
+  function getPass(){
+    let p = ''; try{ p = localStorage.getItem(PASS_KEY) || ''; }catch(e){}
+    if(p) return p;
+    try{ if(sessionStorage.getItem(SKIP_KEY)) return ''; }catch(e){}
+    p = (window.prompt('Live tutor: enter the family passcode.\n(Cancel to keep using Offline Coach.)') || '').trim();
+    if(!p){ try{ sessionStorage.setItem(SKIP_KEY,'1'); }catch(e){} return ''; }
+    return p;
+  }
 
   function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
   function has(s, words){ s = (s||'').toLowerCase(); return words.some(w => s.includes(w)); }
@@ -91,13 +102,20 @@
     const ctrl = new AbortController();
     const t = setTimeout(()=>ctrl.abort(), LIVE_TIMEOUT_MS);
     try{
+      const pass = getPass();
+      if(!pass) throw new Error('no passcode');
       const resp = await fetch(TUTOR_ENDPOINT, {
         method:'POST',
-        headers:{'Content-Type':'application/json'},
+        headers:{'Content-Type':'application/json','X-Tutor-Pass':pass},
         body: JSON.stringify({ system, messages }),
         signal: ctrl.signal
       });
+      if(resp.status === 401){
+        try{ localStorage.removeItem(PASS_KEY); sessionStorage.setItem(SKIP_KEY,'1'); }catch(e){}
+        throw new Error('wrong passcode');
+      }
       if(!resp.ok) throw new Error('HTTP '+resp.status);
+      try{ localStorage.setItem(PASS_KEY, pass); }catch(e){}
       const data = await resp.json();
       const text = data && (data.text || (data.content && data.content[0] && data.content[0].text));
       if(!text) throw new Error('empty');

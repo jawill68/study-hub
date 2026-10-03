@@ -2,6 +2,7 @@
 // Study Hub tutor proxy — Cloudflare Worker
 // Keeps the Anthropic API key on the server, so it never appears in the
 // public GitHub repo. See README.md in this folder for the 10-minute setup.
+// Requires two secrets in the Worker: ANTHROPIC_API_KEY and TUTOR_PASSCODE.
 // ═══════════════════════════════════════════════════════════════════
 
 const ALLOWED_ORIGINS = [
@@ -17,9 +18,15 @@ function cors(origin){
   return {
     'Access-Control-Allow-Origin': allow,
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Headers': 'Content-Type, X-Tutor-Pass',
     'Vary': 'Origin',
   };
+}
+
+function safeEqual(a, b){
+  if (a.length !== b.length) return false;
+  let d = 0; for (let i = 0; i < a.length; i++) d |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  return d === 0;
 }
 
 export default {
@@ -28,6 +35,12 @@ export default {
     if (request.method === 'OPTIONS') return new Response(null, { headers: cors(origin) });
     if (request.method !== 'POST') return new Response('Method not allowed', { status: 405, headers: cors(origin) });
     if (!ALLOWED_ORIGINS.includes(origin)) return new Response('Forbidden', { status: 403, headers: cors(origin) });
+
+    // Family passcode: only devices that know it can use (and spend) the live tutor.
+    const pass = request.headers.get('X-Tutor-Pass') || '';
+    if (!env.TUTOR_PASSCODE || !safeEqual(pass, env.TUTOR_PASSCODE)) {
+      return new Response(JSON.stringify({ error: 'passcode' }), { status: 401, headers: { ...cors(origin), 'content-type': 'application/json' } });
+    }
 
     let body;
     try { body = await request.json(); } catch { return new Response('Bad JSON', { status: 400, headers: cors(origin) }); }
