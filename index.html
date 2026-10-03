@@ -65,10 +65,12 @@ a.course-card:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
 .arrow{transition:transform .25s}
 .footer{text-align:center;margin-top:56px;font-size:0.75rem;color:var(--muted);font-family:'DM Mono',monospace}
 </style>
+<script src="studyhub-sync.js"></script>
 </head>
 <body>
 <div class="grid-bg"></div>
 <div class="wrap">
+  <div style="display:flex;justify-content:flex-end;margin-bottom:10px"><div data-sync-chip></div></div>
   <div class="eyebrow">Doc's Study Series</div>
   <h1>Study Hub</h1>
   <p class="sub">One place to access every course resource — pick a course below to open its full interactive study hub. Works the same on any device, anywhere.</p>
@@ -111,7 +113,7 @@ a.course-card:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
       <div class="course-name">Pre-AP World History &amp; Geography</div>
       <div class="course-desc">Master Glossary, Drill Trainer, Common Confusions, Mistakes Autopsy, and a DBQ-style Self-Grader spanning Geography, Early Modern, Modern, and Contemporary periods — College Board Pre-AP Pathway 2.</div>
       <div class="course-meta"><span>6 resources</span><span>106 terms</span><span>58 questions</span></div>
-      <div class="course-cta cta-amber">Open World History Hub <span class="arrow">→</span></div>
+      <div class="course-cta cta-amber">Open Pre-AP World History Hub <span class="arrow">→</span></div>
     </a>
 
     <a class="course-card cc-green" href="EnvSci_StudyHub.html">
@@ -121,9 +123,23 @@ a.course-card:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
       <div class="course-meta"><span>8 resources</span><span>195 terms</span><span>151 questions</span><span>130 DU items</span></div>
       <div class="course-cta cta-green">Open Environmental Science Hub <span class="arrow">→</span></div>
     </a>
+
+    <a class="course-card cc-amber" href="WHH_StudyHub.html">
+      <div class="course-icon ic-amber">⏳</div>
+      <div class="course-name">World History Honors<span class="new-tag">NEW</span></div>
+      <div class="course-desc">Follows <i>National Geographic World History: Voyages of Exploration</i> chapter by chapter, starting with Chapter 8: Renaissance and Reformation. Glossary, drills, Timeline &amp; Who Am I games, and honors writing.</div>
+      <div class="course-meta"><span>Ch. 8 live</span><span>59 terms</span><span>47 questions</span><span>23 events</span></div>
+      <div class="course-cta cta-amber">Open World History Honors Hub <span class="arrow">→</span></div>
+    </a>
+
+    <div class="course-card" style="border-style:dashed;opacity:.65;cursor:default;justify-content:center">
+      <div class="course-icon" style="background:rgba(107,138,176,.12);border:1px solid rgba(107,138,176,.3)">🛠️</div>
+      <div class="course-name">More on the way</div>
+      <div class="course-desc">Engineering and JROTC hubs are in development. New World History chapters are added as the class reaches them.</div>
+    </div>
   </div>
 
-  <div class="footer">6 courses live · Engineering and JROTC in development</div>
+  <div class="footer">7 courses live · Engineering and JROTC in development</div>
 </div>
 </body>
 </html>

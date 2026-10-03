@@ -35,6 +35,56 @@
       {lvl:16,name:'Conservation Lead',   icon:'🛡️'},
       {lvl:20,name:'Ecosystem Architect', icon:'🌎'}
     ],
+    physci: [
+      {lvl:1, name:'Proton',        icon:'⚛️'},
+      {lvl:2, name:'Atom',          icon:'🔬'},
+      {lvl:4, name:'Molecule',      icon:'🧪'},
+      {lvl:6, name:'Reaction',      icon:'⚗️'},
+      {lvl:9, name:'Catalyst',      icon:'🔥'},
+      {lvl:12,name:'Force',         icon:'🧲'},
+      {lvl:16,name:'Fusion',        icon:'☀️'},
+      {lvl:20,name:'Quantum',       icon:'🌌'}
+    ],
+    worldhistory: [
+      {lvl:1, name:'Wanderer',      icon:'🥾'},
+      {lvl:2, name:'Scribe',        icon:'📜'},
+      {lvl:4, name:'Navigator',     icon:'🧭'},
+      {lvl:6, name:'Cartographer',  icon:'🗺️'},
+      {lvl:9, name:'Envoy',         icon:'🏛️'},
+      {lvl:12,name:'Historian',     icon:'📚'},
+      {lvl:16,name:'Sage',          icon:'🦉'},
+      {lvl:20,name:'Chronicler',    icon:'⏳'}
+    ],
+    gamedesign: [
+      {lvl:1, name:'Player One',    icon:'🕹️'},
+      {lvl:2, name:'Modder',        icon:'🧩'},
+      {lvl:4, name:'Scripter',      icon:'⌨️'},
+      {lvl:6, name:'Level Designer',icon:'🗺️'},
+      {lvl:9, name:'Game Dev',      icon:'🎮'},
+      {lvl:12,name:'Lead Engineer', icon:'⚙️'},
+      {lvl:16,name:'Creative Director',icon:'🎬'},
+      {lvl:20,name:'Legend',        icon:'🏆'}
+    ],
+    gp: [
+      {lvl:1, name:'Reader',        icon:'📖'},
+      {lvl:2, name:'Note-taker',    icon:'✏️'},
+      {lvl:4, name:'Analyst',       icon:'🔍'},
+      {lvl:6, name:'Arguer',        icon:'⚖️'},
+      {lvl:9, name:'Essayist',      icon:'📝'},
+      {lvl:12,name:'Critic',        icon:'🎭'},
+      {lvl:16,name:'Rhetorician',   icon:'🎙️'},
+      {lvl:20,name:'Polymath',      icon:'🧠'}
+    ],
+    worldhistoryh: [
+      {lvl:1, name:'Wanderer',      icon:'🥾'},
+      {lvl:2, name:'Scribe',        icon:'📜'},
+      {lvl:4, name:'Navigator',     icon:'🧭'},
+      {lvl:6, name:'Cartographer',  icon:'🗺️'},
+      {lvl:9, name:'Envoy',         icon:'🏛️'},
+      {lvl:12,name:'Historian',     icon:'📚'},
+      {lvl:16,name:'Sage',          icon:'🦉'},
+      {lvl:20,name:'Chronicler',    icon:'⏳'}
+    ],
     algebra2: [
       {lvl:1, name:'Variable',   icon:'𝑥'},
       {lvl:2, name:'Expression', icon:'±'},
@@ -57,19 +107,21 @@
 
   // ── Missions pool (filtered by course) ──────────────────────────────
   const MISSIONS = [
-    {id:'answer10', label:'Answer 10 practice questions', target:10, counter:'answered'},
-    {id:'correct8', label:'Get 8 questions right',         target:8,  counter:'correct'},
-    {id:'combo5',   label:'Hit a 5-in-a-row combo',        target:1,  counter:'combo5'},
+    {id:'answer10', label:'Answer 10 practice questions', target:10, counter:'answered', not:'gp'},
+    {id:'correct8', label:'Get 8 questions right',         target:8,  counter:'correct', not:'gp'},
+    {id:'gpread3',  label:'Work through 3 Question Bank items', target:3, counter:'lesson', only:'gp'},
+    {id:'gpstar5',  label:'Review 5 Essential 50 terms',   target:5,  counter:'flashcard', only:'gp'},
+    {id:'combo5',   label:'Hit a 5-in-a-row combo',        target:1,  counter:'combo5', not:'gp'},
     {id:'flash10',  label:'Flip 10 glossary flashcards',   target:10, counter:'flashcard'},
-    {id:'conf2',    label:'Study 2 Common Confusions',     target:2,  counter:'confusion'},
+    {id:'conf2',    label:'Study 2 Common Confusions',     target:2,  counter:'confusion', only:['algebra2','envsci','worldhistoryh']},
     {id:'auto1',    label:'Master 1 Mistakes Autopsy',     target:1,  counter:'autopsy'},
     {id:'self1',    label:'Self-grade 1 free response',    target:1,  counter:'selfgrade'},
-    {id:'tier3',    label:'Get 2 Challenge (Tier 3) right',target:2,  counter:'tier3'},
+    {id:'tier3',    label:'Get 2 Challenge (Tier 3) right',target:2,  counter:'tier3', not:'gp'},
     {id:'species5', label:'Identify 5 waterfowl species',  target:5,  counter:'species', only:'envsci'},
     {id:'duq10',    label:'Answer 10 DU certification items',target:10,counter:'du', only:'envsci'},
     {id:'graph2',   label:'Match 2 graphs in the Graph Lab',target:2, counter:'graph', only:'algebra2'},
     {id:'explore3', label:'Explore 3 function families',   target:3,  counter:'explore', only:'algebra2'}
-  ].filter(m => !m.only || m.only === COURSE);
+  ].filter(m => (!m.only || m.only === COURSE || (Array.isArray(m.only) && m.only.includes(COURSE))) && m.not !== COURSE);
 
   // ── Badges ──────────────────────────────────────────────────────────
   const BADGES = [
@@ -104,7 +156,7 @@
   S.c = S.c || {}; S.badges = S.badges || {};
   let combo = 0;
 
-  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} try{ window.dispatchEvent(new Event('studyhub:changed')); }catch(e){} }
 
   // Level n starts at 100·n·(n−1) XP → L2=200, L3=600, L4=1200, L6=3000, L12=13200, L20=38000.
   // Tuned so a student studying ~20 min a day reaches the top rank late in the semester, not in week 2.

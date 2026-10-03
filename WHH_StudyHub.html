@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World History Honors — Study Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
+  --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
+  --accent:#B87700;--accent-soft:rgba(229,148,0,.12);--accent-text:#efb44e;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(46,139,192,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(46,139,192,0.04) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:26px 20px 70px}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent-text);text-decoration:none;margin-bottom:14px;opacity:.9}
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--accent-text)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+.about-banner{background:linear-gradient(135deg,var(--accent-soft),rgba(29,158,117,.05));border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:12.5px;line-height:1.55}
+.about-banner a{color:var(--accent-text)}
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px;flex:1}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:14px}
+.sec-lbl{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.13em;color:var(--muted);margin-bottom:11px;text-transform:uppercase}
+.controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;flex-direction:column;gap:11px}
+.ctrl-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--muted);min-width:56px}
+.search-input{flex:1;min-width:200px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13.5px}
+.search-input:focus{outline:none;border-color:var(--accent)}
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--accent);color:var(--text)}
+.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn{border:none;border-radius:11px;padding:11px 20px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;transition:all .2s;color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-accent{background:var(--accent)}
+.btn-accent:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 22px rgba(0,0,0,.35)}
+.btn-ghost{background:var(--bg);border:1px solid var(--border);color:var(--text)}
+.btn-ghost:hover{border-color:var(--accent)}
+.btn-teal{background:#188663}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:6px;display:inline-block}
+.t-unit{background:var(--accent-soft);color:var(--accent-text);border:1px solid var(--border)}
+.empty{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px}
+.footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center;line-height:1.7}
+.overlay{position:fixed;inset:0;background:rgba(3,8,16,.82);backdrop-filter:blur(4px);z-index:500;display:none;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto}
+.overlay.open{display:flex}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;max-width:640px;width:100%}
+.opt{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:12px 15px;cursor:pointer;transition:all .16s;display:flex;align-items:flex-start;gap:11px;text-align:left;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);width:100%}
+.opt:hover:not(:disabled){border-color:var(--accent);background:var(--card2)}
+.opt:disabled{cursor:default}
+.opt-key{width:24px;height:24px;border-radius:7px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0;color:var(--muted)}
+.opt.correct{border-color:var(--teal);background:rgba(29,158,117,.11)}
+.opt.correct .opt-key{background:#188663;border-color:var(--teal);color:#fff}
+.opt.wrong{border-color:var(--red);background:rgba(231,76,60,.10)}
+.opt.wrong .opt-key{background:#D24536;border-color:var(--red);color:#fff}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+@media(max-width:640px){.page-title{font-size:1.55rem}.ctrl-label{min-width:auto}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+
+.hero{background:linear-gradient(135deg,#2a1d0b 0%,#0f3352 55%,#0a1e38 100%);border:1px solid var(--border);border-radius:20px;padding:30px 28px;margin-bottom:22px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40%;right:-8%;width:340px;height:340px;background:radial-gradient(circle,rgba(229,148,0,.2),transparent 70%);border-radius:50%}
+.hero::after{content:'⏳';position:absolute;bottom:-26px;right:24px;font-size:140px;opacity:.06;line-height:1}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#efb44e;margin-bottom:10px;position:relative}
+.hero-title{font-size:2.5rem;font-weight:800;color:#fff;line-height:1.05;position:relative}
+.hero-title span{color:#efb44e}
+.hero-sub{font-size:14px;color:#a9c2dc;margin-top:12px;max-width:600px;position:relative;line-height:1.6}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;position:relative}
+.chip{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 13px;font-size:12px;font-weight:600;color:#cfe0f0}
+.sync{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:13px 16px;margin-bottom:16px;display:none;align-items:center;gap:10px;flex-wrap:wrap}
+.sync.show{display:flex}
+.sync-t{font-size:12.5px;color:var(--muted);flex:1;min-width:200px}.sync-t b{color:var(--text)}
+.sync input{background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;width:180px}
+.player{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:14px;margin-bottom:22px}
+@media(max-width:760px){.player{grid-template-columns:1fr}}
+.rank-row{display:flex;align-items:center;gap:14px}
+.rank-badge{width:64px;height:64px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;background:radial-gradient(circle at 30% 30%,rgba(229,148,0,.3),rgba(229,148,0,.06));border:1px solid rgba(229,148,0,.5);flex-shrink:0}
+.rank-name{font-size:22px;font-weight:800;color:#fff;line-height:1.1}
+.rank-sub{font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;margin-top:3px}
+.xp-track{height:10px;background:var(--bg);border-radius:99px;overflow:hidden;margin:14px 0 6px}
+.xp-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--amber));border-radius:99px;transition:width .6s}
+.xp-label{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);font-family:'DM Mono',monospace}
+.pc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.pc-stat{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:10px;text-align:center}
+.pc-stat b{display:block;font-size:18px;color:#fff;font-family:'DM Mono',monospace}
+.pc-stat span{font-size:9.5px;font-weight:700;letter-spacing:.08em;color:var(--muted)}
+.badges{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.bdg{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg);border:1px solid var(--border);filter:grayscale(1);opacity:.35;cursor:help}
+.bdg.on{filter:none;opacity:1;border-color:rgba(229,148,0,.5);background:rgba(229,148,0,.08)}
+.mission{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid rgba(30,58,92,.5)}
+.mission:last-child{border-bottom:none}
+.m-check{width:22px;height:22px;border-radius:7px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
+.m-check.on{background:#188663;border-color:var(--teal);color:#fff}
+.m-body{flex:1;font-size:12.5px}
+.m-bar{height:4px;background:var(--bg);border-radius:99px;overflow:hidden;margin-top:5px}.m-fill{height:100%;background:var(--teal)}
+.m-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)}
+.focus{margin-top:14px;background:linear-gradient(135deg,rgba(229,148,0,.12),rgba(46,139,192,.06));border:1px solid rgba(229,148,0,.3);border-radius:12px;padding:12px 14px;font-size:12.5px;line-height:1.55}
+.focus a{color:#efb44e;font-weight:700}
+.du-card{background:linear-gradient(135deg,rgba(229,148,0,.10),rgba(229,148,0,.06));border:1px solid rgba(229,148,0,.35);border-radius:18px;padding:20px 22px;margin-bottom:22px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}
+@media(max-width:640px){.du-card{grid-template-columns:1fr}}
+.du-card h3{font-size:18px;color:#fff;font-weight:800}
+.du-card p{font-size:13px;color:#c8dbe9;line-height:1.6;margin-top:6px}
+.du-meter{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.du-pill{font-size:11.5px;font-weight:700;padding:5px 10px;border-radius:8px;background:rgba(6,14,26,.6);border:1px solid var(--border);font-family:'DM Mono',monospace}
+.du-big{text-align:center}
+.du-big b{display:block;font-size:40px;color:#fff;font-family:'DM Mono',monospace;line-height:1}
+.du-big span{font-size:10px;letter-spacing:.1em;color:var(--muted);font-weight:700}
+.builds{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:720px){.builds{grid-template-columns:1fr}}
+.bcard{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:10px;transition:all .2s}
+.bcard:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 14px 40px rgba(229,148,0,.14)}
+.bcard.du{border-color:rgba(229,148,0,.35)}
+.bcard.du:hover{border-color:var(--amber);box-shadow:0 14px 40px rgba(229,148,0,.14)}
+.bhead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.beb{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#efb44e}
+.bcard.du .beb{color:#efb44e}
+.bname{font-size:1.15rem;font-weight:800;color:#fff;margin-top:3px}
+.bicon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;background:var(--accent-soft);border:1px solid rgba(229,148,0,.3);flex-shrink:0}
+.bcard.du .bicon{background:rgba(229,148,0,.12);border-color:rgba(229,148,0,.35)}
+.bdesc{font-size:13px;color:var(--muted);line-height:1.55;flex:1}
+.btags{display:flex;gap:6px;flex-wrap:wrap}
+.btag{font-size:10px;font-weight:700;padding:3px 9px;border-radius:6px;background:var(--card2);color:var(--muted)}
+.bcta{font-size:12.5px;font-weight:700;color:#efb44e}
+.bcard.du .bcta{color:#efb44e}
+.units{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+@media(max-width:720px){.units{grid-template-columns:repeat(2,1fr)}}
+.ucard{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px;cursor:pointer;transition:all .18s;text-align:left;font-family:'DM Sans',sans-serif;color:var(--text)}
+.ucard:hover,.ucard.active{border-color:var(--accent)}
+.ucard.active{background:var(--accent-soft)}
+.u-num{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;color:#efb44e;display:flex;justify-content:space-between}
+.u-name{font-size:11.5px;font-weight:600;line-height:1.35;margin-top:4px;color:#dbe8f5}
+.u-bar{height:4px;background:var(--bg);border-radius:99px;overflow:hidden;margin-top:8px}.u-bar i{display:block;height:100%}
+.upanel{display:none;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-top:12px}
+.upanel.show{display:block}
+.upanel h3{font-size:18px;color:#fff;font-weight:800}
+.upanel .std{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-top:4px}
+.upanel ul{margin:12px 0 0 18px;font-size:13px;line-height:1.65}
+.upanel .flbox{margin-top:12px;background:rgba(46,139,192,.08);border-left:2px solid var(--sky);border-radius:9px;padding:10px 13px;font-size:12.5px}
+.ulinks{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.ulinks a{padding:8px 14px;border-radius:9px;font-size:12px;font-weight:700;text-decoration:none;border:1px solid var(--border);color:var(--text);background:var(--bg)}
+.ulinks a:hover{border-color:var(--accent)}
+.path{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 20px}
+.pstep{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
+.pstep:last-child{border-bottom:none}
+.pnum{width:28px;height:28px;border-radius:50%;background:var(--accent-soft);border:1px solid var(--accent);color:#efb44e;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0}
+.pname{font-size:13.5px;font-weight:700;color:#fff}.pname a{color:#efb44e;text-decoration:none}
+.pnote{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.5}
+.reset{background:none;border:1px solid var(--border);border-radius:8px;color:var(--muted);font-size:11px;font-weight:700;padding:6px 12px;cursor:pointer;font-family:'DM Sans',sans-serif}
+.reset:hover{border-color:var(--red);color:#f08579}
+.units4{grid-template-columns:repeat(4,1fr)}@media(max-width:720px){.units4{grid-template-columns:repeat(2,1fr)}}
+</style>
+
+<script>window.STUDYHUB_GAME={course:'worldhistoryh'};</script>
+<script src="studyhub-game.js"></script>
+<script src="studyhub-sync.js"></script>
+</head>
+<body>
+<div class="app">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px"><a class="back" href="index.html" style="margin:0">← All Courses</a><div data-sync-chip></div></div>
+  <div class="sync" id="sync">
+    <div class="sync-t">📊 <b>Share your progress with your teacher?</b> Enter your first name and last initial (e.g. "Maria S."). This is optional.</div>
+    <input id="sync-name" type="text" placeholder="First name + last initial" maxlength="40" aria-label="Your name for teacher sync">
+    <button class="btn btn-accent" style="padding:9px 16px" onclick="window.saveSyncName()">Save</button><span id="sync-status" style="font-size:11px;font-family:'DM Mono',monospace;color:var(--muted)"></span>
+  </div>
+  <div class="hero">
+    <div class="hero-eyebrow">World History Honors · 2109320 · Study Resource Series</div>
+    <div class="hero-title">Study <span>Hub</span></div>
+    <div class="hero-sub">Organized to follow <i>National Geographic World History: Voyages of Exploration</i> chapter by chapter. Original study tools aligned to the book's topics — vocabulary, drills, timelines, and honors writing.</div>
+    <div class="chips"><span class="chip">📖 59 Terms</span><span class="chip">⚡ 47 Questions</span><span class="chip">⏳ 23 Dated Events</span><span class="chip">🎭 14 Figures</span><span class="chip">✍️ 6 Writing Prompts</span></div>
+  </div>
+
+  <div class="sec-lbl">Your progress</div>
+  <div class="player">
+    <div class="card" style="margin:0">
+      <div class="rank-row"><div class="rank-badge" id="pc-icon">🥾</div><div><div class="rank-name" id="pc-rank">Wanderer</div><div class="rank-sub" id="pc-sub">Level 1</div></div></div>
+      <div class="xp-track"><div class="xp-fill" id="pc-xp" style="width:0%"></div></div>
+      <div class="xp-label"><span id="pc-l"></span><span id="pc-r"></span></div>
+      <div class="pc-stats"><div class="pc-stat"><b id="pc-streak">0</b><span>DAY STREAK 🔥</span></div><div class="pc-stat"><b id="pc-acc">—</b><span>DRILL ACCURACY</span></div><div class="pc-stat"><b id="pc-badges">0</b><span>BADGES</span></div></div>
+      <div class="badges" id="pc-blist"></div>
+    </div>
+    <div class="card" style="margin:0">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><div style="font-size:13px;font-weight:800;color:#fff">📦 Today's Missions</div><div class="m-num" id="pc-md"></div></div>
+      <div id="pc-missions"></div>
+      <div class="focus" id="pc-focus"></div>
+    </div>
+  </div>
+
+  <div class="du-card">
+    <div><h3>📘 Now studying: Chapter 8 — Renaissance and Reformation</h3>
+      <p>c. 1350–1648 · From Florence's workshops to Luther's protest to the Peace of Westphalia. The four sections below group the chapter's topics; they're this hub's labels, not the book's lesson numbers.</p>
+      <div class="du-meter" id="sec-meter"></div></div>
+    <div class="du-big"><b id="ch-pct">—</b><span>CHAPTER MASTERY</span></div>
+  </div>
+
+  <div class="sec-lbl">Chapter 8 study tools</div>
+  <div class="builds">
+<a class="bcard du" href="WHH_Timeline.html"><div class="bhead"><div><div class="beb">Chapter Games</div><div class="bname">Timeline & Who Am I</div></div><div class="bicon">⏳</div></div>
+      <div class="bdesc">Which Came First?, Put It In Order, and Who Am I? (fewer clues earn more points), plus a study view of every key date in the chapter.</div><div class="btags"><span class="btag">23 events</span><span class="btag">14 figures</span><span class="btag">3 games</span></div><div class="bcta">Play →</div></a>
+<a class="bcard " href="WHH_Master_Glossary.html"><div class="bhead"><div><div class="beb">Build 1 · Vocabulary</div><div class="bname">Chapter Glossary</div></div><div class="bicon">📖</div></div>
+      <div class="bdesc">59 people, places, and ideas from the chapter, each with a plain-language definition and an example. Flip cards, a spaced-repetition quiz, and the CLIO tutor.</div><div class="btags"><span class="btag">59 terms</span><span class="btag">Flip cards</span><span class="btag">CLIO tutor</span></div><div class="bcta">Open Glossary →</div></a>
+<a class="bcard " href="WHH_DrillTrainer.html"><div class="bhead"><div><div class="beb">Build 2 · Practice</div><div class="bname">Drill Trainer</div></div><div class="bicon">⚡</div></div>
+      <div class="bdesc">47 honors-level questions across the chapter's four sections. Practice, timed Exam, Stamina, and Weak Spots modes.</div><div class="btags"><span class="btag">47 questions</span><span class="btag">4 modes</span><span class="btag">Section mastery</span></div><div class="bcta">Open Drill Trainer →</div></a>
+<a class="bcard " href="WHH_Common_Confusions.html"><div class="bhead"><div><div class="beb">Build 3 · Quick Reference</div><div class="bname">Common Confusions</div></div><div class="bicon">📎</div></div>
+      <div class="bdesc">12 pairs students mix up — Renaissance vs. Reformation, Luther vs. Calvin, Augsburg vs. Westphalia — with ⚡ Speed Sort.</div><div class="btags"><span class="btag">12 pairs</span><span class="btag">Speed Sort</span></div><div class="bcta">Open Confusions →</div></a>
+<a class="bcard " href="WHH_Mistakes_Autopsy.html"><div class="bhead"><div><div class="beb">Build 4 · Error Review</div><div class="bname">Mistakes Autopsy</div></div><div class="bicon">🔬</div></div>
+      <div class="bdesc">10 classic misconceptions, from "the Renaissance rejected religion" to "Luther set out to start a new church," each dissected with a Memory Lock.</div><div class="btags"><span class="btag">10 mistakes</span><span class="btag">Find My Mistake</span></div><div class="bcta">Open Autopsy →</div></a>
+<a class="bcard " href="WHH_Self_Grader.html"><div class="bhead"><div><div class="beb">Build 5 · Writing</div><div class="bname">Self-Grader</div></div><div class="bicon">✍️</div></div>
+      <div class="bdesc">6 honors writing prompts — causation, comparison, evaluation, and source analysis — with model answers and rubrics for self-scoring.</div><div class="btags"><span class="btag">6 prompts</span><span class="btag">Source analysis</span><span class="btag">Rubrics</span></div><div class="bcta">Open Self-Grader →</div></a>
+
+  </div>
+
+  <div class="sec-lbl" style="margin-top:26px">Chapter 8 sections · tap one</div>
+  <div class="units units4" id="units"></div>
+  <div class="upanel" id="upanel"></div>
+
+  <div class="sec-lbl" style="margin-top:26px">Coming chapters</div>
+  <div class="card" style="font-size:13px;line-height:1.6;color:var(--muted)">New chapters are added as the class reaches them, each with the same set of tools. Earlier chapters stay here for review before exams.</div>
+
+  <div style="display:flex;justify-content:flex-end;margin-top:16px"><button class="reset" onclick="resetAll()">Reset all World History Honors progress</button></div>
+  <div class="footer">World History Honors (2109320) · Florida NGSSS Social Studies SS.912.W.4 (Renaissance, Reformation) · Organized to follow National Geographic World History: Voyages of Exploration<br><span style="opacity:.6">All study content is original. It is not reproduced from, or affiliated with, National Geographic Learning or Cengage.</span></div>
+</div>
+<script>
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function nl(s){ return esc(s).replace(/\n/g,'<br>'); }
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON.parse(v); }catch(e){ return d; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
+
+const SEC={"8.A": "Italian Renaissance", "8.B": "Northern Renaissance & Printing", "8.C": "Protestant Reformation", "8.D": "Catholic Reformation & Religious Wars"};
+const INFO={"8.A": {"big": ["Wealth from trade and banking, crowded cities, and Roman heritage made northern Italy the Renaissance's birthplace.", "Humanism revived classical learning and celebrated human potential — without abandoning Christianity.", "Art became more realistic (perspective, anatomy, oil and fresco) and more secular; patrons like the Medici paid for it."], "q": "Why Italy, and why then?"}, "8.B": {"big": ["Gutenberg's printing press (c. 1450) made books cheap and spread ideas faster than ever before.", "Northern humanists like Erasmus and More applied humanism to reforming the Church and society.", "Flemish oil painting and printed images spread Renaissance art north; Shakespeare wrote in the vernacular."], "q": "How did new technology change who could know things?"}, "8.C": {"big": ["Luther's 1517 protest against indulgences became a break with Rome: faith alone, Scripture alone.", "Calvin (predestination, Geneva) and Henry VIII (Church of England) created other Protestant paths.", "Religion, politics, and money were intertwined: rulers gained power over churches."], "q": "Was the Reformation about faith, power, or both?"}, "8.D": {"big": ["The Council of Trent reaffirmed Catholic doctrine and ended abuses; the Jesuits led education and missions.", "Religious division turned violent: the French Wars of Religion and the Thirty Years' War.", "The Peace of Westphalia (1648) accepted a divided Christendom and strengthened sovereign states."], "q": "What did Europe look like after a century of religious conflict?"}};
+let openU=null;
+function secPct(u){ const m=lsGet('whh_drill_units',{})[u]; return m&&m.t?Math.round(m.c/m.t*100):null; }
+function renderUnits(){
+  document.getElementById('units').innerHTML=Object.keys(SEC).map(u=>{ const p=secPct(u), c=p==null?'transparent':p>=80?'var(--teal)':p>=60?'var(--amber)':'var(--red)';
+    return `<button class="ucard ${openU===u?'active':''}" onclick="openUnit('${u}')" aria-expanded="${openU===u}"><div class="u-num"><span>${u}</span><span>${p==null?'':p+'%'}</span></div><div class="u-name">${esc(SEC[u])}</div><div class="u-bar"><i style="width:${p||0}%;background:${c}"></i></div></button>`; }).join('');
+  const all=Object.keys(SEC).map(secPct).filter(x=>x!=null);
+  document.getElementById('ch-pct').textContent=all.length?Math.round(all.reduce((a,b)=>a+b,0)/all.length)+'%':'—';
+  document.getElementById('sec-meter').innerHTML=Object.keys(SEC).map(u=>`<span class="du-pill">${u} · ${secPct(u)==null?'—':secPct(u)+'%'}</span>`).join('');
+}
+function openUnit(u){
+  openU=openU===u?null:u; renderUnits(); const P=document.getElementById('upanel'); if(!openU){ P.classList.remove('show'); return; }
+  const I=INFO[u];
+  P.innerHTML=`<h3>${u} · ${esc(SEC[u])}</h3><ul>${I.big.map(b=>`<li>${esc(b)}</li>`).join('')}</ul><div class="flbox">🤔 <b>Big question:</b> ${esc(I.q)}</div>
+   <div class="ulinks"><a href="WHH_DrillTrainer.html?unit=${u}">⚡ Drill ${u}</a><a href="WHH_Master_Glossary.html?unit=${u}">📖 ${u} terms</a><a href="WHH_Mistakes_Autopsy.html?unit=${u}">🔬 ${u} autopsies</a><a href="WHH_Timeline.html?play=study">⏳ Timeline</a></div>`;
+  P.classList.add('show');
+}
+function renderPlayer(){
+  const st=StudyHubGame.state(), $=id=>document.getElementById(id);
+  $('pc-icon').textContent=st.rank.icon; $('pc-rank').textContent=st.rank.name;
+  $('pc-sub').textContent=`Level ${st.level} · ${st.xp.toLocaleString()} XP`+(st.nextRank?` · next: ${st.nextRank.name} at Lv ${st.nextRank.lvl}`:' · top rank');
+  $('pc-xp').style.width=st.levelPct+'%'; $('pc-l').textContent='Lv '+st.level; $('pc-r').textContent=`${st.toNext} XP to Lv ${st.level+1}`;
+  $('pc-streak').textContent=st.streak+(st.shields?` 🛡️${st.shields}`:'');
+  $('pc-badges').textContent=`${st.badges.filter(b=>b.earned).length}/${st.badges.length}`;
+  $('pc-blist').innerHTML=st.badges.map(b=>`<div class="bdg ${b.earned?'on':''}" title="${esc(b.name)} — ${esc(b.desc)}">${b.icon}</div>`).join('');
+  $('pc-missions').innerHTML=st.missions.map(m=>{ const d=m.progress>=m.target; return `<div class="mission"><div class="m-check ${d?'on':''}">${d?'✓':''}</div><div class="m-body">${esc(m.label)}<div class="m-bar"><div class="m-fill" style="width:${Math.round(m.progress/m.target*100)}%"></div></div></div><div class="m-num">${m.progress}/${m.target}</div></div>`; }).join('');
+  $('pc-md').textContent=st.missionsDone?'Complete · +50 XP':'Bonus +50 XP';
+  const ds=lsGet('whh_drill_stats',{total:0,correct:0}); $('pc-acc').textContent=ds.total?Math.round(ds.correct/ds.total*100)+'%':'—';
+  let weak=null; Object.keys(SEC).forEach(u=>{ const m=lsGet('whh_drill_units',{})[u]; if(m&&m.t>=4){ const p=Math.round(m.c/m.t*100); if(!weak||p<weak.p) weak={u,p}; } });
+  $('pc-focus').innerHTML = !ds.total ? `🎯 <b>Start here:</b> play <a href="WHH_Timeline.html">Which Came First?</a>, then flip cards in the <a href="WHH_Master_Glossary.html?unit=8.A">Italian Renaissance glossary</a>.`
+    : weak&&weak.p<75 ? `🎯 <b>Today's focus: ${weak.u} · ${esc(SEC[weak.u])}</b> (${weak.p}%). <a href="WHH_Mistakes_Autopsy.html?unit=${weak.u}">Read the autopsies</a>, then <a href="WHH_DrillTrainer.html?unit=${weak.u}">re-drill</a>.`
+    : `🎯 <b>Strong work.</b> Try a timed <a href="WHH_DrillTrainer.html?mode=exam">Exam</a> or an honors <a href="WHH_Self_Grader.html">writing prompt</a>.`;
+}
+function syncNow(){
+  const s={}; let sig=0;
+  const ds=lsGet('whh_drill_stats',{total:0,correct:0,sessions:0}); if(ds.sessions) sig++; s.drillSessions=ds.sessions; s.drillAccuracyPct=ds.total?Math.round(ds.correct/ds.total*100):null;
+  const am=lsGet('whh_autopsy_mastered',[]); if(am.length) sig++; s.autopsyMasteredCount=am.length;
+  const sg=lsGet('whh_selfgrader_mastered',[]); if(sg.length) sig++; s.selfGraderMasteredCount=sg.length;
+  const gs=lsGet('whh_glossary_starred',[]); if(gs.length||localStorage.getItem('whh_glossary_quizscore')) sig++; s.glossaryStarred=gs.length;
+  Object.assign(s,StudyHubGame.summary()); s.overallPct=Math.round(sig/4*100);
+  if(sig&&typeof window.syncStudentProgress==='function') window.syncStudentProgress(s);
+}
+window.syncNow=syncNow;
+function resetAll(){ if(!confirm('Reset ALL World History Honors progress? This can\'t be undone.')) return; Object.keys(localStorage).filter(k=>k.startsWith('whh_')).forEach(k=>localStorage.removeItem(k)); StudyHubGame.reset(); renderUnits(); renderPlayer(); }
+renderUnits(); renderPlayer();
+</script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+const cfg={apiKey:"AIzaSyAACUvfh8CUiflSPBmcN2OXOiV6bUcFcNo",authDomain:"study-hub-acec1.firebaseapp.com",projectId:"study-hub-acec1",storageBucket:"study-hub-acec1.firebasestorage.app",messagingSenderId:"34403837526",appId:"1:34403837526:web:94fd2507d8943ddb45bdf7"};
+const NAME_KEY='studyhub_sync_name', COURSE_ID='worldHistoryHonors';
+let db; try{ db=getFirestore(initializeApp(cfg)); }catch(e){}
+const getName=()=>localStorage.getItem(NAME_KEY)||'';
+window.saveSyncName=function(){ const n=(document.getElementById('sync-name').value||'').trim().replace(/[\/\.\#\$\[\]]/g,'').slice(0,60); if(!n) return; localStorage.setItem(NAME_KEY,n); document.getElementById('sync').classList.remove('show'); window.syncNow&&window.syncNow(); };
+window.syncStudentProgress=async function(s){ if(!db||!getName()) return; try{ await setDoc(doc(db,'classes',COURSE_ID,'students',getName()),{displayName:getName(),...s,lastUpdated:serverTimestamp()},{merge:true}); }catch(e){} };
+if(!getName()) document.getElementById('sync').classList.add('show'); else window.syncNow&&window.syncNow();
+</script>
+</body>
+</html>

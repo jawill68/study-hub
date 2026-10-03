@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Environmental Science Honors — Common Confusions</title>
+<title>World History Honors — Common Confusions</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -11,7 +11,7 @@
   --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
   --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
   --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
-  --accent:#1D9E75;--accent-soft:rgba(29,158,117,.12);--accent-text:#4fd1a5;
+  --accent:#B87700;--accent-soft:rgba(229,148,0,.12);--accent-text:#efb44e;
 }
 body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
@@ -94,16 +94,16 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 
 </style>
 
-<script>window.STUDYHUB_GAME={course:'envsci'};</script>
+<script>window.STUDYHUB_GAME={course:'worldhistoryh'};</script>
 <script src="studyhub-game.js"></script>
 <script src="studyhub-sync.js"></script>
 </head>
 <body>
 <div class="app">
-  <a class="back" href="EnvSci_StudyHub.html">← Environmental Science Study Hub</a>
+  <a class="back" href="WHH_StudyHub.html">← World History Honors Study Hub</a>
   <div class="header">
     <div>
-      <div class="series-label">Environmental Science Honors · Study Resource Series · Build 3</div>
+      <div class="series-label">World History Honors · Chapter 8 · Common Confusions</div>
       <div class="page-title">Common <span>Confusions</span></div>
       <div class="page-sub" id="page-sub"></div>
     </div>
@@ -113,7 +113,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     </div>
   </div>
 
-  <div class="about-banner">📎 Look-alike ideas, side by side: the one line that tells them apart, plus a memory hook. Tap <b>Got it</b> when a pair clicks. Then try <b>⚡ Speed Sort</b>: you see a definition and have 8 seconds to name the right term. For <i>why</i> students mix things up, see the <a href="EnvSci_Mistakes_Autopsy.html">Mistakes Autopsy</a>.</div>
+  <div class="about-banner">📎 Look-alike ideas, side by side: the one line that tells them apart, plus a memory hook. Tap <b>Got it</b> when a pair clicks. Then try <b>⚡ Speed Sort</b>: you see a definition and have 8 seconds to name the right term. For <i>why</i> students mix things up, see the <a href="WHH_Mistakes_Autopsy.html">Mistakes Autopsy</a>.</div>
 
   <div class="stats-row">
     <div class="stat-chip"><div class="stat-num" id="s-total">—</div><div class="stat-lbl">TERM PAIRS</div></div>
@@ -123,7 +123,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 
   <div class="controls">
     <div class="ctrl-row"><span class="ctrl-label">SEARCH</span><input class="search-input" id="q" type="search" placeholder="Search either term, definition, or hook…" oninput="render()" aria-label="Search pairs"></div>
-    <div class="ctrl-row"><span class="ctrl-label">UNIT</span><button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button><button class="pill" data-unit="U1" onclick="setUnit('U1',this)">U1</button><button class="pill" data-unit="U2" onclick="setUnit('U2',this)">U2</button><button class="pill" data-unit="U3" onclick="setUnit('U3',this)">U3</button><button class="pill" data-unit="U4" onclick="setUnit('U4',this)">U4</button><button class="pill" data-unit="U5" onclick="setUnit('U5',this)">U5</button><button class="pill" data-unit="U6" onclick="setUnit('U6',this)">U6</button><button class="pill" data-unit="U7" onclick="setUnit('U7',this)">U7</button><button class="pill" data-unit="U8" onclick="setUnit('U8',this)">U8</button><button class="pill" data-unit="U9" onclick="setUnit('U9',this)">U9</button><button class="pill" data-unit="U10" onclick="setUnit('U10',this)">U10</button></div>
+    <div class="ctrl-row"><span class="ctrl-label">UNIT</span><button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button><button class="pill" data-unit="8.A" onclick="setUnit('8.A',this)">8.A</button><button class="pill" data-unit="8.B" onclick="setUnit('8.B',this)">8.B</button><button class="pill" data-unit="8.C" onclick="setUnit('8.C',this)">8.C</button><button class="pill" data-unit="8.D" onclick="setUnit('8.D',this)">8.D</button></div>
     <div class="ctrl-row"><span class="ctrl-label">SHOW</span>
       <button class="pill active" data-show="all" onclick="setShow('all',this)">All</button>
       <button class="pill" data-show="todo" onclick="setShow('todo',this)">Still learning</button>
@@ -132,7 +132,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   </div>
   <div id="list"></div>
 
-  <div class="footer">Environmental Science Honors (2001341) · Florida NGSSS Science Standards · Common Confusions</div>
+  <div class="footer">World History Honors (2109320) · Chapter 8: Renaissance and Reformation · Florida NGSSS SS.912.W.4</div>
 </div>
 
 <div class="overlay" id="sort-ov" onclick="if(event.target===this)closeSort()">
@@ -151,287 +151,121 @@ function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON
 function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
 function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
 
-const UNIT_NAMES = {"U1": "Intro to Env Science & Inquiry", "U2": "Earth Systems & Ecology", "U3": "Biodiversity & Populations", "U4": "Biomes, Wetlands & Aquatic Systems", "U5": "Conservation & Wildlife Management", "U6": "Soil, Agriculture & Food", "U7": "Water Resources", "U8": "Energy Resources", "U9": "Global Change & Environmental Health", "U10": "Air, Land & Waste"};
+const UNIT_NAMES = {"8.A": "Italian Renaissance", "8.B": "Northern Renaissance & Printing", "8.C": "Protestant Reformation", "8.D": "Catholic Reformation & Religious Wars"};
 const PAIRS = [
 {
-"u": "U1",
-"a": "Renewable resource",
-"da": "Replenished by nature on a human timescale, if it isn't overused.",
-"ea": "Forests, fresh water, wind",
-"b": "Nonrenewable resource",
-"db": "Forms over millions of years, so supplies are finite on a human timescale.",
-"eb": "Coal, oil, uranium",
-"dist": "Renewable doesn't mean unlimited. A forest cut faster than it regrows is being used unsustainably even though it's renewable.",
-"hook": "Renewable comes back if you're patient. Nonrenewable is gone for good."
+"u": "8.A",
+"a": "Renaissance",
+"da": "Rebirth of classical learning and art, starting in Italy (c. 1350).",
+"b": "Reformation",
+"db": "Religious movement that split Western Christianity, starting in 1517.",
+"dist": "The Renaissance was cultural and intellectual; the Reformation was religious. The Renaissance came first and helped cause the Reformation.",
+"hook": "Renaissance = rebirth of ideas. Reformation = re-forming the Church."
 },
 {
-"u": "U1",
-"a": "Correlation",
-"da": "Two variables change together.",
-"b": "Causation",
-"db": "A change in one variable actually produces the change in the other.",
-"dist": "Only a controlled experiment, or strong evidence of a mechanism, shows causation. A third factor often drives both correlated variables.",
-"hook": "Moving together isn't the same as one pushing the other."
+"u": "8.A",
+"a": "Humanism",
+"da": "Study of classical texts and human potential; most humanists were still Christian.",
+"b": "Secularism",
+"db": "Focus on worldly rather than religious life.",
+"dist": "Humanism is a method of study; secularism is an emphasis. Humanism encouraged secular interests but did not reject religion.",
+"hook": "Humanism studies people. Secular means not religious."
 },
 {
-"u": "U1",
-"a": "Conservation",
-"da": "Wise, sustainable use of resources.",
-"ea": "Regulated duck hunting; managed forests",
-"b": "Preservation",
-"db": "Protecting nature from use, leaving it as untouched as possible.",
-"eb": "Designated wilderness areas",
-"dist": "Conservation manages use; preservation limits use. The North American Model of wildlife management is a conservation approach.",
-"hook": "Conserve = use wisely. Preserve = leave alone."
+"u": "8.A",
+"a": "Patron",
+"da": "Person who pays for and supports art or scholarship.",
+"ea": "The Medici",
+"b": "Artist",
+"db": "Person who creates the work.",
+"eb": "Michelangelo",
+"dist": "Patrons funded the Renaissance; artists created it. Patrons often chose the subject.",
+"hook": "Patron pays. Artist makes."
 },
 {
-"u": "U2",
-"a": "Biotic",
-"da": "Living or once-living parts of an ecosystem.",
-"ea": "Cattails, snails, bacteria, fallen leaves",
-"b": "Abiotic",
-"db": "Nonliving physical and chemical factors.",
-"eb": "Temperature, salinity, sunlight, water depth",
-"dist": "'A-' means 'not.' If it's alive, or was alive, it's biotic.",
-"hook": "Bio = life. A-bio = no life."
+"u": "8.A",
+"a": "Machiavelli",
+"da": "Italian political writer — The Prince; power politics.",
+"b": "Michelangelo",
+"db": "Italian artist — David, the Sistine Chapel.",
+"dist": "Similar names, totally different fields.",
+"hook": "Machiavelli = power. Michelangelo = paint and marble."
 },
 {
-"u": "U2",
-"a": "Decomposer",
-"da": "Breaks down dead matter chemically, absorbing nutrients.",
-"ea": "Bacteria, fungi",
-"b": "Detritivore",
-"db": "An animal that eats dead organic matter.",
-"eb": "Earthworms, crayfish, millipedes",
-"dist": "Both recycle nutrients. Detritivores ingest detritus; decomposers digest it externally with enzymes.",
-"hook": "Detritivores chew it. Decomposers dissolve it."
+"u": "8.B",
+"a": "Italian Renaissance",
+"da": "Classical revival, more secular and civic subjects, patrons in city-states.",
+"b": "Northern Renaissance",
+"db": "Spread north after 1450, stronger religious focus, Christian humanism, oil painting.",
+"dist": "Same humanist roots; the north applied them more to religious reform.",
+"hook": "South: civic and classical. North: Christian and reform-minded."
 },
 {
-"u": "U2",
-"a": "Nitrogen fixation",
-"da": "Converts N₂ gas into ammonia or nitrate that plants can use.",
-"ea": "Bacteria in legume root nodules",
-"b": "Denitrification",
-"db": "Converts nitrate back into N₂ gas, removing it from soil and water.",
-"eb": "Bacteria in waterlogged wetland soils",
-"dist": "They run in opposite directions. Fixation brings nitrogen into the living system; denitrification returns it to the air.",
-"hook": "Fixation fixes it in. Denitrification lets it out."
+"u": "8.B",
+"a": "Erasmus",
+"da": "Criticized Church abuses but stayed Catholic and wanted reform from within.",
+"b": "Luther",
+"db": "Rejected papal authority and founded a new church tradition.",
+"dist": "Both criticized the Church; only Luther broke away.",
+"hook": "Erasmus: reform it. Luther: leave it."
 },
 {
-"u": "U2",
-"a": "Photosynthesis",
-"da": "Uses CO₂, water, and light to make glucose and O₂.",
-"b": "Cellular respiration",
-"db": "Uses glucose and O₂ to release energy, CO₂, and water.",
-"dist": "They mirror each other in the carbon cycle. Producers do both; consumers only respire.",
-"hook": "Photosynthesis stores energy. Respiration spends it."
+"u": "8.C",
+"a": "Luther",
+"da": "German; salvation by faith alone; Bible as sole authority; Lutheran churches.",
+"b": "Calvin",
+"db": "French (in Geneva); predestination; strict moral discipline; Reformed and Presbyterian churches.",
+"dist": "Both rejected papal authority. Calvin stressed predestination and a disciplined godly community.",
+"hook": "Luther = faith alone. Calvin = chosen in advance."
 },
 {
-"u": "U3",
-"a": "Habitat",
-"da": "Where an organism lives.",
-"b": "Niche",
-"db": "The organism's role — what it eats, when and how it feeds, and how it interacts.",
-"dist": "Many species can share a habitat, but two species can't hold exactly the same niche for long without one outcompeting the other.",
-"hook": "Habitat is the address. Niche is the job."
+"u": "8.C",
+"a": "Indulgence",
+"da": "A Church pardon reducing punishment for sins; its sale triggered Luther's protest.",
+"b": "Excommunication",
+"db": "Expelling someone from the Church.",
+"dist": "One reduces punishment; the other cuts a person off. The pope excommunicated Luther for attacking indulgences.",
+"hook": "Indulgence lets you off. Excommunication kicks you out."
 },
 {
-"u": "U3",
-"a": "Keystone species",
-"da": "Has an outsized effect on its community relative to its numbers.",
-"ea": "Alligators, beavers",
-"b": "Indicator species",
-"db": "Signals the health of an ecosystem.",
-"eb": "Frogs, mayflies",
-"dist": "Keystone species shape the ecosystem; indicator species report on it.",
-"hook": "Keystone holds it up. Indicator tells you how it's doing."
+"u": "8.C",
+"a": "Peace of Augsburg (1555)",
+"da": "German princes choose Catholic or Lutheran for their land.",
+"b": "Peace of Westphalia (1648)",
+"db": "Ends the Thirty Years' War; adds Calvinism; strengthens state sovereignty.",
+"dist": "Augsburg was a German compromise for two faiths; Westphalia was a European settlement for three faiths and a new state system.",
+"hook": "Augsburg: 2 faiths, Germany. Westphalia: 3 faiths, Europe."
 },
 {
-"u": "U3",
-"a": "Density-dependent factor",
-"da": "Its effect grows as the population gets more crowded.",
-"ea": "Disease, competition, predation",
-"b": "Density-independent factor",
-"db": "Affects a population regardless of crowding.",
-"eb": "Hurricanes, freezes, droughts",
-"dist": "Ask whether more crowding would make it worse. If yes, it's density-dependent.",
-"hook": "Crowding matters? Dependent. Weather? Independent."
+"u": "8.C",
+"a": "Lutheran Reformation",
+"da": "Began as religious protest by a monk (1517).",
+"b": "English Reformation",
+"db": "Began as a royal decision by Henry VIII (1534) over his marriage and succession.",
+"dist": "Germany's started from theology; England's from politics.",
+"hook": "Germany: a monk's protest. England: a king's divorce."
 },
 {
-"u": "U3",
-"a": "Exponential growth",
-"da": "Constant-rate growth with unlimited resources — a J-shaped curve.",
-"b": "Logistic growth",
-"db": "Growth that slows near carrying capacity — an S-shaped curve.",
-"dist": "Real populations may grow exponentially for a while, but limiting factors eventually bend the curve into an S.",
-"hook": "J keeps jumping. S settles."
+"u": "8.D",
+"a": "Council of Trent",
+"da": "Church council that reaffirmed doctrine and reformed abuses (1545–1563).",
+"b": "Diet of Worms",
+"db": "Imperial assembly where Luther refused to recant (1521).",
+"dist": "Trent was the Catholic response; Worms was the confrontation with Luther.",
+"hook": "Worms: Luther says no. Trent: the Church answers."
 },
 {
-"u": "U3",
-"a": "Primary succession",
-"da": "Starts on bare rock with no soil.",
-"ea": "New volcanic island",
-"b": "Secondary succession",
-"db": "Starts where soil remains after a disturbance.",
-"eb": "Field after a fire or abandoned farm",
-"dist": "Check for soil. Secondary succession is faster because soil, seeds, and roots remain.",
-"hook": "Primary = no soil. Secondary = soil survived."
-},
-{
-"u": "U3",
-"a": "Commensalism",
-"da": "One species benefits; the other is unaffected.",
-"b": "Mutualism",
-"db": "Both species benefit.",
-"dist": "Parasitism is the third type: one benefits, the other is harmed. Name the result for each partner.",
-"hook": "Mutualism: win-win. Commensalism: win-neutral. Parasitism: win-lose."
-},
-{
-"u": "U4",
-"a": "Marsh",
-"da": "A wetland dominated by soft-stemmed plants such as grasses, sedges, and cattails.",
-"b": "Swamp",
-"db": "A wetland dominated by trees or shrubs.",
-"dist": "Look up. If you see a forest canopy, it's a swamp.",
-"hook": "Marsh = grass. Swamp = trees."
-},
-{
-"u": "U4",
-"a": "Bog",
-"da": "Acidic, nutrient-poor, rain-fed, and builds up peat.",
-"b": "Marsh",
-"db": "Fed by surface or groundwater, nutrient-rich, and dominated by emergent plants.",
-"dist": "The water source drives the difference. Rain-fed bogs get few nutrients; marshes receive nutrient-carrying runoff.",
-"hook": "Bog is starved and sour. Marsh is fed and fertile."
-},
-{
-"u": "U4",
-"a": "Estuary",
-"da": "Where river fresh water mixes with ocean salt water.",
-"b": "Freshwater wetland",
-"db": "An inland wetland with no tidal salt water.",
-"dist": "Salinity and tides define estuaries, and they shape which plants and animals can live there.",
-"hook": "Estuary = salt meets fresh."
-},
-{
-"u": "U5",
-"a": "Endangered",
-"da": "In danger of extinction now, throughout all or much of its range.",
-"b": "Threatened",
-"db": "Likely to become endangered in the foreseeable future.",
-"dist": "Threatened is one step below endangered, and both receive Endangered Species Act protection.",
-"hook": "Threatened is the warning. Endangered is the emergency."
-},
-{
-"u": "U5",
-"a": "Dabbling duck",
-"da": "Feeds at the surface by tipping up; legs centered; springs straight into flight.",
-"ea": "Mallard, teal, wood duck",
-"b": "Diving duck",
-"db": "Dives to feed; legs set far back; runs across the water to take off.",
-"eb": "Canvasback, scaup, ring-neck",
-"dist": "Watch the takeoff: a straight-up leap means dabbler, a running start means diver.",
-"hook": "Dabblers jump. Divers run."
-},
-{
-"u": "U5",
-"a": "Federal Duck Stamp (1934)",
-"da": "Required of waterfowl hunters 16 and older; buys wetland habitat for refuges.",
-"b": "Pittman-Robertson Act (1937)",
-"db": "An excise tax on firearms and ammunition that funds state wildlife agencies.",
-"dist": "The Duck Stamp funds federal refuge habitat directly. Pittman-Robertson money flows to states for restoration, research, and hunter education.",
-"hook": "Stamp buys refuge land. P-R funds the states."
-},
-{
-"u": "U5",
-"a": "Bag limit",
-"da": "How many birds one hunter may take per day.",
-"b": "Possession limit",
-"db": "How many birds a hunter may have in total, often several days' worth.",
-"dist": "Both are harvest regulations. The daily bag controls each day; the possession limit caps the total kept.",
-"hook": "Bag = per day. Possession = total on hand."
-},
-{
-"u": "U5",
-"a": "Conservation easement",
-"da": "The landowner keeps the land but permanently gives up development rights.",
-"b": "Land acquisition",
-"db": "An agency or organization buys the land outright.",
-"dist": "Easements protect habitat on private working land at a lower cost and keep land on the tax rolls.",
-"hook": "An easement keeps the farmer and the habitat."
-},
-{
-"u": "U6",
-"a": "Topsoil (A horizon)",
-"da": "Rich in humus, roots, and life; most fertile.",
-"b": "Subsoil (B horizon)",
-"db": "Collects minerals leached from above; less organic matter.",
-"dist": "Erosion strips the A horizon first, and it can take centuries to rebuild.",
-"hook": "A is alive. B is beneath."
-},
-{
-"u": "U7",
-"a": "Point source pollution",
-"da": "Comes from one identifiable source.",
-"ea": "A factory pipe",
-"b": "Nonpoint source pollution",
-"db": "Comes from many diffuse sources carried by runoff.",
-"eb": "Lawn and farm fertilizer runoff",
-"dist": "If you can point to the single pipe, it's point source. Nonpoint is harder to regulate and is the bigger problem today.",
-"hook": "Point = one pipe. Nonpoint = everywhere."
-},
-{
-"u": "U7",
-"a": "Groundwater",
-"da": "Water stored underground in aquifers.",
-"b": "Surface water",
-"db": "Water in rivers, lakes, and wetlands.",
-"dist": "They're connected. Wetlands can recharge groundwater, and overpumping groundwater can dry up surface wetlands.",
-"hook": "Same water, different address."
-},
-{
-"u": "U8",
-"a": "Energy efficiency",
-"da": "Getting the same work done with less energy (technology).",
-"ea": "LED bulbs",
-"b": "Energy conservation",
-"db": "Using less energy by changing behavior.",
-"eb": "Turning lights off",
-"dist": "Efficiency changes the device; conservation changes the habit. Both cut demand.",
-"hook": "Efficiency = better device. Conservation = better habit."
-},
-{
-"u": "U9",
-"a": "Bioaccumulation",
-"da": "A toxin builds up inside ONE organism over its life.",
-"b": "Biomagnification",
-"db": "Toxin concentration increases UP the food chain, from level to level.",
-"dist": "Bioaccumulation is within one body over time. Biomagnification is across trophic levels.",
-"hook": "Accumulate in me. Magnify up the food chain."
-},
-{
-"u": "U9",
-"a": "Greenhouse effect",
-"da": "Natural trapping of heat by gases; keeps Earth livable.",
-"b": "Ozone depletion",
-"db": "Thinning of the stratospheric ozone layer that blocks UV radiation.",
-"dist": "These are different problems with different causes and fixes. CFCs thinned ozone (fixed by the Montreal Protocol); CO₂ drives warming.",
-"hook": "Greenhouse is about heat. Ozone is about UV."
-},
-{
-"u": "U10",
-"a": "Primary pollutant",
-"da": "Emitted directly from a source.",
-"ea": "Carbon monoxide, soot",
-"b": "Secondary pollutant",
-"db": "Formed in the air by chemical reactions.",
-"eb": "Ground-level ozone, acid rain",
-"dist": "Ask whether it came out of the tailpipe as-is, or formed afterward in sunlight or moisture.",
-"hook": "Primary is direct. Secondary is made in the air."
+"u": "8.D",
+"a": "Huguenots",
+"da": "French Calvinist Protestants.",
+"b": "Jesuits",
+"db": "Catholic religious order focused on education and missions.",
+"dist": "They were on opposite sides of the religious divide.",
+"hook": "Huguenots protest. Jesuits teach the Catholic faith."
 }
 ];
-const LS_GOT = 'envsci_confusions_got';
-const LS_BEST = 'envsci_confusions_best';
+const LS_GOT = 'whh_confusions_got';
+const LS_BEST = 'whh_confusions_best';
 let got = new Set(lsGet(LS_GOT, []));
 let curUnit = 'all', curShow = 'all';
 function key(p){ return p.a + ' | ' + p.b; }

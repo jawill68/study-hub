@@ -101,6 +101,18 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .sort-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .timer-bar{height:4px;background:var(--bg);border-radius:99px;overflow:hidden;margin-top:10px}
 .timer-fill{height:100%;background:var(--amber);transition:width .1s linear}
+.ph{margin:-16px -16px 12px;border-radius:15px 15px 0 0;overflow:hidden;background:#071425;aspect-ratio:3/2;position:relative}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph figcaption,.cred{font-size:10px;color:#a9c2dc;font-family:'DM Mono',monospace}
+.ph figcaption{position:absolute;left:0;right:0;bottom:0;padding:14px 8px 5px;background:linear-gradient(transparent,rgba(3,8,16,.85))}
+.ph figcaption a,.cred a{color:#a9c2dc}
+.nophoto{display:flex;align-items:center;justify-content:center;height:100%;font-size:46px;opacity:.25}
+.reveal{margin-top:12px;border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+.reveal img{width:100%;max-height:340px;object-fit:cover;display:block}
+.reveal .cred{padding:6px 10px;background:var(--bg)}
+.photo-q{border-radius:14px;overflow:hidden;border:1px solid var(--border);background:#071425;margin:12px 0 14px}
+.photo-q img{width:100%;max-height:380px;object-fit:contain;display:block;background:#071425}
+.photo-q .cred{padding:6px 10px}
 .journal{height:10px;background:var(--bg);border-radius:99px;overflow:hidden;margin-top:6px}
 .journal i{display:block;height:100%;background:linear-gradient(90deg,var(--amber),var(--teal))}
 
@@ -108,6 +120,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 
 <script>window.STUDYHUB_GAME={course:'envsci'};</script>
 <script src="studyhub-game.js"></script>
+<script src="studyhub-sync.js"></script>
 </head>
 <body>
 <div class="app">
@@ -125,6 +138,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     <button class="mode-tab active" data-v="guide" onclick="setView('guide',this)">📖 Field Guide</button>
     <button class="mode-tab" data-v="clues" onclick="setView('clues',this)">🔎 Name That Bird</button>
     <button class="mode-tab" data-v="sort" onclick="setView('sort',this)">⚡ Dabbler or Diver?</button>
+    <button class="mode-tab" data-v="photo" onclick="setView('photo',this)">📷 Photo ID</button>
   </div>
 
   <div class="view active" id="v-guide">
@@ -140,8 +154,9 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 
   <div class="view" id="v-clues"><div class="card game" id="clue-game"></div></div>
   <div class="view" id="v-sort"><div class="card game" id="sort-game"></div></div>
+  <div class="view" id="v-photo"><div class="card game" id="photo-game"></div></div>
 
-  <div class="footer">Ducks Unlimited Ecology Conservation &amp; Management Certification · Domain: Species Identification (10%) · Original study material — not affiliated with or endorsed by Ducks Unlimited or iCEV</div>
+  <div class="footer">Ducks Unlimited Ecology Conservation &amp; Management Certification · Domain: Species Identification (10%) · Original study material — not affiliated with or endorsed by Ducks Unlimited or iCEV<br>Photos: U.S. Fish &amp; Wildlife Service and U.S. Geological Survey, public domain. Credits link to each source page.</div>
 </div>
 <script>
 function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -452,6 +467,7 @@ const SP=[
 "fact": "Not a duck at all. It's a rail, with lobed (not webbed) toes, and it pumps its head while swimming."
 }
 ];
+const PH={"mall": {"u": "https://www.fws.gov/sites/default/files/2021-10/J%20Clark%20Salyer%20NWR%20Banded%20Mallard%20Drake%20in%20flight%20after%20release.JPG", "c": "Jane Cardwell/USFWS", "p": "https://www.fws.gov/media/j-clark-salyer-nwr-banded-mallard-drake-flight-after-releasejpg", "cap": "Mallard drake in flight after banding, J. Clark Salyer NWR"}, "mott": {"u": "https://www.fws.gov/sites/default/files/2023-09/Mottled%20duck%20resized.png", "c": "USFWS", "p": "https://fws.gov/media/mottled-duck-resizedpng", "cap": "Mottled duck being fitted with a radio transmitter"}, "pint": {"u": "https://www.fws.gov/sites/default/files/images/2016-01/29457.jpg", "c": "Peter Pearsall/USFWS", "p": "https://www.fws.gov/media/northern-pintail-9", "cap": "Northern pintails, Bandon Marsh NWR"}, "wige": {"u": "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/media/images/CambridgeDecember-34-DeNoiseAI-denoise.jpg", "c": "Megan Evans, USGS", "p": "https://www.usgs.gov/media/images/american-wigeon-2", "cap": "American wigeon drake, Choptank River, Maryland"}, "gadw": {"u": "https://www.fws.gov/sites/default/files/images/2005-05/112.jpg", "c": "Donna A. Dewhurst/USFWS", "p": "https://fws.gov/media/gadwall-drake", "cap": "Gadwall drake, Potter's Marsh, Alaska"}, "gwte": {"u": "https://www.fws.gov/sites/default/files/banner_images/2022-09/green-winged-teal.jpg", "c": "Tom Koerner/USFWS", "p": "https://www.fws.gov/media/green-winged-teal-lacreek-national-wildlife-refuge", "cap": "Green-winged teal drakes and hens, LaCreek NWR"}, "bwte": {"u": "https://www.fws.gov/sites/default/files/images/2024-03-5/13072.jpg", "c": "John & Karen Hollingsworth/USFWS", "p": "https://www.fws.gov/media/blue-winged-teal-pair-1", "cap": "Blue-winged teal pair, Shiawassee NWR"}, "shov": {"u": "https://www.fws.gov/sites/default/files/2024-02/northernshoveler_170333sm.jpg", "c": "James A. \"Newt\" Perdue/USFWS", "p": "https://www.fws.gov/media/drake-northern-shoveler", "cap": "Northern shoveler drake, Red Rock Lakes NWR"}, "wood": {"u": "https://www.fws.gov/sites/default/files/2023-04/Wood%20Duck%20by%20Tom%20Koerner%20USFWS.jpg", "c": "Tom Koerner/USFWS", "p": "https://www.fws.gov/media/wood-ducks-lacreek-refuge-south-dakota", "cap": "Wood ducks, LaCreek NWR"}, "canv": {"u": "https://www.fws.gov/sites/default/files/images/2005-06/140.jpg", "c": "Donna A. Dewhurst/USFWS", "p": "https://www.fws.gov/media/canvasback-drakes", "cap": "Canvasback, Potter's Marsh, Alaska"}, "redh": {"u": "https://www.fws.gov/sites/default/files/2023-07/Redhead%20Drake%20a%20common%20diving%20duck%20found%20in%20deeper%20wetlands%20within%20the%20Huron%20Wetland%20Management%20District%20of%20South%20Dakota%20by%20Sandra%20Uecker%20USFWS%206_22_2022.jpg", "c": "Sandra Uecker/USFWS", "p": "https://www.fws.gov/media/redhead-drake-common-diving-duck-huron-wetland-management-district", "cap": "Redhead drake, Huron Wetland Management District"}, "lesc": {"u": "https://www.fws.gov/sites/default/files/images/2024-03-5/13076.jpg", "c": "Dave Menke/USFWS", "p": "https://www.fws.gov/media/lesser-scaup-1", "cap": "Lesser scaup, Lower Klamath NWR"}, "rndu": {"u": "https://www.fws.gov/sites/default/files/images/2024-09/male-ring-necked-duck.jpg", "c": "Stephanie Bilodeau/USFWS", "p": "https://www.fws.gov/media/male-ring-necked-duck", "cap": "Ring-necked duck drake in hand at a banding station — note the white ring on the bill"}, "buff": {"u": "https://www.fws.gov/sites/default/files/images/2016-04/29456.jpg", "c": "Peter Pearsall/USFWS", "p": "https://www.fws.gov/media/buffleheads-flight", "cap": "Buffleheads"}, "cgol": {"u": "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/thumbnails/image/DSC_6879_Pair_COGO.JPG", "c": "Dirk Derksen, USGS", "p": "https://www.usgs.gov/media/images/common-goldeneye-pair-swimming-along-icy-shoreline", "cap": "Common goldeneye pair along an icy Alaska shoreline"}, "hmer": {"u": "https://www.fws.gov/sites/default/files/images/2012-04/18666.jpg", "c": "Matt Poole/USFWS", "p": "https://www.fws.gov/media/hooded-merganser-4", "cap": "Hooded merganser, Parker River NWR"}, "rudd": {"u": "https://www.fws.gov/sites/default/files/2023-09/IMG_6198.jpg", "c": "Holly Keepers/USFWS", "p": "https://www.fws.gov/media/ruddy-duck-swimming-alone", "cap": "Ruddy duck, Blackwater NWR"}, "cago": {"u": "https://www.fws.gov/sites/default/files/2022-06/Canada%20geese%20SE%20FWS%20by%20Arkansas%20Game%20and%20Fish%20Commission%201205%20px%20wide.jpg", "c": "Arkansas Game and Fish Commission (via USFWS)", "p": "https://www.fws.gov/media/canadian-geese-flight", "cap": "Canada geese taking off"}, "snow": {"u": "https://www.fws.gov/sites/default/files/images/2024-10/light-geese-flyout-over-photographers_lynne-braden2.jpg", "c": "Lynne Braden/USFWS volunteer", "p": "https://www.fws.gov/media/snow-geese-fly-overhead-bosque-del-apache-refuge", "cap": "Snow geese, Bosque del Apache NWR"}, "tusw": {"u": "https://www.fws.gov/sites/default/files/2022-03/Tundra%20Swan%20in%20Izembek%20National%20Wildlife%20Refuge%20by%20Kristine%20Sowl.jpeg", "c": "Kristine Sowl/USFWS", "p": "https://fws.gov/media/tundra-swan-izembek-national-wildlife-refuge-kristine-sowljpeg", "cap": "Tundra swan, Izembek NWR"}, "amco": {"u": "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/Animals_Behavior_FlocksHuddlesSchoolsSwarms_00026.jpg", "c": "Randolph Femmer, USGS", "p": "https://www.usgs.gov/media/images/american-coots-fulica-americana-2", "cap": "American coots, Merritt Island NWR, Florida"}};
 const GROUP={"dabbler": "Dabbling duck", "diver": "Diving duck (bay duck)", "sea": "Diving duck (sea duck)", "merganser": "Merganser (fish-eating diver)", "stifftail": "Stiff-tailed diving duck", "whistling": "Whistling-duck", "goose": "Goose", "swan": "Swan", "lookalike": "Not a duck (rail)"};
 const LS='envsci_fieldguide';
 let J=lsGet(LS,{});
@@ -461,12 +477,13 @@ function stamped(s){ return (J[s.id]&&J[s.id].c>=2); }
 function bump(s,ok){ J[s.id]=J[s.id]||{c:0,t:0}; J[s.id].t++; const before=stamped(s); if(ok) J[s.id].c++; lsSet(LS,J); if(!before&&stamped(s)) setTimeout(()=>alertStamp(s),300); journal(); game().event('species',{correct:ok}); game().event('du'); }
 function alertStamp(s){ const t=document.createElement('div'); t.className='shg-toast level'; t.textContent=`📓 ${s.n} stamped into your Field Journal!`; const box=document.querySelector('.shg-toasts'); if(box) box.appendChild(t); setTimeout(()=>t.remove(),2600); }
 function journal(){ const n=SP.filter(stamped).length; document.getElementById('j-count').textContent=`${n} / ${SP.length} species stamped`; document.getElementById('j-bar').style.width=(n/SP.length*100)+'%'; }
-function setView(v,b){ document.querySelectorAll('.mode-tab').forEach(x=>x.classList.toggle('active',x===b)); document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id==='v-'+v)); if(v==='clues') newClue(); if(v==='sort') startSort(); if(v==='guide') renderGrid(); }
+function setView(v,b){ document.querySelectorAll('.mode-tab').forEach(x=>x.classList.toggle('active',x===b)); document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id==='v-'+v)); if(v==='clues') newClue(); if(v==='sort') startSort(); if(v==='photo') newPhoto(); if(v==='guide') renderGrid(); }
 let curG='all'; const openCards=new Set();
 function setG(g,b){ curG=g; document.querySelectorAll('.pill[data-g]').forEach(x=>x.classList.toggle('active',x===b)); renderGrid(); }
 function renderGrid(){
   const list=SP.filter(s=>curG==='all'||(curG==='dabbler'&&s.g==='dabbler')||(curG==='divers'&&DIVERS.includes(s.g))||(curG==='geese'&&(s.g==='goose'||s.g==='swan'))||(curG==='fl'&&FL_REG.includes(s.id))||(curG==='todo'&&!stamped(s)));
   document.getElementById('grid').innerHTML=list.map(s=>`<div class="sp ${stamped(s)?'got':''} ${openCards.has(s.id)?'open':''}">
+    ${photoFig(s)}
     <div class="sp-top"><div><div class="sp-name">${esc(s.n)}</div><div class="sp-grp">${esc(GROUP[s.g])} · ${esc(s.sz)}</div></div><span class="stamp ${stamped(s)?'':'no'}">${stamped(s)?'📓 STAMPED':(J[s.id]?.c||0)+'/2'}</span></div>
     <div class="row"><b>${s.g==='goose'||s.g==='swan'||s.g==='lookalike'||s.g==='whistling'?'APPEARANCE':'DRAKE'}</b>${esc(s.drake)}</div>
     <div class="extra">
@@ -479,6 +496,34 @@ function renderGrid(){
     </div>
     <button class="more" onclick="openCards.has('${s.id}')?openCards.delete('${s.id}'):openCards.add('${s.id}');renderGrid()">${openCards.has(s.id)?'Show less ▴':'Hen, wing, habitat, Florida notes ▾'}</button>
   </div>`).join('') || '<div class="empty">Every species in this group is stamped. Nice work.</div>';
+}
+function photoFig(s){
+  const p=PH[s.id];
+  if(!p) return `<figure class="ph"><div class="nophoto">🦆</div><figcaption>No public-domain photo yet</figcaption></figure>`;
+  return `<figure class="ph"><img src="${p.u}" alt="${esc(p.cap)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.innerHTML='<div class=nophoto>🦆</div>'"><figcaption>${esc(p.cap)} · <a href="${p.p}" target="_blank" rel="noopener">${esc(p.c)}</a> · Public domain</figcaption></figure>`;
+}
+function revealPhoto(s){
+  const p=PH[s.id]; if(!p) return '';
+  return `<div class="reveal"><img src="${p.u}" alt="${esc(p.cap)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><div class="cred">${esc(p.cap)} · <a href="${p.p}" target="_blank" rel="noopener">${esc(p.c)}</a> · Public domain</div></div>`;
+}
+// ── Photo ID ──
+let pg={n:0,right:0};
+function newPhoto(){
+  const pool=SP.filter(s=>PH[s.id]);
+  const s=shuffle(pool.filter(x=>!stamped(x))).concat(shuffle(pool))[0];
+  const near=shuffle(SP.filter(x=>x!==s&&(x.g===s.g||(DIVERS.includes(x.g)&&DIVERS.includes(s.g))))).slice(0,2);
+  const opts=shuffle([s,...near,...shuffle(SP.filter(x=>x!==s&&!near.includes(x))).slice(0,3-near.length)]);
+  pg.cur={s,opts,ans:false}; const p=PH[s.id];
+  document.getElementById('photo-game').innerHTML=`<div class="mtop"><span>PHOTO ${pg.n+1}</span><span class="pts">${pg.right} correct</span></div>
+    <div class="photo-q"><img src="${p.u}" alt="Mystery waterfowl photo" referrerpolicy="no-referrer" onerror="this.outerHTML='<div style=&quot;padding:40px 16px;text-align:center;color:var(--muted)&quot;>This photo couldn’t load on your network. Pick your best guess, or skip.</div>'"><div class="cred">Photo: ${esc(p.c)} · Public domain</div></div>
+    <div class="opts">${opts.map((o,k)=>`<button class="opt" id="po-${k}" onclick="pickPhoto(${k})"><span class="opt-key">${'ABCD'[k]}</span><span>${esc(o.n)}</span></button>`).join('')}</div><div class="fb" id="pfb"></div><div style="margin-top:8px"><button class="btn btn-ghost" onclick="newPhoto()">Skip ↷</button></div>`;
+}
+function pickPhoto(k){
+  const c=pg.cur; if(c.ans) return; c.ans=true; const ok=c.opts[k]===c.s; pg.n++; if(ok) pg.right++;
+  bump(c.s,ok); game().answer(ok,2);
+  c.opts.forEach((o,j)=>{ const b=document.getElementById('po-'+j); b.disabled=true; if(o===c.s) b.classList.add('correct'); else if(j===k) b.classList.add('wrong'); });
+  const fb=document.getElementById('pfb'); fb.className='fb show '+(ok?'ok':'no');
+  fb.innerHTML=`<b style="color:${ok?'#4fd1a5':'#f08579'}">${ok?'✓ '+esc(c.s.n):'✗ This is the '+esc(c.s.n)}.</b> ${esc(PH[c.s.id].cap)}. Look for: ${esc(c.s.drake)}<div style="margin-top:10px"><button class="btn btn-accent" onclick="newPhoto()">Next photo →</button></div>`;
 }
 // ── Name That Bird (progressive clues) ──
 let cg={round:0,score:0,total:0};
@@ -510,7 +555,7 @@ function pickClue(k){
   renderClue();
   c.opts.forEach((o,j)=>{ const b=document.getElementById('co-'+j); if(o===c.s) b.classList.add('correct'); else if(j===k) b.classList.add('wrong'); });
   const fb=document.getElementById('cfb'); fb.className='fb show '+(ok?'ok':'no');
-  fb.innerHTML=`<b style="color:${ok?'#4fd1a5':'#f08579'}">${ok?`✓ ${c.s.n}! +${pts}`:`✗ It was the ${c.s.n}.`}</b> ${esc(c.s.fact)}<div style="margin-top:10px"><button class="btn btn-accent" onclick="newClue()">Next bird →</button></div>`;
+  fb.innerHTML=`<b style="color:${ok?'#4fd1a5':'#f08579'}">${ok?`✓ ${c.s.n}! +${pts}`:`✗ It was the ${c.s.n}.`}</b> ${esc(c.s.fact)}${revealPhoto(c.s)}<div style="margin-top:10px"><button class="btn btn-accent" onclick="newClue()">Next bird →</button></div>`;
 }
 // ── Dabbler or Diver ──
 let so=null, tick=null; const SORT_SECS=6;
@@ -542,7 +587,7 @@ document.addEventListener('keydown',e=>{
   else if(so.ans&&e.key==='Enter'){ so.i++; renderSort(); }
 });
 (function init(){
-  document.getElementById('page-sub').textContent=`${SP.length} species · drake, hen, speculum, habitat, and Florida notes · 2 ID games`;
+  document.getElementById('page-sub').textContent=`${SP.length} species · ${Object.keys(PH).length} public-domain photos · drake, hen, speculum, habitat, and Florida notes · 3 ID games`;
   journal(); renderGrid();
   const v=new URLSearchParams(location.search).get('play'); if(v){ const b=document.querySelector('.mode-tab[data-v="'+v+'"]'); if(b) setView(v,b); }
 })();

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World History Honors — Timeline & Who Am I</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
+  --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
+  --accent:#B87700;--accent-soft:rgba(229,148,0,.12);--accent-text:#efb44e;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(46,139,192,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(46,139,192,0.04) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:26px 20px 70px}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent-text);text-decoration:none;margin-bottom:14px;opacity:.9}
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--accent-text)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+.about-banner{background:linear-gradient(135deg,var(--accent-soft),rgba(29,158,117,.05));border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:12.5px;line-height:1.55}
+.about-banner a{color:var(--accent-text)}
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px;flex:1}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:14px}
+.sec-lbl{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.13em;color:var(--muted);margin-bottom:11px;text-transform:uppercase}
+.controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;flex-direction:column;gap:11px}
+.ctrl-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--muted);min-width:56px}
+.search-input{flex:1;min-width:200px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13.5px}
+.search-input:focus{outline:none;border-color:var(--accent)}
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--accent);color:var(--text)}
+.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn{border:none;border-radius:11px;padding:11px 20px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;transition:all .2s;color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-accent{background:var(--accent)}
+.btn-accent:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 22px rgba(0,0,0,.35)}
+.btn-ghost{background:var(--bg);border:1px solid var(--border);color:var(--text)}
+.btn-ghost:hover{border-color:var(--accent)}
+.btn-teal{background:#188663}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:6px;display:inline-block}
+.t-unit{background:var(--accent-soft);color:var(--accent-text);border:1px solid var(--border)}
+.empty{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px}
+.footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center;line-height:1.7}
+.overlay{position:fixed;inset:0;background:rgba(3,8,16,.82);backdrop-filter:blur(4px);z-index:500;display:none;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto}
+.overlay.open{display:flex}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;max-width:640px;width:100%}
+.opt{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:12px 15px;cursor:pointer;transition:all .16s;display:flex;align-items:flex-start;gap:11px;text-align:left;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);width:100%}
+.opt:hover:not(:disabled){border-color:var(--accent);background:var(--card2)}
+.opt:disabled{cursor:default}
+.opt-key{width:24px;height:24px;border-radius:7px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0;color:var(--muted)}
+.opt.correct{border-color:var(--teal);background:rgba(29,158,117,.11)}
+.opt.correct .opt-key{background:#188663;border-color:var(--teal);color:#fff}
+.opt.wrong{border-color:var(--red);background:rgba(231,76,60,.10)}
+.opt.wrong .opt-key{background:#D24536;border-color:var(--red);color:#fff}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+@media(max-width:640px){.page-title{font-size:1.55rem}.ctrl-label{min-width:auto}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+
+.mode-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.mode-tab{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:10px 16px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif}
+.mode-tab.active{background:var(--accent-soft);border-color:var(--accent);color:#fff}
+.game{max-width:720px;margin:0 auto}
+.mtop{display:flex;justify-content:space-between;align-items:center;font-family:'DM Mono',monospace;font-size:11.5px;color:var(--muted);flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.pts{color:#efb44e}
+.ev{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:14px 16px;font-size:14.5px;font-weight:600;color:#fff;cursor:pointer;text-align:left;width:100%;font-family:'DM Sans',sans-serif;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.ev:hover:not(:disabled){border-color:var(--accent)}
+.ev .yr{font-family:'DM Mono',monospace;font-size:12px;color:#efb44e;opacity:0;transition:opacity .3s}
+.ev.show .yr{opacity:1}
+.ev.correct{border-color:var(--teal);background:rgba(29,158,117,.1)}
+.ev.wrong{border-color:var(--red);background:rgba(231,76,60,.08)}
+.ev .ord{width:26px;height:26px;border-radius:50%;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:12px;flex-shrink:0;color:var(--muted)}
+.ev.picked .ord{background:var(--accent);color:#fff;border-color:var(--accent)}
+.stack{display:flex;flex-direction:column;gap:9px}
+.vs{text-align:center;color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;margin:4px 0}
+.fb{margin-top:12px;font-size:13px;line-height:1.55;display:none;border-radius:11px;padding:11px 13px}
+.fb.show{display:block}.fb.ok{background:rgba(29,158,117,.09);border:1px solid rgba(29,158,117,.3)}.fb.no{background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.3)}
+.clue{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:11px 14px;font-size:14px;line-height:1.55;margin-bottom:8px}
+.clue b{font-size:9.5px;letter-spacing:.1em;color:var(--accent-text);display:block;margin-bottom:3px}
+.clue.locked{color:var(--muted);font-style:italic;border-style:dashed}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+@media(max-width:560px){.opts{grid-template-columns:1fr}}
+.tl{position:relative;margin:10px 0 0 10px;padding-left:22px;border-left:2px solid var(--border)}
+.tl-item{position:relative;margin-bottom:12px;font-size:13px;line-height:1.5}
+.tl-item::before{content:'';position:absolute;left:-29px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.tl-y{font-family:'DM Mono',monospace;font-size:12px;color:#efb44e;font-weight:700}
+.tl-s{font-size:10px;color:var(--muted);font-family:'DM Mono',monospace;margin-left:6px}
+
+</style>
+
+<script>window.STUDYHUB_GAME={course:'worldhistoryh'};</script>
+<script src="studyhub-game.js"></script>
+<script src="studyhub-sync.js"></script>
+</head>
+<body>
+<div class="app">
+  <a class="back" href="WHH_StudyHub.html">← World History Honors Study Hub</a>
+  <div class="header">
+    <div><div class="series-label">World History Honors · Chapter 8 · Games</div><div class="page-title">Timeline <span>&amp; Who Am I</span></div><div class="page-sub" id="page-sub"></div></div>
+    <div data-game-hud></div>
+  </div>
+  <div class="about-banner">⏳ History questions often hinge on <b>sequence</b> (what caused what) and <b>people</b> (who did what). These games train both. Dates are revealed after you answer, so you learn them by playing.</div>
+  <div class="mode-row" role="tablist">
+    <button class="mode-tab active" data-v="first" onclick="setView('first',this)">⚡ Which Came First?</button>
+    <button class="mode-tab" data-v="order" onclick="setView('order',this)">🧩 Put It In Order</button>
+    <button class="mode-tab" data-v="who" onclick="setView('who',this)">🎭 Who Am I?</button>
+    <button class="mode-tab" data-v="study" onclick="setView('study',this)">📜 Study the Timeline</button>
+  </div>
+  <div class="card game" id="game"></div>
+  <div class="footer">World History Honors (2109320) · Chapter 8: Renaissance and Reformation · Florida NGSSS SS.912.W.4</div>
+</div>
+<script>
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function nl(s){ return esc(s).replace(/\n/g,'<br>'); }
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON.parse(v); }catch(e){ return d; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
+
+const EV=[{"y": 1304, "l": "Petrarch is born — later called the father of humanism", "s": "8.A"}, {"y": 1347, "l": "The Black Death begins sweeping across Europe", "s": "8.A"}, {"y": 1415, "l": "Jan Hus is burned for heresy", "s": "8.C"}, {"y": 1434, "l": "Cosimo de' Medici gains control of Florence", "s": "8.A"}, {"y": 1450, "l": "Gutenberg develops his printing press (approx.)", "s": "8.B"}, {"y": 1453, "l": "Constantinople falls to the Ottoman Turks", "s": "8.A"}, {"y": 1503, "l": "Leonardo begins the Mona Lisa (approx.)", "s": "8.A"}, {"y": 1508, "l": "Michelangelo begins painting the Sistine Chapel ceiling", "s": "8.A"}, {"y": 1509, "l": "Erasmus writes The Praise of Folly", "s": "8.B"}, {"y": 1513, "l": "Machiavelli writes The Prince", "s": "8.A"}, {"y": 1516, "l": "Thomas More publishes Utopia", "s": "8.B"}, {"y": 1517, "l": "Luther writes the Ninety-five Theses", "s": "8.C"}, {"y": 1521, "l": "Luther refuses to recant at the Diet of Worms", "s": "8.C"}, {"y": 1534, "l": "Act of Supremacy creates the Church of England", "s": "8.C"}, {"y": 1540, "l": "The Jesuits are approved as a religious order", "s": "8.D"}, {"y": 1541, "l": "Calvin returns to lead Geneva", "s": "8.C"}, {"y": 1545, "l": "The Council of Trent opens", "s": "8.D"}, {"y": 1555, "l": "Peace of Augsburg", "s": "8.C"}, {"y": 1558, "l": "Elizabeth I becomes queen of England", "s": "8.C"}, {"y": 1572, "l": "St. Bartholomew's Day Massacre in France", "s": "8.D"}, {"y": 1598, "l": "Edict of Nantes grants Huguenots toleration", "s": "8.D"}, {"y": 1618, "l": "The Thirty Years' War begins", "s": "8.D"}, {"y": 1648, "l": "Peace of Westphalia ends the Thirty Years' War", "s": "8.D"}];
+const FIG=[{"n": "Leonardo da Vinci", "clues": ["Florentine who kept mirror-written notebooks", "Designed flying machines and studied anatomy", "Painted the Mona Lisa and The Last Supper"]}, {"n": "Michelangelo", "clues": ["Worked for the Medici as a teenager", "Lay on scaffolding for four years painting a famous chapel ceiling", "Carved the marble statue David"]}, {"n": "Niccolò Machiavelli", "clues": ["Florentine diplomat who was later exiled", "Studied how rulers actually gain and keep power", "Wrote The Prince"]}, {"n": "Petrarch", "clues": ["Hunted for lost Roman manuscripts", "Wrote love sonnets in Italian", "Called the father of humanism"]}, {"n": "Johannes Gutenberg", "clues": ["A goldsmith from Mainz", "Developed reusable metal letters", "Printed a famous Bible around 1455"]}, {"n": "Desiderius Erasmus", "clues": ["Dutch scholar who edited a Greek New Testament", "Mocked corrupt clergy in a satire", "Wrote The Praise of Folly but stayed Catholic"]}, {"n": "Thomas More", "clues": ["English lawyer and humanist", "Imagined an ideal island society", "Executed for refusing to accept Henry VIII as Church head"]}, {"n": "Martin Luther", "clues": ["A monk and professor in Wittenberg", "Translated the Bible into German", "Wrote the Ninety-five Theses in 1517"]}, {"n": "John Calvin", "clues": ["French-born reformer", "Turned Geneva into a strict Protestant city", "Taught predestination"]}, {"n": "Henry VIII", "clues": ["Once wrote a book defending the pope against Luther", "Married six times", "Made himself head of the Church of England"]}, {"n": "Elizabeth I", "clues": ["Daughter of Henry VIII", "Set a moderate 'middle way' for the English church", "Reigned during the defeat of the Spanish Armada"]}, {"n": "Ignatius of Loyola", "clues": ["A Spanish soldier wounded in battle", "Wrote Spiritual Exercises", "Founded the Jesuits"]}, {"n": "Johann Tetzel", "clues": ["A German friar and preacher", "Raised money for St. Peter's Basilica", "His indulgence sales provoked Luther"]}, {"n": "Jan van Eyck", "clues": ["Worked in Flanders", "Mastered detailed oil painting", "Painted the Arnolfini Portrait"]}];
+const SEC={"8.A": "Italian Renaissance", "8.B": "Northern Renaissance & Printing", "8.C": "Protestant Reformation", "8.D": "Catholic Reformation & Religious Wars"};
+const LS='whh_timeline_best';
+let best=lsGet(LS,{first:0,order:0,who:0});
+let view='first';
+function setView(v,b){ view=v; document.querySelectorAll('.mode-tab').forEach(x=>x.classList.toggle('active',x===b)); ({first:startFirst,order:startOrder,who:startWho,study:renderStudy})[v](); }
+const G=()=>document.getElementById('game');
+function done(score,max,key,msg,again){ best[key]=Math.max(best[key]||0,score); lsSet(LS,best);
+  G().innerHTML=`<div style="text-align:center;padding:20px"><div class="sec-lbl">ROUND COMPLETE</div><div style="font-size:40px;font-weight:800;font-family:'DM Mono',monospace;color:#fff">${score}/${max}</div><div style="color:var(--muted);margin:6px 0 16px">Best: ${best[key]}/${max}. ${msg}</div><button class="btn btn-accent" onclick="${again}()">Play again</button></div>`; }
+// ── Which came first ──
+let F=null;
+function startFirst(){ F={i:0,right:0,n:10}; nextFirst(); }
+function nextFirst(){
+  if(F.i>=F.n) return done(F.right,F.n,'first','Close dates are the hardest — use cause and effect, not memory alone.','startFirst');
+  let a,b; do{ [a,b]=shuffle(EV).slice(0,2); }while(a.y===b.y);
+  F.pair=[a,b]; F.ans=false;
+  G().innerHTML=`<div class="mtop"><span>ROUND ${F.i+1} / ${F.n}</span><span class="pts">${F.right} correct</span></div>
+   <div style="font-size:15px;color:#fff;font-weight:700;margin-bottom:10px">Which happened FIRST?</div>
+   <div class="stack"><button class="ev" id="f0" onclick="pickFirst(0)"><span>${esc(a.l)}</span><span class="yr">${a.y}</span></button><div class="vs">— or —</div><button class="ev" id="f1" onclick="pickFirst(1)"><span>${esc(b.l)}</span><span class="yr">${b.y}</span></button></div><div class="fb" id="ffb"></div>`;
+}
+function pickFirst(k){
+  if(F.ans) return; F.ans=true; const [a,b]=F.pair, first=a.y<b.y?0:1, ok=k===first;
+  if(ok) F.right++; game().answer(ok, Math.abs(a.y-b.y)<15?3:Math.abs(a.y-b.y)<50?2:1);
+  [0,1].forEach(j=>{ const el=document.getElementById('f'+j); el.disabled=true; el.classList.add('show'); if(j===first) el.classList.add('correct'); else if(j===k) el.classList.add('wrong'); });
+  const gap=Math.abs(a.y-b.y);
+  const fb=document.getElementById('ffb'); fb.className='fb show '+(ok?'ok':'no');
+  fb.innerHTML=`<b style="color:${ok?'#4fd1a5':'#f08579'}">${ok?'✓ Correct':'✗ Not quite'}</b> — ${gap} year${gap===1?'':'s'} apart.<div style="margin-top:10px"><button class="btn btn-accent" onclick="F.i++;nextFirst()">Next →</button></div>`;
+}
+// ── Put it in order ──
+let O=null;
+function startOrder(){ O={round:0,score:0,n:5}; nextOrder(); }
+function nextOrder(){
+  if(O.round>=O.n) return done(O.score,O.n,'order','Perfect orders only count — every event in the right spot.','startOrder');
+  let set; do{ set=shuffle(EV).slice(0,5); }while(new Set(set.map(e=>e.y)).size<5);
+  O.set=set; O.picked=[]; O.checked=false; renderOrder();
+}
+function renderOrder(){
+  G().innerHTML=`<div class="mtop"><span>PUZZLE ${O.round+1} / ${O.n}</span><span class="pts">${O.score} perfect</span></div>
+   <div style="font-size:15px;color:#fff;font-weight:700;margin-bottom:10px">Tap the events from EARLIEST to LATEST.</div>
+   <div class="stack">${O.set.map((e,i)=>{ const pos=O.picked.indexOf(i); return `<button class="ev ${pos>=0?'picked':''} ${O.checked?'show':''}" id="o${i}" onclick="tapOrder(${i})" ${O.checked?'disabled':''}><span style="display:flex;gap:10px;align-items:center"><span class="ord">${pos>=0?pos+1:''}</span>${esc(e.l)}</span><span class="yr">${e.y}</span></button>`; }).join('')}</div>
+   <div style="margin-top:10px;display:flex;gap:8px"><button class="btn btn-ghost" onclick="O.picked=[];renderOrder()" ${O.checked?'disabled':''}>Reset</button><button class="btn btn-accent" onclick="checkOrder()" ${O.picked.length<5||O.checked?'disabled':''}>Check order</button></div><div class="fb" id="ofb"></div>`;
+}
+function tapOrder(i){ if(O.checked) return; const p=O.picked.indexOf(i); if(p>=0) O.picked.splice(p,1); else O.picked.push(i); renderOrder(); }
+function checkOrder(){
+  O.checked=true; const sorted=O.set.map((e,i)=>i).sort((a,b)=>O.set[a].y-O.set[b].y);
+  let rightSpots=0; O.picked.forEach((i,pos)=>{ if(sorted[pos]===i) rightSpots++; });
+  const perfect=rightSpots===5; if(perfect) O.score++; game().answer(perfect,3);
+  renderOrder();
+  O.picked.forEach((i,pos)=>{ document.getElementById('o'+i).classList.add(sorted[pos]===i?'correct':'wrong'); });
+  const fb=document.getElementById('ofb'); fb.className='fb show '+(perfect?'ok':'no');
+  fb.innerHTML=`<b style="color:${perfect?'#4fd1a5':'#f08579'}">${perfect?'✓ Perfect order!':`${rightSpots}/5 in the right spot.`}</b> Correct order: ${sorted.map(i=>O.set[i].y).join(' → ')}<div style="margin-top:10px"><button class="btn btn-accent" onclick="O.round++;nextOrder()">Next puzzle →</button></div>`;
+}
+// ── Who am I ──
+let W=null;
+function startWho(){ W={i:0,score:0,n:8,deck:shuffle(FIG).slice(0,8)}; nextWho(); }
+function nextWho(){
+  if(W.i>=W.n) return done(W.score,W.n*30,'who','First-clue guesses earn 30 points each.','startWho');
+  const f=W.deck[W.i]; W.cur={f,shown:1,ans:false,opts:shuffle([f,...shuffle(FIG.filter(x=>x!==f)).slice(0,3)])}; renderWho();
+}
+function renderWho(){
+  const c=W.cur, pts=[30,20,10][c.shown-1];
+  G().innerHTML=`<div class="mtop"><span>PERSON ${W.i+1} / ${W.n}</span><span class="pts">Score ${W.score} · worth ${c.ans?'—':pts}</span></div>
+   ${c.f.clues.map((cl,i)=>i<c.shown||c.ans?`<div class="clue"><b>CLUE ${i+1}</b>${esc(cl)}</div>`:`<div class="clue locked">Clue ${i+1} locked</div>`).join('')}
+   <div class="opts">${c.opts.map((o,k)=>`<button class="opt" id="w${k}" onclick="pickWho(${k})" ${c.ans?'disabled':''}><span class="opt-key">${'ABCD'[k]}</span><span>${esc(o.n)}</span></button>`).join('')}</div>
+   <div style="margin-top:10px">${!c.ans&&c.shown<3?`<button class="btn btn-ghost" onclick="W.cur.shown++;renderWho()">Reveal next clue (−10)</button>`:''}</div><div class="fb" id="wfb"></div>`;
+}
+function pickWho(k){
+  const c=W.cur; if(c.ans) return; c.ans=true; const ok=c.opts[k]===c.f, pts=[30,20,10][c.shown-1];
+  if(ok) W.score+=pts; game().answer(ok, c.shown===1?3:c.shown===2?2:1);
+  renderWho();
+  c.opts.forEach((o,j)=>{ const b=document.getElementById('w'+j); if(o===c.f) b.classList.add('correct'); else if(j===k) b.classList.add('wrong'); });
+  const fb=document.getElementById('wfb'); fb.className='fb show '+(ok?'ok':'no');
+  fb.innerHTML=`<b style="color:${ok?'#4fd1a5':'#f08579'}">${ok?`✓ ${esc(c.f.n)}! +${pts}`:`✗ It was ${esc(c.f.n)}.`}</b><div style="margin-top:10px"><button class="btn btn-accent" onclick="W.i++;nextWho()">Next →</button></div>`;
+}
+// ── Study ──
+function renderStudy(){
+  G().innerHTML=`<div class="sec-lbl">Chapter timeline</div><div class="tl">${EV.slice().sort((a,b)=>a.y-b.y).map(e=>`<div class="tl-item"><span class="tl-y">${e.y}</span><span class="tl-s">${esc(SEC[e.s]||'')}</span><br>${esc(e.l)}</div>`).join('')}</div>`;
+}
+document.addEventListener('keydown',e=>{ if(view==='first'&&F&&!F.ans&&(e.key==='1'||e.key==='2')) pickFirst(+e.key-1); });
+(function init(){
+  document.getElementById('page-sub').textContent=`${EV.length} dated events · ${FIG.length} historical figures · 3 games + study view`;
+  const v=new URLSearchParams(location.search).get('play'); const b=v&&document.querySelector('.mode-tab[data-v="'+v+'"]');
+  if(b) setView(v,b); else startFirst();
+})();
+</script>
+</body>
+</html>

@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script>window.STUDYHUB_GAME={course:'algebra2'};</script>
 <script src="studyhub-game.js"></script>
+<script src="studyhub-sync.js"></script>
 <style>
 :root{
   --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
@@ -242,7 +243,7 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 <body>
 <div class="app">
 
-  <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--sky);text-decoration:none;margin-bottom:14px;opacity:.85">← All Courses</a>
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px"><a href="index.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--sky);text-decoration:none;opacity:.85">← All Courses</a><div data-sync-chip></div></div>
 
   <div class="sync-banner" id="sync-banner">
     <div class="sync-banner-text">📊 <b>Share your progress with your teacher?</b> Enter your first name and last initial (e.g. "Maria S.") — this is optional and only used so your teacher can see class progress.</div>

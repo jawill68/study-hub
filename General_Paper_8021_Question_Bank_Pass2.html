@@ -80,6 +80,9 @@ body{font-family:Georgia,'Times New Roman',serif;background:var(--surface);color
 .type-tag.writing{background:var(--green-light);color:var(--green-dark)}
 @media print{.site-header,.controls{display:none}.question{break-inside:avoid;page-break-inside:avoid;box-shadow:none}body{background:#fff}}
 </style>
+<script>window.STUDYHUB_GAME={course:'gp'};</script>
+<script src="studyhub-game.js"></script>
+<script src="studyhub-sync.js"></script>
 </head>
 <body>
 
@@ -592,6 +595,25 @@ renderList();
 }
 
 renderList();
+</script>
+<script>
+// "I worked this one" — marks a question done and earns XP (once per question)
+(function(){
+  const KEY='gp_qbank_done';
+  const done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function decorate(){
+    document.querySelectorAll('.question').forEach(q=>{
+      if(q.querySelector('.qb-done')) return;
+      const id='Pass2-'+(q.querySelector('.q-num')||{}).textContent;
+      const b=document.createElement('button');
+      b.className='qb-done'; b.type='button';
+      const paint=()=>{ const on=done.has(id); b.textContent=on?'✓ Worked this question':'I worked this question on paper'; b.style.cssText='margin:6px 0 14px;padding:8px 14px;border-radius:9px;font:700 12.5px inherit;cursor:pointer;border:1px solid '+(on?'#1D9E75':'#c9d4e2')+';background:'+(on?'#E1F5EE':'#fff')+';color:'+(on?'#085041':'#0F2A47'); };
+      b.onclick=()=>{ if(done.has(id)) done.delete(id); else { done.add(id); if(window.StudyHubGame) StudyHubGame.event('lesson'); } localStorage.setItem(KEY,JSON.stringify([...done])); paint(); };
+      paint(); (q.querySelector('.q-body')||q).appendChild(b);
+    });
+  }
+  const c=document.getElementById('container'); if(c){ new MutationObserver(decorate).observe(c,{childList:true}); decorate(); }
+})();
 </script>
 </body>
 </html>

@@ -161,10 +161,11 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 
 <script>window.STUDYHUB_GAME={course:'envsci'};</script>
 <script src="studyhub-game.js"></script>
+<script src="studyhub-sync.js"></script>
 </head>
 <body>
 <div class="app">
-  <a class="back" href="index.html">← All Courses</a>
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px"><a class="back" href="index.html" style="margin:0">← All Courses</a><div data-sync-chip></div></div>
   <div class="sync" id="sync">
     <div class="sync-t">📊 <b>Share your progress with your teacher?</b> Enter your first name and last initial (e.g. "Maria S."). This is optional and only used so your teacher can see class progress.</div>
     <input id="sync-name" type="text" placeholder="First name + last initial" maxlength="40" aria-label="Your name for teacher sync">
@@ -209,7 +210,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 <a class="bcard du" href="EnvSci_DU_Certification.html"><div class="bhead"><div><div class="beb">Certification Track</div><div class="bname">DU Certification Prep</div></div><div class="bicon">🪪</div></div>
       <div class="bdesc">The Ducks Unlimited Ecology Conservation &amp; Management Certification, mapped to its four weighted standards. Domain drills, a Quick 25, a full 100-question mock exam, study guides, and a live readiness meter.</div><div class="btags"><span class="btag">Industry cert</span><span class="btag">100-Q mock</span><span class="btag">Readiness meter</span></div><div class="bcta">Open DU Prep →</div></a>
 <a class="bcard du" href="EnvSci_Field_Guide.html"><div class="bhead"><div><div class="beb">Certification Track · Species ID</div><div class="bname">Waterfowl Field Guide</div></div><div class="bicon">🦆</div></div>
-      <div class="bdesc">23 species with drake, hen, speculum, habitat, and Florida notes. Play Name That Bird (fewer clues, more points) and Dabbler or Diver?, and stamp every species into your Field Journal.</div><div class="btags"><span class="btag">23 species</span><span class="btag">2 ID games</span><span class="btag">Field Journal</span></div><div class="bcta">Open Field Guide →</div></a>
+      <div class="bdesc">23 species with public-domain photos and drake, hen, speculum, habitat, and Florida notes. Play Photo ID, Name That Bird, and Dabbler or Diver?, and stamp every species into your Field Journal.</div><div class="btags"><span class="btag">23 species</span><span class="btag">Photos</span><span class="btag">3 ID games</span></div><div class="bcta">Open Field Guide →</div></a>
 <a class="bcard " href="EnvSci_Master_Glossary.html"><div class="bhead"><div><div class="beb">Build 1 · Vocabulary</div><div class="bname">Master Glossary</div></div><div class="bicon">📖</div></div>
       <div class="bdesc">195 terms across 10 units, 124 tagged for the DU certification. Flip cards, a spaced-repetition quiz, ⭐ stars, and the TEAL tutor on every term.</div><div class="btags"><span class="btag">195 terms</span><span class="btag">Flip cards</span><span class="btag">TEAL tutor</span></div><div class="bcta">Open Glossary →</div></a>
 <a class="bcard " href="EnvSci_DrillTrainer.html"><div class="bhead"><div><div class="beb">Build 2 · Practice</div><div class="bname">Drill Trainer</div></div><div class="bicon">⚡</div></div>

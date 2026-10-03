@@ -96,6 +96,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 
 <script>window.STUDYHUB_GAME={course:'algebra2'};</script>
 <script src="studyhub-game.js"></script>
+<script src="studyhub-sync.js"></script>
 </head>
 <body>
 <div class="app">
@@ -560,7 +561,7 @@ document.addEventListener('keydown',e=>{
   const best = lsGet(LS_BEST,null); if(best!=null) document.getElementById('s-best').textContent = best+'%';
   document.getElementById('page-sub').textContent = `${PAIRS.length} look-alike pairs · ${units} units · side-by-side with memory hooks`;
   const qu = new URLSearchParams(location.search).get('unit');
-  const b = qu && document.querySelector('.pill[data-unit="U'+qu+'"]'); if(b) setUnit('U'+qu,b); else render();
+  const b = qu && (document.querySelector('.pill[data-unit="'+qu+'"]')||document.querySelector('.pill[data-unit="U'+qu+'"]')); if(b) setUnit('U'+qu,b); else render();
 })();
 </script>
 </body>

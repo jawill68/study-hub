@@ -119,6 +119,9 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 
 @media(max-width:640px){.page-title{font-size:1.5rem}.ctrl-label{min-width:auto}}
 </style>
+<script>window.STUDYHUB_GAME={course:'worldhistory'};</script>
+<script src="studyhub-game.js"></script>
+<script src="studyhub-sync.js"></script>
 </head>
 <body>
 <div class="app">
@@ -340,7 +343,7 @@ function toggleHigh(){ highOnly=!highOnly; document.getElementById('btn-high').c
 function toggleUnmastered(){ unmasteredOnly=!unmasteredOnly; document.getElementById('btn-unmastered').classList.toggle('active',unmasteredOnly); render(); }
 function toggleOpen(i){ if(openSet.has(i)) openSet.delete(i); else openSet.add(i); render(); }
 function expandAll(on){ if(on) filtered().forEach(m=>openSet.add(MISTAKES.indexOf(m))); else openSet.clear(); render(); }
-function toggleMastered(i,ev){ ev.stopPropagation(); if(mastered.has(i)) mastered.delete(i); else mastered.add(i); saveM(); render(); }
+function toggleMastered(i,ev){ ev.stopPropagation(); if(mastered.has(i)) mastered.delete(i); else { mastered.add(i); if(window.StudyHubGame) StudyHubGame.event('autopsy'); } saveM(); render(); }
 
 function filtered(){
   const q=document.getElementById('search-input').value.trim().toLowerCase();
@@ -423,6 +426,7 @@ function renderFMM(){
 function answerFMM(choice){
   if(fanswered) return; fanswered=true;
   const m=fdeck[fidx], ok=choice===m.dA;
+  if(window.StudyHubGame) StudyHubGame.answer(ok,2);
   if(ok) fright++;
   document.querySelectorAll('.fmm-opt').forEach((b,i)=>{ b.disabled=true; if(i===m.dA) b.classList.add('correct'); else if(i===choice) b.classList.add('wrong'); });
   const fb=document.getElementById('fmm-fb');

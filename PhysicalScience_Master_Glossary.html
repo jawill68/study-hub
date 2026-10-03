@@ -109,6 +109,9 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   .ctrl-label{min-width:auto}
 }
 </style>
+<script>window.STUDYHUB_GAME={course:'physci'};</script>
+<script src="studyhub-game.js"></script>
+<script src="studyhub-sync.js"></script>
 </head>
 <body>
 <div class="app">
@@ -574,6 +577,7 @@ function launchFocusReview(){
 function closeQuiz(){ document.getElementById('quiz-modal').classList.remove('open'); }
 function revealAnswer(){ quizRevealed=true; renderQuiz(); }
 function markQuiz(correct){
+  if(window.StudyHubGame){ StudyHubGame.event('flashcard'); StudyHubGame.answer(correct,1); }
   const t = quizDeck[quizIdx];
   srsUpdate(t.t, correct);
   if(correct) quizRight++;

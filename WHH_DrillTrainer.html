@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World History Honors — Drill Trainer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
+  --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
+  --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
+  --accent:#B87700;--accent-soft:rgba(229,148,0,.12);--accent-text:#efb44e;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(46,139,192,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(46,139,192,0.04) 1px,transparent 1px);
+  background-size:44px 44px}
+.app{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:26px 20px 70px}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent-text);text-decoration:none;margin-bottom:14px;opacity:.9}
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.series-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);margin-bottom:6px}
+.page-title{font-size:2.1rem;font-weight:800;color:var(--white);line-height:1.1}
+.page-title span{color:var(--accent-text)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+.about-banner{background:linear-gradient(135deg,var(--accent-soft),rgba(29,158,117,.05));border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:12.5px;line-height:1.55}
+.about-banner a{color:var(--accent-text)}
+.stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:104px;flex:1}
+.stat-num{font-size:20px;font-weight:800;color:var(--white);font-family:'DM Mono',monospace}
+.stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:14px}
+.sec-lbl{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.13em;color:var(--muted);margin-bottom:11px;text-transform:uppercase}
+.controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;flex-direction:column;gap:11px}
+.ctrl-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.ctrl-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--muted);min-width:56px}
+.search-input{flex:1;min-width:200px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13.5px}
+.search-input:focus{outline:none;border-color:var(--accent)}
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .18s}
+.pill:hover{border-color:var(--accent);color:var(--text)}
+.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn{border:none;border-radius:11px;padding:11px 20px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;transition:all .2s;color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-accent{background:var(--accent)}
+.btn-accent:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 22px rgba(0,0,0,.35)}
+.btn-ghost{background:var(--bg);border:1px solid var(--border);color:var(--text)}
+.btn-ghost:hover{border-color:var(--accent)}
+.btn-teal{background:#188663}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:6px;display:inline-block}
+.t-unit{background:var(--accent-soft);color:var(--accent-text);border:1px solid var(--border)}
+.empty{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px}
+.footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center;line-height:1.7}
+.overlay{position:fixed;inset:0;background:rgba(3,8,16,.82);backdrop-filter:blur(4px);z-index:500;display:none;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto}
+.overlay.open{display:flex}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;max-width:640px;width:100%}
+.opt{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:12px 15px;cursor:pointer;transition:all .16s;display:flex;align-items:flex-start;gap:11px;text-align:left;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);width:100%}
+.opt:hover:not(:disabled){border-color:var(--accent);background:var(--card2)}
+.opt:disabled{cursor:default}
+.opt-key{width:24px;height:24px;border-radius:7px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0;color:var(--muted)}
+.opt.correct{border-color:var(--teal);background:rgba(29,158,117,.11)}
+.opt.correct .opt-key{background:#188663;border-color:var(--teal);color:#fff}
+.opt.wrong{border-color:var(--red);background:rgba(231,76,60,.10)}
+.opt.wrong .opt-key{background:#D24536;border-color:var(--red);color:#fff}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+@media(max-width:640px){.page-title{font-size:1.55rem}.ctrl-label{min-width:auto}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+
+.screen{display:none}.screen.active{display:block}
+.mode-row{display:flex;gap:8px;flex-wrap:wrap}
+.mode-tab{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:10px 16px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif}
+.mode-tab.active{background:var(--accent-soft);border-color:var(--accent);color:#fff}
+.mode-desc{margin-top:10px;font-size:12.5px;color:var(--muted);line-height:1.6}
+.unit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
+.ubox{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:10px 12px;cursor:pointer;display:flex;gap:10px;align-items:center}
+.ubox.on{border-color:var(--accent);background:var(--accent-soft)}
+.uchk{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.ubox.on .uchk{background:var(--accent);border-color:var(--accent);color:#fff}
+.uname{font-size:12.5px;font-weight:700}
+.umeta{font-size:10.5px;color:var(--muted);font-family:'DM Mono',monospace;display:flex;gap:8px;align-items:center}
+.ubar{flex:1;height:4px;background:var(--card);border-radius:99px;overflow:hidden;min-width:40px}
+.ubar i{display:block;height:100%}
+.q-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.q-count{font-family:'DM Mono',monospace;font-size:11.5px;color:var(--muted);letter-spacing:.08em}
+.badges{display:flex;gap:6px;flex-wrap:wrap}
+.b-t1{background:rgba(29,158,117,.15);color:#4fd1a5}.b-t2{background:rgba(229,148,0,.14);color:#efb44e}.b-t3{background:rgba(231,76,60,.14);color:#f08579}
+.timer{font-family:'DM Mono',monospace;font-size:13px;color:var(--amber)}
+.combo{font-family:'DM Mono',monospace;font-size:12px;font-weight:700;color:#efb44e}
+.pbar{height:5px;background:var(--bg);border-radius:99px;overflow:hidden;margin-bottom:16px}
+.pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--amber));transition:width .3s}
+.qtext{font-size:17px;font-weight:600;color:#fff;line-height:1.5;margin-bottom:16px;white-space:pre-line}
+.opts{display:flex;flex-direction:column;gap:9px;margin-bottom:14px}
+.fb{border-radius:12px;padding:13px 15px;margin-bottom:12px;display:none;font-size:13.5px;line-height:1.6}
+.fb.show{display:block}
+.fb.ok{background:rgba(29,158,117,.09);border:1px solid rgba(29,158,117,.3)}
+.fb.no{background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.3)}
+.fb b{display:block;margin-bottom:5px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.tutor{display:none;border:1px solid var(--border);border-radius:12px;padding:12px;margin-bottom:12px;background:var(--bg)}
+.tutor.open{display:block}
+.tutor-head{display:flex;justify-content:space-between;font-size:12px;font-weight:800;color:var(--accent-text);margin-bottom:8px}
+.tutor-head span{font-family:'DM Mono',monospace;font-weight:500;color:var(--muted);font-size:10.5px}
+.chat{display:flex;flex-direction:column;gap:7px;max-height:220px;overflow-y:auto;margin-bottom:8px}
+.bub{font-size:13px;line-height:1.6}.bub.u{background:var(--accent-soft);padding:8px 11px;border-radius:9px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.chip{background:var(--card);border:1px solid var(--border);border-radius:999px;padding:4px 10px;font-size:11.5px;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif}
+.trow{display:flex;gap:7px}.tin{flex:1;background:var(--card);border:1px solid var(--border);border-radius:9px;padding:8px 11px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:12.5px}
+.res-score{font-size:3rem;font-weight:800;font-family:'DM Mono',monospace;color:#fff;text-align:center;line-height:1}
+.res-score span{font-size:1.4rem;color:var(--muted)}
+.res-grade{text-align:center;font-size:1.15rem;font-weight:800;margin:8px 0}
+.res-sub{text-align:center;font-size:13px;color:var(--muted);margin-bottom:18px}
+.brk{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:12.5px}
+.brk-n{min-width:170px;font-weight:700}
+.brk-b{flex:1;height:8px;background:var(--bg);border-radius:99px;overflow:hidden}.brk-b i{display:block;height:100%}
+.brk-v{font-family:'DM Mono',monospace;color:var(--muted);min-width:44px;text-align:right}
+.miss{background:var(--bg);border:1px solid var(--border);border-left:2px solid var(--red);border-radius:9px;padding:10px 13px;margin-bottom:8px;font-size:12.5px}
+.miss b{color:#4fd1a5}
+@media(max-width:600px){.brk-n{min-width:100px;font-size:11.5px}}
+
+</style>
+<script src="studyhub-tutor.js"></script>
+<script>window.STUDYHUB_GAME={course:'worldhistoryh'};</script>
+<script src="studyhub-game.js"></script>
+<script src="studyhub-sync.js"></script>
+</head>
+<body>
+<div class="app">
+  <a class="back" href="WHH_StudyHub.html">← World History Honors Study Hub</a>
+  <div class="header">
+    <div>
+      <div class="series-label">World History Honors · Chapter 8 · Drill Trainer</div>
+      <div class="page-title">Drill <span>Trainer</span></div>
+      <div class="page-sub" id="page-sub"></div>
+    </div>
+    <div style="display:flex;gap:9px;align-items:center;flex-wrap:wrap"><div data-game-hud></div><button class="btn btn-ghost" id="btn-setup" onclick="goSetup()" style="display:none">← Setup</button></div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-chip"><div class="stat-num" id="g-total">0</div><div class="stat-lbl">TOTAL DRILLED</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--teal)" id="g-acc">—</div><div class="stat-lbl">ACCURACY</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--amber)" id="g-best">0</div><div class="stat-lbl">BEST STREAK</div></div>
+    <div class="stat-chip"><div class="stat-num" style="color:var(--sky)" id="g-sess">0</div><div class="stat-lbl">SESSIONS</div></div>
+  </div>
+
+  <div class="screen active" id="s-setup">
+    <div class="card"><div class="sec-lbl">Mode</div>
+      <div class="mode-row">
+        <button class="mode-tab active" data-m="practice" onclick="setMode('practice',this)">📚 Practice</button>
+        <button class="mode-tab" data-m="exam" onclick="setMode('exam',this)">🎓 Exam</button>
+        <button class="mode-tab" data-m="stamina" onclick="setMode('stamina',this)">🔥 Stamina</button>
+        <button class="mode-tab" data-m="weak" onclick="setMode('weak',this)">🎯 Weak Spots</button>
+      </div>
+      <div class="mode-desc" id="mode-desc"></div></div>
+    <div class="card"><div class="sec-lbl">Units · <span id="pool-n" style="color:var(--accent-text)"></span></div>
+      <div class="unit-grid" id="ugrid"></div>
+      <div class="ctrl-row" style="margin-top:10px"><button class="pill" onclick="allUnits(true)">Select all</button><button class="pill" onclick="allUnits(false)">Clear</button></div></div>
+    <div class="card"><div class="sec-lbl">Difficulty</div>
+      <div class="ctrl-row"><button class="pill active" data-t="all" onclick="setTier('all',this)">All tiers</button><button class="pill" data-t="1" onclick="setTier(1,this)">① Foundational</button><button class="pill" data-t="2" onclick="setTier(2,this)">② Intermediate</button><button class="pill" data-t="3" onclick="setTier(3,this)">③ Challenge</button></div></div>
+    <button class="btn btn-accent" style="width:100%;padding:15px" id="btn-start" onclick="start()">Start</button>
+  </div>
+
+  <div class="screen" id="s-q"><div class="card">
+    <div class="q-top"><div class="q-count" id="q-count"></div><div class="badges" id="q-badges"></div><div class="combo" id="combo"></div><div class="timer" id="timer" style="display:none"></div></div>
+    <div class="pbar"><i id="pfill" style="width:0"></i></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="fb" id="fb" role="status"></div>
+    <div class="tutor" id="tutor"><div class="tutor-head">💬 CLIO · Field Coach <span id="tmode"></span></div>
+      <div class="chat" id="chat"></div>
+      <div class="chips"><button class="chip" onclick="ask('Why is my answer wrong?')">Why was I wrong?</button><button class="chip" onclick="ask('Give me a real-world example')">Real example</button><button class="chip" onclick="ask('Walk me through it step by step')">Step by step</button></div>
+      <div class="trow"><input class="tin" id="tin" placeholder="Ask a follow-up…" onkeydown="if(event.key==='Enter')ask()"><button class="btn btn-accent" style="padding:8px 14px" onclick="ask()">Ask</button></div></div>
+    <div class="actions"><button class="btn btn-ghost" id="btn-tutor" onclick="openTutor()" style="display:none">💬 Ask CLIO</button><button class="btn btn-accent" id="btn-next" onclick="next()" style="display:none;margin-left:auto">Next →</button></div>
+  </div></div>
+
+  <div class="screen" id="s-res">
+    <div class="card"><div class="sec-lbl" id="r-mode">SESSION COMPLETE</div>
+      <div class="res-score" id="r-score"></div><div class="res-grade" id="r-grade"></div><div class="res-sub" id="r-sub"></div>
+      <div class="sec-lbl">By unit</div><div id="r-brk"></div>
+      <div class="actions" style="margin-top:16px"><button class="btn btn-ghost" onclick="goSetup()">← Setup</button><button class="btn btn-teal" onclick="start(true)">Retry same</button><button class="btn btn-accent" id="btn-missed" onclick="retryMissed()">Drill missed only</button></div></div>
+    <div class="card" id="r-missed-card"><div class="sec-lbl">Review what you missed</div><div id="r-missed"></div></div>
+  </div>
+  <div class="footer">World History Honors (2109320) · Chapter 8: Renaissance and Reformation · Florida NGSSS SS.912.W.4</div>
+</div>
+<script>
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function nl(s){ return esc(s).replace(/\n/g,'<br>'); }
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON.parse(v); }catch(e){ return d; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
+
+const UNIT_NAMES = {"8.A": "Italian Renaissance", "8.B": "Northern Renaissance & Printing", "8.C": "Protestant Reformation", "8.D": "Catholic Reformation & Religious Wars"};
+const QB = [
+{
+"u": "8.A",
+"t": 1,
+"q": "The word \"Renaissance\" means:",
+"o": [
+"Rebirth",
+"Reform",
+"Rebellion",
+"Revolution"
+],
+"a": 0,
+"e": "Renaissance is French for rebirth — a revival of classical Greek and Roman learning and art."
+},
+{
+"u": "8.A",
+"t": 1,
+"q": "Where did the Renaissance begin?",
+"o": [
+"The city-states of northern Italy",
+"England",
+"The Ottoman Empire",
+"Spain"
+],
+"a": 0,
+"e": "Wealthy northern Italian city-states such as Florence and Venice had money, urban culture, and Roman ruins close at hand."
+},
+{
+"u": "8.A",
+"t": 2,
+"q": "Which factor BEST explains why the Renaissance began in Italy rather than elsewhere?",
+"o": [
+"Italy had no contact with other cultures",
+"Wealth from trade and banking, crowded cities, reminders of ancient Rome, and patrons willing to fund art",
+"Italy was ruled by a single powerful king",
+"The printing press was invented in Italy"
+],
+"a": 1,
+"e": "Trade wealth created rich patrons; cities concentrated talent; Roman heritage was all around. The printing press came from Germany, and Italy was divided into city-states, not one kingdom."
+},
+{
+"u": "8.A",
+"t": 2,
+"q": "Humanists focused mainly on:",
+"o": [
+"Only theology",
+"Classical texts and subjects such as history, poetry, rhetoric, and moral philosophy",
+"Rejecting all religion",
+"Military strategy"
+],
+"a": 1,
+"e": "Humanism studied the humanities through classical sources. Most humanists remained Christian; they added a focus on human achievement."
+},
+{
+"u": "8.A",
+"t": 2,
+"q": "How did the Fall of Constantinople in 1453 contribute to the Renaissance?",
+"o": [
+"It ended trade with Asia",
+"Byzantine scholars fled to Italy carrying classical Greek manuscripts",
+"It destroyed Italian city-states",
+"It caused the Reformation directly"
+],
+"a": 1,
+"e": "Greek scholars and texts arriving in Italy deepened the study of Plato and other Greek thinkers."
+},
+{
+"u": "8.A",
+"t": 1,
+"q": "Which family ruled Florence and became famous patrons of Renaissance art?",
+"o": [
+"The Tudors",
+"The Medici",
+"The Habsburgs",
+"The Bourbons"
+],
+"a": 1,
+"e": "The Medici banking fortune supported artists and scholars such as Botticelli and young Michelangelo."
+},
+{
+"u": "8.A",
+"t": 2,
+"q": "A painting shows a merchant family in their home with realistic faces and a window revealing a landscape behind them. Which Renaissance values does it reflect?",
+"o": [
+"Secularism and individualism, plus realism",
+"Only medieval religious symbolism",
+"The ideas of the Council of Trent",
+"Calvinist predestination"
+],
+"a": 0,
+"e": "Worldly subjects (secular), specific people celebrated (individualism), and realistic depth (perspective) are Renaissance hallmarks."
+},
+{
+"u": "8.A",
+"t": 3,
+"q": "Machiavelli's The Prince was controversial because it argued that rulers should:",
+"o": [
+"Always act morally, even if they lose power",
+"Judge actions by their results in keeping power and the state secure, even if that means being feared or deceptive",
+"Let the pope choose all rulers",
+"Give power to the common people"
+],
+"a": 1,
+"e": "Machiavelli described politics as it actually worked, not as it ideally should. That realism is why \"Machiavellian\" now means cunning and ruthless."
+},
+{
+"u": "8.A",
+"t": 1,
+"q": "Which artist painted the Mona Lisa and filled notebooks with inventions and anatomy?",
+"o": [
+"Michelangelo",
+"Raphael",
+"Leonardo da Vinci",
+"Dürer"
+],
+"a": 2,
+"e": "Leonardo da Vinci is the classic Renaissance man — artist, engineer, and scientist."
+},
+{
+"u": "8.A",
+"t": 2,
+"q": "Linear perspective helped Renaissance artists:",
+"o": [
+"Use only gold backgrounds",
+"Create the illusion of three-dimensional depth on a flat surface",
+"Paint faster",
+"Avoid painting people"
+],
+"a": 1,
+"e": "Lines converge at a vanishing point, making flat paintings look deep and realistic."
+},
+{
+"u": "8.A",
+"t": 3,
+"q": "Writers like Dante and Petrarch writing in Italian rather than Latin mattered because:",
+"o": [
+"Latin was illegal",
+"Vernacular writing reached a wider audience beyond the clergy and educated elite",
+"It ended the use of Latin entirely",
+"It was required by the pope"
+],
+"a": 1,
+"e": "The vernacular made literature accessible to ordinary readers, and printing later multiplied that effect."
+},
+{
+"u": "8.A",
+"t": 2,
+"q": "Castiglione's The Book of the Courtier described the ideal noble as:",
+"o": [
+"Uneducated but strong",
+"Well-educated, graceful, skilled in many areas — a \"Renaissance man\"",
+"A monk who avoids society",
+"A merchant only"
+],
+"a": 1,
+"e": "The courtier should be skilled in arms, letters, music, and conversation — the well-rounded ideal."
+},
+{
+"u": "8.B",
+"t": 1,
+"q": "Who developed the printing press with movable metal type in Europe around 1450?",
+"o": [
+"Martin Luther",
+"Johannes Gutenberg",
+"Erasmus",
+"Leonardo da Vinci"
+],
+"a": 1,
+"e": "Gutenberg's press in Mainz made books much faster and cheaper to produce."
+},
+{
+"u": "8.B",
+"t": 2,
+"q": "What was the MOST important effect of the printing press?",
+"o": [
+"Books became more expensive",
+"Ideas, including Renaissance and Reformation ideas, spread faster and to more people, and literacy rose",
+"It ended the use of the vernacular",
+"It stopped the Reformation"
+],
+"a": 1,
+"e": "Cheap print spread humanist scholarship, Bibles, and Luther's pamphlets across Europe within weeks."
+},
+{
+"u": "8.B",
+"t": 2,
+"q": "How did the Northern Renaissance differ from the Italian Renaissance?",
+"o": [
+"It had no artists",
+"It placed greater emphasis on religious reform and Christian humanism",
+"It happened before the Italian Renaissance",
+"It rejected printing"
+],
+"a": 1,
+"e": "Northern humanists like Erasmus applied humanist scholarship to reforming the Church and Christian life."
+},
+{
+"u": "8.B",
+"t": 2,
+"q": "Erasmus's The Praise of Folly criticized:",
+"o": [
+"The printing press",
+"Corrupt clergy and empty religious rituals",
+"Italian artists",
+"The Ottoman Empire"
+],
+"a": 1,
+"e": "Erasmus used satire to mock Church abuses, but he wanted reform from within, not a break with Rome."
+},
+{
+"u": "8.B",
+"t": 1,
+"q": "Thomas More's Utopia describes:",
+"o": [
+"A real English town",
+"An imaginary ideal society",
+"A war with France",
+"A new church"
+],
+"a": 1,
+"e": "Utopia uses an imaginary island to criticize real problems in European society."
+},
+{
+"u": "8.B",
+"t": 2,
+"q": "Flemish painters like Jan van Eyck are known for:",
+"o": [
+"Abstract art",
+"Detailed, realistic oil paintings",
+"Frescoes on ceilings",
+"Mosaics"
+],
+"a": 1,
+"e": "Oil paint allowed fine detail and glowing color; the technique spread from Flanders to Italy."
+},
+{
+"u": "8.B",
+"t": 3,
+"q": "Historians say \"Erasmus laid the egg that Luther hatched.\" What does this mean?",
+"o": [
+"Erasmus and Luther were relatives",
+"Erasmus's criticism of Church abuses prepared the ground for Luther's break with the Church, even though Erasmus himself stayed Catholic",
+"Luther wrote The Praise of Folly",
+"Erasmus started the Thirty Years' War"
+],
+"a": 1,
+"e": "Christian humanist critiques spread doubts about Church practices. Luther took the next step — open rejection of papal authority."
+},
+{
+"u": "8.B",
+"t": 1,
+"q": "Which English playwright wrote Hamlet and Romeo and Juliet?",
+"o": [
+"Thomas More",
+"William Shakespeare",
+"Petrarch",
+"Castiglione"
+],
+"a": 1,
+"e": "Shakespeare's plays in English reflect Renaissance interest in human nature and the vernacular."
+},
+{
+"u": "8.B",
+"t": 3,
+"q": "Without the printing press, the Reformation would most likely have:",
+"o": [
+"Spread just as fast",
+"Spread more slowly and been easier for authorities to suppress, as earlier reformers like Hus were",
+"Never involved Germany",
+"Begun in Italy"
+],
+"a": 1,
+"e": "Earlier critics such as Wycliffe and Hus were contained. Printing let Luther's ideas reach thousands before they could be stopped."
+},
+{
+"u": "8.B",
+"t": 2,
+"q": "Albrecht Dürer helped spread Renaissance artistic ideas north mainly through:",
+"o": [
+"Stained glass",
+"Woodcuts and engravings that could be printed and sold widely",
+"Sculpture",
+"Architecture"
+],
+"a": 1,
+"e": "Prints were cheaper than paintings, so his work reached a broad audience."
+},
+{
+"u": "8.B",
+"t": 2,
+"q": "Why did literacy rise after the invention of the printing press?",
+"o": [
+"Schools became illegal",
+"Books became cheaper and more available, and people wanted to read the Bible and other works for themselves",
+"Latin disappeared",
+"Kings required it by law everywhere"
+],
+"a": 1,
+"e": "Affordable books — especially vernacular Bibles — gave ordinary people a reason and a way to read."
+},
+{
+"u": "8.C",
+"t": 1,
+"q": "In what year did Martin Luther write the Ninety-five Theses?",
+"o": [
+"1453",
+"1517",
+"1555",
+"1648"
+],
+"a": 1,
+"e": "1517 is the traditional start date of the Protestant Reformation."
+},
+{
+"u": "8.C",
+"t": 1,
+"q": "Luther's Ninety-five Theses mainly attacked:",
+"o": [
+"The printing press",
+"The sale of indulgences",
+"The Ottoman Empire",
+"Italian art"
+],
+"a": 1,
+"e": "Luther objected to the claim that buying a pardon could reduce punishment for sin."
+},
+{
+"u": "8.C",
+"t": 2,
+"q": "Which belief is central to Luther's teaching?",
+"o": [
+"Salvation comes through good works and indulgences",
+"Salvation comes through faith in God's grace alone, and the Bible is the only authority",
+"The pope cannot make mistakes",
+"Only priests may read the Bible"
+],
+"a": 1,
+"e": "\"Faith alone\" and \"Scripture alone\" were Luther's core challenges to Church authority."
+},
+{
+"u": "8.C",
+"t": 2,
+"q": "At the Diet of Worms in 1521, Luther:",
+"o": [
+"Accepted the pope's authority",
+"Refused to recant and was declared an outlaw by Emperor Charles V",
+"Became pope",
+"Wrote the Ninety-five Theses"
+],
+"a": 1,
+"e": "Luther refused to take back his writings. Frederick the Wise of Saxony then protected him."
+},
+{
+"u": "8.C",
+"t": 3,
+"q": "Why did many German princes support Luther?",
+"o": [
+"They all agreed on theology",
+"Breaking with Rome let them gain independence from the emperor and pope and take Church lands and wealth",
+"Luther paid them",
+"The pope asked them to"
+],
+"a": 1,
+"e": "Religion and politics were intertwined. Princes saw political and economic advantages in Lutheranism."
+},
+{
+"u": "8.C",
+"t": 2,
+"q": "The Peace of Augsburg (1555) established that:",
+"o": [
+"All Germans must be Catholic",
+"Each German prince could choose whether his territory would be Catholic or Lutheran",
+"Calvinism was legal everywhere",
+"The Thirty Years' War was over"
+],
+"a": 1,
+"e": "\"Whose realm, his religion\": the ruler chose, and subjects were expected to follow or move. Calvinism was not included until 1648."
+},
+{
+"u": "8.C",
+"t": 1,
+"q": "Which reformer taught predestination and led the city of Geneva?",
+"o": [
+"Martin Luther",
+"John Calvin",
+"Henry VIII",
+"Erasmus"
+],
+"a": 1,
+"e": "Calvin's Geneva became a model Protestant community with strict moral rules."
+},
+{
+"u": "8.C",
+"t": 2,
+"q": "Henry VIII broke with the Roman Catholic Church mainly because:",
+"o": [
+"He disagreed with Luther",
+"The pope refused to annul his marriage to Catherine of Aragon",
+"He wanted to become pope",
+"He supported the Jesuits"
+],
+"a": 1,
+"e": "Henry wanted a male heir. The break was political and personal at first; Protestant theology grew stronger later."
+},
+{
+"u": "8.C",
+"t": 2,
+"q": "The Act of Supremacy (1534) made:",
+"o": [
+"The pope head of England",
+"The English monarch the supreme head of the Church of England",
+"Calvin ruler of England",
+"Catholicism England's only legal religion"
+],
+"a": 1,
+"e": "This created the Church of England (Anglican Church) under royal control."
+},
+{
+"u": "8.C",
+"t": 3,
+"q": "How was the English Reformation DIFFERENT from Luther's Reformation in Germany?",
+"o": [
+"England's began mainly for political and dynastic reasons, led by the king, while Germany's began with religious protest by a monk",
+"There was no difference",
+"England's began with the Ninety-five Theses",
+"Germany's was led by a queen"
+],
+"a": 0,
+"e": "Luther's was theology-first, from below. Henry's was a royal decision driven by succession and power."
+},
+{
+"u": "8.C",
+"t": 3,
+"q": "Wycliffe and Hus are sometimes called forerunners of the Reformation because they:",
+"o": [
+"Invented printing",
+"Criticized Church wealth and authority and promoted the Bible's authority more than a century before Luther",
+"Founded the Jesuits",
+"Fought in the Thirty Years' War"
+],
+"a": 1,
+"e": "Their ideas anticipated Luther, but without the printing press they were easier to suppress — Hus was executed in 1415."
+},
+{
+"u": "8.C",
+"t": 2,
+"q": "Anabaptists were persecuted by both Catholics and other Protestants mainly because they:",
+"o": [
+"Supported the pope",
+"Rejected infant baptism and favored separating church and state",
+"Wanted to restore indulgences",
+"Were Ottoman allies"
+],
+"a": 1,
+"e": "Their views challenged both religious and political order of the time."
+},
+{
+"u": "8.D",
+"t": 1,
+"q": "The Catholic Church's response to the Protestant Reformation is called the:",
+"o": [
+"Renaissance",
+"Catholic Reformation (Counter-Reformation)",
+"Enlightenment",
+"Peace of Augsburg"
+],
+"a": 1,
+"e": "The Church reformed abuses and reaffirmed its doctrines to stop Protestantism's spread."
+},
+{
+"u": "8.D",
+"t": 2,
+"q": "The Council of Trent:",
+"o": [
+"Accepted Luther's faith-alone teaching",
+"Reaffirmed Catholic doctrine, ended the sale of indulgences, and required better-educated priests",
+"Created the Church of England",
+"Ended the Thirty Years' War"
+],
+"a": 1,
+"e": "Trent clarified doctrine (faith AND works, seven sacraments) while fixing abuses Protestants had criticized."
+},
+{
+"u": "8.D",
+"t": 1,
+"q": "Who founded the Jesuits?",
+"o": [
+"Ignatius of Loyola",
+"John Calvin",
+"Johann Tetzel",
+"Henry IV"
+],
+"a": 0,
+"e": "Loyola founded the Society of Jesus in 1540."
+},
+{
+"u": "8.D",
+"t": 2,
+"q": "The Jesuits strengthened the Catholic Church mainly through:",
+"o": [
+"Selling indulgences",
+"Education, founding schools, and missionary work around the world",
+"Writing the Ninety-five Theses",
+"Supporting Calvin"
+],
+"a": 1,
+"e": "Jesuit schools trained leaders, and missionaries spread Catholicism to Asia, Africa, and the Americas."
+},
+{
+"u": "8.D",
+"t": 2,
+"q": "The Index of Forbidden Books was created to:",
+"o": [
+"Promote Protestant books",
+"Prevent Catholics from reading works judged dangerous to faith",
+"Catalog Renaissance art",
+"List banned weapons"
+],
+"a": 1,
+"e": "Censorship was one tool of the Catholic Reformation, alongside the Inquisition."
+},
+{
+"u": "8.D",
+"t": 2,
+"q": "The Edict of Nantes (1598) granted religious toleration to:",
+"o": [
+"English Catholics",
+"French Huguenots",
+"German Lutherans",
+"Spanish Jews"
+],
+"a": 1,
+"e": "Henry IV ended the French Wars of Religion by granting Protestants rights while keeping France officially Catholic."
+},
+{
+"u": "8.D",
+"t": 1,
+"q": "The Thirty Years' War lasted from:",
+"o": [
+"1517–1547",
+"1618–1648",
+"1453–1483",
+"1555–1585"
+],
+"a": 1,
+"e": "It began in Bohemia in 1618 and ended with the Peace of Westphalia in 1648."
+},
+{
+"u": "8.D",
+"t": 3,
+"q": "Why is the Peace of Westphalia (1648) considered a turning point?",
+"o": [
+"It reunited all Christians",
+"It ended large-scale religious wars in Central Europe, recognized Calvinism, and strengthened independent, sovereign states over the pope and emperor",
+"It started the Renaissance",
+"It created the Church of England"
+],
+"a": 1,
+"e": "After Westphalia, states — not religious authorities — became the main actors in European politics."
+},
+{
+"u": "8.D",
+"t": 3,
+"q": "The St. Bartholomew's Day Massacre (1572) shows that the Reformation:",
+"o": [
+"Was entirely peaceful",
+"Produced violent conflict, as French Catholics killed thousands of Huguenots",
+"Ended in France immediately",
+"Was supported by all French nobles"
+],
+"a": 1,
+"e": "Religious division turned into civil war in France until the Edict of Nantes."
+},
+{
+"u": "8.D",
+"t": 3,
+"q": "Which statement BEST describes a long-term effect of the Reformation?",
+"o": [
+"Europe became permanently religiously divided, monarchs and states gained power over churches, and education and literacy expanded",
+"Europe became entirely Protestant",
+"The pope gained control over all kings",
+"Printing was banned"
+],
+"a": 0,
+"e": "Christian unity in Western Europe ended; secular rulers gained authority; both sides founded schools to teach their faith."
+},
+{
+"u": "8.D",
+"t": 2,
+"q": "Which was NOT a goal of the Catholic Reformation?",
+"o": [
+"End abuses such as the sale of indulgences",
+"Reaffirm Catholic teaching",
+"Accept salvation by faith alone",
+"Win back people who had become Protestant"
+],
+"a": 2,
+"e": "The Council of Trent rejected faith alone and taught that faith and good works both matter."
+},
+{
+"u": "8.D",
+"t": 2,
+"q": "The Inquisition was used during the Catholic Reformation to:",
+"o": [
+"Print Bibles",
+"Investigate and punish heresy",
+"Found universities",
+"Make peace with Protestants"
+],
+"a": 1,
+"e": "Church courts enforced orthodoxy, sometimes harshly."
+}
+];
+const TUTOR = "CLIO";
+const LS='whh_drill_stats', LS_SRS='whh_drill_srs', LS_U='whh_drill_units';
+QB.forEach((q,i)=>q.id='q'+i+'_'+q.q.slice(0,20));
+let stats=lsGet(LS,{total:0,correct:0,best:0,sessions:0}), srs=lsGet(LS_SRS,{}), um=lsGet(LS_U,{});
+let mode='practice', tier='all', sel=new Set(Object.keys(UNIT_NAMES));
+let deck=[], idx=0, right=0, answered=false, missed=[], streak=0, timerId=null, left=0, order=[], tHist=[], tCtx={};
+const DESC={
+ practice:'<b style="color:#fff">Practice</b> — instant feedback and a full explanation after every answer. Questions you miss come back more often; ones you nail fade into review.',
+ exam:'<b style="color:#efb44e">Exam</b> — 25 timed questions (75 seconds each) sampled across your units. No feedback until the end, just like a real test.',
+ stamina:'<b style="color:#f08579">Stamina</b> — one wrong answer ends the run. How far can you go? Your best run is saved.',
+ weak:'<b style="color:#7cc0e6">Weak Spots</b> — pulls only questions you have missed before, hardest first. Clear them out.'
+};
+function save(){ lsSet(LS,stats); lsSet(LS_SRS,srs); lsSet(LS_U,um); }
+function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===id)); window.scrollTo({top:0,behavior:'smooth'}); }
+function setMode(m,b){ mode=m; document.querySelectorAll('.mode-tab').forEach(x=>x.classList.toggle('active',x===b)); document.getElementById('mode-desc').innerHTML=DESC[m]; upd(); }
+function setTier(t,b){ tier=t; document.querySelectorAll('.pill[data-t]').forEach(x=>x.classList.toggle('active',x===b)); upd(); }
+function tog(u){ sel.has(u)?sel.delete(u):sel.add(u); renderUnits(); upd(); }
+function allUnits(on){ sel=on?new Set(Object.keys(UNIT_NAMES)):new Set(); renderUnits(); upd(); }
+function renderUnits(){
+  document.getElementById('ugrid').innerHTML=Object.keys(UNIT_NAMES).map(u=>{
+    const n=QB.filter(q=>q.u===u).length, m=um[u], pct=m&&m.t?Math.round(m.c/m.t*100):null;
+    const col=pct==null?'transparent':pct>=80?'var(--teal)':pct>=60?'var(--amber)':'var(--red)';
+    return `<div class="ubox ${sel.has(u)?'on':''}" onclick="tog('${u}')" role="checkbox" aria-checked="${sel.has(u)}" tabindex="0" onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();tog('${u}')}"><div class="uchk">${sel.has(u)?'✓':''}</div><div style="flex:1;min-width:0"><div class="uname">${u} · ${esc(UNIT_NAMES[u])}</div><div class="umeta"><span>${n} Qs</span><span class="ubar"><i style="width:${pct||0}%;background:${col}"></i></span><span>${pct==null?'—':pct+'%'}</span></div></div></div>`;
+  }).join('');
+}
+function missRate(q){ const r=srs[q.id]; return r&&r.seen?r.miss/r.seen:0; }
+function pool(){
+  let p=QB.filter(q=>sel.has(q.u)&&(tier==='all'||q.t===tier));
+  if(mode==='weak') p=p.filter(q=>srs[q.id]&&srs[q.id].miss>0);
+  return p;
+}
+function upd(){
+  const n=pool().length, b=document.getElementById('btn-start');
+  document.getElementById('pool-n').textContent=`${n} question${n===1?'':'s'} available`;
+  b.disabled=n<1;
+  b.textContent= n<1 ? (mode==='weak'?'No missed questions yet — practice first':'No questions match — adjust filters') : `Start ${({practice:'Practice',exam:'Exam',stamina:'Stamina run',weak:'Weak Spots'})[mode]} (${mode==='exam'?Math.min(25,n):n})`;
+}
+function wSample(items){
+  const p=items.map(q=>{ const r=srs[q.id]; return {q,w: !r||!r.seen?3:Math.max(1,1+(r.miss/r.seen)*6)}; }), out=[];
+  while(p.length){ const tot=p.reduce((s,x)=>s+x.w,0); let r=Math.random()*tot,k=0; for(;k<p.length;k++){ r-=p[k].w; if(r<=0) break; } out.push(p.splice(Math.min(k,p.length-1),1)[0].q); }
+  return out;
+}
+let lastDeck=null;
+function start(again){
+  let p = again&&lastDeck ? lastDeck.slice() : pool();
+  if(!p.length) return;
+  if(mode==='practice') deck=wSample(p);
+  else if(mode==='weak') deck=p.sort((a,b)=>missRate(b)-missRate(a)).slice(0,30);
+  else if(mode==='exam'){ // balanced across units
+    const by={}; shuffle(p).forEach(q=>(by[q.u]=by[q.u]||[]).push(q)); deck=[]; const keys=Object.keys(by);
+    while(deck.length<Math.min(25,p.length)){ keys.forEach(k=>{ if(by[k].length&&deck.length<25) deck.push(by[k].pop()); }); }
+    deck=shuffle(deck);
+  } else deck=shuffle(p);
+  lastDeck=p.slice(); idx=0; right=0; missed=[]; streak=0;
+  document.getElementById('btn-setup').style.display='';
+  clearInterval(timerId);
+  const T=document.getElementById('timer');
+  if(mode==='exam'){ left=deck.length*75; T.style.display=''; timerId=setInterval(()=>{ left--; T.textContent=`⏱ ${Math.floor(left/60)}:${String(left%60).padStart(2,'0')}`; if(left<=0){ clearInterval(timerId); finish(true); } },1000); } else T.style.display='none';
+  show('s-q'); render();
+}
+function render(){
+  const q=deck[idx]; answered=false;
+  document.getElementById('q-count').textContent = mode==='stamina'?`RUN · ${idx+1}`:`QUESTION ${idx+1} OF ${deck.length}`;
+  document.getElementById('q-badges').innerHTML=`<span class="tag t-unit">${q.u} · ${esc(UNIT_NAMES[q.u])}</span><span class="tag b-t${q.t}">${['','① Foundational','② Intermediate','③ Challenge'][q.t]}</span>`;
+  document.getElementById('combo').textContent = streak>=3?`🔥 ${streak} streak`:'';
+  document.getElementById('pfill').style.width=(mode==='stamina'?Math.min(100,idx*4):idx/deck.length*100)+'%';
+  document.getElementById('qtext').textContent=q.q;
+  order=shuffle(q.o.map((_,i)=>i));
+  document.getElementById('opts').innerHTML=order.map((o,i)=>`<button class="opt" id="o-${i}" onclick="pick(${i})"><span class="opt-key">${'ABCD'[i]}</span><span>${esc(q.o[o])}</span></button>`).join('');
+  const fb=document.getElementById('fb'); fb.className='fb'; fb.innerHTML='';
+  document.getElementById('btn-next').style.display='none'; document.getElementById('btn-tutor').style.display='none';
+  document.getElementById('tutor').classList.remove('open'); document.getElementById('chat').innerHTML=''; tHist=[];
+}
+function pick(i){
+  if(answered) return; answered=true;
+  const q=deck[idx], ok=order[i]===q.a;
+  const r=srs[q.id]||{seen:0,miss:0}; r.seen++; if(!ok) r.miss++; srs[q.id]=r;
+  um[q.u]=um[q.u]||{c:0,t:0}; um[q.u].t++; if(ok) um[q.u].c++;
+  stats.total++; if(ok){ stats.correct++; right++; streak++; if(streak>stats.best) stats.best=streak; } else { streak=0; missed.push({q,chose:q.o[order[i]]}); }
+  save(); globals(); game().answer(ok,q.t);
+  document.querySelectorAll('.opt').forEach((b,j)=>{ b.disabled=true; if(order[j]===q.a) b.classList.add('correct'); else if(j===i) b.classList.add('wrong'); });
+  tCtx={term:UNIT_NAMES[q.u], explanation:q.e, chosen:q.o[order[i]], correct:q.o[q.a]};
+  if(mode==='stamina'&&!ok){ setTimeout(()=>finish(),900); return feedback(ok,q); }
+  if(mode!=='exam') feedback(ok,q);
+  const nb=document.getElementById('btn-next'); nb.style.display=''; nb.textContent=(mode!=='stamina'&&idx>=deck.length-1)?'See results →':'Next →';
+}
+function feedback(ok,q){
+  const fb=document.getElementById('fb'); fb.className='fb show '+(ok?'ok':'no');
+  fb.innerHTML=`<b style="color:${ok?'#4fd1a5':'#f08579'}">${ok?'✓ Correct':'✗ Not quite — the answer is: '+esc(q.o[q.a])}</b>${esc(q.e)}`;
+  document.getElementById('btn-tutor').style.display='';
+}
+function next(){ idx++; if(mode==='stamina'&&idx>=deck.length){ deck=deck.concat(shuffle(lastDeck)); } if(idx>=deck.length) return finish(); render(); }
+function finish(timeUp){
+  clearInterval(timerId); stats.sessions++; save(); globals();
+  const n = mode==='stamina'? idx+1 : (timeUp? idx+ (answered?1:0) : deck.length);
+  const pct = n?Math.round(right/n*100):0;
+  document.getElementById('r-mode').textContent= timeUp?'TIME EXPIRED':mode==='stamina'?`STAMINA RUN — ${right} IN A ROW`:'SESSION COMPLETE';
+  if(mode==='stamina'){ const k='whh_drill_stamina_best'; const b=Math.max(lsGet(k,0),right); lsSet(k,b); }
+  document.getElementById('r-score').innerHTML=`${right}<span>/${n}</span>`;
+  const g=pct>=90?['Excellent','var(--teal)']:pct>=80?['Strong','var(--teal)']:pct>=70?['Solid','var(--amber)']:pct>=60?['Developing','var(--amber)']:['Needs review','var(--red)'];
+  document.getElementById('r-grade').innerHTML=`<span style="color:${g[1]}">${g[0]}</span>`;
+  document.getElementById('r-sub').textContent=`${pct}% correct · ${({practice:'Practice',exam:'Exam',stamina:'Stamina',weak:'Weak Spots'})[mode]}`;
+  const seen=deck.slice(0,n), by={};
+  seen.forEach(q=>{ by[q.u]=by[q.u]||{n:0,ok:0}; by[q.u].n++; if(!missed.some(m=>m.q===q)) by[q.u].ok++; });
+  document.getElementById('r-brk').innerHTML=Object.keys(by).sort((a,b)=>+a.slice(1)-+b.slice(1)).map(u=>{ const d=by[u], p=Math.round(d.ok/d.n*100), c=p>=80?'var(--teal)':p>=60?'var(--amber)':'var(--red)';
+    return `<div class="brk"><div class="brk-n">${u} ${esc(UNIT_NAMES[u])}</div><div class="brk-b"><i style="width:${p}%;background:${c}"></i></div><div class="brk-v">${d.ok}/${d.n}</div></div>`; }).join('');
+  document.getElementById('btn-missed').style.display=missed.length?'':'none';
+  document.getElementById('r-missed-card').style.display=missed.length?'':'none';
+  document.getElementById('r-missed').innerHTML=missed.map(m=>`<div class="miss"><div style="font-weight:600;color:#fff;margin-bottom:5px">${esc(m.q.q)}</div><div>You chose: ${esc(m.chose)} · Correct: <b>${esc(m.q.o[m.q.a])}</b></div><div style="margin-top:5px;color:var(--muted)">${esc(m.q.e)}</div></div>`).join('');
+  show('s-res');
+}
+function retryMissed(){ if(!missed.length) return; lastDeck=missed.map(m=>m.q); setMode('practice',document.querySelector('.mode-tab[data-m="practice"]')); start(true); }
+function goSetup(){ clearInterval(timerId); document.getElementById('btn-setup').style.display='none'; renderUnits(); upd(); show('s-setup'); }
+function globals(){
+  document.getElementById('g-total').textContent=stats.total;
+  document.getElementById('g-acc').textContent=stats.total?Math.round(stats.correct/stats.total*100)+'%':'—';
+  document.getElementById('g-best').textContent=stats.best; document.getElementById('g-sess').textContent=stats.sessions;
+}
+// ── Tutor ──
+function openTutor(){
+  const T=document.getElementById('tutor'); if(T.classList.contains('open')) return; T.classList.add('open');
+  document.getElementById('tmode').textContent=StudyHubTutor.modeLabel();
+  const q=deck[idx];
+  tHist=[{role:'user',content:`CONTEXT (don't repeat verbatim): Unit: ${UNIT_NAMES[q.u]}\nQuestion: ${q.q}\nChoices: ${q.o.join(' | ')}\nCorrect: ${q.o[q.a]}\nStudent chose: ${tCtx.chosen}\nExplanation: ${q.e}`},{role:'assistant',content:'Ready to help.'}];
+  bub('a', tCtx.chosen===tCtx.correct ? `Nice work. Want a real-world example or a harder follow-up on this idea?` : `Let's untangle it. You picked "${tCtx.chosen}". Tap a button below or ask me anything.`);
+}
+function bub(r,t){ const c=document.getElementById('chat'); const d=document.createElement('div'); d.className='bub '+r; d.innerHTML=esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\n/g,'<br>'); c.appendChild(d); c.scrollTop=c.scrollHeight; }
+async function ask(preset){
+  const inp=document.getElementById('tin'); const msg=(preset||inp.value).trim(); if(!msg) return; inp.value='';
+  bub('u',msg); tHist.push({role:'user',content:msg});
+  const res=await StudyHubTutor.ask({system:`You are ${TUTOR}, a friendly World History Honors field coach for high school students. 2-4 sentences, plain text. Add a new angle, a Florida or wildlife example, or a step — never just repeat the explanation. Redirect off-topic questions warmly.`, messages:tHist, context:tCtx, message:msg});
+  bub('a',res.text); tHist.push({role:'assistant',content:res.text}); if(tHist.length>14) tHist.splice(2,2);
+}
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('s-q').classList.contains('active')||e.target.tagName==='INPUT') return;
+  const k=e.key.toLowerCase(); const m={'1':0,'2':1,'3':2,'4':3,a:0,b:1,c:2,d:3};
+  if(k in m && !answered) pick(m[k]); else if(k==='enter'&&answered) next();
+});
+(function init(){
+  const calc=new Set(QB.map(q=>q.u)).size;
+  document.getElementById('page-sub').textContent=`${QB.length} questions · ${calc} units · 3 tiers · answer order shuffles every time · keys 1–4 to answer, Enter for next`;
+  document.getElementById('mode-desc').innerHTML=DESC.practice;
+  const p=new URLSearchParams(location.search);
+  const u=p.get('unit'); if(u){ const uu=UNIT_NAMES[u]?u:'U'+u; if(UNIT_NAMES[uu]) sel=new Set([uu]); }
+  const m=p.get('mode'); if(m&&DESC[m]){ const b=document.querySelector('.mode-tab[data-m="'+m+'"]'); if(b) setMode(m,b); }
+  renderUnits(); upd(); globals();
+})();
+</script>
+</body>
+</html>

@@ -111,6 +111,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 <script src="studyhub-tutor.js"></script>
 <script>window.STUDYHUB_GAME={course:'envsci'};</script>
 <script src="studyhub-game.js"></script>
+<script src="studyhub-sync.js"></script>
 </head>
 <body>
 <div class="app">
@@ -1438,7 +1439,7 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&document.getElemen
   const units=new Set(TERMS.map(t=>t.u)).size, du=TERMS.filter(t=>t.du).length;
   document.getElementById('page-sub').textContent=`${TERMS.length} terms · ${units} units${du?` · ${du} tagged for the DU certification`:''} · flip cards, spaced-repetition quiz, ${TUTOR_NAME} tutor`;
   const p=new URLSearchParams(location.search);
-  const qu=p.get('unit'); const b=qu&&document.querySelector('.pill[data-unit="'+(qu.startsWith('U')?qu:'U'+qu)+'"]');
+  const qu=p.get('unit'); const b=qu&&(document.querySelector('.pill[data-unit="'+qu+'"]')||document.querySelector('.pill[data-unit="U'+qu+'"]'));
   if(p.get('show')==='du'){ const d=document.querySelector('.pill[data-show="du"]'); if(d){ curShow='du'; document.querySelectorAll('.pill[data-show]').forEach(x=>x.classList.toggle('active',x===d)); } }
   if(b) setUnit(b.dataset.unit,b); else render();
 })();

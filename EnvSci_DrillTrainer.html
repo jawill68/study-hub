@@ -122,6 +122,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 <script src="studyhub-tutor.js"></script>
 <script>window.STUDYHUB_GAME={course:'envsci'};</script>
 <script src="studyhub-game.js"></script>
+<script src="studyhub-sync.js"></script>
 </head>
 <body>
 <div class="app">
@@ -2297,7 +2298,7 @@ document.addEventListener('keydown',e=>{
   document.getElementById('page-sub').textContent=`${QB.length} questions · ${calc} units · 3 tiers · answer order shuffles every time · keys 1–4 to answer, Enter for next`;
   document.getElementById('mode-desc').innerHTML=DESC.practice;
   const p=new URLSearchParams(location.search);
-  const u=p.get('unit'); if(u){ const uu=u.startsWith('U')?u:'U'+u; if(UNIT_NAMES[uu]) sel=new Set([uu]); }
+  const u=p.get('unit'); if(u){ const uu=UNIT_NAMES[u]?u:'U'+u; if(UNIT_NAMES[uu]) sel=new Set([uu]); }
   const m=p.get('mode'); if(m&&DESC[m]){ const b=document.querySelector('.mode-tab[data-m="'+m+'"]'); if(b) setMode(m,b); }
   renderUnits(); upd(); globals();
 })();

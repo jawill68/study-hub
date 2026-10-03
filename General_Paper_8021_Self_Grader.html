@@ -114,6 +114,9 @@
 
   @media print{.site-header,.steps-nav,.button-row{display:none}.step-panel{box-shadow:none;page-break-inside:avoid}body{background:#fff}}
 </style>
+<script>window.STUDYHUB_GAME={course:'gp'};</script>
+<script src="studyhub-game.js"></script>
+<script src="studyhub-sync.js"></script>
 </head>
 <body>
 
@@ -459,7 +462,9 @@ function getBand(score){
   }
 }
 
+let __sgDone=false;
 function renderResults(){
+  if(!__sgDone && window.StudyHubGame){ __sgDone=true; StudyHubGame.event('selfgrade'); }
   const qt = QUESTION_TYPES[state.qtype];
   const score = calculateScore();
   const band = getBand(score);

@@ -88,6 +88,9 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 
 @media(max-width:640px){.page-title{font-size:1.5rem}.ctrl-label{min-width:auto}.cert-switch{margin-left:0}}
 </style>
+<script>window.STUDYHUB_GAME={course:'gamedesign'};</script>
+<script src="studyhub-game.js"></script>
+<script src="studyhub-sync.js"></script>
 </head>
 <body>
 <div class="app">
@@ -208,7 +211,9 @@ function getFiltered(){
 function refreshTotal(){ document.getElementById('s-total').textContent = PROMPTS.filter(certMatch).length; }
 function reveal(i){ revealed.add(i); if(!checks[i]) checks[i]=new Set(); render(); }
 function toggleMastered(i,ev){ ev.stopPropagation(); if(mastered.has(i)) mastered.delete(i); else mastered.add(i); saveM(); render(); }
-function toggleCheck(i,j){ if(!checks[i]) checks[i]=new Set(); if(checks[i].has(j)) checks[i].delete(j); else checks[i].add(j); render(); }
+const __graded=new Set();
+function toggleCheck(i,j){
+  if(!__graded.has(i)){ __graded.add(i); if(window.StudyHubGame) StudyHubGame.event('selfgrade'); } if(!checks[i]) checks[i]=new Set(); if(checks[i].has(j)) checks[i].delete(j); else checks[i].add(j); render(); }
 
 function render(){
   const list=getFiltered();

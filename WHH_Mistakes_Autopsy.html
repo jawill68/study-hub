@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Environmental Science Honors — Mistakes Autopsy</title>
+<title>World History Honors — Mistakes Autopsy</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -11,7 +11,7 @@
   --navy:#1B3A6B;--sky:#2E8BC0;--teal:#1D9E75;--amber:#E59400;--red:#E74C3C;--purple:#8B5CF6;
   --bg:#060e1a;--card:#0a1929;--card2:#0d1e32;--border:#1e3a5c;
   --text:#e8edf4;--muted:#6b8ab0;--white:#ffffff;
-  --accent:#1D9E75;--accent-soft:rgba(29,158,117,.12);--accent-text:#4fd1a5;
+  --accent:#B87700;--accent-soft:rgba(229,148,0,.12);--accent-text:#efb44e;
 }
 body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
@@ -99,15 +99,15 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 
 </style>
 
-<script>window.STUDYHUB_GAME={course:'envsci'};</script>
+<script>window.STUDYHUB_GAME={course:'worldhistoryh'};</script>
 <script src="studyhub-game.js"></script>
 <script src="studyhub-sync.js"></script>
 </head>
 <body>
 <div class="app">
-  <a class="back" href="EnvSci_StudyHub.html">← Environmental Science Study Hub</a>
+  <a class="back" href="WHH_StudyHub.html">← World History Honors Study Hub</a>
   <div class="header">
-    <div><div class="series-label">Environmental Science Honors · Study Resource Series · Build 4</div><div class="page-title">Mistakes <span>Autopsy</span></div><div class="page-sub" id="page-sub"></div></div>
+    <div><div class="series-label">World History Honors · Chapter 8 · Mistakes Autopsy</div><div class="page-title">Mistakes <span>Autopsy</span></div><div class="page-sub" id="page-sub"></div></div>
     <div style="display:flex;gap:9px;align-items:center;flex-wrap:wrap"><div data-game-hud></div><button class="btn btn-accent" onclick="openFM()">🔍 Find My Mistake</button></div>
   </div>
   <div class="about-banner">🔬 Each card dissects a high-frequency mistake: the scenario, the wrong thinking, the right thinking, <b>why</b> students fall for it, and a Memory Lock to make it stick. Open a card, read it, then <b>Mark mastered</b> once you could explain it to a friend. <b>Find My Mistake</b> tests whether you can spot the right thinking under pressure.</div>
@@ -117,11 +117,11 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     <div class="stat-chip"><div class="stat-num" style="color:var(--amber)" id="s-fm">—</div><div class="stat-lbl">LAST DIAGNOSTIC</div></div>
   </div>
   <div class="controls">
-    <div class="ctrl-row"><span class="ctrl-label">UNIT</span><button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button><button class="pill" data-unit="U1" onclick="setUnit('U1',this)">U1</button><button class="pill" data-unit="U2" onclick="setUnit('U2',this)">U2</button><button class="pill" data-unit="U3" onclick="setUnit('U3',this)">U3</button><button class="pill" data-unit="U4" onclick="setUnit('U4',this)">U4</button><button class="pill" data-unit="U5" onclick="setUnit('U5',this)">U5</button><button class="pill" data-unit="U6" onclick="setUnit('U6',this)">U6</button><button class="pill" data-unit="U7" onclick="setUnit('U7',this)">U7</button><button class="pill" data-unit="U8" onclick="setUnit('U8',this)">U8</button><button class="pill" data-unit="U9" onclick="setUnit('U9',this)">U9</button><button class="pill" data-unit="U10" onclick="setUnit('U10',this)">U10</button></div>
+    <div class="ctrl-row"><span class="ctrl-label">UNIT</span><button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button><button class="pill" data-unit="8.A" onclick="setUnit('8.A',this)">8.A</button><button class="pill" data-unit="8.B" onclick="setUnit('8.B',this)">8.B</button><button class="pill" data-unit="8.C" onclick="setUnit('8.C',this)">8.C</button><button class="pill" data-unit="8.D" onclick="setUnit('8.D',this)">8.D</button></div>
     <div class="ctrl-row"><span class="ctrl-label">SHOW</span><button class="pill active" data-st="all" onclick="setSt('all',this)">All</button><button class="pill" data-st="high" onclick="setSt('high',this)">🔥 High frequency</button><button class="pill" data-st="todo" onclick="setSt('todo',this)">Not mastered</button><button class="pill" data-st="done" onclick="setSt('done',this)">Mastered</button></div>
   </div>
   <div id="list"></div>
-  <div class="footer">Environmental Science Honors (2001341) · Florida NGSSS Science Standards · Mistakes Autopsy</div>
+  <div class="footer">World History Honors (2109320) · Chapter 8: Renaissance and Reformation · Florida NGSSS SS.912.W.4</div>
 </div>
 <div class="overlay" id="ov" onclick="if(event.target===this)closeFM()"><div class="modal" role="dialog" aria-modal="true" id="modal"></div></div>
 <script>
@@ -132,250 +132,110 @@ function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON
 function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
 function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
 
-const UNIT_NAMES={"U1": "Intro to Env Science & Inquiry", "U2": "Earth Systems & Ecology", "U3": "Biodiversity & Populations", "U4": "Biomes, Wetlands & Aquatic Systems", "U5": "Conservation & Wildlife Management", "U6": "Soil, Agriculture & Food", "U7": "Water Resources", "U8": "Energy Resources", "U9": "Global Change & Environmental Health", "U10": "Air, Land & Waste"};
+const UNIT_NAMES={"8.A": "Italian Renaissance", "8.B": "Northern Renaissance & Printing", "8.C": "Protestant Reformation", "8.D": "Catholic Reformation & Religious Wars"};
 const MK=[
 {
-"u": "U2",
+"u": "8.A",
 "freq": "high",
-"title": "Thinking energy recycles through an ecosystem",
-"setup": "A student writes: \"Decomposers recycle energy back to plants so the cycle continues.\"",
-"wrong": "Treating energy like matter — as if it loops back around.",
-"right": "Matter (nutrients) cycles. Energy flows one way: sunlight → producers → consumers → heat. Decomposers recycle nutrients, not energy.",
-"why": "Diagrams draw both as arrows, and decomposers really do return 'stuff' to plants.",
-"lock": "Nutrients go round and round. Energy goes in and out."
+"title": "Thinking the Renaissance rejected religion",
+"setup": "\"Renaissance people stopped believing in God and only cared about science.\"",
+"wrong": "Equating humanism and secularism with atheism.",
+"right": "Most Renaissance figures remained Christian. Humanism added interest in classical learning and human potential, and much great Renaissance art is religious, such as the Sistine Chapel.",
+"why": "\"Secular\" and \"humanism\" sound anti-religious today.",
+"lock": "More human focus, not less faith."
 },
 {
-"u": "U2",
+"u": "8.A",
 "freq": "high",
-"title": "Mixing up the 10% rule direction",
-"setup": "Producers have 50,000 kcal. A student says secondary consumers get 5,000 kcal.",
-"wrong": "Applying the 10% cut only once.",
-"right": "Primary consumers get 5,000 kcal and secondary consumers get 500 kcal. Apply the cut at every step up.",
-"why": "Students count trophic levels instead of the transfers between them.",
-"lock": "Count the arrows, not the levels."
+"title": "Saying the Renaissance was a sudden break from the Middle Ages",
+"setup": "\"In 1350 everything changed overnight.\"",
+"wrong": "Treating historical periods as switches.",
+"right": "The Renaissance grew gradually from medieval foundations — universities, trade, and preserved classical texts — and spread unevenly over three centuries.",
+"why": "Textbook period labels make change look instant.",
+"lock": "Periods blend; they don't flip."
 },
 {
-"u": "U2",
+"u": "8.A",
 "freq": "med",
-"title": "Calling nitrogen fixation and denitrification the same thing",
-"setup": "\"Wetland bacteria fix nitrogen, removing it from the water.\"",
-"wrong": "Using 'fix' to mean 'remove.'",
-"right": "Fixation adds usable nitrogen from N₂ gas. Denitrification removes nitrate by turning it back into N₂ gas, and wetlands are known for denitrification.",
-"why": "'Fix' sounds like 'repair' or 'deal with.'",
-"lock": "Fixation puts N in. Denitrification lets N out."
+"title": "Crediting the printing press to Italy",
+"setup": "\"The Italian Renaissance invented the printing press.\"",
+"wrong": "Mixing up Renaissance locations.",
+"right": "Gutenberg developed movable-type printing in Mainz, Germany, around 1450. Printing then helped spread Italian ideas north and Northern ideas everywhere.",
+"why": "The Renaissance is linked to Italy, so every invention gets placed there.",
+"lock": "Gutenberg = Germany."
 },
 {
-"u": "U3",
+"u": "8.B",
 "freq": "high",
-"title": "Confusing habitat with niche",
-"setup": "Asked for the wood duck's niche, a student writes: \"Wooded swamps.\"",
-"wrong": "Giving a location when the question asks for a role.",
-"right": "Niche = role: eats acorns and invertebrates, nests in tree cavities, disperses seeds, and is prey for some predators. Wooded swamps are its habitat.",
-"why": "Both describe 'where it fits' in nature.",
-"lock": "Habitat is the address. Niche is the job."
+"title": "Thinking Erasmus left the Catholic Church",
+"setup": "\"Erasmus and Luther started Protestantism together.\"",
+"wrong": "Assuming every critic of the Church became Protestant.",
+"right": "Erasmus criticized abuses but remained Catholic and opposed splitting the Church. Luther broke away.",
+"why": "Both attacked Church corruption.",
+"lock": "Critic is not the same as convert."
 },
 {
-"u": "U3",
+"u": "8.C",
 "freq": "high",
-"title": "Assuming populations grow forever",
-"setup": "A student predicts a duck population growing 20% per year will double every 4 years indefinitely.",
-"wrong": "Applying exponential growth with no limiting factors.",
-"right": "Limiting factors — ponds, nesting cover, food, disease — slow growth as the population nears carrying capacity, producing an S-curve.",
-"why": "Short-term data often looks exponential.",
-"lock": "Every J eventually bends into an S."
+"title": "Saying Luther wanted to start a new church",
+"setup": "\"In 1517 Luther set out to create Protestantism.\"",
+"wrong": "Reading the outcome back into his original goal.",
+"right": "Luther first wanted to reform abuses within the Catholic Church and debate indulgences. The split came as the conflict escalated, through excommunication and the Diet of Worms.",
+"why": "We know how it ended.",
+"lock": "Reform first; split later."
 },
 {
-"u": "U3",
-"freq": "med",
-"title": "Weather as a density-dependent factor",
-"setup": "\"A drought is density-dependent because it affects big populations more.\"",
-"wrong": "Confusing total impact with density dependence.",
-"right": "A drought affects each individual similarly regardless of crowding, so it's density-independent. More individuals affected isn't the same as a higher per-individual effect.",
-"why": "Big populations lose more individuals in total.",
-"lock": "Ask whether crowding changes the odds for each individual."
-},
-{
-"u": "U3",
-"freq": "med",
-"title": "Saying individuals adapt or evolve",
-"setup": "\"The duck evolved longer legs because it needed to dive deeper.\"",
-"wrong": "Treating evolution as an individual changing on purpose.",
-"right": "Populations evolve. Individuals with heritable traits suited to the environment leave more offspring, so those traits become more common over generations.",
-"why": "Everyday language uses 'adapt' to mean 'adjust.'",
-"lock": "Individuals are selected. Populations evolve."
-},
-{
-"u": "U4",
+"u": "8.C",
 "freq": "high",
-"title": "Calling any wet area a wetland",
-"setup": "A puddle in a parking lot after rain is called a wetland.",
-"wrong": "Using surface water alone as the definition.",
-"right": "A wetland needs all three: wetland hydrology (saturated long enough during the growing season), hydric soils, and hydrophytic plants.",
-"why": "The word sounds like 'wet land.'",
-"lock": "Water, soil, AND plants — all three."
+"title": "Explaining the Reformation as only about religion",
+"setup": "\"Princes supported Luther purely because of faith.\"",
+"wrong": "Ignoring political and economic motives.",
+"right": "Princes gained independence from the emperor and pope, Church lands and taxes, and local control. Religion, politics, and money were intertwined.",
+"why": "It's called a religious movement.",
+"lock": "Faith + power + money."
 },
 {
-"u": "U4",
+"u": "8.C",
 "freq": "med",
-"title": "Assuming temporary wetlands are worthless",
-"setup": "\"That pond dries up by July, so draining it won't hurt ducks.\"",
-"wrong": "Judging value by permanence.",
-"right": "Seasonal ponds warm early and produce invertebrates that laying hens need. Many pairs depend on them, and they're the easiest wetlands to drain.",
-"why": "People see dry ground in summer and assume no value.",
-"lock": "Small and temporary can be the most productive."
+"title": "Mixing up Henry VIII's motives",
+"setup": "\"Henry VIII became Protestant because he agreed with Luther.\"",
+"wrong": "Assuming the English Reformation was driven by theology.",
+"right": "Henry had earlier written against Luther. He broke with Rome when the pope refused his annulment, and kept much Catholic practice. Protestant theology grew under Edward VI and Elizabeth I.",
+"why": "All reformations get lumped together.",
+"lock": "A king's marriage, not a monk's theology."
 },
 {
-"u": "U5",
+"u": "8.C",
+"freq": "med",
+"title": "Thinking the Peace of Augsburg created religious freedom",
+"setup": "\"After 1555 every German could choose their religion.\"",
+"wrong": "Confusing a ruler's choice with individual freedom.",
+"right": "Each PRINCE chose Catholic or Lutheran for his territory, and subjects had to conform or move. Calvinists weren't included.",
+"why": "\"Peace\" and \"choice\" sound like freedom.",
+"lock": "The prince chose, not the people."
+},
+{
+"u": "8.D",
 "freq": "high",
-"title": "Thinking hunting is what threatens duck populations most",
-"setup": "\"Ducks declined in the 1980s because hunters shot too many.\"",
-"wrong": "Ignoring habitat as the main driver.",
-"right": "Modern regulated harvest is set by monitoring data. Duck numbers track breeding habitat — ponds and grassland — most strongly. Drought and habitat loss caused major declines.",
-"why": "Harvest is visible; habitat loss happens slowly and out of sight.",
-"lock": "Ducks follow the water and the grass."
+"title": "Treating the Catholic Reformation as only a reaction",
+"setup": "\"The Catholic Church did nothing until Luther forced it.\"",
+"wrong": "Seeing Catholic reform as purely defensive.",
+"right": "Reform movements existed before 1517, and the Catholic Reformation also renewed spirituality, education (Jesuits), and missionary work worldwide — not just opposition to Protestants.",
+"why": "The name \"Counter-Reformation\" emphasizes reaction.",
+"lock": "Reaction AND renewal."
 },
 {
-"u": "U5",
-"freq": "high",
-"title": "Mixing up the Duck Stamp and Pittman-Robertson",
-"setup": "\"Pittman-Robertson is the stamp hunters buy to fund refuges.\"",
-"wrong": "Swapping the two funding programs.",
-"right": "The Federal Duck Stamp (1934) buys refuge habitat. Pittman-Robertson (1937) is an excise tax on firearms and ammunition distributed to state agencies.",
-"why": "Both are hunter-funded and from the 1930s.",
-"lock": "Stamp buys land. P-R funds the states."
-},
-{
-"u": "U5",
+"u": "8.D",
 "freq": "med",
-"title": "Believing wildlife belongs to the landowner",
-"setup": "\"The ducks on my pond are mine.\"",
-"wrong": "Treating wildlife as private property.",
-"right": "Under the Public Trust Doctrine, wildlife is held in trust by government for all citizens. Landowners control access to their land, not ownership of the ducks.",
-"why": "Owning the land seems to include what's on it.",
-"lock": "You own the land; we all own the ducks."
-},
-{
-"u": "U5",
-"freq": "med",
-"title": "Assuming more water is always better",
-"setup": "A manager keeps an impoundment deep year-round so ducks always have water.",
-"wrong": "Equating depth and permanence with habitat quality.",
-"right": "Dabblers feed in water roughly 18 inches deep or less, and seed plants need drawdowns to germinate. Wet-dry cycles and shallow flooding produce more food.",
-"why": "Ducks need water, so more seems better.",
-"lock": "Shallow and cycling beats deep and static."
-},
-{
-"u": "U5",
-"freq": "med",
-"title": "Releasing pen-raised mallards to 'help' Florida ducks",
-"setup": "A club releases farm mallards to boost local duck numbers.",
-"wrong": "Assuming any added duck helps.",
-"right": "Feral mallards hybridize with Florida's native mottled duck, threatening its genetic integrity. Florida discourages releases.",
-"why": "It looks like a kind, helpful act.",
-"lock": "Wrong duck, wrong place — it hurts the native duck."
-},
-{
-"u": "U6",
-"freq": "med",
-"title": "Thinking pesticides make individual insects resistant",
-"setup": "\"The insects got used to the spray.\"",
-"wrong": "Treating resistance as tolerance an individual builds up.",
-"right": "A few insects already carried resistance genes. They survived, reproduced, and the population evolved resistance.",
-"why": "It sounds like building tolerance.",
-"lock": "The spray selects; it doesn't teach."
-},
-{
-"u": "U7",
-"freq": "high",
-"title": "Blaming the algae itself for fish kills",
-"setup": "\"The algae blocked the fish's gills.\"",
-"wrong": "Skipping the decomposition step.",
-"right": "Algae die, then decomposers consume dissolved oxygen as they break them down, and low DO kills fish. Some blooms are also toxic, but oxygen crash is the classic mechanism.",
-"why": "The visible bloom gets the blame.",
-"lock": "Bloom → die-off → decomposers → no oxygen."
-},
-{
-"u": "U7",
-"freq": "med",
-"title": "Calling runoff from a whole neighborhood point source",
-"setup": "Storm drains empty into a canal through one big pipe, so a student calls it point source.",
-"wrong": "Focusing on the outlet, not the origin.",
-"right": "The pollution originates from countless lawns and streets — nonpoint sources — even if it exits through a shared drain.",
-"why": "There's literally a pipe at the end.",
-"lock": "Trace it upstream: one origin or many?"
-},
-{
-"u": "U7",
-"freq": "med",
-"title": "Assuming warm water holds more oxygen",
-"setup": "\"Summer water is more active, so it has more oxygen.\"",
-"wrong": "Reversing the temperature–oxygen relationship.",
-"right": "Gas solubility falls as temperature rises, and organisms use more oxygen when it's warm. That's why fish kills peak in summer.",
-"why": "Warm feels active and alive.",
-"lock": "Warm water, weak oxygen."
-},
-{
-"u": "U8",
-"freq": "med",
-"title": "Calling renewable energy impact-free",
-"setup": "\"Wind and hydro are renewable, so they have no environmental effects.\"",
-"wrong": "Equating renewable with zero impact.",
-"right": "Dams block fish and flood habitat. Turbines can kill birds and bats if poorly sited. Every energy source has tradeoffs to manage.",
-"why": "'Renewable' sounds purely positive.",
-"lock": "Renewable means it lasts, not that it's harmless."
-},
-{
-"u": "U9",
-"freq": "high",
-"title": "Mixing up the ozone hole and global warming",
-"setup": "\"The ozone hole lets heat in, causing global warming.\"",
-"wrong": "Merging two separate problems.",
-"right": "Ozone depletion lets in more UV radiation and was caused by CFCs. Warming comes from greenhouse gases trapping infrared heat. Different causes, different solutions.",
-"why": "Both involve the atmosphere and both are 'bad.'",
-"lock": "Ozone = UV shield. Greenhouse = heat blanket."
-},
-{
-"u": "U9",
-"freq": "high",
-"title": "Swapping bioaccumulation and biomagnification",
-"setup": "\"DDT bioaccumulated from plankton up to eagles.\"",
-"wrong": "Using bioaccumulation for movement across trophic levels.",
-"right": "Bioaccumulation is buildup within one organism over time. Biomagnification is increasing concentration up the food chain. DDT did both.",
-"why": "The words are similar.",
-"lock": "Accumulate in me; magnify up the chain."
-},
-{
-"u": "U10",
-"freq": "med",
-"title": "Calling ground-level ozone a primary pollutant",
-"setup": "\"Cars emit ozone.\"",
-"wrong": "Assuming everything in smog comes out of the tailpipe.",
-"right": "Cars emit NOₓ and VOCs, which are primary pollutants. Sunlight then drives reactions that form ozone, a secondary pollutant.",
-"why": "Ozone shows up wherever there's traffic.",
-"lock": "The tailpipe makes the ingredients; the sun cooks the ozone."
-},
-{
-"u": "U10",
-"freq": "med",
-"title": "Recycling first instead of reducing",
-"setup": "\"The best way to cut waste is to recycle more.\"",
-"wrong": "Skipping the top of the waste hierarchy.",
-"right": "Reduce, then reuse, then recycle. Recycling still takes energy and many materials degrade. Not creating waste saves the most.",
-"why": "Recycling is the most visible green habit.",
-"lock": "Reduce beats reuse beats recycle."
-},
-{
-"u": "U1",
-"freq": "high",
-"title": "Saying an experiment 'proved' a hypothesis",
-"setup": "\"Our data proved fertilizer causes algae growth.\"",
-"wrong": "Treating supporting data as proof.",
-"right": "Data support or fail to support a hypothesis. Science stays open to new evidence; repeated, replicated results build confidence.",
-"why": "'Prove' is common in everyday speech.",
-"lock": "Support, don't prove."
+"title": "Confusing the Edict of Nantes with the Peace of Westphalia",
+"setup": "\"The Edict of Nantes ended the Thirty Years' War.\"",
+"wrong": "Mixing up two settlements.",
+"right": "Nantes (1598) gave French Huguenots toleration. Westphalia (1648) ended the Thirty Years' War in Central Europe.",
+"why": "Both are religious settlements with French connections.",
+"lock": "Nantes = France 1598. Westphalia = Europe 1648."
 }
 ];
-const LS_M='envsci_autopsy_mastered', LS_F='envsci_autopsy_fmm';
+const LS_M='whh_autopsy_mastered', LS_F='whh_autopsy_fmm';
 let mastered=new Set(lsGet(LS_M,[])), openSet=new Set(), curU='all', curS='all';
 function setUnit(u,b){ curU=u; document.querySelectorAll('.pill[data-unit]').forEach(x=>x.classList.toggle('active',x===b)); render(); }
 function setSt(s,b){ curS=s; document.querySelectorAll('.pill[data-st]').forEach(x=>x.classList.toggle('active',x===b)); render(); }
