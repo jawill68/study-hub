@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebra 2: Sequences & Series - Unit Opener</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .unit-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section h2 {
+            font-size: 1.6em;
+            color: #667eea;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .section h3 {
+            font-size: 1.2em;
+            color: #764ba2;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .overview {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .context {
+            background: #f0f4ff;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+            border-radius: 4px;
+            margin: 15px 0;
+            font-style: italic;
+            color: #444;
+        }
+
+        .objectives {
+            list-style-position: inside;
+            margin: 15px 0;
+        }
+
+        .objectives li {
+            margin-bottom: 10px;
+            padding-left: 10px;
+        }
+
+        .key-terms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .term-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        .prerequisites {
+            background: #fff8e1;
+            padding: 15px 20px;
+            border-left: 4px solid #ffc107;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+
+        .mistakes {
+            background: #ffe0e0;
+            padding: 15px 20px;
+            border-left: 4px solid #f44336;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-box {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #667eea;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="unit-badge">U7</div>
+            <h1>Sequences & Series</h1>
+            <p style="font-size: 1.1em; margin-top: 10px;">Master this unit to unlock the concepts that follow</p>
+        </div>
+
+        <div class="content">
+            <!-- Overview Section -->
+            <div class="section">
+                <h2>📖 Unit Overview</h2>
+                <p class="overview">Sequences are ordered lists of numbers following a pattern. Series are sums of sequence terms. Arithmetic and geometric sequences model regular changes. Their formulas let you jump directly to the 100th term without listing all 99 before it.</p>
+                <div class="context">
+                    <strong>Real-World Context:</strong> Savings plans (arithmetic series), viral video views (geometric growth), mortgage payments (arithmetic series), loan amortization, investment returns—all use sequence and series mathematics.
+                </div>
+            </div>
+
+            <!-- Learning Objectives Section -->
+            <div class="section">
+                <h2>🎯 Learning Objectives</h2>
+                <p>By the end of this unit, you'll be able to:</p>
+                <ol class="objectives">
+                    <li>Identify arithmetic and geometric patterns</li>
+                    <li>Write explicit and recursive formulas for sequences</li>
+                    <li>Calculate sums of finite and infinite series</li>
+                    <li>Apply sequences to annuities, loan payments, and savings plans</li>
+                </ol>
+            </div>
+
+            <!-- Key Concepts Section -->
+            <div class="section">
+                <h2>💡 Key Concepts</h2>
+                <p>These glossary terms are essential for this unit:</p>
+                <div class="key-terms">
+                    <div class="term-badge">Arithmetic Sequence</div>
+                    <div class="term-badge">Arithmetic Series</div>
+                    <div class="term-badge">Binomial Theorem</div>
+                    <div class="term-badge">Common Difference</div>
+                    <div class="term-badge">Common Ratio</div>
+                    <div class="term-badge">Explicit Formula</div>
+                    <div class="term-badge">Finite Sequence</div>
+                    <div class="term-badge">Geometric Sequence</div>
+                    <div class="term-badge">Geometric Series</div>
+                    <div class="term-badge">Infinite Geometric Series</div>
+                    <div class="term-badge">Infinite Sequence</div>
+                    <div class="term-badge">Pascal's Triangle</div>
+                    <div class="term-badge">Recursive Formula</div>
+                    <div class="term-badge">Sequence</div>
+                    <div class="term-badge">Series</div>
+                    <div class="term-badge">Sigma Notation</div>
+                </div>
+                <p style="margin-top: 15px; color: #666; font-size: 0.95em;">
+                    <a href="/home/claude/study-hub/Algebra2_Master_Glossary.html" style="color: #667eea; text-decoration: none;">
+                        📚 View full glossary →
+                    </a>
+                </p>
+            </div>
+
+            <!-- Prerequisites Section -->
+            <div class="section">
+                <h2>📋 Prerequisites</h2>
+                <div class="prerequisites">
+                    <strong>Before starting this unit, you should know:</strong><br>
+                    U1 function notation; U6 exponential functions; solving equations
+                </div>
+            </div>
+
+            <!-- Practice Section -->
+            <div class="section">
+                <h2>✏️ Practice & Drill</h2>
+                <div class="stats">
+                    <div class="stat-box">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Practice Questions</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Tier 1 (Foundational)</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Tier 2 (Intermediate)</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">1</div>
+                        <div class="stat-label">Tier 3 (Advanced)</div>
+                    </div>
+                </div>
+                <p style="margin-top: 20px;">
+                    <a href="/home/claude/study-hub/Algebra2_DrillTrainer.html" style="color: #667eea; text-decoration: none; font-weight: 600;">
+                        💪 Start Drill Trainer →
+                    </a>
+                </p>
+            </div>
+
+            <!-- Common Mistakes Section -->
+            <div class="section">
+                <h2>⚠️ Common Mistakes to Avoid</h2>
+                <div class="mistakes">
+                    Mixing Up Arithmetic and Geometric Sequences, Applying Infinite Sum Formula When |r| ≥ 1
+                </div>
+                <p style="margin-top: 15px;">
+                    <a href="/home/claude/study-hub/Algebra2_Mistakes_Autopsy.html" style="color: #f44336; text-decoration: none; font-weight: 600;">
+                        🔍 Review Mistakes Autopsy →
+                    </a>
+                </p>
+            </div>
+
+            <!-- Navigation -->
+            <div class="nav-buttons">
+                <a href="/home/claude/study-hub/Algebra2_StudyHub.html" class="btn btn-secondary">← Back to Study Hub</a>
+                <a href="/home/claude/study-hub/Algebra2_DrillTrainer.html" class="btn btn-primary">Start Practice →</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
