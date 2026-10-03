@@ -162,6 +162,12 @@ window.loadStudents = async function(){
   }
 };
 
+// Unit 4 chapters: Ch 8 fields are top-level; later chapters are saved as chN_<field>.
+const CHS=[{n:'8',p:'',mk:13,sg:9},{n:'9',p:'ch9_',mk:10,sg:8},{n:'10',p:'ch10_',mk:10,sg:8},{n:'11',p:'ch11_',mk:10,sg:8}];
+const MK_TOTAL=CHS.reduce((a,c)=>a+c.mk,0), SG_TOTAL=CHS.reduce((a,c)=>a+c.sg,0);
+function overall(s){ const v=CHS.map(c=>s[c.p+'overallPct']).filter(x=>typeof x==='number'); return v.length?Math.round(v.reduce((a,b)=>a+b,0)/v.length):0; }
+function drillCell(s){ const parts=CHS.filter(c=>s[c.p+'drillSessions']).map(c=>`Ch ${c.n}: ${s[c.p+'drillSessions']}${s[c.p+'drillAccuracyPct']!=null?' · '+s[c.p+'drillAccuracyPct']+'%':''}`); return parts.length?parts.join('<br>'):'—'; }
+function sumF(s,f){ return CHS.reduce((a,c)=>a+(s[c.p+f]||0),0); }
 window.renderTable = function(){
   const content = document.getElementById('content');
   const statsRow = document.getElementById('stats-row');
@@ -175,8 +181,8 @@ window.renderTable = function(){
   const sortBy = document.getElementById('sort-select').value;
   const sorted = [...students].sort((a,b) => {
     if(sortBy === 'name') return (a.displayName||'').localeCompare(b.displayName||'');
-    if(sortBy === 'pct-desc') return (b.overallPct||0) - (a.overallPct||0);
-    if(sortBy === 'pct-asc') return (a.overallPct||0) - (b.overallPct||0);
+    if(sortBy === 'pct-desc') return overall(b) - overall(a);
+    if(sortBy === 'pct-asc') return overall(a) - overall(b);
     if(sortBy === 'recent'){
       const at = a.lastUpdated?.toMillis ? a.lastUpdated.toMillis() : 0;
       const bt = b.lastUpdated?.toMillis ? b.lastUpdated.toMillis() : 0;
@@ -187,16 +193,16 @@ window.renderTable = function(){
 
   statsRow.style.display = 'flex';
   document.getElementById('s-count').textContent = students.length;
-  const avgPct = Math.round(students.reduce((sum,s) => sum + (s.overallPct||0), 0) / students.length);
+  const avgPct = Math.round(students.reduce((sum,s) => sum + overall(s), 0) / students.length);
   document.getElementById('s-avg').textContent = avgPct + '%';
 
   const rows = sorted.map(s => `
     <tr>
       <td class="student-name">${esc(s.displayName || s.id)}</td>
-      <td><span class="pct-badge ${pctClass(s.overallPct||0)}">${s.overallPct||0}%</span></td>
+      <td><span class="pct-badge ${pctClass(overall(s))}">${overall(s)}%</span></td>
       <td class="cell-muted">${esc(s.rank||'—')}${s.level?' · Lv '+s.level:''}${s.streak?' · 🔥'+s.streak:''}</td>
-      <td class="cell-muted">${s.drillSessions||0} session${s.drillSessions===1?'':'s'}${s.drillAccuracyPct!=null?' · '+s.drillAccuracyPct+'%':''}</td>
-                  <td class="cell-muted">${s.autopsyMasteredCount||0}/10 · SG ${s.selfGraderMasteredCount||0}/6</td>
+      <td class="cell-muted">${drillCell(s)}</td>
+                  <td class="cell-muted">${sumF(s,'autopsyMasteredCount')}/${MK_TOTAL} · SG ${sumF(s,'selfGraderMasteredCount')}/${SG_TOTAL}</td>
       <td class="timestamp">${formatTimestamp(s.lastUpdated)}</td>
     </tr>`).join('');
 
@@ -208,7 +214,7 @@ window.renderTable = function(){
             <th>Student</th>
             <th>Overall</th>
             <th>Rank</th>
-            <th>Drill Trainer</th>
+            <th>Drill Trainer (by chapter)</th>
                                     <th>Autopsy · Self-Grader</th>
             <th>Last Active</th>
           </tr>
