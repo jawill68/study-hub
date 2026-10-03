@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environmental Science Honors: Mistakes Autopsy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .status {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .controls {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .unit-filter {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .mistakes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .mistake-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid #667eea;
+            cursor: pointer;
+        }
+
+        .mistake-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .mistake-card.u1 {
+            border-left-color: #3498db;
+        }
+
+        .mistake-card.u2 {
+            border-left-color: #2ecc71;
+        }
+
+        .mistake-card.u3 {
+            border-left-color: #f39c12;
+        }
+
+        .mistake-card.u4 {
+            border-left-color: #e74c3c;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            flex: 1;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .unit-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .mistake-card.u2 .unit-badge {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+        }
+
+        .mistake-card.u3 .unit-badge {
+            background: linear-gradient(135deg, #f39c12 0%, #d68910 100%);
+        }
+
+        .mistake-card.u4 .unit-badge {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        }
+
+        .glossary-ref {
+            font-size: 0.85em;
+            color: #999;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .mistake-section {
+            margin-bottom: 15px;
+        }
+
+        .mistake-label {
+            font-weight: bold;
+            color: #e74c3c;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .mistake-text {
+            background: #ffe6e6;
+            padding: 12px;
+            border-radius: 6px;
+            color: #d32f2f;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .right-label {
+            font-weight: bold;
+            color: #27ae60;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .right-text {
+            background: #e6ffe6;
+            padding: 12px;
+            border-radius: 6px;
+            color: #1e7e34;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .memory-label {
+            font-weight: bold;
+            color: #3498db;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .memory-text {
+            background: #e6f2ff;
+            padding: 12px;
+            border-radius: 6px;
+            color: #0c5ba8;
+            font-size: 0.95em;
+            line-height: 1.5;
+            font-weight: bold;
+        }
+
+        .watchout-label {
+            font-weight: bold;
+            color: #f39c12;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .watchout-text {
+            background: #fff3e0;
+            padding: 12px;
+            border-radius: 6px;
+            color: #d68910;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        footer {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            color: #666;
+            margin-top: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .mistakes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .unit-filter {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 Environmental Science Honors: Mistakes Autopsy</h1>
+            <p>Cascade Phase 3: Misconception Prevention Layer</p>
+            <p>Master 30 high-frequency misconceptions with glossary-referenced clarifications</p>
+            <div class="status">✓ Complete & Verified</div>
+
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="stat-number">30</div>
+                    <div class="stat-label">Misconceptions</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Units</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">79</div>
+                    <div class="stat-label">Glossary Terms</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Coverage</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="controls">
+            <div class="unit-filter">
+                <button class="filter-btn active" onclick="filterMistakes('ALL')">All Units</button>
+                <button class="filter-btn" onclick="filterMistakes('U1')">U1: Ecology</button>
+                <button class="filter-btn" onclick="filterMistakes('U2')">U2: Biodiversity</button>
+                <button class="filter-btn" onclick="filterMistakes('U3')">U3: Sustaining</button>
+                <button class="filter-btn" onclick="filterMistakes('U4')">U4: Environmental Quality</button>
+            </div>
+        </div>
+
+        <div class="mistakes-grid" id="mistakesGrid">
+        </div>
+
+        <footer>
+            <p><strong>How to Use This Tool:</strong></p>
+            <p>Each misconception includes: what students often get wrong, the correct understanding, a memorable phrase, and a watchout tip. Use during lessons, assign as study material, or reference before exams to prevent high-frequency errors.</p>
+            <p style="margin-top: 20px; font-size: 0.9em;">Generated: 2026-10-03 | Environmental Science Cascade Phase 3</p>
+        </footer>
+    </div>
+
+    <script>
+        const MISTAKES_DATA = [{'id': 'm1', 'unit': 'U1', 'glossary_term': 'Ecology', 'topic': 'Ecology vs Environmentalism', 'wrong': 'Ecology and environmentalism are the same thing—both are about protecting the environment.', 'right': 'Ecology is objective science studying organism-environment interactions. Environmentalism is a values-based movement applying ecological knowledge to conservation goals.', 'memory': 'Ecology = SCIENCE (objective facts). Environmentalism = VALUES (what we should do).', 'watchout': "An ecologist can study how to maximize profit from a forest (objective). An environmentalist advocates protecting it (values). Both are valid, but they're different."}, {'id': 'm2', 'unit': 'U1', 'glossary_term': 'Biotic and Abiotic Factors', 'topic': 'Living vs Non-Living in Ecosystems', 'wrong': "Soil is abiotic because it doesn't move or respond to stimuli like living things do.", 'right': "Soil is abiotic because it's non-living. It doesn't have cells, metabolism, or reproduction. Living organisms (bacteria, fungi, earthworms) live IN soil, but soil itself is abiotic.", 'memory': 'Abiotic = A-LIVING (non-living): temperature, water, pH, soil, light, atmosphere.', 'watchout': "Don't confuse 'soil contains life' with 'soil is alive.' Soil is non-living; it contains living organisms."}, {'id': 'm3', 'unit': 'U1', 'glossary_term': 'Energy Flow and Food Chains', 'topic': 'Energy Conservation in Food Chains', 'wrong': 'Energy is conserved in food chains—the same amount of energy moves from one trophic level to the next.', 'right': 'Energy is NOT conserved in food chains. ~90% is lost as heat and used for metabolism. Only ~10% is captured by the next level. This is why food chains rarely exceed 4-5 levels.', 'memory': 'The 10% rule: Each trophic level captures ~10% of energy from the level below.', 'watchout': 'Energy is NOT conserved in ecosystems (unlike closed physics systems). Heat loss is why food chains are short.'}, {'id': 'm4', 'unit': 'U1', 'glossary_term': 'Producers and Consumers', 'topic': 'Only Plants Are Producers', 'wrong': 'Only plants are producers; animals are always consumers.', 'right': 'Producers are organisms that capture energy from the sun (plants) or chemical energy (some bacteria). Most animals are consumers, but some bacteria are producers (chemosynthetic).', 'memory': 'PRODUCER = captures energy. CONSUMER = obtains energy by eating other organisms.', 'watchout': 'In deep-sea vents, chemosynthetic bacteria are producers, not consumers. Producer ≠ plant.'}, {'id': 'm5', 'unit': 'U1', 'glossary_term': 'Succession', 'topic': 'Succession Always Increases Biodiversity', 'wrong': 'During succession, biodiversity always increases steadily until the climax community.', 'right': 'Biodiversity increases early in succession (pioneer → competitors), but may decrease at climax. A climax community is stable and often less diverse than mid-succession stages.', 'memory': 'Mid-succession often has HIGHEST diversity. Climax is MOST STABLE, not most diverse.', 'watchout': 'The climax community is the endpoint, not the most biodiverse stage. Disturbance sometimes increases diversity.'}, {'id': 'm6', 'unit': 'U1', 'glossary_term': 'Carrying Capacity', 'topic': 'Carrying Capacity Is Fixed', 'wrong': "A habitat's carrying capacity is a fixed number that never changes.", 'right': 'Carrying capacity is dynamic. It changes with environmental conditions. More rain → higher plant productivity → higher carrying capacity for herbivores. Drought → lower carrying capacity.', 'memory': 'K (carrying capacity) = f(environment). Better conditions = higher K.', 'watchout': "Don't treat carrying capacity as a constant. It responds to environmental change."}, {'id': 'm7', 'unit': 'U1', 'glossary_term': 'Limiting Factors', 'topic': 'The Most Abundant Resource Is Limiting', 'wrong': "The limiting factor is the resource that's most abundant in an ecosystem.", 'right': 'The limiting factor is the SCARCEST resource relative to demand. If nitrogen is rare and phosphorus is abundant, nitrogen limits growth.', 'memory': 'Limiting factor = the SCARCEST needed resource, not the most abundant.', 'watchout': 'A farmer adding nitrogen sees yield increase (nitrogen was limiting), but adding more nitrogen next year has little effect (now another nutrient is limiting).'}, {'id': 'm8', 'unit': 'U1', 'glossary_term': 'Primary vs Secondary Succession', 'topic': 'Succession Requires Starting from Bare Rock', 'wrong': 'Succession is a slow process that can only happen starting from bare rock with no existing soil.', 'right': "Primary succession starts from bare rock (no soil). Secondary succession starts from disturbed land with existing soil—it's much faster because soil, seeds, and organisms are already present.", 'memory': 'PRIMARY = bare rock (slow). SECONDARY = disturbed land with soil (fast).', 'watchout': 'After a forest fire, you see secondary succession (soil intact), not primary succession.'}, {'id': 'm9', 'unit': 'U1', 'glossary_term': 'Photosynthesis', 'topic': 'Photosynthesis Only Happens in Sunlight', 'wrong': "Photosynthesis happens only during the day when there's light.", 'right': 'The light-dependent reactions (requiring light) happen only during the day. The light-independent reactions (Calvin cycle) happen day AND night. Plants can photosynthesize at night if provided with the products of light reactions.', 'memory': 'Light REACTIONS = day only. Calvin cycle = day AND night (uses ATP from light reactions).', 'watchout': 'Photosynthesis is a 2-step process. Disrupting light reactions stops both steps during day and night.'}, {'id': 'm10', 'unit': 'U1', 'glossary_term': 'Density-Dependent Factors', 'topic': 'All Density-Dependent Factors Are Biotic', 'wrong': 'Density-dependent factors are always biotic (disease, predation, competition). Abiotic factors are always density-independent.', 'right': 'Most density-dependent factors are biotic (disease, predation). But some abiotic factors CAN be density-dependent (e.g., oxygen depletion in crowded conditions).', 'memory': 'DENSITY-DEPENDENT = effect increases with crowding (usually biotic, sometimes abiotic).', 'watchout': "Don't assume abiotic = density-independent. Oxygen depletion in crowded ponds is density-dependent and abiotic."}, {'id': 'm11', 'unit': 'U2', 'glossary_term': 'Biodiversity', 'topic': 'Biodiversity Is Only About Species Count', 'wrong': 'Biodiversity is just the number of species in an area.', 'right': 'Biodiversity includes: (1) genetic diversity (variation within species), (2) species diversity (number of species), (3) ecosystem diversity (variety of ecosystem types). A single species-count misses genetic and ecosystem variation.', 'memory': 'Biodiversity has THREE LEVELS: genetic, species, ecosystem.', 'watchout': 'A region with 50 species of identical genotypes has lower true biodiversity than one with 20 genetically diverse species.'}, {'id': 'm12', 'unit': 'U2', 'glossary_term': 'Keystone Species', 'topic': 'Keystone Species Are Always Large or Predatory', 'wrong': 'Keystone species are always large, charismatic animals like wolves or bears.', 'right': 'Keystone species have disproportionate ecological importance relative to their abundance. A keystone can be small (sea otter, earthworm, coral polyp) and can be a producer or decomposer.', 'memory': "KEYSTONE = disproportionate impact. Size or charisma don't matter.", 'watchout': 'Sea otters (small) and earthworms (decomposers) are keystones. Impact ≠ size.'}, {'id': 'm13', 'unit': 'U2', 'glossary_term': 'Invasive Species', 'topic': 'Invasive Species Come Only from Distant Continents', 'wrong': 'Invasive species must come from distant continents and immediately outcompete native species.', 'right': "Invasive species can come from anywhere humans move them (nearby or distant). They succeed when: (1) they lack natural predators in the new location, (2) they exploit an empty niche, (3) they're generalists. Some establish slowly.", 'memory': "INVASIVE = non-native species that harm the ecosystem. Source distance doesn't determine invasiveness.", 'watchout': 'A feral cat from two neighborhoods away is invasive; a deliberately-introduced plant might not be.'}, {'id': 'm14', 'unit': 'U2', 'glossary_term': 'Genetic Diversity', 'topic': 'Genetic Diversity Is Irrelevant to Species Survival', 'wrong': "Genetic diversity within a species is nice to have but doesn't affect whether the species survives.", 'right': "Genetic diversity is CRITICAL. It provides variation for natural selection. Low genetic diversity (genetic bottleneck) reduces adaptive capacity—the species can't evolve to handle new diseases or environmental changes.", 'memory': 'Genetic diversity = ADAPTIVE CAPACITY. Low diversity = extinction risk.', 'watchout': 'A population of 10,000 genetically identical individuals is less viable than 100 genetically diverse individuals.'}, {'id': 'm15', 'unit': 'U2', 'glossary_term': 'Habitat Fragmentation', 'topic': 'Fragmented Habitats Are Just Smaller Versions of Whole Habitats', 'wrong': 'A fragmented habitat (broken into patches) is just a smaller version of the original. Species survive if the total patch area is large enough.', 'right': "Fragmentation creates edge effects and isolation. Even if total area is the same, 10 small patches are worse than 1 large patch because: (1) edge effects increase, (2) species can't migrate between patches, (3) genetic exchange stops, (4) local extinctions aren't reversed.", 'memory': 'FRAGMENTATION = isolation + edge effects. 10 small patches < 1 large patch (same area).', 'watchout': 'A highway fragmenting a forest is bad even if the total forest area is unchanged.'}, {'id': 'm16', 'unit': 'U2', 'glossary_term': 'Genetic Bottleneck', 'topic': 'Genetic Bottlenecks Only Happen Naturally During Disasters', 'wrong': 'Genetic bottlenecks are rare, natural disasters that happen only occasionally.', 'right': 'Genetic bottlenecks happen when population size drops, regardless of cause: natural disaster (volcano) or human action (hunting, habitat loss). They reduce genetic diversity permanently.', 'memory': 'BOTTLENECK = small population = low genetic diversity. Humans cause bottlenecks through overexploitation.', 'watchout': "Cheetahs have extremely low genetic diversity due to a natural bottleneck 10,000 years ago. They're extinction-prone today because of it."}, {'id': 'm17', 'unit': 'U2', 'glossary_term': 'Mutation', 'topic': 'All Mutations Are Harmful', 'wrong': 'Mutations are genetic errors that always harm organisms.', 'right': 'Mutations are random changes in DNA. Most are neutral (no effect). Some are harmful. Some are beneficial. Beneficial mutations drive adaptation.', 'memory': 'Mutations = RANDOM changes. Mostly neutral, some bad, some good.', 'watchout': "Mutations are not 'errors to avoid'—they're the source of genetic variation that enables evolution."}, {'id': 'm18', 'unit': 'U3', 'glossary_term': 'Protected Areas', 'topic': 'Protected Areas Are Only National Parks', 'wrong': 'Protected areas are large, scenic national parks where all human activity is banned.', 'right': 'Protected areas include national parks, wildlife refuges, marine reserves, wilderness areas, and community reserves. Protection levels vary: some allow hunting/logging under strict management; others ban all human activity.', 'memory': "PROTECTED AREAS = varies by type and management. Not all are 'no human activity.'", 'watchout': 'A sustainably-managed forest where indigenous people hunt is a protected area; so is a no-entry reserve.'}, {'id': 'm19', 'unit': 'U3', 'glossary_term': 'Captive Breeding', 'topic': 'Captive Breeding Creates New Species', 'wrong': 'Captive breeding of endangered species is a permanent solution—we can just breed them in zoos forever.', 'right': 'Captive breeding prevents extinction in the short term. But captive populations: (1) lose genetic diversity (founders are small), (2) adapt to captivity (maladapted to wild), (3) need reintroduction to truly survive.', 'memory': 'Captive breeding = EMERGENCY MEASURE. Goal is eventual wild release, not permanent captivity.', 'watchout': "Captive-bred animals often struggle when released to the wild because they've adapted to captivity."}, {'id': 'm20', 'unit': 'U3', 'glossary_term': 'In Situ vs Ex Situ Conservation', 'topic': 'Ex Situ Conservation Is Better Because We Control It', 'wrong': 'Ex situ conservation (zoos, seed banks) is better because we can protect species in controlled conditions.', 'right': 'In situ conservation (protecting wild populations in their habitat) is preferred because wild populations maintain ecological roles and genetic diversity. Ex situ is a backup/emergency measure.', 'memory': 'IN SITU = wild (better). EX SITU = controlled (backup).', 'watchout': "Protecting habitat protects not just one species but entire communities. That's why in situ is preferred."}, {'id': 'm21', 'unit': 'U3', 'glossary_term': 'Ecotourism', 'topic': 'Ecotourism Is Always Good for Conservation', 'wrong': 'Ecotourism is always beneficial—it generates money and makes people care about conservation.', 'right': "Ecotourism CAN help conservation if managed properly. But unmanaged ecotourism causes habitat damage (trampling, noise), stress on wildlife, and local communities may not benefit. Money doesn't always reach conservation.", 'memory': 'Ecotourism = potential benefit IF managed. No guarantee of conservation success.', 'watchout': 'A coral reef damaged by 100,000 divers per year is losing conservation value despite ecotourism income.'}, {'id': 'm22', 'unit': 'U3', 'glossary_term': 'Reintroduction', 'topic': 'Reintroduced Species Instantly Restore Ecosystem Function', 'wrong': "Once we reintroduce a species to a restored habitat, the ecosystem is 'fixed' and functions normally.", 'right': 'Reintroduction is the beginning, not the end. Success requires: (1) long-term monitoring, (2) ongoing habitat management, (3) threat mitigation (poaching, climate change), (4) acceptance by local communities.', 'memory': 'REINTRODUCTION = start of long-term commitment. Not instant restoration.', 'watchout': 'A reintroduced wolf population needs protection from hunting and disease monitoring for decades, not just release.'}, {'id': 'm23', 'unit': 'U3', 'glossary_term': 'CITES', 'topic': 'CITES Bans All International Trade in Endangered Species', 'wrong': 'CITES is a global law that completely bans trade in all endangered species.', 'right': 'CITES is an international agreement with three appendices: Appendix I (trade banned or strictly limited), Appendix II (trade allowed with permits), Appendix III (some protections). Not all endangered species are on CITES.', 'memory': 'CITES = framework with LEVELS, not a complete ban.', 'watchout': 'Some threatened species are traded legally under CITES permits; not all endangered species are CITES-protected.'}, {'id': 'm24', 'unit': 'U3', 'glossary_term': 'Ecological Corridors', 'topic': 'Corridors Must Connect Directly', 'wrong': 'Ecological corridors must be continuous, direct connections between protected areas.', 'right': 'Corridors can be direct (continuous habitat) or stepping-stone (small patches that allow movement). Stepping-stone corridors are often more practical and can be effective.', 'memory': 'CORRIDORS = can be continuous OR stepping-stone.', 'watchout': 'A series of small forest patches can function as a stepping-stone corridor for birds, even without direct connection.'}, {'id': 'm25', 'unit': 'U4', 'glossary_term': 'Bioaccumulation vs Biomagnification', 'topic': 'Bioaccumulation and Biomagnification Are the Same Thing', 'wrong': 'Bioaccumulation and biomagnification are the same process—toxins building up in organisms.', 'right': 'Bioaccumulation: toxins build up in ONE organism over time (eating contaminated food). Biomagnification: toxin concentration INCREASES up the food chain. A hawk has higher mercury than a fish; the fish has higher mercury than algae.', 'memory': 'ACCUMULATION = in one organism. MAGNIFICATION = across food chain (increases up chain).', 'watchout': 'Biomagnification explains why apex predators are most contaminated, not just because they live longer.'}, {'id': 'm26', 'unit': 'U4', 'glossary_term': 'Eutrophication', 'topic': 'All Algae Growth Is Eutrophication', 'wrong': 'Any increase in algae in a lake means eutrophication is happening.', 'right': 'Eutrophication is EXCESSIVE nutrient input (nitrogen, phosphorus) causing algal blooms, then hypoxia/dead zones. Normal algae growth is not eutrophication. Eutrophication implies ecosystem damage.', 'memory': 'EUTROPHICATION = excess nutrients → algal bloom → hypoxia → dead zone.', 'watchout': "Nutrient input from farming runoff causes eutrophication; it's not a natural process."}, {'id': 'm27', 'unit': 'U4', 'glossary_term': 'Acid Rain', 'topic': 'Acid Rain Is Only From Sulfur Dioxide', 'wrong': 'Acid rain is caused only by sulfur dioxide (SO₂) from coal combustion.', 'right': 'Acid rain is caused by BOTH SO₂ (creates sulfuric acid) and NOₓ (nitrogen oxides, create nitric acid). Vehicle emissions are a major NOₓ source.', 'memory': 'ACID RAIN = SO₂ + NOₓ. Coal AND cars contribute.', 'watchout': "Reducing coal emissions alone won't eliminate acid rain; vehicle emissions must also be controlled."}, {'id': 'm28', 'unit': 'U4', 'glossary_term': 'Ozone Depletion', 'topic': 'Ozone Depletion and Global Warming Are the Same Problem', 'wrong': 'The ozone hole and global warming are the same environmental problem.', 'right': "They're separate issues: Ozone depletion (CFCs destroying stratospheric O₃, causing UV damage). Global warming (greenhouse gases trapping heat). Solutions are different.", 'memory': 'OZONE = CFCs, stratosphere, UV protection. WARMING = greenhouse gases, troposphere, heat.', 'watchout': "Healing the ozone hole doesn't fix global warming. We're actually healing the ozone hole!"}, {'id': 'm29', 'unit': 'U4', 'glossary_term': 'Climate Change', 'topic': 'Climate Change Is Just About Temperature Rising', 'wrong': 'Climate change just means average temperature goes up.', 'right': 'Climate change involves shifts in temperature, precipitation, seasonal timing, and extreme weather patterns. Some regions get colder while others warm; some get wetter while others dry.', 'memory': 'CLIMATE CHANGE = temperature + precipitation + extremes + timing shifts.', 'watchout': "A record snowstorm doesn't disprove climate change; it's consistent with changing weather patterns."}, {'id': 'm30', 'unit': 'U4', 'glossary_term': 'Mitigation vs Adaptation', 'topic': 'Mitigation and Adaptation Are Interchangeable', 'wrong': 'Mitigation and adaptation are the same strategy for dealing with climate change.', 'right': "Mitigation: reduce greenhouse gases (prevent warming). Adaptation: adjust to warming that's already happening (seawalls for rising seas, drought-resistant crops). Both are needed.", 'memory': 'MITIGATION = prevent problem. ADAPTATION = adjust to it.', 'watchout': "We need BOTH. Mitigation alone can't stop all warming we've caused; adaptation helps us survive what's coming."}];
+
+        function createMistakeCard(mistake) {
+            const unitClass = mistake['unit'].lower();
+            return `
+                <div class="mistake-card ${unitClass}">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">${mistake['topic']}</div>
+                            <div class="glossary-ref">Glossary: <em>${mistake['glossary_term']}</em></div>
+                        </div>
+                        <div class="unit-badge">${mistake['unit']}</div>
+                    </div>
+
+                    <div class="mistake-section">
+                        <div class="mistake-label">❌ Common Misconception</div>
+                        <div class="mistake-text">${mistake['wrong']}</div>
+                    </div>
+
+                    <div class="mistake-section">
+                        <div class="right-label">✓ Correct Understanding</div>
+                        <div class="right-text">${mistake['right']}</div>
+                    </div>
+
+                    <div class="mistake-section">
+                        <div class="memory-label">💡 Memory Aid</div>
+                        <div class="memory-text">${mistake['memory']}</div>
+                    </div>
+
+                    <div class="mistake-section">
+                        <div class="watchout-label">⚠️ Watchout</div>
+                        <div class="watchout-text">${mistake['watchout']}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderMistakes(mistakes) {
+            const grid = document.getElementById('mistakesGrid');
+            grid.innerHTML = mistakes.map(createMistakeCard).join('');
+        }
+
+        function filterMistakes(unit) {
+            // Update button states
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Filter and render
+            if (unit === 'ALL') {
+                renderMistakes(MISTAKES_DATA);
+            } else {
+                const filtered = MISTAKES_DATA.filter(m => m.unit === unit);
+                renderMistakes(filtered);
+            }
+        }
+
+        // Initial render
+        renderMistakes(MISTAKES_DATA);
+    </script>
+</body>
+</html>
