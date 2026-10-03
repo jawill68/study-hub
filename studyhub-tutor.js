@@ -18,7 +18,7 @@
 (function(){
   // ── Set this to your deployed Cloudflare Worker URL to turn on live AI ──
   // e.g. 'https://studyhub-tutor.YOUR-SUBDOMAIN.workers.dev'
-  const TUTOR_ENDPOINT = '';
+  const TUTOR_ENDPOINT = 'https://studyhub-tutor.jamez-r-williams.workers.dev';
 
   const LIVE_TIMEOUT_MS = 20000;
   const PASS_KEY = 'studyhub_tutor_pass';      // saved on this device after the first correct entry
