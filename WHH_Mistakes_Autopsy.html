@@ -117,11 +117,11 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     <div class="stat-chip"><div class="stat-num" style="color:var(--amber)" id="s-fm">—</div><div class="stat-lbl">LAST DIAGNOSTIC</div></div>
   </div>
   <div class="controls">
-    <div class="ctrl-row"><span class="ctrl-label">UNIT</span><button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button><button class="pill" data-unit="8.A" onclick="setUnit('8.A',this)">8.A</button><button class="pill" data-unit="8.B" onclick="setUnit('8.B',this)">8.B</button><button class="pill" data-unit="8.C" onclick="setUnit('8.C',this)">8.C</button><button class="pill" data-unit="8.D" onclick="setUnit('8.D',this)">8.D</button></div>
+    <div class="ctrl-row"><span class="ctrl-label">UNIT</span><button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button><button class="pill" data-unit="1.2" onclick="setUnit('1.2',this)">1.2</button><button class="pill" data-unit="2.1" onclick="setUnit('2.1',this)">2.1</button><button class="pill" data-unit="2.4" onclick="setUnit('2.4',this)">2.4</button><button class="pill" data-unit="3.1" onclick="setUnit('3.1',this)">3.1</button><button class="pill" data-unit="3.2" onclick="setUnit('3.2',this)">3.2</button><button class="pill" data-unit="4.1" onclick="setUnit('4.1',this)">4.1</button><button class="pill" data-unit="4.2" onclick="setUnit('4.2',this)">4.2</button><button class="pill" data-unit="4.3" onclick="setUnit('4.3',this)">4.3</button></div>
     <div class="ctrl-row"><span class="ctrl-label">SHOW</span><button class="pill active" data-st="all" onclick="setSt('all',this)">All</button><button class="pill" data-st="high" onclick="setSt('high',this)">🔥 High frequency</button><button class="pill" data-st="todo" onclick="setSt('todo',this)">Not mastered</button><button class="pill" data-st="done" onclick="setSt('done',this)">Mastered</button></div>
   </div>
   <div id="list"></div>
-  <div class="footer">World History Honors (2109320) · Chapter 8: Renaissance and Reformation · Florida NGSSS SS.912.W.4</div>
+  <div class="footer">World History Honors (2109320) · Unit 4 · Chapter 8: Renaissance and Reformation · Florida NGSSS SS.912.W.4</div>
 </div>
 <div class="overlay" id="ov" onclick="if(event.target===this)closeFM()"><div class="modal" role="dialog" aria-modal="true" id="modal"></div></div>
 <script>
@@ -132,10 +132,10 @@ function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON
 function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
 function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
 
-const UNIT_NAMES={"8.A": "Italian Renaissance", "8.B": "Northern Renaissance & Printing", "8.C": "Protestant Reformation", "8.D": "Catholic Reformation & Religious Wars"};
+const UNIT_NAMES={"1.1": "The Rise of Italian City-States", "1.2": "A Cultural Rebirth", "1.3": "Renaissance Arts", "1.4": "Explorer: Finding a Lost Leonardo", "2.1": "Renaissance Humanism", "2.2": "Raphael's School of Athens", "2.3": "DBQ: Humanist Writings", "2.4": "Renaissances Around the World", "3.1": "Martin Luther and the Protestant Reformation", "3.2": "Reforms Across Europe", "4.1": "Challenges to Habsburg Dominance", "4.2": "The Catholic Reformation", "4.3": "Global Christianities"};
 const MK=[
 {
-"u": "8.A",
+"u": "1.2",
 "freq": "high",
 "title": "Thinking the Renaissance rejected religion",
 "setup": "\"Renaissance people stopped believing in God and only cared about science.\"",
@@ -145,7 +145,7 @@ const MK=[
 "lock": "More human focus, not less faith."
 },
 {
-"u": "8.A",
+"u": "1.2",
 "freq": "high",
 "title": "Saying the Renaissance was a sudden break from the Middle Ages",
 "setup": "\"In 1350 everything changed overnight.\"",
@@ -155,7 +155,7 @@ const MK=[
 "lock": "Periods blend; they don't flip."
 },
 {
-"u": "8.A",
+"u": "2.1",
 "freq": "med",
 "title": "Crediting the printing press to Italy",
 "setup": "\"The Italian Renaissance invented the printing press.\"",
@@ -165,7 +165,7 @@ const MK=[
 "lock": "Gutenberg = Germany."
 },
 {
-"u": "8.B",
+"u": "2.1",
 "freq": "high",
 "title": "Thinking Erasmus left the Catholic Church",
 "setup": "\"Erasmus and Luther started Protestantism together.\"",
@@ -175,7 +175,7 @@ const MK=[
 "lock": "Critic is not the same as convert."
 },
 {
-"u": "8.C",
+"u": "3.1",
 "freq": "high",
 "title": "Saying Luther wanted to start a new church",
 "setup": "\"In 1517 Luther set out to create Protestantism.\"",
@@ -185,7 +185,7 @@ const MK=[
 "lock": "Reform first; split later."
 },
 {
-"u": "8.C",
+"u": "3.1",
 "freq": "high",
 "title": "Explaining the Reformation as only about religion",
 "setup": "\"Princes supported Luther purely because of faith.\"",
@@ -195,7 +195,7 @@ const MK=[
 "lock": "Faith + power + money."
 },
 {
-"u": "8.C",
+"u": "3.2",
 "freq": "med",
 "title": "Mixing up Henry VIII's motives",
 "setup": "\"Henry VIII became Protestant because he agreed with Luther.\"",
@@ -205,7 +205,7 @@ const MK=[
 "lock": "A king's marriage, not a monk's theology."
 },
 {
-"u": "8.C",
+"u": "4.1",
 "freq": "med",
 "title": "Thinking the Peace of Augsburg created religious freedom",
 "setup": "\"After 1555 every German could choose their religion.\"",
@@ -215,7 +215,7 @@ const MK=[
 "lock": "The prince chose, not the people."
 },
 {
-"u": "8.D",
+"u": "4.2",
 "freq": "high",
 "title": "Treating the Catholic Reformation as only a reaction",
 "setup": "\"The Catholic Church did nothing until Luther forced it.\"",
@@ -225,7 +225,7 @@ const MK=[
 "lock": "Reaction AND renewal."
 },
 {
-"u": "8.D",
+"u": "4.1",
 "freq": "med",
 "title": "Confusing the Edict of Nantes with the Peace of Westphalia",
 "setup": "\"The Edict of Nantes ended the Thirty Years' War.\"",
@@ -233,6 +233,36 @@ const MK=[
 "right": "Nantes (1598) gave French Huguenots toleration. Westphalia (1648) ended the Thirty Years' War in Central Europe.",
 "why": "Both are religious settlements with French connections.",
 "lock": "Nantes = France 1598. Westphalia = Europe 1648."
+},
+{
+"u": "2.4",
+"freq": "high",
+"title": "Thinking only Europe had a \"renaissance\"",
+"setup": "\"While Europe was having its Renaissance, the rest of the world was standing still.\"",
+"wrong": "Treating Europe as the only center of cultural achievement.",
+"right": "Many societies experienced flowerings of art, science, and learning — Timurid Samarkand, the Ottoman court, Ming China, and others — often linked by trade with Europe.",
+"why": "The word \"Renaissance\" is usually taught only about Europe.",
+"lock": "Many renaissances, one connected world."
+},
+{
+"u": "4.1",
+"freq": "med",
+"title": "Assuming the most powerful ruler could simply crush the Reformation",
+"setup": "\"Charles V ruled half of Europe, so he could have stopped Luther easily.\"",
+"wrong": "Ignoring the competing demands on Habsburg power.",
+"right": "Charles faced France, the Ottomans (Siege of Vienna, 1529), and independent German princes at once. Spreading his power thin forced compromises like the Peace of Augsburg.",
+"why": "A huge empire sounds unbeatable.",
+"lock": "Big empire, many fronts."
+},
+{
+"u": "4.3",
+"freq": "med",
+"title": "Thinking Christianity outside Europe began with European missionaries",
+"setup": "\"Before the 1500s there were no Christians in Africa or Asia.\"",
+"wrong": "Overlooking ancient non-European Christian communities.",
+"right": "Ethiopian and other eastern Christian churches date back to the early centuries C.E. The 1500s brought new Catholic and Protestant missions alongside them.",
+"why": "The era's missionary story gets most of the attention.",
+"lock": "Christianity was already global before the missionaries."
 }
 ];
 const LS_M='whh_autopsy_mastered', LS_F='whh_autopsy_fmm';

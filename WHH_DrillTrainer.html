@@ -179,7 +179,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
       <div class="actions" style="margin-top:16px"><button class="btn btn-ghost" onclick="goSetup()">← Setup</button><button class="btn btn-teal" onclick="start(true)">Retry same</button><button class="btn btn-accent" id="btn-missed" onclick="retryMissed()">Drill missed only</button></div></div>
     <div class="card" id="r-missed-card"><div class="sec-lbl">Review what you missed</div><div id="r-missed"></div></div>
   </div>
-  <div class="footer">World History Honors (2109320) · Chapter 8: Renaissance and Reformation · Florida NGSSS SS.912.W.4</div>
+  <div class="footer">World History Honors (2109320) · Unit 4 · Chapter 8: Renaissance and Reformation · Florida NGSSS SS.912.W.4</div>
 </div>
 <script>
 function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -189,10 +189,10 @@ function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON
 function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
 function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
 
-const UNIT_NAMES = {"8.A": "Italian Renaissance", "8.B": "Northern Renaissance & Printing", "8.C": "Protestant Reformation", "8.D": "Catholic Reformation & Religious Wars"};
+const UNIT_NAMES = {"1.1": "The Rise of Italian City-States", "1.2": "A Cultural Rebirth", "1.3": "Renaissance Arts", "1.4": "Explorer: Finding a Lost Leonardo", "2.1": "Renaissance Humanism", "2.2": "Raphael's School of Athens", "2.3": "DBQ: Humanist Writings", "2.4": "Renaissances Around the World", "3.1": "Martin Luther and the Protestant Reformation", "3.2": "Reforms Across Europe", "4.1": "Challenges to Habsburg Dominance", "4.2": "The Catholic Reformation", "4.3": "Global Christianities"};
 const QB = [
 {
-"u": "8.A",
+"u": "1.2",
 "t": 1,
 "q": "The word \"Renaissance\" means:",
 "o": [
@@ -205,7 +205,7 @@ const QB = [
 "e": "Renaissance is French for rebirth — a revival of classical Greek and Roman learning and art."
 },
 {
-"u": "8.A",
+"u": "1.1",
 "t": 1,
 "q": "Where did the Renaissance begin?",
 "o": [
@@ -218,7 +218,7 @@ const QB = [
 "e": "Wealthy northern Italian city-states such as Florence and Venice had money, urban culture, and Roman ruins close at hand."
 },
 {
-"u": "8.A",
+"u": "1.1",
 "t": 2,
 "q": "Which factor BEST explains why the Renaissance began in Italy rather than elsewhere?",
 "o": [
@@ -231,7 +231,7 @@ const QB = [
 "e": "Trade wealth created rich patrons; cities concentrated talent; Roman heritage was all around. The printing press came from Germany, and Italy was divided into city-states, not one kingdom."
 },
 {
-"u": "8.A",
+"u": "2.1",
 "t": 2,
 "q": "Humanists focused mainly on:",
 "o": [
@@ -244,7 +244,7 @@ const QB = [
 "e": "Humanism studied the humanities through classical sources. Most humanists remained Christian; they added a focus on human achievement."
 },
 {
-"u": "8.A",
+"u": "1.2",
 "t": 2,
 "q": "How did the Fall of Constantinople in 1453 contribute to the Renaissance?",
 "o": [
@@ -257,7 +257,7 @@ const QB = [
 "e": "Greek scholars and texts arriving in Italy deepened the study of Plato and other Greek thinkers."
 },
 {
-"u": "8.A",
+"u": "1.1",
 "t": 1,
 "q": "Which family ruled Florence and became famous patrons of Renaissance art?",
 "o": [
@@ -270,7 +270,7 @@ const QB = [
 "e": "The Medici banking fortune supported artists and scholars such as Botticelli and young Michelangelo."
 },
 {
-"u": "8.A",
+"u": "1.3",
 "t": 2,
 "q": "A painting shows a merchant family in their home with realistic faces and a window revealing a landscape behind them. Which Renaissance values does it reflect?",
 "o": [
@@ -283,7 +283,7 @@ const QB = [
 "e": "Worldly subjects (secular), specific people celebrated (individualism), and realistic depth (perspective) are Renaissance hallmarks."
 },
 {
-"u": "8.A",
+"u": "2.3",
 "t": 3,
 "q": "Machiavelli's The Prince was controversial because it argued that rulers should:",
 "o": [
@@ -296,7 +296,7 @@ const QB = [
 "e": "Machiavelli described politics as it actually worked, not as it ideally should. That realism is why \"Machiavellian\" now means cunning and ruthless."
 },
 {
-"u": "8.A",
+"u": "1.3",
 "t": 1,
 "q": "Which artist painted the Mona Lisa and filled notebooks with inventions and anatomy?",
 "o": [
@@ -309,7 +309,7 @@ const QB = [
 "e": "Leonardo da Vinci is the classic Renaissance man — artist, engineer, and scientist."
 },
 {
-"u": "8.A",
+"u": "1.3",
 "t": 2,
 "q": "Linear perspective helped Renaissance artists:",
 "o": [
@@ -322,7 +322,7 @@ const QB = [
 "e": "Lines converge at a vanishing point, making flat paintings look deep and realistic."
 },
 {
-"u": "8.A",
+"u": "1.2",
 "t": 3,
 "q": "Writers like Dante and Petrarch writing in Italian rather than Latin mattered because:",
 "o": [
@@ -335,7 +335,7 @@ const QB = [
 "e": "The vernacular made literature accessible to ordinary readers, and printing later multiplied that effect."
 },
 {
-"u": "8.A",
+"u": "2.1",
 "t": 2,
 "q": "Castiglione's The Book of the Courtier described the ideal noble as:",
 "o": [
@@ -348,7 +348,7 @@ const QB = [
 "e": "The courtier should be skilled in arms, letters, music, and conversation — the well-rounded ideal."
 },
 {
-"u": "8.B",
+"u": "2.1",
 "t": 1,
 "q": "Who developed the printing press with movable metal type in Europe around 1450?",
 "o": [
@@ -361,7 +361,7 @@ const QB = [
 "e": "Gutenberg's press in Mainz made books much faster and cheaper to produce."
 },
 {
-"u": "8.B",
+"u": "2.1",
 "t": 2,
 "q": "What was the MOST important effect of the printing press?",
 "o": [
@@ -374,7 +374,7 @@ const QB = [
 "e": "Cheap print spread humanist scholarship, Bibles, and Luther's pamphlets across Europe within weeks."
 },
 {
-"u": "8.B",
+"u": "2.1",
 "t": 2,
 "q": "How did the Northern Renaissance differ from the Italian Renaissance?",
 "o": [
@@ -387,7 +387,7 @@ const QB = [
 "e": "Northern humanists like Erasmus applied humanist scholarship to reforming the Church and Christian life."
 },
 {
-"u": "8.B",
+"u": "2.1",
 "t": 2,
 "q": "Erasmus's The Praise of Folly criticized:",
 "o": [
@@ -400,7 +400,7 @@ const QB = [
 "e": "Erasmus used satire to mock Church abuses, but he wanted reform from within, not a break with Rome."
 },
 {
-"u": "8.B",
+"u": "2.3",
 "t": 1,
 "q": "Thomas More's Utopia describes:",
 "o": [
@@ -413,7 +413,7 @@ const QB = [
 "e": "Utopia uses an imaginary island to criticize real problems in European society."
 },
 {
-"u": "8.B",
+"u": "1.3",
 "t": 2,
 "q": "Flemish painters like Jan van Eyck are known for:",
 "o": [
@@ -426,7 +426,7 @@ const QB = [
 "e": "Oil paint allowed fine detail and glowing color; the technique spread from Flanders to Italy."
 },
 {
-"u": "8.B",
+"u": "2.1",
 "t": 3,
 "q": "Historians say \"Erasmus laid the egg that Luther hatched.\" What does this mean?",
 "o": [
@@ -439,7 +439,7 @@ const QB = [
 "e": "Christian humanist critiques spread doubts about Church practices. Luther took the next step — open rejection of papal authority."
 },
 {
-"u": "8.B",
+"u": "2.1",
 "t": 1,
 "q": "Which English playwright wrote Hamlet and Romeo and Juliet?",
 "o": [
@@ -452,7 +452,7 @@ const QB = [
 "e": "Shakespeare's plays in English reflect Renaissance interest in human nature and the vernacular."
 },
 {
-"u": "8.B",
+"u": "3.1",
 "t": 3,
 "q": "Without the printing press, the Reformation would most likely have:",
 "o": [
@@ -465,7 +465,7 @@ const QB = [
 "e": "Earlier critics such as Wycliffe and Hus were contained. Printing let Luther's ideas reach thousands before they could be stopped."
 },
 {
-"u": "8.B",
+"u": "1.3",
 "t": 2,
 "q": "Albrecht Dürer helped spread Renaissance artistic ideas north mainly through:",
 "o": [
@@ -478,7 +478,7 @@ const QB = [
 "e": "Prints were cheaper than paintings, so his work reached a broad audience."
 },
 {
-"u": "8.B",
+"u": "2.1",
 "t": 2,
 "q": "Why did literacy rise after the invention of the printing press?",
 "o": [
@@ -491,7 +491,7 @@ const QB = [
 "e": "Affordable books — especially vernacular Bibles — gave ordinary people a reason and a way to read."
 },
 {
-"u": "8.C",
+"u": "3.1",
 "t": 1,
 "q": "In what year did Martin Luther write the Ninety-five Theses?",
 "o": [
@@ -504,7 +504,7 @@ const QB = [
 "e": "1517 is the traditional start date of the Protestant Reformation."
 },
 {
-"u": "8.C",
+"u": "3.1",
 "t": 1,
 "q": "Luther's Ninety-five Theses mainly attacked:",
 "o": [
@@ -517,7 +517,7 @@ const QB = [
 "e": "Luther objected to the claim that buying a pardon could reduce punishment for sin."
 },
 {
-"u": "8.C",
+"u": "3.1",
 "t": 2,
 "q": "Which belief is central to Luther's teaching?",
 "o": [
@@ -530,7 +530,7 @@ const QB = [
 "e": "\"Faith alone\" and \"Scripture alone\" were Luther's core challenges to Church authority."
 },
 {
-"u": "8.C",
+"u": "3.1",
 "t": 2,
 "q": "At the Diet of Worms in 1521, Luther:",
 "o": [
@@ -543,7 +543,7 @@ const QB = [
 "e": "Luther refused to take back his writings. Frederick the Wise of Saxony then protected him."
 },
 {
-"u": "8.C",
+"u": "3.1",
 "t": 3,
 "q": "Why did many German princes support Luther?",
 "o": [
@@ -556,7 +556,7 @@ const QB = [
 "e": "Religion and politics were intertwined. Princes saw political and economic advantages in Lutheranism."
 },
 {
-"u": "8.C",
+"u": "4.1",
 "t": 2,
 "q": "The Peace of Augsburg (1555) established that:",
 "o": [
@@ -569,7 +569,7 @@ const QB = [
 "e": "\"Whose realm, his religion\": the ruler chose, and subjects were expected to follow or move. Calvinism was not included until 1648."
 },
 {
-"u": "8.C",
+"u": "3.2",
 "t": 1,
 "q": "Which reformer taught predestination and led the city of Geneva?",
 "o": [
@@ -582,7 +582,7 @@ const QB = [
 "e": "Calvin's Geneva became a model Protestant community with strict moral rules."
 },
 {
-"u": "8.C",
+"u": "3.2",
 "t": 2,
 "q": "Henry VIII broke with the Roman Catholic Church mainly because:",
 "o": [
@@ -595,7 +595,7 @@ const QB = [
 "e": "Henry wanted a male heir. The break was political and personal at first; Protestant theology grew stronger later."
 },
 {
-"u": "8.C",
+"u": "3.2",
 "t": 2,
 "q": "The Act of Supremacy (1534) made:",
 "o": [
@@ -608,7 +608,7 @@ const QB = [
 "e": "This created the Church of England (Anglican Church) under royal control."
 },
 {
-"u": "8.C",
+"u": "3.2",
 "t": 3,
 "q": "How was the English Reformation DIFFERENT from Luther's Reformation in Germany?",
 "o": [
@@ -621,7 +621,7 @@ const QB = [
 "e": "Luther's was theology-first, from below. Henry's was a royal decision driven by succession and power."
 },
 {
-"u": "8.C",
+"u": "3.1",
 "t": 3,
 "q": "Wycliffe and Hus are sometimes called forerunners of the Reformation because they:",
 "o": [
@@ -634,7 +634,7 @@ const QB = [
 "e": "Their ideas anticipated Luther, but without the printing press they were easier to suppress — Hus was executed in 1415."
 },
 {
-"u": "8.C",
+"u": "3.2",
 "t": 2,
 "q": "Anabaptists were persecuted by both Catholics and other Protestants mainly because they:",
 "o": [
@@ -647,7 +647,7 @@ const QB = [
 "e": "Their views challenged both religious and political order of the time."
 },
 {
-"u": "8.D",
+"u": "4.2",
 "t": 1,
 "q": "The Catholic Church's response to the Protestant Reformation is called the:",
 "o": [
@@ -660,7 +660,7 @@ const QB = [
 "e": "The Church reformed abuses and reaffirmed its doctrines to stop Protestantism's spread."
 },
 {
-"u": "8.D",
+"u": "4.2",
 "t": 2,
 "q": "The Council of Trent:",
 "o": [
@@ -673,7 +673,7 @@ const QB = [
 "e": "Trent clarified doctrine (faith AND works, seven sacraments) while fixing abuses Protestants had criticized."
 },
 {
-"u": "8.D",
+"u": "4.2",
 "t": 1,
 "q": "Who founded the Jesuits?",
 "o": [
@@ -686,7 +686,7 @@ const QB = [
 "e": "Loyola founded the Society of Jesus in 1540."
 },
 {
-"u": "8.D",
+"u": "4.2",
 "t": 2,
 "q": "The Jesuits strengthened the Catholic Church mainly through:",
 "o": [
@@ -699,7 +699,7 @@ const QB = [
 "e": "Jesuit schools trained leaders, and missionaries spread Catholicism to Asia, Africa, and the Americas."
 },
 {
-"u": "8.D",
+"u": "4.2",
 "t": 2,
 "q": "The Index of Forbidden Books was created to:",
 "o": [
@@ -712,7 +712,7 @@ const QB = [
 "e": "Censorship was one tool of the Catholic Reformation, alongside the Inquisition."
 },
 {
-"u": "8.D",
+"u": "4.1",
 "t": 2,
 "q": "The Edict of Nantes (1598) granted religious toleration to:",
 "o": [
@@ -725,7 +725,7 @@ const QB = [
 "e": "Henry IV ended the French Wars of Religion by granting Protestants rights while keeping France officially Catholic."
 },
 {
-"u": "8.D",
+"u": "4.1",
 "t": 1,
 "q": "The Thirty Years' War lasted from:",
 "o": [
@@ -738,7 +738,7 @@ const QB = [
 "e": "It began in Bohemia in 1618 and ended with the Peace of Westphalia in 1648."
 },
 {
-"u": "8.D",
+"u": "4.1",
 "t": 3,
 "q": "Why is the Peace of Westphalia (1648) considered a turning point?",
 "o": [
@@ -751,7 +751,7 @@ const QB = [
 "e": "After Westphalia, states — not religious authorities — became the main actors in European politics."
 },
 {
-"u": "8.D",
+"u": "4.1",
 "t": 3,
 "q": "The St. Bartholomew's Day Massacre (1572) shows that the Reformation:",
 "o": [
@@ -764,7 +764,7 @@ const QB = [
 "e": "Religious division turned into civil war in France until the Edict of Nantes."
 },
 {
-"u": "8.D",
+"u": "4.3",
 "t": 3,
 "q": "Which statement BEST describes a long-term effect of the Reformation?",
 "o": [
@@ -777,7 +777,7 @@ const QB = [
 "e": "Christian unity in Western Europe ended; secular rulers gained authority; both sides founded schools to teach their faith."
 },
 {
-"u": "8.D",
+"u": "4.2",
 "t": 2,
 "q": "Which was NOT a goal of the Catholic Reformation?",
 "o": [
@@ -790,7 +790,7 @@ const QB = [
 "e": "The Council of Trent rejected faith alone and taught that faith and good works both matter."
 },
 {
-"u": "8.D",
+"u": "4.2",
 "t": 2,
 "q": "The Inquisition was used during the Catholic Reformation to:",
 "o": [
@@ -801,6 +801,422 @@ const QB = [
 ],
 "a": 1,
 "e": "Church courts enforced orthodoxy, sometimes harshly."
+},
+{
+"u": "1.1",
+"t": 2,
+"q": "Venice became wealthy mainly because it:",
+"o": [
+"Controlled sea trade between Europe and the eastern Mediterranean",
+"Had the largest army in Europe",
+"Was the seat of the pope",
+"Mined gold in the Alps"
+],
+"a": 0,
+"e": "Venice's fleets and merchants carried spices, silk, and other goods between Europe, Ottoman lands, and Asian trade routes."
+},
+{
+"u": "1.1",
+"t": 2,
+"q": "Italian city-states often hired condottieri because:",
+"o": [
+"They had no money",
+"Wealthy merchant states preferred to pay professional mercenary captains rather than raise citizen armies",
+"The pope required it",
+"They were forbidden to own weapons"
+],
+"a": 1,
+"e": "Rich city-states bought military protection. Some condottieri, like Francesco Sforza of Milan, seized power for themselves."
+},
+{
+"u": "1.1",
+"t": 3,
+"q": "Why did banking families like the Medici become powerful in politics as well as art?",
+"o": [
+"They were elected kings",
+"Their wealth let them lend to rulers and popes, reward supporters, and fund buildings and art that displayed their status",
+"They controlled the army by law",
+"They owned all the land in Italy"
+],
+"a": 1,
+"e": "Money brought influence: loans created obligations, patronage built loyalty, and art projected power. The Medici even produced popes."
+},
+{
+"u": "1.2",
+"t": 1,
+"q": "Which describes the Renaissance view of the individual?",
+"o": [
+"Individuals were unimportant",
+"Individual talent and achievement deserved recognition and fame",
+"Only kings could achieve greatness",
+"Individuals should avoid education"
+],
+"a": 1,
+"e": "Individualism prized personal achievement — artists signed works and writers celebrated human potential."
+},
+{
+"u": "1.3",
+"t": 1,
+"q": "Who designed the dome of Florence Cathedral?",
+"o": [
+"Michelangelo",
+"Filippo Brunelleschi",
+"Raphael",
+"Vasari"
+],
+"a": 1,
+"e": "Brunelleschi engineered the dome (completed 1436) using innovative techniques, including a double shell and herringbone brickwork."
+},
+{
+"u": "1.3",
+"t": 2,
+"q": "Michelangelo's David became a symbol of Florence because it represented:",
+"o": [
+"The pope's power",
+"A small, determined republic standing up to stronger enemies",
+"The Ottoman Empire",
+"Northern Renaissance art"
+],
+"a": 1,
+"e": "The biblical David defeated Goliath; Florentines identified with the underdog defending its liberty."
+},
+{
+"u": "1.4",
+"t": 2,
+"q": "What was Maurizio Seracini trying to find in Florence's Palazzo Vecchio?",
+"o": [
+"Michelangelo's lost sculpture",
+"Traces of Leonardo's unfinished mural, The Battle of Anghiari",
+"The Medici treasury",
+"A Roman temple"
+],
+"a": 1,
+"e": "Seracini used scientific imaging to search for Leonardo's lost mural, which some believe may survive behind a later painting by Vasari."
+},
+{
+"u": "1.4",
+"t": 2,
+"q": "Art diagnostics uses which tools to study paintings without destroying them?",
+"o": [
+"Only a magnifying glass",
+"Infrared, X-ray, and other imaging plus chemical analysis",
+"Repainting the surface",
+"Carbon dating every brushstroke"
+],
+"a": 1,
+"e": "Imaging can reveal hidden sketches and earlier layers, and tiny samples can identify pigments."
+},
+{
+"u": "1.4",
+"t": 3,
+"q": "Why did the search for The Battle of Anghiari stir debate?",
+"o": [
+"Everyone agreed it should be done",
+"Searching could damage Vasari's existing masterpiece, so researchers weighed discovery against preservation",
+"It was in another country",
+"Leonardo never existed"
+],
+"a": 1,
+"e": "Drilling small probes behind a historic fresco raised conservation and ethical concerns — a real tension in historical research."
+},
+{
+"u": "2.2",
+"t": 1,
+"q": "Who painted The School of Athens?",
+"o": [
+"Leonardo da Vinci",
+"Michelangelo",
+"Raphael",
+"Botticelli"
+],
+"a": 2,
+"e": "Raphael painted it in the Vatican around 1509–1511 for Pope Julius II."
+},
+{
+"u": "2.2",
+"t": 2,
+"q": "In The School of Athens, Plato points upward while Aristotle holds his hand out level, palm down. What does this contrast represent?",
+"o": [
+"They are arguing about the weather",
+"Plato's focus on ideal, unseen forms versus Aristotle's focus on the observable world",
+"Plato is older",
+"Aristotle is praying"
+],
+"a": 1,
+"e": "The gestures summarize their philosophies — a clever way to show ideas in paint."
+},
+{
+"u": "2.2",
+"t": 3,
+"q": "Why does The School of Athens hang in the Vatican, a Christian space?",
+"o": [
+"It was stolen",
+"Renaissance humanists saw classical philosophy and Christian faith as compatible; the room pairs it with a fresco on theology",
+"The pope disliked it",
+"It was painted for a mosque"
+],
+"a": 1,
+"e": "Humanism blended classical learning with Christianity rather than rejecting religion."
+},
+{
+"u": "2.2",
+"t": 2,
+"q": "The grand arches and perspective in The School of Athens show Raphael's use of:",
+"o": [
+"Medieval flat backgrounds",
+"Classical architecture and linear perspective to create depth",
+"Abstract shapes",
+"Oil painting on canvas"
+],
+"a": 1,
+"e": "The vanishing point draws your eye to Plato and Aristotle at the center."
+},
+{
+"u": "2.3",
+"t": 2,
+"q": "Cassandra Fedele is significant because she:",
+"o": [
+"Painted the Sistine Chapel",
+"Was a celebrated female humanist scholar who publicly praised the value of learning",
+"Founded the Jesuits",
+"Invented the printing press"
+],
+"a": 1,
+"e": "Her fame shows humanist education reached some elite women, though most women were excluded from formal learning."
+},
+{
+"u": "2.3",
+"t": 3,
+"q": "When analyzing Machiavelli's The Prince as a source, why does it matter that he wrote it hoping to win favor with the Medici?",
+"o": [
+"It doesn't matter",
+"His purpose and audience may have shaped his advice — sourcing helps judge a document's perspective and reliability",
+"It proves the book is false",
+"It means he was a Medici"
+],
+"a": 1,
+"e": "Considering purpose and audience (sourcing) is essential to any DBQ."
+},
+{
+"u": "2.3",
+"t": 2,
+"q": "More's Utopia and Machiavelli's The Prince take different approaches because:",
+"o": [
+"Utopia describes an imagined ideal society to criticize real problems, while The Prince describes how power actually works",
+"They are the same book",
+"Both describe real countries",
+"Both are religious texts"
+],
+"a": 0,
+"e": "One is idealistic satire; the other is political realism — both are humanist responses to their world."
+},
+{
+"u": "2.4",
+"t": 2,
+"q": "Why do historians speak of \"renaissances\" in other parts of the world?",
+"o": [
+"Europe copied all of them",
+"Many societies had periods of great achievement in art, science, and learning — Europe's was one of several",
+"Only Europe had culture",
+"The word is only used for Italy"
+],
+"a": 1,
+"e": "A global view shows cultural flowerings across Eurasia and beyond, often connected through trade and exchange."
+},
+{
+"u": "2.4",
+"t": 2,
+"q": "Ulugh Beg is known for:",
+"o": [
+"Painting the Mona Lisa",
+"Building an observatory in Samarkand and producing an accurate star catalog",
+"Leading the Reformation",
+"Discovering America"
+],
+"a": 1,
+"e": "The Timurid ruler's observatory made Samarkand a center of astronomy in the 1400s."
+},
+{
+"u": "2.4",
+"t": 2,
+"q": "The Ottoman architect Sinan is comparable to Brunelleschi because both:",
+"o": [
+"Were popes",
+"Designed monumental domed buildings that symbolized the power and culture of their societies",
+"Wrote The Prince",
+"Led armies"
+],
+"a": 1,
+"e": "Sinan's Süleymaniye Mosque and Brunelleschi's dome were both engineering triumphs and civic statements."
+},
+{
+"u": "3.1",
+"t": 2,
+"q": "The German Peasants' War (1524–1525) showed that:",
+"o": [
+"Luther supported all rebellions",
+"Some people used Reformation ideas to challenge social order, but Luther sided with the princes, who crushed the revolt",
+"Peasants won their demands",
+"The pope led the peasants"
+],
+"a": 1,
+"e": "Luther wanted religious reform, not social revolution; his support for the princes kept them on his side."
+},
+{
+"u": "3.2",
+"t": 1,
+"q": "Huldrych Zwingli led the Reformation in which city?",
+"o": [
+"Geneva",
+"Zurich",
+"Wittenberg",
+"Rome"
+],
+"a": 1,
+"e": "Zwingli led reform in Zurich; Calvin later led Geneva."
+},
+{
+"u": "4.1",
+"t": 2,
+"q": "Charles V struggled to stop the Reformation mainly because he:",
+"o": [
+"Agreed with Luther",
+"Was fighting France and the Ottomans at the same time and needed the support of German princes",
+"Had no army",
+"Lived in England"
+],
+"a": 1,
+"e": "Ruling a huge, scattered empire meant constant wars on several fronts, which gave Lutheran princes room to grow."
+},
+{
+"u": "4.1",
+"t": 2,
+"q": "The Dutch Revolt against Spain was caused by:",
+"o": [
+"Only trade disputes",
+"A mix of Protestant faith, heavy Spanish taxes, and defense of local rights against Philip II",
+"A volcanic eruption",
+"Ottoman invasion"
+],
+"a": 1,
+"e": "Religion, money, and self-government combined. The northern provinces became the Dutch Republic."
+},
+{
+"u": "4.1",
+"t": 2,
+"q": "What was the result of the Spanish Armada in 1588?",
+"o": [
+"Spain conquered England",
+"The Armada was defeated by English ships and storms, a blow to Spanish prestige",
+"England became Catholic",
+"France joined Spain"
+],
+"a": 1,
+"e": "The defeat protected Protestant England and showed the limits of Habsburg power."
+},
+{
+"u": "4.1",
+"t": 3,
+"q": "How did the Ottoman Empire indirectly help Protestantism survive?",
+"o": [
+"It converted to Protestantism",
+"Ottoman pressure, such as the 1529 Siege of Vienna, forced Charles V to focus on the east and compromise with German princes",
+"It funded Luther",
+"It banned Catholicism"
+],
+"a": 1,
+"e": "Habsburg resources were stretched thin; defending against the Ottomans took priority over crushing Lutherans."
+},
+{
+"u": "4.1",
+"t": 1,
+"q": "Which event sparked the Thirty Years' War in 1618?",
+"o": [
+"The Defenestration of Prague",
+"The Diet of Worms",
+"The Spanish Armada",
+"The Council of Trent"
+],
+"a": 0,
+"e": "Protestant nobles threw Habsburg officials out of a window in Prague, triggering war in the Holy Roman Empire."
+},
+{
+"u": "4.1",
+"t": 2,
+"q": "The Habsburgs controlled such a large empire mainly through:",
+"o": [
+"Conquest of China",
+"Strategic marriages and inheritance",
+"Elections by the people",
+"Purchasing land from the pope"
+],
+"a": 1,
+"e": "Marriage alliances brought Austria, Spain, the Netherlands, and more under one family."
+},
+{
+"u": "4.3",
+"t": 2,
+"q": "Matteo Ricci gained acceptance in Ming China partly by:",
+"o": [
+"Forcing conversions",
+"Learning Chinese, sharing European science and maps, and adapting Christian teaching to Chinese culture",
+"Leading an army",
+"Banning Confucianism"
+],
+"a": 1,
+"e": "His accommodation approach respected Chinese learning — and later stirred debate within the Church."
+},
+{
+"u": "4.3",
+"t": 2,
+"q": "King Afonso I of Kongo is significant because he:",
+"o": [
+"Opposed Christianity",
+"Adopted Catholicism and built ties with Portugal while protesting the harm of the slave trade",
+"Founded the Jesuits",
+"Conquered Portugal"
+],
+"a": 1,
+"e": "His letters show an African ruler engaging with Christianity and Europe on his own terms — and the costs of that relationship."
+},
+{
+"u": "4.3",
+"t": 3,
+"q": "Which statement BEST describes Christianity's global spread in this era?",
+"o": [
+"It spread only through peaceful choice",
+"It spread through missionaries, trade, and colonial conquest, and often blended with local traditions",
+"It stayed only in Europe",
+"It disappeared outside Europe"
+],
+"a": 1,
+"e": "Missions, empires, and local adaptation (syncretism) all shaped global Christianities — and so did coercion."
+},
+{
+"u": "4.3",
+"t": 1,
+"q": "Francis Xavier was a missionary who reached which country in 1549?",
+"o": [
+"Japan",
+"Brazil",
+"Ethiopia",
+"Russia"
+],
+"a": 0,
+"e": "Xavier, a founding Jesuit, preached in India and Southeast Asia before arriving in Japan."
+},
+{
+"u": "4.3",
+"t": 2,
+"q": "The Ethiopian Orthodox Church shows that:",
+"o": [
+"Christianity arrived in Africa only with Europeans",
+"African Christianity is ancient, dating to the 300s C.E.",
+"Ethiopia was Protestant",
+"Christianity began in Ethiopia"
+],
+"a": 1,
+"e": "Christianity had deep roots in Africa and Asia long before the Reformation."
 }
 ];
 const TUTOR = "CLIO";
@@ -947,6 +1363,7 @@ document.addEventListener('keydown',e=>{
   document.getElementById('mode-desc').innerHTML=DESC.practice;
   const p=new URLSearchParams(location.search);
   const u=p.get('unit'); if(u){ const uu=UNIT_NAMES[u]?u:'U'+u; if(UNIT_NAMES[uu]) sel=new Set([uu]); }
+  const us=p.get('units'); if(us){ const list=us.split(',').filter(x=>UNIT_NAMES[x]); if(list.length) sel=new Set(list); }
   const m=p.get('mode'); if(m&&DESC[m]){ const b=document.querySelector('.mode-tab[data-m="'+m+'"]'); if(b) setMode(m,b); }
   renderUnits(); upd(); globals();
 })();

@@ -117,11 +117,11 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     <div class="stat-chip"><div class="stat-num" style="color:var(--amber)" id="s-avg">—</div><div class="stat-lbl">AVG SELF-SCORE</div></div>
   </div>
   <div class="controls">
-    <div class="ctrl-row"><span class="ctrl-label">UNIT</span><button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button><button class="pill" data-unit="8.A" onclick="setUnit('8.A',this)">8.A</button><button class="pill" data-unit="8.B" onclick="setUnit('8.B',this)">8.B</button><button class="pill" data-unit="8.C" onclick="setUnit('8.C',this)">8.C</button><button class="pill" data-unit="8.D" onclick="setUnit('8.D',this)">8.D</button></div>
+    <div class="ctrl-row"><span class="ctrl-label">UNIT</span><button class="pill active" data-unit="all" onclick="setUnit('all',this)">All</button><button class="pill" data-unit="1.1" onclick="setUnit('1.1',this)">1.1</button><button class="pill" data-unit="2.1" onclick="setUnit('2.1',this)">2.1</button><button class="pill" data-unit="2.2" onclick="setUnit('2.2',this)">2.2</button><button class="pill" data-unit="2.3" onclick="setUnit('2.3',this)">2.3</button><button class="pill" data-unit="3.1" onclick="setUnit('3.1',this)">3.1</button><button class="pill" data-unit="3.2" onclick="setUnit('3.2',this)">3.2</button><button class="pill" data-unit="4.1" onclick="setUnit('4.1',this)">4.1</button><button class="pill" data-unit="4.2" onclick="setUnit('4.2',this)">4.2</button><button class="pill" data-unit="4.3" onclick="setUnit('4.3',this)">4.3</button></div>
     <div class="ctrl-row"><span class="ctrl-label">TYPE</span><button class="pill active" data-type="all" onclick="setType('all',this)">All</button><button class="pill" data-type="concept" onclick="setType('concept',this)">💬 Analysis & Argument</button><button class="pill" data-type="data" onclick="setType('data',this)">📜 Source Analysis</button></div>
   </div>
   <div id="list"></div>
-  <div class="footer">World History Honors (2109320) · Chapter 8: Renaissance and Reformation · Florida NGSSS SS.912.W.4</div>
+  <div class="footer">World History Honors (2109320) · Unit 4 · Chapter 8: Renaissance and Reformation · Florida NGSSS SS.912.W.4</div>
 </div>
 <script>
 function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -131,11 +131,11 @@ function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON
 function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
 function game(){ return window.StudyHubGame || {answer(){},event(){}}; }
 
-const UNIT_NAMES = {"8.A": "Italian Renaissance", "8.B": "Northern Renaissance & Printing", "8.C": "Protestant Reformation", "8.D": "Catholic Reformation & Religious Wars"};
+const UNIT_NAMES = {"1.1": "The Rise of Italian City-States", "1.2": "A Cultural Rebirth", "1.3": "Renaissance Arts", "1.4": "Explorer: Finding a Lost Leonardo", "2.1": "Renaissance Humanism", "2.2": "Raphael's School of Athens", "2.3": "DBQ: Humanist Writings", "2.4": "Renaissances Around the World", "3.1": "Martin Luther and the Protestant Reformation", "3.2": "Reforms Across Europe", "4.1": "Challenges to Habsburg Dominance", "4.2": "The Catholic Reformation", "4.3": "Global Christianities"};
 const TYPE_LABEL = {"concept": "💬 Analysis & Argument", "data": "📜 Source Analysis"};
 const PROMPTS = [
 {
-"u": "8.A",
+"u": "1.1",
 "type": "concept",
 "prompt": "Explain THREE reasons the Renaissance began in the city-states of northern Italy. Use specific examples.",
 "model": "1. Wealth from trade and banking: Venice and Genoa controlled Mediterranean trade; Florence's Medici bank funded art. Money created patrons.\n2. Urban society: crowded cities concentrated merchants, artisans, and scholars who exchanged ideas, unlike rural feudal society.\n3. Classical heritage: Roman ruins, statues, and Latin texts surrounded Italians; Greek scholars fleeing Constantinople (1453) brought Greek manuscripts.\n(Also acceptable: recovery after the Black Death created opportunities and questioning; competition among city-states for prestige.)",
@@ -147,7 +147,7 @@ const PROMPTS = [
 ]
 },
 {
-"u": "8.A",
+"u": "2.3",
 "type": "data",
 "prompt": "Source paraphrase — Machiavelli, The Prince (1513): a prince who wants to keep power must learn how not to be good when necessary, and it is safer to be feared than loved if he cannot be both.\n\n(a) What is Machiavelli's main claim about leadership? (b) How does this reflect Renaissance thinking? (c) Give one argument against his view.",
 "model": "(a) Rulers should judge actions by results — keeping power and stability — rather than by traditional morality. Fear is more reliable than love for maintaining control.\n(b) It reflects Renaissance realism, secular thinking, and focus on human behavior as it actually is. Machiavelli used observation and history (classical examples) instead of religious ideals to analyze politics.\n(c) Ruling by fear can breed resentment and rebellion; legitimacy and the people's trust can make a state more stable long term. It also justifies cruelty and deception.",
@@ -159,7 +159,7 @@ const PROMPTS = [
 ]
 },
 {
-"u": "8.B",
+"u": "2.1",
 "type": "concept",
 "prompt": "Explain how the printing press connected the Renaissance and the Reformation. Include at least two specific effects.",
 "model": "The printing press (Gutenberg, c. 1450) made books cheap and fast to produce.\n1. It spread Renaissance humanist works and classical texts across Europe, carrying Italian ideas north and fueling the Northern Renaissance (Erasmus's books became bestsellers).\n2. It spread Luther's Ninety-five Theses and pamphlets across Germany within weeks in 1517, making it impossible to suppress him the way earlier reformers like Hus were stopped.\n3. Vernacular Bibles let ordinary people read scripture themselves, supporting the Protestant idea that the Bible is the authority and raising literacy.\nSo printing was the bridge: it spread the critical, text-based thinking of humanism, which reformers then used against Church practices.",
@@ -171,7 +171,7 @@ const PROMPTS = [
 ]
 },
 {
-"u": "8.C",
+"u": "3.2",
 "type": "concept",
 "prompt": "Compare the causes of the Lutheran Reformation in Germany and the English Reformation. Identify one similarity and two differences.",
 "model": "Similarity: both rejected the pope's authority and created churches independent of Rome, and in both cases rulers (German princes, the English king) gained power over the church.\n\nDifferences:\n1. Origin: Germany's began with a religious protest by a monk and professor (Luther, 1517) over indulgences and doctrine. England's began with a political and dynastic decision by the king (Henry VIII) when the pope refused his annulment.\n2. Theology: Luther's movement was driven by new doctrine (faith alone, scripture alone). Henry's early Church of England kept much Catholic doctrine and practice; Protestant theology came later under Edward VI and Elizabeth I.",
@@ -183,7 +183,7 @@ const PROMPTS = [
 ]
 },
 {
-"u": "8.C",
+"u": "3.1",
 "type": "data",
 "prompt": "Source paraphrase — Luther at the Diet of Worms (1521): unless convinced by Scripture and plain reason, he cannot accept the authority of popes and councils, because they have contradicted each other; his conscience is bound to the Word of God.\n\n(a) What two sources of authority does Luther accept? (b) What authority does he reject, and why? (c) Why was this statement so dangerous to both the Church and the emperor?",
 "model": "(a) Scripture (the Bible) and plain reason, plus individual conscience bound to God's Word.\n(b) He rejects the authority of popes and Church councils, because he argues they have made errors and contradicted each other.\n(c) It challenged the whole structure of Church authority — if individuals can judge doctrine by Scripture and conscience, the Church cannot enforce unity. For Charles V, religious division threatened political unity in the Holy Roman Empire, and princes could use it to defy him.",
@@ -195,7 +195,7 @@ const PROMPTS = [
 ]
 },
 {
-"u": "8.D",
+"u": "4.2",
 "type": "concept",
 "prompt": "Evaluate the Catholic Reformation: how successful was it? Use at least three pieces of evidence and reach a clear judgment.",
 "model": "Judgment: largely successful at renewing and defending Catholicism, but it could not restore religious unity.\n\nSuccesses:\n• The Council of Trent (1545–1563) clarified doctrine and ended abuses like the sale of indulgences, removing major Protestant complaints.\n• The Jesuits (1540) built schools and sent missionaries worldwide, strengthening Catholic education and spreading the faith to Asia and the Americas.\n• Regions such as Poland, Bavaria, and much of southern Germany were held or won back for Catholicism.\n\nLimits:\n• Northern Germany, Scandinavia, England, the Dutch Republic, and parts of Switzerland stayed Protestant.\n• Religious wars (French Wars of Religion, Thirty Years' War) showed division continued; Westphalia (1648) accepted a permanently divided Europe.\n• Tools like the Inquisition and the Index created resentment.",
@@ -205,6 +205,44 @@ const PROMPTS = [
 "At least one limit with specific evidence",
 "Third piece of evidence",
 "Conclusion connected back to the judgment"
+]
+},
+{
+"u": "2.2",
+"type": "concept",
+"prompt": "Explain how Raphael's The School of Athens reflects THREE ideas of the Renaissance. Point to specific details of the painting.",
+"model": "1. Classical revival / humanism: the subject is ancient Greek philosophers, with Plato and Aristotle at the center — Renaissance thinkers looked to classical learning.\n2. Perspective and realism: the architecture's lines converge toward a vanishing point between Plato and Aristotle, creating deep, believable space and drawing the eye to them.\n3. Individualism and status of the artist: Raphael is often said to have included himself and contemporaries (Plato is often identified with Leonardo) — artists were celebrated individuals.\n(Also acceptable: harmony of faith and reason — the fresco sits in the papal Stanza della Segnatura opposite a theology fresco; patronage by Pope Julius II.)",
+"rubric": [
+"Idea 1 linked to a specific detail",
+"Idea 2 linked to a specific detail",
+"Idea 3 linked to a specific detail",
+"Explained what each detail shows about Renaissance values"
+]
+},
+{
+"u": "4.1",
+"type": "concept",
+"prompt": "\"The Habsburgs were the most powerful family in Europe, yet they could not stop the Protestant Reformation.\" Explain why, using at least three pieces of evidence.",
+"model": "Thesis: Habsburg power was spread across too many fronts and depended on cooperation it could not always command.\n• France: repeated wars with French kings drained money and troops.\n• Ottomans: Süleyman's advance (Siege of Vienna, 1529; naval wars) forced Charles V to prioritize defense in the east and seek German princes' help.\n• German princes: Lutheran princes formed alliances; Charles had to accept the Peace of Augsburg (1555).\n• Later, Philip II faced the Dutch Revolt (from 1568) and lost the Armada (1588), showing the same limits.\nConclusion: a scattered empire held together by inheritance, not unity, could not enforce religious uniformity.",
+"rubric": [
+"Clear thesis",
+"Evidence: France",
+"Evidence: Ottomans",
+"Evidence: German princes / Augsburg or the Dutch Revolt",
+"Conclusion linking evidence to thesis"
+]
+},
+{
+"u": "4.3",
+"type": "concept",
+"prompt": "Compare how Christianity spread in TWO different regions during this era (for example: Japan, China, Kongo, or the Americas). Identify one similarity and one difference.",
+"model": "Example — China and the Americas:\nChina: Jesuits like Matteo Ricci entered by invitation and accommodation — learning Chinese, sharing science and maps, adapting teaching to Confucian culture. Conversions were few and voluntary, mostly among elites.\nAmericas: Christianity spread alongside Spanish conquest; missionaries converted large populations, sometimes under coercion, and Indigenous peoples often blended Catholic practices with older beliefs (syncretism).\nSimilarity: missionaries (often Jesuits or friars) adapted to local languages, and in both regions Christianity mixed with local culture.\nDifference: in China, missionaries had no state power behind them and depended on rulers' goodwill; in the Americas, conversion was tied to colonial conquest.",
+"rubric": [
+"Accurate description of region 1",
+"Accurate description of region 2",
+"A valid similarity",
+"A valid difference",
+"Specific names, places, or dates"
 ]
 }
 ];
